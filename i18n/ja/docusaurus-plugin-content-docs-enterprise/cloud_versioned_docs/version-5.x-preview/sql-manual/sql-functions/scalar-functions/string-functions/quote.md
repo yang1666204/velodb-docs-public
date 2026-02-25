@@ -1,0 +1,105 @@
+---
+{
+  "title": "I don't see any text to translate after \"QUOTE\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "description": "QUOTE関数は、文字列を単一引用符で囲み、その中の特殊文字をエスケープするために使用され、SQL文での安全な使用を可能にします。",
+  "language": "ja"
+}
+---
+## 説明
+
+QUOTE関数は、文字列を単一引用符で囲み、その中の特殊文字をエスケープするために使用され、SQL文での使用を安全にします。
+
+## 構文
+
+```sql
+QUOTE(<str>)
+```
+## Parameters
+
+| Parameter | Description |
+| ------- | ----------------------------------------- |
+| `<str>` | クォートする入力文字列。型: VARCHAR |
+
+## Return Value
+
+VARCHAR型を返します。文字列はシングルクォートで囲まれ、特殊文字がエスケープされます。
+
+特殊なケース:
+- 入力がNULLの場合、文字列'NULL'を返します（クォートなし）
+- シングルクォート`'`は`\'`にエスケープされます
+- バックスラッシュ`\`は`\\`にエスケープされます
+- `\\`は`\`にエスケープされます
+- 空文字列は`''`を返します
+
+## Examples
+
+1. 基本的な文字列のクォート
+
+```sql
+SELECT quote('hello');
+```
+```text
++----------------+
+| quote('hello') |
++----------------+
+| 'hello'        |
++----------------+
+```
+2. 単一引用符を含む文字列（エスケープされます）
+
+```sql
+SELECT quote("It's a test");
+```
+```text
++----------------------+
+| quote("It's a test") |
++----------------------+
+| 'It's a test'        |
++----------------------+
+```
+3. NULL値の処理
+
+```sql
+SELECT quote(NULL);
+```
+```text
++-------------+
+| quote(NULL) |
++-------------+
+| NULL        |
++-------------+
+```
+4. 空文字列の処理
+
+```sql
+SELECT quote('');
+```
+```text
++-----------+
+| quote('') |
++-----------+
+| ''        |
++-----------+
+```
+5. バックスラッシュ文字
+
+```sql
+SELECT quote('aaa\\');
+```
+```text
++----------------+
+| quote('aaa\\') |
++----------------+
+| 'aaa\'         |
++----------------+
+```
+```sql
+SELECT quote('aaa\cccb');
+```
+```text
++-------------------+
+| quote('aaa\cccb') |
++-------------------+
+| 'aaacccb'         |
++-------------------+
+```

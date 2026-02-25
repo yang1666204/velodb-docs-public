@@ -1,0 +1,39 @@
+---
+{
+  "title": "I don't see any text to translate after \"FROM_SECOND\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "description": "この関数は、Unixタイムスタンプ（秒単位）をDATETIME値に変換します。",
+  "language": "ja"
+}
+---
+## 説明
+この関数は、Unixタイムスタンプ（秒単位）を`DATETIME`値に変換します。
+
+
+## 構文
+
+```sql
+FROM_SECOND(<unix_timestamp>)
+```
+## Parameters
+
+| Parameter          | Description                                                                                            |
+|--------------------|--------------------------------------------------------------------------------------------------------|
+| `<unix_timestamp>` | 必須。1970-01-01 00:00:00 UTCからの経過秒数を表すUnixタイムスタンプ。 |
+
+## Return Value
+- 指定されたUnixタイムスタンプに対応する日時を表すDATETIME値を返します。
+- `<unix_timestamp>`がNULLの場合、関数はNULLを返します。
+- `<unix_timestamp>`が有効な範囲外の場合、関数はエラーを返します。
+
+## Example
+
+```sql
+SELECT FROM_SECOND(1700000000);
+```
+```text
++-------------------------+
+| from_second(1700000000) |
++-------------------------+
+| 2023-11-15 06:13:20     |
++-------------------------+
+```

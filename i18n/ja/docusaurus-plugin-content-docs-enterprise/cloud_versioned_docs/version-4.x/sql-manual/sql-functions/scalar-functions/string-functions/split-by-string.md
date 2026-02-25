@@ -1,0 +1,52 @@
+---
+{
+  "title": "I don't see any text to translate after \"SPLIT_BY_STRING\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "description": "指定された文字列に従って、入力文字列を文字列配列に分割します。",
+  "language": "ja"
+}
+---
+## Description
+
+指定された文字列に従って入力文字列を文字列配列に分割します。
+
+## Syntax
+
+```sql
+SPLIT_BY_STRING ( <str>, <separator> )
+```
+## パラメータ
+
+| Parameter     | Description                    |
+|---------------|--------------------------------|
+| `<str>`       | 分割対象の文字列。        |
+| `<separator>` | 分割に使用する文字列。 |
+
+## 戻り値
+
+指定された文字列に従って分割された文字列配列を返します。特殊なケース：
+
+- いずれかのパラメータがNULLの場合、NULLが返されます。
+- `<separator>`が空文字列の場合、`<str>`はバイト列に分割されます。
+
+## 例
+
+```sql
+SELECT split_by_string('hello','l');
+```
+```text
++-------------------------------+
+| split_by_string('hello', 'l') |
++-------------------------------+
+| ["he", "", "o"]               |
++-------------------------------+
+```
+```sql
+SELECT split_by_string('hello','');
+```
+```text
++------------------------------+
+| split_by_string('hello', '') |
++------------------------------+
+| ["h", "e", "l", "l", "o"]    |
++------------------------------+
+```

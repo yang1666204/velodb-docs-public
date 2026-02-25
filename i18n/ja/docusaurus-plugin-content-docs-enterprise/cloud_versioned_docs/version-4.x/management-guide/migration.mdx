@@ -1,0 +1,38 @@
+---
+{
+  "title": "マイグレーション",
+  "description": "VeloDB Cloudは効率的で安全なワンストップデータ移行機能を提供し、Apache Doris、VeloDB、StarrocksデータソースからVeloDBデータウェアハウスへの全データのスムーズな移行をサポートします。",
+  "language": "ja"
+}
+---
+# Migration
+
+VeloDB Cloudは効率的で安全なワンストップデータ移行機能を提供し、Apache Doris、VeloDB、Starrocksデータソースから VeloDB データウェアハウスへの全データのスムーズな移行をサポートします。
+
+「Data Migration」モジュールに入り、「Create Migration Task」をクリックし、タスク名、説明、ソースクラスター接続情報、JDBCポート、HTTPポート、ユーザー名、パスワードを入力し、「Next」をクリックして接続性を確認します。
+
+![migration-connection](/images/cloud/migration-connection.png)
+
+一時オブジェクトストレージを設定します。オブジェクトストレージのプロバイダを選択後、対応するオブジェクトストレージアドレスと認証情報を入力します。オブジェクトストレージはデータの一時保存移行に使用され、移行完了後は自動的にクリーンアップされます。
+
+![migration-object-storage](/images/cloud/migration-object-storage.png)
+
+移行するデータベース＆テーブルをチェックします（バッチ選択またはカスタムフィルタリングをサポート）。設定条件に対するデータフィルタリングをサポートします。
+
+![migration-table](/images/cloud/migration-table.png)
+
+設定セクションで、移行に使用するコンピューティングリソースのクラスターを選択し、テーブルの移行並行数と各テーブルのTablet移行並行数を設定します。
+
+![migration-setting.](/images/cloud/migration-setting.png)
+
+事前チェックが通過した後、移行タスクを開始できます。
+
+![migration-confirm](/images/cloud/migration-confirm.png)
+
+データ移行リストで移行タスクの基本情報を表示できます。これには移行タスク名、データソース、移行ステータス、作成時間、その他の情報が含まれます。
+
+![migration-task](/images/cloud/migration-task.png)
+
+特定のタスクをクリックして、そのタスクの詳細情報を表示します。
+
+![migration-detail](/images/cloud/migration-detail.png)

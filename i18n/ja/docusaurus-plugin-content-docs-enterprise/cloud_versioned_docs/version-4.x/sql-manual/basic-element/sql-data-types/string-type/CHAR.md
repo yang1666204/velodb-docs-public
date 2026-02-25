@@ -1,0 +1,16 @@
+---
+{
+  "title": "CHAR | String型",
+  "description": "CHAR(M) 固定長文字列。Mは固定長文字列のバイト長を表します。Mの範囲は1-255です。",
+  "language": "ja"
+}
+---
+# CHAR
+
+## CHAR
+### Description
+CHAR(M)
+固定長文字列で、Mは固定長文字列のバイト長を表します。Mの範囲は1-255です。
+
+### keywords
+CHAR

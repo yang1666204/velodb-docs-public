@@ -1,0 +1,50 @@
+---
+{
+  "title": "SHOW FRONTEND CONFIG の表示",
+  "description": "この文は現在のクラスターの設定を表示するために使用されます（現在はFEの設定項目のみがサポートされています）",
+  "language": "ja"
+}
+---
+## Description
+
+このステートメントは、現在のクラスタの設定を表示するために使用されます（現在はFEの設定項目のみサポートされています）
+
+## Syntax
+
+```sql
+SHOW FRONTEND CONFIG [LIKE "<pattern>"];
+```
+## オプションパラメータ
+**`<pattern>`**
+> 通常の文字とワイルドカードを含むことができる文字列。
+
+
+## 戻り値
+| カラム名 | 説明                                            |
+|-------------|-----------------------------------------------------|
+| Value       | 設定項目の値                            |
+| Type        | 設定項目の種類                             |
+| IsMutable   | `ADMIN SET CONFIG`コマンドで設定可能かどうか |
+| MasterOnly  | Master FEのみに適用されるかどうか                  |
+| Comment     | 設定項目の説明                      |
+
+
+## 例
+
+1. 現在のFEノードの設定を表示
+
+   ```sql
+   SHOW FRONTEND CONFIG;
+   ```
+2. like述語を使用して現在のFeノードの設定を検索する
+
+   ```sql
+    SHOW FRONTEND CONFIG LIKE '%check_java_version%';
+    ```
+    ```text
+    +--------------------+-------+---------+-----------+------------+---------+
+    | Key                | Value | Type    | IsMutable | MasterOnly | Comment |
+    +--------------------+-------+---------+-----------+------------+---------+
+    | check_java_version | true  | boolean | false     | false      |         |
+    +--------------------+-------+---------+-----------+------------+---------+
+    ```

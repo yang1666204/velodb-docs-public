@@ -1,0 +1,136 @@
+---
+{
+  "title": "インテグレーション概要",
+  "description": "VeloDBの統合は、BI、Lakehouse、Observability、SQLクライアント、Data Source、Data Ingestion、Data Processingのカテゴリに分類されます。",
+  "language": "ja"
+}
+---
+import HiveIcon from '/images/cloud/integration/logo/hive.svg'
+import PaimonIcon from '/images/cloud/integration/logo/paimon.svg'
+import LakeSoulIcon from '/images/cloud/integration/logo/lakesoul.svg'
+import LogstashIcon from '/images/cloud/integration/logo/elastic-logstash.svg'
+import BeatsIcon from '/images/cloud/integration/logo/beats.svg'
+import ApacheSparkIcon from '/images/cloud/integration/logo/apache-spark-logo.svg'
+import DbtIcon from '/images/cloud/integration/logo/dbt.svg'
+import QuickSightIcon from '/images/cloud/integration/logo/quicksight.svg'
+import SupersetIcon from '/images/cloud/integration/logo/superset.svg'
+import DataGripIcon from '/images/cloud/integration/logo/datagrip-icon.svg'
+import KafkaIcon from '/images/cloud/integration/logo/kafka.svg'
+import MysqlIcon from '/images/cloud/integration/logo/mysql.svg'
+import PgIcon from '/images/cloud/integration/logo/postgresql.svg'
+import AzureIcon from '/images/cloud/integration/logo/azureblobstorage.svg'
+import BladepipeIcon from '/images/cloud/integration/logo/bladepipe.svg'
+import AmazonIcon from '/images/cloud/integration/logo/amazon-glue.svg'
+
+
+# 統合の概要
+
+VeloDBの統合は、**BI、Lakehouse、Observability、SQLクライアント、データソース、データ取り込み、データ処理**のカテゴリに分類されます。
+
+このVeloDB / Apache Doris統合のリストは継続的に更新されており、まだ完全ではありません。関連するVeloDB / Apache Doris統合の拡充にご協力いただける貢献を歓迎します。統合リストの更新については[お問い合わせ](mailto:contact@velodb.io)ください。
+
+
+
+## Lakehouse
+
+
+|名前        |ロゴ|説明|リソース|
+|------------|----|------------------|-------------|
+|Apache Iceberg|<img src={require("/images/cloud/integration/logo/iceberg.png").default} style={{width: '3rem', height: '3rem'}} alt="iceberg" /> |Dorisは様々なメタデータサービスを通してIcebergテーブルデータへのアクセスをサポートしています。データの読み取りに加えて、DorisはIcebergテーブルへの書き込みもサポートしています。|[ドキュメント](../user-guide/lakehouse/catalogs/iceberg-catalog)|
+|Apache Hudi| <img src={require("/images/cloud/integration/logo/hudi.png").default} style={{width: '5rem', height: '3rem'}} alt="Hudi" /> | Hive MetastoreまたはHive Metastoreと互換性のあるメタデータサービスに接続することで、DorisはHudiのデータベースとテーブル情報を自動的に取得し、データクエリを実行できます。 |[ドキュメント](../user-guide/lakehouse/catalogs/hive-catalog)|
+|Amazon Glue| <AmazonIcon width={'3rem'} height={'3rem'}  /> |AWS Glue CatalogをCREATE CATALOGを通してIcebergテーブルやHiveテーブルにアクセスするために使用します。|[ドキュメント](../user-guide/lakehouse/metastores/aws-glue)|
+|Apache Paimon| <PaimonIcon width={'3rem'} height={'3rem'} /> | Dorisは現在、様々なメタデータサービスを通してPaimonテーブルのメタデータにアクセスし、Paimonデータをクエリすることをサポートしています。|[ドキュメント](../user-guide/lakehouse/catalogs/paimon-catalog)|
+|Apache Hive| <HiveIcon width={'3rem'} height={'3rem'} />|Hive MetastoreまたはHive Metastoreと互換性のあるメタデータサービスに接続することで、DorisはHiveデータベースとテーブル情報を自動的に取得してデータクエリを行うことができます。|[ドキュメント](../user-guide/lakehouse/catalogs/hive-catalog)|
+|BigQuery|<img src={require("/images/cloud/integration/logo/google-bigquery-logo-icon.png").default} style={{width: '3rem', height: '3rem'}} alt="BigQuery" />| BigQuery CatalogはTrino Connector互換性フレームワークを使用してBigQuery Connectorを通してBigQueryテーブルにアクセスします。|[ドキュメント](../user-guide/lakehouse/catalogs/bigquery-catalog)|
+|Apache Kudu|<img src={require("/images/cloud/integration/logo/Apache-Kudu-logo.png").default} style={{width: '3rem', height: '3rem'}} alt="Kudu" />| Kudu CatalogはTrino Connector互換性フレームワークを使用してKudu Connectorを通してKuduテーブルにアクセスします。|[ドキュメント](../user-guide/lakehouse/catalogs/kudu-catalog)|
+|LakeSoul|<LakeSoulIcon width={'3rem'} height={'3rem'} />| DorisはPostgreSQLに格納されたメタデータを使用してLakeSoulテーブルデータのアクセスと読み取りをサポートしています。|[ドキュメント](../user-guide/lakehouse/catalogs/lakesoul-catalog)|
+|MaxCompute|<img src={require("/images/cloud/integration/logo/maxcompute.png").default} style={{width: '3rem', height: '3rem'}} alt="MaxCompute" />|MaxComputeはAlibaba Cloud上のエンタープライズ級SaaS（Software as a Service）クラウドデータウェアハウスです。|[ドキュメント](../user-guide/lakehouse/catalogs/maxcompute-catalog)|
+
+<br/>
+
+## Observability
+
+
+|名前        |ロゴ|説明|リソース|
+|------------|----|------------------|-------------|
+|Opentelemetry|<img src={require("/images/cloud/integration/logo/opentelemetry.png").default} style={{width: '3rem', height: '3rem'}} alt="Opentelemetry" /> |AWS Glue CatalogをCREATE CATALOGを通してIcebergテーブルやHiveテーブルにアクセスするために使用します。|ドキュメント|
+|Logstash|<LogstashIcon width={'3rem'} height={'3rem'}/>|LogstashはログETLフレームワーク（収集、前処理、ストレージシステムへの送信）で、ストレージシステムにデータを書き込むためのカスタム出力プラグインをサポートしています。 |[ドキュメント](../ecosystem/observability/logstash)|
+|Beats  |<BeatsIcon width={'3rem'} height={'3rem'}/> |Dorisは様々なメタデータサービスを通してIcebergテーブルデータへのアクセスをサポートしています。データの読み取りに加えて、DorisはIcebergテーブルへの書き込みもサポートしています。|[ドキュメント](../ecosystem/observability/beats)|
+|Fluentbit|<img src={require("/images/cloud/integration/logo/Fluent-bit.webp").default} style={{width: '5rem', height: '3rem'}} alt="Fluentbit" />| Dorisは現在、様々なメタデータサービスを通してPaimonテーブルのメタデータにアクセスし、Paimonデータをクエリすることをサポートしています。|[ドキュメント](../ecosystem/observability/fluentbit)|
+
+
+<br />
+
+## データ処理
+
+|名前        |ロゴ|説明|リソース|
+|------------|----|------------------|-------------|
+|Apache Spark   |<ApacheSparkIcon width={'3rem'} height={'3rem'} /> |Spark Doris ConnectorはSparkを通してDorisに格納されたデータの読み取りとDorisへのデータ書き込みをサポートできます。|[GitHub](https://github.com/apache/doris-spark-connector)<br />[ドキュメント](./data-processing/spark-doris-connector)|
+|Apache Flink  |<img src={require("/images/cloud/integration/logo/flink.png").default} style={{width: '3rem', height: '3rem'}} alt="flink" /> |Flink Doris ConnectorはFlinkを通してDorisクラスタからの読み取りとDorisクラスタへのデータ書き込みに使用されます。|[GitHub](https://github.com/apache/doris-flink-connector)<br />[ドキュメント](./data-processing/flink-doris-connector)|
+|dbt  |<DbtIcon width={'3rem'} height={'3rem'} /> |dbt-dorisアダプタはdbt-coreをベースに開発され、mysql-connector-pythonドライバーに依存してデータをdorisに変換します。|[ドキュメント](./data-processing/dbt-doris-adapter)|
+
+
+## BI 
+
+<br />
+
+
+|名前        |ロゴ|説明|リソース|
+|------------|----|------------------|-------------|
+|Tableau|<img src={require("/images/cloud/integration/logo/logo-tableau.png").default} style={{width: '3rem', height: '3rem'}} alt="tableau" />|ビジネスインテリジェンスに焦点を当てたインタラクティブなデータ可視化ソフトウェア|[ドキュメント](./bi/tableau)|
+|Power BI|<img src={require("/images/cloud/integration/logo/powerbi.png").default} alt="powerbi" /> |Microsoft Power BIは、ビジネスインテリジェンスを主な焦点としてMicrosoftが開発したインタラクティブなデータ可視化ソフトウェア製品です。|[ドキュメント](./bi/powerbi)|
+|QuickSight|<QuickSightIcon width={'3rem'} height={'3rem'} /> |Amazon QuickSightは統合ビジネスインテリジェンス（BI）でデータ駆動型組織を支援します。|[ドキュメント](./bi/quicksight)|
+|Apache Superset|<SupersetIcon width={'3rem'} height={'3rem'} />| Apache Supersetはオープンソースのデータ探索プラットフォームです。豊富な種類のデータソース接続と多数の可視化手法をサポートしています。|[ドキュメント](./bi/apache-superset)|
+|FineBI|<img src={require("/images/cloud/integration/logo/finebi-logo.jpeg").default} style={{width: '3rem', height: '3rem'}} alt="finebi" />|FineBIは豊富なデータソース接続と複数のビューでのテーブルの分析および管理をサポートしています。 |[ドキュメント](./bi/finebi)|
+|SmartBI| <img src={require("/images/cloud/integration/logo/smartbi.png").default} style={{width: '3rem', height: '3rem'}} alt="smartbi" /> | SmartbiはOracle、SQL Server、MySQL、Dorisを含む様々なデータソースに接続できるソフトウェアサービスとアプリケーションコネクタの集合体で、ユーザーが簡単にデータを統合・クレンジングできます。  |[ドキュメント](./bi/smartbi)|
+|QuickBI|<img src={require("/images/cloud/integration/logo/alibaba-cloud-computing-company-logo.jpeg").default} style={{width: '3rem', height: '3rem'}} alt="quickbi" />| Quick BIはデータウェアハウスベースのビジネスインテリジェンスツールで、企業が印象的なビジュアル分析を迅速に構築するのに役立ちます。|[ドキュメント](./bi/quickbi)|
+
+
+<br/>
+
+## SQLクライアント
+
+<br />
+
+|名前        |ロゴ|説明|リソース|
+|------------|----|------------------|-------------|
+|DBeaver     |<img src={require("/images/cloud/integration/logo/dbeaver.png").default} style={{width: '3rem', height: '3rem'}} alt="dbeaver" /> |DBeaverは開発者、データベース管理者、アナリスト、データを扱うすべての人のためのクロスプラットフォームデータベースツールです。|[ドキュメント](./sql-client/dbeaver)|
+|DataGrip    |<DataGripIcon width={'3rem'} height={'3rem'} /> |DataGripはJetBrainsが提供するリレーショナルおよびNoSQLデータベース用の強力なクロスプラットフォームデータベースツールです。|[ドキュメント](./sql-client/datagrip)|
+
+<br />
+
+## データソース
+
+<br />
+
+|名前        |ロゴ|説明|リソース|
+|------------|----|------------------|-------------|
+|Apache Kafka |<KafkaIcon width={'3rem'} height={'3rem'} /> |Dorisはリアルタイムストリーミング（CSV/JSON、Exactly-Once）のための効率的なRoutine LoadとAdvanced形式のためのDoris Kafka Connectorを介してKafkaと統合します。|[GitHub](https://github.com/apache/doris-kafka-connector)<br />[ドキュメント](../user-guide/data-operate/import/data-source/kafka)|
+|Doris Kafka Connector|<KafkaIcon width={'3rem'} height={'3rem'} /> |Dorisはリアルタイムストリーミング（CSV/JSON、Exactly-Once）のための効率的なRoutine LoadとAdvanced形式のためのDoris Kafka Connectorを介してKafkaと統合します。|[GitHub](https://github.com/apache/doris-kafka-connector)<br />[ドキュメント](./data-source/doris-kafka-connector)|
+|MySQL |<MysqlIcon width={'3rem'} height={'3rem'} /> |Doris JDBC Catalogは標準JDBCインターフェースを介してMySQLデータベースへの接続をサポートしています。|[ドキュメント](../user-guide/lakehouse/catalogs/jdbc-mysql-catalog)|
+|PostgreSQL |<PgIcon width={'3rem'} height={'3rem'} /> |Doris JDBC Catalogは標準JDBCインターフェースを介してPostgreSQLデータベースへの接続をサポートしています。|[ドキュメント](../user-guide/lakehouse/catalogs/jdbc-pg-catalog)|
+|Amazon S3  |<img src={require("/images/cloud/integration/logo/amazon-s3-logo.png").default} style={{width: '3rem', height: '3rem'}} alt="amazon s3" /> |Dorisは非同期（S3 Load）と同期（TVF）の両方の方法を使用したS3ファイルの読み込みをサポートしています。|[ドキュメント](../user-guide/data-operate/import/data-source/amazon-s3)|
+|Azure |<AzureIcon width={'3rem'} height={'3rem'} /> |Dorisは非同期（S3 Load）と同期（TVF）の両方の方法を使用したAzure Storageファイルの読み込みをサポートしています。|[ドキュメント](../user-guide/data-operate/import/data-source/azure-storage)|
+|Google Cloud Storage|<img src={require("/images/cloud/integration/logo/google-bigquery-logo-icon.png").default} style={{width: '3rem', height: '3rem'}} alt="gcp" /> |Google Cloud Storageからファイルを読み込むために、Dorisは非同期S3 Loadと同期TVFの2つの方法を提供しています。|[ドキュメント](../user-guide/data-operate/import/data-source/google-cloud-storage)|
+|MinIO  |<img src={require("/images/cloud/integration/logo/minio.png").default} style={{width: '3rem', height: '3rem'}} alt="MinIO" /> |Dorisは非同期（S3 Load）と同期（TVF）の両方の方法を使用したMinIOファイルの読み込みをサポートしています。|[ドキュメント](../user-guide/lakehouse/storages/minio)|
+|HDFS |<HiveIcon width={'3rem'} height={'3rem'} /> |Hive MetastoreまたはHive Metastoreと互換性のあるメタデータサービスに接続することで、DorisはHiveデータベースとテーブル情報を自動的に取得してデータクエリを行うことができます。|[ドキュメント](../user-guide/lakehouse/storages/hdfs)|
+
+
+## データ取り込み
+
+
+|名前        |ロゴ|説明|リソース|
+|------------|----|------------------|-------------|
+|Doris Streamloader  |<img src={require("/images/cloud/integration/logo/doris.png").default} style={{width: '5rem', height: '3rem'}} alt="doris streamloader" /> |Doris StreamloaderはApache Dorisにデータを読み込むために設計されたクライアントツールです。curlを使用したシングルスレッド読み込みと比較して、並行読み込み機能により大規模データセットの読み込み遅延を削減します。|[ドキュメント](./data-ingestion/doris-streamloader)|
+|Apache SeaTunnel  |<img src={require("/images/cloud/integration/logo/seatunnel.png").default} style={{width: '3rem', height: '3rem'}} alt="seatunnel" /> |SeaTunnelは非常に使いやすい超高性能分散データ統合プラットフォームで、大容量データのリアルタイム同期をサポートしています。|[ドキュメント](./data-ingestion/seatunnel)|
+|BladePipe   |<BladepipeIcon width={'3rem'} height={'3rem'} /> |BladePipeはリアルタイムエンドツーエンドデータ複製ツールで、30以上のデータベース、メッセージキュー、検索エンジン、キャッシュ、リアルタイムデータウェアハウス、データレイクなどの間で、3秒未満の超低遅延でデータを移動します。 |[ドキュメント](./data-ingestion/cloudcanal)|
+
+
+## その他
+
+|名前        |ロゴ|説明|リソース|
+|------------|----|------------------|-------------|
+|AutoMQ |<img src={require("/images/cloud/integration/logo/automq.png").default} style={{width: '3rem', height: '2rem'}} alt="automq" /> |AutoMQはS3などのオブジェクトストレージにストレージを分離することでKafkaのクラウドネイティブフォークです。 |[ドキュメント](./more/automq-load)|
+|DataX |<img src={require("/images/cloud/integration/logo/alibaba-cloud-computing-company-logo.jpeg").default} style={{width: '3rem', height: '3rem'}} alt="datax" /> |DataX DoriswriterプラグインはStream Load方式を使用してMySQL、Oracle、SQL Serverなど様々なデータソースからDorisへのデータ同期をサポートしています。|[ドキュメント](./more/datax)|
+|Kettle |<img src={require("/images/cloud/integration/logo/pentaho.png").default} style={{width: '3rem', height: '3rem'}} alt="kettle" /> |Kettle Doris PluginはKettleでStream Loadを通して他のデータソースからDorisにデータを書き込むために使用されます。|[ドキュメント](./more/kettle)|
+|Apache Kyuubi |<img src={require("/images/cloud/integration/logo/kyuubi.jpeg").default} style={{width: '5rem', height: '3rem'}} alt="kyuubi" /> |Apache Kyuubiは、データウェアハウスとレイクハウスでサーバーレスSQLを提供する分散マルチテナントゲートウェイです。|[ドキュメント](./more/kyuubi)|

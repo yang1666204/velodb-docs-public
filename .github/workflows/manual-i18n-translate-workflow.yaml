@@ -199,7 +199,7 @@ jobs:
       # 4. 创建 PR
       - uses: peter-evans/create-pull-request@v6
         with:
-          base: master
+          base: main
           branch: auto/i18n-ja-${{ github.run_id }}
           commit-message: chore(i18n):auto translate docs to ja
           title: "[auto-i18n] Translate docs to Japanese"

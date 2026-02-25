@@ -1,0 +1,204 @@
+---
+{
+  "title": "請求センター",
+  "description": "このトピックでは、組織管理者向けに料金控除チャネルの管理と請求書の表示方法について説明します。",
+  "language": "ja"
+}
+---
+# Billings
+
+このトピックでは、組織管理者向けに料金控除チャネルの管理と請求書の確認方法について説明します。
+
+本番環境で適用する前に、サービスの継続的な運用を確保するために、クレジットカードをリンクするかクラウドマーケットプレイス控除チャネルを開くことを推奨します。
+
+## 控除チャネル
+
+VeloDB Cloudは現在、クレジットカード、クラウドマーケットプレイス、現金、バウチャーの4つの控除チャネルをサポートしています。VeloDB Cloudは定期的に請求書を生成し、これらのチャネルから料金を控除します。
+
+**User Menu** > **Billings**をクリックし、Billing Overviewページに入り、これらの料金控除チャネルの全体的な使用状況を確認します。
+
+![billing overview](/images/cloud/billing-overview.png)
+
+以下では、上記の控除チャネルの使用について説明します：
+
+### Credit Card
+
+Billing Overviewページで、**Credit Card**の**Add**をクリックしてセットアップを完了します。
+
+![billing-credit-card](/images/cloud/billing-credit-card.png)
+
+Billing Overviewページでクレジットカードを削除することはできませんが、いつでも更新できます。これにより、組織が常に有効な支払い方法を持つことが保証されます。クレジットカードを削除する必要がある場合は、VeloDB Cloudサポートにお問い合わせください。
+
+### Open Cloud Marketplace
+
+#### AWS Marketplace
+このトピックでは主にAWS Marketplace控除チャネルの使用方法について説明します。
+
+具体的な開設プロセスは以下の通りです：
+
+1. Billing Overviewページで、**Cloud Marketplace**カードの**Subscribe**をクリックし、ドロワーページで**AWS Marketplace**を見つけ、**Go to Subscribe**をクリックしてAWS MarketplaceのVeloDB Cloud商品ページに入ります。
+
+![billing cloud marketplace deduction channel](/images/cloud/billing-cloud-marketplace-deduction-channel.png)
+
+2. **View purchase options**をクリックして、AWS MarketplaceのSubscriptionページに入ります。
+
+![velodb cloud on aws marketplace](/images/cloud/velodb-cloud-on-aws-marketplace.png)
+
+3. **Subscribe**をクリックし、ページに「You are currently subscribed to this offer」と表示されたら、**Set up your account**をクリックしてVeloDB Cloudの認証ページに移動します。
+
+![subscribe to velodb cloud on aws marketplace](/images/cloud/subscribe-to-velodb-cloud-on-aws-marketplace.png)
+
+4. 認証ページでVeloDB Cloudアカウントでログインします。
+
+![authorized to aws marketplace deduction login](/images/cloud/authorized-to-aws-marketplace-deduction-login.png)
+
+5. 組織リストから対象組織を選択し、**Confirm Authorization**をクリックします。認証が成功すると、AWSアカウントが後続の費用を控除します。
+
+![authorized to aws marketplace deduction choose organization](/images/cloud/authorized-to-aws-marketplace-deduction-choose-organization.png)
+
+6. 認証完了後、**Check**をクリックしてBilling Overviewページに戻ります。クラウドマーケットプレイス控除チャネルに**AWS Marketplace**が表示されていれば、クラウドマーケットプレイス控除チャネルの開設が成功したことを意味します。
+
+![authorized to aws marketplace deduction succeeded](/images/cloud/authorized-to-aws-marketplace-deduction-succeeded.png)
+
+![billing overview opened cloud marketplace deduction channel](/images/cloud/billing-overview-opened-cloud-marketplace-deduction-channel.png)
+
+#### GCP Marketplace
+
+このトピックでは主にAWS Marketplace控除チャネルの使用方法について説明します。
+
+> Note: GCP Marketplaceでは、支払い金額の3%の追加手数料が発生します。
+
+**1. GCP Marketplace VeloDB Cloud製品へ移動**
+
+VeloDB Cloudコンソールを通じてGCP Marketplaceにジャンプするか、MarketplaceでVeloDBを直接検索できます。
+
+- VeloDB Cloudコンソールを通じてGCP Marketplaceにジャンプ
+
+    [VeloDB Cloudコンソール](https://www.velodb.cloud/)の**Billing Overview**ページで、**Cloud Marketplace Deduction Channel**カードの**Open**をクリックし、ドロワーページで**GCP Marketplace**を見つけ、**Go to Subscribe**をクリックしてGCP MarketplaceのVeloDB Cloud製品ページにジャンプします。
+
+![billing-cloud-marketplace-deduction-channel](/images/cloud/billing-cloud-marketplace-deduction-channel.png)
+
+- GCP MarketplaceでVeloDBを直接検索
+
+    [GCP Marketplace](https://console.cloud.google.com/marketplace)で「**VeloDB**」または「**Doris**」を検索してVeloDB Cloud製品を見つけ、GCP MarketplaceのVeloDB Cloud製品ページに入ることもできます。
+
+![marketpalce gcp 1 2](/images/cloud/marketpalce-gcp-1-2.png)
+
+**2. VeloDB Cloudを購読**
+
+GCP MarketplaceのVeloDB Cloud製品ページで、**SUBSCRIBE**ボタンをクリックして注文確認ページに移動します。
+
+![marketpalce gcp 2 1](/images/cloud/marketpalce-gcp-2-1.png)
+
+![marketpalce gcp 2 2](/images/cloud/marketpalce-gcp-2-2.png)
+
+注文確認ページで、利用規約を確認し、**SUBSCRIBE**ボタンをクリックします。
+
+![marketpalce gcp 2 3](/images/cloud/marketpalce-gcp-2-3.png)
+
+二次確認ダイアログボックスで、**GO TO PRODUCT PAGE**ボタンをクリックして購読効果を確認するか、**MANAGE ORDERS**ボタンをクリックして注文の変更を確認できます。
+
+<img src={require("/images/cloud/marketpalce-gcp-2-4.png").default} alt="marketpalce gcp" width="536" height="601"/>
+
+![marketpalce gcp 2 5](/images/cloud/marketpalce-gcp-2-5.png)
+
+![marketpalce gcp 2 6](/images/cloud/marketpalce-gcp-2-6.png)
+
+GCP MarketplaceのVeloDB Cloud製品ページで、**MANAGE ON PROVIDER**ボタンをクリックしてVeloDB Cloudコンソールにジャンプし、ユーザー登録とログインを行って認証プロセスを完了する必要があります。
+
+![marketpalce gcp 2 7](/images/cloud/marketpalce-gcp-2-7.png)
+
+![marketpalce gcp 2 8](/images/cloud/marketpalce-gcp-2-8.png)
+
+すでに登録済みの場合は、直接**login**できます。
+
+![marketpalce gcp 2 9](/images/cloud/marketpalce-gcp-2-9.png)
+
+携帯電話番号またはメールアドレスでログインし、2番目のステップ「**Authorize Organization**」に進みます。
+
+![marketpalce gcp 2 10](/images/cloud/marketpalce-gcp-2-10.png)
+
+対象組織を選択し、**Confirm Authorization**ボタンをクリックします。
+
+![marketpalce gcp 2 11](/images/cloud/marketpalce-gcp-2-11.png)
+
+> Note: 注文ステータスに遅延が生じる場合があり、認証前に約1分間待つ必要があります。
+> ![marketpalce gcp 2 12](/images/cloud/marketpalce-gcp-2-12.png)
+
+認証が成功すると、3番目のステップ「**View Authorization Result**」に進みます。**Check**ボタンをクリックして**Billing Overview**ページに移動し、クラウドマーケットプレイス控除チャネルのアクティベーション状態を確認します。
+
+![marketpalce gcp 2 13](/images/cloud/marketpalce-gcp-2-13.png)
+
+![marketpalce gcp 2 14](/images/cloud/marketpalce-gcp-2-14.png)
+
+**3. VeloDB Cloudの購読解除**
+
+[VeloDB Cloudコンソール](https://www.velodb.cloud/)の**Billing Overview**ページで、**Cloud Marketplace Deduction Channel**カードの**Change**をクリックし、ドロワーページで**GCP Marketplace**を見つけ、**Go to Unsubscribe**ボタンをクリックしてGCP Marketplaceの注文ページにジャンプします。
+
+<img src={require("/images/cloud/marketpalce-gcp-3-1.png").default} alt="marketpalce gcp" width="536" height="601"/>
+
+GCP Marketplaceの注文ページで、**Order Number**で対象注文を見つけ（現在のステータスは「Active」）、右側のアクション列をクリックし、ドロップダウンメニューを展開して**Cancel order**をクリックします。
+
+![marketpalce gcp 3 2](/images/cloud/marketpalce-gcp-3-2.png)
+
+二次確認ダイアログボックスで、**Order Number**を入力し、**CANCEL ORDER**をクリックします。
+
+<img src={require("/images/cloud/marketpalce-gcp-3-3.png").default} alt="marketpalce gcp" width="536" height="601"/>
+
+成功後、対象注文のステータスが「**Canceled**」に変わり、VeloDB Cloudコンソールの**GCP Marketplace Deduction Channel**カードが初期の未購読状態に復元されたことが確認できます。
+
+<img src={require("/images/cloud/marketpalce-gcp-3-4.png").default} alt="marketpalce gcp" width="536" height="601"/>
+
+> Note: 注文ステータスに遅延が生じる場合があります。約1分間待って[VeloDB Cloudコンソール](https://www.velodb.cloud/)のBilling Overviewページを更新し、Cloud Marketplace Deduction Channelの変更を確認する必要があります。
+
+**4. セールスへの問い合わせ**
+
+製品についてさらに詳しく知りたい場合は、メールでCONTACT SALESできます。
+
+![marketpalce gcp 4 1](/images/cloud/marketpalce-gcp-4-1.png)
+
+
+### Recharge Cash
+
+Billing Overviewページで、**Recharge**をクリックして現金残高に資金を移します。提供された支払い詳細に従ってオフライン送金を完了すると、VeloDB Cloudが自動的に現金残高への入金を完了します。
+
+![billing recharge](/images/cloud/billing-recharge.png)
+
+入金記録を通じて過去の送金情報を確認することもできます。
+
+### Activate Voucher
+
+Billing Overviewページで、**Vouchers**に切り替えます。
+
+![voucher management](/images/cloud/voucher-management.png)
+
+**add voucher**をクリックし、VeloDB Cloudが発行したバウチャー有効化コードを入力してバウチャーを有効化します。
+
+<img
+    src={require("/images/cloud/billing-overview-add-voucher.png").default}
+    style={{ width: '50%' }}
+    alt='billing overview add voucher'
+    height="auto"
+/>
+
+Voucher Managementページでバウチャーの使用状況とバウチャー有効化履歴を確認することもできます。
+
+## Bills Statements
+
+VeloDB Cloudは組織全体の上記使用情報を毎分収集し、時間ごとに料金を控除し、時間別請求書と月別請求書を生成します。これらは主に組織管理者の照合とコスト分析のために提供されます。
+
+Billing Statementsページで、請求書を確認またはエクスポートできます。
+
+![billing overview monthly bill](/images/cloud/billing-overview-monthly-bill.png)
+
+クレジットカード、現金、バウチャーの残高が不足している場合、またはクラウドマーケットプレイス控除チャネルが使用できない場合、VeloDB Cloudはサービスを停止しますが、データは7日間保持されます。
+
+オンラインサービスの継続的な運用を維持するために、現金残高が十分であることを確認するか、クラウドマーケットプレイス控除チャネルを開いてください。
+
+## Usage
+
+ウェアハウス作成後、VeloDB Cloudはウェアハウス内の異なるリソースの使用状況（コンピュート、キャッシュ、ストレージを含む）を収集し、特定のウェアハウスでのコスト配分の分析を支援します。
+
+左側のナビゲーションバーで**Usage**をクリックして、現在のウェアハウス使用情報を確認します。
+
+![usage](/images/cloud/usage.png)

@@ -1,0 +1,58 @@
+---
+{
+  "title": "Studio アプリケーションメニュー",
+  "description": "import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';",
+  "language": "ja"
+}
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Application Menu
+
+
+## データベースへの接続
+
+`+`ボタンをクリックしてデータベース接続情報を入力し、`Save`ボタンをクリックして接続を保存し、カードをクリックしてデータベースに接続します。
+
+## 再起動
+
+`VeloDB Studio`メニューをクリックし、`Restart`をクリックして`VeloDB Studio`を再起動します。
+
+## リロード
+
+リロードとは`VeloDB Studio`アプリケーションの再読み込みを指し、ブラウザでページをリフレッシュすることと似ています。ページの動作が重い場合にリロード機能を使用できます。
+
+`VeloDB Studio`メニューをクリックし、`Reload App`をクリックするか`⌘(Command) + R`（Windowsアプリでは`CTRL + R`）で`VeloDB Studio`をリロードします。
+
+
+## 更新
+
+`VeloDB Studio`メニューをクリックし、`Check for updates`をクリックして更新を確認します。新しいバージョンは自動的にダウンロードされ、ダウンロード完了後にインストールするよう促されます。（ダウンロードの準備ができた後にプロンプトが表示されます）
+
+## 終了
+
+`VeloDB Studio`メニューをクリックし、`Exit`をクリックして`VeloDB Studio`を終了します。終了後、`VeloDB Studio`はすべての接続と自身のプロセスを閉じ、バックグラウンドでは実行されません。
+
+## アンインストール
+
+<Tabs>
+    <TabItem value='Mac' label='Mac'>
+        1. `Applications`フォルダからVeloDB Studioをゴミ箱にドラッグしてアンインストールします。
+        2. `VeloDB Studio`のデータパスは`/Users/[your username]/Library/Application Support/velodb-studio`にあります。このパスはアンインストール時に削除されません。パスを削除する必要がある場合は、手動で削除できます。ただし、削除後は`VeloDB Studio`のデータが失われます。
+        3. `VeloDB Studio`のログパスは`/Users/[your username]/Library/Application Support/velodb-studio/logs`にあります。このパスはアンインストール時に削除されません。パスを削除する必要がある場合は、手動で削除できます。
+    </TabItem>
+    <TabItem value='Windows' label='Windows'>
+        1. Windowsシステム設定のアンインストールボタンをクリックしてVeloDB Studioをアンインストールします。
+        2. `VeloDB Studio`のデータパスは`C:\Users\[your username]\AppData\Roaming\velodb-studio`にあります。このパスはアンインストール時に削除されません。パスを削除する必要がある場合は、手動で削除できます。ただし、削除後は`VeloDB Studio`のデータが失われます。
+        3. `VeloDB Studio`のログパスは`C:\Users\[your username]\AppData\Roaming\velodb-studio\logs`にあります。このパスはアンインストール時に削除されません。パスを削除する必要がある場合は、手動で削除できます。
+    </TabItem>
+</Tabs>
+
+
+## 質問・フィードバック
+
+VeloDB Studioの使用中に問題が発生した場合、以下の方法でフィードバックできます：
+
+1. 開発者へのメール [jeffrey@velodb.io](mailto:jeffrey@velodb.io)
+2. 営業担当者への連絡

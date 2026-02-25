@@ -1,0 +1,24 @@
+---
+{
+  "title": "Desktop Version FAQ"
+}
+---
+
+# Desktop Version FAQ
+
+### Cannot connect to the cluster, prompt `Login failed, please check the FE connection address or network connection`
+
+1. Please check whether the FE connection address and JDBC port are correct. If you are connected to the cloud database, please check whether the network policy (security group) of the cloud database allows connections.
+2. Please make sure your network connection is normal. You can check whether the network is unobstructed through the `ping` command.
+3. The request of the network agent (such as Clash, etc.) on the computer causes the connection to the cluster to be unsuccessful. You can try to close the agent/restart the computer and then reconnect.
+
+### An error occurred during use, `Internal Server Error`
+
+1. Try to reload the page (`CMD+R`).
+2. Click Exit to reconnect to the cluster.
+3. Because memory and connection management issues may cause the connection pool to be closed, restart the application and try to operate again.
+
+### The interface is stuck and cannot be operated
+
+1. Try to reload the page (`CMD+R`).
+2. Restart the application and try to operate again.

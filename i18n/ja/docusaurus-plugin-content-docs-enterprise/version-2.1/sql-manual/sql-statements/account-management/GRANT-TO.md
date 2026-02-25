@@ -1,0 +1,155 @@
+---
+{
+  "title": "GRANT TO",
+  "description": "GRANT コマンドは以下の用途で使用されます:",
+  "language": "ja"
+}
+---
+## Description
+
+GRANT コマンドは以下の用途で使用されます：
+
+1. ユーザーまたはロールに指定された権限を付与する。
+2. ユーザーに指定されたロールを付与する。
+
+**関連コマンド**
+
+- [REVOKE FROM](./REVOKE-FROM.md)
+- [SHOW GRANTS](../../../sql-manual/sql-statements/account-management/SHOW-GRANTS.md)
+- [CREATE ROLE](./CREATE-ROLE.md)
+- [CREATE WORKLOAD GROUP](../cluster-management/compute-management/CREATE-WORKLOAD-GROUP.md)
+- [CREATE RESOURCE](../cluster-management/compute-management/CREATE-RESOURCE.md)
+
+## Syntax
+
+**ユーザーまたはロールに指定された権限を付与**
+
+```sql
+GRANT <privilege_list> 
+ON { <priv_level> 
+    | RESOURCE <resource_name> 
+    | WORKLOAD GROUP <workload_group_name>
+   } 
+TO { <user_identity> | ROLE <role_name> }
+```
+**指定したロールをユーザーに付与する**
+
+```sql
+GRANT <role_list> TO <user_identity> 
+```
+## 必須パラメータ
+
+**1. `<privilege_list>`**
+
+付与する権限のカンマ区切りリスト。現在サポートされている権限は以下の通りです：
+
+- NODE_PRIV: クラスターノード操作権限。ノードのオンライン・オフライン操作を含みます。
+- ADMIN_PRIV: NODE_PRIVを除くすべての権限。
+- GRANT_PRIV: 操作権限の権限。ユーザー、ロールの作成・削除、認可・取消、パスワード設定などを含みます。
+- SELECT_PRIV: 指定されたデータベースまたはテーブルの読み取り権限。
+- LOAD_PRIV: 指定されたデータベースまたはテーブルのインポート権限。
+- ALTER_PRIV: 指定されたデータベースまたはテーブルのスキーマ変更権限。
+- CREATE_PRIV: 指定されたデータベースまたはテーブルの作成権限。
+- DROP_PRIV: 指定されたデータベースまたはテーブルの削除権限。
+- USAGE_PRIV: 指定されたリソースおよびWorkload Group権限へのアクセス。
+- SHOW_VIEW_PRIV: ビュー作成文を表示する権限。
+
+従来の権限変換：
+
+- ALLおよびREAD_WRITEは以下に変換されます：SELECT_PRIV、LOAD_PRIV、ALTER_PRIV、CREATE_PRIV、DROP_PRIV。
+- READ_ONLYはSELECT_PRIVに変換されます。
+
+**2. `<priv_level>`**
+
+以下の4つの形式をサポートします：
+
+- ..*: すべてのカタログおよびその中のすべてのデータベースとテーブルに権限を適用できます。
+- catalog_name..: 指定されたカタログ内のすべてのデータベースとテーブルに権限を適用できます。
+- catalog_name.db.*: 指定されたデータベース下のすべてのテーブルに権限を適用できます。
+- catalog_name.db.tbl: 指定されたデータベース下の指定されたテーブルに権限を適用できます。
+
+**3. `<resource_name>`**
+
+リソース名を指定します。すべてのリソースにマッチする`%`と`*`をサポートしますが、res*のようなワイルドカードはサポートしません。
+
+**4. `<workload_group_name>`**
+
+ワークロードグループ名を指定します。すべてのワークロードグループにマッチする`%`と`*`をサポートしますが、ワイルドカードはサポートしません。
+
+**5. `<user_identity>`**
+
+権限を受け取るユーザーを指定します。CREATE USERで作成されたuser_identityである必要があります。user_identityのホストはドメイン名にできます。ドメイン名の場合、権限の有効時間は約1分遅延する場合があります。
+
+**6. `<role_name>`**
+
+権限を受け取るロールを指定します。指定されたロールが存在しない場合、自動的に作成されます。
+
+**7. `<role_list>`**
+
+割り当てるロールのカンマ区切りリスト。指定されたロールは存在する必要があります。
+
+## アクセス制御要件
+
+このSQLコマンドを実行するユーザーは、最低限以下の権限を持つ必要があります：
+
+| 権限 | オブジェクト | 備考                |
+| :---------------- | :------------- | :---------------------------- |
+| GRANT_PRIV        | ユーザーまたはロール   | GRANT_PRIV権限を持つユーザーまたはロールのみがGRANT操作を実行できます。 |
+
+## 例
+
+- ユーザーにすべてのカタログとデータベースとテーブルの権限を付与：
+
+    ```sql
+    GRANT SELECT_PRIV ON *.*.* TO 'jack'@'%';
+    ```
+- 指定されたデータベーステーブルに対する権限をユーザーに付与する：
+
+    ```sql
+    GRANT SELECT_PRIV,ALTER_PRIV,LOAD_PRIV ON ctl1.db1.tbl1  TO 'jack'@'192.8.%';
+    ```
+- 指定されたデータベーステーブルに対する権限をロールに付与する：
+
+    ```sql
+    GRANT LOAD_PRIV ON ctl1.db1.* TO ROLE 'my_role';
+    ```
+- 全てのリソースへのアクセスをユーザーに許可する：
+
+    ```sql
+    GRANT USAGE_PRIV ON RESOURCE * TO 'jack'@'%';
+    ```
+- 指定されたリソースを使用するための権限をユーザーに付与する：
+
+    ```sql
+    GRANT USAGE_PRIV ON RESOURCE 'spark_resource' TO 'jack'@'%';
+    ```
+- 指定されたリソースへのアクセスをロールに付与する:
+
+    ```sql
+    GRANT USAGE_PRIV ON RESOURCE 'spark_resource' TO ROLE 'my_role';
+    ```
+指定されたロールをユーザーに付与する:
+
+    ```sql
+    GRANT 'role1','role2' TO 'jack'@'%';
+    ```
+指定されたワークロードグループ 'g1' をユーザー jack に付与する:
+
+    ```sql
+    GRANT USAGE_PRIV ON WORKLOAD GROUP 'g1' TO 'jack'@'%';
+    ```
+- ユーザーjackに付与されたすべてのワークロードグループをマッチ:
+
+    ```sql
+    GRANT USAGE_PRIV ON WORKLOAD GROUP '%' TO 'jack'@'%';
+    ```
+ワークロードグループ 'g1' をロール my_role に付与する:
+
+    ```sql
+    GRANT USAGE_PRIV ON WORKLOAD GROUP 'g1' TO ROLE 'my_role';
+    ```
+- db1配下のview1の作成文をjackが表示できるようにする：
+
+    ```sql
+    GRANT SHOW_VIEW_PRIV ON db1.view1 TO 'jack'@'%';
+    ```

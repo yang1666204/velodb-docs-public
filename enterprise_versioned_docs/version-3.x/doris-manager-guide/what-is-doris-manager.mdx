@@ -1,0 +1,50 @@
+---
+{
+    "title": "Introduction to Manager",
+    "description": "Cluster Manager for Doris (hereinafter referred to as Manager) is a browser-server (BS) architecture-based cluster operation and maintenance tool for..."
+}
+---
+
+# Introduction to Manager
+
+Cluster Manager for Doris (hereinafter referred to as Manager) is a browser-server (BS) architecture-based cluster operation and maintenance tool for Doris/VeloDB, enabling visual installation, deployment, and management of clusters.
+
+## Manager Architecture
+
+Since Manager version 24.0, it adopts a server-agent architecture for cluster management, evolving from a centralized to a distributed collaborative mode. This supports larger-scale cluster management and complex operation and maintenance scenarios. The Agent and Server communicate directly using the HTTP protocol, which can be combined with SSL encryption for data security. The overall architecture of the service is shown below:
+
+![doris-anager-architecture](./assets/doris-manager-introduce/doris-anager-architecture.png)
+
+### Manager Web Server
+
+The Manager Web Service is the server-side of the Manager web application and the core module for automated operation and maintenance of Apache Doris and VeloDB Doris clusters. Its main functions include:
+
+* **Operation and Maintenance Hub**: Built-in metadata storage and Web service APIs.
+* **Security Control System**: Integrates a user authentication system and a fine-grained permission management system.
+* **Automated Operation and Maintenance Platform**: Supports visual operation and maintenance of Doris/VeloDB clusters via the web interface.
+
+### Manager Agent
+
+To manage a Doris cluster through Manager, an Agent needs to be installed on each cluster node. The default port is 8972, and it must have network connectivity with the machine where the Manager Web Service is located. The main functions of the Agent include:
+
+* **Instruction Execution Hub**: Receives and executes management instructions issued by the server, and synchronizes feedback on execution results.
+* **Monitoring Data Pipeline**: Collects host/Doris process metrics in real-time and actively reports them to the server's monitoring system.
+* **Cluster Health Probe**: Regularly reports node liveness status and process information to maintain cluster observability.
+
+## Overview of Manager Features
+
+Manager provides visual management for the entire lifecycle of Doris/VeloDB, including the following capabilities:
+
+* **Deploy Cluster**: Deploy Apache Doris or VeloDB Doris clusters on physical machines or virtual machines via Manager.
+* **Take Over Cluster**: Take over existing Apache Doris or VeloDB Doris clusters into Manager for operation, maintenance, and monitoring.
+* **Cluster Details**: View cluster running status, details, and connection information.
+* **Cluster Scaling**: Scale out or scale in FE and BE nodes.
+* **Cluster Upgrade**: Upgrade cluster versions, offering both full downtime upgrade and online rolling upgrade modes. You can choose the appropriate upgrade method based on your business scenario.
+* **Cluster Restart**: Perform restart operations on the entire cluster, FEs, BEs, and individual nodes. Cluster restart supports both rolling and full restart.
+* **Node Details**: View real-time status and machine information of nodes.
+* **Parameter Configuration**: Supports custom editing of configuration files for nodes, and individual nodes support viewing all running parameters.
+* **Monitoring and Alerting**: View monitoring metrics, set alert rules, and support alert notifications via email, chat software, Webhooks, and other methods.
+* **Log Viewing**: Supports viewing and querying logs of FE and BE nodes, facilitating offline troubleshooting of cluster issues.
+* **Task Auditing**: Supports viewing detailed information for each task, including operation time, operator, and operation content.
+* **Cluster Inspection**: Supports manual or scheduled one-click checks of machine status and cluster operating conditions to promptly identify and locate performance bottlenecks, and provides repair suggestions.
+* **WebUI**: Supports viewing data and information within databases, as well as performing SQL queries, data imports, permission management, and other operations.

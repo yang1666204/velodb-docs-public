@@ -1,0 +1,71 @@
+---
+{
+  "title": "I don't see any text to translate. You mentioned \"JSON_LENGTH\" but this appears to be a placeholder or variable name rather than the actual English technical documentation text that needs translation.\n\nCould you please provide the actual English text that you'd like me to translate into Japanese?",
+  "description": "JSONLENGTH関数は、指定されたJSON文書の長さまたは要素数を返します。JSON文書が配列の場合、",
+  "language": "ja"
+}
+---
+## 説明
+JSON_LENGTH関数は、指定されたJSONドキュメントの長さまたは要素数を返します。JSONドキュメントが配列の場合、配列内の要素数が返されます。JSONドキュメントがオブジェクトの場合、オブジェクト内のキーと値のペアの数が返されます。JSONドキュメントが空または無効な場合、NULLを返します。
+
+## 構文
+
+```sql
+JSON_LENGTH(<json_str> [ , <json_path> ])
+```
+## 必須パラメータ
+
+| parameters| described|
+|------|------|
+| `<json_str>`| 長さをチェックする必要があるJSON文字列。 |
+
+## オプションパラメータ
+| parameters| described|
+|------|------|
+| `<json_path>`| パスが指定された場合、JSON_LENGTH()関数はJSONドキュメント内でパスに一致するデータの長さを返します。そうでなければJSONドキュメントの長さを返します|
+
+## 使用上の注意
+この関数は以下のルールに基づいてJSONドキュメントの長さを計算します：
+- スカラーの長さは1です。例：'1'、'"x "'、'true'、' false'、'null'はすべて長さ1です。
+- 配列の長さは配列要素の数です。例：'[1,2]'の長さは2です。
+- オブジェクトの長さはオブジェクトメンバーの数です。例：'{"x": 1}'の長さは1です
+
+## 戻り値
+
+- JSON配列の場合、配列内の要素数を返します。
+- JSONオブジェクトの場合、オブジェクト内のキー・値ペアの数を返します。
+- 無効なJSON文字列の場合、NULLを返します。
+- その他のタイプ（文字列、数値、真偽値、nullなど）の場合、NULLを返します。
+
+## 例
+
+```sql
+SELECT json_length('{"k1":"v31","k2":300}');
+```
+```sql
++--------------------------------------+
+| json_length('{"k1":"v31","k2":300}') |
++--------------------------------------+
+| 2                                    |
++--------------------------------------+
+```
+```sql
+SELECT json_length('"abc"');
+```
+```sql
++----------------------+
+| json_length('"abc"') |
++----------------------+
+| 1                    |
++----------------------+
+```
+```sql
+SELECT json_length('{"x": 1, "y": [1, 2]}', '$.y');
+```
+```sql
++---------------------------------------------+
+| json_length('{"x": 1, "y": [1, 2]}', '$.y') |
++---------------------------------------------+
+| 2                                           |
++---------------------------------------------+
+```

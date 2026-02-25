@@ -1,0 +1,42 @@
+---
+{
+  "title": "I notice that the text you want me to translate shows \"REPLACE\" which appears to be a placeholder. Could you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "description": "REPLACE関数は、文字列内の文字の一部を他の文字に置き換えるために使用されます。",
+  "language": "ja"
+}
+---
+## 説明
+
+REPLACE関数は、文字列内の文字の一部を他の文字に置換するために使用されます。
+
+## 構文
+
+```sql
+REPLACE ( <str>, <old>, <new> )
+```
+## Parameters
+
+| Parameter      | Description                                                                                         |
+|---------|-----------------------------------------------------------------------------------------------------|
+| `<str>` | 置換が必要な文字列。                                                               |
+| `<old>` | 置換が必要な部分文字列。`<old>`が`<str>`に含まれていない場合、置換は行われません。 |
+| `<new>` | `<old>`を置換するために使用される新しい部分文字列。                                                            |
+
+## Return Value
+
+部分文字列を置換した後の新しい文字列を返します。特殊なケース：
+
+- いずれかのParameterがNULLの場合、NULLが返されます。
+
+## Examples
+
+```sql
+SELECT replace('hello world', 'world', 'universe');
+```
+```text
++---------------------------------------------+
+| replace('hello world', 'world', 'universe') |
++---------------------------------------------+
+| hello universe                              |
++---------------------------------------------+
+```

@@ -1,0 +1,24 @@
+---
+{
+  "title": "認可",
+  "description": "ユーザーまたはロールの詳細ページで、特定のユーザーまたはロール名をクリックして権限設定ページに入り、認可を実行できます...",
+  "language": "ja"
+}
+---
+# Authorization
+
+ユーザーまたはロールの詳細ページで、特定のユーザーまたはロール名をクリックして権限設定ページに入り、認可/取り消し操作を実行できます。
+認可/取り消しを実行するには、対応するレベルでAdminまたはGrant権限を持っている必要があります。
+
+
+Apache Dorisでは、権限は以下のカテゴリに分類されます：
+
+- **Global**: Global権限はデータベース全体レベルでの権限であり、Global権限を持つことで、データベース内のすべての対応するオブジェクトの対応する権限を自動的に持ちます。
+- **Data**: データリソースの権限を指します。レベルに応じて認可でき、親レベルで権限を持つことで、その子要素コンテンツの対応する権限を自動的に持ちます。
+- **Workload Group**: Usage権限のみです。
+- **Resource**: Resourceの権限であり、GrantとUsageを含みます。
+- **Compute Group**: メモリ分離クラスターはApache Doris 2.1 /VeloDB 3.0に存在し、異なる計算グループ（Compute Groups）のUsage権限を制御します。
+- **Cluster**: VeloDB Cloud接続に存在し、異なるクラスター（Clusters）のUsage権限を制御します。
+
+
+<img className='pt-5' src={`/img/studio/user-privileges.png`} alt="user-privileges" width={1400} height={600}/>

@@ -1,0 +1,204 @@
+---
+{
+  "title": "クラスター管理",
+  "description": "各有料ウェアハウスでは、データ書き込み、顧客向けレポート、ユーザープロファイルなど、異なるワークロードをサポートするために複数のクラスターを作成できます...",
+  "language": "ja"
+}
+---
+# Cluster Management
+
+各有料warehouseでは、データの書き込み、顧客向けレポート、ユーザープロファイル、行動分析など、異なるワークロードをサポートするために複数のclusterを作成できます。
+
+clusterにはcompute resource、cache resource、キャッシュされたデータのみが含まれます。warehouse内のすべてのclusterは、保存されたデータを共有します。
+
+## New Cluster
+
+有料warehouseで新しいclusterを作成するには、ナビゲーションバーの**Clusters**をクリックします。
+
+
+clusterがすでに存在する場合、**Cluster Overview**ページが表示されます。
+
+![cluster list existing](/images/cloud/cluster-list-existing.png)
+
+wizardページまたは**Cluster Overview**ページで**New Cluster**をクリックして、新しいclusterを作成します。
+
+![create_cluster](/images/cloud/create-cluster.png)
+
+| <span style={{whiteSpace:'nowrap'}}>**Parameter**&emsp;&emsp;&emsp;&emsp;&emsp;</span> | **Description** |
+| :--- | :--- |
+| Cluster Name | 必須。文字で始まり、最大32文字、文字（大文字小文字を区別しない）、数字、_を使用できます。 |
+| Compute | デフォルトは最小4 vCPU、clusterあたり最大1024 vCPUです。より高いquotaが必要な場合は、[get help](mailto:support@velodb.io)にお問い合わせください。現在、vCPUとmemoryの比率は1:8に固定されています。 |
+| Cache | cache spaceの上限と下限は、computeサイズによって異なります。 |
+| Storage | 従量課金制で、storageスペースを事前設定する必要はありません。warehouse内のすべてのclusterが保存データを共有します。 |
+| Billing Method | デフォルトは**On-Demand (Hourly)**課金で、一時的なテスト検証など、いつでも柔軟に変更または削除する必要があるシナリオに適しています。 |
+| Auto Pause/Resume | 有効にすると、compute clusterは非アクティブ期間後に自動的に一時停止します。新しいクエリリクエストがあると自動的に再開されます。 |
+
+新しいclusterの作成には料金が発生します。そのため、作成前に十分な利用可能金額があることを確認するか、クラウドマーケットプレイスの控除チャネルを開いて有効にしてください。そうでないと、以下のエラープロンプトが表示されます。
+
+<img
+    style={{ width: '50%' }}
+    alt='insufficient cash-balance'
+    src={require("/images/cloud/insufficient-cash-balance.png").default}
+    height="auto"
+/>
+
+> **Note**
+> - 作成を確認すると、**Cluster overview**ページで新しいclusterを確認できます。作成完了には約3分かかり、clusterの状態は"**Creating**"から"**Running**"に変更されます。
+> - SaaSモデルの無料試用clusterは、新しいcluster作成をサポートしていません。
+
+## Reboot Cluster
+
+特定の状況（clusterの例外や特定のパラメータの変更など）では、clusterを再起動する必要がある場合があります。**Cluster Overview**ページで、対象clusterカードを見つけて**Reboot**操作をクリックし、再度確認します。clusterの状態が"**Rebooting**"に変更され、この状態では他の操作は実行できません。
+
+<img src={require("/images/cloud/cluster-rebooting-en.png").default} alt='cluster rebooting' style={{ width: '50%' }} height="auto" />
+
+> **Note**
+>
+> - clusterの再起動には約3分かかります。完了すると、clusterの状態は"**Rebooting**"から"**Running**"に変更されます。
+> - clusterの再起動により、ビジネスリクエストでクラッシュや応答遅延が発生する可能性があります。
+> - cluster再起動プロセス中も、VeloDB Cloudはclusterの測定と課金を継続します。
+
+## Pause/Resume Cluster
+
+### Manual Pause/Resume Cluster
+
+clusterがアイドル状態の時にコストを節約したい場合があります。**Cluster Overview**ページで対象clusterカードを見つけます。clusterの状態が"**Running**"で、clusterがアンロードされていることが確認できた場合、clusterを手動で一時停止できます。**Pause**操作をクリックして再度確認します。clusterの状態が"**Pausing**"に変更され、この時点で他の操作は実行できません。VeloDB Cloudはclusterのcomputing resourceを解放し、cacheスペースとそのデータを保持します。
+
+<img alt='cluster pausing' src={require("/images/cloud/cluster-pausing-en.png").default} style={{ width: '50%' }} height="auto" />
+
+<br />
+
+<img alt='cluster paused' src={require("/images/cloud/cluster-paused-en.png").default} style={{ width: '50%' }} height="auto" />
+
+> **Note** 
+>
+> - clusterの一時停止には約3分かかります。完了すると、clusterの状態は"**Pausing**"から"**Paused**"に変更されます。
+> - 一時停止期間中、clusterはビジネスリクエストに応答しません。
+> - cluster一時停止期間中、VeloDB Cloudはcomputing resourceの測定と課金を停止しますが、cacheスペースの測定と課金は継続します。
+> - 月次/年次課金リソースを含むclusterは、一時停止/再開機能をサポートしていません。
+
+clusterがビジネスリクエストに応答を継続する必要がある場合、"**paused**"状態のclusterを手動で再開できます。**Cluster Overview**ページで対象clusterカードを見つけて、**Resume**操作をクリックして再度確認します。clusterの状態が"**Resuming**"に変更され、この状態では他の操作は実行できません。VeloDB Cloudはcomputing resourceを立ち上げ、予約されたcacheスペースとそのデータをマウントします。
+
+<img alt='cluster resuming' src={require("/images/cloud/cluster-resuming-en.png").default} style={{ width: '50%' }} height="auto" />
+
+<br />
+
+<img alt='cluster running' src={require("/images/cloud/cluster-running-en.png").default} style={{ width: '50%' }} height="auto" />
+
+> **Note**
+>
+> - clusterの再開には約3分かかります。完了すると、clusterの状態は"**Resuming**"から"**Running**"に変更されます。
+> - 再開プロセス中、clusterはビジネスリクエストに応答しません。
+> - cluster再開後、ビジネスリクエストに応答でき、VeloDB Cloudは立ち上げたcomputing resourceの測定と課金を復元します。
+> - 月次/年次課金リソースを含むclusterは、一時停止/再開機能をサポートしていません。
+
+### Auto Pause/Resume Cluster
+
+アイドル状態のclusterを自動的に開始・停止したい場合、**Started On**の右側または**Cluster Details**ページの右上隅にある**Set Auto Start/Stop**をクリックして、**Auto Start/Stop**スイッチをオンにし、停止トリガー条件のアイドル期間をカスタマイズできます。
+
+![cluster-auto-stop-start_en](/images/cloud/cluster-auto-stop-start-en.png)
+
+{/*
+
+If you want to automatically pause and resume clusters, you can click **Set Auto Pause/Resume** on the right of the upper right corner of the **Cluster Details** page, and turn on the **Auto Pause/Resume** switch to customize the idle duration of the shutdown trigger condition.
+
+![cluster auto stop start](/images/cloud/cluster-auto-stop-start.png)
+
+> **Warning** The SaaS model trial clusters and the clusters containing monthly/yearly billing resources do not support the pause/resume function. Auto pause/resume function requires core version 2.4.1 or above.
+
+*/}
+
+## Cluster Details
+
+clusterで操作を実行する前に、まずclusterの詳細情報を知る必要がある場合があります。**Cluster Overview**ページで対象clusterカードを見つけて、clusterの状態がサポートしている場合は、clusterカードをクリックして**Cluster Details**ページに移動します。
+
+![cluster-detail-CPU-arch-en](/images/cloud/cluster-detail-CPU-arch-en.png)
+
+**Cluster Details**ページには、基本情報とオンデマンド課金リソース、および対応する機能操作の2つの主要なコンテンツエリアが含まれています。具体的な説明は以下の通りです：
+**基本情報**：
+
+| <span style={{whiteSpace:'nowrap'}}>**Parameter**&emsp;&emsp;&emsp;&emsp;&emsp;</span> | **Description** |
+| :--- | :--- |
+| Cluster ID | clusterのグローバルに一意なID。"c-"で始まり、続いて18文字、26個の小文字と10個の数字をランダムに組み合わせます。 |
+| Cluster Name | warehouse内で一意で、ワンクリックコピーとローカル名前変更をサポートします。cluster名を変更する場合は、編集アイコンをクリックし、表示される入力ボックスに新しいcluster名を入力（意味を示す名前を推奨）し、確認アイコンをクリックして再度確認します。<br />**Note**<br />- VeloDB Core構文ではcluster名を使用します。例：<br />`USE { [catalog_name.]database_name[@cluster_name] }`<br />- cluster名は文字で始まり、最大32文字、文字（大文字小文字を区別しない）、数字、_を使用できます。<br />- cluster名変更後、ビジネスが新しいcluster名を使用するか、関連するdatabaseユーザーにデフォルトclusterを設定することを確認する必要があります。そうでないと関連するリクエストが失敗する原因となります。 |
+| Created By | clusterを作成したユーザー。同じ組織内の複数のユーザーは、権限に応じてwarehouseとそのclusterで対応する操作を実行できます。 |
+| Created At | clusterが作成された時刻。 |
+| Started At | clusterが最後に再起動または再開された時刻。 |
+| Running Time | 最後の再起動または再開以降のclusterの稼働時間。 |
+| Zone | clusterが配置されているavailability zone。 |
+| CPU Architecture | clusterのcomputing resourceのCPUアーキテクチャ。<br />**Note**<br />- 現在、AWSにデプロイされたVeloDB Cloud warehouseのみがclusterのCPUアーキテクチャを確認でき、x86またはARMの可能性があります。<br/>- ARMアーキテクチャclusterの作成にはcore version 4.0.4以上が必要です。coreバージョンが低すぎる場合は、coreバージョンをアップグレードしてください。<br/>- 同仕様では、ARMアーキテクチャはx86アーキテクチャと比較して30%以上のパフォーマンス向上があります。<br/>- SaaSモデルでは、同じクラウドプラットフォームとregionにおいて、ARMアーキテクチャとx86アーキテクチャのcluster computing resourceの価格は一致しています。BYOCモデルでは、同じクラウドプラットフォームとregion内でも、異なるCPUアーキテクチャのcomputing resourceの価格は、クラウドプロバイダーによって異なる場合があります。<br/>- cluster作成後は変更できません。 |
+|**On-Demand Resources**:||
+
+| <span style={{whiteSpace:'nowrap'}}>**Parameter**&emsp;&emsp;&emsp;&emsp;&emsp;</span> | **Description** |
+| :--- | :--- |
+| Compute | clusterの現在のcompute resourceを表示します。 |
+| Cache | clusterの現在のcacheスペースを表示します。 |
+| Scale Out/In | 現在のclusterのパフォーマンスがビジネス要件を満たさない場合、**Scale Out/In**をクリックしてcompute resourceまたはcacheスペースを増減し、現在のclusterの容量を調整できます。 |
+
+## Scale Cluster
+
+### Manual Scaling
+
+ビジネス要件に基づいて、**Cluster Details**ページの**On-Demand Resources**コンテンツエリアの右上隅にある**Scale Out/In**をクリックし、**Manual Scaling**を選択して現在のclusterの容量を調整できます。
+
+![cluster scaling manual en](/images/cloud/cluster-scaling-manual-en.png)
+
+> **Note**
+> - スケーリング確認後、**Cluster Overview**ページでclusterの状態が"**Running**"から"**Scaling**"に変更されることを確認できます。スケーリング完了には約3分かかり、clusterの状態は"**Scaling**"から"**Running**"に変更されます。
+> - SaaS無料試用clusterはスケーリングをサポートしていません。
+
+### Time-based Scaling
+
+clusterが周期的なビジネスピークと低下に対処する必要がある場合、**Cluster Details**ページの**On-Demand Resources**コンテンツエリアの右上隅にある**Scale Out/In**をクリックし、**Time-based scaling**を選択して、少なくとも2つの異なるターゲットvCPUの時間ベースルールをカスタマイズして追加し、時間ベーススケーリングポリシーを有効にできます。
+
+![cluster scaling time based en](/images/cloud/cluster-scaling-time-based-en.png)
+
+> **Note**
+>
+> - SaaS無料試用clusterはスケーリングをサポートしていません。
+> - オンデマンド課金clusterは、ターゲットvCPUが0の時間ベースルールの設定をサポートしていません。
+> - 時間ベースルールは、clusterが正常に動作している場合に有効で実行されます。clusterが正常に動作していない場合（一時停止、再起動、アップグレードなど）、再試行を待機し、30分を超えると実行されません。
+> - 現在の組織に十分な利用可能金額がないか、クラウドマーケットプレイスの控除チャネルを開いて有効にしていない場合、時間ベースルールはVeloDB Cloudによって無効と見なされ、破棄されます。
+> - 時間ベースルールの実行期間はデフォルトで毎日であり、現在変更をサポートしていません。
+> - 時間ベースルール間は少なくとも1時間の間隔が必要であるため、最大23個の時間ベースルールを設定できます。
+> - 時間ベースルールの実行時間は、既存の時間ベースルールと重複できません。
+> - clusterのスケーリングにより、一部のリクエストでクラッシュや応答遅延が発生する可能性があります。
+> - スケールイン時、cacheスペースはcomputing resource（vCPU）に比例して自動的にスケールインし、ターゲットcacheスペースを超えるcacheデータは除去されます。一部のリクエストの応答時間で大幅な遅延が発生する可能性があります。
+
+## Delete Cluster
+
+ビジネスが現在のclusterを必要としなくなった場合、削除できます。**Cluster Details**ページの右上隅で**Delete Cluster**操作をクリックして、再度確認します。
+
+![delete cluster en](/images/cloud/delete-cluster-en.png)
+
+> **Note**
+>
+> - SaaSモデルの無料試用clusterを削除すると、無料試用warehouse、storageリソース、およびそのデータも削除されます。
+> - 月次/年次課金リソースを含むclusterは早期削除をサポートしていません。clusterの期限が切れて、デフォルトでオンデマンド課金に変換されるまで待つ必要があります。月次課金リソースの期限切れとオンデマンド課金への変換をできるだけ早く行いたい場合は、自動更新機能が有効になっていないことを確認する必要があります。そうでないとclusterの期限が切れない可能性があります。
+> - clusterのすべてのリソースとキャッシュされたデータはVeloDB Cloudによって削除されるため、clusterにアクセスするビジネスを適時調整する必要があります。そうでないと関連するビジネスリクエストが失敗します。
+
+## Multi-Availability Zone Disaster Recovery
+
+virtual clusterは、アクティブ-スタンバイclusterアーキテクチャを確立することで、Availability Zone間での高可用性と災害復旧機能を提供します。プライマリAvailability Zoneで障害が発生した場合、システムは自動的にフェイルオーバーをトリガーしてビジネス継続性を確保します。リアルタイムデータ同期メカニズムを活用して、サービス中断とデータ損失を効果的に防止し、ビジネスの高可用性を保証します。
+
+<img src="/images/cloud/virtual-cluster-intro-en.png" alt="virtual cluster intro" />
+
+高可用性virtual clusterを作成する前に、2つの物理clusterを準備する必要があります。これらはRunning状態で、異なるAvailability Zoneに配置されている必要があります。
+
+<img src="/images/cloud/virtual-cluster-physical.png" alt="virtual cluster physical" />
+
+Virtual Clusterページで**New Virtual Cluster**をクリックして、cluster設定ページに移動します。
+
+<img src="/images/cloud/virtual-cluster-create.png" alt="virtual cluster create" />
+
+<img src="/images/cloud/virtual-cluster-new.png" alt="virtual cluster new intro" />
+
+| <span style={{whiteSpace:'nowrap'}}>**Parameter**&emsp;&emsp;&emsp;&emsp;&emsp;</span> | **Description** |
+| :--- | :--- |
+| Virtual Cluster Name | cluster名は文字で始まり、最大32文字、文字（大文字小文字を区別しない）、数字、_を使用できます。 |
+| Active Cluster | アクティブにトラフィックを処理しているcluster。 |
+| Standby Cluster | フェイルオーバー時にアクティブになる災害復旧cluster。注：同一仕様を推奨します。 |
+
+virtual clusterが正常に作成された後、概要ページでそのカードをクリックして詳細ページに移動できます。そこで、アクティブ/スタンバイcluster設定を変更したり、virtual clusterを削除したりできます。
+
+<img src="/images/cloud/virtual-cluster-detail.png" alt="virtual cluster detail" />

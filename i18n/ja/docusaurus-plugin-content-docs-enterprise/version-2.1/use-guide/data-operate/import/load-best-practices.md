@@ -1,0 +1,43 @@
+---
+{
+  "title": "ロードのベストプラクティス",
+  "description": "Duplicate Keyモデルの使用を優先することが推奨されます。",
+  "language": "ja"
+}
+---
+## Table Model Selection
+
+Duplicate Key モデルの使用を優先することを推奨します。このモデルは、他のモデルと比較してデータロードとクエリパフォーマンスの両方で利点を提供します。詳細については、以下を参照してください: [Data Model](../../table-design/data-model/overview)
+
+## Partition and Bucket Configuration
+
+タブレットのサイズを1-10GBの範囲に保つことを推奨します。タブレットが小さすぎると集約パフォーマンスの低下やメタデータ管理のオーバーヘッド増加を引き起こす可能性があり、タブレットが大きすぎるとレプリカの移行と修復を妨げる可能性があります。詳細については、以下を参照してください: [Data Distribution](../../table-design/data-partitioning/data-distribution)。
+
+## Random Bucketing
+
+Random bucketingを使用する場合、load_to_single_tabletをtrueに設定することでシングルタブレットロードモードを有効にできます。このモードは、大規模データロード時にデータロードの並行性とスループットを向上させ、書き込み増幅を削減できます。詳細については、以下を参照してください: Random Bucketing
+
+## Batch Loading
+
+クライアント側でのバッチ処理: ロード前にクライアント側でデータをバッチ処理（数MBからGBのサイズ）することを推奨します。高頻度の小規模ロードは頻繁なcompactionを引き起こし、深刻な書き込み増幅の問題を引き起こします。
+サーバー側でのバッチ処理: 高並行性の小容量データロードについては、[Group Commit](group-commit-manual.md)を有効にしてサーバー側でバッチ処理を実装することを推奨します。
+
+## Partition Loading
+
+一度に少数のパーティションからのみデータをロードすることを推奨します。あまりに多くのパーティションから同時にロードするとメモリ使用量が増加し、パフォーマンスの問題を引き起こす可能性があります。Dorisの各タブレットはメモリ内にアクティブなMemtableを持っており、これは一定のサイズに達するとディスクにフラッシュされます。プロセスのOOMを防ぐため、アクティブなMemtableのメモリ使用量が高すぎる場合、早期フラッシュがトリガーされ、多数の小さなファイルが作成されてロードパフォーマンスに影響します。
+
+## Large-scale Data Batch Loading
+
+大量のファイルや大容量データを扱う場合、ロード失敗時の高い再試行コストを避け、システムリソースへの影響を減らすために、バッチでロードすることを推奨します。Broker Loadについては、バッチあたり100GBを超えないことを推奨します。大きなローカルデータファイルについては、自動的にバッチロードを実行するDorisのstreamloaderツールを使用できます。
+
+## Broker Load Concurrency
+
+圧縮ファイル/Parquet/ORCファイル: より高い並行性を実現するために、ファイルを複数の小さなファイルに分割してロードすることを推奨します。
+
+非圧縮CSVおよびJSONファイル: Dorisは自動的にファイルを分割し、並行してロードします。
+
+並行性戦略については、以下を参照してください: Broker Load Configuration Parameters
+
+## Stream Load Concurrency
+
+BE あたりのStream load並行性を128未満に保つことを推奨します（BEのwebserver_num_workersパラメータで制御）。高い並行性はwebserverスレッドの枯渇を引き起こし、ロードパフォーマンスに影響する可能性があります。特に単一BEの並行性が512を超える場合（doris_max_remote_scanner_thread_pool_thread_numパラメータ）、BEプロセスがハングする可能性があります。

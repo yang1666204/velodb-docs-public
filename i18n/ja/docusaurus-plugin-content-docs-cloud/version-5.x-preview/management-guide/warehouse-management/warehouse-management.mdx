@@ -1,0 +1,60 @@
+---
+{
+  "title": "倉庫管理",
+  "description": "VeloDB Cloudでは、warehouseはwarehouse metadata、クラスター、データストレージなどの物理オブジェクトを含む論理的な概念です。",
+  "language": "ja"
+}
+---
+# Warehouse Management
+
+VeloDB Cloudにおいて、warehouseはwarehouseメタデータ、クラスター、データストレージなどの物理的なオブジェクトを含む論理的な概念です。
+
+各組織の下で、異なるビジネスシステムのニーズを満たすために複数のwarehouseを作成でき、これらのwarehouse間のリソースとデータは分離されています。
+
+異なるデプロイメントモードに応じて、warehouseは**SaaS**モードと**BYOC**モードに分けられます。
+
+
+## SaaS Warehouse
+
+SaaS warehouseは、VeloDB Cloudによってリソースとサービスが完全に提供されます。ユーザーは基盤となるインフラストラクチャに注意を払う必要がなく、すぐに使用できます。
+
+各組織は無料でトライアルwarehouseを作成でき、デフォルトの期間は1週間です。トライアルwarehouseは、小さなデータ量のシナリオでの機能体験にのみ適しています。
+
+### Product Architecture
+
+![SAAS](/images/cloud/SAAS.png)
+
+SaaS warehouseは完全にVeloDB独自のVPC環境内で実行されます。プライベート接続または提供されるパブリックネットワークアドレスを通じて、VeloDB VPC内で実行されているwarehouseにアクセスできます。
+
+### SaaS warehouseを使用すべき時は？
+
+一般的に、以下の2点が考慮されます：
+
+- **使いやすさ**: 基盤となるインフラストラクチャに注意を払うことなく、フルマネージドサービスを直接使用し、リソース管理、権限制御などに多くのエネルギーを投資することを避けたい場合。
+- **コスト**: クラウドベンダーから限定的な割引しか得られない場合、SaaSモデルでのwarehouseを直接使用することが推奨され、全体的なコストが低くなることが期待されます。
+
+SaaS warehouseの作成に関する詳細な手順については、[Create SaaS Warehouse](../warehouse-management/create-saas-warehouse.mdx)を参照してください。
+
+## BYOC Warehouse
+
+**BYOC**（Bring Your Own Cloud）warehouseは、あなた自身のクラウドリソースプール内でVeloDB Cloudデータウェアハウスのインストールおよび運用サービスを提供します。コンピューティングクラスターを開始すると、対応する仮想マシンリソースがあなたの**VPC**（Virtual Private Cloud）内で起動し、コストはクラウドプラットフォームによってあなたに請求されます。さらに、VeloDBサービスの使用時間に対しても支払いが必要です。
+
+### Product Architecture
+
+![BYOC](/images/cloud/BYOC.png)
+
+BYOC warehouseは、あなたの**VPC**内に制御Agent、および必要な監視とログコンポーネントをインストールします。制御Agentは、プライベートネットワーク接続（PrivateLink）を通じてVeloDB Cloudから制御コマンドを取得し、VeloDB Cloud Managerを介してコマンドされたクラスターの作成、スケーリング、およびアップグレード操作を実行します。
+
+制御Agentコードはオープンで監査可能であり、あなたのデータがあなたの**VPC**内に保存され、外部に送信されないことを保証しています。
+
+
+### BYOC warehouseを使用すべき時は？
+
+一般的に、BYOC warehouseの利用は2つの目的があります：
+
+- **コンプライアンス**: 一部のコンプライアンスフレームワークでは、ユーザーのデータは自身のクラウド**VPC**内にのみ保存できることが求められます。BYOCモードは、あなた自身のクラウドリソースプール内でデータウェアハウスサービスを提供し、これらの要件に準拠しています。セキュリティの観点では、BYOCとSAAS（Software as a Service）の両方のwarehouseが業界のコンプライアンスフレームワークによってそのセキュリティが認められています。
+- **コスト**: BYOC warehouseで使用される仮想マシンリソースは、あなたのクラウドリソースプール内で開始され、コストはクラウドプラットフォームと直接決済されます。クラウドプラットフォームとの間で大幅な割引を受けている顧客にとって、BYOC warehouseはより良いコスト優位性を提供します。
+
+VeloDB Cloudはデータウェアハウスのインストールと運用のワンストップソリューションを提供していますが、BYOC warehouseはあなた自身のクラウドリソース環境内に配置されるため、ネットワークセグメント計画、ロードバランシングなど、クラウド環境に関する基本的な理解が必要です。
+
+BYOC warehouseの作成に関する詳細な手順については、[Create BYOC Warehouse](../warehouse-management/create-byoc-warehouse.mdx)を参照してください。

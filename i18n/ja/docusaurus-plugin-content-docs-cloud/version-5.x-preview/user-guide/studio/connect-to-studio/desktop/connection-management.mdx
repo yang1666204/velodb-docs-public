@@ -1,0 +1,49 @@
+---
+{
+  "title": "接続の概要",
+  "description": "Connection Overview ページでは、すべての接続のリストが表示され、接続のステータス、接続の名前などの情報を確認できます...",
+  "language": "ja"
+}
+---
+# Connection Overview
+
+Connection Overviewページでは、すべてのコネクションのリストが表示され、コネクションのステータス、コネクション名、コネクションタイプ、コネクションアドレスなどの情報を確認できます。
+
+
+## Connection List
+
+作成したすべてのコネクションがここに表示されます。
+
+<img className='pt-5' src={`/img/studio/workspace.png`} alt="workspace" width={1400} height={600}/>
+
+## Connection status
+
+- **Connected**: VeloDB Studioがこのデータベースと接続状態にあることを示します。コネクションカードをクリックすると、接続済みのコネクションが再利用されます。
+- **Not connected**: VeloDB Studioがこのデータベースに接続されていないことを意味します。コネクションカードをクリックすると再接続されます。
+
+## Edit connection
+
+コネクション名、コネクションアドレス、コネクションタイプ、その他の情報はいつでも編集できます。コネクションが接続されている場合は、コネクションを編集する前にまず切断する必要があります。
+<img className='pt-5' src={`/img/studio/edit-connection.png`} alt="edit-connection" width={1400} height={600}/>
+
+## Refresh connection
+
+コネクションを更新すると、データベースに再接続されます。接続後、コネクションステータスは接続済みになります。コネクションカードをクリックすると、接続済みのコネクションが再利用されます。
+
+<img className='pt-5' src={`/img/studio/refresh-connection.png`} alt="refresh-connection" width={1400} height={600}/>
+
+## Delete the connection
+
+コネクションを削除すると復元されません
+
+<img className='pt-5' src={`/img/studio/delete-connection.png`} alt="delete-connection" width={1400} height={600}/>
+
+
+## Share the connection
+コネクションを共有すると、VeloDB Studio Desktop URIが生成され、他の人と共有できます。他の人はこのURIを使用してこのデータベースに素早く接続できます。
+
+:::info
+  コネクションのパスワードはURIに生成されません
+:::
+
+<img className='pt-5' src={`/img/studio/share-url.png`} alt="share-url" width={1400} height={600}/>

@@ -1,0 +1,321 @@
+---
+{
+    "title": "Use Manual",
+    "description": "After successfully logging in, the user can click admin in the upper right corner of the main interface to change the password."
+}
+---
+
+# Use Manual
+
+## Change the Default User Password
+
+After successfully logging in, the user can click `admin` in the upper right corner of the main interface to change the password.
+
+![1-change-the-default-user-password-1.png](https://cdn.selectdb.com/static/1_change_the_default_user_password_1_1a9fc2a9c6.png)
+
+Click the `ChangePassword` button, and the following interface will pop up. You can change the password by filling in the relevant information according to the interface prompts.
+
+![1-change-the-default-user-password-2.png](https://cdn.selectdb.com/static/1_change_the_default_user_password_2_4ae602e159.png)
+
+After changing the password, you will be prompted that the password has been changed successfully, and you can choose to exit immediately or cancel.
+
+![1-change-the-default-user-password-3.png](https://cdn.selectdb.com/static/1_change_the_default_user_password_3_0bd5a04736.png)
+
+## System Settings
+
+The first thing to do before using the platform is to enter the `System Settings` and configure the system parameters. These parameters are all mandatory and must be set. The specific details are as follows:
+
+![2-system-settings-1.png](https://cdn.selectdb.com/static/2_system_settings_1_1b028f0b91.png)
+
+> 1. Hadoop user: Specify the user for submitting jobs to YARN (skip if there is no Hadoop environment).
+> 2. Spark Home: Specify the Spark Home directory of your cluster. (skip if there is no Spark environment).
+> 3. Hive metastore uris: If migrating data from Hive to Doris, you need to know the Hive metastore URIS (skip if not using Hive as a data source).
+> 4. Target Doris (VeloDB Cloud): Set the connection information for the target Doris database or VeloDB Cloud for data migration.
+
+Click the `target Doris(VeloDB Cloud)` button, and you will be presented with a popup window where you can enter the relevant information directly, as follows:
+
+![2-system-settings-2.png](https://cdn.selectdb.com/static/2_system_settings_2_306c6fd995.png)
+
+HTTP Nodes:
+
+Host and port for HTTP connections, multiple nodes should be connected using ",". For example: 192.168.0.1:8030,192.168.0.1:8030
+
+MySQL Nodes:
+
+Host and port for MySQL JDBC connections, multiple nodes should be connected using ",", For example: 192.168.0.1:9030,192.168.0.1:9030
+
+:::warning
+  Note: If the target is VeloDB Cloud, then go to the VeloDB Cloud connection information and check the host and port of the connection
+:::
+
+## Hive to Doris
+
+### 1 Precondition
+
+1. The machine where X2Doris is deployed must be able to connect to the Hadoop cluster, either as a node in the Hadoop cluster or at least have a Hadoop gateway environment (capable of executing Hadoop and Hive commands, and accessing the Hadoop and Hive clusters).
+
+2. The machine where X2Doris is deployed must have Hadoop environment variables configured, including `HADOOP_HOME`, `HADOOP_CONF_DIR`, and `HIVE_CONF_DIR`. For example:
+
+``` bash
+
+export HADOOP_HOME=/opt/hadoop #hadoop installation directory
+
+export HADOOP_CONF_DIR=/etc/hadoop/conf
+
+export HIVE_HOME=$HADOOP_HOME/../hive
+
+export HIVE_CONF_DIR=$HADOOP_HOME/conf
+
+export HBASE_HOME=$HADOOP_HOME/../hbase
+
+export HADOOP_HDFS_HOME=$HADOOP_HOME/../hadoop-hdfs
+
+export HADOOP_MAPRED_HOME=$HADOOP_HOME/../hadoop-mapreduce
+
+export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
+
+```
+:::warning
+ 
+  Note: There must be a `hive-site.xml` file in either the `HADOOP_CONF_DIR` or `HIVE_CONF_DIR`. 
+:::
+
+### 2 Configure Metadata Retrieval
+
+Modify the configuration file `conf/application-hive.yaml` to set the method of retrieving Hive metadata. Currently, three methods are supported: `JDBC`, `Alibaba Cloud DLF`, and `Metastore`.
+
+**1. Metastore**
+
+This is the recommended default method for retrieving Hive metadata. If Hive is standard Apache Hive, it is recommended to set `client` as `metastore`.
+
+![3-configure-metadata-retrieval-1.png](https://cdn.selectdb.com/static/3_configure_metadata_retrieval_1_4063313b13.png)
+
+**2. JDBC Method**
+
+If you cannot use the `metastore` method due to issues like permissions, you can try using the JDBC method. Set the `client` as `JDBC` and provide the corresponding `jdbcUrl`, `username`, and `password`. Additionally, you can set connection parameters by adding configurations after the `set` command.
+
+![3-configure-metadata-retrieval-2.png](https://cdn.selectdb.com/static/3_configure_metadata_retrieval_2_470c461174.png)
+
+**3. Alibaba Cloud DLF**
+
+If Hive is on Alibaba Cloud, set the client to `dlf` and provide the valid access key (ak), secret key (sk), authentication type, endpoint, regionId, and catalogId for the Alibaba Cloud DLF service.
+
+![3-configure-metadata-retrieval-3.png](https://cdn.selectdb.com/static/3_configure_metadata_retrieval_3_db5d6a897b.png)
+
+Configure the thrift connection address for the Metastore in the `System Settings`.
+
+![3-configure-metadata-retrieval-4.png](https://cdn.selectdb.com/static/3_configure_metadata_retrieval_4_28c0adf223.png)
+
+After configuring, click on `submit` to submit the settings.
+
+The successful update message indicates that the connection is established properly.
+
+### 3 Set System Information
+
+The hive requires the following information to be set, all of which are mandatory parameters, as follows:
+
+1. `Hadoop user`: This job will access Hive data, and the Hadoop user is the user who operates Hive tables (typically the user for daily Hive jobs).
+
+2. `Spark Home`: Specify the path where Spark is installed on the deployment machine.
+
+3. `Hive metastore Uris`: The metastore URIS of Hive, which can be found in the configuration of hive-site.xml under `$HADOOP_CONF_DIR`.
+
+4. `Target Doris (VeloDB Cloud)`: Information about the target Doris (VeloDB Cloud) where the data will be written into.
+
+### 4 Create Synchronization Job
+
+After completing the `System Settings`, you can proceed to the `Applications`, where you can click on `Add New` to create a new job.
+
+![4.-create-synchronization-job-1.png](https://cdn.selectdb.com/static/4_create_synchronization_job_1_d061c1355f.png)
+
+It will automatically check for a Hive connection when you add it, and will alert if the Hive connection fails:
+
+![4.-create-synchronization-job-2.png](https://cdn.selectdb.com/static/4_create_synchronization_job_2_817a8afe78.png)
+
+At this point, you need to verify that the communication between the `Hive metastore uris` in the `System Settings` and the current deployment machine is functioning properly. This step must be successfully completed before proceeding with the migration work. If the connection is established, you can proceed directly with creating new jobs.
+
+### 5 Field Type Mapping
+
+If the connection with Hive is successful, all databases and tables in the Hive data warehouse will be automatically listed. You can then click on the tree directory on the left, select the target table for operation, and once a table is selected, the right side will automatically list the mapping relationship between that table and Doris, allowing for easy mapping of field types for the target Doris table. Follow the prompts to complete the field mapping. `DUPLICATE KEY` and `DISTRIBUTED KEY` are parameters that must be specified in the Doris Duplicate model.
+
+:::warning
+ 
+  Note: The partition fields in the Hive table have been automatically identified, and they have been automatically set as `DUPLICATE KEY` fields. 
+:::
+
+![5-field-type-mapping-1.png](https://cdn.selectdb.com/static/5_field_type_mapping_1_716b8c1aac.png)
+
+:::warning
+
+  Note:
+
+  - The automatically generated Doris DDL create table statement is based on the Duplicate model and can be manually modified according to the actual situation.
+
+  - `STRING` type cannot be set as `DUPLICATE KEY`, it needs to be changed to `VARCHAR` type.
+
+:::
+
+### 6 Partition Mapping
+
+If the partition field type in the original Hive table is `STRING`, you can determine based on the actual data whether the corresponding field type in the Doris table needs to be converted to a `time` type. If it is converted to a `time` type, the partition interval needs to be set.
+
+![6-partition-mapping.png](https://cdn.selectdb.com/static/6_partition_mapping_8883df7485.png)
+
+### 7 Create Doris Table
+
+Once the first two steps are completed, you can proceed to the confirmation phase of the Doris table DDL. At this stage, the corresponding Doris table create table DDL statement has been automatically generated, and you can **review and manually modify the DDL**.
+
+![7-create-doris-table-1.png](https://cdn.selectdb.com/static/7_create_doris_table_1_262bf87404.png)
+
+After confirming that everything is correct, you can click on **Create Doris Table**.
+
+:::warning
+  Note: Ensure that the corresponding Doris database exists, as the database needs to be created manually by the user.
+:::
+
+![7-create-doris-table-2.png](https://cdn.selectdb.com/static/7_create_doris_table_2_6ec2a7352f.png)
+
+![7-create-doris-table-3.png](https://cdn.selectdb.com/static/7_create_doris_table_3_bbd9a062e6.png)
+
+### 8 Job Configuration
+
+After clicking on create job, a task configuration interface will pop up, where users need to configure the parameters required for the task migration. An example of the specific settings is as follows:
+
+![8-job-configuration-1.png](https://cdn.selectdb.com/static/8_job_configuration_1_696b4b1ce3.png)
+
+![8-job-configuration-2.png](https://cdn.selectdb.com/static/8_job_configuration_2_7abfb120a2.png)
+
+**Explanation of Specific Parameters (Important parameters are in bold):**
+
+- Hive DB: Automatically generated, the database name of the data source.
+
+- Hive Table: Automatically generated, the name of the table is migrated from the data source.
+
+- App Name: Automatically generated, the name of the data migration task.
+
+- App Tag: Automatically generated, the tag of the data migration task.
+
+- **Master:** Choose between local mode or yarn mode, referring to the way the X2Doris task runs. Adjust this based on the actual situation.
+
+- **DeployMode:** Choose between client or cluster, based on the actual situation.
+
+- **Yarn Queue:** Resources queue used for running Spark tasks.
+
+- **Memory Options:** Select memory parameters for Spark tasks, such as the number of cores and memory size for executors and drivers. Adjust this according to actual requirements.
+
+- **Write Batch:** Batch size for data flushing. Adjust this based on the actual data volume. If the amount of data being migrated is large, it is recommended to adjust this value to 500,000 or above.
+
+- Max retry: Number of retries for failed tasks. Increase this parameter if the network conditions are not ideal.
+
+- **Spark option:** Custom Spark parameters. Add additional Spark task parameters here in the format `key=value`.
+
+- **Properties:** For data migration, if there are optimization parameters for reading from the data source or writing data to Doris, you can specify them here. Refer to the official documentation of the corresponding Spark connector for specific parameter descriptions.
+
+After creating the data migration task in the previous step, you can view the newly created data migration task in the task details interface, as shown in the following image:
+
+![8-job-configuration-3.png](https://cdn.selectdb.com/static/8_job_configuration_3_4ff98c3e7e.png)
+
+## Doris to Doris
+
+Click on `Add New` in the `Applications`, select Doris, and a pop-up window will appear prompting you to choose a data source.
+
+If no data sources have been added previously, you will need to add a data source first.
+
+
+![9-doris-to-doris-1.png](https://cdn.selectdb.com/static/9_doris_to_doris_1_cc3f4aad6a.png)
+
+### 1 Add Data Source**
+
+Click on the `DataSources` menu on the left side. Here, you can see a list of all data sources and choose to add a new data source. In this case, you can add a new Doris data source.
+
+![9-doris-to-doris-2.png](https://cdn.selectdb.com/static/9_doris_to_doris_2_b998398b85.png)
+
+A pop-up window will appear, prompting you to enter the connection information for Doris.
+
+![9-doris-to-doris-3.png](https://cdn.selectdb.com/static/9_doris_to_doris_3_e7da99f0ac.png)
+
+Set the HTTP node, JDBC node information, username, and password for Doris, then click `OK` to submit. You can also set multiple nodes in the format `ip1:port1,ip2:port2,ip3:port3`, with commas separating multiple nodes.
+
+During this step, the entered connection information will be automatically validated. If the host, username, and password are correct, the validation will succeed, and the page will automatically redirect to the `DataSources` page where you can see the newly added data source, as shown below:
+
+![9-doris-to-doris-4.png](https://cdn.selectdb.com/static/9_doris_to_doris_4_1a30700a27.png)
+
+### 2 Create Synchronization Job
+
+After adding the `DataSource`, return to the `Applications` page. You can click on `Add New` again, select Doris Source and a pop-up window will appear prompting you to choose a data source. 
+
+
+![9-doris-to-doris-5.png](https://cdn.selectdb.com/static/9_doris_to_doris_5_11834ba895.png)
+
+At this point, you will be redirected to the following page for the job: Doris databases and tables will be presented in a tree-like structure. You can select individual tables, multiple tables, or entire databases for migration. If you choose a single table, you will see that the DDL statement has been automatically generated. You can **review** and confirm this DDL statement.
+
+:::warning
+ 
+
+  Note: DDL statements are only visible when selecting a single table. If multiple tables are selected, default generated DDLs will be used. 
+
+:::
+
+After confirming the DDL, you can proceed based on your actual needs by performing the following actions:
+
+- **Skip Table Creation**: Use this option if the table(s) you want to migrate already exist in the target Doris (VeloDB Cloud) database.
+
+- **Create Table Only**: This option is for creating tables without creating migration jobs.
+
+- **Create Table & Job**: Use this option to simultaneously create tables and migration jobs.
+
+During this step, field recognition will be automatic. If the target Doris is identified as VeloDB Cloud, the parameters in Properties will be handled automatically.
+
+![9-doris-to-doris-6.png](https://cdn.selectdb.com/static/9_doris_to_doris_6_6af5c4601e.png)
+
+### 3 Job Configuration
+
+> The final step in job configuration involves setting specific parameters, which are consistent with the Hive to Doris operation.
+>
+> The migration process for StarRocks, Kudu, and Doris follows the same procedure. Therefore, it will not be elaborated further here.
+
+## Start Synchronization Job
+
+In the `Applications`, you can view all the created jobs as shown below:
+
+![10-Start Synchronization Job.png](https://cdn.selectdb.com/static/10_start_1_4de61a142f.png)
+
+Clicking the `Start` button in the operation will pop up the corresponding window as follows:
+
+![10-start-synchronization-job.png](https://cdn.selectdb.com/static/10_start_synchronization_job_28bc7c4933.png)
+
+Condition: This parameter allows you to input filtering conditions during the data migration process to perform ETL operations on the data source. When specifying the condition, there is no need to include the `WHERE` keyword and only the filter condition is required.
+
+Clear Data: By default, this button is in the OFF state. When switching to the ON state, it will perform a data clearing operation on our target database before each migration task runs. This is an extremely dangerous operation, so exercise caution when performing data migration on production data.
+
+If there are no additional ETL or data clearing requirements, simply click `OK` to start the data migration task.
+
+:::warning
+ 
+
+  Note: Before running the task, make sure to configure SPARK_HOME in the system settings. Without the Spark client environment, it will not be possible to submit Spark tasks.
+
+ 
+:::
+
+## Updating Job Migration Progress
+
+After starting the job, the job status will refresh automatically in the frontend. The migration progress needs to be manually refreshed by clicking the update button to view the data migration status. Do not refresh the progress update button frequently. At this point, the migration progress will be displayed as shown in the following image:
+
+![11-updating-job-migration-progress-1.png](https://cdn.selectdb.com/static/11_updating_job_migration_progress_1_db249975a4.png)
+
+## Parameter Optimization Guide
+
+In the scenario of Doris/StarRocks to Doris(VeloDB Cloud) migration, if your Doris and YARN resources are relatively idle, you can further optimize the speed by setting the following parameters in the `Properties`:
+
+doris.request.tablet.size=1 # if the data source is Doris
+
+starrocks.request.tablet.size=1 # if the data source is StarRocks
+
+The purpose of this parameter is to specify the number of Doris tablets corresponding to one RDD partition. A smaller value will generate more partitions, thereby improving the parallelism on the Spark side, but it will also put greater pressure on Doris.
+
+## How to Troubleshoot Task Failures
+
+When our data migration task fails, prioritize checking the running logs of the X2Doris program installed in the log directory under the X2Doris installation directory. You can observe and locate the program's execution situation by viewing `velodb.out`.
+
+If the issue is not resolved after reviewing the above-mentioned logs, please provide the logs and the contextual background of the migration task's execution to seek assistance from the official personnel of VeloDB.

@@ -1,0 +1,31 @@
+---
+{
+    "title": "Load tasks",
+    "description": "VeloDB Studio supports the management of load tasks such as Stream Load, Routine Load, Broker Load, and Insert Into in connection, and currently suppo..."
+}
+---
+
+# Load tasks
+
+
+VeloDB Studio supports the management of load tasks such as Stream Load, Routine Load, Broker Load, and Insert Into in connection, and currently supports the following operations:
+- Information query for load tasks
+- Stop Routine Load, Broker Load, Insert Into
+- Pause/Edit/Recover Routine Load
+
+
+## Load task list
+
+You first select a database and then view all load tasks under that database in the load task list.
+<img className='pt-5' src={`/img/studio/load-task.png`} alt="load-task" width={1400} height={600}/>
+
+
+## Load task details
+Click the load task name to view the detailed information of the load task.
+<img className='pt-5' src={`/img/studio/load-task-detail.png`} alt="load-task-detail" width={1400} height={600}/>
+
+:::note
+  Q: I want to view all load tasks, instead of just looking at load tasks under a certain database
+  <br />
+  A: Due to the limitations of Apache Doris, it is currently only supported to view load tasks under a certain database. We have communicated with the development team, but this capability is not in the community priority program. If you have a strong need, you can give feedback by submitting an Issue to the community. We will continue to communicate and strive for support as soon as possible.
+:::

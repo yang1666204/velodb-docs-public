@@ -1,0 +1,203 @@
+---
+{
+    "title": "Billing Center",
+    "description": "This topic describes how to manage fee deduction channels and view bills for organization administrators."
+}
+---
+
+# Billings
+
+This topic describes how to manage fee deduction channels and view bills for organization administrators.
+
+Before applied in the production environment, it is recommended to link a credit card or open a cloud marketplace deduction channel to ensure the continuous operation of the service.
+
+## Deduction Channels
+
+VeloDB Cloud currently supports four deduction channels, which are credit card, cloud marketplace, cash and vouchers. VeloDB Cloud will generate bills periodically and deducts fees from those channels. 
+
+Click the **User Menu** > **Billings**, enter Billing Overview page to view the overall usage of the those fee deduction channels.
+
+![billing overview](/images/cloud/billing-overview.png)
+
+The following describes the use of the above deduction channels:
+
+### Credit Card
+
+In Billing Overview page, click **Add** on **Credit Card** to complete the setup. 
+
+![billing-credit-card](/images/cloud/billing-credit-card.png)
+
+You can't remove a credit card in the Billing Overview page, but you can update it anytime. This helps ensure your organization always has a valid payment method. If you need to remove your credit card, please contact VeloDB Cloud support for help.
+
+### Open Cloud Marketplace
+
+#### AWS Marketplace
+This topic mainly describes how to use the AWS Marketplace deduction channel.
+
+The specific opening process is as follows:
+
+1. In Billing Overview page, click **Subscribe** on **Cloud Marketplace** card, find **AWS Marketplace** in the drawer page, then click **Go to Subscribe** to enter the VeloDB Cloud commodity page of the AWS Marketplace.
+
+![billing cloud marketplace deduction channel](/images/cloud/billing-cloud-marketplace-deduction-channel.png)
+
+2. Click **View purchase options** to enter the Subscription page of the AWS Marketplace.
+
+![velodb cloud on aws marketplace](/images/cloud/velodb-cloud-on-aws-marketplace.png)
+
+3. Click **Subscribe**, when the page displays "You are currently subscribed to this offer", click **Set up your account** to go to the authorization page of VeloDB Cloud.
+
+![subscribe to velodb cloud on aws marketplace](/images/cloud/subscribe-to-velodb-cloud-on-aws-marketplace.png)
+
+4. Log in with your VeloDB Cloud account on the authorization page.
+
+![authorized to aws marketplace deduction login](/images/cloud/authorized-to-aws-marketplace-deduction-login.png)
+
+5. Select the target organization from the organization list, and click **Confirm Authorization**. Once the authorization is successful, your AWS account will deduct the subsequent expenses.
+
+![authorized to aws marketplace deduction choose organization](/images/cloud/authorized-to-aws-marketplace-deduction-choose-organization.png)
+
+6. Click **Check** go back to Billing Overview page after completing the authorization. If **AWS Marketplace** is displayed on the cloud marketplace deduction channels, that means you have successfully opened the cloud marketplace deduction channel.
+
+![authorized to aws marketplace deduction succeeded](/images/cloud/authorized-to-aws-marketplace-deduction-succeeded.png)
+
+![billing overview opened cloud marketplace deduction channel](/images/cloud/billing-overview-opened-cloud-marketplace-deduction-channel.png)
+
+#### GCP Marketplace
+
+This topic mainly describes how to use the AWS Marketplace deduction channel.
+
+> Note: The additional commission rate in GCP Marketplace is 3% of the paid amount.
+
+**1. Go to GCP Marketplace VeloDB Cloud product**
+
+You can jump to the GCP Marketplace through the VeloDB Cloud console, or search for VeloDB directly in Marketplace.
+
+- Jump to the GCP Marketplace through the VeloDB Cloud console
+
+    On the **Billing Overview** page in [VeloDB Cloud console](https://www.velodb.cloud/), click **Open** on the **Cloud Marketplace Deduction Channel** card, find **GCP Marketplace** on the drawer page, then click **Go to Subscribe** to jump to the VeloDB Cloud product page in GCP Marketplace.
+
+![billing-cloud-marketplace-deduction-channel](/images/cloud/billing-cloud-marketplace-deduction-channel.png)
+
+- Search for VeloDB directly in GCP Marketplace
+
+    You can also find the VeloDB Cloud product on [GCP Marketplace](https://console.cloud.google.com/marketplace) by searching for "**VeloDB**" or "**Doris**" and then enter the VeloDB Cloud product page in GCP Marketplace.
+
+![marketpalce gcp 1 2](/images/cloud/marketpalce-gcp-1-2.png)
+
+**2. Subscribe VeloDB Cloud**
+
+On the VeloDB Cloud product page in GCP Marketplace, click the button **SUBSCRIBE** to go to the order confirmation page.
+
+![marketpalce gcp 2 1](/images/cloud/marketpalce-gcp-2-1.png)
+
+![marketpalce gcp 2 2](/images/cloud/marketpalce-gcp-2-2.png)
+
+On the order confirmation page, check the terms and click the button **SUBSCRIBE**.
+
+![marketpalce gcp 2 3](/images/cloud/marketpalce-gcp-2-3.png)
+
+In the secondary confirmation dialog box, you can click the button **GO TO PRODUCT PAGE** to view the subscription effect, or you can click the button **MANAGE ORDERS** to view the order changes.
+
+<img src={require("/images/cloud/marketpalce-gcp-2-4.png").default} alt="marketpalce gcp" width="536" height="601"/>
+
+![marketpalce gcp 2 5](/images/cloud/marketpalce-gcp-2-5.png)
+
+![marketpalce gcp 2 6](/images/cloud/marketpalce-gcp-2-6.png)
+
+On the VeloDB Cloud product page in GCP Marketplace, you need to click the button **MANAGE ON PROVIDER** to jump to VeloDB Cloud console to register as a user and log in to complete the authorization process.
+
+![marketpalce gcp 2 7](/images/cloud/marketpalce-gcp-2-7.png)
+
+![marketpalce gcp 2 8](/images/cloud/marketpalce-gcp-2-8.png)
+
+If you have already registered, you can **login** directly.
+
+![marketpalce gcp 2 9](/images/cloud/marketpalce-gcp-2-9.png)
+
+You can log in via your mobile phone number or email and proceed to the second step: **Authorize Organization**.
+
+![marketpalce gcp 2 10](/images/cloud/marketpalce-gcp-2-10.png)
+
+Select the target organization and click the button **Confirm Authorization**.
+
+![marketpalce gcp 2 11](/images/cloud/marketpalce-gcp-2-11.png)
+
+> Note: There may be a delay in the order status, and you need to wait about 1 minute before authorization.
+> ![marketpalce gcp 2 12](/images/cloud/marketpalce-gcp-2-12.png)
+
+After successful authorization, proceed to the third step: **View Authorization Result**. Click the button **Check** to go to the **Billing Overview** page to view the status of the cloud marketplace deduction channel activation.
+
+![marketpalce gcp 2 13](/images/cloud/marketpalce-gcp-2-13.png)
+
+![marketpalce gcp 2 14](/images/cloud/marketpalce-gcp-2-14.png)
+
+**3. Unsubscribe VeloDB Cloud**
+
+On the **Billing Overview** page in [VeloDB Cloud console](https://www.velodb.cloud/), click **Change** on the **Cloud Marketplace Deduction Channel** card, find **GCP Marketplace** on the drawer page, then click the button **Go to Unsubscribe** to jump to the order page in GCP Marketplace.
+
+<img src={require("/images/cloud/marketpalce-gcp-3-1.png").default} alt="marketpalce gcp" width="536" height="601"/>
+
+On the order page in GCP Marketplace, find the target order by **Order Number** (the status is currently "Active"), click the action column on the right, expand the drop-down menu, and click **Cancel order**.
+
+![marketpalce gcp 3 2](/images/cloud/marketpalce-gcp-3-2.png)
+
+In the secondary confirmation dialog box, enter the **Order Number** and click **CANCEL ORDER**.
+
+<img src={require("/images/cloud/marketpalce-gcp-3-3.png").default} alt="marketpalce gcp" width="536" height="601"/>
+
+After success, you can see that the status of the target order is changed to "**Canceled**" and the **GCP Marketplace Deduction Channel** card in VeloDB Cloud console is restored to the initial unsubscribed state.
+
+<img src={require("/images/cloud/marketpalce-gcp-3-4.png").default} alt="marketpalce gcp" width="536" height="601"/>
+
+> Note: There may be a delay in the order status. You need to wait about 1 minute and refresh the Billing Overview page in [VeloDB Cloud console](https://www.velodb.cloud/) to see the change of the Cloud Marketplace Deduction Channel.
+
+**4. Contact Sales**
+
+If you want to know more about the product, you can CONTACT SALES by email.
+
+![marketpalce gcp 4 1](/images/cloud/marketpalce-gcp-4-1.png)
+
+### Recharge Cash
+
+On the Billing Overview page, click **Recharge** to transfer funds into your cash balance. After you complete the offline transfer according to the provided payment details, VeloDB Cloud will automatically complete the recharge to your cash balance.
+
+![billing recharge](/images/cloud/billing-recharge.png)
+
+You can also view historical transfer information through the recharge records.
+
+### Activate Voucher
+
+In Billing Overview page, switch to **Vouchers**.
+
+![voucher management](/images/cloud/voucher-management.png)
+
+Click **add voucher** and input the voucher activation code issued by VeloDB Cloud to activate the voucher.
+
+<img
+    src={require("/images/cloud/billing-overview-add-voucher.png").default}
+    style={{ width: '50%' }}
+    alt='billing overview add voucher'
+    height="auto"
+/>  
+
+You can also view voucher usage and voucher activation history in Voucher Management page.
+
+## Bills Statements
+
+The VeloDB Cloud collects the above usage information of the entire organization every minute, deducts fees by hour, and generates hourly bills and monthly bills, which are mainly provided to the organization administrators for reconciliation and cost analysis.
+
+In Billing Statements page, you can view or export the bills.
+
+![billing overview monthly bill](/images/cloud/billing-overview-monthly-bill.png)
+
+If the credit card, cash and voucher balance are insufficient or no cloud marketplace deduction channel can be used, VeloDB Cloud will stop the service, but the data will be retained for 7 days.
+
+To keep the online service running continuously, please ensure that the cash balance is sufficient or open a cloud marketplace deduction channel.
+
+## Usage
+
+After creating a warehouse, VeloDB Cloud collects the usage of different resources in a warehouse, including compute, cache and storage, to help you analyze the cost distribution in a specific warehouse.
+
+Click **Usage** in the navigation bar on the left to view the current warehouse usage information.
+
+![usage](/images/cloud/usage.png)

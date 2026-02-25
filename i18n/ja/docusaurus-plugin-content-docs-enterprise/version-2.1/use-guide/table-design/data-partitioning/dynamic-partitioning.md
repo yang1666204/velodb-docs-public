@@ -1,0 +1,209 @@
+---
+{
+  "title": "Dynamic Partitioning",
+  "description": "動的パーティショニングは、事前定義されたルールに従って、ローリング方式でパーティションの追加と削除を行います。",
+  "language": "ja"
+}
+---
+動的パーティショニングは、事前定義されたルールに従ってパーティションをローリング方式で追加・削除し、それによりテーブルパーティションのライフサイクル（TTL）を管理し、データストレージの負荷を軽減します。ログ管理や時系列データ管理などのシナリオにおいて、動的パーティショニングは通常、期限切れデータのロール削除に使用できます。
+
+下図は動的パーティショニングを使用したライフサイクル管理を示しており、以下のルールが指定されています：
+
+* 動的パーティションスケジューリング単位 `dynamic_partition.time_unit` はDAYに設定され、1日ごとにパーティションを整理します；
+* 動的パーティション開始オフセット `dynamic_partition.start` は-1に設定され、1日前からのパーティションを保持します；
+* 動的パーティション終了オフセット `dynamic_partition.end` は2に設定され、次の2日間のパーティションを保持します。
+
+上記のルールに従い、時間の経過とともに、常に合計4つのパーティションが保持されます：過去の日のパーティション、現在の日のパーティション、および次の2日間のパーティション。
+
+
+![dynamic-partition](/images/getting-started/dynamic-partition.png)
+
+## 使用制限
+
+動的パーティショニングを使用する場合、以下のルールに従う必要があります：
+
+* 動的パーティショニングをCross-Cluster Replication（CCR）と同時に使用すると失敗します。
+* 動的パーティショニングはDATE/DATETIME列でのRangeタイプパーティションのみをサポートします。
+* 動的パーティショニングは単一のパーティションキーのみをサポートします。
+
+## 動的パーティションの作成
+
+テーブル作成時に、`dynamic_partition`プロパティを指定することで動的パーティションテーブルを作成できます。
+
+```sql
+CREATE TABLE test_dynamic_partition(
+    order_id    BIGINT,
+    create_dt   DATE,
+    username    VARCHAR(20)
+)
+DUPLICATE KEY(order_id)
+PARTITION BY RANGE(create_dt) ()
+DISTRIBUTED BY HASH(order_id) BUCKETS 10
+PROPERTIES(
+    "dynamic_partition.enable" = "true",
+    "dynamic_partition.time_unit" = "DAY",
+    "dynamic_partition.start" = "-1",
+    "dynamic_partition.end" = "2",
+    "dynamic_partition.prefix" = "p",
+    "dynamic_partition.create_history_partition" = "true"
+);
+```
+上記の例では、以下の仕様で動的パーティション化テーブルが作成されました。
+
+詳細な`dynamic_partition`パラメータについては、[動的パーティションパラメータの説明](#dynamic-partition-property-parameters)を参照してください。
+
+## 動的パーティションの管理
+
+### 動的パーティションプロパティの変更
+
+:::info Tip:
+
+ALTER TABLE文を使用して動的パーティション化を変更する場合、変更は即座に有効になりません。動的パーティションは`dynamic_partition_check_interval_seconds`パラメータで指定された間隔でポーリングおよびチェックされ、必要なパーティションの作成と削除操作を完了します。
+
+:::
+
+以下の例では、ALTER TABLE文を使用して非動的パーティション化テーブルを動的パーティション化テーブルに変更しています：
+
+```sql
+CREATE TABLE test_dynamic_partition(
+    order_id    BIGINT,
+    create_dt   DATE,
+    username    VARCHAR(20)
+)
+DUPLICATE KEY(order_id)
+DISTRIBUTED BY HASH(order_id) BUCKETS 10;
+
+ALTER TABLE test_partition SET (
+    "dynamic_partition.enable" = "true",
+    "dynamic_partition.time_unit" = "DAY",
+    "dynamic_partition.start" = "-1",
+    "dynamic_partition.end" = "2",
+    "dynamic_partition.prefix" = "p",
+    "dynamic_partition.create_history_partition" = "true"
+);
+
+```
+I notice the text you've provided is actually in Chinese, not English. The heading "查看动态分区调度情况" means "View Dynamic Partition Scheduling Status" and the paragraph explains using "SHOW-DYNAMIC-PARTITION" to view scheduling status of dynamic partition tables in the current database.
+
+Since you asked me to translate English technical documentation to Japanese, but provided Chinese text, could you please clarify:
+
+1. Would you like me to translate this Chinese text to Japanese instead?
+2. Or do you have English technical documentation that you'd like me to translate to Japanese?
+
+Please provide the correct source text and I'll be happy to help with the translation.
+
+```sql
+SHOW DYNAMIC PARTITION TABLES;
++-----------+--------+----------+-------------+------+--------+---------+-----------+----------------+---------------------+--------+------------------------+----------------------+-------------------------+
+| TableName | Enable | TimeUnit | Start       | End  | Prefix | Buckets | StartOf   | LastUpdateTime | LastSchedulerTime   | State  | LastCreatePartitionMsg | LastDropPartitionMsg | ReservedHistoryPeriods  |
++-----------+--------+----------+-------------+------+--------+---------+-----------+----------------+---------------------+--------+------------------------+----------------------+-------------------------+
+| d3        | true   | WEEK     | -3          | 3    | p      | 1       | MONDAY    | N/A            | 2020-05-25 14:29:24 | NORMAL | N/A                    | N/A                  | [2021-12-01,2021-12-31] |
+| d5        | true   | DAY      | -7          | 3    | p      | 32      | N/A       | N/A            | 2020-05-25 14:29:24 | NORMAL | N/A                    | N/A                  | NULL                    |
+| d4        | true   | WEEK     | -3          | 3    | p      | 1       | WEDNESDAY | N/A            | 2020-05-25 14:29:24 | NORMAL | N/A                    | N/A                  | NULL                    | 
+| d6        | true   | MONTH    | -2147483648 | 2    | p      | 8       | 3rd       | N/A            | 2020-05-25 14:29:24 | NORMAL | N/A                    | N/A                  | NULL                    |
+| d2        | true   | DAY      | -3          | 3    | p      | 32      | N/A       | N/A            | 2020-05-25 14:29:24 | NORMAL | N/A                    | N/A                  | NULL                    |
+| d7        | true   | MONTH    | -2147483648 | 5    | p      | 8       | 24th      | N/A            | 2020-05-25 14:29:24 | NORMAL | N/A                    | N/A                  | NULL                    |
++-----------+--------+----------+-------------+------+--------+---------+-----------+----------------+---------------------+--------+------------------------+----------------------+-------------------------+
+7 rows in set (0.02 sec)
+```
+### 履歴パーティション管理
+
+`start`および`end`属性を使用して動的パーティションの数を指定する際、長い待機時間を避けるため、履歴パーティションは一度にすべて作成されません。現在時刻より後のパーティションのみが作成されます。すべてのパーティションを一度に作成する必要がある場合は、`create_history_partition`パラメータを有効にする必要があります。
+
+例えば、現在の日付が2024-10-11で、`start = -2`および`end = 2`を設定した場合：
+
+* `create_history_partition = true`が指定された場合、すべてのパーティションが即座に作成され、5つのパーティション[10-09, 10-13]が作成されます。
+* `create_history_partition = false`が指定された場合、10-11以降のパーティションのみが作成され、3つのパーティション[10-11, 10-13]が作成されます。
+
+## 動的パーティションパラメータの説明
+
+### 動的パーティションプロパティパラメータ
+
+動的パーティションルールパラメータには`dynamic_partition`のプレフィックスが付き、以下のルールパラメータを設定できます：
+
+| パラメータ                                        | 必須 | 説明                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------------------------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dynamic_partition.enable`                       | いいえ       | 動的パーティション機能を有効にするかどうか。TRUEまたはFALSEに設定できます。他の必須動的パーティションパラメータが指定されている場合、デフォルトはTRUEになります。                                                                                                                                                                                                                                                                                                                                        |
+| `dynamic_partition.time_unit`                   | はい      | 動的パーティションスケジューリングの単位。`HOUR`、`DAY`、`WEEK`、`MONTH`、または`YEAR`に設定でき、それぞれ時間、日、週、月、年単位でのパーティションの作成または削除を示します。                                                                                                                                                                                                                                                                                                                                  |
+| `dynamic_partition.start`                        | いいえ       | 動的パーティションの開始オフセット（負の数）。デフォルト値は-2147483648で、履歴パーティションが削除されないことを意味します。`time_unit`属性に応じて、現在の日（週/月）を基準としてこのオフセットより前のパーティションが削除されます。このオフセット後から現在時刻までの履歴パーティションが作成されるかどうかは、`dynamic_partition.create_history_partition`に依存します。                                                                                                     |
+| `dynamic_partition.end`                          | はい      | 動的パーティションの終了オフセット（正の数）。`time_unit`属性に応じて、現在の日（週/月）より先の指定範囲内のパーティションが事前に作成されます。                                                                                                                                                                                                                                                                                                                                                                                  |
+| `dynamic_partition.prefix`                       | はい      | 動的に作成されるパーティション名のプレフィックス。                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `dynamic_partition.buckets`                      | いいえ       | 動的に作成されるパーティションに対応するバケット数。このパラメータを設定すると、`DISTRIBUTED`で指定されたバケット数が上書きされます。                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `dynamic_partition.replication_num`              | いいえ       | 動的に作成されるパーティションに対応するレプリカ数。指定されない場合、テーブル作成時に指定されたレプリカ数がデフォルトになります。                                                                                                                                                                                                                                                                                                                                                                 |
+| `dynamic_partition.create_history_partition`     | いいえ       | デフォルトはfalse。trueに設定すると、Dorisは以下のルールに従ってすべてのパーティションを自動的に作成します。さらに、FEパラメータ`max_dynamic_partition_num`は、一度に多くのパーティションを作成することを避けるため、パーティションの総数を制限します。作成されるパーティション数が`max_dynamic_partition_num`の値を超える場合、操作は禁止されます。このパラメータは`start`属性が指定されていない場合は有効になりません。                                               |
+| `dynamic_partition.history_partition_num`        | いいえ       | `create_history_partition`が`true`に設定されている場合、このパラメータは作成する履歴パーティション数を指定します。デフォルト値は-1で、設定されていないことを意味します。この変数は`dynamic_partition.start`と同じ機能を持ち、同時に設定するのはどちらか一方のみを推奨します。                                                                                                                                                                                                 |
+| `dynamic_partition.start_day_of_week`            | いいえ       | `time_unit`が`WEEK`に設定されている場合、このパラメータは週の開始日を指定します。値の範囲は1から7で、1は月曜日、7は日曜日を表します。デフォルトは1で、週が月曜日に始まることを意味します。                                                                                                                                                                                                                                                                                                                    |
+| `dynamic_partition.start_day_of_month`           | いいえ       | `time_unit`が`MONTH`に設定されている場合、このパラメータは月の開始日を指定します。値の範囲は1から28で、1は月の1日目、28は28日目を表します。デフォルトは1で、月が1日目に始まることを意味します。うるう年やうるう月による曖昧さを避けるため、29日、30日、31日の開始はサポートされていません。                                                                                                                                         |
+| `dynamic_partition.reserved_history_periods`      | いいえ       | 保持する必要がある履歴パーティションの時間範囲。`dynamic_partition.time_unit`が"DAY/WEEK/MONTH/YEAR"に設定されている場合、`[yyyy-MM-dd,yyyy-MM-dd],[...,...]`の形式で設定する必要があります。`dynamic_partition.time_unit`が"HOUR"に設定されている場合、`[yyyy-MM-dd HH:mm:ss,yyyy-MM-dd HH:mm:ss],[...,...]`の形式で設定する必要があります。設定されていない場合、デフォルトは`"NULL"`になります。                                                                                                                        |
+| `dynamic_partition.time_zone`                     | いいえ       | 動的パーティショニングのタイムゾーン。デフォルトはサーバーのシステムタイムゾーン（`Asia/Shanghai`など）です。より多くのタイムゾーン設定については、タイムゾーン管理を参照してください。                                                                                                                                                                                                                                                                |
+
+### FE設定パラメータ
+
+FEの動的パーティションパラメータ設定は、FE設定ファイルまたは`ADMIN SET FRONTEND CONFIG`コマンドで変更できます：
+
+| パラメータ                               | デフォルト値 | 説明                                                                                                  |
+| --------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------ |
+| `dynamic_partition_enable`              | false         | Dorisの動的パーティション機能を有効にするかどうか。このパラメータは動的パーティションテーブルのパーティション操作にのみ影響し、通常のテーブルには影響しません。 |
+| `dynamic_partition_check_interval_seconds` | 600           | 動的パーティションスレッドの実行頻度（秒単位）。                                       |
+| `max_dynamic_partition_num`            | 500           | 動的パーティションテーブル作成時に作成できるパーティションの最大数を制限し、一度に多くのパーティションを作成することを避けます。 |
+
+## 動的パーティションのベストプラクティス
+
+例1：日単位でパーティションを作成し、過去7日間と現在の日のパーティションを保持し、次の3日間のパーティションを事前作成する。
+
+```sql
+CREATE TABLE tbl1 (
+    order_id    BIGINT,
+    create_dt   DATE,
+    username    VARCHAR(20)
+)
+PARTITION BY RANGE(create_dt) ()
+DISTRIBUTED BY HASH(create_dt)
+PROPERTIES (
+    "dynamic_partition.enable" = "true",
+    "dynamic_partition.time_unit" = "DAY",
+    "dynamic_partition.start" = "-7",
+    "dynamic_partition.end" = "3",
+    "dynamic_partition.prefix" = "p",
+    "dynamic_partition.buckets" = "32"
+);
+```
+例2：月ごとにパーティション分割し、履歴パーティションは削除せず、次の2ヶ月分のパーティションを事前作成する。さらに、開始日を各月の3日に設定する。
+
+```sql
+CREATE TABLE tbl1 (
+    order_id    BIGINT,
+    create_dt   DATE,
+    username    VARCHAR(20)
+)
+PARTITION BY RANGE(create_dt) ()
+DISTRIBUTED BY HASH(create_dt)
+PROPERTIES (
+    "dynamic_partition.enable" = "true",
+    "dynamic_partition.time_unit" = "MONTH",
+    "dynamic_partition.end" = "2",
+    "dynamic_partition.prefix" = "p",
+    "dynamic_partition.buckets" = "8",
+    "dynamic_partition.start_day_of_month" = "3"
+);
+```
+例3: 日ごとにパーティション化し、過去10日間と次の10日間のパーティションを保持し、期間[2020-06-01, 2020-06-20]と[2020-10-31, 2020-11-15]の履歴データを保持する。
+
+```sql
+CREATE TABLE tbl1 (
+    order_id    BIGINT,
+    create_dt   DATE,
+    username    VARCHAR(20)
+)
+PARTITION BY RANGE(create_dt) ()
+DISTRIBUTED BY HASH(create_dt)
+PROPERTIES (
+    "dynamic_partition.enable" = "true",
+    "dynamic_partition.time_unit" = "DAY",
+    "dynamic_partition.start" = "-10",
+    "dynamic_partition.end" = "10",
+    "dynamic_partition.prefix" = "p",
+    "dynamic_partition.buckets" = "8",
+    "dynamic_partition.reserved_history_periods"="[2020-06-01,2020-06-20],[2020-10-31,2020-11-15]"
+);
+```

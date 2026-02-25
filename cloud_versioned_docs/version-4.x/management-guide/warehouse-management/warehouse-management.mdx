@@ -1,0 +1,60 @@
+---
+{
+    "title": "Warehouse Management",
+    "description": "In VeloDB Cloud, the warehouse is a logical concept that includes physical objects such as warehouse metadata, clusters, and data storage."
+}
+---
+
+# Warehouse Management
+
+In VeloDB Cloud, the warehouse is a logical concept that includes physical objects such as warehouse metadata, clusters, and data storage.
+
+Under each organization, you can create multiple warehouses to meet the needs of different business systems, and the resources and data between these warehouses are isolated.
+
+According to different deployment modes, warehouses are divided into **SaaS** mode and **BYOC** mode.
+
+
+## SaaS Warehouse
+
+The SaaS warehouse is completely provided by the VeloDB Cloud with resources and services. Users do not need to pay attention to the underlying infrastructure and can use it out of the box. 
+
+Each organization can create a trial warehouse for free, with a default period of 1 week. The trial warehouse is only suitable for functional experience in scenarios with small data volumes.
+
+### Product Architecture
+
+![SAAS](/images/cloud/SAAS.png)
+
+The SaaS warehouse runs completely in VeloDB's own VPC environment. You can access the warehouse running in VeloDB VPC through a private connection or the provided public network address.
+
+### When should I use a SaaS warehouse?
+
+Generally, the following two points are considered:
+
+- **Ease of use**: You want to use fully managed services directly without paying attention to the underlying infrastructure, and avoid investing too much energy in resource management, permission control, etc.
+- **Cost**: If you get limited discounts from cloud vendors, it is recommended to directly use a warehouse in the SaaS model, which is expected to have a lower overall cost.
+
+For further instructions on creating a SaaS warehouse, please refer to [Create SaaS Warehouse](../warehouse-management/create-saas-warehouse.mdx).
+
+## BYOC Warehouse
+
+**BYOC** (Bring Your Own Cloud) warehouse provides you with VeloDB Cloud data warehouse installation and operational services within your own cloud resource pool. When you initiate a computing cluster, the corresponding virtual machine resources will start up in your **VPC** (Virtual Private Cloud), with the costs being charged to you by the cloud platform. Additionally, you will need to pay for the usage duration of the VeloDB service.
+
+### Product Architecture
+
+![BYOC](/images/cloud/BYOC.png)
+
+The BYOC warehouse will install a control Agent, along with necessary monitoring and log components, within your **VPC**. The control Agent will fetch control commands from VeloDB Cloud through a private network connection (PrivateLink) to carry out cluster creation, scaling, and upgrading operations as commanded via the VeloDB Cloud Manager.
+
+The control Agent code is open and auditable, ensuring that your data will be stored within your **VPC** and will not be transmitted externally.
+
+
+### When should I use a BYOC warehouse?
+
+Generally, utilizing a BYOC warehouse serves two purposes:
+
+- **Compliance**: Some compliance frameworks require that users' data can only be stored within their own cloud **VPC**. The BYOC mode provides data warehouse service within your own cloud resource pool, complying with these requirements. In terms of security, both BYOC and SAAS (Software as a Service) warehouses have been recognized for their security by industry compliance frameworks.
+- **Cost**: The virtual machine resources used by the BYOC warehouse are initiated within your cloud resource pool, and the costs are settled directly with the cloud platform. For customers who have significant discounts with cloud platforms, BYOC warehouses offer better cost advantages.
+
+Although VeloDB Cloud provides a one-stop solution for data warehouse installation and operation, the BYOC warehouse is located within your own cloud resource environment, requiring you to have a basic understanding of the cloud environment, such as network segment planning, load balancing, etc.
+
+For further instructions on creating a BYOC warehouse, please refer to [Create BYOC Warehouse](../warehouse-management/create-byoc-warehouse.mdx).

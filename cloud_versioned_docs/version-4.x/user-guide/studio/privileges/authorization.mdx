@@ -1,0 +1,24 @@
+---
+{
+    "title": "Authorization",
+    "description": "On the user or role details page, click on the specific user or role name to enter the permission configuration page, and you can perform authorizatio..."
+}
+---
+
+# Authorization
+
+On the user or role details page, click on the specific user or role name to enter the permission configuration page, and you can perform authorization/revocation operations.
+You need to have Admin or Grant permissions at the corresponding level in order to perform authorization/revocation.
+
+
+In Apache Doris, permissions are divided into the following categories:
+
+- **Global**: Global permissions are permissions at the entire database level, with global permissions, and automatically have corresponding permissions for all corresponding objects in the database.
+- **Data**: refers to the permissions of data resources. You can authorize them according to the level, have the permissions at the parent level, and automatically have the corresponding permissions of its children's content.
+- **Workload Group**: Usage permissions only.
+- **Resource**: It is the permission of Resource, including Grant and Usage.
+- **Compute Group**: The memory separation cluster exists in Apache Doris 2.1 /VeloDB 3.0 and controls the Usage permissions of different computing groups (Compute Groups).
+- **Cluster**: Exist in VeloDB Cloud connections, controlling Usage permissions for different clusters (Clusters).
+
+
+<img className='pt-5' src={`/img/studio/user-privileges.png`} alt="user-privileges" width={1400} height={600}/>

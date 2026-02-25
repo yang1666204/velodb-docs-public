@@ -1,0 +1,129 @@
+---
+{
+  "title": "AWS Glue",
+  "description": "VeloDB CloudをAWS Glue Icebergカタログに接続してlakehouse分析を行う",
+  "language": "ja"
+}
+---
+# AWS Glue Iceberg Catalogに接続する
+
+このガイドでは、ビジュアルインターフェースを使用してVeloDB CloudをAWS Glue Iceberg catalogに接続する手順を説明します。
+
+:::warning
+**前提条件**: 作業を進める前に、[AWS Setup Guide](./aws-glue/setup)を完了して、S3バケット、Glueデータベース、適切な権限を持つIAMユーザーを作成してください。
+:::
+
+## ステップ1: Catalogsに移動する
+
+VeloDBウェアハウスで、左サイドバーの**Development**の下にある**Data**セクションに移動し、**Catalogs**をクリックします。
+
+**Add External Catalog**ボタンがあるCatalogsページが表示されます。
+
+![Catalogs Page](/images/cloud/integration/aws-glue/03-catalogs-page.png)
+
+## ステップ2: External Catalogを追加する
+
+**Add External Catalog**をクリックして、利用可能なカタログタイプを表示します。
+
+![Add External Catalog Options](/images/cloud/integration/aws-glue/04-add-external-catalog-options.png)
+
+利用可能なカタログタイプには以下が含まれます:
+- **AWS Glue** - Glue管理のIceberg/Hiveテーブル用
+- **Hive Metastore** - オンプレミスのHive用
+- **Amazon S3 Tables** - S3ネイティブテーブル用
+- **Iceberg REST Catalog** - Polaris、Gravitino、Tabular用
+- **Apache Polaris** - Polarisカタログ用
+
+## ステップ3: AWS Glueを選択する
+
+**AWS Glue**をクリックして設定フォームを開きます。
+
+![AWS Glue Form](/images/cloud/integration/aws-glue/05-aws-glue-catalog-form.png)
+
+## ステップ4: カタログ設定を構成する
+
+[AWS Setup Guide](./aws-glue/setup)の値を使用してフォームに入力します:
+
+### 基本情報
+
+| フィールド | 説明 | 例 |
+|-------|-------------|---------|
+| **Catalog Name** | カタログの一意識別子 | `glue_iceberg_useast1` |
+| **Comment** | オプションの説明 | `AWS Glue Iceberg catalog` |
+
+### Metastore設定
+
+| フィールド | 説明 | 例 |
+|-------|-------------|---------|
+| **Table Format** | `Iceberg`または`Hive`を選択 | `Iceberg` |
+| **Warehouse** | IcebergウェアハウスへのS3パス | `s3://my-bucket/iceberg` |
+| **AWS Glue Region** | GlueカタログのAWSリージョン | `us-east-1` |
+| **AWS Glue Endpoint** | Glue APIエンドポイント | `https://glue.us-east-1.amazonaws.com` |
+
+### 認証
+
+| フィールド | 説明 |
+|-------|-------------|
+| **Authentication Type** | `Access Key`または`IAM Role` |
+| **AK (Access Key)** | あなたのAWS Access Key ID |
+| **SK (Secret Key)** | あなたのAWS Secret Access Key |
+
+### ストレージ
+
+**"Use the authentication details configured for Metastore access"**にチェックを入れたままにして、S3アクセスに同じ認証情報を使用します。
+
+:::info
+AKとSKフィールドには、[AWS Setup Guide](./aws-glue/setup)の実際のAWS認証情報を入力してください。
+:::
+
+## ステップ5: カタログを作成する
+
+**Confirm**をクリックしてカタログを作成します。
+
+VeloDBはAWS Glueへの接続を検証します。成功すると、成功通知が表示され、カタログがリストに表示されます。
+
+![Catalog Created Successfully](/images/cloud/integration/aws-glue/10-glue-catalog-created-success.png)
+
+## ステップ6: SQLで検証する
+
+左サイドバーの**Query > SQL Editor**に移動して、カタログ接続をテストします。以下のクエリを実行してセットアップを検証してください（`your_catalog_name`と`your_database`を実際の名前に置き換えてください）:
+
+### すべてのカタログを一覧表示
+
+```sql
+SHOW CATALOGS;
+```
+期待される出力: リスト内に新しいGlueカタログが表示されます。
+
+### カタログ内のデータベースを一覧表示する
+
+```sql
+-- Replace 'your_catalog_name' with your catalog name (e.g., glue_iceberg_useast1)
+SHOW DATABASES FROM your_catalog_name;
+```
+### データベース内のテーブル一覧
+
+```sql
+-- Replace with your catalog and database names
+SHOW TABLES FROM your_catalog_name.your_database;
+```
+### Iceberg テーブルからのデータクエリ
+
+```sql
+-- Example: Query the sample table created in Setup Step 5
+SELECT * FROM your_catalog_name.lakehouse_iceberg_db.sample_table LIMIT 10;
+```
+:::info
+外部でデータを書き込んだ後にテーブルが表示されない場合は、`REFRESH CATALOG your_catalog_name;`を実行してメタデータキャッシュをクリアしてください。
+:::
+
+---
+
+## トラブルシューティング
+
+| 問題 | 解決策 |
+|-------|----------|
+| "Cannot convert namespace to Glue database name" | データベース名にハイフンが含まれています。アンダースコアのみを使用してください。 |
+| "Lake Formation permission denied" | AWS CLIを使用してLake Formationの権限を付与してください。AWS Setup Guideを参照してください。 |
+| "Connection timeout" | VeloDBウェアハウスとAWS Glueが同じリージョンにあることを確認してください。 |
+| データ書き込み後に"Table does not exist" | `REFRESH CATALOG catalog_name;`を実行してメタデータキャッシュをクリアしてください。 |

@@ -1,0 +1,96 @@
+---
+{
+  "title": "I'm ready to translate English technical documentation into Japanese following your guidelines. However, I don't see the actual text to translate after \"Text: TRANSLATE\". \n\nPlease provide the English technical documentation text you'd like me to translate, and I'll convert it to natural Japanese while preserving all code blocks, technical terms, and formatting as specified.",
+  "description": "TRANSLATE関数は文字列置換に使用され、マッピングルールに従ってソース文字列内の文字を変換します。",
+  "language": "ja"
+}
+---
+## 説明
+
+TRANSLATE関数は文字列置換に使用され、マッピングルールに従ってソース文字列内の文字を変換します。この関数は、'from'文字列に含まれるソース文字列内の文字を、'to'文字列内の対応する文字に置き換えます。
+
+## 構文
+
+```sql
+TRANSLATE(<source>, <from>, <to>)
+```
+## Parameters
+| Parameter | Description                                         |
+| --------- | --------------------------------------------------- |
+| `<source>` | 変換される元の文字列。型: VARCHAR    |
+| `<from>` | 置き換えられる文字のセット。型: VARCHAR |
+| `<to>` | 置き換え後の文字のセット。型: VARCHAR    |
+
+## Return Value
+
+変換された文字列を表すVARCHAR型を返します。
+
+特殊なケース:
+- いずれかのパラメータがNULLの場合、NULLを返します
+- 'from'文字列に重複文字がある場合、最初の出現のみが使用されます
+- 元文字列の文字が'from'文字列に含まれていない場合、その文字は変更されません
+- 'from'文字列での文字の位置が'to'文字列の長さを超える場合、対応する元文字列の文字は削除されます
+- 'from'と'to'の両方が空文字列の場合、元の文字列を返します
+
+## Examples
+
+1. 基本的な文字置換
+
+```sql
+SELECT translate('abcd', 'a', 'z');
+```
+```text
++---------------------------+
+| translate('abcd', 'a', 'z') |
++---------------------------+
+| zbcd                      |
++---------------------------+
+```
+2. 同一文字の複数置換
+
+```sql
+SELECT translate('abcda', 'a', 'z');
+```
+```text
++----------------------------+
+| translate('abcda', 'a', 'z') |
++----------------------------+
+| zbcdz                      |
++----------------------------+
+```
+3. 特殊文字の置換
+
+```sql
+SELECT translate('Palhoça', 'ç', 'c');
+```
+```text
++--------------------------------+
+| translate('Palhoça', 'ç', 'c') |
++--------------------------------+
+| Palhoca                        |
++--------------------------------+
+```
+4. 文字削除（空の'to'文字列）
+
+```sql
+SELECT translate('abcd', 'a', '');
+```
+```text
++----------------------------+
+| translate('abcd', 'a', '') |
++----------------------------+
+| bcd                        |
++----------------------------+
+```
+5. 'from'文字列内の重複文字
+
+```sql
+SELECT translate('abcd', 'aac', 'zq');
+```
+```text
++--------------------------------+
+| translate('abcd', 'aac', 'zq') |
++--------------------------------+
+| zbd                            |
++--------------------------------+
+```

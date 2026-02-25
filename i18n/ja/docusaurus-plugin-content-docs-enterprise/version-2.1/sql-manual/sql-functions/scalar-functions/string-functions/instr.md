@@ -1,0 +1,43 @@
+---
+{
+  "title": "I'm ready to translate English technical documentation into Japanese following your requirements. However, I don't see any text content after \"Text:\" in your message - only \"INSTR\" appears there.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate?",
+  "description": "str 内で substr が最初に出現する位置を返します（カウントは1から始まります）。特殊なケース：",
+  "language": "ja"
+}
+---
+## 説明
+
+str内でsubstrが最初に出現する位置を返します（カウントは1から開始）。特殊なケース：
+
+- substrがstr内に存在しない場合、0を返します。
+
+## 構文
+
+```sql
+INSTR ( <str> , <substr> )
+```
+## パラメータ
+
+| Parameter | Description |
+|--------|-----------|
+| `<str>` | 検索対象の文字列 |
+| `<substr>` | 検索する文字列 |
+
+## 戻り値
+
+`<str>` 内での `<substr>` の最初の出現位置（カウントは1から開始）。特殊なケース：
+
+- `<substr>` が `<str>` に含まれない場合、0を返す。
+
+## 例
+
+```sql
+SELECT INSTR("abc", "b"),INSTR("abc", "d")
+```
+```text
++-------------------+-------------------+
+| instr('abc', 'b') | instr('abc', 'd') |
++-------------------+-------------------+
+|                 2 |                 0 |
++-------------------+-------------------+
+```

@@ -1,0 +1,54 @@
+---
+{
+  "title": "I notice that the text you provided is \"STRUCT_ELEMENT\", which appears to be a technical identifier or constant name. According to the rules you specified, I should not translate code blocks, inline code, configuration keys, or technical identifiers.\n\nSTRUCT_ELEMENT",
+  "description": "struct のデータ列内の特定のフィールドを返します。",
+  "language": "ja"
+}
+---
+## 説明
+
+構造体のデータ列内の特定のフィールドを返します。
+
+## 構文
+
+```sql
+STRUCT_ELEMENT( <struct>, '<filed_location>/<filed_name>')
+```
+## Parameters
+
+| Parameter | Description |
+| -- | -- |
+| `<struct>` | 入力のstruct列がnullの場合、nullを返す |
+| `<filed_location>` | フィールドの位置は1から始まり、定数のみがサポートされる |
+| `<filed_name>` | フィールド名は定数である必要があり、大文字小文字を区別する |
+
+## Return Value
+
+指定されたフィールド列を返し、型は任意の型となる
+
+## Example
+
+```sql
+select struct_element(named_struct('f1', 1, 'f2', 'a'), 'f2'),struct_element(named_struct('f1', 1, 'f2', 'a'), 1);
+```
+```text
++--------------------------------------------------------+-----------------------------------------------------+
+| struct_element(named_struct('f1', 1, 'f2', 'a'), 'f2') | struct_element(named_struct('f1', 1, 'f2', 'a'), 1) |
++--------------------------------------------------------+-----------------------------------------------------+
+| a                                                      |                                                   1 |
++--------------------------------------------------------+-----------------------------------------------------+
+```
+```sql
+select struct_col, struct_element(struct_col, 'f1') from test_struct;
+```
+```text
++-------------------------------------------------+-------------------------------------+
+| struct_col                                      | struct_element(`struct_col `, 'f1') |
++-------------------------------------------------+-------------------------------------+
+| {1, 2, 3, 4, 5}                                 |                                   1 |
+| {1, 1000, 10000000, 100000000000, 100000000000} |                                   1 |
+| {5, 4, 3, 2, 1}                                 |                                   5 |
+| NULL                                            |                                NULL |
+| {1, NULL, 3, NULL, 5}                           |                                   1 |
++-------------------------------------------------+-------------------------------------+
+```

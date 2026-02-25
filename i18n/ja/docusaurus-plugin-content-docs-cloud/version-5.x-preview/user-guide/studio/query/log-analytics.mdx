@@ -1,0 +1,121 @@
+---
+{
+  "title": "検索と分析",
+  "description": "検索と分析はVeloDB Studioによって起動されます。これはログ分析シナリオ向けのクエリツールで、ログの検索、クエリ、集計を簡単に行うことができます。",
+  "language": "ja"
+}
+---
+# Search and Analysis
+
+Search and analysisは、VeloDB Studioによって起動されます。ログ分析シナリオ用のクエリツールで、ログの検索、クエリ、集計を簡単に行うことができます。
+
+### 検索・分析機能の紹介
+
+インタラクティブな検索・分析インターフェースは、Kibana Discoverページに類似しており、ログ検索の詳細な体験を最適化し、4つのエリアに分かれています：
+
+- **上部の入力エリア**: クラスタ、テーブル、時間フィールド、クエリ時間範囲を選択します。メイン入力ボックスは2つのモードをサポートしています：キーワード検索とSQL。
+
+- **左側のフィールド表示・選択エリア**: 現在のテーブルの全フィールドを表示します。右側の詳細表示エリアに表示するフィールドを選択できます。フィールドにマウスを合わせると、このフィールドの5つの値と出現割合が表示されます。値によってさらにフィルタできます。フィルタ条件は入力エリアのフィルタ部分に反映されます。
+
+- **中央のトレンドチャート表示・インタラクション エリア**: 特定の時間間隔で条件を満たすログの数を表示します。ユーザーはトレンドチャート上でボックス内の期間を選択してクエリ時間範囲を調整できます。
+- **下部の詳細データ表示・インタラクション エリア**: ログの詳細を表示し、クリックして特定のログの詳細を表示できます。tableとJSONの2つのフォーマットをサポートしています。table形式はインタラクティブなフィルタ条件の作成もサポートしています。
+
+Query > Search Analysisをクリックし、テーブルを`internal_schema > audit_log`として選択すると、Studioは自動的にテーブル内のフィールドをクエリし、最初の時間フィールドを選択します。
+
+<img className="pt-5" src={`/img/studio/discover.png`} alt="discover" width={1400} height={600} />
+
+### フィールド割合の表示
+
+1. 左側のstateフィールドにマウスを合わせると、最高頻度のstate値EOF、OK、ERRが表示され、割合も確認できます。さらに、プラス記号（+）またはマイナス記号（—）ボタンをクリックしてフィルタ条件を作成することもできます。例えば、ERRの右側のマイナス記号（—）ボタンをクリックすることで、ERRの右側のマイナス記号（—）ボタンをクリックすることで、フィルタ条件にstate != ERRが表示されます。
+
+:::info
+フィールドの割合は、クエリ内の500件のデータの割合を示しています。データ量が大きい場合、エラーが発生する可能性があります。全量データの割合が必要な場合は、SQLを通じてクエリできます。後続のバージョンでこの機能を最適化予定です。
+:::
+
+<img
+    className="pt-5"
+    src={`/img/studio/discover-top-field.png`}
+    alt="discover-top-field"
+    width={1400}
+    height={600}
+/>
+
+### 検索による結果のフィルタ
+
+2. メイン入力ボックスで、検索とSQLモードを使用してキーワードをクエリします。
+
+:::info
+検索モードは転置インデックスを持つテーブルでのみサポートされています。参照: https://doris.apache.org/docs/table-design/index/inverted-index
+:::
+
+検索ボックス下でSearchを選択し、右側にGETと入力し、Queryをクリックします。検索モードでは、キーワードGETを含むログを検索します。詳細のGETはハイライト表示され、トレンドチャートのデータストリップ数も対応して変化します。
+<img className="pt-5" src={`/img/studio/discover-search.png`} alt="discover-search" width={1400} height={600} />
+
+:::info
+任意のキーワードにマッチする`MATCH_ANY`ステートメントを検索すると、ログ内の任意のフィールドにマッチできます。
+
+    検索結果のハイライト表示は、可能な限りすべての検索キーワードにマッチしようとしますが、一部の特殊文字により、常に検索キーワードと正確にマッチするとは限りません。
+:::
+
+検索では二重引用符を使用してフレーズを囲むことができます。例：`"GET /api/v1/user"`。フレーズ全体にマッチします。フレーズは`MATCH_PHRASE`を使用してフレーズにマッチします。
+
+より精密なマッチが必要な場合は、SQLパターンを使用できます。
+検索原理や`MATCH_ANY`および`MATCH_PHRASE`について質問がある場合は、ドキュメント [Inverted Index] (https://doris.apache.org/docs/3.x/table-design/index/inverted-index#usage-scenarios)を参照してください。
+
+### SQLを通じた結果のフィルタ
+
+検索ボックス下で`SQL`を選択し、`SQLモード`でSQL WHERE条件を入力し、`Query`をクリックします。
+
+<img className="pt-5" src={`/img/studio/discover-sql.png`} alt="discover-sql" width={1400} height={600} />
+
+### フィルタ結果詳細の表示
+
+ログ詳細を展開し、TableまたはJSON形式をオプションで選択できます。Table形式はインタラクティブなフィルタ作成をサポートしています。
+<img className="pt-5" src={`/img/studio/discover-row-detail.png`} alt="discover-discover-row-detail" width={1400} height={600} />
+
+### コンテキストの表示とさらなる検索
+
+右側のコンテキスト検索をクリックして、このログの前後10ログを表示します。コンテキスト検索でフィルタ条件を継続して追加できます。
+
+<img className="pt-5" src={`/img/studio/discover-surrounding.png`} alt="discover-surrounding" width={1400} height={600} />
+
+
+### `VARIANT`データ型のフィルタ
+
+Doris 2.1で新しいデータ型`VARIANT`が導入されました。半構造化JSONデータを格納できます。`VARIANT`型は、いつでも変更される可能性のある複雑なネスト構造の処理に特に適しています。
+Studioは`VARIANT`データ型を認識し、そのデータ型の階層を自動的に展開し、特別なフィルタ方法を提供します。
+
+github_eventsテーブルを例に、`VARIANT`データ型のフィールドをフィルタする方法を示します。
+
+フィルタ条件では、`VARIANT`データ型のフィールドを選択し、その中のサブフィールドを選択してフィルタできます。
+<img className="pt-5" src={`/img/studio/discover-variant-filter.png`} alt="discover-variant-filter" width={1400} height={600} />
+
+
+SQLモードでは、`[]`を使用して`VARIANT`データ型のフィールドにアクセスできます。
+<img className="pt-5" src={`/img/studio/discover-variant.png`} alt="discover-variant" width={1400} height={600} />
+
+
+
+
+### FAQ
+
+#### なぜデータが見えないのですか？
+1. クラスタ、テーブル、時間フィールドが正しく選択されているかご確認ください。
+
+2. 時間範囲が正しく選択されているかご確認ください。
+
+3. フィルタ条件があるかご確認ください。
+
+#### テーブルに転置インデックスをどのように作成すべきですか？
+
+テーブル作成時に転置インデックスを設定することも、既存のテーブルに転置インデックスを作成することもできます。
+
+ドキュメント [Management Index] (https://doris.apache.org/docs/3.0/table-design/index/inverted-index)を参照してください。
+
+#### Variant型を使用したデータ格納のチュートリアルはありますか？
+
+ドキュメント [Variant Type](https://doris.apache.org/docs/dev/data-operate/import/complex-types/variant)を参照してください。
+
+#### コンテキストインデックスのログが十分に正確でなく、一部のログが見つけられませんか？
+
+より高精度の`DateTime`フィールドを使用することで、コンテキストインデックスの精度を向上させることができます。例：`DateTime(3)`

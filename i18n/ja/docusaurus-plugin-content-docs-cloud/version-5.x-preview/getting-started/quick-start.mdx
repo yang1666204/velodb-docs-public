@@ -1,0 +1,582 @@
+---
+{
+  "title": "クイックスタート",
+  "description": "VeloDB Cloudを数分で開始 - warehouseを作成し、600万行をロードして、分析クエリを実行",
+  "language": "ja"
+}
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# VeloDB Cloud クイックスタート
+
+このガイドでは、VeloDB Cloud を数分で開始する手順を説明します。warehouseを作成し、600万行のSSB-Flatベンチマークデータセットを読み込み、分析クエリを実行します。
+
+:::info
+**クレジットカードは不要です。** VeloDB Cloud では、SaaS warehouse向けに14日間の無料トライアルを提供しています。
+:::
+
+---
+
+## 1. アカウントを作成する
+
+[velodb.cloud](https://velodb.cloud) にアクセスし、お好みの方法でサインアップしてください：
+
+- **Google** - Googleアカウントでのシングルサインオン
+- **Microsoft** - Microsoftアカウントでのシングルサインオン
+- **Email** - 従来のメールアドレスとパスワードによる登録
+
+![Sign up for VeloDB Cloud](/images/cloud/quickstart/signup.png)
+
+---
+
+## 2. デプロイメントモードを選択する
+
+サインイン後、2つのデプロイメントオプションが表示されます：
+
+| モード | 説明 | 無料トライアル |
+|------|-------------|------------|
+| **SaaS** | VeloDBのクラウドで完全管理されたwarehouse | 14日間 |
+| **BYOC** | 独自のAWS/Azureアカウントにデプロイ | 30日間無料サービス |
+
+このクイックスタートでは、SaaS下の **Start 14-day Free Trial** をクリックしてください。
+
+![Choose deployment mode](/images/cloud/quickstart/choose-plan.png)
+
+---
+
+## 3. warehouseを作成する
+
+以下の設定でwarehouseを構成します：
+
+| 設定 | 推奨値 |
+|---------|-------------------|
+| **Warehouse Name** | `velodb-quickstart` |
+| **Cloud Platform** | AWS |
+| **Region** | 最寄りのリージョンを選択 |
+| **Zone** | 利用可能な任意のゾーン |
+| **Admin Password** | セキュアなパスワード |
+
+:::warning
+**重要:** 管理者パスワードを記録してください。warehouseに接続する際に必要になります。
+:::
+
+初期クラスターには以下が含まれます：
+- **4 vCPU、32 GB RAM** コンピュート
+- **200 GB** キャッシュストレージ
+
+**Create** をクリックしてwarehouseをプロビジョニングします。
+
+![Create warehouse configuration](/images/cloud/quickstart/create-warehouse.png)
+![Warehouse initialization settings](/images/cloud/quickstart/confirm.png)
+
+:::info
+VeloDBはwarehouseを3〜5分でプロビジョニングします。完了すると、ステータスが **Running** に変わります。
+:::
+
+![Warehouse provisioning](/images/cloud/quickstart/wait.png)
+
+---
+
+## 4. warehouseに接続する
+
+サイドバーの **Connections** に移動して、接続の詳細を確認します：
+
+![Connection information](/images/cloud/quickstart/connections.png)
+
+### 接続方法
+
+<Tabs>
+  <TabItem value="console" label="SQL Console (Recommended)" default>
+
+VeloDB Consoleサイドバーの組み込み **Query** エディターを使用して、ブラウザベースのSQLアクセスを行います。セットアップは不要です。
+
+  </TabItem>
+  <TabItem value="mysql" label="MySQL CLI">
+
+```bash
+mysql -h <your-host>.elb.<region>.amazonaws.com -P 9030 -u admin -p
+```
+</TabItem>
+  <TabItem value="jdbc" label="JDBC">
+
+```
+jdbc:mysql://<your-host>.elb.<region>.amazonaws.com:9030/<database>
+```
+</TabItem>
+</Tabs>
+
+### 接続の確認
+
+```sql
+SHOW DATABASES;
+```
+I'm ready to translate English technical documentation into Japanese following your specifications. However, I don't see the actual text to translate after "Text:" and "Expected output:". 
+
+Could you please provide the English text that you'd like me to translate?
+
+```
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
++--------------------+
+```
+## 5. SSB-Flat Benchmark Datasetの読み込み
+
+探索用に公開された **SSB-Flat SF1** dataset（600万行）を準備しました。この非正規化されたStar Schema Benchmark datasetは、分析クエリに最適です。
+
+:::info
+**認証情報は不要です！** サンプルデータbucketはVeloDBから公開でアクセス可能です。
+:::
+
+### S3からのデータプレビュー
+
+読み込み前に、S3から直接データをプレビューします。最適なパフォーマンスのために、お使いのwarehouse regionに対応するタブを選択してください：
+
+<Tabs>
+  <TabItem value="us-east-1" label="US East (N. Virginia)" default>
+
+```sql
+SELECT
+    lo_orderkey,
+    lo_orderdate,
+    c_name,
+    c_nation,
+    lo_revenue,
+    p_brand
+FROM S3(
+    "uri" = "s3://velodb-import-data-us-east-1/ssb-flat-sf1/ssb_flat_001.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.us-east-1.amazonaws.com",
+    "s3.region" = "us-east-1"
+)
+LIMIT 5;
+```
+</TabItem>
+  <TabItem value="us-west-1" label="US West (N. California)">
+
+```sql
+SELECT
+    lo_orderkey,
+    lo_orderdate,
+    c_name,
+    c_nation,
+    lo_revenue,
+    p_brand
+FROM S3(
+    "uri" = "s3://velodb-import-data-us-west-1/ssb-flat-sf1/ssb_flat_001.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.us-west-1.amazonaws.com",
+    "s3.region" = "us-west-1"
+)
+LIMIT 5;
+```
+</TabItem>
+  <TabItem value="us-west-2" label="US West (Oregon)">
+
+```sql
+SELECT
+    lo_orderkey,
+    lo_orderdate,
+    c_name,
+    c_nation,
+    lo_revenue,
+    p_brand
+FROM S3(
+    "uri" = "s3://velodb-import-data-us-west-2/ssb-flat-sf1/ssb_flat_001.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.us-west-2.amazonaws.com",
+    "s3.region" = "us-west-2"
+)
+LIMIT 5;
+```
+</TabItem>
+  <TabItem value="eu-central-1" label="EU (Frankfurt)">
+
+```sql
+SELECT
+    lo_orderkey,
+    lo_orderdate,
+    c_name,
+    c_nation,
+    lo_revenue,
+    p_brand
+FROM S3(
+    "uri" = "s3://velodb-import-data-eu-central-1/ssb-flat-sf1/ssb_flat_001.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.eu-central-1.amazonaws.com",
+    "s3.region" = "eu-central-1"
+)
+LIMIT 5;
+```
+</TabItem>
+  <TabItem value="eu-west-1" label="EU（アイルランド）">
+
+```sql
+SELECT
+    lo_orderkey,
+    lo_orderdate,
+    c_name,
+    c_nation,
+    lo_revenue,
+    p_brand
+FROM S3(
+    "uri" = "s3://velodb-import-data-eu-west-1/ssb-flat-sf1/ssb_flat_001.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.eu-west-1.amazonaws.com",
+    "s3.region" = "eu-west-1"
+)
+LIMIT 5;
+```
+</TabItem>
+  <TabItem value="ap-southeast-1" label="アジアパシフィック（シンガポール）">
+
+```sql
+SELECT
+    lo_orderkey,
+    lo_orderdate,
+    c_name,
+    c_nation,
+    lo_revenue,
+    p_brand
+FROM S3(
+    "uri" = "s3://velodb-import-data-ap-southeast-1/ssb-flat-sf1/ssb_flat_001.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.ap-southeast-1.amazonaws.com",
+    "s3.region" = "ap-southeast-1"
+)
+LIMIT 5;
+```
+</TabItem>
+  <TabItem value="ap-northeast-1" label="アジアパシフィック（東京）">
+
+```sql
+SELECT
+    lo_orderkey,
+    lo_orderdate,
+    c_name,
+    c_nation,
+    lo_revenue,
+    p_brand
+FROM S3(
+    "uri" = "s3://velodb-import-data-ap-northeast-1/ssb-flat-sf1/ssb_flat_001.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.ap-northeast-1.amazonaws.com",
+    "s3.region" = "ap-northeast-1"
+)
+LIMIT 5;
+```
+</TabItem>
+  <TabItem value="me-south-1" label="中東 (バーレーン)">
+
+```sql
+SELECT
+    lo_orderkey,
+    lo_orderdate,
+    c_name,
+    c_nation,
+    lo_revenue,
+    p_brand
+FROM S3(
+    "uri" = "s3://velodb-import-data-me-south-1/ssb-flat-sf1/ssb_flat_001.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.me-south-1.amazonaws.com",
+    "s3.region" = "me-south-1"
+)
+LIMIT 5;
+```
+</TabItem>
+</Tabs>
+
+### データベースとテーブルの作成
+
+```sql
+-- Create database
+CREATE DATABASE IF NOT EXISTS ssb;
+USE ssb;
+
+-- Create the SSB flat table
+CREATE TABLE IF NOT EXISTS ssb_flat (
+    lo_orderkey        BIGINT NOT NULL,
+    lo_linenumber      BIGINT NOT NULL,
+    lo_custkey         BIGINT NOT NULL,
+    lo_partkey         BIGINT NOT NULL,
+    lo_suppkey         BIGINT NOT NULL,
+    lo_orderdate       DATE NOT NULL,
+    lo_commitdate      DATE NOT NULL,
+    lo_orderpriority   VARCHAR(15) NOT NULL,
+    lo_shippriority    BIGINT NOT NULL,
+    lo_shipmode        VARCHAR(10) NOT NULL,
+    lo_year            INT NOT NULL,
+    lo_month           INT NOT NULL,
+    lo_weeknum         INT NOT NULL,
+    d_datekey          BIGINT NOT NULL,
+    d_dayofweek        VARCHAR(10) NOT NULL,
+    d_month            VARCHAR(10) NOT NULL,
+    d_yearmonth        VARCHAR(10) NOT NULL,
+    lo_quantity        BIGINT NOT NULL,
+    lo_extendedprice   DOUBLE NOT NULL,
+    lo_discount        DOUBLE NOT NULL,
+    lo_revenue         DOUBLE NOT NULL,
+    lo_supplycost      DOUBLE NOT NULL,
+    lo_tax             DOUBLE NOT NULL,
+    c_custkey          BIGINT NOT NULL,
+    c_name             VARCHAR(25) NOT NULL,
+    c_nation           VARCHAR(15) NOT NULL,
+    c_region           VARCHAR(12) NOT NULL,
+    c_city             VARCHAR(10) NOT NULL,
+    c_mktsegment       VARCHAR(10) NOT NULL,
+    s_suppkey          BIGINT NOT NULL,
+    s_name             VARCHAR(25) NOT NULL,
+    s_nation           VARCHAR(15) NOT NULL,
+    s_region           VARCHAR(12) NOT NULL,
+    s_city             VARCHAR(10) NOT NULL,
+    p_partkey          BIGINT NOT NULL,
+    p_name             VARCHAR(22) NOT NULL,
+    p_brand            VARCHAR(9) NOT NULL,
+    p_category         VARCHAR(7) NOT NULL,
+    p_mfgr             VARCHAR(6) NOT NULL,
+    p_color            VARCHAR(11) NOT NULL,
+    p_type             VARCHAR(25) NOT NULL,
+    p_size             BIGINT NOT NULL,
+    p_container        VARCHAR(10) NOT NULL,
+    INDEX idx_p_type (p_type) USING INVERTED PROPERTIES("parser" = "english")
+)
+DUPLICATE KEY(lo_orderkey)
+DISTRIBUTED BY HASH(lo_orderkey) BUCKETS 48;
+```
+### データの読み込み
+
+:::tip
+最適なパフォーマンスを得るには、ウェアハウスと同じリージョンのS3バケットを使用してください。
+:::
+
+<Tabs>
+  <TabItem value="us-east-1-load" label="US East (N. Virginia)" default>
+
+```sql
+INSERT INTO ssb.ssb_flat
+SELECT * FROM S3(
+    "uri" = "s3://velodb-import-data-us-east-1/ssb-flat-sf1/*.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.us-east-1.amazonaws.com",
+    "s3.region" = "us-east-1"
+);
+```
+</TabItem>
+  <TabItem value="us-west-1-load" label="US West (北カリフォルニア)">
+
+```sql
+INSERT INTO ssb.ssb_flat
+SELECT * FROM S3(
+    "uri" = "s3://velodb-import-data-us-west-1/ssb-flat-sf1/*.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.us-west-1.amazonaws.com",
+    "s3.region" = "us-west-1"
+);
+```
+</TabItem>
+  <TabItem value="us-west-2-load" label="US West (Oregon)">
+
+```sql
+INSERT INTO ssb.ssb_flat
+SELECT * FROM S3(
+    "uri" = "s3://velodb-import-data-us-west-2/ssb-flat-sf1/*.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.us-west-2.amazonaws.com",
+    "s3.region" = "us-west-2"
+);
+```
+</TabItem>
+  <TabItem value="eu-central-1-load" label="EU（フランクフルト）">
+
+```sql
+INSERT INTO ssb.ssb_flat
+SELECT * FROM S3(
+    "uri" = "s3://velodb-import-data-eu-central-1/ssb-flat-sf1/*.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.eu-central-1.amazonaws.com",
+    "s3.region" = "eu-central-1"
+);
+```
+</TabItem>
+  <TabItem value="eu-west-1-load" label="EU (アイルランド)">
+
+```sql
+INSERT INTO ssb.ssb_flat
+SELECT * FROM S3(
+    "uri" = "s3://velodb-import-data-eu-west-1/ssb-flat-sf1/*.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.eu-west-1.amazonaws.com",
+    "s3.region" = "eu-west-1"
+);
+```
+</TabItem>
+  <TabItem value="ap-southeast-1-load" label="アジア太平洋 (シンガポール)">
+
+```sql
+INSERT INTO ssb.ssb_flat
+SELECT * FROM S3(
+    "uri" = "s3://velodb-import-data-ap-southeast-1/ssb-flat-sf1/*.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.ap-southeast-1.amazonaws.com",
+    "s3.region" = "ap-southeast-1"
+);
+```
+</TabItem>
+  <TabItem value="ap-northeast-1-load" label="アジア太平洋 (東京)">
+
+```sql
+INSERT INTO ssb.ssb_flat
+SELECT * FROM S3(
+    "uri" = "s3://velodb-import-data-ap-northeast-1/ssb-flat-sf1/*.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.ap-northeast-1.amazonaws.com",
+    "s3.region" = "ap-northeast-1"
+);
+```
+</TabItem>
+  <TabItem value="me-south-1-load" label="中東（バーレーン）">
+
+```sql
+INSERT INTO ssb.ssb_flat
+SELECT * FROM S3(
+    "uri" = "s3://velodb-import-data-me-south-1/ssb-flat-sf1/*.parquet",
+    "format" = "parquet",
+    "s3.endpoint" = "s3.me-south-1.amazonaws.com",
+    "s3.region" = "me-south-1"
+);
+```
+</TabItem>
+</Tabs>
+
+:::info
+600万行の読み込みには約30秒から1分かかります。
+:::
+
+### 読み込みの確認
+
+```sql
+SELECT COUNT(*) AS total_rows FROM ssb.ssb_flat;
+```
+I'm ready to translate the English technical documentation text into Japanese following your specifications. However, I don't see the actual text to translate after "Text:" and "Expected output:". 
+
+Could you please provide the English text that you'd like me to translate?
+
+```
++------------+
+| total_rows |
++------------+
+|    6000000 |
++------------+
+```
+## 6. 分析クエリの実行
+
+それでは、データセットに対していくつかの分析クエリを実行しましょう。
+
+### Query 1: リアルタイム集計
+
+顧客地域別に売上高と割引指標を集計します：
+
+```sql
+SELECT
+    c_region,
+    COUNT(*) AS order_count,
+    SUM(lo_revenue) AS total_revenue,
+    AVG(lo_discount) AS avg_discount
+FROM ssb.ssb_flat
+GROUP BY c_region
+ORDER BY total_revenue DESC;
+```
+### Query 2: Window Functions - YoY Growth
+
+Window Functionsを使用して前年同期比の売上成長率を計算します：
+
+```sql
+SELECT
+    lo_year,
+    SUM(lo_revenue) AS yearly_revenue,
+    LAG(SUM(lo_revenue)) OVER (ORDER BY lo_year) AS prev_year_revenue,
+    ROUND(
+        (SUM(lo_revenue) - LAG(SUM(lo_revenue)) OVER (ORDER BY lo_year))
+        / LAG(SUM(lo_revenue)) OVER (ORDER BY lo_year) * 100,
+        2
+    ) AS yoy_growth_pct
+FROM ssb.ssb_flat
+GROUP BY lo_year
+ORDER BY lo_year;
+```
+### Query 3: CTEを使用した複雑なBI
+
+Common Table Expressionを使用して地域別利益階層を分析する：
+
+```sql
+WITH regional_stats AS (
+    SELECT
+        c_region,
+        s_region,
+        SUM(lo_revenue) AS revenue,
+        SUM(lo_supplycost) AS cost,
+        SUM(lo_revenue - lo_supplycost) AS profit
+    FROM ssb.ssb_flat
+    GROUP BY c_region, s_region
+)
+SELECT
+    c_region,
+    s_region,
+    revenue,
+    profit,
+    CASE
+        WHEN profit > 1000000000 THEN 'High'
+        WHEN profit > 500000000 THEN 'Medium'
+        ELSE 'Low'
+    END AS profit_tier
+FROM regional_stats
+ORDER BY profit DESC;
+```
+### Query 4: Self-Join Period Comparison
+
+セルフジョインを使用して1997年と1993年の売上を比較する：
+
+```sql
+SELECT
+    t1.c_nation,
+    t1.revenue_1997,
+    t2.revenue_1993,
+    ROUND((t1.revenue_1997 - t2.revenue_1993) / t2.revenue_1993 * 100, 2) AS growth_pct
+FROM (
+    SELECT c_nation, SUM(lo_revenue) AS revenue_1997
+    FROM ssb.ssb_flat
+    WHERE lo_year = 1997
+    GROUP BY c_nation
+) t1
+JOIN (
+    SELECT c_nation, SUM(lo_revenue) AS revenue_1993
+    FROM ssb.ssb_flat
+    WHERE lo_year = 1993
+    GROUP BY c_nation
+) t2 ON t1.c_nation = t2.c_nation
+ORDER BY growth_pct DESC;
+```
+### Query 5: 全文検索
+
+転置インデックスを使用して、商品タイプに"STEEL"を含む商品を検索します:
+
+```sql
+SELECT
+    p_type,
+    p_brand,
+    COUNT(*) AS product_count,
+    SUM(lo_revenue) AS total_revenue
+FROM ssb.ssb_flat
+WHERE p_type MATCH 'STEEL'
+GROUP BY p_type, p_brand
+ORDER BY total_revenue DESC
+LIMIT 10;
+```
+## 次のステップ
+
+- **課金の設定** - [Billing Center](../management-guide/usage-and-billing)から支払い方法を追加してください
+- **独自のデータをインポート** - [S3 Import Guide](../user-guide/data-operate/import/data-source/amazon-s3)を参照してください
+- **詳細を学ぶ** - [VeloDB documentation](./overview)をご覧ください

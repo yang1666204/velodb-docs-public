@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://docs.velodb.io
+
+# Sitemaps
+Sitemap: https://docs.velodb.io/sitemap.xml

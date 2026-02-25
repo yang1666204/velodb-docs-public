@@ -1,0 +1,48 @@
+---
+{
+  "title": "ATAN",
+  "description": "xのarctangentを返します。ここでxはラジアン単位です。",
+  "language": "ja"
+}
+---
+## Description
+
+`x` のアークタンジェントを返します。ここで `x` はラジアン単位です。
+
+## Syntax
+
+```sql
+ATAN(<x>)
+```
+## Parameters  
+
+| Parameter | Description |  
+| -- | -- |  
+| `<x>` | atan値を計算する値 |  
+
+## Return Value  
+
+パラメータ`x`のatan値。
+
+## Example
+
+```sql
+select atan(0);
+```
+```text
++-----------+
+| atan(0.0) |
++-----------+
+|         0 |
++-----------+
+```
+```sql
+select atan(2);
+```
+```text
++--------------------+
+| atan(2.0)          |
++--------------------+
+| 1.1071487177940904 |
++--------------------+
+```

@@ -1,0 +1,49 @@
+---
+{
+    "title": "Connection Overview",
+    "description": "The Connection Overview page displays a list of all connections, where you can view information such as the status of the connection, the name of the..."
+}
+---
+
+# Connection Overview
+
+The Connection Overview page displays a list of all connections, where you can view information such as the status of the connection, the name of the connection, the type of the connection, the address of the connection, etc.
+
+
+## Connection List
+
+All the connections you create are displayed here.
+
+<img className='pt-5' src={`/img/studio/workspace.png`} alt="workspace" width={1400} height={600}/>
+
+## Connection status
+
+- **Connected**: Indicates that VeloDB Studio is in the connection state with this database. Clicking on the connection card will reuse the connected connection.
+- **Not connected**: means that VeloDB Studio is not connected to this database. Clicking on the connection card will reconnect.
+
+## Edit connection
+
+You can edit the name of the connection, the address of the connection, the type of the connection, and other information at any time. If the connection is connected, you need to disconnect first by editing the connection.
+<img className='pt-5' src={`/img/studio/edit-connection.png`} alt="edit-connection" width={1400} height={600}/>
+
+## Refresh connection
+
+Refreshing the connection will reconnect to your database. After connecting, the connection status will become connected. Clicking on the connection card will reuse the connected connection.
+
+<img className='pt-5' src={`/img/studio/refresh-connection.png`} alt="refresh-connection" width={1400} height={600}/>
+
+## Delete the connection
+
+It will not be restored after deleting the connection
+
+<img className='pt-5' src={`/img/studio/delete-connection.png`} alt="delete-connection" width={1400} height={600}/>
+
+
+## Share the connection
+Sharing a connection will generate a VeloDB Studio Desktop URI, which you can share with others, and others can quickly connect to this database through this URI.
+
+:::info
+  The password for the connection will not be generated into the URI
+:::
+
+<img className='pt-5' src={`/img/studio/share-url.png`} alt="share-url" width={1400} height={600}/>

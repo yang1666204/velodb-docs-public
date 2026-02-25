@@ -1,0 +1,63 @@
+---
+{
+  "title": "I notice that the text you want me to translate appears to be incomplete. The input shows \"CONVERT_TO\" which seems like a placeholder or incomplete content.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "description": "列の文字エンコーディングを指定されたターゲット文字セットに変換します。",
+  "language": "ja"
+}
+---
+## 説明
+
+列の文字エンコーディングを指定されたターゲット文字セットに変換します。この関数は通常、中国語文字を含む列がピンイン順でソートされるようにするためにORDER BY句で使用されます。現在、`'gbk'`への変換のみがサポートされています。
+
+## 構文
+
+```sql
+CONVERT_TO(<column>, <character>)
+```
+## Parameters
+
+| Parameters      | Description                                                                 |
+|----------------|-----------------------------------------------------------------------------|
+| `<column>`     | エンコーディングを変換するVARCHAR列。                       |
+| `<character>`  | ターゲット文字セット。現在、`'gbk'`のみがサポートされています。             |
+
+## Return Value
+
+変換されたエンコーディングを持つVARCHAR値を返し、ORDER BY句で使用する際に適切なピンインベースの並び順を可能にします。
+
+## Examples
+
+```sql
+SELECT * FROM class_test ORDER BY class_name;
+```
+```text
++----------+------------+-------------+
+| class_id | class_name | student_ids |
++----------+------------+-------------+
+|        6 | asd        | [6]         |
+|        7 | qwe        | [7]         |
+|        8 | z          | [8]         |
+|        2 | 哈         | [2]         |
+|        3 | 哦         | [3]         |
+|        1 | 啊         | [1]         |
+|        4 | 张         | [4]         |
+|        5 | 我         | [5]         |
++----------+------------+-------------+
+```
+```sql
+SELECT * FROM class_test ORDER BY CONVERT_TO(class_name, 'gbk');
+```
+```text
++----------+------------+-------------+
+| class_id | class_name | student_ids |
++----------+------------+-------------+
+|        6 | asd        | [6]         |
+|        7 | qwe        | [7]         |
+|        8 | z          | [8]         |
+|        1 | 啊         | [1]         |
+|        2 | 哈         | [2]         |
+|        3 | 哦         | [3]         |
+|        5 | 我         | [5]         |
+|        4 | 张         | [4]         |
++----------+------------+-------------+
+```

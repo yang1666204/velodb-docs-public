@@ -1,0 +1,21 @@
+---
+{
+    "title": "Role",
+    "description": "You can manage roles in connection or authorize roles. Only users with Admin permissions can add and modify other roles."
+}
+---
+
+# Role
+
+You can manage roles in connection or authorize roles.
+Only users with Admin permissions can add and modify other roles.
+VeloDB Studio currently does not support the management of users under roles through roles, which means you need to specify your role when creating or modifying users.
+
+
+:::warning
+The admin and operator roles cannot be modified, they can only be viewed.
+:::
+
+The user item in the table indicates that the user granted to the role, and the creation time is empty because Apache Doris currently does not support the creation time of the role. But we reserved the display space for future versions to support.
+
+<img className='pt-5' src={`/img/studio/role.png`} alt="role" width={1400} height={600}/>

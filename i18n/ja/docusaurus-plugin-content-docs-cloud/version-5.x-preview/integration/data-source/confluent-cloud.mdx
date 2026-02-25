@@ -1,0 +1,194 @@
+---
+{
+  "title": "Confluent Cloud",
+  "description": "Confluent Cloud Kafka をリアルタイムデータストリーミング用に VeloDB Cloud に接続する",
+  "language": "ja"
+}
+---
+# Confluent Cloud への接続
+
+このガイドでは、ビジュアルインターフェースを使用してVeloDB CloudをConfluent Cloud Kafkaに接続する手順を説明します。
+
+:::warning
+**前提条件**: 続行する前に、[Confluent Cloud Setup Guide](./confluent-cloud/setup)を完了して、クラスター、APIキー、およびサンプルデータトピックを作成してください。
+:::
+
+## ステップ 1: Importに移動
+
+VeloDBウェアハウスで、左サイドバーから**Data**セクションを見つけて、**Import**をクリックします。
+
+**Create**をクリックして新しいインポートジョブを開始します。
+
+![New Import Page](/images/cloud/integration/confluent-cloud/velo1.png)
+
+## ステップ 2: Confluent Cloudを選択
+
+**Event Streams**の下で、**Confluent Cloud**をクリックしてストリーミングインポートウィザードを開始します。
+
+## ステップ 3: 接続を設定
+
+[Confluent Cloud Setup](./confluent-cloud/setup)からの接続詳細を入力します：
+
+![Connection Configuration](/images/cloud/integration/confluent-cloud/velo11.png)
+
+| フィールド | 説明 | 例 |
+|-------|-------------|---------|
+| **Task Name** | このインポートジョブの一意の名前 | `confluent_orders` |
+| **Consumer Group** | KafkaコンシューマーグループID | `velodb-consumer` |
+| **Brokers** | ブートストラップサーバーURL | `pkc-xxxxx.us-east-1.aws.confluent.cloud:9092` |
+| **API Key** | Confluent Cloud APIキー | Your API Key |
+| **API Secret** | Confluent Cloud APIシークレット | Your API Secret |
+| **SASL Mechanism** | 認証方法 | `PLAIN` |
+
+すべてのフィールドを入力したら**Next**をクリックします。
+
+## ステップ 4: ソースデータを選択
+
+Kafkaトピックとデータ形式を設定します：
+
+![Source Data Configuration](/images/cloud/integration/confluent-cloud/velo3.png)
+
+| フィールド | 説明 |
+|-------|-------------|
+| **Topic** | ドロップダウンからKafkaトピックを選択 |
+| **Offset Selection** | すべてのデータを読み込む場合は`From beginning`、新しいデータのみの場合は`From latest` |
+| **Data Format** | `JSON`を選択 |
+
+:::caution データ形式
+VeloDBは**JSON**と**CSV**形式のみをサポートしています。ConfluentトピックでAVROを使用している場合は、Confluent CloudでJSON形式の新しいトピックを作成する必要があります。
+:::
+
+**Next**をクリックして続行します。
+
+## ステップ 5: 宛先テーブルを設定
+
+VeloDBはKafkaメッセージからスキーマを自動的に検出します：
+
+![Data Preview](/images/cloud/integration/confluent-cloud/velo5.png)
+
+**Data Preview**セクションはトピックのサンプルレコードを表示します。
+
+### テーブル設定を構成
+
+![Destination Table](/images/cloud/integration/confluent-cloud/velo6.png)
+
+| フィールド | 説明 |
+|-------|-------------|
+| **Load Data to** | 新しいテーブルを作成するには`New Table`を選択 |
+| **Database** | データベースを選択または作成 |
+| **Table** | テーブル名を入力 |
+
+### カラム設定
+
+カラムマッピングを確認して調整します：
+
+![Column Settings](/images/cloud/integration/confluent-cloud/velo8.png)
+
+| 設定 | 説明 |
+|---------|-------------|
+| **Source Field** | KafkaメッセージのJSONフィールド |
+| **Column Name** | VeloDBテーブルのカラム名 |
+| **Data Type** | VeloDBデータ型（自動検出） |
+
+### 詳細設定
+
+| 設定 | 説明 |
+|---------|-------------|
+| **Table Models** | 追加専用の場合は`DUPLICATE`、アップサートの場合は`UNIQUE` |
+| **Sorting Key** | データ順序付け用のカラム |
+| **Bucket Key** | データ分散用のカラム |
+| **Bucket Number** | `AUTO`を推奨 |
+
+**Next**をクリックして続行します。
+
+## ステップ 6: 設定を構成
+
+インポートジョブの設定を調整します：
+
+![Settings](/images/cloud/integration/confluent-cloud/velo9.png)
+
+| 設定 | デフォルト | 説明 |
+|---------|---------|-------------|
+| **Concurrency** | 256 | 並列コンシューマー数 |
+| **Max Batch Interval (s)** | 60 | コミット前の最大待機時間 |
+| **Max Batch Rows** | 20000000 | バッチあたりの最大行数 |
+| **Max Batch Size (MB)** | 1024 | 最大バッチサイズ |
+
+デフォルト値はほとんどのユースケースで適切です。**Next**をクリックして続行します。
+
+## ステップ 7: 検証
+
+VeloDBが設定を検証します：
+
+![Verification](/images/cloud/integration/confluent-cloud/velo10.png)
+
+チェックリストは以下を検証します：
+- **Kafka Validation** - Confluent Cloudへの接続
+- **Warehouse Connectivity Test** - VeloDBがKafkaに到達可能
+- **User Permission Check** - インポート作成権限
+
+すべてのチェックで**Succeeded**が表示されたら、**Start**をクリックしてデータストリーミングを開始します。
+
+---
+
+## データインポートの確認
+
+インポート開始後、データが流れていることを確認します：
+
+### インポートステータスを確認
+
+サイドバーの**Import**に移動してジョブステータスを確認します：
+- **RUNNING** - ジョブがアクティブにデータを消費中
+- **PAUSED** - ジョブが一時停止中（エラーを確認）
+
+### データをクエリ
+
+**SQL Editor**に移動して実行します：
+
+```sql
+-- Check row count
+SELECT COUNT(*) FROM your_database.your_table;
+
+-- View sample data
+SELECT * FROM your_database.your_table LIMIT 10;
+```
+## Import Jobs の管理
+
+| アクション | 方法 |
+|--------|-----|
+| **一時停止** | ジョブをクリックし、**Pause** をクリック |
+| **再開** | ジョブをクリックし、**Resume** をクリック |
+| **削除** | ジョブをクリックし、**Delete** をクリック |
+
+または SQL を使用:
+
+```sql
+-- Pause job
+PAUSE ROUTINE LOAD FOR database.job_name;
+
+-- Resume job
+RESUME ROUTINE LOAD FOR database.job_name;
+
+-- Stop job
+STOP ROUTINE LOAD FOR database.job_name;
+
+-- View job status
+SHOW ROUTINE LOAD FOR database.job_name;
+```
+## トラブルシューティング
+
+| 問題 | 解決方法 |
+|-------|----------|
+| "Incorrect credentials" | Confluent Cloud からAPI KeyとSecretを確認してください |
+| "Broker transport failure" | SASL Mechanismが`PLAIN`に設定されていることを確認してください |
+| "Topic not found" | トピック名が正確に一致していることを確認してください（大文字小文字を区別） |
+| JSON parse error | ConfluentトピックがAVROではなくJSON形式を使用していることを確認してください |
+| Job paused with errors | エラーの詳細について`SHOW ROUTINE LOAD`を確認してください |
+
+---
+
+## 参考資料
+
+- [Confluent Cloud Setup Guide](./confluent-cloud/setup)
+- [Kafka Integration Guide](./kafka) - SQLベースのセットアップとその他のKafkaプロバイダーについて
+- [CREATE ROUTINE LOAD](../../sql-manual/sql-statements/data-modification/load-and-export/CREATE-ROUTINE-LOAD)

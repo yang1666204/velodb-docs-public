@@ -1,0 +1,41 @@
+---
+{
+  "title": "Health Action",
+  "language": "ja"
+}
+---
+# Health Action
+
+## Request
+
+`GET /api/health`
+
+## Description
+
+クラスター内で現在生存しているBEノードの数と、ダウンしているBEノードの数を返します。
+    
+## Path parameters
+
+なし
+
+## Query parameters
+
+なし
+
+## Request body
+
+なし
+
+## Response
+
+```
+{
+	"msg": "success",
+	"code": 0,
+	"data": {
+		"online_backend_num": 10,
+		"total_backend_num": 10
+	},
+	"count": 0
+}
+```

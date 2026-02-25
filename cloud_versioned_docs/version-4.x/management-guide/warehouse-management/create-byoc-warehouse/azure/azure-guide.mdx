@@ -1,0 +1,311 @@
+---
+{
+    "title": "Azure Preparation",
+    "description": "This article mainly introduces the Azure operations involved in creating a BYOC type warehouse, include Prepare a VNet and subnet、 Learn about Resourc..."
+}
+---
+
+# Azure Preparation
+
+This article mainly introduces the Azure operations involved in creating a BYOC type warehouse, include **Prepare a VNet and subnet**、 **Learn about Resource Orchestration and Resource Stack (Optional)**.
+
+## Prepare a VNet and subnet
+Before creating a BYOC type warehouse, if there is no existing VNet and subnet that meets the requirements, you need to create a VPC and subnets in advance. Here are the specific operations:
+
+> **Notice:** 
+> 1. If a VNet and subnet that meets the region, availability zone, and subnet requirements exists and you want to deploy the BYOC warehouse in this VNet, **skip the following steps to create a new VNet and subnet**.
+> 2. The regions and availability zones currently supported are:
+| Cloud Platform | Region Name    | Region ID         | Availability Zone ID |
+|:---------------|:-----------|:---------------------|:---------------------|
+| Azure          | West US 3    | westus3           | all            |
+
+### Create VNet and subnet
+
+Open the Azure Portal and Select **Virtual networks** service.
+
+Click **Create**.
+
+![vnet create 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/vnet-create-1.png)
+
+Select **Subscription** and **Resource Group**. Input **Virtual network name**. Select **Region**. Click **Next**.
+
+> **Note:** The regions and availability zones currently supported are:
+
+| Cloud Platform | Region Name    | Region ID         | Availability Zone ID |
+|:---------------|:-----------|:---------------------|:---------------------|
+| Azure          | West US 3    | westus3           | all            |
+
+![vnet create 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/vnet-create-2.png)
+
+Click **+ Add a subnet**. Click **Edit**. 
+
+![vnet create 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/vnet-create-3.png)
+
+Input **Name**. Specify the subnet range. Click **Save**. Click **Next**.
+
+> Note: If you want to access the Internet, you can specify the NAT gateway when creating a subnet
+
+![vnet create 4](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/vnet-create-4.png)
+
+Click **Create**.
+
+![vnet create 5](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/vnet-create-5.png)
+
+
+## Learn about Resource Orchestration and Resource Stack (Optional)
+
+> Note: You don't need to do anything in this chapter. If you want to learn more about how it works, you can continue reading.
+
+When executing resource stack through the Azure Deployment Service under your cloud account, it will perform related operations on cloud resources such as VNet, Virtual Machine, Storage Account, etc., therefore requiring a series of IAM permissions.  
+
+**Please use administrator privileges to execute this script, or contact your administrator to execute this script for you**, otherwise you may encounter template execution failures due to insufficient permissions.
+
+### Resource Orchestration Template Description
+
+The resource orchestration template provided by VeloDB runs under your cloud account, and the template code is visible and auditable, and will not operate on your data and other environments in the VPC. You can get the resource orchestration template provided by VeloDB through the following link:
+
+```
+https://onlinevelodbwestus3.blob.core.windows.net/velodb-cloud-online-westus3/public/azure-westus3-byoc-cf.json
+```
+
+When you execute the above resource template through Azure Deployment Stacks, it will automatically create and deploy the Agent. Then the Agent will establish a private connection with VeloDB Cloud and complete the warehouse initialization process.
+
+After the resource orchestration script is executed, you can enter the corresponding warehouse from the VeloDB Cloud platform and start creating a computing cluster for data analysis just like using a normal warehouse.
+
+### How to view resource stack information
+
+You can view all resource information created by the VeloDB resource stack template, and view specific resources by resource name through the Azure Deployment Stacks.
+
+> **Note** All resources created by the resource stack template belong to your cloud account and are only used within your VPC and will not be leaked.
+
+* **Virtual Machine**
+  * Name: VeloDBAgent
+  * Purpose: Used to deploy Agent, Prometheus, FluentBit and other programs
+* **Private Endpoint**
+  * Name: VeloDBEndpoint
+  * Purpose: Establish a private network connection (PrivateLink Connection) with the VeloDB Manage service, so that you can pull control instructions and push monitoring and logs in one direction
+* **Network SecurityGroup**
+  * Name: VeloDBSecurityGroupIngress, VeloDBSecurityGroupEgress
+  * Purpose: Bound to the endpoint and all Virtual Machines created by VeloDB, and restrict inbound and outbound traffic for specific ports and sources through firewall rules
+* **Storage Account**
+  * Name: VeloDBBucket
+  * Purpose: Used to store data warehouse data
+* **User-Assigned Managed Identity & Role Definition**
+  * Name:
+    * VeloDBDataAccessIdentity (Kernel-side managed identity), VeloDBAgentIdentity (Control-side managed identity)
+    * VeloDBControlPlaneRole (Custom role permissions bound to the control-side managed identity)
+    * Purpose: The created user-assigned managed identity has the minimum permission policy required by the Agent, and all subsequent control operations are carried out using the identity of VeloDBAgentIdentity 
+
+### Permissions of the created user-assigned managed identity
+
+After the template is executed for the first time to create the deployment stack, all management and control operations are performed based on the permissions of the user-assigned managed identity. The following is an excerpt from the template.
+
+* **Permission summary:**
+
+  ```YAML
+  'Microsoft.Compute/register/action'
+  'Microsoft.Compute/virtualMachines/read'
+  'Microsoft.Compute/virtualMachines/write'
+  'Microsoft.Compute/virtualMachines/delete'
+  'Microsoft.Compute/virtualMachines/start/action'
+  'Microsoft.Compute/virtualMachines/powerOff/action'
+  'Microsoft.Compute/virtualMachines/redeploy/action'
+  'Microsoft.Compute/virtualMachines/restart/action'
+  'Microsoft.Compute/virtualMachines/deallocate/action'
+  'Microsoft.Compute/virtualMachines/runCommand/action'
+  'Microsoft.Compute/virtualMachines/attachDetachDataDisks/action'
+  'Microsoft.Compute/virtualMachines/vmSizes/read'
+  'Microsoft.Compute/virtualMachines/runCommands/read'
+  'Microsoft.Compute/virtualMachines/runCommands/write'
+  'Microsoft.Compute/virtualMachines/instanceView/read'
+  'Microsoft.Compute/virtualMachines/extensions/read'
+  'Microsoft.Compute/locations/diskOperations/read'
+  'Microsoft.Compute/disks/read'
+  'Microsoft.Compute/disks/write'
+  'Microsoft.Compute/disks/delete'
+  'Microsoft.Compute/skus/read'
+  'Microsoft.Compute/locations/usages/read'
+  'Microsoft.Compute/locations/publishers/artifacttypes/offers/skus/read'
+  'Microsoft.Compute/locations/publishers/artifacttypes/offers/read'
+  'Microsoft.Compute/locations/publishers/artifacttypes/offers/skus/versions/read'
+  'Microsoft.Compute/operations/read'
+  'Microsoft.Compute./assets/read'
+  'Microsoft.Compute/locations/operations/read'
+  'Microsoft.Compute/locations/vmSizes/read'
+  'Microsoft.Compute/locations/runCommands/read'
+  'Microsoft.Network/register/action'
+  'Microsoft.Network/operations/read'
+  'Microsoft.Network/loadBalancers/read'
+  'Microsoft.Network/loadBalancers/write'
+  'Microsoft.Network/loadBalancers/delete'
+  'Microsoft.Network/loadBalancers/health/action'
+  'Microsoft.Network/loadBalancers/backendAddressPools/queryInboundNatRulePortMapping/action'
+  'Microsoft.Network/loadBalancers/backendAddressPools/updateAdminState/action'
+  'Microsoft.Network/loadBalancers/backendAddressPools/health/action'
+  'Microsoft.Network/loadBalancers/backendAddressPools/read'
+  'Microsoft.Network/loadBalancers/backendAddressPools/write'
+  'Microsoft.Network/loadBalancers/backendAddressPools/delete'
+  'Microsoft.Network/loadBalancers/backendAddressPools/backendPoolAddresses/read'
+  'Microsoft.Network/loadBalancers/backendAddressPools/join/action'
+  'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/diagnosticSettings/read'
+  'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/diagnosticSettings/write'
+  'Microsoft.Network/loadBalancers/frontendIPConfigurations/read'
+  'Microsoft.Network/loadBalancers/frontendIPConfigurations/join/action'
+  'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/read'
+  'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/write'
+  'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/delete'
+  'Microsoft.Network/loadBalancers/loadBalancingRules/read'
+  'Microsoft.Network/loadBalancers/loadBalancingRules/health/action'
+  'Microsoft.Network/loadBalancers/networkInterfaces/read'
+  'Microsoft.Network/loadBalancers/outboundRules/read'
+  'Microsoft.Network/loadBalancers/virtualMachines/read'
+  'Microsoft.Network/loadBalancers/probes/read'
+  'Microsoft.Network/loadBalancers/probes/join/action'
+  'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/metricDefinitions/read'
+  'Microsoft.Network/networkInterfaces/read'
+  'Microsoft.Network/networkInterfaces/write'
+  'Microsoft.Network/networkInterfaces/join/action'
+  'Microsoft.Network/networkInterfaces/delete'
+  'Microsoft.Network/networkInterfaces/effectiveRouteTable/action'
+  'Microsoft.Network/networkInterfaces/effectiveNetworkSecurityGroups/action'
+  'Microsoft.Network/networkInterfaces/ipconfigurations/read'
+  'Microsoft.Network/networkInterfaces/loadBalancers/read'
+  'Microsoft.Network/networkSecurityGroups/read'
+  'Microsoft.Network/networkSecurityGroups/write'
+  'Microsoft.Network/networkSecurityGroups/delete'
+  'Microsoft.Network/networkSecurityGroups/join/action'
+  'Microsoft.Network/virtualNetworks/read'
+  'Microsoft.Network/virtualNetworks/joinLoadBalancer/action'
+  'Microsoft.Network/virtualNetworks/subnets/read'
+  'Microsoft.Network/virtualNetworks/subnets/join/action'
+  'Microsoft.Network/virtualNetworks/subnets/joinLoadBalancer/action'
+  'Microsoft.Network/ipAllocations/read'
+  'Microsoft.Network/publicIPAddresses/read'
+  'Microsoft.Storage/storageAccounts/blobServices/containers/read'
+  'Microsoft.Storage/storageAccounts/blobServices/containers/write'
+  'Microsoft.Storage/storageAccounts/blobServices/containers/delete'
+  ```
+
+The specific permissions are divided as follows:
+
+* **Virtual Machine permissions:**
+    * Manage vm instances
+
+      ```YAML
+      'Microsoft.Compute/register/action'
+      'Microsoft.Compute/virtualMachines/read'
+      'Microsoft.Compute/virtualMachines/write'
+      'Microsoft.Compute/virtualMachines/delete'
+      'Microsoft.Compute/virtualMachines/start/action'
+      'Microsoft.Compute/virtualMachines/powerOff/action'
+      'Microsoft.Compute/virtualMachines/redeploy/action'
+      'Microsoft.Compute/virtualMachines/restart/action'
+      'Microsoft.Compute/virtualMachines/deallocate/action'
+      'Microsoft.Compute/virtualMachines/runCommand/action'
+      'Microsoft.Compute/virtualMachines/attachDetachDataDisks/action'
+      'Microsoft.Compute/virtualMachines/vmSizes/read'
+      'Microsoft.Compute/virtualMachines/runCommands/read'
+      'Microsoft.Compute/virtualMachines/runCommands/write'
+      'Microsoft.Compute/virtualMachines/instanceView/read'
+      'Microsoft.Compute/virtualMachines/extensions/read'
+      'Microsoft.Compute/locations/diskOperations/read'
+      'Microsoft.Compute/disks/read'
+      'Microsoft.Compute/disks/write'
+      'Microsoft.Compute/disks/delete'
+      'Microsoft.Compute/skus/read'
+      'Microsoft.Compute/locations/usages/read'
+      'Microsoft.Compute/locations/publishers/artifacttypes/offers/skus/read'
+      'Microsoft.Compute/locations/publishers/artifacttypes/offers/read'
+      'Microsoft.Compute/locations/publishers/artifacttypes/offers/skus/versions/read'
+      'Microsoft.Compute/operations/read'
+      'Microsoft.Compute./assets/read'
+      'Microsoft.Compute/locations/operations/read'
+      'Microsoft.Compute/locations/vmSizes/read'
+      'Microsoft.Compute/locations/runCommands/read'
+      ```
+    * Manage firewall rules
+
+      ```YAML
+      compute.firewalls.create
+      compute.firewalls.createTagBinding
+      compute.firewalls.delete
+      compute.firewalls.deleteTagBinding
+      compute.firewalls.get
+      compute.firewalls.list
+      compute.firewalls.update
+      ```
+
+* **Virtual Networks permissions:**
+    * Get VPC-related resource information
+
+      ```YAML
+      'Microsoft.Network/register/action'
+      'Microsoft.Network/operations/read'
+      'Microsoft.Network/virtualNetworks/read'
+      'Microsoft.Network/virtualNetworks/joinLoadBalancer/action'
+      'Microsoft.Network/virtualNetworks/subnets/read'
+      'Microsoft.Network/virtualNetworks/subnets/join/action'
+      'Microsoft.Network/virtualNetworks/subnets/joinLoadBalancer/action'
+      'Microsoft.Network/ipAllocations/read'
+      'Microsoft.Network/publicIPAddresses/read'
+      ```
+    * Manage network interface and security group resources
+
+      ```YAML
+      'Microsoft.Network/register/action'
+      'Microsoft.Network/operations/read'
+      'Microsoft.Network/virtualNetworks/read'
+      'Microsoft.Network/virtualNetworks/joinLoadBalancer/action'
+      'Microsoft.Network/virtualNetworks/subnets/read'
+      'Microsoft.Network/virtualNetworks/subnets/join/action'
+      'Microsoft.Network/virtualNetworks/subnets/joinLoadBalancer/action'
+      'Microsoft.Network/ipAllocations/read'
+      'Microsoft.Network/publicIPAddresses/read'
+      ```
+    * Managing LB Resources
+
+      ```YAML
+      'Microsoft.Network/loadBalancers/read'
+      'Microsoft.Network/loadBalancers/write'
+      'Microsoft.Network/loadBalancers/delete'
+      'Microsoft.Network/loadBalancers/health/action'
+      'Microsoft.Network/loadBalancers/backendAddressPools/queryInboundNatRulePortMapping/action'
+      'Microsoft.Network/loadBalancers/backendAddressPools/updateAdminState/action'
+      'Microsoft.Network/loadBalancers/backendAddressPools/health/action'
+      'Microsoft.Network/loadBalancers/backendAddressPools/read'
+      'Microsoft.Network/loadBalancers/backendAddressPools/write'
+      'Microsoft.Network/loadBalancers/backendAddressPools/delete'
+      'Microsoft.Network/loadBalancers/backendAddressPools/backendPoolAddresses/read'
+      'Microsoft.Network/loadBalancers/backendAddressPools/join/action'
+      'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/diagnosticSettings/read'
+      'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/diagnosticSettings/write'
+      'Microsoft.Network/loadBalancers/frontendIPConfigurations/read'
+      'Microsoft.Network/loadBalancers/frontendIPConfigurations/join/action'
+      'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/read'
+      'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/write'
+      'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/delete'
+      'Microsoft.Network/loadBalancers/loadBalancingRules/read'
+      'Microsoft.Network/loadBalancers/loadBalancingRules/health/action'
+      'Microsoft.Network/loadBalancers/networkInterfaces/read'
+      'Microsoft.Network/loadBalancers/outboundRules/read'
+      'Microsoft.Network/loadBalancers/virtualMachines/read'
+      'Microsoft.Network/loadBalancers/probes/read'
+      'Microsoft.Network/loadBalancers/probes/join/action'
+      'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/metricDefinitions/read'
+      ```
+* **Storage Account Container Permissions:**
+  * Manage storage account containers 
+
+    ```YAML
+    'Microsoft.Storage/storageAccounts/blobServices/containers/read'
+    'Microsoft.Storage/storageAccounts/blobServices/containers/write'
+    'Microsoft.Storage/storageAccounts/blobServices/containers/delete'
+    ```
+
+* **IAM permissions:**
+  * Assign user-assigned managed identity
+
+    ```YAML
+    'Microsoft.ManagedIdentity/userAssignedIdentities/read'
+    'Microsoft.ManagedIdentity/userAssignedIdentities/assign/action'
+    ```

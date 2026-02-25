@@ -1,0 +1,160 @@
+---
+{
+    "title": "How to create BYOC Warehouse on Azure",
+    "description": "How to create BYOC Warehouse on Azure"
+}
+---
+
+# How to create BYOC Warehouse on Azure
+
+## Preparations
+
+Since resources in BYOC mode are deployed in your cloud account, you need to do some preparatory work before using to ensure smooth resource configuration and management:
+
+- **Prepare a VNet and subnet**
+- **Learn about Resource Orchestration and Resource Stack**
+
+## Create a BYOC Warehouse on Azure
+
+### Create warehouse configuration
+
+On the warehouse creation guide page or the warehouse list in the upper left corner, click **New Warehouse** to enter the warehouse configuration page and fill in the form to create it.
+
+![wh create 0](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-0.png)
+
+
+| **Parameter**  | **Description**                                                                                                                                                                                              |
+| -------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Warehouse Name | Required. Unique within the organization, no more than 32 characters in length, supports English letters, Chinese, numbers, -, \_, and the combination of them.                                              |
+| Warehouse Mode | Select BYOC                                                                                                                                                                                                  |
+| Cloud Platform | Select Azure                                                                                                                                                                                                   |
+| Region         | Select the region where you want to deploy your data warehouse. Because the remote communication network architecture is complex and the delay is large, it is recommended to choose the same region as your application system/client. Currently, VeloDB Cloud already supports multiple regions of the cloud platform, and will continue to support more regions based on customer needs.                                                                             |                                                                                                          |
+| Core Version   | VeloDB Core 2.0 and the later versions support the separation of storage and computing. Storage is billed based on actual usage, and there is no need to pre-configure storage space.                        |
+| VPC            | When you create a new BYOC warehouse for the first time, the "New VPC" is selected by default. The subsequent steps will guide you to select the VPC in the cloud environment to complete the new warehouse creation.  <br/>If you have created a BYOC warehouse in a VPC before, you can directly select this VPC and create a new warehouse. |
+
+This table lists the Azure Regions and Availability Zones where VeloDB Cloud BYOC Warehouse can be deployed, along with the associated Availability Zone IDs. You will need this information to choose an available subnet when setting up Azure Resource Manager.
+
+| Cloud Platform | Region Name    | Region ID         | Availability Zone ID |
+|:---------------|:-----------|:---------------------|:---------------------|
+| Azure          | West US 3    | westus3           | all            |
+
+Click **Next** to proceed to the next step.
+
+### Azure Preparation
+
+Before officially creating, please refer to the document to complete the following preparation:
+- **Prepare a VNet and subnet**
+- **Learn about Resource Orchestration and Resource Stack**
+
+Click **Done** to proceed to the next step.
+
+![wh create 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-1.png)
+
+### Enter Azure Subscription ID
+
+Enter **Azure Subscription ID**, Click **Next**. You can find subscription id in azure console.
+
+![wh create 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-2.png)
+
+
+### Cloud resource configuration
+
+VeloDB Cloud will use Azure' Deployment Stacks service to create a series of resources, completing the creation of BYOC warehouses within the user's VPC.   
+**Please use administrator privileges to create the resource stack, or contact your administrator to create this resource stack for you**, otherwise you may encounter template execution failures due to insufficient permissions.
+
+![wh create 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-3.png)
+
+Copy the token which will be used in next step.
+
+Click **Open Azure Resource Manager**.
+
+![wh create 3 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-3-1.png)
+
+Select **Resource Group** for **Create in** option.
+
+Fill in the **Stack name**.
+
+Select **Delete Resources** for **Action on unmanage** option.
+
+Click **Next**.
+
+![wh create 3 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-3-2.png)
+
+Select **Subscription**,**Resource Group**,**Region**.
+
+Paste the **Token** copied in the previous step.
+
+Select **Virtual Network** and **Subnet**.
+
+Click **Review + Create**.
+
+![wh create 3 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-3-3.png)
+
+### Warehouse initialization
+
+The system will initialize the warehouse, which takes about 5-10 minutes. If the warehouse initialization takes more than 30 minutes, or other situations that cannot be continued, please [Get Help](mailto:support@velodb.io).
+
+![wh create 5](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-5.png)
+
+### Create a new cluster
+
+On the new cluster page or cluster overview page, click Create a new cluster to enter the cluster configuration page. For detailed operations, please refer to Create a new cluster.
+
+![cluster list no existing](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/aws/cluster-list-no-existing.png)
+
+## Open public network connection and access
+
+After the warehouse is created, if you need to connect to the warehouse over the public network, access the WebUI, etc., you need to bind a public IP and set up a security group in the Azure console. 
+
+### Allocate Public IP
+
+**1. Copy Master Private IP**
+
+Go to [VeloDB Cloud](https://www.velodb.cloud/), Click **Connect** and copy **Master IP**.
+
+![webui 1 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-1-1.png)
+
+Enter **[Azure Portal](https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/Microsoft.Compute%2FVirtualMachines)**, Search the IP above.
+
+![webui 1 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-1-2.png)
+
+Enter the virtual machine and confirm VNet.
+
+![webui 1 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-1-3.png)
+
+**2. Associate public IP address**
+
+Click **Networking > Network settings** on the left, Click **Configure** for Public IP address.
+
+![webui 2 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-2-1.png)
+
+Check **sdb-ip-config**, check **Associate public IP address**, and select a Public IP address. If you don’t have one yet, create one first.
+
+Click **Save**.
+
+![webui 2 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-2-2.png)
+
+
+### Set Security Group
+
+Click the **Network Security Group**.
+
+![webui 3 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-3-1.png)
+
+Click **Settings > Inbound security rules**. Click **Add**. Input `8080,9030,8088` for Destination port ranges. Input **Name**.
+
+Click **Save**.
+
+![webui 3 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-3-2.png)
+
+Return to the VeloDB Cloud connection page and click the Master IP public network refresh icon.
+
+![webui 3 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-3-3.png)
+
+At this point, you can access the WebUI and connect to the warehouse through the public network.
+
+
+## Warehouse Usage
+
+For warehouse usage operations and if you need to delete a warehouse, please refer to the document [Warehouse Usage](../use-warehouse.mdx).
+

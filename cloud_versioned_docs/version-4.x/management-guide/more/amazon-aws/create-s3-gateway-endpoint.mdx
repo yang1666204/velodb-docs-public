@@ -1,0 +1,21 @@
+---
+{
+    "title": "Create an S3 Gateway Endpoint",
+    "description": "A gateway endpoint provides instances in your VPC with private connectivity to S3, avoiding the public internet and saving data transfer costs."
+}
+---
+
+# Create an S3 Gateway Endpoint
+
+A gateway endpoint provides instances in your VPC with private connectivity to S3, avoiding the public internet and saving data transfer costs.
+
+1. Log into your AWS Console as a user with administrator privileges and go to the VPC console.
+2. Click the **endpoint** tab in the sidebar.
+3. Click the **create endpoint** button.
+   1. Enter a name. (e.g. vpce-for-s3-gateway)
+   2. Service category: Select AWS services.
+   3. Services: In the search box, input S3, then select the option with the **service name** format com.amazonaws.`<region>`.s3, click the **gateway** type.
+   4. For VPC, select the VPC where you want to create the endpoint.
+   5. Route tables: Select the route tables associated with your private subnets. Once selected, AWS will automatically add a route to the S3 service in these route tables.
+   6. Policy: Select Full access to allow all operations, or Custom to create a restrictive policy.
+   7. Click **create endpoint**.

@@ -1,0 +1,170 @@
+---
+{
+    "title": "How to create BYOC Warehouse on GCP",
+    "description": "Step-by-step guide to creating a BYOC data warehouse on Google Cloud Platform using VeloDB Cloud."
+}
+---
+
+# How to create BYOC Warehouse on GCP
+
+## Preparations
+
+Since resources in BYOC mode are deployed in your cloud account, you need to do some preparatory work before using to ensure smooth resource configuration and management:
+
+- **Add users to the organization and authorize them**
+- **Prepare a VPC and subnet**
+- **Learn about Resource Orchestration**
+
+## Create a BYOC Warehouse on GCP
+
+### Create warehouse configuration
+
+On the warehouse creation guide page or the warehouse list in the upper left corner, click New Warehouse to enter the warehouse configuration page and fill in the form to create it.
+
+![create new warehouse byoc gcp](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/create-new-warehouse-byoc-gcp.png)
+
+Fill in the following information to start creating warehouse.
+
+| **Parameter**  | **Description**                                                                                                                                                                                              |
+| -------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Warehouse Name | Required. Unique within the organization, no more than 32 characters in length, supports English letters, Chinese, numbers, -, \_, and the combination of them.                                              |
+| Warehouse Mode | Select BYOC                                                                                                                                                                                                  |
+| Cloud Platform | Select GCP                                                                                                                                                                                                   |
+| Region         | Select the region where you want to deploy your data warehouse. Because the remote communication network architecture is complex and the delay is large, it is recommended to choose the same region as your application system/client. Currently, VeloDB Cloud already supports multiple regions of the cloud platform, and will continue to support more regions based on customer needs.                                                                             |                                                                                                          |
+| Core Version   | VeloDB Core 2.0 and the later versions support the separation of storage and computing. Storage is billed based on actual usage, and there is no need to pre-configure storage space.                        |
+| VPC            | When you create a new BYOC warehouse for the first time, the "New VPC" is selected by default. The subsequent steps will guide you to select the VPC in the cloud environment to complete the new warehouse creation.  <br/>If you have created a BYOC warehouse in a VPC before, you can directly select this VPC and create a new warehouse. |
+
+This table lists the GCP Regions and Availability Zones where VeloDB Cloud BYOC Warehouse can be deployed
+
+| Cloud Platform | Region Name         | Region ID         | Availability Zone ID |
+|:---------------|:-----------------|:--------------------|:--------------------|
+| GCP            | US West 1        | us-west1          | all            |
+| GCP            | US East 4        | us-east4          | all            |
+
+Click the "Next" button to proceed to the next step.
+
+### GCP preparation
+
+Before officially creating, please refer to the document to complete the following preparation:
+
+- Add users to the organization and authorize them
+- Prepare a VPC and subnet
+- Learn about Resource Orchestration
+
+Click **Done** to proceed to the next step.
+
+![wh create 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-create-1.png)
+
+### Cloud resource configuration
+
+Copy the command and Click "Open CloudShell".
+
+![wh create 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-create-2.png)
+
+To deploy VeloDB Cloud BYOC warehouse in Google Cloud, **select your project correctly**, then paste the command and execute.
+
+Fill in the following information to execute shell.
+
+| Parameters   | Description                                |
+|--------------|--------------------------------------------|
+| **VPC name** | The **VPC name** created in the previous step    |
+| **Subnet name**    | The **Subnet name** created in the previous step |
+| Zone ID      | The availability zone where you want to deploy your warehouse(optional) |
+
+![gcp cloudshell](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/gcp-cloudshell.png)
+
+Wait for the script to complete, then return to the velodb page, and wait for the "Warehouse Initialization" step to complete.
+
+![wh create 5](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-create-5.png)
+
+Once Warehouse Initialization is complete, VeloDB Cloud will establish a connection with the BYOC warehouse. Subsequently, you can enter the warehouse and create clusters.
+
+### Warehouse initialization
+
+The system will initialize the warehouse, which takes about 5-10 minutes. If the warehouse initialization takes more than 30 minutes, or other situations that cannot be continued, please [Get Help](mailto:support@velodb.io).
+
+![wh create 6](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-create-6.png)
+
+### Create a new cluster
+
+On the new cluster page or cluster overview page, click Create a new cluster to enter the cluster configuration page. For detailed operations, please refer to Create a new cluster.
+
+![wh create 7](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-create-7.png)
+
+
+## Open public network connection and access
+
+### Reserve External IP Address
+
+**1. Copy Master Private IP**
+
+Go to [VeloDB Cloud](https://www.velodb.cloud/), Click **Connect** and copy **Master IP**.
+
+![webui 0](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-0.png)
+
+Enter **[GCP VM Instances](https://console.cloud.google.com/compute/instances)**, Search the IP above.
+
+![webui 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-1.png)
+
+Enter the instance and confirm VPC.
+
+![webui 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-2.png)
+
+**2. Reserve External IP Address**
+
+Enter **[GCP IP Address](https://console.cloud.google.com/networking/addresses/list)**, Click **RESERVE EXTERNAL STATIC IP ADDRESS**.
+
+![webui 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-3.png)
+
+Input **Name**. Select **Premium** for Network Service Tier. Select **IPv4** for IP version. Select **Regional** for Type.
+
+Select **Region** where your byoc warehouse is. Attach to the instance above where master ip is corresponding.
+
+Click **RESERVE**.
+
+![webui 4](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-4.png)
+
+### Create Firewall Policy
+
+Enter **[GCP Firewall Policy](https://console.cloud.google.com/net-security/firewall-manager/firewall-policies/list)** . Click **Create Firewall Policy**.
+
+![webui 5](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-5.png)
+
+Enter **Policy name**. Select **Global** for **Deployment scope**. Click **CONTINUE**.
+
+![webui 6](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-6.png)
+
+Click **CREATE FIREWALL RULE**. Input **Priority**. Select **Ingress** for Direction of traffic. Select **Allow** for Action on match.
+
+Select **Apply to all** for Target. Select **IPv4** for IP type. Input `0.0.0.0/0` or pulic IP you want to access the warehouse.
+
+Select **Specified protocols and ports** for Protocols and ports.
+
+Select **TCP** and input `8080,8088,9030`. Click **CREATE**.
+
+![webui 7](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-7.png)
+
+Check the rule you just created. Click **CONTINUE**.
+
+![webui 8](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-8.png)
+
+![webui 9](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-9.png)
+
+Click **ASSOCIATE**. Check the VPC where your byoc warehouse is. Click **ASSOCIATE**.
+
+![webui 10](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-10.png)
+
+Click **Create**.
+
+![webui 11](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-11.png)
+
+Return to the VeloDB Cloud connection page and click the Master IP public network refresh icon.
+
+![webui 12](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-12.png)
+
+At this point, you can access the WebUI and connect to the warehouse through the public network.
+
+
+## Warehouse Usage
+
+For warehouse usage operations and if you need to delete a warehouse, please refer to the document [Warehouse Usage](../use-warehouse.mdx).

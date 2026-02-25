@@ -1,0 +1,37 @@
+---
+{
+    "title": "Create VPC Network Resources",
+    "description": "A VPC and subnets that comply with the network requirements are a prerequisite for creating a BYOC warehouse."
+}
+---
+
+# Create VPC Network Resources
+
+A VPC and subnets that comply with the network requirements are a prerequisite for creating a BYOC warehouse. You must prepare these resources first if they do not already exist.
+
+> **Note**
+> Currently, the VeloDB warehouse only supports single-AZ deployment. We recommend provisioning two subnets—one public and one private. The VeloDB service will ultimately be deployed within the private subnet.
+
+To create a VPC, subnets, and other VPC resources using the console
+
+1. Log into the [AWS VPC console](https://console.aws.amazon.com/vpc/) as a user with administrator privileges.
+2. Select the AWS region that you will use for your VeloDB warehouse deployment.
+3. Click the **Create VPC** button.
+4. For **Resources to create**, choose **VPC and more**.
+5. Modify the following options and keep the default settings for others:
+   - Enter a value for the **Name tag**. (e.g. velodb-project)
+   - For **IPv4 CIDR block**, determine the starting IP and the size of your VPC.
+   - For **Number of Availability Zones**, choose **1**.
+   - For **Number of public subnets**, choose **1**.
+   - For **Number of private subnets**, choose **1**.
+   - For **NAT gateways**, choose **In 1 AZ**.
+   - For **VPC Endpoints**, choose **S3 Gateway**. S3 Gateway can help reduce NAT gateway charges and improve security by accessing S3 directly from the VPC.
+  
+6. Click **Create VPC**.
+7. Wait for the workflow to complete, and then click **View VPC**.
+
+The following figures illustrate the VPC provisioning process.
+
+![create-vpc-overview](/images/cloud/management-guide/more/amazon-aws/create-vpc-overview.png)
+![create-vpc-overview2](/images/cloud/management-guide/more/amazon-aws/create-vpc-overview2.png)
+![view-vpc](/images/cloud/management-guide/more/amazon-aws/vpc-view.png)

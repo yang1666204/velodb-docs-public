@@ -1,0 +1,37 @@
+---
+{
+  "title": "DROP STORAGE POLICY",
+  "description": "ストレージポリシーを削除します。ストレージポリシーの詳細な説明については、「Storage Policy」の章を参照してください。",
+  "language": "ja"
+}
+---
+## 説明
+
+ストレージポリシーを削除します。ストレージポリシーの詳細な説明については、「Storage Policy」の章を参照してください。
+
+## 構文
+
+```sql
+DROP STORAGE POLICY <policy_name>
+```
+## 必須パラメータ
+
+**<policy_name>**
+
+> ストレージポリシー名
+
+## アクセス制御要件
+
+このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持っている必要があります：
+
+| Privilege  | Object | Notes |
+| ---------- | ------ | ----- |
+| ADMIN_PRIV | Global |       |
+
+## 例
+
+1. policy1という名前のストレージポリシーを削除する
+
+  ```sql
+  DROP STORAGE POLICY policy1
+  ```

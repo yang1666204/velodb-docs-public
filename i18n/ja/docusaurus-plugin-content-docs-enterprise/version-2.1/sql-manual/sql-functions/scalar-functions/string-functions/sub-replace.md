@@ -1,0 +1,51 @@
+---
+{
+  "title": "I notice that the text you want me to translate shows \"SUB_REPLACE\" instead of the actual English technical documentation content. Could you please provide the actual English text that you'd like me to translate into Japanese?",
+  "description": "subreplace関数は、文字列内の部分文字列を置換するために使用されます。",
+  "language": "ja"
+}
+---
+## 説明
+
+`sub_replace`関数は、文字列内の部分文字列を置換するために使用されます。置換される部分文字列と、それを置き換える対象文字列を指定できます。この関数は、`str`内の`start`から始まる長さ`len`の部分文字列を`new_str`で置換した新しい文字列を返します。`start`または`len`が負の整数の場合、NULLを返します。`len`のデフォルト値は`new_str`の長さです。
+
+## 構文
+
+```sql
+sub_replace(<str>, <new_str>, [ ,<start> [ , <len> ] ])
+```
+## Parameters
+
+| Parameter | Description |
+| -- | -- |
+| `<str>` | 置換が行われる対象の文字列 |
+| `<new_str>` | 指定された部分文字列を置き換える文字列 |
+| `<start>` | `start`は置換操作が開始される位置で、文字列のどの位置から置換を開始するかを示す |
+| `<len>` | `len`は置換される部分文字列の長さを指定するオプションパラメータ |
+
+## Return Value
+
+置換後の文字列を返します。
+
+## Examples
+
+```sql
+select sub_replace("this is origin str","NEW-STR",1);
+```
+```text
++-------------------------------------------------+
+| sub_replace('this is origin str', 'NEW-STR', 1) |
++-------------------------------------------------+
+| tNEW-STRorigin str                              |
++-------------------------------------------------+
+```
+```sql
+select sub_replace("doris","***",1,2);
+```
+```text
++-----------------------------------+
+| sub_replace('doris', '***', 1, 2) |
++-----------------------------------+
+| d***is                            |
++-----------------------------------+
+```

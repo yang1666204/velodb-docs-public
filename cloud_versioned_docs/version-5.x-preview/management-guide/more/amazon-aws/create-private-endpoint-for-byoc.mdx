@@ -1,0 +1,38 @@
+---
+{
+    "title": "Configure Private Connectivity to VeloDB​",
+    "description": "For enhanced security when configuring network settings for your BYOC warehouse, You can create a private endpoint to establish secure and private con..."
+}
+---
+
+# Configure Private Connectivity to VeloDB​
+
+For enhanced security when configuring network settings for your BYOC warehouse, You can create a private endpoint to establish secure and private connections with VeloDB Cloud Service, which routes traffic through a VPC interface endpoint instead of the public internet.
+
+1. Log into your AWS Console as a user with administrator privileges and go to the **VPC** console.
+2. Click the **endpoint** tab in the sidebar.
+3. Click the **create endpoint** button.
+   1. Enter a name (e.g., vpce-for-s3-gateway).
+   2. Service category: Select PrivateLink Ready partner services.
+   3. Service name: Enter the name of the service (Service name varies by region. See [appendix](#appendix).) and click **Verify service**. If the service passes the verification, a message "Service name verified" appears below the Service name field.
+   4. VPC: Select the VPC where you want to create the endpoint.
+   5. Subnets: Select the private subnets where the endpoint network interfaces should be deployed.
+   6. Security group: Select the security group created earlier for VPC endpoints. (e.g., vpce-for-velodb-sg)
+   7. Policy: Typically select Full access.
+   8. Click the **create endpoint**.
+
+## Appendix
+
+The following list shows the regions currently supported by VeloDB and the corresponding private endpoint service names.
+
+| AWS Region        | Service Name       |
+|------------------------|--------------------------|
+| us-east-1 | com.amazonaws.vpce.us-east-1.vpce-svc-0fb96af7d8cd84d4d     |
+| us-west-2  | com.amazonaws.vpce.us-west-2.vpce-svc-0709eceab1c84431a |
+| eu-west-1  | com.amazonaws.vpce.eu-west-1.vpce-svc-027fb01a146da1e29 |
+| ap-southeast-1 | com.amazonaws.vpce.ap-southeast-1.vpce-svc-06e619c006c767a35 |
+| ap-east-1  | com.amazonaws.vpce.ap-east-1.vpce-svc-07c3dac48f26cc10a |
+| me-south-1   | com.amazonaws.vpce.me-south-1.vpce-svc-0f51549e7949898ca |
+| eu-central-1  | com.amazonaws.vpce.eu-central-1.vpce-svc-0b44881fddef6b599 |
+| ap-southeast-7  | com.amazonaws.vpce.ap-southeast-7.vpce-svc-0378cb9082f6839fd |
+| me-central-1  | com.amazonaws.vpce.me-central-1.vpce-svc-01bb92d635d16039f |

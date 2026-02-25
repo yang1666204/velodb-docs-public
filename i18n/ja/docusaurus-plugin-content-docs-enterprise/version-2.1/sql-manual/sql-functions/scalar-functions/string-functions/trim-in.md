@@ -1,0 +1,70 @@
+---
+{
+  "title": "I don't see any text to translate after \"TRIM_IN\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "description": "rhs パラメータがない場合、この関数は str 文字列の先頭と末尾のスペースを削除します。rhs パラメータが提供された場合、",
+  "language": "ja"
+}
+---
+## 説明
+
+`rhs`パラメータがない場合、この関数は`str`文字列から先頭と末尾のスペースを削除します。`rhs`パラメータが提供されている場合、`rhs`文字セットに含まれる任意の文字を文字列の両端から削除します（順序は関係ありません）。
+
+## 構文
+
+```sql
+
+TRIM_IN( <str> [ , <rhs>])
+```
+## 必須パラメータ
+
+| Parameters | Description |
+|------|------|
+| `<str>` | 文字列の両端のスペースを削除 |
+
+
+## オプションパラメータ
+
+| Parameters | Description |
+|------|------|
+| `<rhs>` | 指定された文字を削除 |
+
+## 戻り値
+両端のスペースまたは指定された文字を削除した後の文字列
+
+
+処理された文字列を表すVARCHAR型を返します。
+
+特殊ケース:
+- strがNULLの場合、NULLを返す
+- rhsが指定されていない場合、先頭と末尾のすべてのスペースを削除
+- rhsが指定されている場合、rhs内に現れる文字をrhs内に現れない最初の文字に遭遇するまで両端からすべて削除
+
+## 例
+
+1. 両端からスペースを削除:
+
+```sql
+
+SELECT trim_in('   ab d   ') str;
+```
+```sql
+
++------+
+| str  |
++------+
+|  ab d|
++------+
+```
+```sql
+SELECT trim_in('ababccaab','ab') str;
+```
+```sql
+
++------+
+| str  |
++------+
+| cc   |
++------+
+
+
+```

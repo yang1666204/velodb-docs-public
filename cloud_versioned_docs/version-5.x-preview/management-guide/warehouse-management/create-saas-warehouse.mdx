@@ -1,0 +1,79 @@
+---
+{
+    "title": "Create SaaS Warehouse",
+    "description": "The SaaS warehouse is completely provided by the VeloDB Cloud with resources and services."
+}
+---
+
+# Create SaaS Warehouse
+
+The SaaS warehouse is completely provided by the VeloDB Cloud with resources and services. Users do not need to pay attention to the underlying infrastructure and can use it out of the box.
+
+If the current organization does not have a warehouse, a guidance page will appear. Please follow the prompts to create the first warehouse.
+
+A wizard page will be displayed if the organization does not have a warehouse. You can create the first warehouse following the prompts.
+
+![create warehouse](/images/cloud/create-warehouse.jpg)
+
+You can choose to **Start Trial (SaaS)** for a free trial or **New Warehouse** for a production environment.
+
+-   Each organization gets a 14 days free trial for SaaS and 30 days free use for BYOC. The trial warehouse is only applicable to the feature experience in the small-scale data volume scenario. In the trial warehouse, you cannot create new clusters, scale the trial cluster, etc. After upgrading it to the paid warehouse, you can use all the features.
+-   If you choose to start a new paid warehouse directly, that means you have given up the free trial opportunity for the current organization and you may not create a trial warehouse in the future. The fee will be incurred when a new warehouse is started. Paid warehouses are suitable for production environments with complex workload requirements.
+
+## **Start Trial SaaS Warehouse**
+
+Click **Start 14-day Free Trail (SaaS)** to enter the following page.
+
+![trial saas warehouse](/images/cloud/trial-saas-warehouse.png)
+
+After setting the parameters, click **Create**.
+
+| **Parameter**  | **Description**                                                                                                                                                                                                                                                                                                                           |
+| -------------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Warehouse Name | Required. Unique within the organization, no more than 32 characters in length, supports English letters, Chinese, numbers, -, \_, and the combination of them.                                                                                                                                                                           |
+| Cloud Platform | Select the cloud platform where you want to create the data warehouse. Currently, VeloDB Cloud supports AWS, Azure, Alibaba Cloud, HUAWEI CLOUD, and will soon support GCP.                                                                                                                                                               |
+| Region         | Select the region where you want to deploy the data warehouse. To avoid the complexity of cross-regional communication and reduce latency, we recommend that you choose the same region where your application/client is located. If your required region is not among the options, please [Get Help](mailto:support@velodb.io) to apply. |
+| Core Version   | VeloDB Core 2.0 and the later versions support the separation of storage and computing. Storage is billed based on actual usage, and there is no need to pre-configure storage space.                                                                                                                                                     |
+| Admin User Password | Required. The password for the warehouse's main administrator account.                                                                                                                                                                                                                                                                                                   |
+| Enable Transparent Data Encryption | When enabled, the warehouse automatically encrypts data when writing it to storage and decrypts it when reading.                                                                                                     |
+| Table Name Case Sensitivity | Choose whether the warehouse distinguishes uppercase and lowercase letters in table names.                                                                                                                             |
+
+
+> **Note** After confirming the activation of the trial warehouse, you can see the new warehouse in the warehouse selector. It takes about 3 minutes to complete the creation. When the status of the trial warehouse changes from "**Creating**" to "**Running**", VeloDB Cloud will automatically create a trial cluster for you, which takes about 3 minutes.
+
+## **Create New SaaS Warehouse**
+
+Click **New Warehouse** on the wizard page or at the bottom of the warehouse selector.
+
+![create new warehouse saas](/images/cloud/create-new-warehouse-saas.png)
+
+| **Parameter**  | **Description**                                                                                                                                                                                                                                                                                                                           |
+| -------------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Warehouse Name | Required. Unique within the organization, no more than 32 characters in length, supports English letters, Chinese, numbers, -, \_, and the combination of them.                                                                                                                                                                           |
+| Cloud Platform | Select the cloud platform where you want to create the data warehouse. Currently, VeloDB Cloud supports AWS, Azure, Alibaba Cloud, HUAWEI CLOUD, and will soon support GCP.                                                                                                                                                               |
+| Region         | Select the region where you want to deploy the data warehouse. To avoid the complexity of cross-regional communication and reduce latency, we recommend that you choose the same region where your application/client is located. If your required region is not among the options, please [Get Help](mailto:support@velodb.io) to apply. |
+| Core Version   | VeloDB Core 2.0 and the later versions support the separation of storage and computing. Storage is billed based on actual usage, and there is no need to pre-configure storage space.                                                                                                                                                     |
+| Admin User Password | Required. The password for the warehouse's main administrator account.                                                                                                                                                                                                                                                                                                   |
+| Zone | Select the zone where you want to deploy the data warehouse. It is recommended to choose the same zone as that of your application/client. VeloDB Cloud will expand its supported zones based on user needs. |
+| Compute | Default is minimum 4 vCPU, maximum 1024 vCPU per cluster, if you need a higher quota, please [get help](mailto:support@velodb.io) to apply. Currently, the ratio of vCPU to memory is fixed at 1:8. |
+| Cache | The upper and lower limits of the cache space will vary depending on the compute size. |
+| Enable Transparent Data Encryption | When enabled, the warehouse automatically encrypts data when writing it to storage and decrypts it when reading.                                                                                                     |
+| Table Name Case Sensitivity | Choose whether the warehouse distinguishes uppercase and lowercase letters in table names.                                                                                                                             |
+
+Creating a new paid warehouse will incur the fee. Therefore, before creation, please ensure sufficient cash balance or open the cloud marketplace deduction channel.
+
+> **Note** After confirming the creation of a warehouse, you can see the new warehouse in the warehouse selector. It takes about 3 minutes to complete the creation. The warehouse status will be changed from " **Creating** " to " **Running** ".
+
+
+This table lists the Regions and Availability Zones where VeloDB Cloud SaaS Warehouse can be deployed, along with the associated Availability Zone IDs. 
+| Cloud Platform | Region Name         | Region ID         | Multi-AZ-Support | Availability Zone List |
+|:---------------|:-----------------|:--------------------|:--------------------|:--------------------|
+| AWS           | US East (N. Virginia) | us-east-1       | Yes           | us-east-1a (use1-az2), us-east-1b (use1-az4), us-east-1c (use1-az6) |
+| AWS           | Asia Pacific (Singapore) | ap-southeast-1  | Yes           | ap-southeast-1a (apse1-az1), ap-southeast-1b (apse1-az2), ap-southeast-1c (apse1-az3) |
+| AWS           | US West (Oregon)    | us-west-2       | No            | us-west-2a (usw2-az1), us-west-2b(usw2-az2) |
+| AWS           | US West (N. California) | us-west-1       | No           | us-west-1a (usw1-az3), us-west-1b (usw1-az1) |
+| AWS           | Europe (Frankfurt) | eu-central-1       | No           | eu-central-1a (euc1-az2), eu-central-1b (euc1-az3), eu-central-1c (euc1-az1)  |
+| AWS           | Europe (Ireland)    | eu-west-1       | No           | eu-west-1a (euw1-az1), eu-west-1b (euw1-az2) |
+| Azure         | WEST US 3 | westus3   | No      | westus3-az1 |
+| HuaweiCloud   | AP-Jakarta | ap-southeast-4   | No      | ap-southeast-4a |
+| Aliyun        | Singapore | ap-southeast-1    | No      | ap-southeast-1a, ap-southeast-1b, ap-southeast-1c |

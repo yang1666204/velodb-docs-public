@@ -1,0 +1,659 @@
+{
+    "redirects": [
+        {
+            "source": "/(.*)\\.en-US",
+            "destination": "/$1",
+            "permanent": true
+        },
+        {
+            "source": "/cloud-versioned-docs/version-4.x/:path*",
+            "destination": "/cloud/4.x/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud-versioned-docs/version-4.x/:path*/",
+            "destination": "/cloud/4.x/:path*/",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/5.x/:path*",
+            "destination": "/cloud/5.x-preview/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/5.x/:path*/",
+            "destination": "/cloud/5.x-preview/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/studio/:path*",
+            "destination": "/cloud/4.x/user-guide/studio/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/data-query/:path*",
+            "destination":"/cloud/4.x/user-guide/query-data/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/data-modification/:path*",
+            "destination":"/cloud/4.x/user-guide/data-operate/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-cases/observability/integrations/:path*",
+            "destination":"/cloud/4.x/ecosystem/observability/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/data-export/:path*",
+            "destination":"/cloud/4.x/user-guide/data-operate/export/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/ai/:path*",
+            "destination":"/cloud/5.x-preview/ai/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/ai/:path*/",
+            "destination":"/cloud/5.x-preview/ai/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/db-connect/:path*",
+            "destination":"/cloud/5.x-preview/db-connect/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/db-connect/:path*/",
+            "destination":"/cloud/5.x-preview/db-connect/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/table-design/:path*",
+            "destination":"/cloud/5.x-preview/table-design/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/table-design/:path*/",
+            "destination":"/cloud/5.x-preview/table-design/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/data-operate/:path*",
+            "destination":"/cloud/5.x-preview/data-operate/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/data-operate/:path*/",
+            "destination":"/cloud/5.x-preview/data-operate/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/query-data/:path*",
+            "destination":"/cloud/5.x-preview/query-data/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/query-data/:path*/",
+            "destination":"/cloud/5.x-preview/query-data/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/query-acceleration/:path*",
+            "destination":"/cloud/5.x-preview/query-acceleration/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/query-acceleration/:path*/",
+            "destination":"/cloud/5.x-preview/query-acceleration/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/lakehouse/:path*",
+            "destination":"/cloud/5.x-preview/lakehouse/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/lakehouse/:path*/",
+            "destination":"/cloud/5.x-preview/lakehouse/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/use-cases/observability/:path*",
+            "destination":"/cloud/5.x-preview/observability/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/use-cases/observability/:path*/",
+            "destination":"/cloud/5.x-preview/observability/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/data-export/:path*/",
+            "destination":"/cloud/5.x-preview/data-operate/export/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/data-export/:path*",
+            "destination":"/cloud/5.x-preview/data-operate/export/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/data-modification/delete/:path*",
+            "destination":"/cloud/5.x-preview/data-operate/delete/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/data-modification/delete/:path*/",
+            "destination":"/cloud/5.x-preview/data-operate/delete/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/data-modification/update/:path*",
+            "destination":"/cloud/5.x-preview/data-operate/update/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/5.x-preview/user-guide/data-modification/update/:path*/",
+            "destination":"/cloud/5.x-preview/data-operate/update/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/db-connect/:path*",
+            "destination":"/cloud/4.x/db-connect/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/db-connect/:path*/",
+            "destination":"/cloud/4.x/db-connect/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/table-design/:path*",
+            "destination":"/cloud/4.x/table-design/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/table-design/:path*/",
+            "destination":"/cloud/4.x/table-design/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/data-operate/:path*",
+            "destination":"/cloud/4.x/data-operate/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/data-operate/:path*/",
+            "destination":"/cloud/4.x/data-operate/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/query-data/:path*",
+            "destination":"/cloud/4.x/query-data/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/query-data/:path*/",
+            "destination":"/cloud/4.x/query-data/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/query-acceleration/:path*",
+            "destination":"/cloud/4.x/query-acceleration/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/query-acceleration/:path*/",
+            "destination":"/cloud/4.x/query-acceleration/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/lakehouse/:path*",
+            "destination":"/cloud/4.x/lakehouse/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/user-guide/lakehouse/:path*/",
+            "destination":"/cloud/4.x/lakehouse/:path*/",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/use-cases/observability/:path*",
+            "destination":"/cloud/4.x/observability/:path*",
+            "permanent": true
+        },
+        {
+            "source":"/cloud/4.x/use-cases/observability/:path*/",
+            "destination":"/cloud/4.x/observability/:path*/",
+            "permanent": true
+        },
+        {
+            "source": "/studio/:path*/",
+            "destination": "/cloud/4.x/user-guide/studio/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/",
+            "destination": "/cloud/4.x/getting-started/overview",
+            "permanent": true
+        },
+        {
+            "source": "/index",
+            "destination": "/cloud/4.x/getting-started/overview",
+            "permanent": true
+        },
+        {
+            "source": "/index/",
+            "destination": "/cloud/4.x/getting-started/overview",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/overview",
+            "destination": "/cloud/4.x/getting-started/overview",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/overview/",
+            "destination": "/cloud/4.x/getting-started/overview",
+            "permanent": true
+        },
+        {
+            "source": "/cloud",
+            "destination": "/cloud/4.x/getting-started/overview",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/",
+            "destination": "/cloud/4.x/getting-started/overview",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/management-guide/warehouse-management/create-byoc-warehouse/aws",
+            "destination": "/cloud/4.x/management-guide/warehouse-management/create-byoc-warehouse/aws/create-warehouse-using-wizard-mode",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/management-guide/warehouse-management/create-byoc-warehouse/aws/",
+            "destination": "/cloud/4.x/management-guide/warehouse-management/create-byoc-warehouse/aws/create-warehouse-using-wizard-mode",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/hdfs",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/hdfs",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/hdfs/",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/hdfs",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/jdbc-mysql-catalog",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/jdbc-mysql-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/jdbc-mysql-catalog/",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/jdbc-mysql-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/amazon-s3",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/amazon-s3",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/amazon-s3/",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/amazon-s3",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/hudi-catalog",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/hudi-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/hudi-catalog/",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/hudi-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/kafka",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/kafka",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/kafka/",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/kafka",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/azure-storage",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/azure-storage",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/azure-storage/",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/azure-storage",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/google-cloud-storage",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/google-cloud-storage",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/google-cloud-storage/",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/google-cloud-storage",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/minio",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/minio",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/minio/",
+            "destination": "/cloud/4.x/user-guide/data-ingestion/data-source/minio",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/jdbc-pg-catalog",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/jdbc-pg-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/data-source/jdbc-pg-catalog/",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/jdbc-pg-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/iceberg-catalog",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/iceberg-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/iceberg-catalog/",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/iceberg-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/maxcompute-catalog",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/maxcompute-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/maxcompute-catalog/",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/maxcompute-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/paimon-catalog",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/paimon-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/paimon-catalog/",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/paimon-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/hive-catalog",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/hive-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/hive-catalog/",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/hive-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/bigquery-catalog",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/bigquery-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/bigquery-catalog/",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/bigquery-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/kudu-catalog",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/kudu-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/kudu-catalog/",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/kudu-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/lakesoul-catalog",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/lakesoul-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/lakehouse/lakesoul-catalog/",
+            "destination": "/cloud/4.x/user-guide/lakehouse/catalogs/lakesoul-catalog",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/getting-started/:path*",
+            "destination": "/cloud/4.x/getting-started/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/getting-started/:path*/",
+            "destination": "/cloud/4.x/getting-started/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/management-guide/:path*",
+            "destination": "/cloud/4.x/management-guide/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/management-guide/:path*/",
+            "destination": "/cloud/4.x/management-guide/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/user-guide/:path*",
+            "destination": "/cloud/4.x/user-guide/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/user-guide/:path*/",
+            "destination": "/cloud/4.x/user-guide/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/:path*",
+            "destination": "/cloud/4.x/integration/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/integration/:path*/",
+            "destination": "/cloud/4.x/integration/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/sql-reference/:path*",
+            "destination": "/cloud/4.x/sql-manual/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/sql-reference/:path*/",
+            "destination": "/cloud/4.x/sql-manual/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/best-practice/:path*",
+            "destination": "/cloud/4.x/best-practice/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/best-practice/:path*/",
+            "destination": "/cloud/4.x/best-practice/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/security/:path*",
+            "destination": "/cloud/4.x/security/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/security/:path*/",
+            "destination": "/cloud/4.x/security/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/release-notes/:path*",
+            "destination": "/cloud/4.x/release-notes/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/cloud/release-notes/:path*/",
+            "destination": "/cloud/4.x/release-notes/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/getting-started/use-cases/:path*",
+            "destination": "/cloud/4.x/use-cases/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/getting-started/use-cases/:path*/",
+            "destination": "/cloud/4.x/use-cases/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/getting-started/:path*",
+            "destination": "/enterprise/3.x/getting-started/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/getting-started/:path*/",
+            "destination": "/enterprise/3.x/getting-started/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/doris-manager-guide/:path*",
+            "destination": "/enterprise/3.x/doris-manager-guide/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/doris-manager-guide/:path*/",
+            "destination": "/enterprise/3.x/doris-manager-guide/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/enterprise-core-guide/:path*",
+            "destination": "/enterprise/3.x/enterprise-core-guide/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/enterprise-core-guide/:path*/",
+            "destination": "/enterprise/3.x/enterprise-core-guide/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/release-notes/:path*",
+            "destination": "/enterprise/3.x/release-notes/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/release-notes/:path*/",
+            "destination": "/enterprise/3.x/release-notes/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/",
+            "destination": "/enterprise/2.1/getting-started/velodb-enterprise-overview",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise",
+            "destination": "/enterprise/2.1/getting-started/velodb-enterprise-overview",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/2.1/use-guide/data-operate/import/complex-types/VARIANT",
+            "destination": "/enterprise/2.1/use-guide/data-operate/import/complex-types/variant",
+            "permanent": true
+        },
+        {
+            "source": "/enterprise/2.1/use-guide/data-operate/import/complex-types/VARIANT/",
+            "destination": "/enterprise/2.1/use-guide/data-operate/import/complex-types/variant",
+            "permanent": true
+        },
+        {
+            "source":"/enterprise/2.1/use-guide/data-operate/import/complex-types/BITMAP",
+            "destination": "/enterprise/2.1/use-guide/data-operate/import/complex-types/bitmap",
+            "permanent": true
+        },
+        {
+            "source":"/enterprise/2.1/use-guide/data-operate/import/complex-types/BITMAP/",
+            "destination": "/enterprise/2.1/use-guide/data-operate/import/complex-types/bitmap/",
+            "permanent": true
+        },
+        {
+            "source":"/enterprise/2.1/use-guide/data-operate/export/OUTFILE",
+            "destination": "/enterprise/2.1/use-guide/data-operate/export/outfile",
+            "permanent": true
+        },
+        {
+            "source":"/enterprise/2.1/use-guide/data-operate/export/OUTFILE/",
+            "destination": "/enterprise/2.1/use-guide/data-operate/export/outfile/",
+            "permanent": true
+        },
+        {
+            "source":"/enterprise/2.1/use-guide/data-operate/import/complex-types/HLL",
+            "destination": "/enterprise/2.1/use-guide/data-operate/import/complex-types/hll",
+            "permanent": true
+        },
+        {
+            "source":"/enterprise/2.1/use-guide/data-operate/import/complex-types/HLL/",
+            "destination": "/enterprise/2.1/use-guide/data-operate/import/complex-types/hll/",
+            "permanent": true
+        },
+        {
+            "source": "/legal/:path*",
+            "destination": "/docs/legal/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/legal/:path*/",
+            "destination": "/docs/legal/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/ecosystem/:path*",
+            "destination": "/docs/ecosystem/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/ecosystem/:path*/",
+            "destination": "/docs/ecosystem/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/use-cases/:path*",
+            "destination": "/docs/use-cases/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/use-cases/:path*/",
+            "destination": "/docs/use-cases/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/(.*)_(.*)",
+            "destination": "/$1-$2",
+            "permanent": true
+        }
+    ]
+}

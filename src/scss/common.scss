@@ -1,0 +1,58 @@
+@media screen and (max-width: 996px) {
+    .docs-wrapper {
+        .navbar__bottom {
+            display: block;
+        }
+    }
+}
+
+.custom-scrollbar {
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: #fff;
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 8px;
+    }
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+            background-color: #dfe5f0;
+        }
+    }
+    &::-webkit-scrollbar-thumb {
+        &:hover {
+            background-color: #dfe5f0;
+        }
+    }
+}
+
+@media (max-width: 996px) {
+    .theme-doc-toc-mobile {
+        display: none;
+    }
+
+    .docs-wrapper {
+        .versions {
+            opacity: 0;
+        }
+    }
+
+    .theme-doc-markdown{
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --ifm-font-size-base: 16px;
+    }
+}
+
+.theme-code-block {
+    font-size: 0.875rem !important;
+}

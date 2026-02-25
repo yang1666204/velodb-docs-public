@@ -1,0 +1,29 @@
+.pagination-nav {
+    padding-top: 5rem;
+    padding-bottom: 4.5rem;
+    margin-top: 0 !important;
+
+    &__link {
+        border: none;
+        text-transform: uppercase;
+        padding: 0;
+        color: var(--ifm-color-primary);
+
+        & {
+            transition: {
+                property: color;
+                timing-function: ease-out;
+                duration: 0.3s;
+            }
+        }
+    }
+
+    &__sublabel {
+        display: none;
+    }
+
+    &__label {
+        font-weight: 400;
+        text-transform: initial;
+    }
+}

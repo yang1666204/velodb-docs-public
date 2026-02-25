@@ -1,0 +1,23 @@
+---
+{
+    "title": "Session Management",
+    "description": "Session management allows administrator users to manage the use of resources and prioritize critical queries to improve system performance and provide..."
+}
+---
+
+# Session Management
+
+Session management allows administrator users to manage the use of resources and prioritize critical queries to improve system performance and provides detailed information about each session, such as execution time, the user who initiated the query, and the resources being used.
+
+You can view all currently running SQL queries and terminate any queries that cause problems or run time exceeds expectations.
+
+{/*The records displayed by "All Sessions" include all VeloDB client connection sessions in addition to running query SQL, where you can force terminate some client connections that are no longer used but are not reasonably released as needed. */}
+
+<img className='pt-5' src={`/img/studio/session.png`} alt="session" width={1400} height={600}/>
+
+You can check the table to display more information about running SQL queries, such as scan size, scan number of rows, return number of rows, etc.
+<img className='pt-5' src={`/img/studio/session-display-row.png`} alt="session-display-row" width={1400} height={600}/>
+
+Click the Query ID of the session to further view the complete information of the session, including the executing user, the FE node that received the session, and the execution plan (Profile) of the SQL.
+
+<img className='pt-5' src={`/img/studio/session-detail.png`} alt="session-detail" width={1400} height={600}/>

@@ -1,0 +1,33 @@
+---
+{
+    "title": "VeloDB Studio Server Edition Connection",
+    "description": "After adding this machine to the access whitelist in Connection Management (this step can be skipped by intranet access), Studio will be displayed as..."
+}
+---
+
+# VeloDB Studio Server Edition Connection
+
+## VeloDB Cloud
+
+After adding this machine to the access whitelist in Connection Management (this step can be skipped by intranet access), Studio will be displayed as a connectable state. After that, you can easily connect to VeloDB Studio by simply clicking the Studio button in VeloDB Cloud.
+
+<img className='pt-5' src={`/img/studio/saas-connect-studio.png`} alt="saas-connect-studio" width={1400} height={600}/>
+
+If you are connecting to VeloDB Studio using a private network, your network needs to connect to the VPC where the endpoint is located (for example, using VPN, proxy services, dedicated lines, etc.) before you can log in to the repository through the private network Studio. If you cannot connect, you can use the public network Studio to log in to the repository.
+<img className='pt-5' src={`/img/studio/privitelink-connect-studio.png`} alt="privitelink-connect-studio" width={1400} height={600}/>
+
+If you use a BYOC repository, you need to handle network connectivity issues yourself to make sure Studio has access to your repository.
+
+Studio will fill in the warehouse ID you visited this time by default (the warehouse ID is the ID you allocated when you created the warehouse in VeloDB Cloud). Enter the user name and password of the VeloDB database and click Connect to connect to connect to Studio. (The initially allocated `Admin` account password can be modified in the `Admin Console -> Settings -> Modify the Repository Password`)
+<img className='pt-5' src={`/img/studio/studio-saas.png`} alt="studio-saas" width={1400} height={600}/>
+
+
+
+## VeloDB Enterprise
+Click Studio in the Enterprise Manager console to access Studio.
+<img className='pt-5' src={`/img/studio/enterprise-connect-studio.png`} alt="enterprise-connect-studio" width={1400} height={600}/>
+
+Fill in the host (HOST), JDBC port, HTTP port (this port is used to obtain Profile information), username and password of VeloDB and click to log in to connect to VeloDB through Studio.
+<img className='pt-5' src={`/img/studio/enterprise-studio.png`} alt="enterprise-studio" width={1400} height={600}/>
+
+{/*## Alibaba Cloud VeloDB version */}

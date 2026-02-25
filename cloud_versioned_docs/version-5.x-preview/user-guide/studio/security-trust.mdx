@@ -1,0 +1,39 @@
+---
+{
+    "title": "Security and Trust",
+    "description": ":::info Security and trust are only valid in the Desktop version, the Server version is deployed on your private network or VPC, and has no communicat..."
+}
+---
+
+# Security and Trust
+
+:::info
+Security and trust are only valid in the Desktop version, the Server version is deployed on your private network or VPC, and has no communication with the VeloDB server.
+:::
+
+In VeloDB Studio, we regard security as our most important priority. We will not send any data to the VeloDB server except for the basic statistics user count/version function.
+
+We recommend that you establish a connection to the database server through an SSH tunnel to ensure data is secure during VeloDB Studio access.
+
+## Data Collection
+
+We will send some anonymous usage data to the VeloDB server to help us improve our product. We do not collect any sensitive data.
+We use the open source `Matomo` service to collect data, and you can view more information about `Matomo` at [here](https://matomo.org/). Similar to Google Analytics.
+
+We will mainly collect the following data:
+
+- App launch
+- Operating system version number
+- Type of operating system
+- Operating system language
+
+
+These items help us understand basic information such as how many users are using the App, and the type of operating system the user is using.
+
+All your connections and data and other information will not be collected and sent. You can view all the data we send through `Help -> Open Console -> Network`, which is transparent to you.
+
+If you still have any concerns about the above data collection, please give us feedback and we will consider providing an option to turn off data collection in a future release.
+
+## Security update
+
+VeloDB Studio is updated regularly to fix known security vulnerabilities.

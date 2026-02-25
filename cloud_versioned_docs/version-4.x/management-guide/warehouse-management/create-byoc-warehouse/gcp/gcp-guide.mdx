@@ -1,0 +1,312 @@
+---
+{
+    "title": "GCP Preparation",
+    "description": "This article mainly introduces the GCP operations involved in creating a BYOC type warehouse, include Prepare a VPC and subnet、 Learn about Resource O..."
+}
+---
+
+# GCP Preparation
+
+This article mainly introduces the GCP operations involved in creating a BYOC type warehouse, include **Prepare a VPC and subnet**、 **Learn about Resource Orchestration (Optional)**.
+
+## Prepare a VPC and subnet
+
+Before creating a BYOC type warehouse, if there is no existing VPC and subnet that meets the requirements, you need to create a VPC and subnets in advance. Here are the specific operations:
+
+> **Notice:** 
+> 1. If a VPC and subnet that meets the region, availability zone, and subnet requirements exists and you want to deploy the BYOC warehouse in this VPC, **skip the following steps to create a new VPC and subnet**.
+> 2. The regions and availability zones currently supported are:
+
+| Cloud Platform | Region Name         | Region ID         | Availability Zone ID |
+|:---------------|:-----------------|:--------------------|:--------------------|
+| GCP            | US West 1        | us-west1          | all            |
+| GCP            | US East 4        | us-east4          | all            |
+
+### Create VPC and subnet
+
+Open the GCP **[VPC Network](https://console.cloud.google.com/networking/networks/list)** console and switch to the region where you want to deploy the BYOC warehouse.
+
+![vpc create 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/vpc-create-1.png)
+
+Click **VPC networks > CREATE VPC NETWORK** to enter the VPC creation page.
+
+Input VPC **Name**, Select **Custom** mode.
+
+![vpc create 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/vpc-create-2.png)
+
+Input subnet **Name**, Select **Region**, Input **IPv4 range**.
+
+> **Note:** The regions and availability zones currently supported are:
+
+| Cloud Platform | Region Name         | Region ID         | Availability Zone ID |
+|:---------------|:-----------------|:--------------------|:--------------------|
+| GCP            | US West 1        | us-west1          | all            |
+| GCP            | US East 4        | us-east4          | all            |
+
+Select **off** for Private Google Access, Flow logs, Hybrid subnet.
+
+
+![vpc create 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/vpc-create-3.png)
+
+Uncheck the Firewall rule list.
+
+![vpc create 4](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/vpc-create-4.png)
+
+Select **Regional** for Dynamic Routing mode, Select **Legacy** for Best path selection mode.
+
+![vpc create 5](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/vpc-create-5.png)
+
+Click **CREATE** to complete the creation of the VPC and subnet.
+
+## Learn about Resource Orchestration (Optional)
+
+> Note: You don't need to do anything in this chapter. If you want to learn more about how it works, you can continue reading.
+
+When executing terraform template through the GCP CloudShell under your cloud account, it will perform related operations on cloud resources such as VPC, Compute Engine, Buckets, etc., therefore requiring a series of IAM permissions.  
+
+**Please use administrator privileges to execute this script, or contact your administrator to execute this script for you**, otherwise you may encounter template execution failures due to insufficient permissions.
+
+### Terraform template description
+
+The Terraform resource orchestration template provided by VeloDB runs under your GCP account, and the template code is visible and auditable, and will not operate on your data and other environments in the VPC. You can get the Terraform template provided by VeloDB through the following link:
+
+```
+https://storage.googleapis.com/velodb-cloud-online-us-west-1/public/gcp-byoc.tf
+```
+
+When you run the above Terraform template through GCP CloudShell, it will automatically create and deploy the Agent. Then the Agent will establish a private connection with VeloDB Cloud and complete the warehouse initialization process.
+
+After the resource orchestration script is executed, you can enter the corresponding warehouse from the VeloDB Cloud platform and start creating a computing cluster for data analysis just like using a normal warehouse.
+
+### Resources Information
+
+* **Compute Engine Instance**
+  * Name: VeloDBAgent
+  * Purpose: Used to deploy Agent, Prometheus, FluentBit and other programs
+
+* **Private Service Connect Endpoint**
+  * Name: VeloDBEndpoint
+  * Purpose: Establishes private network connection with VeloDB Manage service to pull control instructions and enable one-way push of monitoring and logs
+
+* **VPC Firewall Rules**
+  * Name: VeloDBSecurityGroupIngress, VeloDBSecurityGroupEgress
+  * Purpose: Bound to the all VM instances launched by VeloDB, and restricts traffic through security group rules (allows all traffic from the same security group to access all ports, traffic from the same subnet to access port 5000, and allows all outbound traffic)
+
+* **Cloud Storage Bucket**
+  * Name: VeloDBBucket
+  * Purpose: Used to store data warehouse data  
+* **VPC Firewall Rules**
+  * Name: VeloDBSecurityGroupIngress, VeloDBSecurityGroupEgress
+  * Purpose: Bound to the endpoint and all VM instances created by VeloDB, and restrict inbound and outbound traffic for specific ports and sources through firewall rules
+
+* **IAM & Service Account & Custom Role**
+  * Names:
+    - VeloDBControlPlaneRole (control plane service account)
+    - VeloDBControlPlaneRolePolicy (custom role policy)
+    - VeloDBBucketKey (bucket key)
+    - VeloDBDataAccessRole (kernel service account)
+    * Purposes: The created service account has the minimum permission policy required by the Agent, and all subsequent control operations are carried out using the identity of this service account
+    
+### Permissions of the created service account
+
+After the terraform template is executed for the first time, a service account will be created for subsequent management of data warehouse related components in your VPC. The following is a description of the permissions of the service account.
+
+* **Permission summary:**
+
+  ```YAML
+  compute.addresses.create
+  compute.addresses.createInternal
+  compute.addresses.delete
+  compute.addresses.deleteInternal
+  compute.addresses.setLabels
+  compute.addresses.get
+  compute.addresses.list
+  compute.addresses.use
+  compute.addresses.useInternal
+  compute.disks.create
+  compute.disks.createTagBinding
+  compute.disks.delete
+  compute.disks.deleteTagBinding
+  compute.disks.get
+  compute.disks.list
+  compute.disks.resize
+  compute.disks.setLabels
+  compute.disks.use
+  compute.firewalls.create
+  compute.firewalls.createTagBinding
+  compute.firewalls.delete
+  compute.firewalls.deleteTagBinding
+  compute.firewalls.get
+  compute.firewalls.list
+  compute.firewalls.update
+  compute.forwardingRules.create
+  compute.forwardingRules.delete
+  compute.forwardingRules.get
+  compute.forwardingRules.setLabels
+  compute.instanceGroups.create
+  compute.instanceGroups.delete
+  compute.instanceGroups.update
+  compute.instanceGroups.use
+  compute.instances.attachDisk
+  compute.instances.create
+  compute.instances.createTagBinding
+  compute.instances.delete
+  compute.instances.deleteTagBinding
+  compute.instances.detachDisk
+  compute.instances.get
+  compute.instances.getEffectiveFirewalls
+  compute.instances.list
+  compute.instances.listTagBindings
+  compute.instances.osAdminLogin
+  compute.instances.osLogin
+  compute.instances.reset
+  compute.instances.resume
+  compute.instances.setDiskAutoDelete
+  compute.instances.setLabels
+  compute.instances.setMachineType
+  compute.instances.setMetadata
+  compute.instances.setName
+  compute.instances.setServiceAccount
+  compute.instances.setTags
+  compute.instances.start
+  compute.instances.stop
+  compute.instances.suspend
+  compute.instances.update
+  compute.instances.use
+  compute.networks.get
+  compute.networks.list
+  compute.networks.updatePolicy
+  compute.networks.use
+  compute.regionBackendServices.create
+  compute.regionBackendServices.createTagBinding
+  compute.regionBackendServices.delete
+  compute.regionBackendServices.deleteTagBinding
+  compute.regionBackendServices.get
+  compute.regionBackendServices.getIamPolicy
+  compute.regionBackendServices.list
+  compute.regionBackendServices.update
+  compute.regionBackendServices.use
+  compute.regionHealthChecks.create
+  compute.regionHealthChecks.delete
+  compute.regionHealthChecks.useReadOnly
+  compute.subnetworks.get
+  compute.subnetworks.list
+  compute.subnetworks.use
+  compute.zoneOperations.get
+  ```
+
+The specific permissions are divided as follows:
+
+* **Compute Engine permissions:**
+  * Manage VM instances
+
+    ```YAML
+    compute.disks.create
+    compute.disks.createTagBinding
+    compute.disks.delete
+    compute.disks.deleteTagBinding
+    compute.disks.get
+    compute.disks.list
+    compute.disks.resize
+    compute.disks.setLabels
+    compute.disks.use
+    compute.instanceGroups.create
+    compute.instanceGroups.delete
+    compute.instanceGroups.update
+    compute.instanceGroups.use
+    compute.instances.attachDisk
+    compute.instances.create
+    compute.instances.createTagBinding
+    compute.instances.delete
+    compute.instances.deleteTagBinding
+    compute.instances.detachDisk
+    compute.instances.get
+    compute.instances.getEffectiveFirewalls
+    compute.instances.list
+    compute.instances.listTagBindings
+    compute.instances.osAdminLogin
+    compute.instances.osLogin
+    compute.instances.reset
+    compute.instances.resume
+    compute.instances.setDiskAutoDelete
+    compute.instances.setLabels
+    compute.instances.setMachineType
+    compute.instances.setMetadata
+    compute.instances.setName
+    compute.instances.setServiceAccount
+    compute.instances.setTags
+    compute.instances.start
+    compute.instances.stop
+    compute.instances.suspend
+    compute.instances.update
+    compute.instances.use
+    ```
+
+  * Manage firewall rules
+
+    ```YAML
+    compute.firewalls.create
+    compute.firewalls.createTagBinding
+    compute.firewalls.delete
+    compute.firewalls.deleteTagBinding
+    compute.firewalls.get
+    compute.firewalls.list
+    compute.firewalls.update
+    ```
+
+* **VPC Network permissions:**
+  * Get VPC-related resource information
+
+    ```YAML
+    compute.networks.get
+    compute.networks.list
+    compute.networks.updatePolicy
+    compute.networks.use
+    compute.subnetworks.get
+    compute.subnetworks.list
+    compute.subnetworks.use
+    compute.zoneOperations.get
+    ```
+  * Manage LB resources
+
+    ```YAML
+    compute.addresses.create
+    compute.addresses.createInternal
+    compute.addresses.delete
+    compute.addresses.deleteInternal
+    compute.addresses.setLabels
+    compute.addresses.get
+    compute.addresses.list
+    compute.addresses.use
+    compute.addresses.useInternal
+    compute.forwardingRules.create
+    compute.forwardingRules.delete
+    compute.forwardingRules.get
+    compute.forwardingRules.setLabels
+    compute.regionBackendServices.create
+    compute.regionBackendServices.createTagBinding
+    compute.regionBackendServices.delete
+    compute.regionBackendServices.deleteTagBinding
+    compute.regionBackendServices.get
+    compute.regionBackendServices.getIamPolicy
+    compute.regionBackendServices.list
+    compute.regionBackendServices.update
+    compute.regionBackendServices.use
+    compute.regionHealthChecks.create
+    compute.regionHealthChecks.delete
+    compute.regionHealthChecks.useReadOnly
+    ```
+
+* **Cloud Storage permissions:**
+  * Manage Buckets and read and write buckets and their contents (for specific buckets)
+
+    ```YAML
+    roles/storage.admin
+    ```
+
+* **Account permissions:**
+  * Allow the newly created service account to be associated with the VM instance so that the VM instance can perform related operations as the service account
+
+    ```YAML
+    roles/iam.serviceAccountUser
+    ```

@@ -1,0 +1,113 @@
+---
+{
+    "title": "Introduce VeloDB Studio",
+    "description": "VeloDB Studio is a GUI tool tailored for Apache Doris and its compatible databases to simplify data development and management."
+}
+---
+
+# Introduce VeloDB Studio
+
+VeloDB Studio is a GUI tool tailored for Apache Doris and its compatible databases to simplify data development and management.
+
+VeloDB Studio has two versions: Server and Desktop:
+
+- Server versions are built-in to provide enterprise-level user services in VeloDB Cloud and Enterprise.
+
+- Desktop version is a desktop application that can be installed directly on your computer and supports Mac, Windows and Linux (future).
+
+## Core features
+
+### SQL Editor
+
+A SQL editor specially designed for Apache Doris supports SQL syntax highlighting, automatic completion, formatting and other functions to improve SQL writing efficiency.
+
+### Log Retrieval and Visual Analysis
+
+Provides log search and visualization functions, and you can use Apache Doris to work with Studio's log search capabilities to replace Elastic Search and Kibana Discover for log storage, querying and visualization, achieving 10 times the cost reduction and more efficient analysis of data.
+
+{/* ### 会话管理
+
+支持会话的监控和控制，用户可以查看当前活跃的会话，并根据需要进行管理，优化资源使用。 */}
+
+### Query Audit
+
+Query Audit is used to audit and analyze query history executed in Doris. It allows you to filter slow queries or filter through users, hosts, SQL statements, etc. to meet audit needs.
+### Permission Management
+
+Visually manage Apache Doris user rights to ensure the security of database data and operations, and meet the needs of enterprise-level applications.
+
+### Multiple connections and SSH tunnels (Desktop version only)
+
+Supports multi-database connections and provides SSH tunneling function, which facilitates users to remotely manage Doris databases under secure channels, improving compatibility across network environments.
+
+{/* ![features](../../public/img/studio/features.png) */}
+
+
+## VeloDB Studio Server Version
+
+:::info
+The server version supports Chrome 90 or above browsers, and it is recommended to use the latest version of the browser.
+:::
+
+VeloDB Studio Server version is built into VeloDB Cloud and Enterprise, and is provided to enterprise users in the form of a web.
+
+### Features of VeloDB Studio Server Edition
+
+**1. Deep integration**: The Server version is deeply integrated in VeloDB Cloud and Enterprise, and has different adaptive functions according to different Manager versions.
+
+**2. Network Isolation**: Enterprise Studio is deployed in your enterprise-level network environment, and VeloDB Cloud versions of Studio are deployed in your VPC to provide a secure network environment.
+
+**3. Higher quality and stability**: The Server version focuses more on stability and has stricter quality requirements for new functions.
+
+**4. Security Updates**: Server version provides more instant security updates and vulnerability responses, and we will update and deliver vulnerabilities and security issues separately.
+
+**5. Enterprise-level support**: The team provides professional technical support and faster feature requests, and problems in the Server version will always be responded to as soon as possible.
+
+**6. Team Collaboration**: The Server version is more suitable for team collaboration, with the same access address, and multiple users can share a Studio. You can also embed Studio into your enterprise management system.
+
+## VeloDB Studio Desktop Version
+### Why launch desktop application?
+In the past, we provided the Web version of Studio WebUI in VeloDB Enterprise Manager, VeloDB Cloud, and Alibaba Cloud.
+
+However, these versions need to be deployed on the server or fully hosted on the cloud. They are designed for VeloDB kernel, require login to the management system account, require payment, require complex network permissions, require administrator permission to update, etc., which are more suitable for enterprise users. These designs bring a lot of inconvenience to ordinary users.
+
+To facilitate Apache Doris users, we have launched the VeloDB Studio Desktop version, which is a GUI designed and developed specifically for Apache Doris. It has the following main advantages:
+
+### Features of VeloDB Studio Desktop Edition
+
+:::info
+Mac version only supports 64-bit macOS version 13.0 (Ventura) above system version
+:::
+:::info
+Windows version only supports 64-bit Windows 10 above system version, Windows8, 8.1 and Windows Server 2012 does not supported
+:::
+
+
+**1. No server deployment required**
+
+- You don't need to find a server to deploy Studio alone. Just download the VeloDB Studio Desktop installation package and double-click to use it.
+- You don't need to log in to another account, just open the app and enter the connection information to connect to the Doris database.
+
+**2. Completely free**
+
+- Unlike other versions, VeloDB Studio Desktop is permanently free, no license purchase or no payment.
+
+**3. Design for Apache Doris**
+
+- Other versions of Studio run on the VeloDB kernel, Apache Doris cannot be used or has limited compatibility.
+
+- VeloDB Studio Desktop is designed for Apache Doris, supports Apache Doris, and supports compatible databases derived from Apache Doris.
+
+**4. Better user experience**
+
+- More convenient: The desktop application is on your computer, without opening the browser, entering the address, logging in to the account, just double-clicking the icon to open it.
+
+- More efficient: The desktop supports stronger shortcut key system and smoother window management. Your connection will be saved to your computer, allowing multiple connections to be saved without entering connection information every time.
+
+**5. Native tools that replace Navicat and DBeaver**
+- Stronger management capabilities: Unlike more queries-focused tools such as Navicat and DBeaver, VeloDB Studio supports more features of Apache Doris, including session management, log retrieval, permission management, query auditing, etc.
+
+- Better user support and response: VeloDB Studio team can respond faster to your feature requests and problem feedback, and launch new features based on Apache Doris faster.
+
+
+

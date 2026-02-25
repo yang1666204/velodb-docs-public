@@ -1,0 +1,46 @@
+---
+{
+  "title": "BYOC Warehouseの作成",
+  "description": "BYOC（Bring Your Own Cloud）ウェアハウスは、お客様独自のクラウドリソース内でVeloDB Cloudデータウェアハウスのインストールと運用サービスを提供します...",
+  "language": "ja"
+}
+---
+# BYOC Warehouseの作成
+
+**BYOC**（Bring Your Own Cloud）warehouseは、お客様独自のクラウドリソースプール内でVeloDB Cloudデータwarehouse のインストールと運用サービスを提供します。
+
+## クラウドプラットフォームでのBYOC Warehouseの作成
+
+クラウドプラットフォームによって準備と作成手順に若干の違いがあります。詳細な手順については、以下のドキュメントをご参照ください：
+
+- **Amazon Web Services: [AWSでBYOC Warehouseを作成する方法](./create-byoc-warehouse/aws/create-warehouse-using-template-mode.mdx)**
+- **Google Cloud Platform: [GCPでBYOC Warehouseを作成する方法](./create-byoc-warehouse/gcp.mdx)**
+- **Microsoft Azure: [AzureでBYOC Warehouseを作成する方法](./create-byoc-warehouse/azure.mdx)**
+
+## BYOC Warehouseの料金
+
+BYOC warehouseの課金は2つの部分に分かれていることに注意することが重要です：
+
+* **クラウドリソース料金**：クラスターを開始する際の仮想マシン、オブジェクトストレージ、プライベートネットワークエンドポイントなどによって発生するコストで、クラウドプラットフォームによって課金されます。
+* **コンピュートサービス料金**：クラスター管理に対して課金されるサービス料金で、VeloDB Cloudによって請求され、30日間無料、その後は[料金ページ](https://www.velodb.io/pricing)をご参照ください。
+
+## 注意事項
+
+ほとんどのwarehouseリソースはお客様のクラウド環境内で実行されるため、クラウドプラットフォームコンソールでVeloDB Cloudによって作成されたクラウドリソースを直接操作することは避けてください。
+
+VeloDB Cloudによって作成されたクラウドリソースには以下のタグ（Tag）があります：
+
+* **resource-created-by** : velodb
+* **cloud-resource-profile** : online
+* **resource-used-by-app** : BYOCまたはMetaServiceまたは特定のWarehouse ID
+* **sdb-cluster-id** : 特定のCluster ID
+
+クラウドプラットフォームコンソールのフィルター機能により、VeloDB Cloudによって作成されたリソースをフィルタリングできます。
+
+warehouseが異常に利用不可になる可能性のある操作には以下があります：
+
+* VeloDB Cloudによって作成されたIAMユーザーの権限を変更または削除する
+* VeloDB Cloudによって作成された仮想マシン、ストレージバケットを変更または削除する
+* VeloDB Cloudによって作成されたセキュリティグループ、プライベートエンドポイントを変更または削除する
+
+クラウドプラットフォームコンソールでのお客様の操作によって引き起こされるwarehouseの利用不可は、復旧不可能な場合があることにご注意ください。

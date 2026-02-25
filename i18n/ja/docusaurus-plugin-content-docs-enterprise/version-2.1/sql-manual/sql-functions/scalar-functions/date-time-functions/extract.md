@@ -1,0 +1,44 @@
+---
+{
+  "title": "I don't see any text to translate after \"Text:\" and \"EXTRACT\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "description": "extract関数は、年、月、日、時、分、秒などの日付や時刻値の指定された部分を抽出するために使用されます。",
+  "language": "ja"
+}
+---
+## 説明
+
+`extract`関数は、年、月、日、時間、分、秒などの日付または時刻値の指定された部分を抽出するために使用されます。この関数は、計算、比較、または表示のためにdatetimeフィールドから特定の時間コンポーネントを抽出するために一般的に使用されます。
+
+## 構文
+
+`EXTRACT(<unit> FROM <datetime>)`
+
+## パラメータ
+
+| Parameter | Description |
+| -- | -- |
+| `unit` | DATETIMEから抽出する単位。可能な値は、year、month、day、hour、minute、second、またはmicrosecond |
+| `datetime` | 引数は有効な日付式 |
+
+## 戻り値
+
+戻り値は、抽出される単位に応じて、日付または時刻の抽出された部分（整数など）です。
+
+## 例
+
+```sql
+select extract(year from '2022-09-22 17:01:30') as year,
+extract(month from '2022-09-22 17:01:30') as month,
+extract(day from '2022-09-22 17:01:30') as day,
+extract(hour from '2022-09-22 17:01:30') as hour,
+extract(minute from '2022-09-22 17:01:30') as minute,
+extract(second from '2022-09-22 17:01:30') as second,
+extract(microsecond from cast('2022-09-22 17:01:30.000123' as datetimev2(6))) as microsecond;
+```
+```text
++------+-------+------+------+--------+--------+-------------+
+| year | month | day  | hour | minute | second | microsecond |
++------+-------+------+------+--------+--------+-------------+
+| 2022 |     9 |   22 |   17 |      1 |     30 |         123 |
++------+-------+------+------+--------+--------+-------------+
+```

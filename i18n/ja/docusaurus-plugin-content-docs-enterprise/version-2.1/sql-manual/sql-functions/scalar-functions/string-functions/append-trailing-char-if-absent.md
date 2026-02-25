@@ -1,0 +1,39 @@
+---
+{
+  "title": "APPEND_TRAILING_CHAR_IF_ABSENT",
+  "description": "特定の文字（スペース、特定の記号など）を追加するために使用されます。",
+  "language": "ja"
+}
+---
+## 説明
+
+文字列の末尾に特定の文字が存在しない場合に、その文字列の末尾に特定の文字（スペースや特定の記号など）を追加するために使用されます。この機能は、文字列が特定の文字で終わることを保証します。
+
+## 構文
+
+```sql
+APPEND_TRAILING_CHAR_IF_ABSENT ( <str> , <trailing_char> )
+```
+## Parameters
+
+| Parameters        | Description |
+|-------------------|-----------------------------|
+| `<str>`           | 判定対象となる文字列 |
+| `<trailing_char>` | 文字列の末尾に追加される文字（その文字が存在しない場合） |
+
+## Return value
+
+Parameters `<str>`と`<trailing_char>`を連結した文字列（`<trailing_char>`が`<str>`に存在しない場合）
+
+## Example
+
+``` sql
+SELECT APPEND_TRAILING_CHAR_IF_ABSENT('a','c'),APPEND_TRAILING_CHAR_IF_ABSENT('ac', 'c'),APPEND_TRAILING_CHAR_IF_ABSENT('ac', 'cd')
+```
+```text 
++------------------------------------------+-------------------------------------------+--------------------------------------------+
+| append_trailing_char_if_absent('a', 'c') | append_trailing_char_if_absent('ac', 'c') | append_trailing_char_if_absent('ac', 'cd') |
++------------------------------------------+-------------------------------------------+--------------------------------------------+
+| ac                                       | ac                                        | accd                                       |
++------------------------------------------+-------------------------------------------+--------------------------------------------+
+```

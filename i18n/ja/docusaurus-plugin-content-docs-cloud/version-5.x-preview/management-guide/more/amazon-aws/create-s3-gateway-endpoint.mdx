@@ -1,0 +1,21 @@
+---
+{
+  "title": "S3 Gateway Endpointを作成する",
+  "description": "ゲートウェイエンドポイントは、VPC内のインスタンスにS3への プライベート接続を提供し、パブリックインターネットを回避してデータ転送コストを削減します。",
+  "language": "ja"
+}
+---
+# S3 Gateway Endpointの作成
+
+Gateway EndpointはVPC内のインスタンスにS3への専用接続を提供し、パブリックインターネットを回避してデータ転送コストを削減します。
+
+1. 管理者権限を持つユーザーでAWS Consoleにログインし、VPCコンソールに移動します。
+2. サイドバーの**endpoint**タブをクリックします。
+3. **create endpoint**ボタンをクリックします。
+   1. 名前を入力します。（例：vpce-for-s3-gateway）
+   2. Service category：AWS servicesを選択します。
+   3. Services：検索ボックスにS3と入力し、**service name**の形式がcom.amazonaws.`<region>`.s3のオプションを選択して、**gateway**タイプをクリックします。
+   4. VPCについては、エンドポイントを作成したいVPCを選択します。
+   5. Route tables：プライベートサブネットに関連付けられたルートテーブルを選択します。選択すると、AWSは自動的にこれらのルートテーブルにS3サービスへのルートを追加します。
+   6. Policy：すべての操作を許可するFull accessを選択するか、制限的なポリシーを作成するCustomを選択します。
+   7. **create endpoint**をクリックします。

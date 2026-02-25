@@ -1,0 +1,283 @@
+---
+{
+  "title": "モニタリング概要",
+  "description": "VeloDB Cloudは監視とアラート機能を提供しており、ウェアハウスやクラスターの健全性とパフォーマンスを追跡し、調整を行うことができます。",
+  "language": "ja"
+}
+---
+# 監視概要
+
+VeloDB Cloudは監視とアラート機能を提供しており、warehouseやクラスターの健全性とパフォーマンスを追跡して調整を行うことができます。
+
+ナビゲーションバーで**Metrics**機能を見つけることができ、以下のことが可能です。
+
+-   warehouseまたはクラスター別にメトリクスを表示する。
+-   **Starred**を使用して、warehouseや異なるクラスターの関心のあるメトリクスをまとめて表示する。
+-   時間セレクターを調整して過去のメトリクスデータを表示し、過去15日間のメトリクスデータを確認できる。
+-   自動更新機能を使用してメトリクスをリアルタイム（5秒）で更新する。
+
+VeloDB Cloudで使用できるメトリクスは2つのカテゴリーに分類されます。
+
+-   **Basic Metrics** - 基本メトリクスデータは、CPU使用率、メモリ使用量、ネットワークスループットなど、クラスターの物理的な側面を監視するのに役立ちます。
+-   **Service Metrics** - クエリパフォーマンスデータは、QPS、クエリ成功率などのwarehouseやクラスターのアクティビティとパフォーマンスを監視するのに役立ちます。これはクラスターの具体的なワークロードを理解するのに役立ちます。
+
+## Basic Metrics
+
+![metrics basic](/images/cloud/metrics-basic.png)
+
+基本メトリクスは「ノード」次元でクラスターの物理的な監視情報を提供します。
+
+クラスターの基本メトリクスを使用して、指定した時間枠内でクラスターが異常かどうかを判断できます。また、過去または現在のクエリがクラスターのパフォーマンスに影響を与えているかどうかも確認できます。
+
+クラスターの基本メトリクスを使用して、低速クエリの原因を診断し、クラスター容量のスケールアップやスケールダウン、SQL文の最適化などの可能な対策を講じることができます。
+
+以下のクラスター基本メトリクスを提供しています。
+
+### CPU Utilization
+
+すべてのノードのCPU使用率の割合を表示します。クラスターのスケールやその他のリソース消費操作を計画する前に、このチャートからクラスター使用率が最も低い時間を見つけることができます。
+
+### Memory Usage
+
+すべてのノードのメモリ使用量を表示します。メモリ使用量が継続的に高い場合は、クラスターのスケールアップを検討する必要があります。
+
+### Memory Utilization
+
+すべてのノードのメモリ使用率を表示します。メモリ使用率が継続的に高い場合は、クラスターのスケールアップを検討する必要があります。
+
+### I/O Utilization
+
+ハードディスクI/Oの使用率を表示します。I/O使用率が常に高いレベルで維持されている場合、より良いクエリパフォーマンスのためにより多くのノードをスケールアウトすることを検討できます。
+
+### Network Outbound Throughput
+
+ネットワーク上でのノードの1秒あたりの平均送信速度をMB/sで表示します。ネットワーク経由でデータを読み取るクエリは速度が遅いため、ネットワーク読み取りを最小限に抑えるようにキャッシュを正しく設定する必要があります。
+
+### Network Inbound Throughput
+
+ネットワーク上でのノードの1秒あたりの平均受信速度をMB/sで表示します。
+
+### Cache Read Throughput
+
+キャッシュ経由での1秒あたりの読み取りスループットをMB/sで表示します。
+
+### Cache Write Throughput
+
+キャッシュ経由での1秒あたりの書き込みスループットをMB/sで表示します。
+
+### Basic Metricsのサポート範囲
+
+| Metrics  | Warehouse     | Cluster |
+|-------|---------------|---------|
+| CPU Utilization | Supported     | Supported      |
+| Memory Usage  | Supported            | Supported      |
+| Memory Utilization  | Supported            | Supported      |
+| I/O Utilization  | Supported            | Supported      |
+| Network Outbound Throughput  | Supported            | Supported      |
+| Network Inbound Throughput  | Supported            | Supported      |
+| Cache Read Throughput  | Not supported | Supported      |
+| Cache Write Throughput  | Not supported | Supported      |
+
+
+## Service Metrics
+
+![metrics query](/images/cloud/metrics-query.png)
+
+### Query Per Second (QPS)
+
+1秒あたりのクエリリクエスト数を表示します。ピーク時のシステムのQPSに基づいて、クラスターに必要な計算リソースを決定できます。
+
+### Query Success Rate
+
+分単位で更新される全クエリに対する成功クエリの割合を表示します。クエリ成功率が異常に低下した場合は、クラスターやノードの障害があるかどうかを検討してください。
+
+### Dead Nodes
+
+現在のクラスターの停止ノード数を表示します。
+
+### Average Query Runtime
+
+分単位で更新されるクエリの平均時間を表示します。平均クエリ時間が異常に上昇した場合は、トラブルシューティングを検討してください。
+
+### Query 99th Latency
+
+指定された期間中に昇順で99パーセンタイルにランクされるリクエストの応答時間を表示し、クラスター内の低速クエリの速度を反映します。
+
+### Cache Hit Rate
+
+全I/O操作の中でキャッシュにヒットしたI/O操作の割合を表示します。キャッシュヒット率が低すぎる場合は、キャッシュポリシーの変更やスペースのスケールアップを検討してください。
+
+### Remote Storage Read Throughput
+
+単位時間あたりにリモートに保存されたデータの読み取り量。
+
+### Sessions
+
+現在のwarehouseのセッション数を表示し、クラスターを区別しません。
+
+### Load Rows Per Second
+
+データ書き込み操作の効率を測定するメトリクスで、現在データベースやその他のデータストレージシステムに正常に書き込まれているレコードの速度を示します。
+
+### Load Bytes Per Second
+
+現在の書き込みタスクのレートをデータサイズで反映して表示します。
+
+### Finished Load Tasks
+
+最近の期間で完了したタスク数を表示します。急激な増加や減少は、ビジネスの異常を示している可能性があります。
+
+### Compaction Score
+
+データファイルのマージ圧力を示します。Scoreが大きいほど、マージ圧力が大きくなります。
+
+### Transaction Latency
+
+warehouseの書き込みタスクのトランザクション遅延を示します。遅延が小さいほど、データをより迅速にクエリできます。
+
+### Service Metricsのサポート範囲
+
+| Metrics   | Warehouse | Cluster |
+|-----------|-----------|---------|
+| Query Per Second    | Supported        | Supported      |
+| Query Success Rate     | Supported        | Supported      |
+| Dead Nodes     | Not supported       | Supported      |
+| Average Query Time    | Supported        | Supported      |
+| Query 99th Latency | Supported        | Supported      |
+| Cache Hit Rate     | Not supported       | Supported      |
+| Remote Storage Read Throughput  | Not supported       | Supported      |
+| Sessions       | Supported        | Not supported     |
+| Load Rows Per Second    | Supported        | Supported      |
+| Load Bytes Per Second  | Supported        | Supported      |
+| Finished Load Tasks  | Supported        | Not supported     |
+| Compaction Score   | Not supported       | Supported      |
+| Transaction Latency     | Supported        | Not supported     |
+
+
+# アラート概要
+
+SMSアラート通知に加えて、VeloDB Cloudは追加料金なしで監視とアラートサービスを提供します。
+
+クラスター監視メトリクスが変化したときに通知されるようにアラートルールを設定できます。
+
+![metrics alerts](/images/cloud/metrics-alerts.png)
+
+## アラート設定
+
+### アラートルールの表示
+
+リストページで既存のアラートルールとその現在のアラート状況を表示できます。
+
+「赤い点」はアラートルールが有効であることを意味し、「緑の点」は現在のアラートルールがトリガーされていないことを示します。
+
+### ワンクリックアラートの有効化
+
+<img alt="one click alert" src="/images/cloud/one-click-alert.png" />
+
+**Enable One-Click Alert**をクリックして基本的なアラートルールを素早く設定でき、これは現在および将来のwarehouseやクラスターの両方に適用されます。
+
+### 新規/編集アラートルール
+
+![metrics alerts new alert rule](/images/cloud/metrics-alerts-new-alert-rule.png)
+
+**New Alert Rule**をクリックするか既存のルールをコピーしてアラートルールを作成できます。現在のアラートルールを変更することもできます。
+
+アラートルール設定は4つの部分で構成されます。
+
+#### Rule Name
+
+ルール名をカスタマイズできます。warehouse内で一意である必要があります。
+
+#### Cluster
+
+アラートルールが有効になるクラスターを指定できます。クラスターが削除されても、そのアラートルールは削除されませんが無効になります。
+
+#### Conditions
+
+満たすべきメトリクスの1つ以上のルールと、これらの条件の組み合わせ方法（and、or）を設定できます。
+
+#### In Last
+
+「In Last」は条件を満たす時間の持続時間を意味します。アラートの適時性と正確性のバランスを取るために、この時間を適切に設定する必要があります。
+
+### Channel
+
+1つ以上の通知チャンネルを設定でき、設定したチャンネルを通じてアラートメッセージがそれぞれプッシュされます。
+
+#### In-site Notification
+
+設定方法：ユーザーを選択。
+
+#### Email
+
+設定方法：ユーザーを選択。
+
+#### SMS
+
+設定方法：ユーザーを選択/携帯電話番号を入力。
+
+#### WeCom
+
+設定方法：ロボットwebhookを入力。
+
+1. PC版WeComで、アラーム通知を受信する対象のWeComグループを見つける。
+2. WeComグループを右クリック。表示されるウィンドウで**Add Group Bot**をクリック。
+3. 表示されるウィンドウで**Create a Bot**をクリック。
+4. 表示されるウィンドウで、カスタムボット名を入力し**Add**をクリック。
+5. webhook URLをコピー。
+
+<img alt='alerts WeCom' src={require("/images/cloud/alerts-WeCom.png").default} style={{ width: '50%' }} height="auto" />
+
+<br />
+
+> **注意** メッセージソースを制限する必要がある場合は、IPホワイトリストを設定してください。VeloDB CloudサーバーのIPアドレスは3.222.235.198です。
+
+#### Lark
+
+設定方法：ロボットwebhookを入力。
+
+外部システムからグループチャットにメッセージを即座にプッシュするカスタムボットを作成するには、webhookを使用してグループチャットと外部システムを接続する必要があります。対象のグループに入り、**Settings** > **BOTs** > **Add Bot**をクリック。**Custom Bot**を選択。ボットに適切な名前と説明を入力し、**Next**をクリック。
+
+<img alt='alerts Lark step1' src={require("/images/cloud/alerts-Lark-step1.png").default} style={{ width: '50%' }} height="auto" />
+
+その後、webhook URLが取得されます。
+
+<img alt='alerts Lark step2' src={require("/images/cloud/alerts-Lark-step2.png").default} style={{ width: '50%' }} height="auto" />
+
+<br />
+
+> **注意** メッセージソースを制限する必要がある場合は、IPホワイトリストを設定してください。VeloDB CloudサーバーのIPアドレスは3.222.235.198です。
+
+#### DingTalk
+
+設定方法：ロボットwebhookを入力。
+
+DingTalkロボットのwebhookを取得するには、[こちら](https://www.alibabacloud.com/help/en/application-real-time-monitoring-service/latest/obtain-the-webhook-url-of-a-dingtalk-chatbot)を参照してください。
+
+1. PCでDingTalkクライアントを実行し、チャットボットを追加したいDingTalkグループに移動し、右上角の**Group Settings**アイコンをクリック。
+2. **Group Settings**パネルで**Group Assistant**をクリック。
+3. **Group Assistant**パネルで**Add Robot**をクリック。
+4. **ChatBot**ダイアログボックスで**Add Robot**セクションの**+**アイコンをクリック。その後、**Custom**をクリック。
+
+<img alt='alerts DingTalk01' src={require("/images/cloud/alerts-DingTalk01.png").default} style={{ width: '50%' }} height="auto" />
+
+5. **Robot details**ダイアログボックスで**Add**をクリック。
+6. **Add Robot**ダイアログボックスで、以下の手順を実行：
+
+<img alt='alerts DingTalk02' src={require("/images/cloud/alerts-DingTalk02.png").default} style={{ width: '50%' }} height="auto" />
+
+<br />
+
+> **注意** メッセージソースを制限する必要がある場合は、IPホワイトリストを設定してください。VeloDB CloudサーバーのIPアドレスは3.222.235.198です。
+
+7. チャットボットのプロフィール写真と名前を設定。
+8. **Security Settings**パラメータで**Custom Keywords**を選択。その後、**alert**を入力。
+9. 利用規約を読み、**I have read and accepted _DingTalk Custom Robot Service Terms of Service_**を選択。
+10. **Finished**をクリック。
+11. **Add Robot**ダイアログボックスで、DingTalkチャットボットのwebhookアドレスをコピーし、**Finished**をクリック。
+
+<img alt='alerts DingTalk03' src={require("/images/cloud/alerts-DingTalk03.png").default} style={{ width: '50%' }} height="auto" />
+
+## アラート履歴の表示
+
+アラート履歴を表示し、フィルタリングできます。

@@ -1,0 +1,65 @@
+
+## Regular
+   
+    **General connection requires the following information:**
+
+    - **Connection name**: You can give a friendly name for the connection to be easy to remember
+    - **Host**: The address of your database
+    - **Port**: The JDBC port of your database
+    - **HTTP Port**: The HTTP port of your database, which will be used to obtain query Profile information
+    - **Username**: Username of your database
+    - **Password**: Your database password
+
+    <img className='mt-5' src={`/img/studio/create-connection.png`} alt="create-connection" width="1400" height="600"/>
+Clicking Test Connection will initiate a connection test. If the connection is successful, the connection will be displayed, otherwise the connection will be displayed.
+
+    Click Save to save the connection information, you can see the connection in the connection list.
+
+
+## Connect via SSH tunnel
+   
+    Connecting to a database through an SSH tunnel is a common security practice. To ensure data security, we recommend that you use an SSH tunnel to connect to a database in the following situations:
+
+    - The database service is deployed in a private network (such as a VPC or an intranet) and accessed through an SSH tunnel to connect to the springboard machine.
+
+    - Simplify configuration, instead of SSL/TLS access, in some cases configuring the SSL/TLS certificate for a database can be complex and time-consuming, and SSH tunneling provides a fast and secure alternative without modifying the configuration of the database itself.
+
+    **SSH tunnel connection requires the following information**
+    
+    :::info
+Check the SSH tunnel to enable the SSH tunnel option to be turned on before subsequent filling and connection can be performed
+:::
+
+    - **Host**: The address of your SSH server
+    - **Port**: The port of your SSH server
+    - **Username**: Username of your SSH server
+    - **Authentication method**: Optional password or public key
+    - **Password**: Your SSH password
+    - **Private Key**: The path to your SSH server's private key
+    - **Private key password (publication)**: If your SSH server's private key also has a separate password (publication), you need to fill in the private key password (publication)
+
+
+    ### Password authentication
+
+    Fill in your SSH server user's password
+    <img className="pt-5" src={`/img/studio/create-connection-via-ssh.png`} alt="create-connection-via-ssh" width="1400" height="600"/>
+
+    ### Public Key Authentication
+
+    Fill in the path to your SSH server's private key. If your SSH server's private key has a separate password, you need to fill in the private key password.
+
+    :::info
+The private key file will not be saved or uploaded anywhere, only the private key file path you provide
+:::
+<img className="pt-5" src={`/img/studio/create-connection-via-ssh-publickey.png`} alt="create-connection-via-ssh-publickey" width="1400" height="600"/>
+
+
+## Create a connection through the Studio URI
+   
+Click the `Use URI` Create icon next to the search button to open the Create Connection dialog box.
+
+<img className="pt-5" src={`/img/studio/create-connection-via-uri-button.png`} alt="create-connection-via-uri-button" width="1400" height="600"/>
+
+
+In the dialog box, fill in the VeloDB Studio Desktop URI, and then click the 'Apply' button, and the information will be automatically filled in the Create Connection Form.
+<img className="pt-5" src={`/img/studio/create-connection-via-uri-modal.png`} alt="create-connection-via-uri-modal" width="1400" height="600"/>

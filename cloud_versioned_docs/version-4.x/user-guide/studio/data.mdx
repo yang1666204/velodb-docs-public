@@ -1,0 +1,60 @@
+---
+{
+    "title": "Data",
+    "description": "The \"Data\" module is the basic function of VeloDB Studio to manage databases, and it has two main functions:"
+}
+---
+
+# Data
+
+The "Data" module is the basic function of VeloDB Studio to manage databases, and it has two main functions:
+1. View the organizational form of data and data, such as library table structure, data size, table creation statements, table field information, data preview, etc.
+2. Add, delete and modify database objects, including new creation, deletion, and renaming of database objects.
+The data module is displayed according to the organizational form of the data in the database and is divided into the following three levels:
+- Catalog
+- Database
+- Table / View / Materialized View / Function
+
+
+## Catalog
+A directory (Catalog) is a collection of databases. Apache Doris introduced the concept of Catalog after version 1.2. Internal Catalog can be understood as the original Apache Doris system. External directories can be connected to Hive, Iceberg, Hudi, etc., as Apache Doris supports the data lake features.
+VeloDB Studio supports direct deletion of Catalog objects.
+
+
+<img className='pt-5' src={`/img/studio/catalog.png`} alt="catalog" width={1400} height={600}/>
+
+
+## Database
+A database is a collection of tables, views, materialized views, and functions. The database belongs to the directory.
+When a directory is selected, you can view the database under the directory and the size of the database. At the same time, you can create, delete, and rename the database under the page.
+<img className='pt-5' src={`/img/studio/database.png`} alt="database" width={1400} height={600}/>
+
+
+
+## Table
+Table (Table) The basic component of Apache Doris data warehouse, and tables belong to database.
+When a database is selected, you can see the tables under the database and the size of the tables, and the creation and modification time.
+
+<img className='pt-5' src={`/img/studio/table.png`} alt="table" width={1400} height={600}/>
+
+
+When you click on a table, you can enter the details management page of the table and view the DDL definition, fields, index and other information of the table.
+
+<img className='pt-5' src={`/img/studio/table-detail.png`} alt="table-detail" width={1400} height={600}/>
+The Data Preview page is used to quickly preview the data data of the table, and by default preview of the first 100 pieces of data of the table from the interface.
+"Total x data" is obtained from the metadata service, so there may be delays.
+
+<img className='pt-5' src={`/img/studio/data-preview.png`} alt="data-preview" width={1400} height={600}/>
+
+
+## View
+A view is a visual table based on the result set of SQL statements. The view page is roughly similar to the table page. Attributes (such as indexes, details) that the view does not have will not be displayed. The view also supports data preview function (the first 100 pieces of data).
+
+
+## Materialized View
+Materialized View is a table that pre-calculates query results and stores, which can be used to accelerate query performance and reduce real-time computing pressure.
+The Studio database page can list the materialized view information under the database.
+
+
+## Function
+The Studio database page can list the function information under the database, and supports viewing the function type, return type, creation statement and other information.

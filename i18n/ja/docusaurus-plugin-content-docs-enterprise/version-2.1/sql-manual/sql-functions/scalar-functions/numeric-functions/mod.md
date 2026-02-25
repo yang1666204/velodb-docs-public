@@ -1,0 +1,51 @@
+---
+{
+  "title": "MOD",
+  "description": "整数型については、aをbで割った余りを求めます。浮動小数点型については、fmod関数を使用してください。",
+  "language": "ja"
+}
+---
+## Description
+
+整数型に対して a を b で割った余りを求めます。浮動小数点型に対しては、fmod 関数を使用してください。
+
+## Syntax
+
+```sql
+MOD(<col_a> , <col_b>)
+```
+## Parameters
+
+| Parameter | Description |
+|-----------|------------|
+| `<col_a>`   | 被除数 |
+| `<col_b>`   | 除数（0であってはならない） |
+
+## Return value
+
+整数型を返します。特殊なケース：
+
+col_a IS NULL または col_b IS NULL の場合、NULLを返します。
+
+## Example
+
+```sql
+select mod(10, 3);
+```
+```text
++----------+
+| (10 % 3) |
++----------+
+|        1 |
++----------+
+```
+```sql
+select mod(10, 0);
+```
+```text
++----------+
+| (10 % 0) |
++----------+
+|     NULL |
++----------+
+```

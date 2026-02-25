@@ -1,0 +1,74 @@
+---
+{
+  "title": "I don't see any text to translate in your message. You mentioned \"Text: JSON_REPLACE\" but there doesn't appear to be actual content after that. Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "description": "JSONREPLACE関数は、JSON内のデータを更新し、その結果を返すために使用されます。",
+  "language": "ja"
+}
+---
+## Description
+JSON_REPLACE関数は、JSON内のデータを更新し、結果を返すために使用されます。
+
+## Syntax
+
+```sql
+JSON_REPLACE (<json_str>, <path>, <val>[, <jsonPath>, <val>, ...])
+```
+## パラメータ
+| パラメータ           | 説明                                                                                          |
+|--------------|---------------------------------------------------------------------------------------------|
+| `<json_str>`  | 置換対象のJSONデータ。NULLを含む任意の型の要素を持つJSONオブジェクトを指定できます。要素が指定されていない場合、空の配列が返されます。json_strが有効なJSONでない場合、エラーが返されます。 |
+| `<path>` | 置換対象のJSONパス。                                                          |
+| `<val>`      | JSON_PATHキーに対応する値を置換する値。NULLの場合、対応する位置にNULL値が挿入されます。                     |
+
+## 戻り値
+
+`json_replace`関数はJSON内のデータを更新し、結果を返します。`json_str`または`path`がNULLの場合はNULLを返します。それ以外の場合、`json_str`引数が有効なJSONでない場合、またはいずれかのpath引数が有効なパス式でない場合や*ワイルドカードが含まれている場合にエラーが発生します。
+
+パス-値ペアは左から右に評価されます。
+
+json内の既存パスに対するパス-値ペアは、既存のjson値を新しい値で上書きします。
+
+それ以外の場合、json内の存在しないパスに対するパス-値ペアは無視され、効果がありません。
+
+### 例
+
+```sql
+select json_replace(null, null, null);
+```
+```text
++----------------------------------+
+| json_replace(NULL, NULL, 'NULL') |
++----------------------------------+
+| NULL                             |
++----------------------------------+
+```
+```sql
+select json_replace('{"k": 1}', "$.k", 2);
+```
+```text
++----------------------------------------+
+| json_replace('{\"k\": 1}', '$.k', '2') |
++----------------------------------------+
+| {"k":2}                                |
++----------------------------------------+
+```
+```sql
+select json_replace('{"k": 1}', "$.j", 2);
+```
+```text
++----------------------------------------+
+| json_replace('{\"k\": 1}', '$.j', '2') |
++----------------------------------------+
+| {"k":1}                                |
++----------------------------------------+
+```
+```sql
+select json_replace(null, null, 's');
+```
+```text
++--------------------------------------+
+| json_replace(NULL, NULL, 's', '006') |
++--------------------------------------+
+| NULL                                 |
++--------------------------------------+
+```

@@ -1,0 +1,155 @@
+---
+{
+  "title": "Azure で BYOC Warehouse を作成する方法",
+  "description": "Azure上でBYOC Warehouseを作成する方法",
+  "language": "ja"
+}
+---
+# Azure上でのBYOC Warehouseの作成方法
+
+## 準備
+
+BYOCモードのリソースはお客様のクラウドアカウントにデプロイされるため、スムーズなリソースの設定と管理を確保するため、使用前にいくつかの準備作業を行う必要があります：
+
+- **VNetとサブネットの準備**
+- **Resource OrchestrationとResource Stackについて学習**
+
+## Azure上でのBYOC Warehouseの作成
+
+### warehouseの設定を作成
+
+warehouseの作成ガイドページまたは左上のwarehouseリストで、**New Warehouse**をクリックしてwarehouse設定ページに入り、フォームに記入して作成します。
+
+![wh create 0](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-0.png)
+
+| **パラメータ**  | **説明**                                                                                                                                                                                              |
+| -------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Warehouse Name | 必須。組織内で一意、32文字以内の長さ、英字、中国語、数字、-、\_、およびそれらの組み合わせをサポート。                                              |
+| Warehouse Mode | BYOCを選択                                                                                                                                                                                                  |
+| Cloud Platform | Azureを選択                                                                                                                                                                                                   |
+| Region         | データウェアハウスをデプロイしたいリージョンを選択します。リモート通信ネットワークアーキテクチャは複雑で遅延が大きいため、お客様のアプリケーションシステム/クライアントと同じリージョンを選択することを推奨します。現在、VeloDB Cloudはクラウドプラットフォームの複数のリージョンをすでにサポートしており、お客様のニーズに基づいてより多くのリージョンを継続的にサポートしていく予定です。                                                                             |
+| Core Version   | VeloDB Core 2.0以降のバージョンは、ストレージとコンピューティングの分離をサポートします。ストレージは実際の使用量に基づいて課金され、ストレージ容量を事前に設定する必要はありません。                        |
+| VPC            | 初回のBYOC warehouse作成時には、デフォルトで「New VPC」が選択されます。続くステップでクラウド環境のVPCを選択して新しいwarehouseの作成を完了するガイダンスが提供されます。<br/>以前にVPC内でBYOC warehouseを作成したことがある場合は、このVPCを直接選択して新しいwarehouseを作成できます。 |
+
+この表は、VeloDB Cloud BYOC Warehouseをデプロイできる Azure RegionsとAvailability Zones、および関連するAvailability Zone IDsの一覧です。Azure Resource Managerを設定する際に利用可能なサブネットを選択するために、この情報が必要になります。
+
+| Cloud Platform | Region Name    | Region ID         | Availability Zone ID |
+|:---------------|:-----------|:---------------------|:---------------------|
+| Azure          | West US 3    | westus3           | all            |
+
+**Next**をクリックして次のステップに進みます。
+
+### Azure準備
+
+正式に作成する前に、ドキュメントを参照して以下の準備を完了してください：
+- **VNetとサブネットの準備**
+- **Resource OrchestrationとResource Stackについて学習**
+
+**Done**をクリックして次のステップに進みます。
+
+![wh create 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-1.png)
+
+### Azure Subscription IDの入力
+
+**Azure Subscription ID**を入力し、**Next**をクリックします。subscription idはAzureコンソールで確認できます。
+
+![wh create 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-2.png)
+
+### クラウドリソースの設定
+
+VeloDB CloudはAzureのDeployment Stacksサービスを使用して一連のリソースを作成し、ユーザーのVPC内でBYOC warehouseの作成を完了します。   
+**管理者権限を使用してリソーススタックを作成するか、管理者に連絡してこのリソーススタックを作成してもらってください**。そうしないと、権限不足によりテンプレートの実行に失敗する可能性があります。
+
+![wh create 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-3.png)
+
+次のステップで使用するトークンをコピーします。
+
+**Open Azure Resource Manager**をクリックします。
+
+![wh create 3 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-3-1.png)
+
+**Create in**オプションで**Resource Group**を選択します。
+
+**Stack name**を記入します。
+
+**Action on unmanage**オプションで**Delete Resources**を選択します。
+
+**Next**をクリックします。
+
+![wh create 3 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-3-2.png)
+
+**Subscription**、**Resource Group**、**Region**を選択します。
+
+前のステップでコピーした**Token**を貼り付けます。
+
+**Virtual Network**と**Subnet**を選択します。
+
+**Review + Create**をクリックします。
+
+![wh create 3 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-3-3.png)
+
+### Warehouseの初期化
+
+システムがwarehouseを初期化します。これには約5-10分かかります。warehouseの初期化に30分以上かかる場合、またはその他継続できない状況が発生した場合は、[Get Help](mailto:support@velodb.io)にお問い合わせください。
+
+![wh create 5](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-create-5.png)
+
+### 新しいクラスタの作成
+
+新しいクラスタページまたはクラスタ概要ページで、新しいクラスタの作成をクリックしてクラスタ設定ページに入ります。詳細な操作については、新しいクラスタの作成を参照してください。
+
+![cluster list no existing](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/aws/cluster-list-no-existing.png)
+
+## パブリックネットワーク接続とアクセスを開放
+
+warehouseの作成後、パブリックネットワーク経由でwarehouseに接続したり、WebUIにアクセスしたりする必要がある場合は、Azureコンソールでパブリック IPをバインドし、セキュリティグループを設定する必要があります。
+
+### Public IPの割り当て
+
+**1. Master Private IPのコピー**
+
+[VeloDB Cloud](https://www.velodb.cloud/)にアクセスし、**Connect**をクリックして**Master IP**をコピーします。
+
+![webui 1 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-1-1.png)
+
+**[Azure Portal](https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/Microsoft.Compute%2FVirtualMachines)**に入り、上記のIPを検索します。
+
+![webui 1 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-1-2.png)
+
+仮想マシンに入り、VNetを確認します。
+
+![webui 1 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-1-3.png)
+
+**2. パブリック IPアドレスの関連付け**
+
+左側の**Networking > Network settings**をクリックし、Public IP addressの**Configure**をクリックします。
+
+![webui 2 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-2-1.png)
+
+**sdb-ip-config**をチェックし、**Associate public IP address**をチェックして、Public IP addressを選択します。まだない場合は、まず作成してください。
+
+**Save**をクリックします。
+
+![webui 2 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-2-2.png)
+
+### セキュリティグループの設定
+
+**Network Security Group**をクリックします。
+
+![webui 3 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-3-1.png)
+
+**Settings > Inbound security rules**をクリックします。**Add**をクリックします。Destination port rangesに`8080,9030,8088`を入力します。**Name**を入力します。
+
+**Save**をクリックします。
+
+![webui 3 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-3-2.png)
+
+VeloDB Cloud接続ページに戻り、Master IPパブリックネットワーク更新アイコンをクリックします。
+
+![webui 3 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/webui-3-3.png)
+
+この時点で、WebUIにアクセスし、パブリックネットワーク経由でwarehouseに接続できます。
+
+## Warehouseの使用
+
+warehouseの使用操作とwarehouseを削除する必要がある場合は、ドキュメント[Warehouse Usage](../use-warehouse.mdx)を参照してください。

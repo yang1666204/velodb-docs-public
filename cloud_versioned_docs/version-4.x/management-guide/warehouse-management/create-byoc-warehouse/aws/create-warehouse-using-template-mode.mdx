@@ -1,0 +1,57 @@
+---
+{
+    "title": "Create a BYOC warehouse Using Template Mode",
+    "description": "This guide walks you through the process of creating a VeloDB warehouse using Template Mode."
+}
+---
+
+# Create a BYOC warehouse Using Template Mode
+
+This guide walks you through the process of creating a VeloDB warehouse using **Template Mode**.
+
+1. Log in to the VeloDB Cloud Console.
+2. After logging in to the console, click “Create New Warehouse” in the upper-left corner, select BYOC, and choose the Template Mode to enter the setup guide.
+
+## Step 1: Configure Warehouse
+
+1. Set up the basic configuration
+   1. Enter the warehouse name. Supported characters include: Chinese characters, letters (case-insensitive), numbers, underscores (_), and hyphens (-).
+   2. Cloud Platform: select AWS
+   3. Select the AWS region where the warehouse will be deployed.
+   4. For **VPC**, select an existing one or a new vpc that has never been registered on the platform.
+2. Initial Cluster Resource Configuration
+   - Compute (vCPU)
+     - Default: 8 vCPU
+     - Adjustable Range: 8–1024 vCPU per cluster
+     - Higher Capacity Requests: If your workload requires more than 1024 vCPU, please contact support for quota approval.
+   - Cache
+     - Dynamic Sizing: Cache capacity limits are automatically scaled based on the selected compute size.
+     - Upper/Lower Bounds: Minimum and maximum cache thresholds vary proportionally with vCPU allocation.
+3. Initial User Configuration
+    You can set a password for the default admin user. The password must meet the following requirements:
+     - Length: 8–20 characters
+     - Allowed Characters: Uppercase and lowercase letters, numbers, and special characters (e.g. `~!@#$%^&*()_+|<>,.?/:;'[]{}"`)
+     - Complexity: Must include at least 3 character types (e.g., letters + numbers + symbols).
+
+    > **NOTE**
+    > The admin user is automatically provisioned, serving as the warehouse administrator with full system privileges. After the cluster is created, you can navigate to the warehouse settings page to reset the admin user's password.
+
+After filling in all required fields, click the Next button to proceed.
+
+## Step 2: AWS Resources Preparation
+
+This process will guide you through launching an AWS CloudFormation template that creates the required AWS resources, with all resources managed under a single stack:
+
+- An EC2 security group, which is a virtual firewall that controls traffic to and from its associated AWS resources.
+- An S3 bucket, which stores your warehouse data.
+- IAM roles, which are granted permissions that allow your warehouse to access the related AWS resources.
+
+> **Note**
+> Administrator privileges are mandatory to initiate the CloudFormation stack deployment. If you lack these permissions, please contact your administrator to proceed, as insufficient rights will result in deployment failure.
+
+The resource orchestration template provided by VeloDB runs under your cloud account, and the template code is open.
+You can get the resource orchestration template provided by VeloDB through the following link:
+
+> [https://velodb-cloud-online.s3.us-east-1.amazonaws.com/public/aws-byoc.yaml](https://velodb-cloud-online.s3.us-east-1.amazonaws.com/public/aws-byoc.yaml)
+
+After completing the CloudFromation stack, return to the VeloDB console to view the warehouse deployment in progress. This process generally takes about 5 minutes. Please wait for it to complete.

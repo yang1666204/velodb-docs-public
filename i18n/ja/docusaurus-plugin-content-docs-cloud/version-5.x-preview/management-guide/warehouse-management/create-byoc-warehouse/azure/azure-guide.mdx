@@ -1,0 +1,307 @@
+---
+{
+  "title": "Azure準備",
+  "description": "この記事では、主にBYOCタイプのウェアハウスの作成に関わるAzureオペレーションについて紹介します。VNetとサブネットの準備、Resourc...の学習を含みます。",
+  "language": "ja"
+}
+---
+# Azure Preparation
+
+この記事では主に BYOC タイプの warehouse 作成に関わる Azure 操作について紹介します。**VNet および subnet の準備**、**Resource Orchestration および Resource Stack について学ぶ（オプション）** を含みます。
+
+## VNet および subnet の準備
+BYOC タイプの warehouse を作成する前に、要件を満たす既存の VNet および subnet がない場合は、事前に VPC および subnet を作成する必要があります。具体的な操作は以下の通りです：
+
+> **注意:** 
+> 1. リージョン、アベイラビリティーゾーン、および subnet の要件を満たす VNet および subnet が存在し、この VNet に BYOC warehouse をデプロイしたい場合は、**新しい VNet および subnet を作成する以下の手順をスキップしてください**。
+> 2. 現在サポートされているリージョンおよびアベイラビリティーゾーンは以下の通りです：
+| Cloud Platform | Region Name    | Region ID         | Availability Zone ID |
+|:---------------|:-----------|:---------------------|:---------------------|
+| Azure          | West US 3    | westus3           | all            |
+
+### VNet および subnet の作成
+
+Azure Portal を開き、**Virtual networks** サービスを選択します。
+
+**Create** をクリックします。
+
+![vnet create 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/vnet-create-1.png)
+
+**Subscription** および **Resource Group** を選択します。**Virtual network name** を入力します。**Region** を選択します。**Next** をクリックします。
+
+> **注意:** 現在サポートされているリージョンおよびアベイラビリティーゾーンは以下の通りです：
+
+| Cloud Platform | Region Name    | Region ID         | Availability Zone ID |
+|:---------------|:-----------|:---------------------|:---------------------|
+| Azure          | West US 3    | westus3           | all            |
+
+![vnet create 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/vnet-create-2.png)
+
+**+ Add a subnet** をクリックします。**Edit** をクリックします。
+
+![vnet create 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/vnet-create-3.png)
+
+**Name** を入力します。subnet の範囲を指定します。**Save** をクリックします。**Next** をクリックします。
+
+> 注意：インターネットにアクセスしたい場合は、subnet 作成時に NAT gateway を指定することができます
+
+![vnet create 4](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/vnet-create-4.png)
+
+**Create** をクリックします。
+
+![vnet create 5](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/vnet-create-5.png)
+
+
+## Resource Orchestration および Resource Stack について学ぶ（オプション）
+
+> 注意：この章では何も実行する必要はありません。動作の仕組みについてより詳しく学びたい場合は、続きを読んでください。
+
+お客様のクラウドアカウントで Azure Deployment Service を通じて resource stack を実行する際、VNet、Virtual Machine、Storage Account などのクラウドリソースに対して関連する操作を実行するため、一連の IAM 権限が必要になります。
+
+**管理者権限でこのスクリプトを実行するか、管理者にこのスクリプトを実行してもらってください**。そうでなければ、権限不足によりテンプレート実行の失敗が発生する可能性があります。
+
+### Resource Orchestration テンプレートの説明
+
+VeloDB が提供するリソースオーケストレーションテンプレートはお客様のクラウドアカウント下で動作し、テンプレートコードは可視化および監査可能であり、VPC 内のお客様のデータや他の環境を操作することはありません。以下のリンクから VeloDB が提供するリソースオーケストレーションテンプレートを取得できます：
+
+```
+https://onlinevelodbwestus3.blob.core.windows.net/velodb-cloud-online-westus3/public/azure-westus3-byoc-cf.json
+```
+上記のリソーステンプレートをAzure Deployment Stacksを通じて実行すると、自動的にAgentが作成およびデプロイされます。その後、AgentはVeloDB Cloudとのプライベート接続を確立し、ウェアハウスの初期化プロセスを完了します。
+
+リソースオーケストレーションスクリプトの実行後、VeloDB Cloudプラットフォームから対応するウェアハウスに入り、通常のウェアハウスを使用するときと同じように、データ分析用のコンピューティングクラスターの作成を開始できます。
+
+### リソーススタック情報を表示する方法
+
+VeloDBリソーススタックテンプレートによって作成されたすべてのリソース情報を表示し、Azure Deployment Stacksを通じてリソース名別に特定のリソースを表示できます。
+
+> **注意** リソーススタックテンプレートによって作成されたすべてのリソースは、あなたのクラウドアカウントに属し、あなたのVPC内でのみ使用され、漏洩することはありません。
+
+* **Virtual Machine**
+  * Name: VeloDBAgent
+  * Purpose: Agent、Prometheus、FluentBitなどのプログラムをデプロイするために使用
+* **Private Endpoint**
+  * Name: VeloDBEndpoint
+  * Purpose: VeloDB Manageサービスとのプライベートネットワーク接続（PrivateLink Connection）を確立し、制御命令をプルし、監視とログを一方向にプッシュできるようにする
+* **Network SecurityGroup**
+  * Name: VeloDBSecurityGroupIngress、VeloDBSecurityGroupEgress
+  * Purpose: エンドポイントとVeloDBによって作成されたすべてのVirtual Machineにバインドされ、ファイアウォールルールを通じて特定のポートとソースのインバウンドおよびアウトバウンドトラフィックを制限
+* **Storage Account**
+  * Name: VeloDBBucket
+  * Purpose: データウェアハウスデータを保存するために使用
+* **User-Assigned Managed Identity & Role Definition**
+  * Name:
+    * VeloDBDataAccessIdentity（Kernel側マネージドアイデンティティ）、VeloDBAgentIdentity（Control側マネージドアイデンティティ）
+    * VeloDBControlPlaneRole（Control側マネージドアイデンティティにバインドされたカスタムロール権限）
+    * Purpose: 作成されたユーザー割り当てマネージドアイデンティティは、Agentに必要な最小限の権限ポリシーを持ち、その後のすべての制御操作はVeloDBAgentIdentityのアイデンティティを使用して実行される
+
+### 作成されたユーザー割り当てマネージドアイデンティティの権限
+
+テンプレートが初回実行されてデプロイメントスタックを作成した後、すべての管理および制御操作は、ユーザー割り当てマネージドアイデンティティの権限に基づいて実行されます。以下は、テンプレートからの抜粋です。
+
+* **権限の概要:**
+
+  ```YAML
+  'Microsoft.Compute/register/action'
+  'Microsoft.Compute/virtualMachines/read'
+  'Microsoft.Compute/virtualMachines/write'
+  'Microsoft.Compute/virtualMachines/delete'
+  'Microsoft.Compute/virtualMachines/start/action'
+  'Microsoft.Compute/virtualMachines/powerOff/action'
+  'Microsoft.Compute/virtualMachines/redeploy/action'
+  'Microsoft.Compute/virtualMachines/restart/action'
+  'Microsoft.Compute/virtualMachines/deallocate/action'
+  'Microsoft.Compute/virtualMachines/runCommand/action'
+  'Microsoft.Compute/virtualMachines/attachDetachDataDisks/action'
+  'Microsoft.Compute/virtualMachines/vmSizes/read'
+  'Microsoft.Compute/virtualMachines/runCommands/read'
+  'Microsoft.Compute/virtualMachines/runCommands/write'
+  'Microsoft.Compute/virtualMachines/instanceView/read'
+  'Microsoft.Compute/virtualMachines/extensions/read'
+  'Microsoft.Compute/locations/diskOperations/read'
+  'Microsoft.Compute/disks/read'
+  'Microsoft.Compute/disks/write'
+  'Microsoft.Compute/disks/delete'
+  'Microsoft.Compute/skus/read'
+  'Microsoft.Compute/locations/usages/read'
+  'Microsoft.Compute/locations/publishers/artifacttypes/offers/skus/read'
+  'Microsoft.Compute/locations/publishers/artifacttypes/offers/read'
+  'Microsoft.Compute/locations/publishers/artifacttypes/offers/skus/versions/read'
+  'Microsoft.Compute/operations/read'
+  'Microsoft.Compute./assets/read'
+  'Microsoft.Compute/locations/operations/read'
+  'Microsoft.Compute/locations/vmSizes/read'
+  'Microsoft.Compute/locations/runCommands/read'
+  'Microsoft.Network/register/action'
+  'Microsoft.Network/operations/read'
+  'Microsoft.Network/loadBalancers/read'
+  'Microsoft.Network/loadBalancers/write'
+  'Microsoft.Network/loadBalancers/delete'
+  'Microsoft.Network/loadBalancers/health/action'
+  'Microsoft.Network/loadBalancers/backendAddressPools/queryInboundNatRulePortMapping/action'
+  'Microsoft.Network/loadBalancers/backendAddressPools/updateAdminState/action'
+  'Microsoft.Network/loadBalancers/backendAddressPools/health/action'
+  'Microsoft.Network/loadBalancers/backendAddressPools/read'
+  'Microsoft.Network/loadBalancers/backendAddressPools/write'
+  'Microsoft.Network/loadBalancers/backendAddressPools/delete'
+  'Microsoft.Network/loadBalancers/backendAddressPools/backendPoolAddresses/read'
+  'Microsoft.Network/loadBalancers/backendAddressPools/join/action'
+  'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/diagnosticSettings/read'
+  'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/diagnosticSettings/write'
+  'Microsoft.Network/loadBalancers/frontendIPConfigurations/read'
+  'Microsoft.Network/loadBalancers/frontendIPConfigurations/join/action'
+  'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/read'
+  'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/write'
+  'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/delete'
+  'Microsoft.Network/loadBalancers/loadBalancingRules/read'
+  'Microsoft.Network/loadBalancers/loadBalancingRules/health/action'
+  'Microsoft.Network/loadBalancers/networkInterfaces/read'
+  'Microsoft.Network/loadBalancers/outboundRules/read'
+  'Microsoft.Network/loadBalancers/virtualMachines/read'
+  'Microsoft.Network/loadBalancers/probes/read'
+  'Microsoft.Network/loadBalancers/probes/join/action'
+  'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/metricDefinitions/read'
+  'Microsoft.Network/networkInterfaces/read'
+  'Microsoft.Network/networkInterfaces/write'
+  'Microsoft.Network/networkInterfaces/join/action'
+  'Microsoft.Network/networkInterfaces/delete'
+  'Microsoft.Network/networkInterfaces/effectiveRouteTable/action'
+  'Microsoft.Network/networkInterfaces/effectiveNetworkSecurityGroups/action'
+  'Microsoft.Network/networkInterfaces/ipconfigurations/read'
+  'Microsoft.Network/networkInterfaces/loadBalancers/read'
+  'Microsoft.Network/networkSecurityGroups/read'
+  'Microsoft.Network/networkSecurityGroups/write'
+  'Microsoft.Network/networkSecurityGroups/delete'
+  'Microsoft.Network/networkSecurityGroups/join/action'
+  'Microsoft.Network/virtualNetworks/read'
+  'Microsoft.Network/virtualNetworks/joinLoadBalancer/action'
+  'Microsoft.Network/virtualNetworks/subnets/read'
+  'Microsoft.Network/virtualNetworks/subnets/join/action'
+  'Microsoft.Network/virtualNetworks/subnets/joinLoadBalancer/action'
+  'Microsoft.Network/ipAllocations/read'
+  'Microsoft.Network/publicIPAddresses/read'
+  'Microsoft.Storage/storageAccounts/blobServices/containers/read'
+  'Microsoft.Storage/storageAccounts/blobServices/containers/write'
+  'Microsoft.Storage/storageAccounts/blobServices/containers/delete'
+  ```
+特定の権限は以下のように分類されています：
+
+* **Virtual Machine権限：**
+    * vm instancesを管理する
+
+      ```YAML
+      'Microsoft.Compute/register/action'
+      'Microsoft.Compute/virtualMachines/read'
+      'Microsoft.Compute/virtualMachines/write'
+      'Microsoft.Compute/virtualMachines/delete'
+      'Microsoft.Compute/virtualMachines/start/action'
+      'Microsoft.Compute/virtualMachines/powerOff/action'
+      'Microsoft.Compute/virtualMachines/redeploy/action'
+      'Microsoft.Compute/virtualMachines/restart/action'
+      'Microsoft.Compute/virtualMachines/deallocate/action'
+      'Microsoft.Compute/virtualMachines/runCommand/action'
+      'Microsoft.Compute/virtualMachines/attachDetachDataDisks/action'
+      'Microsoft.Compute/virtualMachines/vmSizes/read'
+      'Microsoft.Compute/virtualMachines/runCommands/read'
+      'Microsoft.Compute/virtualMachines/runCommands/write'
+      'Microsoft.Compute/virtualMachines/instanceView/read'
+      'Microsoft.Compute/virtualMachines/extensions/read'
+      'Microsoft.Compute/locations/diskOperations/read'
+      'Microsoft.Compute/disks/read'
+      'Microsoft.Compute/disks/write'
+      'Microsoft.Compute/disks/delete'
+      'Microsoft.Compute/skus/read'
+      'Microsoft.Compute/locations/usages/read'
+      'Microsoft.Compute/locations/publishers/artifacttypes/offers/skus/read'
+      'Microsoft.Compute/locations/publishers/artifacttypes/offers/read'
+      'Microsoft.Compute/locations/publishers/artifacttypes/offers/skus/versions/read'
+      'Microsoft.Compute/operations/read'
+      'Microsoft.Compute./assets/read'
+      'Microsoft.Compute/locations/operations/read'
+      'Microsoft.Compute/locations/vmSizes/read'
+      'Microsoft.Compute/locations/runCommands/read'
+      ```
+* ファイアウォールルールを管理する
+
+      ```YAML
+      compute.firewalls.create
+      compute.firewalls.createTagBinding
+      compute.firewalls.delete
+      compute.firewalls.deleteTagBinding
+      compute.firewalls.get
+      compute.firewalls.list
+      compute.firewalls.update
+      ```
+* **Virtual Networks permissions:**
+    * VPC関連のリソース情報を取得
+
+      ```YAML
+      'Microsoft.Network/register/action'
+      'Microsoft.Network/operations/read'
+      'Microsoft.Network/virtualNetworks/read'
+      'Microsoft.Network/virtualNetworks/joinLoadBalancer/action'
+      'Microsoft.Network/virtualNetworks/subnets/read'
+      'Microsoft.Network/virtualNetworks/subnets/join/action'
+      'Microsoft.Network/virtualNetworks/subnets/joinLoadBalancer/action'
+      'Microsoft.Network/ipAllocations/read'
+      'Microsoft.Network/publicIPAddresses/read'
+      ```
+* ネットワークインターフェースとセキュリティグループリソースを管理する
+
+      ```YAML
+      'Microsoft.Network/register/action'
+      'Microsoft.Network/operations/read'
+      'Microsoft.Network/virtualNetworks/read'
+      'Microsoft.Network/virtualNetworks/joinLoadBalancer/action'
+      'Microsoft.Network/virtualNetworks/subnets/read'
+      'Microsoft.Network/virtualNetworks/subnets/join/action'
+      'Microsoft.Network/virtualNetworks/subnets/joinLoadBalancer/action'
+      'Microsoft.Network/ipAllocations/read'
+      'Microsoft.Network/publicIPAddresses/read'
+      ```
+* LBリソースの管理
+
+      ```YAML
+      'Microsoft.Network/loadBalancers/read'
+      'Microsoft.Network/loadBalancers/write'
+      'Microsoft.Network/loadBalancers/delete'
+      'Microsoft.Network/loadBalancers/health/action'
+      'Microsoft.Network/loadBalancers/backendAddressPools/queryInboundNatRulePortMapping/action'
+      'Microsoft.Network/loadBalancers/backendAddressPools/updateAdminState/action'
+      'Microsoft.Network/loadBalancers/backendAddressPools/health/action'
+      'Microsoft.Network/loadBalancers/backendAddressPools/read'
+      'Microsoft.Network/loadBalancers/backendAddressPools/write'
+      'Microsoft.Network/loadBalancers/backendAddressPools/delete'
+      'Microsoft.Network/loadBalancers/backendAddressPools/backendPoolAddresses/read'
+      'Microsoft.Network/loadBalancers/backendAddressPools/join/action'
+      'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/diagnosticSettings/read'
+      'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/diagnosticSettings/write'
+      'Microsoft.Network/loadBalancers/frontendIPConfigurations/read'
+      'Microsoft.Network/loadBalancers/frontendIPConfigurations/join/action'
+      'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/read'
+      'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/write'
+      'Microsoft.Network/loadBalancers/frontendIPConfigurations/loadBalancerPools/delete'
+      'Microsoft.Network/loadBalancers/loadBalancingRules/read'
+      'Microsoft.Network/loadBalancers/loadBalancingRules/health/action'
+      'Microsoft.Network/loadBalancers/networkInterfaces/read'
+      'Microsoft.Network/loadBalancers/outboundRules/read'
+      'Microsoft.Network/loadBalancers/virtualMachines/read'
+      'Microsoft.Network/loadBalancers/probes/read'
+      'Microsoft.Network/loadBalancers/probes/join/action'
+      'Microsoft.Network/loadBalancers/providers/Microsoft.Insights/metricDefinitions/read'
+      ```
+* **Storage Account Container Permissions:**
+  * ストレージアカウントコンテナを管理する
+
+    ```YAML
+    'Microsoft.Storage/storageAccounts/blobServices/containers/read'
+    'Microsoft.Storage/storageAccounts/blobServices/containers/write'
+    'Microsoft.Storage/storageAccounts/blobServices/containers/delete'
+    ```
+* **IAM permissions:**
+  * ユーザー割り当てマネージド ID を割り当てる
+
+    ```YAML
+    'Microsoft.ManagedIdentity/userAssignedIdentities/read'
+    'Microsoft.ManagedIdentity/userAssignedIdentities/assign/action'
+    ```

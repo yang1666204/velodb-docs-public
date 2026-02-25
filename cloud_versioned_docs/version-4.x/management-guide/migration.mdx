@@ -1,0 +1,38 @@
+---
+{
+    "title": "Migration",
+    "description": "VeloDB Cloud provides efficient and secure one-stop data migration function, supporting the smooth migration of full data from Apache Doris, VeloDB, and Starrocks data sources to VeloDB data warehouse."
+}
+---
+
+# Migration
+
+VeloDB Cloud provides efficient and secure one-stop data migration function, supporting the smooth migration of full data from Apache Doris, VeloDB, and Starrocks data sources to VeloDB data warehouse.
+
+Enter the "Data Migration" module, click "Create Migration Task", fill in the task name, description, source cluster connection information, JDBC port, HTTP port, username, password, and click "Next" to verify connectivity.
+
+![migration-connection](/images/cloud/migration-connection.png)
+
+Configure temporary object storage. After selecting the provider of object storage, fill in the corresponding object storage address and authorization information. The object storage is used for temporary storage migration of data, and will be automatically cleaned up after the migration is completed.
+
+![migration-object-storage](/images/cloud/migration-object-storage.png)
+
+Check the database & table to be migrated (support batch selection or custom filtering), support data filtering for set conditions.
+
+![migration-table](/images/cloud/migration-table.png)
+
+In the settings section, select the cluster of computing resources used for migration, set the number of migration concurrency for tables and the number of Tablet migration concurrency for each table.
+
+![migration-setting.](/images/cloud/migration-setting.png)
+
+After the pre-check is passed, the migration task can be started.
+
+![migration-confirm](/images/cloud/migration-confirm.png)
+
+You can view basic information about migration tasks in the data migration list, including migration task name, data source, migration status, creation time, and other information.
+
+![migration-task](/images/cloud/migration-task.png)
+
+Click on a specific task to view detailed information about that task.
+
+![migration-detail](/images/cloud/migration-detail.png)

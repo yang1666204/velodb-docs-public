@@ -1,0 +1,68 @@
+---
+{
+  "title": "I don't see any text to translate in your message. You mentioned \"Text:\" followed by \"JSON_ARRAY\", but JSON_ARRAY appears to be a technical term or identifier rather than documentation text that needs translation.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "description": "指定された値を含むjson配列を生成し、値が存在しない場合は空を返す",
+  "language": "ja"
+}
+---
+## 説明
+指定された値を含むjson配列を生成し、値がない場合は空を返します
+
+
+## 構文
+
+```sql
+JSON_ARRAY (<a>, ...)
+```
+## Parameters
+| Parameter | Description                                                                                                   |
+|------|---------------------------------------------------------------------------------------------------------------|
+| `<a>, ...` | JSON配列に含める要素。NULL を含む任意の型の単一または複数の値を指定できます。 |
+
+
+## Return Values
+指定された値を含むJSON配列を返します。値が指定されていない場合は、空のJSON配列が返されます。
+
+
+## Examples
+
+```sql
+select json_array();
+```
+```text
++--------------+
+| json_array() |
++--------------+
+| []           |
++--------------+
+```
+```sql
+select json_array(null);
+```
+```text
++--------------------+
+| json_array('NULL') |
++--------------------+
+| [NULL]             |
++--------------------+
+```
+```sql
+SELECT json_array(1, "abc", NULL, TRUE, CURTIME());
+```
+```text
++-----------------------------------------------+
+| json_array(1, 'abc', 'NULL', TRUE, curtime()) |
++-----------------------------------------------+
+| [1, "abc", NULL, TRUE, "10:41:15"]            |
++-----------------------------------------------+
+```
+```sql
+select json_array("a", null, "c");
+```
+```text
++------------------------------+
+| json_array('a', 'NULL', 'c') |
++------------------------------+
+| ["a", NULL, "c"]             |
++------------------------------+
+```

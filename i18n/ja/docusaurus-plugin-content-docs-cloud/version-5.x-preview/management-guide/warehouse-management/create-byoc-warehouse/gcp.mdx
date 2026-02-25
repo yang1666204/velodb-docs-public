@@ -1,0 +1,170 @@
+---
+{
+  "title": "GCP上でBYOC Warehouseを作成する方法",
+  "description": "Google Cloud Platform上でVeloDB Cloudを使用してBYOCデータウェアハウスを作成するステップバイステップガイド。",
+  "language": "ja"
+}
+---
+# GCPでBYOC Warehouseを作成する方法
+
+## 準備
+
+BYOCモードのリソースはお客様のクラウドアカウントにデプロイされるため、使用前にスムーズなリソース設定と管理を確保するための準備作業を行う必要があります：
+
+- **組織にユーザーを追加して承認する**
+- **VPCとサブネットを準備する**
+- **Resource Orchestrationについて学ぶ**
+
+## GCPでBYOC Warehouseを作成する
+
+### warehouseの設定を作成する
+
+warehouseの作成ガイドページまたは左上のwarehouseリストで、New Warehouseをクリックしてwarehouse設定ページに入り、フォームを記入して作成します。
+
+![create new warehouse byoc gcp](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/create-new-warehouse-byoc-gcp.png)
+
+以下の情報を記入してwarehouseの作成を開始します。
+
+| **パラメータ**  | **説明**                                                                                                                                                                                              |
+| -------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Warehouse Name | 必須。組織内で一意、32文字以内、英字、中国語、数字、-、\_、およびそれらの組み合わせをサポート。                                              |
+| Warehouse Mode | BYOCを選択                                                                                                                                                                                                  |
+| Cloud Platform | GCPを選択                                                                                                                                                                                                   |
+| Region         | データウェアハウスをデプロイしたいリージョンを選択します。リモート通信ネットワークアーキテクチャが複雑で遅延が大きいため、アプリケーションシステム/クライアントと同じリージョンを選択することをお勧めします。現在、VeloDB Cloudはクラウドプラットフォームの複数のリージョンを既にサポートしており、顧客のニーズに基づいてより多くのリージョンを継続的にサポートします。                                                                             |                                                                                                          |
+| Core Version   | VeloDB Core 2.0以降のバージョンは、ストレージとコンピューティングの分離をサポートします。ストレージは実際の使用量に基づいて課金され、ストレージ容量を事前に設定する必要がありません。                        |
+| VPC            | 初めて新しいBYOC warehouseを作成する際、デフォルトで「New VPC」が選択されます。後続の手順では、クラウド環境のVPCを選択して新しいwarehouse作成を完了するようガイドします。  <br/>以前にVPCでBYOC warehouseを作成したことがある場合は、このVPCを直接選択して新しいwarehouseを作成できます。 |
+
+この表は、VeloDB Cloud BYOC WarehouseがデプロイできるGCPリージョンとアベイラビリティゾーンをリストしています
+
+| Cloud Platform | Region Name         | Region ID         | Availability Zone ID |
+|:---------------|:-----------------|:--------------------|:--------------------|
+| GCP            | US West 1        | us-west1          | all            |
+| GCP            | US East 4        | us-east4          | all            |
+
+「Next」ボタンをクリックして次のステップに進みます。
+
+### GCPの準備
+
+正式に作成する前に、ドキュメントを参照して以下の準備を完了してください：
+
+- 組織にユーザーを追加して承認する
+- VPCとサブネットを準備する
+- Resource Orchestrationについて学ぶ
+
+**Done**をクリックして次のステップに進みます。
+
+![wh create 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-create-1.png)
+
+### クラウドリソースの設定
+
+コマンドをコピーして「Open CloudShell」をクリックします。
+
+![wh create 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-create-2.png)
+
+Google CloudでVeloDB Cloud BYOC warehouseをデプロイするために、**プロジェクトを正しく選択**し、コマンドを貼り付けて実行します。
+
+shellを実行するために以下の情報を記入します。
+
+| Parameters   | Description                                |
+|--------------|--------------------------------------------|
+| **VPC name** | 前のステップで作成した**VPC name**    |
+| **Subnet name**    | 前のステップで作成した**Subnet name** |
+| Zone ID      | warehouseをデプロイしたいアベイラビリティゾーン（オプション） |
+
+![gcp cloudshell](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/gcp-cloudshell.png)
+
+スクリプトの完了を待ち、velodbページに戻り、「Warehouse Initialization」ステップの完了を待ちます。
+
+![wh create 5](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-create-5.png)
+
+Warehouse Initializationが完了すると、VeloDB CloudはBYOC warehouseとの接続を確立します。その後、warehouseに入ってクラスターを作成できます。
+
+### Warehouseの初期化
+
+システムはwarehouseを初期化します。これには約5-10分かかります。warehouseの初期化が30分以上かかる場合、または継続できない他の状況が発生した場合は、[Get Help](mailto:support@velodb.io)にお問い合わせください。
+
+![wh create 6](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-create-6.png)
+
+### 新しいクラスターを作成する
+
+新しいクラスターページまたはクラスター概要ページで、Create a new clusterをクリックしてクラスター設定ページに入ります。詳細な操作については、Create a new clusterを参照してください。
+
+![wh create 7](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-create-7.png)
+
+
+## パブリックネットワーク接続とアクセスを開く
+
+### External IP Addressを予約する
+
+**1. Master Private IPをコピーする**
+
+[VeloDB Cloud](https://www.velodb.cloud/)に移動し、**Connect**をクリックして**Master IP**をコピーします。
+
+![webui 0](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-0.png)
+
+**[GCP VM Instances](https://console.cloud.google.com/compute/instances)**に入り、上記のIPを検索します。
+
+![webui 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-1.png)
+
+インスタンスに入り、VPCを確認します。
+
+![webui 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-2.png)
+
+**2. External IP Addressを予約する**
+
+**[GCP IP Address](https://console.cloud.google.com/networking/addresses/list)**に入り、**RESERVE EXTERNAL STATIC IP ADDRESS**をクリックします。
+
+![webui 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-3.png)
+
+**Name**を入力します。Network Service TierはPremiumを選択します。IP versionはIPv4を選択します。TypeはRegionalを選択します。
+
+byoc warehouseがある**Region**を選択します。master ipが対応する上記のインスタンスにアタッチします。
+
+**RESERVE**をクリックします。
+
+![webui 4](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-4.png)
+
+### Firewall Policyを作成する
+
+**[GCP Firewall Policy](https://console.cloud.google.com/net-security/firewall-manager/firewall-policies/list)**に入ります。**Create Firewall Policy**をクリックします。
+
+![webui 5](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-5.png)
+
+**Policy name**を入力します。**Deployment scope**は**Global**を選択します。**CONTINUE**をクリックします。
+
+![webui 6](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-6.png)
+
+**CREATE FIREWALL RULE**をクリックします。**Priority**を入力します。Direction of trafficは**Ingress**を選択します。Action on matchは**Allow**を選択します。
+
+Targetは**Apply to all**を選択します。IP typeは**IPv4**を選択します。`0.0.0.0/0`またはwarehouseにアクセスしたいパブリックIPを入力します。
+
+Protocols and portsは**Specified protocols and ports**を選択します。
+
+**TCP**を選択し、`8080,8088,9030`を入力します。**CREATE**をクリックします。
+
+![webui 7](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-7.png)
+
+作成したばかりのルールを確認します。**CONTINUE**をクリックします。
+
+![webui 8](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-8.png)
+
+![webui 9](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-9.png)
+
+**ASSOCIATE**をクリックします。byoc warehouseがあるVPCを確認します。**ASSOCIATE**をクリックします。
+
+![webui 10](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-10.png)
+
+**Create**をクリックします。
+
+![webui 11](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-11.png)
+
+VeloDB Cloud接続ページに戻り、Master IPパブリックネットワーク更新アイコンをクリックします。
+
+![webui 12](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/webui-12.png)
+
+この時点で、WebUIにアクセスし、パブリックネットワーク経由でwarehouseに接続できます。
+
+
+## Warehouseの使用
+
+warehouseの使用操作およびwarehouseを削除する必要がある場合は、ドキュメント[Warehouse Usage](../use-warehouse.mdx)を参照してください。

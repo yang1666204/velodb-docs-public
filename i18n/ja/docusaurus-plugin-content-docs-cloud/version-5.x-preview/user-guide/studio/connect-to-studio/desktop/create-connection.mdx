@@ -1,0 +1,69 @@
+---
+{
+  "language": "ja"
+}
+---
+## Regular
+   
+    **一般的な接続には以下の情報が必要です：**
+
+    - **Connection name**: 覚えやすいように、接続にわかりやすい名前を付けることができます
+    - **Host**: データベースのアドレス
+    - **Port**: データベースのJDBCポート
+    - **HTTP Port**: データベースのHTTPポート。クエリProfile情報の取得に使用されます
+    - **Username**: データベースのユーザー名
+    - **Password**: データベースのパスワード
+
+    <img className='mt-5' src={`/img/studio/create-connection.png`} alt="create-connection" width="1400" height="600"/>
+Test Connectionをクリックすると接続テストが開始されます。接続が成功した場合は接続が表示され、そうでない場合は接続が表示されます。
+
+    Saveをクリックして接続情報を保存すると、接続リストで接続を確認できます。
+
+
+## SSH tunnelを介した接続
+   
+    SSHトンネルを通じてデータベースに接続することは、一般的なセキュリティプラクティスです。データセキュリティを確保するため、以下の状況ではSSHトンネルを使用してデータベースに接続することをお勧めします：
+
+    - データベースサービスがプライベートネットワーク（VPCやイントラネットなど）にデプロイされており、SSHトンネルを通じてアクセスして踏み台マシンに接続する場合。
+
+    - 設定の簡素化のため、SSL/TLSアクセスの代わりに、一部のケースではデータベース用のSSL/TLS証明書の設定が複雑で時間がかかる場合があり、SSHトンネリングはデータベース自体の設定を変更することなく、高速で安全な代替手段を提供します。
+
+    **SSHトンネル接続には以下の情報が必要です**
+    
+    :::info
+後続の入力と接続を実行する前に、SSHトンネルオプションを有効にするためにSSH tunnelをチェックしてください
+:::
+
+    - **Host**: SSHサーバーのアドレス
+    - **Port**: SSHサーバーのポート
+    - **Username**: SSHサーバーのユーザー名
+    - **Authentication method**: パスワードまたは公開鍵を選択
+    - **Password**: SSHパスワード
+    - **Private Key**: SSHサーバーの秘密鍵へのパス
+    - **Private key password (publication)**: SSHサーバーの秘密鍵に別のパスワード（パブリケーション）がある場合、秘密鍵パスワード（パブリケーション）を入力する必要があります
+
+
+    ### パスワード認証
+
+    SSHサーバーユーザーのパスワードを入力してください
+    <img className="pt-5" src={`/img/studio/create-connection-via-ssh.png`} alt="create-connection-via-ssh" width="1400" height="600"/>
+
+    ### 公開鍵認証
+
+    SSHサーバーの秘密鍵へのパスを入力してください。SSHサーバーの秘密鍵に別のパスワードがある場合、秘密鍵パスワードを入力する必要があります。
+
+    :::info
+秘密鍵ファイルはどこにも保存またはアップロードされません。提供される秘密鍵ファイルパスのみです
+:::
+<img className="pt-5" src={`/img/studio/create-connection-via-ssh-publickey.png`} alt="create-connection-via-ssh-publickey" width="1400" height="600"/>
+
+
+## Studio URIを通じた接続の作成
+   
+検索ボタンの横にある`Use URI`作成アイコンをクリックしてCreate Connectionダイアログボックスを開きます。
+
+<img className="pt-5" src={`/img/studio/create-connection-via-uri-button.png`} alt="create-connection-via-uri-button" width="1400" height="600"/>
+
+
+ダイアログボックスでVeloDB Studio Desktop URIを入力し、'Apply'ボタンをクリックすると、情報がCreate Connection Formに自動的に入力されます。
+<img className="pt-5" src={`/img/studio/create-connection-via-uri-modal.png`} alt="create-connection-via-uri-modal" width="1400" height="600"/>

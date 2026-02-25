@@ -1,0 +1,55 @@
+---
+{
+  "title": "I don't see any text to translate after \"STARTS_WITH\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "description": "STARTSWITH関数は、文字列が指定されたプレフィックスで始まるかどうかをチェックします。文字列が指定されたプレフィックスで始まる場合はtrueを返します；",
+  "language": "ja"
+}
+---
+## 説明
+
+STARTS_WITH関数は、文字列が指定されたプレフィックスで始まるかどうかをチェックします。文字列が指定されたプレフィックスで始まる場合はtrueを返し、そうでない場合はfalseを返します。
+
+## 構文
+
+```sql
+STARTS_WITH(<str>, <prefix>)
+```
+## パラメータ
+| Parameter | Description                               |
+| --------- | ----------------------------------------- |
+| `<str>` | チェック対象の文字列。型: VARCHAR        |
+| `<prefix>` | マッチさせる接頭辞文字列。型: VARCHAR |
+
+## 戻り値
+
+BOOLEAN型を返します。
+
+特殊なケース:
+- いずれかの引数がNULLの場合、NULLを返します
+
+## 例
+
+1. マッチ成功
+
+```sql
+SELECT starts_with('hello world', 'hello');
+```
+```text
++-------------------------------------+
+| starts_with('hello world', 'hello') |
++-------------------------------------+
+|                                   1 |
++-------------------------------------+
+```
+2. マッチ失敗
+
+```sql
+SELECT starts_with('hello world', 'world');
+```
+```text
++-------------------------------------+
+| starts_with('hello world', 'world') |
++-------------------------------------+
+|                                   0 |
++-------------------------------------+
+```

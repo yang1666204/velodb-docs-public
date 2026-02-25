@@ -1,0 +1,321 @@
+---
+{
+  "title": "PostgresからVeloDBへのデータ取り込み",
+  "description": "Flink CDCを使用したPostgreSQLからVeloDBへのリアルタイムCDCのガイド",
+  "language": "ja"
+}
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# PostgreSQLからVeloDBへのデータ取り込み（Flink CDCを使用）
+
+## 前提条件
+
+### VeloDB Cloudアカウント（必須）
+
+アクティブなクラスターを持つVeloDB Cloudアカウントが必要です。アカウントをお持ちでない場合は、[VeloDB Quick Start Guide](../../getting-started/quick-start)に従ってアカウントとクラスターを作成してください。
+
+VeloDBでSQLクエリを実行し、データベースを作成するには、VeloDB Consoleサイドバーの組み込み**SQL Editor**を使用してください：
+
+![SQL Editor](/images/cloud/integration/postgres/quickstart-editor.png)
+
+### PostgreSQLソース設定
+
+PostgreSQLデータベースがCDC用に設定されていることを確認してください：
+
+| ソースタイプ | セットアップガイド |
+|-------------|-------------|
+| Self-hosted PostgreSQL | [Local PostgreSQL Source Setup](./postgres-cdc/generic) |
+| Amazon Aurora RDS PostgreSQL | [Aurora RDS PostgreSQL Source Setup](./postgres-cdc/aurora-rds) |
+| Amazon Aurora Serverless v2 PostgreSQL | [Aurora Serverless PostgreSQL Source Setup](./postgres-cdc/aurora-serverless) |
+
+**必須のPostgreSQL設定：**
+- `wal_level = logical`
+- `max_replication_slots >= 1`
+- `max_wal_senders >= 1`
+- `REPLICATION, LOGIN`権限とテーブルに対する`SELECT`権限を持つCDCユーザー
+- Auroraの場合：`rds_replication`、`rds_superuser`、`pg_read_all_data`ロールを持つCDCユーザー
+
+---
+
+## 1. （オプション）サンプルテーブルの作成
+
+PostgreSQLデータベースで以下のSQLを実行してください：
+
+```sql
+CREATE DATABASE test_db;
+
+\c test_db
+
+CREATE TABLE student (
+    id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT,
+    email VARCHAR(255),
+    phone VARCHAR(20),
+    score NUMERIC(5,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO student (id, name, age, email, phone, score) VALUES
+(1, 'Alice Zhang', 22, 'alice@example.com', '13800138000', 89.50),
+(2, 'Bob Li', 21, 'bob@example.com', '13900139000', 76.80),
+(3, 'Charlie Wang', 23, 'charlie@example.com', '13600136000', 92.00);
+```
+:::info
+**DELETE操作をキャプチャするには:** テーブルでREPLICA IDENTITY FULLを有効にしてください：
+
+```sql
+ALTER TABLE student REPLICA IDENTITY FULL;
+```
+これにより、DELETEイベントには主キーだけでなく、完全な行データが含まれることが保証されます。
+:::
+
+---
+
+## 2. コネクタを含むFlinkのインストール
+
+<Tabs>
+  <TabItem value="pre-packaged" label="Pre-packaged Bundle (Recommended)" default>
+
+Flink、すべての必要なコネクタ、およびJDKが含まれた事前パッケージ化されたFlinkバンドルをダウンロードします：
+
+```bash
+curl -O https://apache-doris-releases.oss-accelerate.aliyuncs.com/extention/flink-1.17.2-with-doris-connector.tar.gz
+tar -xzf flink-1.17.2-with-doris-connector.tar.gz
+cd flink-1.17.2-with-doris-connector
+export JAVA_HOME=$(pwd)/jdk
+```
+:::info
+このパッケージには、Flink 1.17.2、Doris Connector、PostgreSQL CDC Connector、JDBCドライバー、およびLinux用のバンドル済みJDKが含まれています。別途Javaのインストールは不要です。
+:::
+
+  </TabItem>
+  <TabItem value="manual" label="Manual Download">
+
+:::warning
+手動インストールには Java [8](https://www.oracle.com/java/technologies/downloads/#java8) または [11](https://www.oracle.com/java/technologies/downloads/#java11) が必要です。
+:::
+
+コンポーネントを個別にダウンロードする場合：
+
+| Package | File |
+|---------|------|
+| Flink 1.17 | [flink-1.17.2-bin-scala_2.12.tgz](https://archive.apache.org/dist/flink/flink-1.17.2/flink-1.17.2-bin-scala_2.12.tgz) |
+| Flink PostgreSQL CDC | [flink-sql-connector-postgres-cdc-3.1.0.jar](https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-postgres-cdc/3.1.0/flink-sql-connector-postgres-cdc-3.1.0.jar) |
+| Flink Doris Connector | [flink-doris-connector-1.17-25.1.0.jar](https://repo1.maven.org/maven2/org/apache/doris/flink-doris-connector-1.17/25.1.0/flink-doris-connector-1.17-25.1.0.jar) |
+| PostgreSQL JDBC Driver | [postgresql-42.7.1.jar](https://jdbc.postgresql.org/download/postgresql-42.7.1.jar) |
+| MySQL JDBC Driver | [mysql-connector-j-8.0.33.jar](https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar) |
+
+```bash
+# Download Flink
+curl -O https://archive.apache.org/dist/flink/flink-1.17.2/flink-1.17.2-bin-scala_2.12.tgz
+tar -xzf flink-1.17.2-bin-scala_2.12.tgz
+
+# Download connectors to lib/
+curl -o flink-1.17.2/lib/flink-sql-connector-postgres-cdc-3.1.0.jar \
+  https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-postgres-cdc/3.1.0/flink-sql-connector-postgres-cdc-3.1.0.jar
+
+curl -o flink-1.17.2/lib/flink-doris-connector-1.17-25.1.0.jar \
+  https://repo1.maven.org/maven2/org/apache/doris/flink-doris-connector-1.17/25.1.0/flink-doris-connector-1.17-25.1.0.jar
+
+curl -o flink-1.17.2/lib/postgresql-42.7.1.jar \
+  https://jdbc.postgresql.org/download/postgresql-42.7.1.jar
+
+curl -o flink-1.17.2/lib/mysql-connector-j-8.0.33.jar \
+  https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar
+```
+</TabItem>
+</Tabs>
+
+---
+
+## 3. VeloDBでターゲットデータベースを作成する
+
+Flink CDCを実行する前に、**SQL Editor**を使用してVeloDBでターゲットデータベースを作成します：
+
+```sql
+CREATE DATABASE IF NOT EXISTS <your_velodb_database>;
+```
+:::info
+データベースはVeloDBに存在している必要があります。テーブルは、PostgreSQLスキーマに基づいてFlink Doris Connectorによって自動作成されます。
+:::
+
+---
+
+## 4. 実行
+
+<Tabs>
+  <TabItem value="local" label="Local" default>
+
+```bash
+bin/flink run -t local \
+    -Dexecution.checkpointing.interval=10s \
+    -Dparallelism.default=1 \
+    -c org.apache.doris.flink.tools.cdc.CdcTools \
+    lib/flink-doris-connector-1.17-25.1.0.jar \
+    postgres-sync-database \
+    --database "<YOUR_VELODB_DATABASE>" \
+    --postgres-conf hostname="<YOUR_POSTGRES_HOST>" \
+    --postgres-conf port="5432" \
+    --postgres-conf username="<YOUR_POSTGRES_USER>" \
+    --postgres-conf password="<YOUR_POSTGRES_PASSWORD>" \
+    --postgres-conf database-name="<YOUR_POSTGRES_DATABASE>" \
+    --postgres-conf schema-name="public" \
+    --postgres-conf slot.name="velodb_cdc_slot" \
+    --postgres-conf decoding.plugin.name=pgoutput \
+    --including-tables ".*" \
+    --sink-conf fenodes="<YOUR_VELODB_HOST>:8080" \
+    --sink-conf username="<YOUR_VELODB_USER>" \
+    --sink-conf password="<YOUR_VELODB_PASSWORD>" \
+    --sink-conf jdbc-url="jdbc:mysql://<YOUR_VELODB_HOST>:9030" \
+    --sink-conf sink.label-prefix=postgres_cdc
+```
+:::info
+**Aurora/RDS の場合:** `--postgres-conf publication.name="<YOUR_PUBLICATION_NAME>"` パラメータを追加してください。
+:::
+
+  </TabItem>
+  <TabItem value="standalone" label="Standalone">
+
+Standalone クラスタデプロイメントの場合、Flink クラスタが実行中であることを確認し、`-t remote` を使用してジョブを送信してください：
+
+```bash
+bin/flink run -t remote \
+    -Dexecution.checkpointing.interval=10s \
+    -Dparallelism.default=1 \
+    -c org.apache.doris.flink.tools.cdc.CdcTools \
+    lib/flink-doris-connector-1.17-25.1.0.jar \
+    postgres-sync-database \
+    --database "<YOUR_VELODB_DATABASE>" \
+    --postgres-conf hostname="<YOUR_POSTGRES_HOST>" \
+    --postgres-conf port="5432" \
+    --postgres-conf username="<YOUR_POSTGRES_USER>" \
+    --postgres-conf password="<YOUR_POSTGRES_PASSWORD>" \
+    --postgres-conf database-name="<YOUR_POSTGRES_DATABASE>" \
+    --postgres-conf schema-name="public" \
+    --postgres-conf slot.name="velodb_cdc_slot" \
+    --postgres-conf decoding.plugin.name=pgoutput \
+    --including-tables ".*" \
+    --sink-conf fenodes="<YOUR_VELODB_HOST>:8080" \
+    --sink-conf username="<YOUR_VELODB_USER>" \
+    --sink-conf password="<YOUR_VELODB_PASSWORD>" \
+    --sink-conf jdbc-url="jdbc:mysql://<YOUR_VELODB_HOST>:9030" \
+    --sink-conf sink.label-prefix=postgres_cdc
+```
+</TabItem>
+  <TabItem value="yarn" label="YARN">
+
+YARN デプロイメントの場合、Hadoop が設定され、YARN にアクセス可能であることを確認してください：
+
+```bash
+bin/flink run -t yarn-per-job \
+    -Dexecution.checkpointing.interval=10s \
+    -Dparallelism.default=1 \
+    -c org.apache.doris.flink.tools.cdc.CdcTools \
+    lib/flink-doris-connector-1.17-25.1.0.jar \
+    postgres-sync-database \
+    --database "<YOUR_VELODB_DATABASE>" \
+    --postgres-conf hostname="<YOUR_POSTGRES_HOST>" \
+    --postgres-conf port="5432" \
+    --postgres-conf username="<YOUR_POSTGRES_USER>" \
+    --postgres-conf password="<YOUR_POSTGRES_PASSWORD>" \
+    --postgres-conf database-name="<YOUR_POSTGRES_DATABASE>" \
+    --postgres-conf schema-name="public" \
+    --postgres-conf slot.name="velodb_cdc_slot" \
+    --postgres-conf decoding.plugin.name=pgoutput \
+    --including-tables ".*" \
+    --sink-conf fenodes="<YOUR_VELODB_HOST>:8080" \
+    --sink-conf username="<YOUR_VELODB_USER>" \
+    --sink-conf password="<YOUR_VELODB_PASSWORD>" \
+    --sink-conf jdbc-url="jdbc:mysql://<YOUR_VELODB_HOST>:9030" \
+    --sink-conf sink.label-prefix=postgres_cdc
+```
+</TabItem>
+  <TabItem value="kubernetes" label="Kubernetes">
+
+Kubernetesデプロイメントの場合、Flinkセッションクラスターが実行されていることを確認してください：
+
+```bash
+bin/flink run -t kubernetes-session \
+    -Dexecution.checkpointing.interval=10s \
+    -Dparallelism.default=1 \
+    -c org.apache.doris.flink.tools.cdc.CdcTools \
+    lib/flink-doris-connector-1.17-25.1.0.jar \
+    postgres-sync-database \
+    --database "<YOUR_VELODB_DATABASE>" \
+    --postgres-conf hostname="<YOUR_POSTGRES_HOST>" \
+    --postgres-conf port="5432" \
+    --postgres-conf username="<YOUR_POSTGRES_USER>" \
+    --postgres-conf password="<YOUR_POSTGRES_PASSWORD>" \
+    --postgres-conf database-name="<YOUR_POSTGRES_DATABASE>" \
+    --postgres-conf schema-name="public" \
+    --postgres-conf slot.name="velodb_cdc_slot" \
+    --postgres-conf decoding.plugin.name=pgoutput \
+    --including-tables ".*" \
+    --sink-conf fenodes="<YOUR_VELODB_HOST>:8080" \
+    --sink-conf username="<YOUR_VELODB_USER>" \
+    --sink-conf password="<YOUR_VELODB_PASSWORD>" \
+    --sink-conf jdbc-url="jdbc:mysql://<YOUR_VELODB_HOST>:9030" \
+    --sink-conf sink.label-prefix=postgres_cdc
+```
+</TabItem>
+</Tabs>
+
+---
+
+## 5. 検証
+
+VeloDB Consoleの**SQL Editor**に移動し、データベースを選択します。
+
+**VeloDBでの初期同期を確認:**
+
+```sql
+SELECT * FROM student;
+```
+期待される結果：
+
+```
++----+--------------+------+---------------------+-------------+-------+---------------------+
+| id | name         | age  | email               | phone       | score | created_at          |
++----+--------------+------+---------------------+-------------+-------+---------------------+
+|  1 | Alice Zhang  |   22 | alice@example.com   | 13800138000 | 89.50 | 2025-12-22 14:30:25 |
+|  2 | Bob Li       |   21 | bob@example.com     | 13900139000 | 76.80 | 2025-12-22 14:30:25 |
+|  3 | Charlie Wang |   23 | charlie@example.com | 13600136000 | 92.00 | 2025-12-22 14:30:25 |
++----+--------------+------+---------------------+-------------+-------+---------------------+
+```
+**リアルタイムCDCのテスト:**
+
+```sql
+-- Run in PostgreSQL
+INSERT INTO student (id, name, age, email, phone, score)
+VALUES (4, 'David Chen', 24, 'david@example.com', '13400134000', 88.75);
+
+UPDATE student SET score = 95.00 WHERE id = 2;
+
+DELETE FROM student WHERE id = 3;
+```
+```sql
+-- Verify in VeloDB (changes appear within seconds)
+SELECT * FROM student ORDER BY id;
+```
+期待される結果：
+
+```
++----+-------------+------+-------------------+-------------+-------+---------------------+
+| id | name        | age  | email             | phone       | score | created_at          |
++----+-------------+------+-------------------+-------------+-------+---------------------+
+|  1 | Alice Zhang |   22 | alice@example.com | 13800138000 | 89.50 | 2025-12-22 14:30:25 |
+|  2 | Bob Li      |   21 | bob@example.com   | 13900139000 | 95.00 | 2025-12-22 14:30:25 |
+|  4 | David Chen  |   24 | david@example.com | 13400134000 | 88.75 | 2025-12-22 14:35:40 |
++----+-------------+------+-------------------+-------------+-------+---------------------+
+-- id=2: score updated 76.80 → 95.00
+-- id=3: deleted
+-- id=4: inserted
+```
+## 参考資料
+
+- [Flink CDC PostgreSQL Connector](https://nightlies.apache.org/flink/flink-cdc-docs-master/docs/connectors/flink-sources/postgres-cdc/)
+- [Flink Doris Connector](https://docs.velodb.io/cloud/integration/data-source/doris-kafka-connector)
+- [PostgreSQL Logical Replication](https://www.postgresql.org/docs/current/logical-replication.html)

@@ -1,0 +1,108 @@
+---
+{
+  "title": "SQL Console",
+  "description": "SQLコンソールは、スマートプロンプト、シンタックスハイライト、クエリ履歴、クエリ結果キャッシュ、その他の開発者向け機能をサポートする強力なSQLエディタです...",
+  "language": "ja"
+}
+---
+# SQL Console
+
+SQL consoleは、Apache Doris専用に開発されたスマートプロンプト、シンタックスハイライト、クエリ履歴、クエリ結果キャッシュなどの機能をサポートする強力なSQLエディターです。SQL文を簡単に記述し、クエリ結果を表示できます。
+
+
+
+### Feature Panel
+
+#### Data Directory
+データベース、テーブル、ビューなどの情報を確認できます。ライブラリ、テーブル、ビューなどのオブジェクトにマウスを移動すると、対応する操作ボタンが表示されます。これらのボタンをクリックして対応する操作を実行できます。テーブル作成時間、行数、コメントなど、オブジェクトの詳細情報も表示されます。
+
+:::info
+よく使用するテーブル、ビューなどのオブジェクトを上部に追加して、簡単に素早く表示できます。
+:::
+
+<img className='pt-5' src={`/img/studio/sql-console.png`} alt="sql-console" width={1400} height={600}/>
+
+#### Session Recording
+Session recordsは、SQL EditorでTabを開いた履歴です。記録内のSQL文をクリックして、SQL Editorにコピーして実行できます。
+
+<img className='pt-5' src={`/img/studio/query-session.png`} alt="query-session" width={1400} height={600}/>
+
+
+#### Query History
+Query historyは、SQL editorで実行したSQL文の履歴です。記録内のSQL文をクリックして、その文のProfile情報を表示できます。
+
+:::warning
+非クエリ文にはProfileがなく、クエリに失敗した文にもProfileは不要です。
+:::
+
+<img className='pt-5' src={`/img/studio/query-history.png`} alt="query-history" width={1400} height={600}/>
+
+#### Query Profile
+
+:::info
+Profile可視化は、Apache Doris 2.1 / VeloDB 4.0.0以上でサポートされています。
+:::
+
+Studioで開始されたクエリは、デフォルトでquery profilesが有効になっています。これは単一クエリのパフォーマンスにわずかな影響を与える可能性があります。「Query Statement」をクリックして実行計画ページに移動します。
+
+ダウンロードボタンでProfile情報をダウンロードできます。純粋な`TEXT`形式のProfile情報と視覚的なProfile画像が含まれます。
+
+Import ProfileボタンでTEXT形式のProfile情報をインポートでき、インポート後にProfileを視覚的に表示できます。これにより、他のクライアントから開始されたクエリを視覚的に分析できます。
+
+<img className='pt-5' src={`/img/studio/profile.png`} alt="profile" width={1400} height={600}/>
+
+
+:::info
+Apache Dorisチームと密接に連携して、視覚的profileの機能強化と標準化を進めていますので、ご期待ください。
+:::
+
+#### Query Template
+Studioには一部のテストデータセット用のサンプルクエリ文が組み込まれており、簡単なパフォーマンステストを実行できます。
+
+<img className='pt-5' src={`/img/studio/sql-templates.png`} alt="sql-templates" width={1400} height={600}/>
+
+### SQL Editor
+
+Apache Doris用にカスタマイズしたSQL editorで、シンタックスハイライト、スマートプロンプト、クエリ履歴、クエリ結果キャッシュなどの機能をサポートしています。
+
+#### Query Window
+
+- 異なるクラスターを選択して、異なるクエリタスクを実行できます。一部の大きなクエリはクラスターのパフォーマンスに影響を与える可能性があります。より良いパフォーマンスのクラスターを選択してクエリを実行できます。（このドロップダウンボックスは分離をサポートするDorisバージョンでのみ表示されます）
+
+- 各クエリウィンドウは独立しています。異なるクエリウィンドウで異なるSQL文を実行できます。各ウィンドウのクエリ結果がキャッシュされます。Tabを切り替えることで、再度クエリを開始することなく異なるクエリ結果を表示できます。
+
+- クエリウィンドウのTabをドラッグしてクエリウィンドウの順序を調整できます。
+
+- クエリウィンドウのTabをダブルクリックして、ウィンドウの名前を変更できます。
+- SQL editorとクエリ結果パネルの分割線をドラッグしてサイズを変更できます。
+
+- SQL editorの実行ボタンには「Execute」と「Execute All」の2つの状態があります。一部のSQL文を選択すると、実行ボタンが「Execute」になり、選択されたSQL文のみが実行されます。SQL文が選択されていない場合、実行ボタンが「Execute all」になり、すべてのSQL文が実行されます。
+
+#### SQL Input Box
+
+- ショートカットキー`⌘(Command) + C`でコピー、`⌘(Command) + V`でペースト、`⌘(Command) + X`でカットができます。
+
+- 右クリックで入力ボックスのコンテキストメニューを呼び出し、Command Paletteをクリックしてコマンドパネルを開くと、サポートされているすべてのコマンドを表示できます。
+
+<img className='pt-5' src={`/img/studio/sql-console-command.png`} alt="sql-console-command" width={1400} height={600}/>
+
+#### Smart Tips
+- デフォルトでは、スマートプロンプトが入力に基づいてキーワード、テーブル名、フィールド名などの情報を自動的に提案します。しかし、`⇧(Shift) + Space`を使用してスマートプロンプトを手動でトリガーすることもできます。
+
+- SQL editorのスマートプロンプトは、選択したデータベースに基づいて提案します。例えば、`SELECT *FROM`を実行すると、スマートプロンプトがドロップダウンボックスで選択された`__internal_schema`ライブラリ内のテーブルを提案します。`WHERE`と入力を続けると、スマートプロンプトがテーブルのフィールドを提案します。ただし、一部のDDL文では、スマートプロンプトが上記で選択されたデータベースを無視する場合があります。例えば、`USE`と入力すると、スマートプロンプトが現在選択されているカタログ`__internal_schema`の下のカタログとデータベースの両方を提案します。
+
+<img className='pt-5' src={`/img/studio/sql-suggestion.png`} alt="sql-suggestion" width={1400} height={600}/>
+
+
+### Results Panel
+
+結果パネルでは、クエリ結果、実行時間、行数などのSQL文の実行結果を確認できます。
+検索ボックスから結果を検索したり、テーブルヘッダーをクリックして結果をソートしたりできます。
+
+<img className='pt-5' src={`/img/studio/sql-console-result.png`} alt="sql-console-result" width={1400} height={600}/>
+
+### User Limitations
+
+- SQL editorはデフォルトで最大1000件のデータをクエリします。クエリ結果が1000件を超える場合、最初の1000件のデータのみが表示されます。「Query and Download」ボタンをクリックしてすべてのデータをダウンロードして表示できます。
+
+<img className='pt-5' src={`/img/studio/sql-console-result-download.png`} alt="sql-console-result-download" width={1400} height={600}/>

@@ -1,0 +1,23 @@
+---
+{
+  "title": "セッション管理",
+  "description": "セッション管理により、管理者ユーザーはリソースの使用を管理し、重要なクエリを優先して処理することで、システムパフォーマンスを向上させ、提供することができます...",
+  "language": "ja"
+}
+---
+# Session Management
+
+Session managementは管理者ユーザーがリソースの使用を管理し、重要なクエリを優先することでシステムパフォーマンスを向上させることを可能にし、実行時間、クエリを開始したユーザー、使用されているリソースなど、各セッションに関する詳細情報を提供します。
+
+現在実行中のすべてのSQLクエリを表示し、問題を引き起こすクエリや実行時間が予想を超えるクエリを終了することができます。
+
+{/*The records displayed by "All Sessions" include all VeloDB client connection sessions in addition to running query SQL, where you can force terminate some client connections that are no longer used but are not reasonably released as needed. */}
+
+<img className='pt-5' src={`/img/studio/session.png`} alt="session" width={1400} height={600}/>
+
+テーブルを確認して、スキャンサイズ、スキャン行数、返却行数など、実行中のSQLクエリに関するより多くの情報を表示できます。
+<img className='pt-5' src={`/img/studio/session-display-row.png`} alt="session-display-row" width={1400} height={600}/>
+
+セッションのQuery IDをクリックして、実行ユーザー、セッションを受信したFEノード、SQLの実行プラン（Profile）など、セッションの完全な情報をさらに表示します。
+
+<img className='pt-5' src={`/img/studio/session-detail.png`} alt="session-detail" width={1400} height={600}/>

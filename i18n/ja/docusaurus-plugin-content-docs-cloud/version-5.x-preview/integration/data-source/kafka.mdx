@@ -1,0 +1,535 @@
+---
+{
+  "title": "Kafka",
+  "description": "Apache Kafkaから Routine Load を使用して VeloDB にデータをストリーミングするためのガイド",
+  "language": "ja"
+}
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# KafkaからVeloDBへのデータ取り込み（Routine Loadを使用）
+
+Routine Loadは、Kafkaトピックからメッセージを継続的に消費し、VeloDBテーブルにロードする永続的なストリーミングジョブを作成します。
+
+## 前提条件
+
+### VeloDB Cloudアカウント（必須）
+
+アクティブなクラスターを持つVeloDB Cloudアカウントが必要です。アカウントをお持ちでない場合は、[VeloDB Quick Start Guide](../../getting-started/quick-start)に従ってアカウントとクラスターを作成してください。
+
+VeloDBでSQLクエリを実行し、データベースを作成するには、VeloDB Consoleサイドバーの組み込み**SQL Editor**を使用してください：
+
+![SQL Editor](/images/cloud/integration/postgres/quickstart-editor.png)
+
+### Kafkaソース要件
+
+| 要件 | 詳細 |
+|------------|---------|
+| Kafkaバージョン | 0.10.0.0以上（推奨） |
+| データ形式 | JSONまたはCSV |
+| ネットワークアクセス | VeloDBへのパブリックエンドポイントまたはPrivate Link |
+
+### クラウドKafkaプロバイダー
+
+<Tabs>
+  <TabItem value="confluent" label="Confluent Cloud" default>
+
+**ネットワーク:** デフォルトでパブリックアクセスが有効
+
+**認証:** API KeyとSecretを使用するSASL/PLAIN
+
+**SSL証明書:** 不要（証明書検証を無効にする）
+
+**セットアップ:**
+1. **Cluster Settings**からBootstrapサーバーを取得
+2. **Cluster Overview → API Keys**でAPI Keyを作成
+3. サンプルデータには、**JSON**形式の**Datagen Source**コネクターを使用
+
+  </TabItem>
+  <TabItem value="generic" label="Generic Kafka">
+
+**ネットワーク:** VeloDB CloudがKafkaブローカーに到達できることを確認（パブリックIPまたはPrivate Link）
+
+**認証オプション:**
+- **SASL_SSL**とSCRAM-SHA-512（セキュアな接続に推奨）
+- **PLAINTEXT**（認証なしの内部/信頼できるネットワーク用）
+
+**SSL証明書:** KafkaクラスターのCA証明書を使用
+
+  </TabItem>
+  <TabItem value="msk" label="Amazon MSK">
+
+**ネットワーク:** クラスター設定で「パブリックアクセス」を有効にするか、Private Linkを使用
+
+**認証:** SASL/SCRAM-SHA-512（認証情報をAWS Secrets Managerに保存）
+
+**SSL証明書:** Amazon Root CA 1
+
+  </TabItem>
+  <TabItem value="redpanda" label="Redpanda Cloud">
+
+**ネットワーク:** デフォルトでパブリックアクセスが有効
+
+**認証:** SASL/SCRAM-SHA-512
+
+**SSL証明書:** ISRG Root X1（Let's Encrypt）
+
+**ユーザーセットアップ:**
+1. **Redpanda Console → Security → Users**でユーザーを作成
+2. メカニズムとして**SCRAM-SHA-512**を選択
+3. `rpk` CLIを使用してACL権限を付与：
+
+```bash
+rpk security acl create \
+  --allow-principal "User:<USERNAME>" \
+  --operation read,describe \
+  --topic <YOUR_TOPIC> \
+  --group "*"
+```
+</TabItem>
+</Tabs>
+
+:::caution Critical Requirement
+- **Confluent Cloud**: **SASL/PLAIN**認証をAPI Key/Secretで使用
+- **その他のKafkaプロバイダー**: **SCRAM-SHA-512**を使用（SCRAM-SHA-256は使用しない。「Broker transport failure」エラーで失敗する）
+:::
+
+---
+
+## 1. VeloDBでSSL証明書を作成
+
+**SQL Editor**で、[CREATE FILE](../../sql-manual/sql-statements/security/CREATE-FILE)を使用してSSL証明書をアップロードします。
+
+:::caution Important
+証明書ファイルは、Routine Loadジョブを作成する**同じデータベース**に作成する必要があります。まずデータベースを作成または選択してから、ファイルを作成してください。
+:::
+
+<Tabs>
+  <TabItem value="confluent-upload" label="Confluent Cloud" default>
+
+**SSL証明書は不要です。** Confluent CloudはSSLを内部で処理します。
+
+この手順をスキップし、[ターゲットテーブルの作成](#3-create-target-table-in-velodb)に進んでください。
+
+Routine Loadジョブを作成する際は、以下を使用してください：
+
+```sql
+"property.enable.ssl.certificate.verification" = "false"
+```
+</TabItem>
+  <TabItem value="generic-upload" label="Generic Kafka">
+
+KafkaクラスターのCA証明書をアップロードしてください。証明書がURL経由でアクセス可能な場合：
+
+```sql
+-- Create database first (if not exists)
+CREATE DATABASE IF NOT EXISTS demo;
+USE demo;
+
+-- Create SSL certificate in this database
+CREATE FILE "kafka-ca.pem"
+PROPERTIES (
+    "url" = "https://your-domain.com/path/to/ca.pem",
+    "catalog" = "internal"
+);
+```
+または、ローカル証明書をアップロードするための [CREATE FILE](../../sql-manual/sql-statements/security/CREATE-FILE) を確認してください。
+
+  </TabItem>
+  <TabItem value="amazon-upload" label="Amazon MSK">
+
+```sql
+-- Create database first (if not exists)
+CREATE DATABASE IF NOT EXISTS demo;
+USE demo;
+
+-- Create SSL certificate in this database
+CREATE FILE "AmazonRootCA1.pem"
+PROPERTIES (
+    "url" = "https://www.amazontrust.com/repository/AmazonRootCA1.pem",
+    "catalog" = "internal"
+);
+```
+</TabItem>
+  <TabItem value="letsencrypt-upload" label="Redpanda Cloud">
+
+```sql
+-- Create database first (if not exists)
+CREATE DATABASE IF NOT EXISTS demo;
+USE demo;
+
+-- Create SSL certificate in this database
+CREATE FILE "isrgrootx1.pem"
+PROPERTIES (
+    "url" = "https://letsencrypt.org/certs/isrgrootx1.pem",
+    "catalog" = "internal"
+);
+```
+</TabItem>
+</Tabs>
+
+:::info
+ファイル作成後、Routine Loadで`FILE:<filename>.pem`として参照できます。
+:::
+
+:::tip
+現在のデータベースの既存証明書を確認するには：`SHOW FILE;`
+:::
+
+---
+
+## 2. (オプション) サンプルデータを含むトピックの作成
+
+既存のKafkaトピックがない場合、テスト用にサンプルデータを含むトピックを作成してください。
+
+<Tabs>
+  <TabItem value="confluent-datagen" label="Confluent Cloud" default>
+
+Confluent Cloud Consoleで**Datagen Source**コネクターを使用します：
+
+1. クラスターの**Connectors**に移動
+2. **Add connector**をクリック → **Datagen Source**を検索
+3. 設定：
+   - **Topic**: トピック名を入力（例：`orders`）
+   - **Output record value format**: **JSON**を選択（必須 - VeloDBはAVROをサポートしていません）
+   - **Template**: テンプレートを選択（例：`Orders`、`Users`、`Pageviews`）
+4. 残りのステップで**Continue**をクリック
+5. コネクターを起動
+
+コネクターは自動的にトピックを作成し、サンプルメッセージを生成します。
+
+:::caution Important
+出力形式として**JSON**を選択してください。AVROおよびJSON_SR形式はVeloDB Routine Loadでサポートされていません。
+:::
+
+  </TabItem>
+  <TabItem value="kafka-cli" label="Kafka CLI">
+
+```bash
+# Create topic
+kafka-topics.sh --create --topic clickstream \
+  --bootstrap-server <BROKER>:9092 \
+  --partitions 3 --replication-factor 1
+
+# Produce sample messages
+echo '{"event_time": "2025-01-15 10:30:00", "user_id": 1001, "event_type": "page_view", "page": "/home"}
+{"event_time": "2025-01-15 10:31:00", "user_id": 1002, "event_type": "click", "page": "/products"}
+{"event_time": "2025-01-15 10:32:00", "user_id": 1001, "event_type": "purchase", "page": "/checkout"}' | \
+kafka-console-producer.sh --topic clickstream --bootstrap-server <BROKER>:9092
+```
+</TabItem>
+  <TabItem value="rpk" label="Redpanda (rpk)">
+
+```bash
+# Create topic
+rpk topic create clickstream
+
+# Produce sample messages
+echo '{"event_time": "2025-01-15 10:30:00", "user_id": 1001, "event_type": "page_view", "page": "/home"}
+{"event_time": "2025-01-15 10:31:00", "user_id": 1002, "event_type": "click", "page": "/products"}
+{"event_time": "2025-01-15 10:32:00", "user_id": 1001, "event_type": "purchase", "page": "/checkout"}' | rpk topic produce clickstream
+
+# Verify messages
+rpk topic consume clickstream --num 3
+```
+</TabItem>
+</Tabs>
+
+---
+
+## 3. VeloDBでターゲットテーブルを作成
+
+KafkaメッセージフォーマットをベースにVeloDBテーブルスキーマを設計してください。
+
+### スキーママッピング: KafkaからVeloDBへ
+
+**JSONメッセージ例:**
+
+```json
+{"event_time": "2025-01-15 10:30:00", "user_id": 1001, "event_type": "page_view", "page": "/home"}
+```
+**VeloDBテーブルへのマッピング:**
+
+| Kafka JSON Field | JSON Type | VeloDB Column | VeloDB Type |
+|------------------|-----------|---------------|-------------|
+| `event_time` | string | `event_time` | `DATETIME` |
+| `user_id` | number | `user_id` | `BIGINT` |
+| `event_type` | string | `event_type` | `VARCHAR(50)` |
+| `page` | string | `page` | `VARCHAR(255)` |
+
+### 型マッピング参考資料
+
+VeloDBの完全なデータ型については、[Data Type Overview](../../sql-manual/basic-element/sql-data-types/data-type-overview)を参照してください。
+
+| Kafka/JSON Type | VeloDB Type |
+|-----------------|-------------|
+| string (datetime) | `DATETIME`, `DATE` |
+| string | `VARCHAR(n)`, `STRING`, `TEXT` |
+| integer | `INT`, `BIGINT`, `SMALLINT`, `TINYINT` |
+| number (decimal) | `DOUBLE`, `FLOAT`, `DECIMAL(p,s)` |
+| boolean | `BOOLEAN` |
+| nested object | `JSON`, `VARIANT` |
+| array | `ARRAY<T>`, `JSON` |
+
+### テーブルの作成
+
+**SQL Editor**で、データベースとテーブルを作成します:
+
+```sql
+CREATE DATABASE IF NOT EXISTS demo;
+
+USE demo;
+
+CREATE TABLE events (
+    event_time DATETIME NOT NULL,
+    user_id BIGINT NOT NULL,
+    event_type VARCHAR(50),
+    page VARCHAR(255)
+)
+DUPLICATE KEY(event_time, user_id)
+DISTRIBUTED BY HASH(user_id) BUCKETS 10;
+```
+:::tip
+Routine Loadの`jsonpaths`パラメータは、JSON フィールドをテーブルカラムに順序通りにマッピングします。テーブルカラムが`jsonpaths`で指定された順序と一致することを確認してください。
+:::
+
+---
+
+## 4. Routine Load ジョブの作成
+
+[CREATE ROUTINE LOAD](../../sql-manual/sql-statements/data-modification/load-and-export/CREATE-ROUTINE-LOAD)を使用してKafkaからの消費を開始します：
+
+<Tabs>
+  <TabItem value="confluent" label="Confluent Cloud" default>
+
+```sql
+CREATE ROUTINE LOAD demo.kafka_load ON events
+COLUMNS(event_time, user_id, event_type, page)
+PROPERTIES (
+    "format" = "json",
+    "jsonpaths" = "[\"$.event_time\",\"$.user_id\",\"$.event_type\",\"$.page\"]"
+)
+FROM KAFKA (
+    "kafka_broker_list" = "<BOOTSTRAP_SERVER>",
+    "kafka_topic" = "<YOUR_TOPIC>",
+    "property.kafka_default_offsets" = "OFFSET_BEGINNING",
+    "property.security.protocol" = "SASL_SSL",
+    "property.sasl.mechanism" = "PLAIN",
+    "property.sasl.username" = "<API_KEY>",
+    "property.sasl.password" = "<API_SECRET>",
+    "property.enable.ssl.certificate.verification" = "false",
+    "property.group.id" = "velodb-consumer"
+);
+```
+**プレースホルダーを置き換えてください:**
+| プレースホルダー | 例 |
+|-------------|---------|
+| `<BOOTSTRAP_SERVER>` | `pkc-xxxxx.us-east-1.aws.confluent.cloud:9092` |
+| `<YOUR_TOPIC>` | `orders` |
+| `<API_KEY>` | Your Confluent Cloud API Key |
+| `<API_SECRET>` | Your Confluent Cloud API Secret |
+
+:::tip Confluent Cloud接続詳細の確認方法
+- **Bootstrap server**: Cluster Overview → Cluster Settings
+- **API Key/Secret**: Cluster Overview → API Keys → Create key
+:::
+
+:::caution データフォーマット
+Confluent Cloud Datagenコネクタは**JSON**フォーマットを使用する必要があります。AVROおよびJSON_SRフォーマットはVeloDB Routine Loadでサポートされていません。
+:::
+
+  </TabItem>
+  <TabItem value="cloud" label="Cloud Kafka (SASL_SSL)">
+
+```sql
+CREATE ROUTINE LOAD demo.kafka_load ON events
+COLUMNS(event_time, user_id, event_type, page)
+PROPERTIES (
+    "format" = "json",
+    "jsonpaths" = "[\"$.event_time\",\"$.user_id\",\"$.event_type\",\"$.page\"]"
+)
+FROM KAFKA (
+    "kafka_broker_list" = "<YOUR_BROKER>:9092",
+    "kafka_topic" = "<YOUR_TOPIC>",
+    "property.kafka_default_offsets" = "OFFSET_BEGINNING",
+    "property.security.protocol" = "SASL_SSL",
+    "property.sasl.mechanism" = "SCRAM-SHA-512",
+    "property.sasl.username" = "<YOUR_USERNAME>",
+    "property.sasl.password" = "<YOUR_PASSWORD>",
+    "property.ssl.ca.location" = "FILE:isrgrootx1.pem",
+    "property.group.id" = "velodb-consumer"
+);
+```
+**プレースホルダーを置き換えてください:**
+| プレースホルダー | 例 |
+|-------------|---------|
+| `<YOUR_BROKER>` | `abc123.any.us-west-2.mpx.prd.cloud.redpanda.com` (Redpanda) |
+| `<YOUR_TOPIC>` | `clickstream` |
+| `<YOUR_USERNAME>` | `velodb-user` |
+| `<YOUR_PASSWORD>` | `your-password` |
+
+:::tip RedpandaブローカーURLの確認方法
+`rpk cluster info`を実行してブローカーアドレスを確認するか、Redpanda Console → Overviewで見つけてください。
+:::
+
+  </TabItem>
+  <TabItem value="self-hosted" label="Self-hosted Kafka (No Auth)">
+
+```sql
+CREATE ROUTINE LOAD demo.kafka_load ON events
+COLUMNS(event_time, user_id, event_type, page)
+PROPERTIES (
+    "format" = "json",
+    "jsonpaths" = "[\"$.event_time\",\"$.user_id\",\"$.event_type\",\"$.page\"]"
+)
+FROM KAFKA (
+    "kafka_broker_list" = "<YOUR_BROKER>:9092",
+    "kafka_topic" = "<YOUR_TOPIC>",
+    "property.kafka_default_offsets" = "OFFSET_BEGINNING",
+    "property.group.id" = "velodb-consumer"
+);
+```
+</TabItem>
+  <TabItem value="csv" label="CSV形式">
+
+```sql
+CREATE ROUTINE LOAD demo.kafka_load ON events
+COLUMNS TERMINATED BY ",",
+COLUMNS(event_time, user_id, event_type, page)
+FROM KAFKA (
+    "kafka_broker_list" = "<YOUR_BROKER>:9092",
+    "kafka_topic" = "<YOUR_TOPIC>",
+    "property.kafka_default_offsets" = "OFFSET_BEGINNING",
+    "property.security.protocol" = "SASL_SSL",
+    "property.sasl.mechanism" = "SCRAM-SHA-512",
+    "property.sasl.username" = "<YOUR_USERNAME>",
+    "property.sasl.password" = "<YOUR_PASSWORD>",
+    "property.ssl.ca.location" = "FILE:isrgrootx1.pem",
+    "property.group.id" = "velodb-consumer"
+);
+```
+</TabItem>
+</Tabs>
+
+---
+
+## 5. 検証
+
+**Routine Loadジョブのステータスを確認:**
+
+```sql
+SHOW ROUTINE LOAD FOR demo.kafka_load;
+```
+期待される出力では`RUNNING`状態が表示されます：
+
+```
++-------+-------------+-----------+--------+-----------+
+| Id    | Name        | TableName | State  | DataSource|
++-------+-------------+-----------+--------+-----------+
+| 12345 | kafka_load  | events    | RUNNING| KAFKA     |
++-------+-------------+-----------+--------+-----------+
+```
+**読み込まれたデータの確認:**
+
+```sql
+SELECT * FROM demo.events ORDER BY event_time LIMIT 10;
+```
+期待される結果:
+
+```
++---------------------+---------+------------+------------+
+| event_time          | user_id | event_type | page       |
++---------------------+---------+------------+------------+
+| 2025-01-15 10:30:00 |    1001 | page_view  | /home      |
+| 2025-01-15 10:31:00 |    1002 | click      | /products  |
+| 2025-01-15 10:32:00 |    1001 | purchase   | /checkout  |
++---------------------+---------+------------+------------+
+```
+**タスクの進行状況を監視:**
+
+```sql
+SHOW ROUTINE LOAD TASK WHERE JobName = "kafka_load";
+```
+## 6. Routine Loadジョブの管理
+
+| アクション | SQLコマンド |
+|--------|-------------|
+| ジョブを一時停止 | `PAUSE ROUTINE LOAD FOR demo.kafka_load;` |
+| ジョブを再開 | `RESUME ROUTINE LOAD FOR demo.kafka_load;` |
+| ジョブを停止 | `STOP ROUTINE LOAD FOR demo.kafka_load;` |
+| 全てのジョブを表示 | `SHOW ALL ROUTINE LOAD;` |
+
+---
+
+## ネットワーク接続
+
+### オプション1: パブリックネットワークアクセス
+
+Kafkaプロバイダーが提供するパブリックエンドポイントを使用します。VeloDB Cloudがポート9092（または設定されたポート）でブローカーに到達できることを確認してください。
+
+### オプション2: Private Link（本番環境推奨）
+
+本番ワークロードでは、クラウドプロバイダーのネットワーク内でトラフィックを保持するためにPrivate Linkを設定します:
+
+1. VeloDB Consoleの**Settings → Endpoint Services**に移動
+2. KafkaプロバイダーへのPrivate Link接続を作成
+3. `kafka_broker_list`でプライベートエンドポイントを使用
+
+---
+
+## Routine Loadパラメータ
+
+| パラメータ | 説明 |
+|-----------|-------------|
+| `kafka_broker_list` | Kafkaブローカーアドレス（複数の場合はカンマ区切り） |
+| `kafka_topic` | 消費するトピック |
+| `property.security.protocol` | クラウドKafkaには`SASL_SSL`、認証なしには`PLAINTEXT` |
+| `property.sasl.mechanism` | Confluent Cloudには`PLAIN`、その他には`SCRAM-SHA-512`（SCRAM-SHA-256ではない） |
+| `property.sasl.username` | SASLユーザー名 |
+| `property.sasl.password` | SASLパスワード |
+| `property.ssl.ca.location` | アップロードされたCA証明書のパス（例：`FILE:isrgrootx1.pem`）。Confluent Cloudでは不要 |
+| `property.enable.ssl.certificate.verification` | Confluent Cloudでは`false`に設定（証明書不要） |
+| `property.group.id` | コンシューマーグループID |
+| `property.kafka_default_offsets` | `OFFSET_BEGINNING`、`OFFSET_END`、または特定のオフセット |
+
+---
+
+## トラブルシューティング
+
+| 問題 | 解決策 |
+|-------|----------|
+| "Broker transport failure" | Confluent Cloudの場合：**PLAIN**を使用。その他の場合：**SCRAM-SHA-512**を使用（SCRAM-SHA-256ではない） |
+| "SSL handshake failed" | CA証明書がプロバイダーと一致することを確認（RedpandaにはISRG Root X1、MSKにはAmazon Root CA 1） |
+| "Authentication failed" | ユーザー名/パスワードを確認し、ユーザーがトピック権限を持っていることを確認 |
+| "Topic authorization failed" | ACL権限を付与：`rpk security acl create --allow-principal "User:xxx" --operation read,describe --topic xxx --group "*"` |
+| 接続タイムアウト | パブリックアクセスを有効化するかPrivate Linkを設定 |
+| ジョブの自動一時停止："max_error_number exceeded" | JSONとテーブル間のスキーマの不一致。`jsonpaths`がJSONフィールドと一致することを確認。一部のエラーを許容するために`"max_filter_ratio" = "0.5"`を追加 |
+| ジョブステータスが`PAUSED`を表示 | `SHOW ROUTINE LOAD FOR <job_name>;`で理由を確認し、修正後に`RESUME ROUTINE LOAD FOR <job_name>;`を実行 |
+| ファイルが既に存在 | 作成前に`SHOW FILE;`で既存ファイルを確認 |
+
+### デバッグのヒント
+
+**ジョブエラーの詳細を確認:**
+
+```sql
+SHOW ROUTINE LOAD FOR demo.kafka_load;
+-- Look at ReasonOfStateChanged and ErrorLogUrls columns
+```
+**タスクレベルのステータスを表示:**
+
+```sql
+SHOW ROUTINE LOAD TASK WHERE JobName = "kafka_load";
+```
+**新しいメッセージのみでテスト（古いデータをスキップ）:**
+
+```sql
+-- Use OFFSET_END to start from latest messages
+"property.kafka_default_offsets" = "OFFSET_END"
+```
+## 参考資料
+
+- [Routine Load Manual](../../user-guide/data-operate/import/import-way/routine-load-manual)
+- [CREATE ROUTINE LOAD](../../sql-manual/sql-statements/data-modification/load-and-export/CREATE-ROUTINE-LOAD)
+- [CREATE FILE](../../sql-manual/sql-statements/security/CREATE-FILE)
+- [Doris Kafka Connector](./doris-kafka-connector) (Kafka Connectを使用する代替手法)

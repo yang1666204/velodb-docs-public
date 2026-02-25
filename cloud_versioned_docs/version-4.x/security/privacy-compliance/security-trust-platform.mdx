@@ -1,0 +1,56 @@
+---
+{
+    "title": "Security and Trust Platform",
+    "description": "The VeloDB platform has embedded security management throughout the software development and delivery cycle to ensure all-round security and reliabili..."
+}
+---
+
+# Security and Trust Platform
+
+The VeloDB platform has embedded security management throughout the software development and delivery cycle to ensure all-round security and reliability, including continuous vulnerability and penetration testing, strict internal access control, and a complete security R&D process. We firmly believe that openness and transparency are the key to winning trust, so we disclose how we operate and work closely with customers and partners to address their security needs. The VeloDB platform complies with SoC2 Type1, Type2 certification.
+
+## Vulnerability Management
+Software service providers are the main responsible parties for losses caused by software vulnerabilities, so we put the rapid discovery and repair of software vulnerabilities as the highest priority to ensure the security of services.
+
+Within VeloDB, we use automatic code scanning tools for vulnerability analysis, and code is not allowed to be merged before the vulnerability is fixed. Before the software package is released to the production environment, the software package and its related third-party dependencies, deployment environment, etc. are scanned every day through automated vulnerability detection tools to discover software vulnerabilities as early as possible. We regularly hire a third-party professional team every year to cross-analyze the potential risks in our software operating environment.
+In addition, we monitor and discover the latest disclosed vulnerabilities through open source communities, social media, open vulnerability platforms and other channels before vulnerability detection tools are included to reduce the risk of security attacks. The open vulnerability platforms monitored by VeloDB include CNNVD, CVE Trends and Open CVDB.
+
+## Penetration test
+The security team of VeloDB has worked with professional penetration testing service providers to develop a systematic penetration testing plan to evaluate the integrity of the VeloDB platform and the security of applications from different dimensions such as the code layer, application layer, and system layer. We conduct penetration tests when important versions are updated, new service components are launched, and security-sensitive functions are released. For high-risk issues discovered during penetration testing, they are usually resolved within a week.
+
+We regularly conduct 1 third-party penetration test and dozens of internal penetration tests every year. As part of our commitment to transparency, customers can apply for a penetration test report on the VeloDB platform from a third-party professional team.
+
+## Strict internal access control
+For VeloDB employees to access the company's internal systems and production environment, we follow the principle of least privilege and separation of duties, and have established a strict access control mechanism and security policy.
+
+### Secure intranet environment
+VeloDB has established a mature and standard company intranet environment. All access to internal systems must first be connected to the company intranet through the VPN system and SSO unified authentication must be performed. The VeloDB intranet environment is divided into three subnet environments: production environment, test environment, and office environment. Different subnet environments use independent physical resources and VPCs at the bottom, which are isolated from each other and strictly controlled.
+
+### Cloud resource management
+The VeloDB intranet environment uses cloud resources provided by public cloud vendors at the bottom. For cloud resources in the production environment, only designated security team members have management permissions, and the corresponding management account has multi-factor authentication (MFA) enabled to prevent abuse of permissions. At the same time, VeloDB avoids the use of explicit credentials, such as passwords or API keys, through scanning procedures and security policies, and periodically rolls over credential information.
+
+### Access control of the operating system
+For the daily operation of the production environment, it is mainly completed through the operating platform built by VeloDB. The platform is connected to the SSO unified authentication center and uses the RBAC permission control model to control access to users of different roles. The operation platform provides the aggregation information, dashboards, and change publishing capabilities required for daily operations, reducing the risks of direct operations in the production environment.
+
+### Access control for production environments
+VeloDB employees can apply for access to online production systems only in some special circumstances (such as emergency interruption recovery). Access is managed by the industry-leading bastion host system, which meets the strict 4A specification requirements. For access to the online production environment, an STS-based authorization mechanism is adopted, and strict minimum permission control is adopted to prevent abuse of permissions and internal misoperation. All operation records of the online environment can provide security audit capabilities based on video playback as a basis for problem tracing and accident analysis.
+
+## Secure software development
+VeloDB has clear and strict security requirements for the entire software development cycle, covering design, development, testing, release changes and other processes, and follows the requirements of ISO/IEC 20000:2018 Information Technology Service Management System.
+
+### Software design
+VeloDB's software design process includes security and privacy-related designs. After the design of key functions is completed, it will be further subject to security review by the company's security team. Designs with high security risks will not be approved.
+
+### Software Development
+VeloDB's source code is uniformly managed by a commercial source code control system, which supports multi-factor authentication and prohibits explicit password-based credential access. All developers must receive secure software development training during the onboarding phase and every year thereafter. Code merge requests submitted by developers must pass automated code scanning, functional access testing, and peer review by at least two engineers before they are allowed to be merged.
+
+### Software Testing
+VeloDB continues to conduct a large number of tests at different stages of the software development lifecycle, with a total test case set of millions. It mainly includes high-coverage unit tests to ensure that fine-grained code logic is normal. Complete integration tests, stress tests, chaos tests, and compatibility tests improve the overall robustness of the system. Regularly triggered performance tests continuously track the performance changes of the latest code to prevent unexpected performance regressions. Scenario-based tests for typical solutions simulate and verify the actual performance in the production environment.
+
+### Release Changes
+VeloDB has formulated a complete release change process specification, and based on this specification, it has built a complete continuous delivery and deployment capability (CD):
+- Before the software is released, it must pass all regression test sets, and after the test passes, the image is automatically generated and stored.
+- When deploying software, strictly follow the grayscale release method, release the sandbox and online environment in sequence, and support grayscale by region, customer and other granularities. If there is a problem in the release process, the automated release process can be interrupted at any time.
+- After the release, it is necessary to verify whether the release change target has been achieved and pass the smoke test.
+
+Based on the principle of separation of duties, only full-time members of the operation and maintenance team can perform release change operations, and all change operations must go through the approval process. In the case of emergency changes, the operation and maintenance personnel need to complete the approval through convenient methods such as telephone, and complete the change records after the change is implemented.

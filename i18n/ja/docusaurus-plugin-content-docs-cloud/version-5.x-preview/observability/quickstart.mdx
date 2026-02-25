@@ -1,0 +1,279 @@
+---
+{
+  "title": "クイックスタート",
+  "description": "VeloDBによって駆動される完全なオブザーバビリティスタック（ログ、トレース、メトリクス）を5分で体験してください",
+  "language": "ja"
+}
+---
+# Observability クイックスタート
+
+完全な可観測性スタック - ログ、トレース、メトリクス - すべて VeloDB で実現できます。
+
+---
+
+## 前提条件
+
+- **Docker と Docker Compose** がインストール済み
+- **VeloDB Cloud アカウント** - [無料サインアップ](https://velodb.cloud)して[クイックスタートガイド](../../getting-started/quick-start)に従ってウェアハウスを作成
+- **MySQL クライアント** - データベース作成用
+
+### VeloDB 接続詳細の確認
+
+VeloDB Cloud でウェアハウスを作成した後：
+
+1. [VeloDB Console](https://www.velodb.cloud/warehouse/connections/saas/public-link) でウェアハウスに移動
+2. **Connection** をクリックして以下を確認：
+   - **Host** - クラスターエンドポイント（例：`xxx.velodb.io`）
+   - **MySQL Port** - 通常は `9030`
+   - **HTTP Port** - 通常は `8080`
+3. **Settings** をクリックして `admin` パスワードを取得またはリセット
+
+---
+
+## 体験できること
+
+### Kibana のようなログ検索
+![Discover Logs](/images/cloud/observability/observability-discover-overview.png)
+*Lucene 風の構文による全文検索、ヒストグラム可視化、フィールド分析*
+
+### 分散トレースの調査
+![Traces Overview](/images/cloud/observability/observability-traces-overview.png)
+*マイクロサービス全体のトレースを確認、期間、サービス、ステータスでフィルタリング*
+
+### 任意のリクエストの詳細分析
+![Trace Waterfall](/images/cloud/observability/observability-waterfall-view.png)
+*タイミング内訳を含む全サービスホップを表示する完全なウォーターフォールビュー*
+
+---
+
+## クイックセットアップ（5分）
+
+### 1. ダウンロード
+
+```bash
+mkdir velodb-observability && cd velodb-observability
+curl -O https://raw.githubusercontent.com/velodb/velodb-tutorials/main/observability/docker-compose.yaml
+```
+:::info
+この単一ファイルにはすべてが含まれています - Grafana イメージには、ダッシュボードと Doris App プラグインがあらかじめパッケージされています。
+:::
+
+### 2. 設定
+
+`.env` ファイルを作成します（コピー＆ペーストして編集）：
+
+```bash
+VELODB_HOST=your-cluster.velodb.io
+VELODB_USER=admin
+VELODB_PASSWORD=your-password
+VELODB_DATABASE=observability
+VELODB_MYSQL_PORT=9030
+VELODB_HTTP_PORT=8080
+VELODB_TIMEZONE=America/Los_Angeles
+DATA_RETENTION_DAYS=7
+REPLICATION_NUM=1
+```
+:::warning
+Grafanaで正しい時刻表示を確保するため、`VELODB_TIMEZONE`をローカルタイムゾーン（America/New_York、Europe/London、Asia/Tokyo等）に設定してください。
+:::
+
+### 3. データベースの作成
+
+```bash
+source .env && mysql -h $VELODB_HOST -P ${VELODB_MYSQL_PORT:-9030} -u $VELODB_USER -p -e "CREATE DATABASE IF NOT EXISTS $VELODB_DATABASE"
+```
+### 4. 開始
+
+```bash
+docker compose --profile demo up -d
+```
+これにより、15以上のマイクロサービスとGrafanaを含むデモのeコマースアプリが開始されます。
+
+### 5. 動作確認
+
+サービスが開始されるまで1-2分待ってから、以下を確認してください：
+
+```bash
+# Check all containers are running
+docker compose --profile demo ps
+
+# Verify data is flowing to VeloDB
+docker logs otel-collector 2>&1 | grep -E "LOG|METRIC"
+```
+以下のような出力が表示されるはずです：
+
+```
+[LOG] total 0 MB 1234 ROWS, total speed 0 MB/s 41 R/s
+[METRIC] total 0 MB 567 ROWS, total speed 0 MB/s 18 R/s
+```
+## Part 1: デモストアを探索する
+
+**http://localhost:8080** を開いてeコマースストアフロントを確認してください：
+
+![OTEL Demo Store](/images/cloud/observability/observability-otel-storefront.png)
+
+**テレメトリを生成するために以下のアクションを試してください:**
+- 商品カテゴリを閲覧
+- カートにアイテムを追加
+- チェックアウトを実行
+- 商品を検索
+
+すべてのクリックがログ、トレース、メトリクスを生成し、VeloDBに流れ込みます。
+
+---
+
+## Part 2: ログを発見する
+
+**http://localhost:3000** → **Apps** → **Doris App** → **Discover** を開いてください
+
+:::info
+"0 hits"が表示される場合は、ストアを閲覧した後、テレメトリデータがVeloDBに流れ込むまで30秒待ってください。
+:::
+
+### ログを確認する
+
+データベースと `otel_logs` テーブルを選択してください。時系列でのログ量のヒストグラムが表示されます：
+
+![Discover Overview](/images/cloud/observability/observability-discover-overview.png)
+
+### 全文検索クエリで検索する
+
+検索バーにクエリを入力してください - Lucene風の構文をサポートしています：
+
+![Lucene Query](/images/cloud/observability/observability-lucene-query.png)
+
+**以下のクエリを試してください:**
+
+| クエリ | 検索結果 |
+|-------|---------|
+| `severity_text:ERROR` | すべてのエラー |
+| `service_name:frontend` | フロントエンドサービスのログ |
+| `"failed to connect"` | 完全一致フレーズ |
+| `status_code:[500 TO 599]` | サーバーエラー |
+| `service_name:cart AND severity_text:WARN` | カートの警告 |
+
+### クリックによるフィルタリング
+
+任意のフィールド値をクリックして即座にフィルタリング：
+
+![Filter Applied](/images/cloud/observability/observability-filter-applied.png)
+
+### ログ詳細を展開する
+
+任意のログをクリックしてすべてのフィールドと周辺コンテキストを確認：
+
+![Expanded Log](/images/cloud/observability/observability-expanded-log.png)
+
+![Surrounding Logs](/images/cloud/observability/observability-surrounding-logs.png)
+
+### SQLに切り替える
+
+SQLをお好みですか？複雑なクエリのためにSQLモードに切り替えます：
+
+![SQL Query](/images/cloud/observability/observability-sql-variant.png)
+
+### ログでトレースIDを見つける
+
+ログとトレースはトレースIDによって接続されています。興味深いログを見つけたら、トレースIDを使用してすべてのサービス間での完全なリクエストフローを確認できます。
+
+![Log with Trace ID](/images/cloud/observability/observability-log-trace-id.png)
+
+![Trace ID Field](/images/cloud/observability/observability-log-trace-id-2.png)
+
+トレースIDをクリックしてコピーし、Tracesページ（Part 3）で検索してください。
+
+---
+
+## Part 3: トレースを探索する
+
+**Apps** → **Doris App** → **Traces** に移動してください
+
+### すべてのトレースを表示する
+
+システムを流れるすべてのリクエストを確認：
+
+![Traces Overview](/images/cloud/observability/observability-traces-overview.png)
+
+### 遅いリクエストを見つける
+
+最小継続時間でフィルタリングしてパフォーマンスの問題を発見：
+
+![Duration Filter](/images/cloud/observability/observability-duration-filter.png)
+
+継続時間で並び替えて最も遅いリクエストを最初に表示：
+
+![Sorted by Duration](/images/cloud/observability/observability-sorted-longest.png)
+
+### トレースを詳しく調べる
+
+任意のトレースをクリックして完全なウォーターフォールビューを確認：
+
+![Trace Waterfall](/images/cloud/observability/observability-waterfall-view.png)
+
+以下を確認できます：
+- リクエストに関与するすべてのサービス
+- 各サービスで費やされた時間
+- スパン間の親子関係
+- 任意のスパンのエラーステータス
+
+---
+
+## Part 4: メトリクスを探索する
+
+**Dashboards** → **VeloDB OTEL** → **1 Metrics** に移動して事前構築されたメトリクス可視化を確認してください：
+
+![Metrics Dashboard](/images/cloud/observability/observability-metrics-dashboard.png)
+
+ダッシュボードはマイクロサービスからの主要なメトリクスを表示します：
+
+- **RPS (Requests Per Second)** - 各サービスのリクエストスループット
+- **Request Duration** - サービス間でのレイテンシーパーセンタイル
+
+---
+
+## 完了しました！
+
+VeloDBによって動作する完全なオブザーバビリティスタックが構築されました：
+
+- **ログ** - KibanaのようにフルテキストクエリまたはSQLで検索可能
+- **トレース** - すべてのマイクロサービス間での分散トレーシング
+- **メトリクス** - SQLでパフォーマンスメトリクスをクエリ
+- **相関** - トレースIDでログからトレースにジャンプ
+
+すべてのオブザーバビリティデータが一か所にあり、標準SQLでクエリ可能で、10倍のストレージ圧縮とリアルタイム取り込みを実現しています。
+
+**さらに詳しく知りたいですか？** アーキテクチャの詳細と本番環境でのデプロイメントガイドについては [Observability Overview](./overview) をご確認ください。
+
+---
+
+## クリーンアップ
+
+```bash
+docker compose --profile demo down -v
+```
+## トラブルシューティング
+
+:::warning
+**Grafanaで「0 hits」と表示されるがデータが存在する場合**
+
+最初に、VeloDBにデータが存在することを確認してください：
+
+```bash
+source .env && mysql -h $VELODB_HOST -P ${VELODB_MYSQL_PORT:-9030} -u $VELODB_USER -p$VELODB_PASSWORD $VELODB_DATABASE -e "SELECT COUNT(*) FROM otel_logs"
+```
+データが存在するにも関わらずGrafanaで「0 hits」と表示される場合は、`.env`ファイルの`VELODB_TIMEZONE`をブラウザのタイムゾーンに合わせて更新し、コンテナを再起動してください。
+:::
+
+**VeloDBに接続できない場合**
+→ ホストに到達可能であること、およびポート9030と8080が開いていることを確認してください。
+
+**Collectorがエクスポートしない場合**
+→ `docker logs otel-collector`で接続エラーを確認してください。
+
+---
+
+## 詳細情報
+
+- [Observability Overview](./overview) - オブザーバビリティにVeloDBを使用する理由
+- [VARIANT Data Type](../../sql-manual/basic-element/sql-data-types/semi-structured/VARIANT) - ログとトレースのための半構造化データ型
+- [Inverted Index](../../user-guide/table-design/index/inverted-index) - VeloDBが高速全文検索を実現する方法

@@ -1,0 +1,137 @@
+---
+{
+    "title": "Integration Overview",
+    "description": "VeloDB integrations are categorized into BI, Lakehouse, Observability, SQL client, Data Source, Data Ingestion and Data Processing categories."
+}
+---
+
+
+import HiveIcon from '/images/cloud/integration/logo/hive.svg'
+import PaimonIcon from '/images/cloud/integration/logo/paimon.svg'
+import LakeSoulIcon from '/images/cloud/integration/logo/lakesoul.svg'
+import LogstashIcon from '/images/cloud/integration/logo/elastic-logstash.svg'
+import BeatsIcon from '/images/cloud/integration/logo/beats.svg'
+import ApacheSparkIcon from '/images/cloud/integration/logo/apache-spark-logo.svg'
+import DbtIcon from '/images/cloud/integration/logo/dbt.svg'
+import QuickSightIcon from '/images/cloud/integration/logo/quicksight.svg'
+import SupersetIcon from '/images/cloud/integration/logo/superset.svg'
+import DataGripIcon from '/images/cloud/integration/logo/datagrip-icon.svg'
+import KafkaIcon from '/images/cloud/integration/logo/kafka.svg'
+import MysqlIcon from '/images/cloud/integration/logo/mysql.svg'
+import PgIcon from '/images/cloud/integration/logo/postgresql.svg'
+import AzureIcon from '/images/cloud/integration/logo/azureblobstorage.svg'
+import BladepipeIcon from '/images/cloud/integration/logo/bladepipe.svg'
+import AmazonIcon from '/images/cloud/integration/logo/amazon-glue.svg'
+
+
+# Integration Overview
+
+VeloDB integrations are categorized into **BI, Lakehouse, Observability, SQL client, Data Source, Data Ingestion and Data Processing** categories.
+
+This list of VeloDB / Apache Doris integrations is continuously being updated and is not yet complete. We welcome any contributions of relevant VeloDB / Apache Doris integrations to help expand it. [Contact Us](mailto:contact@velodb.io) to update the integration list.
+
+
+
+## Lakehouse
+
+
+|Name        |Logo|Description|Resources|
+|------------|----|------------------|-------------|
+|Apache Iceberg|<img src={require("/images/cloud/integration/logo/iceberg.png").default} style={{width: '3rem', height: '3rem'}} alt="iceberg" /> |Doris supports accessing Iceberg table data through various metadata services. In addition to reading data, Doris also supports writing to Iceberg tables.|[Documentation](../user-guide/lakehouse/catalogs/iceberg-catalog)|
+|Apache Hudi| <img src={require("/images/cloud/integration/logo/hudi.png").default} style={{width: '5rem', height: '3rem'}} alt="Hudi" /> | By connecting to the Hive Metastore, or a metadata service compatible with the Hive Metastore, Doris can automatically obtain Hudi's database and table information and perform data queries. |[Documentation](../user-guide/lakehouse/catalogs/hive-catalog)|
+|Amazon Glue| <AmazonIcon width={'3rem'} height={'3rem'}  /> |Using AWS Glue Catalog to access Iceberg tables or Hive tables through CREATE CATALOG.|[Documentation](../user-guide/lakehouse/metastores/aws-glue)|
+|Apache Paimon| <PaimonIcon width={'3rem'} height={'3rem'} /> | Doris currently supports accessing Paimon table metadata through various metadata services and querying Paimon data.|[Documentation](../user-guide/lakehouse/catalogs/paimon-catalog)|
+|Apache Hive| <HiveIcon width={'3rem'} height={'3rem'} />|By connecting to Hive Metastore or metadata services compatible with Hive Metastore, Doris can automatically retrieve Hive database and table information for data querying.|[Documentation](../user-guide/lakehouse/catalogs/hive-catalog)|
+|BigQuery|<img src={require("/images/cloud/integration/logo/google-bigquery-logo-icon.png").default} style={{width: '3rem', height: '3rem'}} alt="BigQuery" />| BigQuery Catalog uses the Trino Connector compatibility framework to access BigQuery tables through the BigQuery Connector.|[Documentation](../user-guide/lakehouse/catalogs/bigquery-catalog)|
+|Apache Kudu|<img src={require("/images/cloud/integration/logo/Apache-Kudu-logo.png").default} style={{width: '3rem', height: '3rem'}} alt="Kudu" />| Kudu Catalog uses the Trino Connector compatibility framework to access Kudu tables through the Kudu Connector.|[Documentation](../user-guide/lakehouse/catalogs/kudu-catalog)|
+|LakeSoul|<LakeSoulIcon width={'3rem'} height={'3rem'} />| Doris supports accessing and reading LakeSoul table data using metadata stored in PostgreSQL.|[Documentation](../user-guide/lakehouse/catalogs/lakesoul-catalog)|
+|MaxCompute|<img src={require("/images/cloud/integration/logo/maxcompute.png").default} style={{width: '3rem', height: '3rem'}} alt="MaxCompute" />|MaxCompute is an enterprise-level SaaS (Software as a Service) cloud data warehouse on Alibaba Cloud.|[Documentation](../user-guide/lakehouse/catalogs/maxcompute-catalog)|
+
+<br/>
+
+## Observability
+
+
+|Name        |Logo|Description|Resources|
+|------------|----|------------------|-------------|
+|Opentelemetry|<img src={require("/images/cloud/integration/logo/opentelemetry.png").default} style={{width: '3rem', height: '3rem'}} alt="Opentelemetry" /> |Using AWS Glue Catalog to access Iceberg tables or Hive tables through CREATE CATALOG.|Documentation|
+|Logstash|<LogstashIcon width={'3rem'} height={'3rem'}/>|Logstash is a log ETL framework (collect, preprocess, send to storage systems) that supports custom output plugins to write data into storage systems. |[Documentation](../ecosystem/observability/logstash)|
+|Beats  |<BeatsIcon width={'3rem'} height={'3rem'}/> |Doris supports accessing Iceberg table data through various metadata services. In addition to reading data, Doris also supports writing to Iceberg tables.|[Documentation](../ecosystem/observability/beats)|
+|Fluentbit|<img src={require("/images/cloud/integration/logo/Fluent-bit.webp").default} style={{width: '5rem', height: '3rem'}} alt="Fluentbit" />| Doris currently supports accessing Paimon table metadata through various metadata services and querying Paimon data.|[Documentation](../ecosystem/observability/fluentbit)|
+
+
+<br />
+
+## Data Processing
+
+|Name        |Logo|Description|Resources|
+|------------|----|------------------|-------------|
+|Apache Spark   |<ApacheSparkIcon width={'3rem'} height={'3rem'} /> |Spark Doris Connector can support reading data stored in Doris and writing data to Doris through Spark.|[GitHub](https://github.com/apache/doris-spark-connector)<br />[Documentation](./data-processing/spark-doris-connector)|
+|Apache Flink  |<img src={require("/images/cloud/integration/logo/flink.png").default} style={{width: '3rem', height: '3rem'}} alt="flink" /> |The Flink Doris Connector is used to read from and write data to a Doris cluster through Flink.|[GitHub](https://github.com/apache/doris-flink-connector)<br />[Documentation](./data-processing/flink-doris-connector)|
+|dbt  |<DbtIcon width={'3rem'} height={'3rem'} /> |The dbt-doris adapter is developed based on dbt-core and relies on the mysql-connector-python driver to convert data to doris.|[Documentation](./data-processing/dbt-doris-adapter)|
+
+
+## BI 
+
+<br />
+
+
+|Name        |Logo|Description|Resources|
+|------------|----|------------------|-------------|
+|Tableau|<img src={require("/images/cloud/integration/logo/logo-tableau.png").default} style={{width: '3rem', height: '3rem'}} alt="tableau" />|Interactive data visualization software focused on business intelligence|[Documentation](./bi/tableau)|
+|Power BI|<img src={require("/images/cloud/integration/logo/powerbi.png").default} alt="powerbi" /> |Microsoft Power BI is an interactive data visualization software product developed by Microsoft with a primary focus on business intelligence.|[Documentation](./bi/powerbi)|
+|QuickSight|<QuickSightIcon width={'3rem'} height={'3rem'} /> |Amazon QuickSight powers data-driven organizations with unified business intelligence (BI).|[Documentation](./bi/quicksight)|
+|Apache Superset|<SupersetIcon width={'3rem'} height={'3rem'} />| Apache Superset is an open-source data exploration platform. It supports a rich variety of data source connections and numerous visualization methods.|[Documentation](./bi/apache-superset)|
+|FineBI|<img src={require("/images/cloud/integration/logo/finebi-logo.jpeg").default} style={{width: '3rem', height: '3rem'}} alt="finebi" />|FineBI supports rich data source connection and analysis and management of tables with multiple views. |[Documentation](./bi/finebi)|
+|SmartBI| <img src={require("/images/cloud/integration/logo/smartbi.png").default} style={{width: '3rem', height: '3rem'}} alt="smartbi" /> | Smartbi is a collection of software services and application connectors that can connect to a variety of data sources, including Oracle, SQL Server, MySQL, and Doris, enabling users to integrate and cleanse their data easily.  |[Documentation](./bi/smartbi)|
+|QuickBI|<img src={require("/images/cloud/integration/logo/alibaba-cloud-computing-company-logo.jpeg").default} style={{width: '3rem', height: '3rem'}} alt="quickbi" />| Quick BI is a data warehouse-based business intelligence tool that helps enterprises set up impressive visual analyses quickly.|[Documentation](./bi/quickbi)|
+
+
+<br/>
+
+## SQL Client
+
+<br />
+
+|Name        |Logo|Description|Resources|
+|------------|----|------------------|-------------|
+|DBeaver     |<img src={require("/images/cloud/integration/logo/dbeaver.png").default} style={{width: '3rem', height: '3rem'}} alt="dbeaver" /> |DBeaver is a cross-platform database tool for developers, database administrators, analysts and anyone who works with data.|[Documentation](./sql-client/dbeaver)|
+|DataGrip    |<DataGripIcon width={'3rem'} height={'3rem'} /> |DataGrip is a powerful cross-platform database tool for relational and NoSQL databases from JetBrains.|[Documentation](./sql-client/datagrip)|
+
+<br />
+
+## Data Source
+
+<br />
+
+|Name        |Logo|Description|Resources|
+|------------|----|------------------|-------------|
+|Apache Kafka |<KafkaIcon width={'3rem'} height={'3rem'} /> |Doris integrates with Kafka via its efficient Routine Load for real-time streaming (CSV/JSON, Exactly-Once) and the Doris Kafka Connector for advanced formats.|[GitHub](https://github.com/apache/doris-kafka-connector)<br />[Documentation](../user-guide/data-operate/import/data-source/kafka)|
+|Doris Kafka Connector|<KafkaIcon width={'3rem'} height={'3rem'} /> |Doris integrates with Kafka via its efficient Routine Load for real-time streaming (CSV/JSON, Exactly-Once) and the Doris Kafka Connector for advanced formats.|[GitHub](https://github.com/apache/doris-kafka-connector)<br />[Documentation](./data-source/doris-kafka-connector)|
+|MySQL |<MysqlIcon width={'3rem'} height={'3rem'} /> |Doris JDBC Catalog supports connecting to MySQL databases via the standard JDBC interface.|[Documentation](../user-guide/lakehouse/catalogs/jdbc-mysql-catalog)|
+|PostgreSQL |<PgIcon width={'3rem'} height={'3rem'} /> |Doris JDBC Catalog supports connecting to PostgreSQL databases via the standard JDBC interface.|[Documentation](../user-guide/lakehouse/catalogs/jdbc-pg-catalog)|
+|Amazon S3  |<img src={require("/images/cloud/integration/logo/amazon-s3-logo.png").default} style={{width: '3rem', height: '3rem'}} alt="amazon s3" /> |Doris supports loading S3 files using both asynchronous (S3 Load) and synchronous (TVF) methods.|[Documentation](../user-guide/data-operate/import/data-source/amazon-s3)|
+|Azure |<AzureIcon width={'3rem'} height={'3rem'} /> |Doris supports loading Azure Storage files using both asynchronous (S3 Load) and synchronous (TVF) methods.|[Documentation](../user-guide/data-operate/import/data-source/azure-storage)|
+|Google Cloud Storage|<img src={require("/images/cloud/integration/logo/google-bigquery-logo-icon.png").default} style={{width: '3rem', height: '3rem'}} alt="gcp" /> |For loading files from Google Cloud Storage, Doris provides two methods: the asynchronous S3 Load and the synchronous TVF.|[Documentation](../user-guide/data-operate/import/data-source/google-cloud-storage)|
+|MinIO  |<img src={require("/images/cloud/integration/logo/minio.png").default} style={{width: '3rem', height: '3rem'}} alt="MinIO" /> |Doris supports loading MinIO files using both asynchronous (S3 Load) and synchronous (TVF) methods.|[Documentation](../user-guide/lakehouse/storages/minio)|
+|HDFS |<HiveIcon width={'3rem'} height={'3rem'} /> |By connecting to Hive Metastore or metadata services compatible with Hive Metastore, Doris can automatically retrieve Hive database and table information for data querying.|[Documentation](../user-guide/lakehouse/storages/hdfs)|
+
+
+## Data Ingestion
+
+
+|Name        |Logo|Description|Resources|
+|------------|----|------------------|-------------|
+|Doris Streamloader  |<img src={require("/images/cloud/integration/logo/doris.png").default} style={{width: '5rem', height: '3rem'}} alt="doris streamloader" /> |Doris Streamloader is a client tool designed for loading data into Apache Doris. In comparison to single-threaded load using curl, it reduces the load latency of large datasets by its concurrent loading capabilities.|[Documentation](./data-ingestion/doris-streamloader)|
+|Apache SeaTunnel  |<img src={require("/images/cloud/integration/logo/seatunnel.png").default} style={{width: '3rem', height: '3rem'}} alt="seatunnel" /> |SeaTunnel is a very easy-to-use ultra-high-performance distributed data integration platform that supports real-time synchronization of massive data.|[Documentation](./data-ingestion/seatunnel)|
+|BladePipe   |<BladepipeIcon width={'3rem'} height={'3rem'} /> |BladePipe is a real-time end-to-end data replication tool, moving data between 30+ databases, message queues, search engines, caching, real-time data warehouses, data lakes and more, with ultra-low latency less than 3 seconds. |[Documentation](./data-ingestion/cloudcanal)|
+
+
+## More
+
+|Name        |Logo|Description|Resources|
+|------------|----|------------------|-------------|
+|AutoMQ |<img src={require("/images/cloud/integration/logo/automq.png").default} style={{width: '3rem', height: '2rem'}} alt="automq" /> |AutoMQ is a cloud-native fork of Kafka by separating storage to object storage like S3. |[Documentation](./more/automq-load)|
+|DataX |<img src={require("/images/cloud/integration/logo/alibaba-cloud-computing-company-logo.jpeg").default} style={{width: '3rem', height: '3rem'}} alt="datax" /> |The DataX Doriswriter plugin supports synchronizing data from various data sources, such as MySQL, Oracle, and SQL Server, into Doris using the Stream Load method.|[Documentation](./more/datax)|
+|Kettle |<img src={require("/images/cloud/integration/logo/pentaho.png").default} style={{width: '3rem', height: '3rem'}} alt="kettle" /> |Kettle Doris Plugin is used to write data from other data sources to Doris through Stream Load in Kettle.|[Documentation](./more/kettle)|
+|Apache Kyuubi |<img src={require("/images/cloud/integration/logo/kyuubi.jpeg").default} style={{width: '5rem', height: '3rem'}} alt="kyuubi" /> |Apache Kyuubi is a distributed and multi-tenant gateway to provide serverless SQL on Data Warehouses and Lakehouses.|[Documentation](./more/kyuubi)|

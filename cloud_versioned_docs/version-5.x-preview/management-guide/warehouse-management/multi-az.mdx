@@ -1,0 +1,165 @@
+---
+{
+    "title": "Disaster Recovery on Multi Avaliable Zone",
+    "description": "When the avaliable zone of cloud platform cannot be restored in a short time due to force majeure (such as fire in the computer room, power outage) or..."
+}
+---
+
+# Disaster Recovery on Multi Avaliable Zone
+
+## What is multi avaliable zone disaster recovery?
+
+When the avaliable zone of cloud platform cannot be restored in a short time due to force majeure (such as fire in the computer room, power outage) or equipment failure (software or hardware damage), 
+VeloDB warehouses and clusters support the multi avaliable zone disaster recovery capabilities of the business, and perform disaster recovery backup for the entire application to cope with single avaliable zone failures, meeting the RTO and RPO core indicators of the business.
+
+## Supported cloud platforms and regions
+
+
+| Deployment Mode | Cloud Platform | Region                                     |
+|-----------------|----------------|--------------------------------------------|
+| SaaS            | AWS            | Singapore, US East (N.Virginia), Hong Kong |
+
+## Architecture description
+
+VeloDB Cloud as a whole mainly consists of three parts: metadata service layer, computing cluster layer, and object storage layer.
+
+![multiaz 1](/images/cloud/multiaz-1.png)
+
+1. **High availability of metadata service layer**
+
+   The current metadata service layer mainly consists of MetaService and FE. Both MetaService and FE support multi-node high availability. By deploying MetaService and FE to three availability zones, we can achieve uninterrupted service in the event of failure in any availability zone.
+
+2. **High availability of computing service**
+
+   We provide a multi-computing cluster implementation based on shared object storage, and each computing cluster can read and write independently. Therefore, we recommend the following method to ensure high availability of the computing layer.
+
+- If a certain availability zone is unavailable, tolerate service recovery within 1 hour: you can deploy a computing cluster in 1 availability zone, and then when this availability zone is unavailable, you can quickly complete the recovery of the computing cluster in another availability zone within 1 hour. This depends on the size of the cluster hot cache data. If the hot data cache is small, it can be done in 10-30 minutes.
+- If a certain availability zone is unavailable, you hope that the query service is fully available without interruption time: you can deploy a computing cluster in 2 or 3 availability zones to form 2 computing clusters, and both computing clusters can read and write.
+
+3. **High availability of Object storage**
+   
+    Object storage uses the cross-availability zone high availability configuration provided by the cloud platform, and the cloud platform guarantees multi-availability high availability.
+
+## Operation instructions
+
+### Create a warehouse
+   When creating a warehouse, you need to select three of the candidate availability zones when selecting the availability zone. The system will deploy the warehouse in three availability zones to ensure that the service is not interrupted when any availability zone fails.
+
+   ![multiaz 2](/images/cloud/multiaz-2.png)
+
+   Other options are the same as for a single availability zone warehouse.
+   After the warehouse is created, you can view the availability zone to which the warehouse belongs on the warehouse details page.
+
+   ![multiaz 3](/images/cloud/multiaz-3.png)
+
+###  Cluster
+
+**Create a cluster**
+   
+When creating a single cluster, select the availability zone, and you can only select one of the three availability zones of the warehouse. When creating multiple clusters, each cluster can select a different availability zone.
+
+![multiaz 4](/images/cloud/multiaz-4.png)
+
+Other options are the same as for a single availability zone cluster.
+
+After the cluster is successfully created, you can view the availability zone where the cluster is located on the cluster details page.
+
+![multiaz 5](/images/cloud/multiaz-5.png)
+
+**Specify a cluster**
+
+When there are multiple clusters, you can specify the cluster in the following way, as shown in the following example
+
+1.Connect to VeloDB through MySQL Client and use cluster cluster_1 to create a database and table.
+
+```yaml
+//Switch to use computing cluster cluster_1
+USE @cluster_1;
+
+//Create database, table
+CREATE DATABASE test_db;
+USE test_db;
+CREATE TABLE test_table
+(
+k1 TINYINT,
+k2 DECIMAL(10, 2) DEFAULT "10.05",
+k3 CHAR(10) COMMENT "string column",
+k4 INT NOT NULL DEFAULT "1" COMMENT "int column"
+)
+COMMENT "my first table"
+DISTRIBUTED BY HASH(k1) BUCKETS 16;
+```
+
+2. JDBC connection string
+
+```yaml
+jdbc:mysql://<host>:<port>/<Database>@<Cluster>?user=<Username>&password=<Password>
+```
+
+3. Use cluster cluster_2 to write sample data through Stream Load.
+
+```yaml
+ curl --location-trusted -u admin:admin_123 -H "cloud_cluster:cluster_2" -H "label:123" -H "column_separator:," -T data.csv http://host:port/api/test_db/test_table/_stream_load
+   The sample data in data.csv is as follows:
+   1,0.14,a1,20
+   2,1.04,b2,21
+   3,3.14,c3,22
+   4,4.35,d4,23
+```
+
+4. WebUI
+   
+   When executing SQL commands, you can select Switch Cluster in the upper right corner
+
+   ![multiaz 6](/images/cloud/multiaz-6.png)
+
+5. For displaying clusters, cluster permission settings, setting user default clusters, etc., please refer to [Cluster Management](../cluster-management.mdx).
+
+**Cluster Rename**
+   
+On the cluster details page, you can rename the cluster
+
+![multiaz 7](/images/cloud/multiaz-7.png)
+
+### Public network connection
+
+Use public network connection to access VeloDB Cloud When creating a warehouse, you can directly use the provided domain name to access it, and the system will automatically route to the FE nodes in the three availability zones.
+
+![multiaz 8](/images/cloud/multiaz-8.png)
+
+
+### Private network connection
+
+When creating a private network connection and creating an endpoint, you can create multiple endpoints corresponding to multiple availability zones.
+
+For Details, please refer to [Private network connection](https://docs.velodb.io/cloud/4.x/management-guide/connections#aws)
+
+![multiaz 9](/images/cloud/multiaz-9.png)
+
+# Disaster recovery preparation and failure handling
+
+## Warehouse
+
+- **Disaster recovery preparation**: When creating a warehouse, select multiple availability zones.
+- **Failure handling**: No handling is required.
+
+## Cluster
+
+**Disaster recovery preparation**
+- If a certain availability zone is unavailable, tolerate service recovery within 1 hour: You can deploy a computing cluster in 1 availability zone, and then when this availability zone is unavailable, you can quickly complete the recovery of the computing cluster in another availability zone within 1 hour. This depends on the size of the cluster's hot cache data. If the hot data cache is small, it can be done in 10-30 minutes.
+- If a certain availability zone is unavailable, you hope that the query service is fully available without interruption time: You can deploy a computing cluster in each of 2 or 3 availability zones to form 2 or more computing clusters, and 2 or more computing clusters can read and write.
+
+**Failure handling**
+- Rename cluster: User configuration is submitted to Cluster-A. After Cluster-A fails, Cluster-A is renamed to Cluster-X. And a new Cluster-A is created or other backup cluster Cluster-B is renamed to Cluster-A. Complete the smooth switching of the business.
+
+## Public network connection
+
+- Disaster recovery preparation: Use the domain name provided by the warehouse for reliable access.
+- Failure handling: No handling required.
+
+## Private network connection
+  Disaster recovery preparation: Create private network connections corresponding to multiple availability zones.
+  Failure handling: Switch to the private network connection of the normal availability zone.
+
+# Known limitations
+- When the availability zone fails, if the WebUI currently in use does not support automatic switching, you can refresh the WebUI page to reconnect

@@ -1,0 +1,49 @@
+---
+{
+  "title": "AVG",
+  "description": "指定された列または式のすべての非NULL値の平均を計算します。",
+  "language": "ja"
+}
+---
+## Description
+
+指定された列または式内のすべての非NULL値の平均値を計算します。
+
+## Syntax
+
+```sql
+AVG([DISTINCT] <expr>)
+```
+## Parameters
+
+| Parameter | Description |
+| -- | -- |
+| `<expr>` | 式または列で、通常は数値列または数値に変換可能な式です。 |
+| `[DISTINCT]` | exprから重複値を除去した後に平均値を計算することを示すオプションのキーワードです。 |
+
+## Return Value
+
+選択された列または式の平均値を返します。グループ内のすべてのレコードがNULLの場合、この関数はNULLを返します。
+
+## Example
+
+```sql
+SELECT datetime, AVG(cost_time) FROM log_statis group by datetime;
+```
+```text
++---------------------+--------------------+
+| datetime            | avg(`cost_time`)   |
++---------------------+--------------------+
+| 2019-07-03 21:01:20 | 25.827794561933533 |
++---------------------+--------------------+
+```
+```sql
+SELECT datetime, AVG(distinct cost_time) FROM log_statis group by datetime;
+```
+```text
++---------------------+---------------------------+
+| datetime            | avg(DISTINCT `cost_time`) |
++---------------------+---------------------------+
+| 2019-07-04 02:23:24 |        20.666666666666668 |
++---------------------+---------------------------+
+```

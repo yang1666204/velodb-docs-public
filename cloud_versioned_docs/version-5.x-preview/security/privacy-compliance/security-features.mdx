@@ -1,0 +1,221 @@
+---
+{
+    "title": "Security Features",
+    "description": "VeloDB Cloud provides a complete security mechanism to ensure the security of customer data and services, such as isolation, authentication, authoriza..."
+}
+---
+
+# Security Features
+
+VeloDB Cloud provides a complete security mechanism to ensure the security of customer data and services, such as isolation, authentication, authorization, encryption, auditing, disaster recovery, etc.
+
+## Product Architecture
+
+VeloDB Cloud cloud-native data warehouse contains three key concepts: organization, warehouse and cluster. As the cornerstone of product design, they build independent, isolated, elastic and scalable services to help enterprises quickly and safely build the foundation of big data analysis business.
+
+<img src={require("/images/cloud/security/privacy-compliance/product-architecture.png").default} alt="" width="536" height="601"/>
+
+- **Organization**: An organization represents an enterprise or a relatively independent group. After registering VeloDB Cloud, users use the service as an organization. Organization is the billing settlement object in VeloDB Cloud. The billing, resources and data between different organizations are isolated from each other.
+- **Warehouse**: A warehouse is a logical concept, which includes computing and storage resources. Each organization can create multiple warehouses to meet the data analysis needs of different businesses, such as orders, advertising, logistics and other businesses. Similarly, the resources and data between different warehouses are also isolated from each other, which can be used to meet the security needs within the organization.
+- **Cluster**: A cluster is a computing resource in a warehouse, which contains one or more computing nodes and can be elastically expanded and reduced. A warehouse can contain multiple clusters, which share the underlying data. Different clusters can meet different workloads, such as statistical reports, interactive analysis, etc., and the workloads between multiple clusters do not interfere with each other.
+
+From a technical perspective, the core technical architecture of VeloDB Cloud is divided into three layers:
+
+<img src={require("/images/cloud/security/privacy-compliance/tech-architecture.png").default} alt="" width="536" height="601"/>
+
+**Service Layer**
+- Manager: Responsible for the management of computing and storage resources. When a user creates a warehouse, the Manager is responsible for creating a storage bucket; when a user creates a cluster, the Manager is responsible for creating computing resources.
+- Metadata: Stores metadata such as organizations, users, warehouses, clusters, and database tables.
+- Security: Responsible for security policy settings, using the principle of least privilege.
+
+**Compute Layer**
+- Data warehouse: It is a logical concept, including physical objects such as warehouse metadata, clusters, and data storage.
+- Cluster: The cluster only contains computing resources and cached data. Multiple clusters of the same warehouse share data storage.
+
+**Storage Layer**
+- Object storage: The data in the warehouse is stored in the object storage on the cloud service in the form of files.
+
+## Security level
+
+VeloDB Cloud provides complete and full-link data security features from the dimensions of resource isolation, authentication, data transmission and storage:
+- Resource isolation: Storage and computing between organizations are isolated from each other.
+- Identity authentication: Prove the identity of the visitor (user or application).
+- Access control: Set user access rights to data to ensure that users can control data permissions in a fine-grained manner.
+- Data protection: Storage and transmission encryption ensure that data will not be leaked through physical disks and network monitoring, and support data disaster recovery protection.
+- Network security: Public network whitelist, private network links, inter-organization security groups, and optional independent VPC ensure the security of network connections.
+- Security audit: Transparent and complete audit of operations in the console and warehouse.
+- Application security: VeloDB cloud service has the ability to prevent attacks.
+
+### Resource isolation
+
+**SaaS deployment**
+
+VeloDB Cloud ensures complete isolation of data between different organizations through storage and computing isolation:
+
+Data storage
+1. Each organization uses a separate object storage bucket in each cloud service area, and the bucket is set to private access and uses STS authentication.
+2. Each warehouse is assigned a cloud service subaccount, and the storage permission of each warehouse is only granted to this subaccount.
+3. Cache data is only stored locally in the cluster, and different warehouses cannot access each other.
+   Computing resources
+1. Clusters will not be used across warehouses, that is, a cluster will only belong to one warehouse.
+2. Each organization's cluster sets strict firewall rules through security groups to ensure that clusters between different organizations cannot connect to each other.
+
+**BYOC deployment**
+
+In the VeloDB Cloud BYOC deployment form, data storage and computing resources are completely retained in your own VPC, and data does not leave your VPC, ensuring the security and compliance of data and computing.
+
+Data storage
+Data is completely stored in your own VPC, and data does not leave your VPC.
+Computing resources
+1. Computing resources are completely in your own cloud resource pool, providing data warehouse services.
+2. A warehouse can contain multiple clusters, which share underlying data. Different clusters can meet different workloads, such as statistical reports, interactive analysis, etc., and the workloads between multiple clusters do not interfere with each other.
+
+### Identity Authentication
+
+Any access to the VeloDB Cloud control plane or data plane requires identity authentication, which is mainly used to confirm the identity of the visitor. VeloDB Cloud ensures the reliability of authentication through the following mechanisms:
+
+- Control plane
+    - Support multi-factor authentication (MFA), and improve security protection capabilities through combined authentication methods such as email password and mobile phone verification code.
+- Data plane
+    - Connect using the MySQL authentication protocol.
+    - HTTP protocol data interaction requires identity authentication, and the authentication method is consistent with the MySQL protocol.
+    - Support IP blacklist and whitelist mechanism for identity authentication.
+- Password policy
+    - Prevent setting weak passwords, and use strong passwords.
+    - Prevent brute force password cracking.
+    - User passwords are encrypted and stored.
+
+### Access Control
+
+VeloDB has three levels of access control entities: organization, user, and user in warehouse. Organization is a billing unit, and the same organization shares the bill. User is used for control, such as creating and deleting data warehouses and clusters. User in warehouse is used for data, and can operate on database tables, similar to users in MySQL.
+
+**RBAC permission control**
+
+Multiple warehouses can be created under an organization, and the data between each warehouse is isolated. Organization administrators can set different roles for users in the organization, and control the user's permissions to create/delete/edit/view/query/monitor warehouses through roles. For details, please refer to VeloDB Cloud User Management.
+User in warehouse refers to the permission management mechanism of MySQL, and achieves fine-grained permission control at the table level, role-based permission access control, and supports whitelist mechanism. For details, please refer to VeloDB Cloud Permission Management.
+
+**Row-level security**
+
+Administrators can perform fine-grained permission control on qualified rows, such as allowing only a certain user to access qualified rows, which is used when multiple users have different permissions for different data rows in a table.
+Syntax description, row policy documentation
+
+```yaml
+CREATE ROW POLICY {NAME} ON {TABLE}
+AS {RESTRICTIVE|PERMISSIVE} TO {USER} USING {PREDICATE};
+```
+
+Example
+Create a policy named test_row_policy_1, which prohibits user1 from accessing rows in table1 where the col1 column value is equal to 1 or 2.
+
+```yaml
+CREATE ROW POLICY test_row_policy_1 ON db1.table1
+AS RESTRICTIVE TO user1 USING (col1 in (1, 2));
+```
+
+Create a policy named test_row_policy_1, which allows user1 to access rows in table1 where the col1 column value is equal to 1 or 2.
+
+```yaml
+CREATE ROW POLICY test_row_policy_1 ON db1.table1
+AS PERMISSIVE TO user1 USING (col1 in (1, 2));
+```
+
+**Column-level security**
+
+Administrators can implement column-level permission control through views. For example, if a user does not have access to a column, a view that does not contain this column can be created for this user.
+Syntax (The following only shows the basic syntax, please refer to the detailed syntax of view)
+
+```yaml
+CREATE VIEW {name} {view_column_list}
+AS
+SELECT {table_column_list} FROM {src_table}
+```
+
+Example
+Authorize user user1 to read columns id and name of table t1
+
+```yaml
+create view view2 (id,name) as select id,name from t1
+
+grant SELECT_PRIV to user1 on view2
+```
+
+**Data masking**
+
+VeloDB provides a convenient mask function that can mask numbers and strings. Users can use the mask function to create a view, and then manage the view permissions through the access control of users in the warehouse, thereby implementing data masking for users.
+
+Syntax Description
+
+```yaml
+VARCHAR mask(VARCHAR str, [, VARCHAR upper[, VARCHAR lower[, VARCHAR number]]])
+```
+
+Example
+Returns a masked version of str. By default, uppercase letters are converted to "X", lowercase letters are converted to "x", and numbers are converted to "n". For example, mask("abcd-EFGH-8765-4321") results in xxxx-XXXX-nnnn-nnnn. You can override the characters used in the mask by providing additional parameters: the second parameter controls the mask character for uppercase letters, the third parameter controls lowercase letters, and the fourth parameter controls numbers. For example, mask("abcd-EFGH-8765-4321", "U", "l", "#") results in llll-UUUU-####-####.
+
+```yaml
+// table test
++-----------+
+| name      |
++-----------+
+| abc123EFG |
+| NULL      |
+| 456AbCdEf |
++-----------+
+
+mysql> select mask(name) from test;
++--------------+
+| mask(`name`) |
++--------------+
+| xxxnnnXXX    |
+| NULL         |
+| nnnXxXxXx    |
++--------------+
+
+mysql> select mask(name, '*', '#', '$') from test;
++-----------------------------+
+| mask(`name`, '*', '#', '$') |
++-----------------------------+
+| ###$$$***                   |
+| NULL                        |
+| $$$*#*#*#                   |
++-----------------------------+
+```
+
+
+### Data Protection
+
+**Storage Encryption**
+- Use storage encryption of cloud service object storage to ensure that valid data cannot be directly obtained from object storage or physical disk.
+- Use cloud service disk encryption to ensure that valid data in cache cannot be directly obtained from disk.
+- Use the encryption function provided by VeloDB to ensure that valid data cannot be directly obtained from object storage, physical disk, and cache disk.
+- VeloDB key rotation protection: Each customer uses an independent key, rotates the key periodically, and accesses objects through a secure temporary authorization mechanism (STS or pre-signature mechanism) to avoid the risk of key leakage.
+- Use RSA encryption algorithm to encrypt data
+
+**Transmission Encryption**
+- MySQL and jdbc protocol access supports TLS encrypted transmission and supports two-way TLS verification (two-way TLS).
+- HTTPS secure transmission for data interaction.
+
+**Disaster Recovery Protection**
+- Data and metadata storage adopts a multi-availability zone storage architecture to ensure that data can be disaster-tolerant across availability zones.
+- Versioning is enabled by default in object storage to ensure multi-version redundancy of objects at the application level.
+- Routine metadata backup to provide disaster recovery capabilities.
+- Routine metadata and data checks to ensure data correctness and reliability.
+- Support Warehouse-level TimeTravel (to be released soon).
+- Cross-region replication CCR.
+
+### Network security
+
+Under the principle of least privilege, VeloDB strictly restricts the network security rules of VPC, including:
+- External network access must go through the gateway.
+- Operation and maintenance must go through VPN.
+- Organizational isolation.
+
+The VeloDB warehouse provides two network connection methods: public network and private network connection:
+- Public network: Only IPs in the whitelist can access, which can effectively avoid excessive public network permissions.
+- Private network connection: Users can access VeloDB through private network connection in VPC. Private network connection can ensure that only one-way connection and only the set VPC can be connected, which effectively limits the access source.
+
+### Security Audit
+There is a complete audit mechanism for the control operations of the console and the access operations of the warehouse kernel. Customers can obtain the corresponding audit information through the cloud product console.
+
+### Application Security
+VeloDB uses security products such as cloud firewall, Web Application Firewall (WAF), and database audit to ensure the security of cloud service applications.

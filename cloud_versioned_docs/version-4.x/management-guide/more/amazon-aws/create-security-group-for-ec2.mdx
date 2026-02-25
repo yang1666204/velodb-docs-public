@@ -1,0 +1,25 @@
+---
+{
+    "title": "Create a Security Group for EC2",
+    "description": "A security group acts as a virtual firewall that controls traffic to and from its associated AWS resources."
+}
+---
+
+# Create a Security Group for EC2
+
+A security group acts as a virtual firewall that controls traffic to and from its associated AWS resources.
+
+1. Log into your AWS Console as a user with administrator privileges and go to the **VPC** console.
+2. Click the **Security groups** tab in the sidebar.
+3. Click the **Create security group** button.
+   1. Entry a security group name.(e.g. velodb-server-sg)
+   2. For **VPC**, select the VPC with which you want to associate the security group.
+   3. Click **Create security group**.
+4. Add inbound and outbound rules for the security group.
+   1. Add Inbound Rules
+      - Rule 1: Set Type to **All TCP**; For Source, select the security group you just created from the **Source** drop-down list.
+      - Rule 2: Set Type to **Custom TCP**; For Port range, enter 8000-10000; For Source, enter the CIDR block of the VPC that you want to allow access from.
+   2. Add Outbound Rules
+      - By default, all outbound traffic is allowed. This is the standard configuration and usually requires no modification.
+5. Click **Save rules**.
+6. In the security group summary, copy the **Security group ID** to add to VeloDB console.

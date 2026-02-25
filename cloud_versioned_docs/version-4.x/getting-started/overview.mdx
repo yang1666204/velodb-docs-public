@@ -1,0 +1,73 @@
+---
+{
+    "title": "Introduction | Getting Started - Cloud",
+    "description": "VeloDB Cloud is a new generation of multi-cloud native real-time data warehouse based on Apache Doris, focusing on meeting the real-time analysis need..."
+}
+---
+
+# Introduction
+
+VeloDB Cloud is a new generation of multi-cloud native real-time data warehouse based on Apache Doris, focusing on meeting the real-time analysis needs of enterprise-level big data, and providing customers with extremely cost-effective, easy-to-use data analysis services.
+
+VeloDB Cloud is publicly available to customers. If customers want to deploy VeloDB data warehouse to AWS (Amazon Web Services), Microsoft Azure, GCP (Google Cloud Platform), please visit and log in to [VeloDB Cloud](https://www.velodb.cloud/passport/login).
+
+
+
+## Key Features
+
+- **Extreme Performance**: In terms of storage, VeloDB Cloud adopts efficient columnar storage and data indexing; in terms of computing, VeloDB Cloud relies on the MPP distributed computing architecture and the vectorized execution engine optimized for X64 and ARM64; VeloDB Cloud is at the global leading level in the ClickBench public performance evaluation.
+- **Cost-Effective**: VeloDB Cloud adopts a cloud-native architecture that separates storage and computing, and is designed and developed based on cloud infrastructure. In terms of storage, shared object storage achieves extremely low cost; in terms of computing, VeloDB Cloud supports on-demand scaling and start-stop to maximize resource utilization.
+- **Easy-to-Use**: One-click deployment, out-of-the-box; supports MySQL-compatible network connection protocols; provides integrated connectors with Kafka/Flink/Spark/DBT; has a powerful and easy-to-use visual operation and maintenance management console and data development tools.
+- **Single-Unified**: On a single product, multiple analytical workloads can be run. Supports real-time/interactive/batch computing types, structured/semi-structured data types, and federated analysis of external data lakes (such as Hive, Iceberg, Hudi, etc.) and databases (such as MySQL, Elasticsearch, etc.).
+- **Open**: Based on the open source Apache Doris research and development, VeloDB Cloud continue to contribute innovations to the open source community. VeloDB Cloud is fully compatible with the Apache Doris syntax protocol, and can freely migrate data with Apache Doris. Continue to be compatible and mutually certified with domestic and foreign ecological products and tools. Open cooperation with cloud platforms at home and abroad, the product runs on multiple clouds, providing a consistent user experience.
+- **Safe and Stable**: In terms of data security, VeloDB Cloud provides complete authority control, data encryption, backup and recovery mechanisms; in terms of operation and maintenance management, VeloDB Cloud provides comprehensive observability metrics collection and visual management of data warehouse service; in terms of technical support, VeloDB Cloud has a complete ticketing management system and remote assistance platform, providing multiple levels of expert support services.
+
+
+
+## Key Concepts
+
+![key concepts of velodb](/images/cloud/key-concepts-of-velodb.jpeg)
+
+<div style={{textAlign: 'center'}}>Key Concepts of VeloDB Cloud</div>
+
+<br />
+
+- **Organization**: An organization represents an enterprise or a relatively independent group, and users can use the service as an organization after registering with VeloDB Cloud. Organizations are billing and settlement objects in VeloDB Cloud, and billing, resources, and data between different organizations are isolated from each other.
+- **Warehouse**: A warehouse is a logical concept that includes computing and storage resources. Each organization can create multiple warehouses to meet the data analysis needs of different businesses, such as orders, advertising, logistics and other businesses. Similarly, resources and data between different warehouses are also isolated from each other, which can be used to meet the security requirements within the organization.
+- **Cluster**: A cluster is a computing resource in the warehouse, including one or more computing nodes, which can be elastically scaled. A warehouse can contain multiple clusters, which share the underlying data. Different clusters can meet different workloads, such as statistical reports, interactive analysis, etc., and the workloads between multiple clusters do not interfere with each other.
+- **Storage**: Use a mature and stable object storage system to store the full amount of data, and support multi-computing cluster shared storage, which brings extremely low storage cost, high data reliability and almost unlimited storage capacity to the data warehouse, and greatly simplifies the implementation complexity of the upper computing cluster.
+
+
+
+## Product Architecture
+
+![velodb cloud architecture](/images/cloud/velodb-cloud-architecture.jpeg)
+
+<div style={{textAlign: 'center'}}>Cloud-Native Storage and Computing Separation Architecture</div>
+<br />
+
+- **Cloud Service Layer**: The cloud service layer is a collection of supporting services provided by VeloDB Cloud, including: authentication, access control, cloud infrastructure management, metadata management, query parsing and optimization, etc., expressed in the form of a "warehouse". Warehouses are isolated from each other.
+- **Computing Cluster Layer**: The computing layer is decoupled from the storage layer, supporting flexible elastic scaling and smooth upgrades. The computing layer consists of several computing clusters. Multiple computing clusters share storage, and workloads are isolated between multiple clusters. Each cluster contains one or more computing nodes. Computing nodes use high-speed hard disks to build hot data caches (Cache), and avoid unnecessary cold data reading through leading query optimizers and rich indexing technologies, which significantly optimizes the problem of high response delay of object storage, providing customers with the ultimate data analysis performance.
+- **Shared Storage Layer**: The bottom layer of VeloDB Cloud uses cheap, highly available, and nearly infinitely scalable object storage as the shared storage layer, and is based on object storage for deep optimization design, which can help customers reduce the cost of data analysis by multiples, and easily support PB-level data analysis needs. The unified standard and maturity of object storage in different cloud environments also strengthens the consistent use experience of VeloDB Cloud in multiple clouds.
+
+
+
+## Application Scenario
+
+- **High Concurrent Real-time Reporting and Analysis**: Use VeloDB Cloud to process online high-concurrency reports to obtain real-time, fast, stable, and highly available services. It supports real-time data writing, sub-second query response, and high-concurrency point queries to meet the high-availability deployment requirements of clusters.
+- **User Portrait and Behavior Analysis**: Based on VeloDB Cloud, build user CDP (Customer Data management Platform) data warehouse platform layering, support millisecond-level column addition and dynamic tables to flexibly respond to business changes, support rich behavior analysis functions to simplify development and improve efficiency, and support high-level orthogonal bitmaps to achieve second-level circle people in portrait scenes.
+- **Log Storage and Analysis**: Integrating the VeloDB Cloud data warehouse into the logging system to realize real-time log query, low-cost storage, and efficient processing, reduce the overall cost of the enterprise log system, and improve the performance and reliability of the log system.
+- **Lake Warehouse Integration and Federated Analysis**: Unified integration of data lakes, databases, and data warehouses into a single platform, relying on the data federation query acceleration capability of VeloDB Cloud, provides high-performance business intelligence reports, Adhoc analysis, and incremental ETL/ELT data processing services.
+
+
+
+## Relationship to Apache Doris
+
+VeloDB Inc ("**VeloDB**") is a commercial company with products based on Apache Doris. VeloDB was founded in May 2023 by the founding team of Apache Doris. VeloDB is an important driving force of Apache Doris. It has 7 PMC members and 20 Committers, and has led the release of a series of core versions of Apache Doris. VeloDB vigorously promotes the open source Apache Doris, the technology benefits open source users and developers, and launches commercial products based on Apache Doris, the business empowers commercial customers, and the two-wheel drive achieves healthy growth of open source and business.
+
+VeloDB Cloud is a new generation of multi-cloud native real-time data warehouse built by VeloDB based on Apache Doris. Compared with Apache Doris, VeloDB Cloud has the following main differences:
+
+- The core version is more mature and stable, with more enterprise-level features and cloud-native features.
+- Provides a built-in visualized operation and maintenance management console and data development tools, no need users to install and deploy, out-of-the-box, minimalist operation and maintenance and management.
+
+

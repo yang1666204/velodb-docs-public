@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate after \"SPLIT_BY_STRING\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "SPLIT_BY_STRING",
   "description": "指定された文字列に従って、入力文字列を文字列配列に分割します。",
   "language": "ja"
 }

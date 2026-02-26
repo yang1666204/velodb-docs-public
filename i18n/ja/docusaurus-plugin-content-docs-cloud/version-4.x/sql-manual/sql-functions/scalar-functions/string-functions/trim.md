@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your technical documentation. However, I don't see the actual text content to translate - only the word \"TRIM\" appears at the end of your message. \n\nCould you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "TRIM",
   "description": "このコマンドは、文字列の両端にあるスペースまたは指定された文字を削除するために使用されます。rhsパラメータが指定されていない場合、",
   "language": "ja"
 }

@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your English technical documentation into Japanese following the strict rules you've outlined. However, I don't see any text after \"TRIM_IN\" in your message. Could you please provide the English text that you'd like me to translate?",
+  "title": "TRIM_IN",
   "description": "rhsパラメータが存在しない場合、この関数はstr文字列から先頭と末尾の空白を削除します。rhsパラメータが提供された場合、",
   "language": "ja"
 }

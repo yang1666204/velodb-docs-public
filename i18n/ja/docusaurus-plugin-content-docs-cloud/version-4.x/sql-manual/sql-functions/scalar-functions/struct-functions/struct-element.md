@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that you've provided \"STRUCT_ELEMENT\" as the text to translate, but this appears to be a placeholder or identifier rather than actual technical documentation content. \n\nCould you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "STRUCT_ELEMENT",
   "description": "struct のデータカラム内の特定のフィールドを返します。",
   "language": "ja"
 }

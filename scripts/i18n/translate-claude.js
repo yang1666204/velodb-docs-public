@@ -40,10 +40,12 @@ async function translateFrontMatterByAI(text) {
         role: "assistant",
         content: [{
           text: `You are a professional technical documentation translator.`
-        }, {
-          role: "user",
-          content: [{
-            text: `Translate the following English text into natural, accurate Japanese.
+        }]
+      },
+      {
+        role: "user",
+        content: [{
+          text: `Translate the following English text into natural, accurate Japanese.
 
 Strict rules:
 1. Preserve the exact meaning.
@@ -56,7 +58,6 @@ Text:
 <<<BEGIN>>>
 ${text}
 <<<END>>>`
-          }]
         }]
       }
     ]
@@ -76,13 +77,13 @@ ${text}
 
   if (!res.ok) {
     const msg = await res.text();
-    throw new Error(`Qwen API error: ${res.status} ${msg}`);
+    throw new Error(`Claude API error: ${res.status} ${msg}`);
   }
 
   const data = await res.json();
   const output = data?.output.message.content[0].text;
   if (!output) {
-    throw new Error("Invalid Qwen API response");
+    throw new Error("Invalid Claude API response");
   }
   return output;
 }

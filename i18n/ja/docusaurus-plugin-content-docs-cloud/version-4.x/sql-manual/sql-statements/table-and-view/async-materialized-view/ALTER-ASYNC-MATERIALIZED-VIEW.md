@@ -44,7 +44,8 @@ ALTER MATERIALIZED VIEW mv1 rename mv2;
 ```sql
 ALTER MATERIALIZED VIEW mv1 set("grace_period"="3000");
 ```
-I don't see any text after "##### REPLACE" in your message. Could you please provide the English technical documentation text that you'd like me to translate into Japanese?
+
+##### REPLACE
 
 ```sql
 ALTER MATERIALIZED VIEW [db.]mv1 REPLACE WITH MATERIALIZED VIEW mv2

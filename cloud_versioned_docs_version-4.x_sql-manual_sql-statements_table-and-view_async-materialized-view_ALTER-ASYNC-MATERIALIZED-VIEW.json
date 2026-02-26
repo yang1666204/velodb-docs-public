@@ -1,0 +1,160 @@
+{
+  "source": "cloud_versioned_docs/version-4.x/sql-manual/sql-statements/table-and-view/async-materialized-view/ALTER-ASYNC-MATERIALIZED-VIEW.md",
+  "frontMatter": {
+    "title": "ALTER ASYNC MATERIALIZED VIEW",
+    "language": "en",
+    "description": "This statement is used to modify asynchronous materialized views."
+  },
+  "segments": [
+    {
+      "id": 0,
+      "type": "text",
+      "value": "## Description\n\nThis statement is used to modify asynchronous materialized views.\n\n#### syntax"
+    },
+    {
+      "id": 1,
+      "type": "code",
+      "value": "```sql"
+    },
+    {
+      "id": 2,
+      "type": "code",
+      "value": "ALTER MATERIALIZED VIEW mvName=multipartIdentifier ((RENAME newName=identifier)"
+    },
+    {
+      "id": 3,
+      "type": "code",
+      "value": "       | (REFRESH (refreshMethod | refreshTrigger | refreshMethod refreshTrigger))"
+    },
+    {
+      "id": 4,
+      "type": "code",
+      "value": "       | REPLACE WITH MATERIALIZED VIEW newName=identifier propertyClause?"
+    },
+    {
+      "id": 5,
+      "type": "code",
+      "value": "       | (SET  LEFT_PAREN fileProperties=propertyItemList RIGHT_PAREN))"
+    },
+    {
+      "id": 6,
+      "type": "code",
+      "value": "```"
+    },
+    {
+      "id": 7,
+      "type": "text",
+      "value": "#### illustrate\n\n##### RENAME\n\nUsed to change the name of the materialized view\n\nFor example, changing the name of mv1 to mv2"
+    },
+    {
+      "id": 8,
+      "type": "code",
+      "value": "```sql"
+    },
+    {
+      "id": 9,
+      "type": "code",
+      "value": "ALTER MATERIALIZED VIEW mv1 rename mv2;"
+    },
+    {
+      "id": 10,
+      "type": "code",
+      "value": "```"
+    },
+    {
+      "id": 11,
+      "type": "text",
+      "value": "##### refreshMethod\n\nSame as [creating asynchronous materialized views](./CREATE-ASYNC-MATERIALIZED-VIEW)\n\n##### refreshTrigger\n\nSame as [creating asynchronous materialized views](./CREATE-ASYNC-MATERIALIZED-VIEW)\n\n##### SET\nModify properties unique to materialized views\n\nFor example, modifying the grace_period of mv1 to 3000ms"
+    },
+    {
+      "id": 12,
+      "type": "code",
+      "value": "```sql"
+    },
+    {
+      "id": 13,
+      "type": "code",
+      "value": "ALTER MATERIALIZED VIEW mv1 set(\"grace_period\"=\"3000\");"
+    },
+    {
+      "id": 14,
+      "type": "code",
+      "value": "```"
+    },
+    {
+      "id": 15,
+      "type": "text",
+      "value": "##### REPLACE"
+    },
+    {
+      "id": 16,
+      "type": "code",
+      "value": "```sql"
+    },
+    {
+      "id": 17,
+      "type": "code",
+      "value": "ALTER MATERIALIZED VIEW [db.]mv1 REPLACE WITH MATERIALIZED VIEW mv2"
+    },
+    {
+      "id": 18,
+      "type": "code",
+      "value": "[PROPERTIES('swap' = 'true')];"
+    },
+    {
+      "id": 19,
+      "type": "code",
+      "value": "```"
+    },
+    {
+      "id": 20,
+      "type": "text",
+      "value": "Replacing atoms with two materialized views\n\nswap default is TRUE\n- If the swap parameter is set to TRUE, it is equivalent to renaming the materialized view mv1 to mv2, and renaming mv2 to mv1 at the same time\n- If the swap parameter is set to FALSE, it is equivalent to renaming mv2 to mv1 and deleting the original mv1\n\nFor example, if you want to swap the names of mv1 and mv2"
+    },
+    {
+      "id": 21,
+      "type": "code",
+      "value": "```sql"
+    },
+    {
+      "id": 22,
+      "type": "code",
+      "value": "ALTER MATERIALIZED VIEW db1.mv1 REPLACE WITH MATERIALIZED VIEW mv2;"
+    },
+    {
+      "id": 23,
+      "type": "code",
+      "value": "```"
+    },
+    {
+      "id": 24,
+      "type": "text",
+      "value": "For example, if you want to rename mv2 to mv1 and delete the original mv1"
+    },
+    {
+      "id": 25,
+      "type": "code",
+      "value": "```sql"
+    },
+    {
+      "id": 26,
+      "type": "code",
+      "value": "ALTER MATERIALIZED VIEW db1.mv1 REPLACE WITH MATERIALIZED VIEW mv2"
+    },
+    {
+      "id": 27,
+      "type": "code",
+      "value": "PROPERTIES('swap' = 'false');"
+    },
+    {
+      "id": 28,
+      "type": "code",
+      "value": "```"
+    },
+    {
+      "id": 29,
+      "type": "text",
+      "value": "## Keywords\n\n    ALTER, ASYNC, MATERIALIZED, VIEW"
+    }
+  ]
+}

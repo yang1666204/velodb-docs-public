@@ -39,21 +39,21 @@ async function translateFrontMatterByAI(text) {
       {
         role: "assistant",
         content: [{
-          text: `You are a professional technical documentation translator.`
-        }]
-      },
-      {
-        role: "user",
-        content: [{
-          text: `Translate the following English text into natural, accurate Japanese.
-
+          text: `You are a professional technical documentation translator.
+          Translate the following English text into natural, accurate Japanese.
 Strict rules:
 1. Preserve the exact meaning.
 2. Do not add explanations or extra wording.
 3. Do not rewrite or expand the sentence.
 4. Keep technical terms in English if they are commonly used in Japanese technical documents.
 5. Output ONLY the translated text.
-
+`
+        }]
+      },
+      {
+        role: "user",
+        content: [{
+          text: `
 Text:
 <<<BEGIN>>>
 ${text}
@@ -107,6 +107,8 @@ Strict rules:
 3. Keep all technical terms consistent. If a term is commonly used in English in Japanese technical documents, keep it in English.
 4. Do not add explanations, notes, comments, or formatting changes.
 5. Output ONLY the translated text. No preface, no markdown wrappers, no quotes.
+6. Do not analyze or judge whether the content is meaningful or placeholder text.
+7. Always translate exactly what is inside the markers, even if it looks like a template or placeholder.
 
 Tone:
 - Professional, neutral, technical documentation style
@@ -118,23 +120,11 @@ Tone:
       {
         role: "user",
         content: [{
-          text: `Translate the following English technical documentation text into Japanese.
-
-Requirements:
-- Keep paragraph structure.
-- Do not translate code, commands, or identifiers if they appear inline.
-- Use natural Japanese commonly seen in developer documentation.
-- If a sentence is unclear, translate it conservatively rather than creatively.
-
-Translate the following content:
+          text: `Translate the content inside the markers below.
 
 <<<BEGIN>>>
 ${text}
 <<<END>>>
-
-Remember:
-- Output only the translated text.
-- If the content is empty, output nothing.
 `}],
       },
     ],

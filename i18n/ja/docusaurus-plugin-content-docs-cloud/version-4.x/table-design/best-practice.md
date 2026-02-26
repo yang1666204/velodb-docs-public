@@ -433,6 +433,4 @@ show partitions from tbl_unique_merge_on_write_p;
    PARTITION p99991231 VALUES [('9999-12-31'), (MAXVALUE)) 
 
    ```
-I don't see any text to translate in your message. You've included the opening ":::" but there doesn't appear to be any English technical documentation content following it. 
-
-Please provide the English text you'd like me to translate into Japanese, and I'll follow the guidelines you've specified.
+:::

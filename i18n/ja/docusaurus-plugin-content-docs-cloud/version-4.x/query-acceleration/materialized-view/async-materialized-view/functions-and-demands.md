@@ -1104,7 +1104,6 @@ WHERE
   mvName = 'mv_name'
 ORDER BY  CreateTime DESC \G
 ```
-I notice that you've provided the instruction "Text:" followed by "Example output:" but there doesn't appear to be any actual text content to translate. Could you please provide the English technical documentation text that you'd like me to translate into Japanese?
 
 ```sql
 *************************** 1. row ***************************

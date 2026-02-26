@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate after \"FROM_SECOND\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "FROM_SECOND",
   "description": "この関数は、Unixタイムスタンプ（秒単位）をDATETIME値に変換します。",
   "language": "ja"
 }

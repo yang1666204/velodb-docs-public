@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your English technical documentation into Japanese following the rules you've specified. However, I don't see the actual text content after \"Text:\" - it appears to end with \"ENDS_WITH\" which seems to be a delimiter.\n\nCould you please provide the English text you'd like me to translate?",
+  "title": "ENDS_WITH",
   "description": "文字列が指定されたサフィックスで終わる場合はtrueを返し、そうでない場合はfalseを返します。特殊なケース：",
   "language": "ja"
 }

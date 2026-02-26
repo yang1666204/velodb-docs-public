@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text provided after \"Text:\" in your request. You mentioned \"JSON_KEYS\" but there's no actual content to translate. Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "JSON_KEYS",
   "description": "JSONオブジェクトのトップレベル値からキーを返すために使用されます。これらのキーは配列として返されるか、pathパラメータが指定されている場合は、",
   "language": "ja"
 }

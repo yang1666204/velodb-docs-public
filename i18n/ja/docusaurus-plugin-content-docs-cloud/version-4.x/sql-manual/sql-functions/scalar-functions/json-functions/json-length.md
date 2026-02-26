@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text:\" followed by \"JSON_LENGTH\" but JSON_LENGTH appears to be a placeholder or variable name rather than the actual English technical documentation text you want me to translate.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "JSON_LENGTH",
   "description": "JSONLENGTH関数は、指定されたJSONドキュメントの長さまたは要素数を返します。JSONドキュメントが配列の場合、",
   "language": "ja"
 }

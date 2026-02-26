@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your English technical documentation into Japanese following the strict rules you've outlined. However, I notice that the text you want me to translate appears to be just \"CONVERT_TO\" which looks like a placeholder or command rather than actual documentation content.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate?",
+  "title": "CONVERT_TO",
   "description": "列の文字エンコーディングを指定されたターゲット文字セットに変換します。",
   "language": "ja"
 }

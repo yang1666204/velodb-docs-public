@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your English technical documentation into Japanese following the specified rules. However, I don't see the actual text content after \"JSON_QUOTE\" in your message. Could you please provide the English text that you'd like me to translate?",
+  "title": "JSON_QUOTE",
   "description": "jsonvalue を二重引用符（\"）で囲み、含まれる特殊文字をエスケープしてください。",
   "language": "ja"
 }

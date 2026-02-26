@@ -33,6 +33,60 @@ if (!AWS_API_KEY) {
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
+async function translateFrontMatterByAI(text) {
+  const payload = {
+    messages: [
+      {
+        role: "assistant",
+        content: [{
+          text: `You are a professional technical documentation translator.`
+        }, {
+          role: "user",
+          content: [{
+            text: `Translate the following English text into natural, accurate Japanese.
+
+Strict rules:
+1. Preserve the exact meaning.
+2. Do not add explanations or extra wording.
+3. Do not rewrite or expand the sentence.
+4. Keep technical terms in English if they are commonly used in Japanese technical documents.
+5. Output ONLY the translated text.
+
+Text:
+<<<BEGIN>>>
+${text}
+<<<END>>>`
+          }]
+        }]
+      }
+    ]
+  }
+  const url =
+    'https://bedrock-runtime.us-east-1.amazonaws.com/model/' +
+    'us.anthropic.claude-sonnet-4-20250514-v1:0/converse';
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${AWS_API_KEY}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const msg = await res.text();
+    throw new Error(`Qwen API error: ${res.status} ${msg}`);
+  }
+
+  const data = await res.json();
+  const output = data?.output.message.content[0].text;
+  if (!output) {
+    throw new Error("Invalid Qwen API response");
+  }
+  return output;
+}
+
 /**
  * 调用 Claude API
  */
@@ -118,13 +172,13 @@ async function translateFrontMatter(frontMatter) {
   const { title, description } = frontMatter;
   const translated = {};
   if (title) {
-    translated.title = await translateText(title);
+    translated.title = await translateFrontMatterByAI(title);
   }
   if (description) {
-    translated.description = await translateText(description);
+    translated.description = await translateFrontMatterByAI(description);
   }
-  console.log('translated',translated);
-  
+  console.log('translated', translated);
+
   return translated;
 }
 
@@ -146,7 +200,7 @@ async function main() {
     };
 
     console.log('start translate....');
-    
+
     for (const segment of intermediate.segments) {
       if (segment.type !== "text") {
         translated.segments.push(segment);
@@ -163,13 +217,13 @@ async function main() {
         throw err;
       }
     }
-    if(translated.frontMatter){
+    if (translated.frontMatter) {
       console.log('start translate frontmatter....');
-      
+
       translated.frontMatter = await translateFrontMatter(translated.frontMatter);
     }
     console.log('write in file.....');
-    
+
     fs.writeFileSync(outputPath, JSON.stringify(translated, null, 2));
   }
 }

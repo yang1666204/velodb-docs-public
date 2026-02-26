@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate the English technical documentation into Japanese following your specifications. However, I don't see the actual text to translate - it appears to end with \"MASK\". Could you please provide the English text that you'd like me to translate?",
+  "title": "MASK",
   "description": "MASK関数は機密情報を保護するためにデータを隠蔽する機能であり、データ匿名化のシナリオで一般的に使用されます。",
   "language": "ja"
 }

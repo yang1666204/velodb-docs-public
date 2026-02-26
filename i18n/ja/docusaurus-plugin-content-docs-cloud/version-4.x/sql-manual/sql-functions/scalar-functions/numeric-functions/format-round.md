@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate after \"FORMAT_ROUND\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "FORMAT_ROUND",
   "description": "数値を \"#,###,###.##\" のような形式でフォーマットし、指定された小数点以下の桁数に四捨五入して、結果を文字列として返します。",
   "language": "ja"
 }

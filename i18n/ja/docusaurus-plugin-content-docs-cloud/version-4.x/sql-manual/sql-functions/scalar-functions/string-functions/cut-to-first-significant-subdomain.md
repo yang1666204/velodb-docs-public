@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that the text you provided \"CUT_TO_FIRST_SIGNIFICANT_SUBDOMAIN\" appears to be a configuration key, constant, or identifier rather than documentation text to translate.\n\nBased on the rules you specified, technical identifiers like this should not be translated. Could you please provide the actual documentation text that contains sentences or paragraphs to translate?",
+  "title": "CUT_TO_FIRST_SIGNIFICANT_SUBDOMAIN",
   "description": "CUTTOFIRSTSIGNIFICANTSUBDOMAIN関数は、URLからドメインの有効部分を抽出します、",
   "language": "ja"
 }

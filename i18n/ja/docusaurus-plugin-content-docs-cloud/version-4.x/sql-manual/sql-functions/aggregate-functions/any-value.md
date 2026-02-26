@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your English technical documentation into Japanese following your specifications. However, I don't see any actual text to translate - the input shows \"ANY_VALUE\" which appears to be a placeholder.\n\nCould you please provide the actual English technical documentation text you'd like me to translate?",
+  "title": "ANY_VALUE",
   "description": "グループ内の式または列から任意の値を返します。NULL以外の値が存在する場合は任意のNULL以外の値を返し、そうでなければNULLを返します。",
   "language": "ja"
 }

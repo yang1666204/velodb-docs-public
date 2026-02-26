@@ -1,0 +1,122 @@
+---
+{
+  "title": "ユーザーと組織",
+  "description": "https://www.velodb.cloud/ をクリックしてVeloDB Cloudの登録・トライアルページに入り、関連情報を入力して登録を完了してください...",
+  "language": "ja"
+}
+---
+# ユーザーと組織
+
+## 登録とログイン
+
+[https://www.velodb.cloud/](https://www.velodb.cloud/)をクリックしてVeloDB Cloud登録・試用ページに入り、関連情報を入力して登録を完了します。
+
+![user register](/images/cloud/user-register.png)
+
+> **ヒント** VeloDB Cloudには2つの独立したアカウントシステムが含まれています：1つはこのトピックで説明しているコンソールへのログインに使用されます。もう1つはウェアハウスへの接続に使用され、Connectionsトピックで説明されています。
+
+VeloDB Cloudに既に登録している場合は、下のGo to loginをクリックして直接ログインできます。
+
+![user login](/images/cloud/user-login.png)
+
+## アカウント管理
+
+### パスワード変更
+
+ログイン後、**User Menu** > **Security**をクリックしてVeloDB Cloudコンソールのログインパスワードを変更します。
+
+![change user password](/images/cloud/change-user-password.png)
+
+初回パスワード変更が正常に完了すると、以降のログインでそのパスワードを使用できます。
+
+### 多要素認証（MFA）の管理
+
+多要素認証は、ログイン時にAuthenticatorアプリでワンタイム認証コードを生成することを要求し、追加のセキュリティを提供します。
+
+ログイン時、VeloDB CloudはパスワードとMFA認証コードの両方を検証します。
+
+このパスワードを生成するには、Google AuthenticatorやAuthyなど、iOSやAndroid App StoreのどのAuthenticatorアプリでも使用できます。
+
+![security-mfa](/images/cloud/security-mfa.png)
+
+### 通知
+
+左側ナビゲーションバーの下部で**User Menu** > **Notifications**をクリックしてメッセージセンターに移動します。
+
+プラットフォームのユーザー、組織、認可されたウェアハウス、クラスター操作、およびアラームがトリガーされた時にユーザーに通知されます。
+
+時間範囲でフィルタリング、未読/既読メッセージをワンクリックでフィルタリング、メッセージをページで表示、すべてのメッセージをワンクリックで既読にマーク、チェックされたメッセージをワンクリックで既読にマークなどができます。
+
+![notifications](/images/cloud/notifications.png)
+
+**Scheduled Events**ページに切り替えて予定されたイベントを確認できます。
+
+予定されたイベントには、システムが開始するイベント（例：ユーザーが設定したポリシーに従ってシステムが自動的にコアバージョンをアップグレードする）とユーザーが開始するイベント（例：実行時間枠を指定してコアバージョンを手動でアップグレードする）があります。
+
+一部のイベント（バージョンアップグレードなど）は、切断やその他のビジネスへの影響を引き起こす可能性があります。ビジネスに再接続メカニズムがあることを確認してください。
+
+イベント実行前に、予定された実行時間枠を変更したり、イベントをキャンセルしたりできます。
+
+## 組織管理
+
+組織は課金単位です。各組織は個別に課金されます。コスト単位で組織を分けることをお勧めします。1人のユーザーは複数の組織に所属できます。
+
+1つの組織の下に複数のウェアハウスを作成でき、異なるウェアハウスのデータは分離されています。
+
+メニューバーの現在の組織を切り替えることができます - ユーザーメニューの組織切り替えで行います。
+
+![switch-organization](/images/cloud/switch-organization.png)
+
+### ロール管理
+
+左下隅で**User Menu** > **Access Control** > **Role Management**をクリックします。
+
+組織にはデフォルトで3つのロールがあり、複数のカスタムロールを作成できます。
+
+|                    | **Manage Access Control** | **Manage Billing** | **Manage Organization** | **Manage Warehouse**                                  |
+| ------------------ | ------------------------- | ------------------ | ----------------------- | ----------------------------------------------------- |
+| Organization Admin | Yes                       | Yes                | Yes                     | All warehouse: Create / Edit / View / Query / Monitor |
+| Warehouse Admin    | No                        | No                 | No                      | All warehouse: Edit / View / Query / Monitor          |
+| Warehouse Viewer   | No                        | No                 | No                      | All warehouse: View / Query / Monitor                 |
+
+- 既存のロールを表示：
+
+![access control role management](/images/cloud/access-control-role-management.png)
+
+- 新しいロール：
+
+作成時にロール名とその対応する権限を指定できます。
+
+カスタムロールは削除や編集も可能です。
+
+組織を作成したユーザーは、デフォルトで組織管理者ロールになります。
+
+<img alt='access control new role' src={require("/images/cloud/access-control-new-role.png").default} width="40%" height="auto" />
+
+### ユーザー管理
+
+組織管理者は現在の組織に新しいユーザーを招待し、異なるロールを付与できます。
+
+新しいユーザーは招待メールのリンクを有効にすることで組織に参加できます。
+
+![access control user management invite users](/images/cloud/access-control-user-management-invite-users.png)
+
+### MFA設定
+
+MFAを有効にすると、すべての組織ユーザーはログイン前に二次認証を完了する必要があります。
+
+![mfa-settings](/images/cloud/mfa-settings.png)
+
+### 監査
+
+ログイン後、**User Menu** > **Audit**をクリックしてVeloDB Cloudコンソールの監査ログを確認します。
+
+VeloDB Cloudは組織レベルでの履歴アクティビティをログに記録します。イベントはVeloDB Cloud組織での変更を示します。アクティビティ、時間、IP、ユーザーを含む記録されたアクティビティを監査ページで確認できます。
+
+![audit-log](/images/cloud/audit-log.png)
+
+### 組織詳細
+
+**User Menu** > **Organization Details**をクリックして組織ID、作成時間、組織名を確認します。
+
+![organizaion-details](/images/cloud/organizaion-details.png)

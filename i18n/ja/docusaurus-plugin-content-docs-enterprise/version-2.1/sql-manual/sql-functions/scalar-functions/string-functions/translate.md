@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate English technical documentation into Japanese following your guidelines. However, I don't see the actual text to translate after \"Text: TRANSLATE\". \n\nPlease provide the English technical documentation text you'd like me to translate, and I'll convert it to natural Japanese while preserving all code blocks, technical terms, and formatting as specified.",
+  "title": "TRANSLATE",
   "description": "TRANSLATE関数は文字列置換に使用され、マッピングルールに従ってソース文字列内の文字を変換します。",
   "language": "ja"
 }

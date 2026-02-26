@@ -1,0 +1,38 @@
+---
+{
+  "title": "VeloDBへのプライベート接続を設定する",
+  "description": "BYOC warehouseのネットワーク設定を構成する際のセキュリティ強化のために、プライベートエンドポイントを作成してセキュアでプライベートな接続を確立することができます...",
+  "language": "ja"
+}
+---
+# VeloDB​へのプライベート接続の設定
+
+BYOC warehouseのネットワーク設定時にセキュリティを強化するため、VeloDB Cloud Serviceへの安全でプライベートな接続を確立するプライベートエンドポイントを作成できます。これにより、パブリックインターネットの代わりにVPCインターフェースエンドポイントを通じてトラフィックをルーティングします。
+
+1. 管理者権限を持つユーザーとしてAWS Consoleにログインし、**VPC**コンソールに移動します。
+2. サイドバーの**endpoint**タブをクリックします。
+3. **create endpoint**ボタンをクリックします。
+   1. 名前を入力します（例：vpce-for-s3-gateway）。
+   2. Service category：PrivateLink Ready partner servicesを選択します。
+   3. Service name：サービス名を入力し（Service nameはリージョンによって異なります。[appendix](#appendix)を参照してください）、**Verify service**をクリックします。サービスが検証に合格すると、Service nameフィールドの下に「Service name verified」というメッセージが表示されます。
+   4. VPC：エンドポイントを作成したいVPCを選択します。
+   5. Subnets：エンドポイントネットワークインターフェースを配置するプライベートサブネットを選択します。
+   6. Security group：VPCエンドポイント用に以前作成したセキュリティグループを選択します（例：vpce-for-velodb-sg）。
+   7. Policy：通常はFull accessを選択します。
+   8. **create endpoint**をクリックします。
+
+## Appendix
+
+以下のリストは、現在VeloDBでサポートされているリージョンと対応するプライベートエンドポイントサービス名を示しています。
+
+| AWS Region        | Service Name       |
+|------------------------|--------------------------|
+| us-east-1 | com.amazonaws.vpce.us-east-1.vpce-svc-0fb96af7d8cd84d4d     |
+| us-west-2  | com.amazonaws.vpce.us-west-2.vpce-svc-0709eceab1c84431a |
+| eu-west-1  | com.amazonaws.vpce.eu-west-1.vpce-svc-027fb01a146da1e29 |
+| ap-southeast-1 | com.amazonaws.vpce.ap-southeast-1.vpce-svc-06e619c006c767a35 |
+| ap-east-1  | com.amazonaws.vpce.ap-east-1.vpce-svc-07c3dac48f26cc10a |
+| me-south-1   | com.amazonaws.vpce.me-south-1.vpce-svc-0f51549e7949898ca |
+| eu-central-1  | com.amazonaws.vpce.eu-central-1.vpce-svc-0b44881fddef6b599 |
+| ap-southeast-7  | com.amazonaws.vpce.ap-southeast-7.vpce-svc-0378cb9082f6839fd |
+| me-central-1  | com.amazonaws.vpce.me-central-1.vpce-svc-01bb92d635d16039f |

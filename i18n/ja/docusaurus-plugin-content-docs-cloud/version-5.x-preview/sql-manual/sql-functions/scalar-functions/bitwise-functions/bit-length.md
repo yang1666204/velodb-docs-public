@@ -5,11 +5,6 @@
   "language": "ja"
 }
 ---
-I notice that the text you've provided is already in Chinese, not English. The text appears to be technical documentation about a function that returns the bit length of a string or binary value.
-
-Since you've asked me to translate English technical documentation into Japanese, but the provided text is in Chinese, I cannot proceed with the translation as specified. 
-
-Could you please provide the English text that you'd like me to translate into Japanese?
 
 ```sql
 BIT_LENGTH(<str>)

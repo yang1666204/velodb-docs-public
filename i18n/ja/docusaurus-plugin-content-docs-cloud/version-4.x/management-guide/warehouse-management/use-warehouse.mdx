@@ -1,0 +1,220 @@
+---
+{
+  "title": "Warehouse を使用する",
+  "description": "warehouse selectorでは、確認が許可されているすべてのwarehouseを表示できます。",
+  "language": "ja"
+}
+---
+# Warehouseを使用する
+
+## Warehouseの詳細を確認する
+
+warehouseセレクターでは、確認する権限を持つすべてのwarehouseを表示できます。
+
+![warehouse-details](/images/cloud/warehouse-details.png)
+
+warehouseセレクターには、各warehouseの名前、クラウドプラットフォーム、リージョン、ステータスが表示されます。チェックマークが付いているものが現在のwarehouseです。
+
+warehouseの上にカーソルを合わせると、ポップアップカードが表示され、warehouseの名前、ID、コアバージョン、クラウドプラットフォーム、リージョン、ゾーン、組織が表示されます。
+
+> **注記**
+>
+> -   Warehouse IDのコーディングルール：8文字で構成され、大文字と数字からなります。最初の4文字はクラウドプラットフォームとリージョンを表し（例：AWSのUS East (N. Virginia)の場合、AWVA）、最後の4文字は文字と数字のランダムな組み合わせでwarehouseを表します（X7NGなど）。
+
+## 現在のWarehouseを切り替える
+
+warehouseセレクターでは、スクロールして目的のwarehouseを見つけ、シンプルなクリックで切り替えることができます。
+
+## Warehouse名を変更する
+
+**Settings**ページでwarehouse名を変更できます。新しいwarehouse名（説明的な名前を推奨）を入力し、Enterキーを押して変更を確定してください。
+
+> **警告** warehouse名は現在の組織内で一意である必要があり、最大32文字です。中国語、文字、数字、\_、-のみをサポートします。
+
+## Warehouseパスワードを変更する
+
+warehouseに接続する際には、ユーザー名とパスワードが必要です。**Settings**ページでパスワードを初期化またはリセットできます。
+
+![change-warehouse-password](/images/cloud/change-warehouse-password.png)
+
+> **警告** パスワードは大文字、小文字、数字、特殊文字~!@#$%^&\*()\_+|&lt&gt,.?/:;'[]{}\"のみをサポートし、そのうち少なくとも3種類を含む必要があり、長さは8-20文字です。
+
+## Transparent Date Encryption
+
+セキュリティを向上させるため、warehouse作成時にTransparent Data Encryption (TDE)を有効にして、サービスデータに追加の保護レイヤーを提供できます。
+
+![enable-tde](/images/cloud/enable-tde.png)
+
+拡張暗号化は現在AWSのwarehouseで利用できます。
+
+TDEが有効になると、warehouseが提供するデフォルトキーに代わって、独自のカスタマー管理KMSキーを使用するように暗号化をアップグレードできます。
+
+![tde-settings](/images/cloud/tde-settings.png)
+
+1. ​KMS Keyを作成する：AWS KMSコンソールで新しい対称暗号化キーを作成します。
+
+2. ​Encryption Role IDをコピーする：管理コンソールで、**Settings**ページの**Rotate KMS**をクリックし、Encryption Role IDをコピーします。
+
+![tde-rotate-key](/images/cloud/tde-rotate-key.png)
+
+3. ​Key Policyを更新する：作成したKMSキーのキーポリシーに以下のポリシーステートメントを追加して、上記のロールがキーを使用することを承認します。YOUR_ENCRYPTION_ROLE_IDを前のステップでコピーしたロールIDに置き換えてください。
+
+```
+{
+    "Sid": "Allow VeloDB Access",
+    "Effect": "Allow",
+    "Principal": {
+        "AWS": [ "Encryption role ID " ]
+    },
+    "Action": [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:ReEncrypt*",
+        "kms:DescribeKey"
+    ],
+    "Resource": "*"
+}
+```
+4. VeloDB Cloudに戻り、warehouseの設定のTransparent Data EncryptionセクションにKey ARNを貼り付け、**Rotate**をクリックします。
+
+> 注意: warehouseの操作は完全にKMSキーの可用性に依存するため、KMSキーを削除から保護してください。
+
+## 運用・保守時間ウィンドウ
+
+**運用・保守時間ウィンドウ**とは、システムメンテナンスやユーザーがスケジュールしたタスク（操作リクエスト）を実行できる時間ウィンドウを指します。
+例えば、coreが自動的にパッチバージョンをアップグレードするよう設定した場合、システムはメンテナンス時間ウィンドウ中に自動的にcoreバージョンを最新の安定版パッチバージョンにアップグレードします。
+
+デフォルトのメンテナンス時間ウィンドウは毎日`02:00 ~ 03:00`で、デフォルトのタイムゾーンは`UTC+0`です。ビジネス条件に応じて**Settings**ページで変更できます。通常はビジネストラフの時間帯に設定します。
+
+![time window](/images/cloud/time-window.png)
+
+各warehouseは個別のメンテナンス時間ウィンドウを設定できます。開始時刻と終了時刻は時間単位の精度のみで、終了時刻は開始時刻より後である必要があります。
+
+## Tagsを設定する
+
+**Tags**はキーと値のペアで構成され、リソースにマークを付けて検索フィルタリング、コスト追跡、アクセス制御などを容易にするために使用されます。
+
+カスタムtagsは自動的にクラウドプラットフォームのリソースtagsに同期されます。特に、clusterが時間ベーススケーリングや手動スケーリング用に設定されている場合、クラウドプラットフォームリソースはtagsを保持できます。
+
+**Custom Tags**をクリックして、カスタムtag設定に入ります。
+
+![set tags 1](/images/cloud/set-tags-1.png)
+
+tagの範囲として**Warehouse and Clusters**または**Cluster**を選択し、tagキーとtag値を入力し、**OK**をクリックしてtag設定を完了します。
+
+- Warehouse and Clusters: 現在のwarehouseとclusterの仮想マシンリソースにカスタムtagsを追加します。warehouseで共有されるリソースは追加されません。必要に応じて、クラウドプラットフォームで追加してください。
+
+- Cluster: 指定されたclusterの仮想マシンリソースにカスタムtagsを追加します。
+
+![set tags 2](/images/cloud/set-tags-2.png)
+
+> 注意:
+> 1. 異なるクラウドプラットフォームでサポートされるtagsの数の上限は異なります。ページの指示に従ってください
+> 2. 同じキー名のtagがクラウドプラットフォームに既に存在する場合、tagを追加した後、クラウドプラットフォーム上の対応するtagの値は上書きされます
+> 3. 一部のtagsはシステムによって生成されるため、クラウドプラットフォーム上で変更や削除を行わないでください
+
+## Coreバージョンをアップグレードする
+
+### 手動でCoreバージョンをアップグレードする
+
+現在のwarehouseのcoreバージョンが古すぎてビジネス要件を満たさない場合や、新機能を体験したい場合は、**Settings**ページでcoreバージョンをアップグレードできます。
+
+**Manually Upgrade Core Version**に切り替え、対象バージョンを選択し、**Execute Now**または**Execute Later**を選択して確認します。
+
+**Execute Now**を選択した場合、システムは即座にcoreバージョンアップグレードタスクを実行します
+
+![manual upgrading now](/images/cloud/manual-upgrading-now.png)
+
+**Execute Later**を選択した場合、「O&M Time Window」または「Other Time Window」を選択でき、システムは指定された時間にcoreバージョンアップグレードタスクを実行します。
+
+Message Centerページでスケジュールされたイベントを確認できます。スケジュールされた実行時間ウィンドウが適さない場合は、実行前に変更できます。
+
+![manual upgrading later](/images/cloud/manual-upgrading-later.png)
+
+アップグレードが開始されると、「Running」warehouseステータスが「Upgrading」に変わり、バックグラウンドで自動的にバージョンアップグレードプロセスが完了します。これは約1分で完了します。バージョンアップグレードが完了すると、warehouseステータスは「Upgrading」から「Running」に戻ります。
+
+> **注意:**
+> 1. warehouseに「Running」と「Stopped」以外のclusterがある場合、今すぐ実行を選択すると手動アップグレードが失敗します。操作前にclusterステータスが要件を満たしていることを確認してください。
+> 2. warehouseに未完了のcoreバージョンアップグレードタスクがある場合、システムは手動アップグレード操作を実行できません。バージョンアップグレードイベントが完了またはキャンセルされていることを確認してから再試行してください。
+> 3. coreバージョンのアップグレードはサービスを約1分間中断します。オフピーク時間にアップグレードを実行し、アプリケーションに再接続メカニズムがあることを確認してください。
+> 4. coreバージョンをアップグレードする際、システムは停止状態のclusterを自動的に開始し、アップグレード完了後、システムは自動的に停止状態に復元します。
+
+### パッチバージョンアップグレードポリシーを設定する
+
+warehouseを作成する際、またはwarehouse作成後に、**Settings > Upgrade Core Version > Patch Version Upgrade Policy**で、マイナーバージョンに対して**Auto Upgrade**または**Manually Upgrade**の2つの戦略を設定できます。
+
+- 「Auto Upgrade」を選択した場合、システムはO&M Time Window中にcoreバージョンを最新の安定版パッチバージョンに自動アップグレードします（メジャーバージョンとマイナーバージョンは手動アップグレードが必要です）。Message Centerページでスケジュールされたイベントを確認できます。スケジュールされた実行時間ウィンドウが適さない場合は、実行前に変更できます。
+- 「Manually Upgrade」を選択した場合、即座に実行するか、指定した時間ウィンドウで実行するかも選択できます（選択した対象バージョンにアップグレード）。指定した時間ウィンドウで実行することを選択した場合、Message Centerページでスケジュールされたイベントを確認できます。スケジュールされた実行時間ウィンドウが適さない場合は、実行前に変更できます。
+
+![patch version upgrading](/images/cloud/patch-version-upgrading.png)
+
+## 現在のWarehouseを削除する
+
+warehouseの削除は高リスク操作であるため、削除の影響を理解し、メール認証コードで確認していただく必要があります。
+
+**Settings**ページで現在のwarehouseを削除できます。
+
+![delete-warehouse](/images/cloud/delete-warehouse.png)
+
+> **警告** warehouseの削除は、そのすべてのリソースとデータの削除を伴い、復旧できません。
+
+### 現在のBYOC warehouseを削除し、BYOCインフラストラクチャを破棄する
+
+現在のBYOC warehouseがVPC内の**最後のwarehouse**である場合、現在のwarehouseを削除するとBYOCインフラストラクチャも破棄されます。
+
+![wh delete last](/images/cloud/wh-delete-last.png)
+
+各クラウドプラットフォームでの削除操作については、以下の手順を参照してください：
+
+#### AWS
+
+**Delete**をクリックした後、5分程度かかる予定ですので、しばらくお待ちください。
+
+warehouseが削除された後、**Cloud Platform**をクリックし、AWS CloudFormationに入り、リソーススタックを削除してBYOC基本環境を破棄します。
+
+**1. bucketをクリアする**
+
+削除するリソーススタックに入り、**Resources**タブに切り替え、**Bucket**を検索し、クリックしてbucketに入り、名前を記憶します。
+
+![wh delete 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/aws/wh-delete-1.png)
+
+bucketリストに戻り、bucketを選択します。**Empty**をクリックします。**permanently delete**を入力します。**Empty**をクリックします。
+
+> 注意: bucket空操作は復元できません。操作前に保持すべきファイルがないことを確認してください。
+
+![wh delete 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/aws/wh-delete-2.png)
+
+![wh delete 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/aws/wh-delete-3.png)
+
+**2. リソーススタックを削除する**
+
+リソーススタックに戻り、Deleteをクリックし、削除の完了を待ちます。
+
+
+#### GCP
+
+**Delete**をクリックした後、5分程度かかる予定ですので、しばらくお待ちください。
+
+warehouseが削除された後、コマンドをコピーし、**Cloud platform**をクリックし、GCP CloudShellに入り、リソーススタックを削除してBYOC基本環境を破棄します。
+
+![wh delete 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-delete-1.png)
+
+![wh delete 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-delete-2.png)
+
+![wh delete 3](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/gcp/wh-delete-3.png)
+
+実行結果で`Resources: xx destoryed`が表示され、`xx`が0でない場合、リソースが正常に破棄されたことを意味します。そうでない場合は、[Get Help](mailto:support@velodb.com)してください。
+
+#### Azure
+
+**Delete**をクリックした後、5分程度かかる予定ですので、しばらくお待ちください。
+
+warehouseが削除された後、**Cloud Platform**をクリックし、Azure Deployment Stacksに入り、リソーススタックを削除してBYOC基本環境を破棄します。
+
+**Delete stack**をクリックします。Update behaviourで**Delete all resources, detach resource groups and management groups**を選択します。**Next**をクリックします。
+
+![wh delete 1](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-delete-1.png)
+
+stack名を入力し、**Delete**をクリックします。
+
+![wh delete 2](/images/cloud/management-guide/warehouse-management/create-byoc-warehouse/azure/wh-delete-2.png)

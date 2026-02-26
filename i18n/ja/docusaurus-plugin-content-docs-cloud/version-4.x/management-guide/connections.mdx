@@ -1,0 +1,297 @@
+---
+{
+  "title": "接続",
+  "description": "Private Linkは、VPC環境において、他のVPCにデプロイされたサービスにプライベートネットワーク経由で安全かつ安定的にアクセスすることを支援し、大幅に簡素化します...",
+  "language": "ja"
+}
+---
+# Connections
+
+## Private Link
+Private Linkは、VPC環境において他のVPCにデプロイされたサービスにプライベートネットワーク経由で安全かつ安定的にアクセスするのに役立ち、ネットワークアーキテクチャを大幅に簡素化し、パブリックネットワーク経由でサービスにアクセスすることに伴うセキュリティリスクを回避します。
+
+VeloDB CloudウェアハウスはVeloDB VPC内で作成・実行され、ユーザーのVPC内のアプリケーションシステムやクライアントは、Private Link経由でVPC間でVeloDB Cloudウェアハウスにアクセスできます。Private Linkには2つの部分があります：エンドポイントサービスとエンドポイントです。
+
+ユーザーが自身のプライベートネットワーク内でVeloDBにアクセスする必要がある場合、VeloDB Cloudがエンドポイントサービスを作成・管理し、ユーザーがエンドポイントを作成・管理します。
+
+ユーザーがVeloDBを使用して自身のプライベートネットワークにアクセスする必要がある場合、エンドポイントサービスを作成してVeloDB Cloudに登録する必要があります。その後、VeloDB Cloudがエンドポイントを作成してユーザーのエンドポイントサービスに接続します。
+
+### Access VeloDB from Your VPC
+
+![Access VeloDB from Your VPC](/images/cloud/AccessVeloDBfromYourVPC.gif)
+
+レポート、プロファイリング、ログ分析などのデータアプリケーションが、プライベートネットワーク内からVeloDB Cloudウェアハウスにアクセスできるようにする接続を作成します。
+
+> **注意** VeloDB Cloudサービス側では追加料金はかかりませんが、ユーザーはエンドポイントインスタンスとトラフィック料金をクラウドプラットフォームに支払う必要があります。
+
+#### AWS
+
+1. 対象のウェアハウスに切り替え、ナビゲーションバーの**Connections**をクリックし、**Private Link**タブで**Connect Your VPC to VeloDB**の**Set up Connection**をクリックしてエンドポイントを作成します。
+
+![private link ad](/images/cloud/private-link-ad.png)
+
+2. ページにはエンドポイント作成に必要なEndpoint Service情報が表示されます。**Set up one or more endpoints**をクリックして、クラウドプラットフォームのPrivate Link製品コンソールに移動し、エンドポイントを作成できます。
+
+![private link add endpoint](/images/cloud/private-link-add-endpoint.png)
+
+3. クラウドプラットフォームのPrivate Link製品コンソールで、現在のリージョンがウェアハウスのエンドポイントサービスと同じであることを確認し（クラウドプラットフォームのPrivate Link製品による制限）、**Create endpoint**をクリックします。
+
+![private link create endpoint on aws](/images/cloud/private-link-create-endpoint-on-aws.png)
+
+> **注意** VeloDB Cloudのエンドポイントサービスへのアクセスが許可されたプリンシパルでAWSにサインインする必要があります。これにより、エンドポイント作成時にサービス名検証を正常に通過できます。
+
+4. ウィザードのプロンプトに従って、以下のようにフォームに記入します：
+
+![private link create endpoint on aws01](/images/cloud/private-link-create-endpoint-on-aws01.png)
+
+![private link create endpoint on aws02](/images/cloud/private-link-create-endpoint-on-aws02.png)
+
+| **パラメータ**    | **説明**                                              |
+| ---------------- | ------------------------------------------------------------ |
+| Name tag         | オプション。キーが'Name'で、指定した値を持つタグを作成します。 |
+| Service category | 必須。サービスカテゴリを選択します。VeloDB Cloudウェアハウスのエンドポイントサービスは**Endpoint services that use NLBs and GWLBs**に属するので、クリックして選択します。 |
+| Service name     | 必須。エンドポイント作成に必要なEndpoint Service情報が表示されるページで、VeloDB CloudウェアハウスのエンドポイントサービスのService Nameをワンクリックでコピーし、入力ボックスに記入して**Verify service**をクリックします。 |
+| VPC              | 必須。エンドポイントを作成するVPCを選択します。   |
+| Subnets          | 必須。VeloDB Cloudウェアハウスのエンドポイントサービスが配置されているのと同じAvailability Zoneを選択し（クラウドベンダーのPrivate Link製品による制限）、その下の適切なサブネットIDを選択します。 |
+| Security groups  | 必須。事前設定されたセキュリティグループを選択します。セキュリティルールでは、VeloDB Cloudウェアハウスが使用するプロトコルとポート、およびアプリケーション/クライアントがVeloDB Cloudウェアハウスに接続する送信元のIPアドレスを許可する必要があります。 |
+| Tags             | オプション。リソースに関連付けられたタグを追加できます。     |
+
+5. エンドポイントが作成されると、そのステータスは"**Pending**"から"**Available**"に変わり、エンドポイントがウェアハウスのエンドポイントサービスとの接続に成功したことを示します。
+
+![private link create endpoint on aws pending](/images/cloud/private-link-create-endpoint-on-aws-pending.png)
+
+6. VeloDB Cloudウェアハウスの**Connections**ページを更新すると、エンドポイントリストにエンドポイントの接続情報が表示されます。
+
+![private link endpoint list table](/images/cloud/private-link-endpoint-list-table.png)
+
+![private link endpoint on aws details](/images/cloud/private-link-endpoint-on-aws-details.png)
+
+> **注意** **Find DNS Name**をクリックしてAWS Private Link製品コンソールの**Endpoint Details**ページを開き、エンドポイントの**DNS Name**を見つけて、それを使用してVeloDB Cloudウェアハウスにアクセスする必要があります。
+
+7. アプリケーション/クライアントは、MySQLプロトコルまたはHTTPプロトコルでエンドポイントのDNS名を通じてVeloDB Cloudウェアハウスにアクセスできます。具体的な接続方法については、**Connection Examples**のポップアップバブルを参照してください。
+
+![private link connection example](/images/cloud/private-link-connection-example.png)
+
+> **注意**
+>
+> * VeloDB Cloudには2つの独立したアカウントシステムがあります：1つはこのトピックで説明されているウェアハウスへの接続に使用されます。もう1つは[Registration and Login](user-and-organization)トピックで説明されているコンソールへのログインに使用されます。
+>   
+> * 初回接続時は、**Settings**ページで初期化またはリセットできるadminユーザー名とそのパスワードを使用してください。
+
+#### Azure
+
+1. 対象のウェアハウスに切り替え、ナビゲーションバーの**Connections**をクリックし、**Private Link**タブで**Access VeloDB from Your VPC**の**New Connection**をクリックしてエンドポイントを作成します。まず、VeloDB Cloudウェアハウスのエンドポイントサービスにアクセスするためのサブスクリプションを承認する必要があります。
+
+![azure private link access velodb 1 1](/images/cloud/azure-private-link-access-velodb-1-1.png)
+
+![azure private link access velodb 1 2](/images/cloud/azure-private-link-access-velodb-1-2.png)
+
+2. エンドポイントサービスへのアクセスのサブスクリプションを承認した後、ページにはエンドポイント作成に必要なEndpoint Service情報が表示されます。**Go to Create**をクリックして、クラウドプラットフォームのPrivate Link製品コンソールに移動し、エンドポイントを作成できます。
+
+![azure private link access velodb 2](/images/cloud/azure-private-link-access-velodb-2.png)
+
+3. クラウドプラットフォームのPrivate Link製品コンソールの**Create a private endpoint**ページの**Basics**タブで、現在のリージョンがVeloDB Cloudウェアハウスのエンドポイントサービスと同じであることを確認する必要があります（クラウドプラットフォームのPrivate Link製品による制限）。ウィザードのプロンプトに従って以下のようにフォームに記入し、**Next: Resource**をクリックします。
+
+![azure private link access velodb 3](/images/cloud/azure-private-link-access-velodb-3.png)
+
+|パラメータ|カテゴリ|説明|
+|-----|------|-------|
+|Subscription|Project details|必須。VeloDB Cloudウェアハウスのエンドポイントサービスにアクセスするサブスクリプションを選択します。Azureサブスクリプションのすべてのリソースは一緒に請求されます。|
+|Resource group|Project details|必須。作成するプライベートエンドポイントのリソースグループを選択します。適切なものがない場合は、新しく作成できます。リソースグループは、同じライフサイクル、権限、ポリシーを共有するリソースのコレクションです。|
+|Name|Instance details|必須。作成するプライベートエンドポイントのインスタンス名。カスタマイズできます。|
+|Network Interface Name|Instance details|必須。作成するプライベートエンドポイントのネットワークインターフェース名。インスタンス名を入力すると自動生成され、修正できます。|
+|Region|Instance details|必須。作成するプライベートエンドポイントのリージョンを選択します。注意：VeloDB Cloudウェアハウスのエンドポイントサービスと同じリージョンを選択する必要があります（クラウドプラットフォームのPrivate Link製品による制限）。|
+
+4. **Create a private endpoint**ページの**Resource**タブで、接続方法**Connect to an Azure resource**でリソースIDまたはエイリアスを選択し、以下のようにフォームに記入して**Next: Virtual Network**をクリックします。
+
+![azure private link access velodb 4](/images/cloud/azure-private-link-access-velodb-4.png)
+
+|パラメータ|説明	|
+|-----|------|
+|Resource ID or alias|必須。他者のリソースに接続する際、接続要求を開始するために、そのリソースのリソースIDまたはエイリアスを提供してもらう必要があります。現在のシナリオでは、エンドポイント作成に必要なEndpoint Service情報が表示されるページで、VeloDB Cloudウェアハウスのエンドポイントサービスの**Service Alias**値をワンクリックでコピーし、入力ボックスに記入できます。	|
+|Request message|オプション。このメッセージはリソース所有者（VeloDB Cloudを指す）に送信され、接続管理プロセスを支援します。プライベートまたは機密情報を含めないでください。	|
+
+5. **Create a private endpoint**ページの**Virtual Network**タブで、作成するプライベートエンドポイントの仮想ネットワークとサブネットを選択します。ウィザードのプロンプトに従って以下のようにフォームに記入し、**Next: DNS**をクリックします。
+
+![azure private link access velodb 5](/images/cloud/azure-private-link-access-velodb-5.png)
+
+|パラメータ|カテゴリ|説明|
+|-----|------|-------|
+|Virtual network|Networking|必須。現在選択されているサブスクリプションと場所の仮想ネットワークのみが一覧表示されます。作成するプライベートエンドポイントの仮想ネットワークを選択します。適切なものがない場合は、クラウドプラットフォームのVirtual network製品コンソールで新しく作成できます。|
+|Subnet|Networking|必須。現在選択されている仮想ネットワークのサブネットのみが一覧表示されます。作成するプライベートエンドポイントのサブネットを選択します。適切なものがない場合は、クラウドプラットフォームのVirtual network製品コンソールで新しく作成できます。|
+|Network policy for private endpoints|Networking|オプション。作成するプライベートエンドポイントのネットワークポリシー。デフォルトは無効で、編集できます。|
+|Private IP configuration|Private IP configuration|オプション。IPアドレスの動的割り当てまたは静的割り当てを選択できます。上記で設定した仮想ネットワークとサブネットに従って、デフォルトで動的割り当てIPアドレスが選択されます。|
+|Application security group|Application security group|オプション。作成するプライベートエンドポイントのアプリケーションセキュリティグループを選択します。適切なものがない場合は、新しく作成できます。|
+
+6. **Create a private endpoint**ページの**DNS**タブで、デフォルト設定を維持し、**Next: Tags**をクリックします。
+
+注意：プライベートエンドポイントでプライベート接続するには、DNSレコードが必要です。Private DNSをサポートするようにリソース設定を構成する必要があります。
+
+![azure private link access velodb 6](/images/cloud/azure-private-link-access-velodb-6.png)
+
+7. **Create a private endpoint**ページの**Tags**タブで、デフォルト設定を維持し、**Next: Review + create**をクリックします。
+
+注意：プライベートエンドポイントを分類し、統合請求を表示したい場合は、作成するプライベートエンドポイントのタグを設定できます。
+
+![azure private link access velodb 7](/images/cloud/azure-private-link-access-velodb-7.png)
+
+8. **Create a private endpoint**ページの**Review + create**タブで、作成するプライベートエンドポイントの設定を確認できます。期待通りでない設定がある場合は、**Previous**をクリックして戻って修正できます。問題がなければ、**Create**をクリックできます。
+
+![azure private link access velodb 8](/images/cloud/azure-private-link-access-velodb-8.png)
+
+9. エンドポイントが作成されると、そのステータスは"**Created**"から"**OK**"に変わり、エンドポイントがVeloDB Cloudウェアハウスのエンドポイントサービスとの接続に成功したことを示します。
+
+![azure private link access velodb 9 1](/images/cloud/azure-private-link-access-velodb-9-1.png)
+
+![azure private link access velodb 9 2](/images/cloud/azure-private-link-access-velodb-9-2.png)
+
+10. VeloDB Cloudウェアハウスの**Connections**ページを更新すると、エンドポイントリストにエンドポイントの接続情報が表示されます。
+
+![azure private link access velodb 10](/images/cloud/azure-private-link-access-velodb-10.png)
+
+11. アプリケーション/クライアントは、MySQLプロトコルまたはHTTPプロトコルでエンドポイントのIPまたはDNS名を通じてVeloDB Cloudウェアハウスにアクセスできます。エンドポイントリストの**Find DNS Name**をクリックしてエンドポイントの詳細ページを開き、そのIPまたはDNS名を確認できます。
+
+![azure private link access velodb 11](/images/cloud/azure-private-link-access-velodb-11.png)
+
+12. 具体的な接続方法については、VeloDB Cloudウェアハウスの**Connections**ページで**Connection Examples**のポップアップバブルにマウスオーバーしてください。
+
+![azure private link access velodb 12](/images/cloud/azure-private-link-access-velodb-12.png)
+
+### VeloDB Accesses Your VPC
+
+![VeloDB Accesses Your VPC](/images/cloud/VeloDBAccessesYourVPC.gif)
+
+> **注意** VeloDBがプライベートネットワークにアクセスすることで発生するエンドポイントインスタンスとトラフィック料金は、現在ユーザーに請求されていません。
+
+#### AWS
+1. 対象のウェアハウスに切り替え、ナビゲーションバーの**Connections**をクリックし、**Private Link**タブで**VeloDB Accesses Your VPC**の**New Connection**をクリックして、エンドポイントサービスへの接続を作成します。
+
+![private link create connection choose endpoint service](/images/cloud/private-link-create-connection-choose-endpoint-service.png)
+
+![private link create connection choose endpoint service register](/images/cloud/private-link-create-connection-choose-endpoint-service-register.png)
+
+2. **+ Endpoint Service**をクリックすると、ページにウェアハウスの**Current Region**と**ARN of VeloDB**が表示されます。**Go to Create**をクリックして、クラウドプラットフォームのPrivate Link製品コンソールに移動し、エンドポイントサービスを作成できます。
+3. AWS Consoleにサインインし、VPC-Endpoint servicesを選択して現在のウェアハウスと同じリージョンに切り替えます。
+
+4. **Create endpoint service**をクリックします。
+
+![private link create endpoint service on aws](/images/cloud/private-link-create-endpoint-service-on-aws.png)
+
+5. Endpoint Service設定ページで、関連パラメータを設定し、**Create**をクリックします。
+
+![private link create connection choose endpoint service create](/images/cloud/private-link-create-connection-choose-endpoint-service-create.png)
+
+![private link create connection choose endpoint service create 1](/images/cloud/private-link-create-connection-choose-endpoint-service-create-1.png)
+
+6. （オプション）利用可能なネットワークロードバランサーがない場合は、まず**Create Network Load Balancer**をクリックする必要があります。作成が完了したら、フィルターボタンをクリックして選択します。
+
+![private link create connection create nlb 0](/images/cloud/private-link-create-connection-create-nlb-0.png)
+
+![private link create connection create nlb 1](/images/cloud/private-link-create-connection-create-nlb-1.png)
+
+![private link create connection create nlb 2](/images/cloud/private-link-create-connection-create-nlb-2.png)
+
+![private link create connection create nlb 3](/images/cloud/private-link-create-connection-create-nlb-3.png)
+
+7. （オプション）利用可能なターゲットグループがない場合は、まず**Create Target Group**をクリックする必要があります。作成が完了したら、右側のリフレッシュボタンをクリックして選択します。
+
+![private link create connection create tg 0](/images/cloud/private-link-create-connection-create-tg-0.png)
+
+![private link create connection create tg 1](/images/cloud/private-link-create-connection-create-tg-1.png)
+
+8. エンドポイントサービスを作成した後、エンドポイントサービスの**Allow principals**タブで**ARN of VeloDB**を追加します。
+
+![private link create connection choose endpoint service details](/images/cloud/private-link-create-connection-choose-endpoint-service-details.png)
+
+![private link create connection choose endpoint service allow principals](/images/cloud/private-link-create-connection-choose-endpoint-service-allow-principals.png)
+
+9. **Endpoint Service Details**ページから**Service ID**と**Service Name**をコピーし、VeloDB CloudのEndpoint Service登録ページに記入します。
+
+![private link create connection choose endpoint service details02](/images/cloud/private-link-create-connection-choose-endpoint-service-details02.png)
+
+10. 登録が完了したら、次のステップに進み、VeloDB Cloudウェアハウスの**Endpoint Name**を指定し、**Create Now**をクリックします。
+
+![private link create connection choose endpoint service chosen](/images/cloud/private-link-create-connection-choose-endpoint-service-chosen.png)
+
+![private link velodb acdess user vpc new connection create endpoint](/images/cloud/private-link-velodb-acdess-user-vpc-new-connection-create-endpoint.png)
+
+11. エンドポイントサービスの**Endpoint connections**タブで​エンドポイント接続要求を承認​します。
+
+![private link velodb acdess user vpc endpoint accept](/images/cloud/private-link-velodb-acdess-user-vpc-endpoint-accept.png)
+
+![private link velodb acdess user vpc endpoint accept ok](/images/cloud/private-link-velodb-acdess-user-vpc-endpoint-accept-ok.png)
+
+12. ページを更新し、VeloDB Cloudウェアハウスのエンドポイントのステータスが"pendingAcceptance"から"available"に変わるのを待ちます。これは接続が成功したことを意味します。
+
+![private link velodb acdess user vpc endpoint pendingacceptance](/images/cloud/private-link-velodb-acdess-user-vpc-endpoint-pendingacceptance.png)
+
+![private link velodb acdess user vpc endpoint available](/images/cloud/private-link-velodb-acdess-user-vpc-endpoint-available.png)
+
+#### Azure
+
+1. 対象のウェアハウスに切り替え、ナビゲーションバーの**Connections**をクリックし、**Private Link**タブで**VeloDB Accesses Your VPC**の**New Connection**をクリックして、エンドポイントサービスへの接続を作成します。
+
+![azure velodb access vpc 1](/images/cloud/azure-velodb-access-vpc-1.png)
+
+2. **+ Endpoint Service**をクリックすると、ページにウェアハウスの**Current Region**と**Subscription ID of VeloDB**が表示されます。**Go to Create**をクリックして、クラウドプラットフォームのPrivate Link製品コンソールに移動し、エンドポイントサービス（Azure private link serviceを指す）を作成できます。
+
+![azure velodb access vpc 2](/images/cloud/azure-velodb-access-vpc-2.png)
+
+3. Azureアカウントで**[Azure portal](https://portal.azure.com/)**にサインインします。Private Link製品コンソールの**Create private link service**ページの**Basics**タブで、リージョンがVeloDB Cloudウェアハウスと同じであることを確認する必要があります（クラウドプラットフォームのPrivate Link製品による制限）。ウィザードのプロンプトに従って以下のようにフォームに記入し、**Next: Outbound settings**をクリックします。
+
+![azure velodb access vpc 3](/images/cloud/azure-velodb-access-vpc-3.png)
+
+|パラメータ|カテゴリ|説明|
+|-----|------|-------|
+|Subscription|Project details|必須。データベースまたはデータレイクのprivate link serviceを作成するサブスクリプションを選択します。Azureサブスクリプションのすべてのリソースは一緒に請求されます。|
+|Resource group|Project details|必須。作成するprivate link serviceのリソースグループを選択します。適切なものがない場合は、新しく作成できます。リソースグループは、同じライフサイクル、権限、ポリシーを共有するリソースのコレクションです。|
+|Name|Instance details|必須。作成するprivate link serviceのインスタンス名。カスタマイズできます。|
+|Region|Instance details|必須。作成・配置するprivate link serviceのAzureリージョンを選択します。注意：VeloDB Cloudウェアハウスと同じリージョンを選択する必要があります（クラウドプラットフォームのPrivate Link製品による制限）。|
+
+4. **Create private link service**ページの**Outbound settings**タブで、ウィザードのプロンプトに従って以下のようにフォームに記入し、**Next: Access Security**をクリックします。
+
+![azure velodb access vpc 4](/images/cloud/azure-velodb-access-vpc-4.png)
+
+|パラメータ|説明|
+|-----|------|
+|Load balancer|必須。データベースまたはデータレイクの負荷分散を行うprivate link serviceの背後のロードバランサーを選択します。適切なものがない場合は、クラウドプラットフォームのLoad Balancer製品コンソールで新しく作成できます。|
+|Load balancer frontend IP address|必須。上記で選択したロードバランサーのフロントエンドIPアドレスを選択します。|
+|Source NAT Virtual network|必須。 |
+|Source NAT subnet|必須。 |
+|Enable TCP proxy V2|必須。デフォルトのNoのままにします。アプリケーションがTCP proxy v2ヘッダーを期待する場合は、Yesを選択します。|
+|Private IP address settings|デフォルト設定のままにします|
+
+5. **Create private link service**ページの**Access Security**タブで、private link serviceへのアクセス要求ができる対象として**Restricted by subscription**を選択し、**Subscription ID of VeloDB**をprivate link serviceのアクセスホワイトリストに追加して、自動承認で**Yes**を選択します。その後、**Next: Tags**をクリックします。
+
+![azure velodb access vpc 5](/images/cloud/azure-velodb-access-vpc-5.png)
+
+6. **Create private link service**ページの**Tags**タブで、デフォルト設定を維持し、**Next: Review + create**をクリックします。
+   注意：private link serviceを分類し、統合請求を表示したい場合は、作成するprivate link serviceのタグを設定できます。
+
+![azure velodb access vpc 6](/images/cloud/azure-velodb-access-vpc-6.png)
+
+7. **Create private link service**ページの**Review + create**タブで、作成するprivate link serviceの設定を確認できます。期待通りでない設定がある場合は、**Previous**をクリックして戻って修正できます。問題がなければ、**Create**をクリックできます。
+
+![azure velodb access vpc 7](/images/cloud/azure-velodb-access-vpc-7.png)
+
+8. private link serviceが作成されると、そのステータスは"**Created**"から"**OK**"に変わり、private link serviceがVeloDB Cloudウェアハウスのプライベートエンドポイントから接続される準備ができたことを示します。
+
+![azure velodb access vpc 8](/images/cloud/azure-velodb-access-vpc-8.png)
+
+![azure velodb access vpc 8 2](/images/cloud/azure-velodb-access-vpc-8-2.png)
+
+9. private link serviceを作成した後、private link serviceの**Details**ページから**Rescource ID**と**Alias**をコピーし、VeloDB CloudのEndpoint Service登録ページに記入します。
+
+![azure velodb access vpc 9 1](/images/cloud/azure-velodb-access-vpc-9-1.png)
+
+![azure velodb access vpc 9 2](/images/cloud/azure-velodb-access-vpc-9-2.png)
+
+![azure velodb access vpc 9 3](/images/cloud/azure-velodb-access-vpc-9-3.png)
+
+10. 登録が完了したら、次のステップに進み、VeloDB Cloudウェアハウスの**Endpoint Name**を指定し、**Create Now**をクリックします。
+
+![azure velodb access vpc 10 1](/images/cloud/azure-velodb-access-vpc-10-1.png)
+
+![azure velodb access vpc 10 2](/images/cloud/azure-velodb-access-vpc-10-2.png)
+
+11. ページを更新し、VeloDB Cloudウェアハウスのエンドポイントのステータスが"**pendingAcceptance**"から"**Approve**"に変わるのを待ちます。これは接続が成功したことを意味します。

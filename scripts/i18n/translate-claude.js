@@ -71,8 +71,15 @@ Requirements:
 - Use natural Japanese commonly seen in developer documentation.
 - If a sentence is unclear, translate it conservatively rather than creatively.
 
-Text:
+Translate the following content:
+
+<<<BEGIN>>>
 ${text}
+<<<END>>>
+
+Remember:
+- Output only the translated text.
+- If the content is empty, output nothing.
 `}],
       },
     ],

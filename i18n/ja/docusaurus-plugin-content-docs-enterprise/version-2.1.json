@@ -1,0 +1,586 @@
+{
+  "sidebar.enterprise.category.Account Management": {
+    "message": "アカウント管理",
+    "description": "The label for category Account Management in sidebar docs"
+  },
+  "sidebar.enterprise.category.Admin Manual": {
+    "message": "Admin Manual",
+    "description": "The label for category Admin Manual in sidebar docs"
+  },
+  "sidebar.enterprise.category.Aggregate": {
+    "message": "Aggregate",
+    "description": "The label for category Aggregate in sidebar docs"
+  },
+  "sidebar.enterprise.category.Aggregate Functions": {
+    "message": "集約関数",
+    "description": "The label for category Aggregate Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Array Functions": {
+    "message": "配列関数",
+    "description": "The label for category Array Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Async Materialized View": {
+    "message": "Async Materialized View",
+    "description": "The label for category Async Materialized View in sidebar docs"
+  },
+  "sidebar.enterprise.category.Authentication": {
+    "message": "認証",
+    "description": "The label for category Authentication in sidebar docs"
+  },
+  "sidebar.enterprise.category.Authentication And Authorization": {
+    "message": "Authentication And Authorization",
+    "description": "The label for category Authentication And Authorization in sidebar docs"
+  },
+  "sidebar.enterprise.category.Authorization": {
+    "message": "認可",
+    "description": "The label for category Authorization in sidebar docs"
+  },
+  "sidebar.enterprise.category.Backup And Restore": {
+    "message": "Backup And Restore",
+    "description": "The label for category Backup And Restore in sidebar docs"
+  },
+  "sidebar.enterprise.category.Backup Restore": {
+    "message": "Backup Restore",
+    "description": "The label for category Backup Restore in sidebar docs"
+  },
+  "sidebar.enterprise.category.Basic Element": {
+    "message": "Basic Element",
+    "description": "The label for category Basic Element in sidebar docs"
+  },
+  "sidebar.enterprise.category.Be Http": {
+    "message": "Be Http",
+    "description": "The label for category Be Http in sidebar docs"
+  },
+  "sidebar.enterprise.category.Best Practices": {
+    "message": "ベストプラクティス",
+    "description": "The label for category Best Practices in sidebar docs"
+  },
+  "sidebar.enterprise.category.Bi": {
+    "message": "Bi",
+    "description": "The label for category Bi in sidebar docs"
+  },
+  "sidebar.enterprise.category.Bitmap Functions": {
+    "message": "ビットマップ関数",
+    "description": "The label for category Bitmap Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Bitwise Functions": {
+    "message": "ビット演算関数",
+    "description": "The label for category Bitwise Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Catalog": {
+    "message": "Catalog",
+    "description": "The label for category Catalog in sidebar docs"
+  },
+  "sidebar.enterprise.category.Catalogs": {
+    "message": "Catalogs",
+    "description": "The label for category Catalogs in sidebar docs"
+  },
+  "sidebar.enterprise.category.Ccr": {
+    "message": "Ccr",
+    "description": "The label for category Ccr in sidebar docs"
+  },
+  "sidebar.enterprise.category.Character Set": {
+    "message": "文字セット",
+    "description": "The label for category Character Set in sidebar docs"
+  },
+  "sidebar.enterprise.category.Cluster Management": {
+    "message": "クラスター管理",
+    "description": "The label for category Cluster Management in sidebar docs"
+  },
+  "sidebar.enterprise.category.Combinators": {
+    "message": "コンビネータ",
+    "description": "The label for category Combinators in sidebar docs"
+  },
+  "sidebar.enterprise.category.Complex Types": {
+    "message": "Complex Types",
+    "description": "The label for category Complex Types in sidebar docs"
+  },
+  "sidebar.enterprise.category.Compute Management": {
+    "message": "コンピュート管理",
+    "description": "The label for category Compute Management in sidebar docs"
+  },
+  "sidebar.enterprise.category.Conditional Functions": {
+    "message": "条件関数",
+    "description": "The label for category Conditional Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Conditional Operators": {
+    "message": "条件演算子",
+    "description": "The label for category Conditional Operators in sidebar docs"
+  },
+  "sidebar.enterprise.category.Config": {
+    "message": "Config",
+    "description": "The label for category Config in sidebar docs"
+  },
+  "sidebar.enterprise.category.Connection": {
+    "message": "接続",
+    "description": "The label for category Connection in sidebar docs"
+  },
+  "sidebar.enterprise.category.Context": {
+    "message": "コンテキスト",
+    "description": "The label for category Context in sidebar docs"
+  },
+  "sidebar.enterprise.category.DML": {
+    "message": "DML",
+    "description": "The label for category DML in sidebar docs"
+  },
+  "sidebar.enterprise.category.Data Admin": {
+    "message": "Data Admin",
+    "description": "The label for category Data Admin in sidebar docs"
+  },
+  "sidebar.enterprise.category.Data And Status Management": {
+    "message": "Data And Status Management",
+    "description": "The label for category Data And Status Management in sidebar docs"
+  },
+  "sidebar.enterprise.category.Data Governance": {
+    "message": "データガバナンス",
+    "description": "The label for category Data Governance in sidebar docs"
+  },
+  "sidebar.enterprise.category.Data Model": {
+    "message": "Data Model",
+    "description": "The label for category Data Model in sidebar docs"
+  },
+  "sidebar.enterprise.category.Data Modification": {
+    "message": "データ更新",
+    "description": "The label for category Data Modification in sidebar docs"
+  },
+  "sidebar.enterprise.category.Data Operate": {
+    "message": "Data Operate",
+    "description": "The label for category Data Operate in sidebar docs"
+  },
+  "sidebar.enterprise.category.Data Partitioning": {
+    "message": "データパーティション",
+    "description": "The label for category Data Partitioning in sidebar docs"
+  },
+  "sidebar.enterprise.category.Data Query": {
+    "message": "Data Query",
+    "description": "The label for category Data Query in sidebar docs"
+  },
+  "sidebar.enterprise.category.Data Source": {
+    "message": "データソース",
+    "description": "The label for category Data Source in sidebar docs"
+  },
+  "sidebar.enterprise.category.Database": {
+    "message": "データベース",
+    "description": "The label for category Database in sidebar docs"
+  },
+  "sidebar.enterprise.category.Date Time": {
+    "message": "Date Time",
+    "description": "The label for category Date Time in sidebar docs"
+  },
+  "sidebar.enterprise.category.Date Time Functions": {
+    "message": "Date Time Functions",
+    "description": "The label for category Date Time Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Db Connect": {
+    "message": "Db Connect",
+    "description": "The label for category Db Connect in sidebar docs"
+  },
+  "sidebar.enterprise.category.Delete": {
+    "message": "Delete",
+    "description": "The label for category Delete in sidebar docs"
+  },
+  "sidebar.enterprise.category.Deploy Cluster": {
+    "message": "クラスターのデプロイ",
+    "description": "The label for category Deploy Cluster in sidebar docs"
+  },
+  "sidebar.enterprise.category.Distance Functions": {
+    "message": "Distance Functions",
+    "description": "The label for category Distance Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Distinct Counts": {
+    "message": "Distinct Counts",
+    "description": "The label for category Distinct Counts in sidebar docs"
+  },
+  "sidebar.enterprise.category.Doris Manager Management": {
+    "message": "Doris Manager 管理",
+    "description": "The label for category Doris Manager Management in sidebar docs"
+  },
+  "sidebar.enterprise.category.Doris Operator": {
+    "message": "Doris Operator",
+    "description": "The label for category Doris Operator in sidebar docs"
+  },
+  "sidebar.enterprise.category.Encrypt Digest Functions": {
+    "message": "Encrypt Digest Functions",
+    "description": "The label for category Encrypt Digest Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Encryption": {
+    "message": "Encryption",
+    "description": "The label for category Encryption in sidebar docs"
+  },
+  "sidebar.enterprise.category.Enterprise Core": {
+    "message": "Enterprise Core",
+    "description": "The label for category Enterprise Core in sidebar docs"
+  },
+  "sidebar.enterprise.category.Enterprise Manager": {
+    "message": "Enterprise Manager",
+    "description": "The label for category Enterprise Manager in sidebar docs"
+  },
+  "sidebar.enterprise.category.Export": {
+    "message": "Export",
+    "description": "The label for category Export in sidebar docs"
+  },
+  "sidebar.enterprise.category.Faq": {
+    "message": "Faq",
+    "description": "The label for category Faq in sidebar docs"
+  },
+  "sidebar.enterprise.category.Fe Http": {
+    "message": "Fe Http",
+    "description": "The label for category Fe Http in sidebar docs"
+  },
+  "sidebar.enterprise.category.File Format": {
+    "message": "ファイルフォーマット",
+    "description": "The label for category File Format in sidebar docs"
+  },
+  "sidebar.enterprise.category.File Formats": {
+    "message": "ファイルフォーマット",
+    "description": "The label for category File Formats in sidebar docs"
+  },
+  "sidebar.enterprise.category.Function": {
+    "message": "関数",
+    "description": "The label for category Function in sidebar docs"
+  },
+  "sidebar.enterprise.category.Getting Started": {
+    "message": "はじめる",
+    "description": "The label for category Getting Started in sidebar docs"
+  },
+  "sidebar.enterprise.category.Hints": {
+    "message": "ヒント",
+    "description": "The label for category Hints in sidebar docs"
+  },
+  "sidebar.enterprise.category.Hll Functions": {
+    "message": "Hll Functions",
+    "description": "The label for category Hll Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Import": {
+    "message": "Import",
+    "description": "The label for category Import in sidebar docs"
+  },
+  "sidebar.enterprise.category.Import Way": {
+    "message": "Import Way",
+    "description": "The label for category Import Way in sidebar docs"
+  },
+  "sidebar.enterprise.category.Index": {
+    "message": "インデックス",
+    "description": "The label for category Index in sidebar docs"
+  },
+  "sidebar.enterprise.category.Information_schema": {
+    "message": "Information_schema",
+    "description": "The label for category Information_schema in sidebar docs"
+  },
+  "sidebar.enterprise.category.Instance Management": {
+    "message": "インスタンス管理",
+    "description": "The label for category Instance Management in sidebar docs"
+  },
+  "sidebar.enterprise.category.Integration": {
+    "message": "インテグレーション",
+    "description": "The label for category Integration in sidebar docs"
+  },
+  "sidebar.enterprise.category.Internal_schema": {
+    "message": "Internal_schema",
+    "description": "The label for category Internal_schema in sidebar docs"
+  },
+  "sidebar.enterprise.category.Ip": {
+    "message": "Ip",
+    "description": "The label for category Ip in sidebar docs"
+  },
+  "sidebar.enterprise.category.Ip Functions": {
+    "message": "Ip Functions",
+    "description": "The label for category Ip Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Job": {
+    "message": "ジョブ",
+    "description": "The label for category Job in sidebar docs"
+  },
+  "sidebar.enterprise.category.Json Functions": {
+    "message": "Json Functions",
+    "description": "The label for category Json Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Lakehouse": {
+    "message": "レイクハウス",
+    "description": "The label for category Lakehouse in sidebar docs"
+  },
+  "sidebar.enterprise.category.Literal": {
+    "message": "リテラル",
+    "description": "The label for category Literal in sidebar docs"
+  },
+  "sidebar.enterprise.category.Load And Export": {
+    "message": "Load And Export",
+    "description": "The label for category Load And Export in sidebar docs"
+  },
+  "sidebar.enterprise.category.Log Management": {
+    "message": "Log Management",
+    "description": "The label for category Log Management in sidebar docs"
+  },
+  "sidebar.enterprise.category.Management Guide": {
+    "message": "管理ガイド",
+    "description": "The label for category Management Guide in sidebar docs"
+  },
+  "sidebar.enterprise.category.Map Functions": {
+    "message": "Map Functions",
+    "description": "The label for category Map Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Materialized View": {
+    "message": "Materialized View",
+    "description": "The label for category Materialized View in sidebar docs"
+  },
+  "sidebar.enterprise.category.Memory Analysis": {
+    "message": "Memory Analysis",
+    "description": "The label for category Memory Analysis in sidebar docs"
+  },
+  "sidebar.enterprise.category.Memory Feature": {
+    "message": "Memory Feature",
+    "description": "The label for category Memory Feature in sidebar docs"
+  },
+  "sidebar.enterprise.category.Memory Management": {
+    "message": "Memory Management",
+    "description": "The label for category Memory Management in sidebar docs"
+  },
+  "sidebar.enterprise.category.Metastores": {
+    "message": "メタストア",
+    "description": "The label for category Metastores in sidebar docs"
+  },
+  "sidebar.enterprise.category.Mysql": {
+    "message": "Mysql",
+    "description": "The label for category Mysql in sidebar docs"
+  },
+  "sidebar.enterprise.category.Numeric": {
+    "message": "Numeric",
+    "description": "The label for category Numeric in sidebar docs"
+  },
+  "sidebar.enterprise.category.Numeric Functions": {
+    "message": "数値関数",
+    "description": "The label for category Numeric Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Observability": {
+    "message": "オブザーバビリティ",
+    "description": "The label for category Observability in sidebar docs"
+  },
+  "sidebar.enterprise.category.Open Api": {
+    "message": "Open Api",
+    "description": "The label for category Open Api in sidebar docs"
+  },
+  "sidebar.enterprise.category.Operators": {
+    "message": "演算子",
+    "description": "The label for category Operators in sidebar docs"
+  },
+  "sidebar.enterprise.category.Optimization Technology Principle": {
+    "message": "最適化技術の原理",
+    "description": "The label for category Optimization Technology Principle in sidebar docs"
+  },
+  "sidebar.enterprise.category.Other Functions": {
+    "message": "その他の関数",
+    "description": "The label for category Other Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Performance Tuning Overview": {
+    "message": "パフォーマンスチューニング概要",
+    "description": "The label for category Performance Tuning Overview in sidebar docs"
+  },
+  "sidebar.enterprise.category.Plugin": {
+    "message": "プラグイン",
+    "description": "The label for category Plugin in sidebar docs"
+  },
+  "sidebar.enterprise.category.Quantile Functions": {
+    "message": "分位数関数",
+    "description": "The label for category Quantile Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Query": {
+    "message": "クエリ",
+    "description": "The label for category Query in sidebar docs"
+  },
+  "sidebar.enterprise.category.Query Data": {
+    "message": "Query Data",
+    "description": "The label for category Query Data in sidebar docs"
+  },
+  "sidebar.enterprise.category.Query Optimization": {
+    "message": "クエリ最適化",
+    "description": "The label for category Query Optimization in sidebar docs"
+  },
+  "sidebar.enterprise.category.Recycle": {
+    "message": "リサイクル",
+    "description": "The label for category Recycle in sidebar docs"
+  },
+  "sidebar.enterprise.category.Release Notes": {
+    "message": "リリースノート",
+    "description": "The label for category Release Notes in sidebar docs"
+  },
+  "sidebar.enterprise.category.Scalar Functions": {
+    "message": "スカラー関数",
+    "description": "The label for category Scalar Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Scale Cluster": {
+    "message": "Scale Cluster",
+    "description": "The label for category Scale Cluster in sidebar docs"
+  },
+  "sidebar.enterprise.category.Scheduler": {
+    "message": "Scheduler",
+    "description": "The label for category Scheduler in sidebar docs"
+  },
+  "sidebar.enterprise.category.Security": {
+    "message": "セキュリティ",
+    "description": "The label for category Security in sidebar docs"
+  },
+  "sidebar.enterprise.category.Semi Structured": {
+    "message": "Semi Structured",
+    "description": "The label for category Semi Structured in sidebar docs"
+  },
+  "sidebar.enterprise.category.Session": {
+    "message": "セッション",
+    "description": "The label for category Session in sidebar docs"
+  },
+  "sidebar.enterprise.category.Spatial Functions": {
+    "message": "Spatial Functions",
+    "description": "The label for category Spatial Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Sql Convertor": {
+    "message": "Sql Convertor",
+    "description": "The label for category Sql Convertor in sidebar docs"
+  },
+  "sidebar.enterprise.category.Sql Data Types": {
+    "message": "Sql Data Types",
+    "description": "The label for category Sql Data Types in sidebar docs"
+  },
+  "sidebar.enterprise.category.Sql Functions": {
+    "message": "Sql Functions",
+    "description": "The label for category Sql Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Sql Manual": {
+    "message": "Sql Manual",
+    "description": "The label for category Sql Manual in sidebar docs"
+  },
+  "sidebar.enterprise.category.Sql Statements": {
+    "message": "Sql Statements",
+    "description": "The label for category Sql Statements in sidebar docs"
+  },
+  "sidebar.enterprise.category.Statistics": {
+    "message": "統計",
+    "description": "The label for category Statistics in sidebar docs"
+  },
+  "sidebar.enterprise.category.Storage Management": {
+    "message": "ストレージ管理",
+    "description": "The label for category Storage Management in sidebar docs"
+  },
+  "sidebar.enterprise.category.Storages": {
+    "message": "ストレージ",
+    "description": "The label for category Storages in sidebar docs"
+  },
+  "sidebar.enterprise.category.String Functions": {
+    "message": "文字列関数",
+    "description": "The label for category String Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.String Type": {
+    "message": "String Type",
+    "description": "The label for category String Type in sidebar docs"
+  },
+  "sidebar.enterprise.category.Struct Functions": {
+    "message": "Struct 関数",
+    "description": "The label for category Struct Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Sync Materialized View": {
+    "message": "Sync Materialized View",
+    "description": "The label for category Sync Materialized View in sidebar docs"
+  },
+  "sidebar.enterprise.category.System Functions": {
+    "message": "システム関数",
+    "description": "The label for category System Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.System Info And Help": {
+    "message": "System Info And Help",
+    "description": "The label for category System Info And Help in sidebar docs"
+  },
+  "sidebar.enterprise.category.System Tables": {
+    "message": "システムテーブル",
+    "description": "The label for category System Tables in sidebar docs"
+  },
+  "sidebar.enterprise.category.Table": {
+    "message": "テーブル",
+    "description": "The label for category Table in sidebar docs"
+  },
+  "sidebar.enterprise.category.Table And View": {
+    "message": "Table And View",
+    "description": "The label for category Table And View in sidebar docs"
+  },
+  "sidebar.enterprise.category.Table Design": {
+    "message": "テーブル設計",
+    "description": "The label for category Table Design in sidebar docs"
+  },
+  "sidebar.enterprise.category.Table Functions": {
+    "message": "テーブル関数",
+    "description": "The label for category Table Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Table Valued Functions": {
+    "message": "テーブル値関数",
+    "description": "The label for category Table Valued Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Takeover Cluster": {
+    "message": "クラスターの引き継ぎ",
+    "description": "The label for category Takeover Cluster in sidebar docs"
+  },
+  "sidebar.enterprise.category.Tiered Storage": {
+    "message": "階層型ストレージ",
+    "description": "The label for category Tiered Storage in sidebar docs"
+  },
+  "sidebar.enterprise.category.Transaction": {
+    "message": "トランザクション",
+    "description": "The label for category Transaction in sidebar docs"
+  },
+  "sidebar.enterprise.category.Trouble Shooting": {
+    "message": "Trouble Shooting",
+    "description": "The label for category Trouble Shooting in sidebar docs"
+  },
+  "sidebar.enterprise.category.Tuning": {
+    "message": "チューニング",
+    "description": "The label for category Tuning in sidebar docs"
+  },
+  "sidebar.enterprise.category.Tuning Execution": {
+    "message": "実行チューニング",
+    "description": "The label for category Tuning Execution in sidebar docs"
+  },
+  "sidebar.enterprise.category.Tuning Plan": {
+    "message": "チューニング計画",
+    "description": "The label for category Tuning Plan in sidebar docs"
+  },
+  "sidebar.enterprise.category.Types": {
+    "message": "型",
+    "description": "The label for category Types in sidebar docs"
+  },
+  "sidebar.enterprise.category.Udf": {
+    "message": "Udf",
+    "description": "The label for category Udf in sidebar docs"
+  },
+  "sidebar.enterprise.category.Update": {
+    "message": "Update",
+    "description": "The label for category Update in sidebar docs"
+  },
+  "sidebar.enterprise.category.Upgrade Cluster": {
+    "message": "Upgrade Cluster",
+    "description": "The label for category Upgrade Cluster in sidebar docs"
+  },
+  "sidebar.enterprise.category.Use Guide": {
+    "message": "Use Guide",
+    "description": "The label for category Use Guide in sidebar docs"
+  },
+  "sidebar.enterprise.category.Variable": {
+    "message": "変数",
+    "description": "The label for category Variable in sidebar docs"
+  },
+  "sidebar.enterprise.category.VeloDB Cluster Management": {
+    "message": "VeloDB クラスター管理",
+    "description": "The label for category VeloDB Cluster Management in sidebar docs"
+  },
+  "sidebar.enterprise.category.VeloDB Monitor and Alerting": {
+    "message": "VeloDB Monitor and Alerting",
+    "description": "The label for category VeloDB Monitor and Alerting in sidebar docs"
+  },
+  "sidebar.enterprise.category.View": {
+    "message": "ビュー",
+    "description": "The label for category View in sidebar docs"
+  },
+  "sidebar.enterprise.category.Window Functions": {
+    "message": "Window Functions",
+    "description": "The label for category Window Functions in sidebar docs"
+  },
+  "sidebar.enterprise.category.Workload Management": {
+    "message": "ワークロード管理",
+    "description": "The label for category Workload Management in sidebar docs"
+  }
+}

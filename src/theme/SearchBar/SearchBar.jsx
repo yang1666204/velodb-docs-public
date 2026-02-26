@@ -46,15 +46,28 @@ async function fetchAutoCompleteJS() {
   return autoComplete;
 }
 
+// Get the version part of the url, for example, "cloud/3.x/" or "enterprise/3.x/".
 function getVersionUrl(baseUrl, pathname) {
   let versionUrl = baseUrl,
     version = "";
   if (pathname.startsWith("/cloud") || pathname.startsWith("/enterprise")) {
     version = pathname?.split("/")[2] || "";
+  } else if (
+    pathname.startsWith("/ja/cloud") ||
+    pathname.startsWith("/ja/enterprise")
+  ) {
+    version = pathname?.split("/")[3] || "";
   }
-  if (pathname.startsWith("/cloud") && version) {
+  if (
+    (pathname.startsWith("/cloud") || pathname.startsWith("/ja/cloud")) &&
+    version
+  ) {
     versionUrl += `cloud/${version}/`;
-  } else if (pathname.startsWith("/enterprise") && version) {
+  } else if (
+    (pathname.startsWith("/enterprise") ||
+      pathname.startsWith("/ja/enterprise")) &&
+    version
+  ) {
     versionUrl += `enterprise/${version}/`;
   } else {
     versionUrl += `docs/`;
@@ -73,7 +86,7 @@ export default function SearchBar({ handleSearchBarToggle }) {
   // It returns undefined for non-docs pages
   const activePlugin = useActivePlugin();
   let versionUrl = getVersionUrl(baseUrl, location.pathname);
-  
+
   // For non-docs pages while using plugin-content-docs with custom ids,
   // this will throw an error of:
   //   > Docusaurus plugin global data not found for "docusaurus-plugin-content-docs" plugin with id "default".
@@ -168,7 +181,7 @@ export default function SearchBar({ handleSearchBarToggle }) {
             ? searchContextByPaths.find((item) =>
                 typeof item === "string"
                   ? item === searchContext
-                  : item.path === searchContext
+                  : item.path === searchContext,
               )
             : searchContext;
         const translatedSearchContext = detailedSearchContext
@@ -180,7 +193,7 @@ export default function SearchBar({ handleSearchBarToggle }) {
               id: "theme.SearchBar.seeAllOutsideContext",
               message: 'See all results outside "{context}"',
             },
-            { context: translatedSearchContext }
+            { context: translatedSearchContext },
           );
         } else {
           linkText = translate(
@@ -188,7 +201,7 @@ export default function SearchBar({ handleSearchBarToggle }) {
               id: "theme.SearchBar.searchInContext",
               message: 'See all results within "{context}"',
             },
-            { context: translatedSearchContext }
+            { context: translatedSearchContext },
           );
         }
       } else {
@@ -207,7 +220,7 @@ export default function SearchBar({ handleSearchBarToggle }) {
       if (versionUrl !== baseUrl) {
         if (!versionUrl.startsWith(baseUrl)) {
           throw new Error(
-            `Version url '${versionUrl}' does not start with base url '${baseUrl}', this is a bug of \`@easyops-cn/docusaurus-search-local\`, please report it.`
+            `Version url '${versionUrl}' does not start with base url '${baseUrl}', this is a bug of \`@easyops-cn/docusaurus-search-local\`, please report it.`,
           );
         }
         params.set("version", versionUrl.substring(baseUrl.length));
@@ -252,7 +265,7 @@ export default function SearchBar({ handleSearchBarToggle }) {
               versionUrl,
               searchContext,
               input,
-              searchResultLimits
+              searchResultLimits,
             );
             callback(result);
           },
@@ -274,7 +287,7 @@ export default function SearchBar({ handleSearchBarToggle }) {
             },
           },
         },
-      ]
+      ],
     )
       .on(
         "autocomplete:selected",
@@ -292,7 +305,7 @@ export default function SearchBar({ handleSearchBarToggle }) {
             url += h;
           }
           history.push(url);
-        }
+        },
       )
       .on("autocomplete:closed", () => {
         searchBarRef.current?.blur();
@@ -374,7 +387,7 @@ export default function SearchBar({ handleSearchBarToggle }) {
     },
     // Only run this effect on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
   useEffect(() => {
     if (!searchBarShortcut || !searchBarShortcutKeymap) {
@@ -450,7 +463,7 @@ export default function SearchBar({ handleSearchBarToggle }) {
                   <kbd key={index} className={styles.searchHint}>
                     {hint}
                   </kbd>
-                )
+                ),
               )}
             </div>
           )

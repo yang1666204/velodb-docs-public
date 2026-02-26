@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate English technical documentation into Japanese following your specifications. However, I notice that the text to be translated shows \"REPLACE\" instead of the actual content.\n\nPlease provide the English technical documentation text you'd like me to translate, and I'll translate it according to your requirements:\n- Preserving original meaning exactly\n- Not translating code blocks, inline code, file paths, CLI commands, URLs, configuration keys, or product names  \n- Using natural Japanese suitable for developer documentation\n- Maintaining professional, technical documentation tone\n- Outputting only the translated text",
+  "title": "REPLACE",
   "description": "REPLACE関数は、文字列内の指定された部分文字列のすべての出現箇所を新しい部分文字列で置き換えるために使用されます。",
   "language": "ja"
 }

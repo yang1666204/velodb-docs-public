@@ -1,0 +1,161 @@
+---
+{
+  "title": "マルチアベイラビリティゾーンにおける災害復旧",
+  "description": "クラウドプラットフォームのavaliable zoneが不可抗力（コンピュータルームでの火災、停電など）により短時間で復旧できない場合、または...",
+  "language": "ja"
+}
+---
+# Multi Avaliable Zone による災害復旧
+
+## Multi avaliable zone 災害復旧とは何ですか？
+
+不可抗力（コンピュータールームの火災、停電など）や機器障害（ソフトウェアまたはハードウェアの損傷）により、クラウドプラットフォームの avaliable zone が短期間で復旧できない場合、
+VeloDB ウェアハウスとクラスターは、ビジネスの multi avaliable zone 災害復旧機能をサポートし、単一の avaliable zone 障害に対処するためにアプリケーション全体の災害復旧バックアップを実行し、ビジネスの RTO および RPO コア指標を満たします。
+
+## サポートされているクラウドプラットフォームとリージョン
+
+
+| デプロイメントモード | クラウドプラットフォーム | リージョン                                     |
+|-----------------|----------------|--------------------------------------------|
+| SaaS            | AWS            | Singapore, US East (N.Virginia), Hong Kong |
+
+## アーキテクチャの説明
+
+VeloDB Cloud 全体は主に3つの部分で構成されます：メタデータサービス層、コンピューティングクラスター層、オブジェクトストレージ層です。
+
+![multiaz 1](/images/cloud/multiaz-1.png)
+
+1. **メタデータサービス層の高可用性**
+
+   現在のメタデータサービス層は主に MetaService と FE で構成されています。MetaService と FE の両方がマルチノードの高可用性をサポートします。MetaService と FE を3つの availability zone にデプロイすることで、任意の availability zone で障害が発生した場合でもサービスを中断することなく実現できます。
+
+2. **コンピューティングサービスの高可用性**
+
+   共有オブジェクトストレージに基づくマルチコンピューティングクラスター実装を提供し、各コンピューティングクラスターは独立して読み書きできます。したがって、コンピューティング層の高可用性を確保するために以下の方法を推奨します。
+
+- 特定の availability zone が利用できない場合、1時間以内のサービス復旧を許容する：1つの availability zone にコンピューティングクラスターをデプロイし、この availability zone が利用できなくなった際に、別の availability zone で1時間以内にコンピューティングクラスターの復旧を迅速に完了できます。これはクラスターのホットキャッシュデータのサイズに依存します。ホットデータキャッシュが小さい場合は、10-30分で完了できます。
+- 特定の availability zone が利用できない場合、中断時間なしでクエリサービスを完全に利用可能にしたい：2つまたは3つの availability zone にコンピューティングクラスターをデプロイして2つのコンピューティングクラスターを形成し、両方のコンピューティングクラスターが読み書き可能です。
+
+3. **オブジェクトストレージの高可用性**
+   
+    オブジェクトストレージは、クラウドプラットフォームが提供する availability zone 間高可用性設定を使用し、クラウドプラットフォームがマルチ availability zone 高可用性を保証します。
+
+## 操作手順
+
+### ウェアハウスの作成
+   ウェアハウスを作成する際、availability zone を選択する時に候補の availability zone から3つを選択する必要があります。システムは3つの availability zone にウェアハウスをデプロイし、任意の availability zone で障害が発生してもサービスが中断されないことを保証します。
+
+   ![multiaz 2](/images/cloud/multiaz-2.png)
+
+   その他のオプションは単一の availability zone ウェアハウスと同じです。
+   ウェアハウス作成後、ウェアハウス詳細ページでウェアハウスが属する availability zone を確認できます。
+
+   ![multiaz 3](/images/cloud/multiaz-3.png)
+
+###  クラスター
+
+**クラスターの作成**
+   
+単一クラスターを作成する際、availability zone を選択し、ウェアハウスの3つの availability zone のうち1つのみを選択できます。複数のクラスターを作成する際、各クラスターは異なる availability zone を選択できます。
+
+![multiaz 4](/images/cloud/multiaz-4.png)
+
+その他のオプションは単一の availability zone クラスターと同じです。
+
+クラスターが正常に作成された後、クラスター詳細ページでクラスターが配置されている availability zone を確認できます。
+
+![multiaz 5](/images/cloud/multiaz-5.png)
+
+**クラスターの指定**
+
+複数のクラスターがある場合、以下の例に示すように、次の方法でクラスターを指定できます。
+
+1.MySQL Client を通じて VeloDB に接続し、クラスター cluster_1 を使用してデータベースとテーブルを作成します。
+
+```yaml
+//Switch to use computing cluster cluster_1
+USE @cluster_1;
+
+//Create database, table
+CREATE DATABASE test_db;
+USE test_db;
+CREATE TABLE test_table
+(
+k1 TINYINT,
+k2 DECIMAL(10, 2) DEFAULT "10.05",
+k3 CHAR(10) COMMENT "string column",
+k4 INT NOT NULL DEFAULT "1" COMMENT "int column"
+)
+COMMENT "my first table"
+DISTRIBUTED BY HASH(k1) BUCKETS 16;
+```
+2. JDBC接続文字列
+
+```yaml
+jdbc:mysql://<host>:<port>/<Database>@<Cluster>?user=<Username>&password=<Password>
+```
+3. クラスタcluster_2を使用してStream Load経由でサンプルデータを書き込みます。
+
+```yaml
+ curl --location-trusted -u admin:admin_123 -H "cloud_cluster:cluster_2" -H "label:123" -H "column_separator:," -T data.csv http://host:port/api/test_db/test_table/_stream_load
+   The sample data in data.csv is as follows:
+   1,0.14,a1,20
+   2,1.04,b2,21
+   3,3.14,c3,22
+   4,4.35,d4,23
+```
+4. WebUI
+   
+   SQLコマンドを実行する際、右上角でSwitch Clusterを選択できます
+
+   ![multiaz 6](/images/cloud/multiaz-6.png)
+
+5. クラスターの表示、クラスター権限設定、ユーザーデフォルトクラスターの設定などについては、[Cluster Management](../cluster-management.mdx)を参照してください。
+
+**クラスターのリネーム**
+   
+クラスター詳細ページで、クラスターをリネームできます
+
+![multiaz 7](/images/cloud/multiaz-7.png)
+
+### パブリックネットワーク接続
+
+パブリックネットワーク接続を使用してVeloDB Cloudにアクセスします。ウェアハウスを作成する際、提供されるドメイン名を直接使用してアクセスでき、システムは自動的に3つのアベイラビリティゾーン内のFEノードにルーティングします。
+
+![multiaz 8](/images/cloud/multiaz-8.png)
+
+### プライベートネットワーク接続
+
+プライベートネットワーク接続を作成し、エンドポイントを作成する際、複数のアベイラビリティゾーンに対応する複数のエンドポイントを作成できます。
+
+詳細については、[Private network connection](https://docs.velodb.io/cloud/4.x/management-guide/connections#aws)を参照してください
+
+![multiaz 9](/images/cloud/multiaz-9.png)
+
+# 災害復旧準備と障害対応
+
+## ウェアハウス
+
+- **災害復旧準備**: ウェアハウスを作成する際、複数のアベイラビリティゾーンを選択します。
+- **障害対応**: 対応は不要です。
+
+## クラスター
+
+**災害復旧準備**
+- 特定のアベイラビリティゾーンが利用できない場合、1時間以内のサービス復旧を許容する：1つのアベイラビリティゾーンにコンピューティングクラスターをデプロイし、そのアベイラビリティゾーンが利用できなくなった際、1時間以内に別のアベイラビリティゾーンでコンピューティングクラスターの復旧を迅速に完了できます。これはクラスターのホットキャッシュデータのサイズに依存します。ホットデータキャッシュが小さい場合、10-30分で完了できます。
+- 特定のアベイラビリティゾーンが利用できない場合、中断時間なしでクエリサービスを完全に利用可能にしたい：2つまたは3つのアベイラビリティゾーンそれぞれにコンピューティングクラスターをデプロイし、2つ以上のコンピューティングクラスターを形成して、2つ以上のコンピューティングクラスターが読み書きできます。
+
+**障害対応**
+- クラスターのリネーム: ユーザー設定がCluster-Aに送信されます。Cluster-Aが障害した後、Cluster-AをCluster-Xにリネームします。そして新しいCluster-Aを作成するか、他のバックアップクラスターCluster-BをCluster-Aにリネームします。ビジネスのスムーズな切り替えを完了します。
+
+## パブリックネットワーク接続
+
+- 災害復旧準備: ウェアハウスが提供するドメイン名を使用して信頼性の高いアクセスを行います。
+- 障害対応: 対応は不要です。
+
+## プライベートネットワーク接続
+  災害復旧準備: 複数のアベイラビリティゾーンに対応するプライベートネットワーク接続を作成します。
+  障害対応: 正常なアベイラビリティゾーンのプライベートネットワーク接続に切り替えます。
+
+# 既知の制限事項
+- アベイラビリティゾーンが障害した際、現在使用中のWebUIが自動切り替えをサポートしていない場合、WebUIページを更新して再接続できます

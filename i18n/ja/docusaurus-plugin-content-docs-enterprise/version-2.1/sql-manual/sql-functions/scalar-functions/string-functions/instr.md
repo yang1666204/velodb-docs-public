@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate English technical documentation into Japanese following your requirements. However, I don't see any text content after \"Text:\" in your message - only \"INSTR\" appears there.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate?",
+  "title": "INSTR",
   "description": "str 内で substr が最初に出現する位置を返します（カウントは1から始まります）。特殊なケース：",
   "language": "ja"
 }

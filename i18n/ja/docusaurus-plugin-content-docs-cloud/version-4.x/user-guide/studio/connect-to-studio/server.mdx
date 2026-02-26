@@ -1,0 +1,33 @@
+---
+{
+  "title": "VeloDB Studio Server Edition接続",
+  "description": "このマシンをConnection Managementのアクセスホワイトリストに追加した後（この手順はイントラネットアクセスの場合はスキップできます）、Studioは次のように表示されます...",
+  "language": "ja"
+}
+---
+# VeloDB Studio Server Edition接続
+
+## VeloDB Cloud
+
+Connection Managementでアクセスホワイトリストにこのマシンを追加した後（この手順はイントラネットアクセスでスキップできます）、StudioはConnection Managementで接続可能な状態として表示されます。その後、VeloDB CloudでStudioボタンをクリックするだけで、VeloDB Studioに簡単に接続できます。
+
+<img className='pt-5' src={`/img/studio/saas-connect-studio.png`} alt="saas-connect-studio" width={1400} height={600}/>
+
+プライベートネットワークを使用してVeloDB Studioに接続する場合、プライベートネットワークStudioを通じてリポジトリにログインする前に、ネットワークがエンドポイントが配置されているVPCに接続する必要があります（例：VPN、プロキシサービス、専用線など）。接続できない場合は、パブリックネットワークStudioを使用してリポジトリにログインできます。
+<img className='pt-5' src={`/img/studio/privitelink-connect-studio.png`} alt="privitelink-connect-studio" width={1400} height={600}/>
+
+BYOCリポジトリを使用する場合、Studioがリポジトリにアクセスできるよう、ネットワーク接続の問題を自分で処理する必要があります。
+
+Studioは今回アクセスしたウェアハウスIDをデフォルトで入力します（ウェアハウスIDは、VeloDB Cloudでウェアハウスを作成した際に割り当てたIDです）。VeloDBデータベースのユーザー名とパスワードを入力し、ConnectをクリックしてStudioに接続します。（初期に割り当てられた`Admin`アカウントのパスワードは、`Admin Console -> Settings -> Modify the Repository Password`で変更できます）
+<img className='pt-5' src={`/img/studio/studio-saas.png`} alt="studio-saas" width={1400} height={600}/>
+
+
+
+## VeloDB Enterprise
+Enterprise ManagerコンソールでStudioをクリックしてStudioにアクセスします。
+<img className='pt-5' src={`/img/studio/enterprise-connect-studio.png`} alt="enterprise-connect-studio" width={1400} height={600}/>
+
+VeloDBのホスト（HOST）、JDBCポート、HTTPポート（このポートはProfile情報の取得に使用されます）、ユーザー名とパスワードを入力し、ログインをクリックしてStudioを通じてVeloDBに接続します。
+<img className='pt-5' src={`/img/studio/enterprise-studio.png`} alt="enterprise-studio" width={1400} height={600}/>
+
+{/*## Alibaba Cloud VeloDB version */}

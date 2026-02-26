@@ -5,16 +5,8 @@
       "collapsed": false,
       "label": "Getting Started",
       "items": [
-        {
-          "type": "doc",
-          "id": "getting-started/overview",
-          "label": "Introduction"
-        },
-        {
-          "type": "doc",
-          "id": "getting-started/quick-start",
-          "label": "Getting Started"
-        }
+        "getting-started/overview",
+        "getting-started/quick-start"
       ]
     },
     {
@@ -464,36 +456,12 @@
           "type": "category",
           "label": "Compute-Storage Decoupled",
           "items": [
-            {
-              "type": "doc",
-              "id": "user-guide/compute-storage-decoupled/before-deployment",
-              "label": "Doris Compute-Storage Decoupled Deployment Preparation"
-            },
-            {
-              "type": "doc",
-              "id": "user-guide/compute-storage-decoupled/compilation-and-deployment",
-              "label": "Compilation and Deployment"
-            },
-            {
-              "type": "doc",
-              "id": "user-guide/compute-storage-decoupled/file-cache",
-              "label": "File Cache"
-            },
-            {
-              "type": "doc",
-              "id": "user-guide/compute-storage-decoupled/managing-compute-cluster",
-              "label": "Managing Compute Groups"
-            },
-            {
-              "type": "doc",
-              "id": "user-guide/compute-storage-decoupled/managing-storage-vault",
-              "label": "Managing Storage Vault"
-            },
-            {
-              "type": "doc",
-              "id": "user-guide/compute-storage-decoupled/upgrade",
-              "label": "Upgrade"
-            }
+            "user-guide/compute-storage-decoupled/before-deployment",
+            "user-guide/compute-storage-decoupled/compilation-and-deployment",
+            "user-guide/compute-storage-decoupled/file-cache",
+            "user-guide/compute-storage-decoupled/managing-compute-cluster",
+            "user-guide/compute-storage-decoupled/managing-storage-vault",
+            "user-guide/compute-storage-decoupled/upgrade"
           ]
         },
         {
@@ -504,252 +472,68 @@
               "type": "category",
               "label": "System Tables",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "user-guide/admin-manual/system-tables/overview",
-                  "label": "Overview"
-                },
+                "user-guide/admin-manual/system-tables/overview",
                 {
                   "type": "category",
                   "label": "information-schema",
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/active-queries",
-                      "label": "active_queries"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/backend-active-tasks",
-                      "label": "backend_active_tasks"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/backend-configuration",
-                      "label": "backend_configuration"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/catalog-meta-cache-statistics",
-                      "label": "catalog_meta_cache_statistics"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/character-sets",
-                      "label": "character_sets"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/collations",
-                      "label": "collations"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/column-privileges",
-                      "label": "column_privileges"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/column-statistics",
-                      "label": "column_statistics"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/columns",
-                      "label": "columns"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/engines",
-                      "label": "engines"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/events",
-                      "label": "events"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/file-cache-statistics",
-                      "label": "file_cache_statistics"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/files",
-                      "label": "files"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/global-variables",
-                      "label": "global_variables"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/key-column-usage",
-                      "label": "key_column_usage"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/metadata-name-ids",
-                      "label": "metadata_name_ids"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/parameters",
-                      "label": "parameters"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/partitions",
-                      "label": "partitions"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/processlist",
-                      "label": "processlist"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/profiling",
-                      "label": "profiling"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/referential-constraints",
-                      "label": "referential_constraints"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/routine-load-job",
-                      "label": "routine_load_job"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/routines",
-                      "label": "routines"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/rowsets",
-                      "label": "rowsets"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/schema-privileges",
-                      "label": "schema_privileges"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/schemata",
-                      "label": "schemata"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/session-variables",
-                      "label": "session_variables"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/statistics",
-                      "label": "statistics"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/table-constraints",
-                      "label": "table_constraints"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/table-options",
-                      "label": "table_options"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/table-privileges",
-                      "label": "table_privileges"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/table-properties",
-                      "label": "table_properties"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/tables",
-                      "label": "tables"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/triggers",
-                      "label": "triggers"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/user-privileges",
-                      "label": "user_privileges"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/views",
-                      "label": "views"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/workload-group-privileges",
-                      "label": "workload_group_privileges"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/workload-group-resource-usage",
-                      "label": "workload_group_resource_usage"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/workload-groups",
-                      "label": "workload_groups"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/information-schema/workload-policy",
-                      "label": "workload_policy"
-                    }
+                    "user-guide/admin-manual/system-tables/information-schema/active-queries",
+                    "user-guide/admin-manual/system-tables/information-schema/backend-active-tasks",
+                    "user-guide/admin-manual/system-tables/information-schema/backend-configuration",
+                    "user-guide/admin-manual/system-tables/information-schema/catalog-meta-cache-statistics",
+                    "user-guide/admin-manual/system-tables/information-schema/character-sets",
+                    "user-guide/admin-manual/system-tables/information-schema/collations",
+                    "user-guide/admin-manual/system-tables/information-schema/column-privileges",
+                    "user-guide/admin-manual/system-tables/information-schema/column-statistics",
+                    "user-guide/admin-manual/system-tables/information-schema/columns",
+                    "user-guide/admin-manual/system-tables/information-schema/engines",
+                    "user-guide/admin-manual/system-tables/information-schema/events",
+                    "user-guide/admin-manual/system-tables/information-schema/file-cache-statistics",
+                    "user-guide/admin-manual/system-tables/information-schema/files",
+                    "user-guide/admin-manual/system-tables/information-schema/global-variables",
+                    "user-guide/admin-manual/system-tables/information-schema/key-column-usage",
+                    "user-guide/admin-manual/system-tables/information-schema/metadata-name-ids",
+                    "user-guide/admin-manual/system-tables/information-schema/parameters",
+                    "user-guide/admin-manual/system-tables/information-schema/partitions",
+                    "user-guide/admin-manual/system-tables/information-schema/processlist",
+                    "user-guide/admin-manual/system-tables/information-schema/profiling",
+                    "user-guide/admin-manual/system-tables/information-schema/referential-constraints",
+                    "user-guide/admin-manual/system-tables/information-schema/routine-load-job",
+                    "user-guide/admin-manual/system-tables/information-schema/routines",
+                    "user-guide/admin-manual/system-tables/information-schema/rowsets",
+                    "user-guide/admin-manual/system-tables/information-schema/schema-privileges",
+                    "user-guide/admin-manual/system-tables/information-schema/schemata",
+                    "user-guide/admin-manual/system-tables/information-schema/session-variables",
+                    "user-guide/admin-manual/system-tables/information-schema/statistics",
+                    "user-guide/admin-manual/system-tables/information-schema/table-constraints",
+                    "user-guide/admin-manual/system-tables/information-schema/table-options",
+                    "user-guide/admin-manual/system-tables/information-schema/table-privileges",
+                    "user-guide/admin-manual/system-tables/information-schema/table-properties",
+                    "user-guide/admin-manual/system-tables/information-schema/tables",
+                    "user-guide/admin-manual/system-tables/information-schema/triggers",
+                    "user-guide/admin-manual/system-tables/information-schema/user-privileges",
+                    "user-guide/admin-manual/system-tables/information-schema/views",
+                    "user-guide/admin-manual/system-tables/information-schema/workload-group-privileges",
+                    "user-guide/admin-manual/system-tables/information-schema/workload-group-resource-usage",
+                    "user-guide/admin-manual/system-tables/information-schema/workload-groups",
+                    "user-guide/admin-manual/system-tables/information-schema/workload-policy"
                   ]
                 },
                 {
                   "type": "category",
                   "label": "internal-schema",
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/internal-schema/audit-log",
-                      "label": "audit_log"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/internal-schema/column-statistics",
-                      "label": "column_statistics"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/internal-schema/partition-statistics",
-                      "label": "partition_statistics"
-                    }
+                    "user-guide/admin-manual/system-tables/internal-schema/audit-log",
+                    "user-guide/admin-manual/system-tables/internal-schema/column-statistics",
+                    "user-guide/admin-manual/system-tables/internal-schema/partition-statistics"
                   ]
                 },
                 {
                   "type": "category",
                   "label": "mysql",
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/mysql/props-priv",
-                      "label": "procs_priv"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/system-tables/mysql/user",
-                      "label": "user"
-                    }
+                    "user-guide/admin-manual/system-tables/mysql/props-priv",
+                    "user-guide/admin-manual/system-tables/mysql/user"
                   ]
                 }
               ]
@@ -758,103 +542,43 @@
               "type": "category",
               "label": "Workload Management",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "user-guide/admin-manual/workload-management/workload-management-summary",
-                  "label": "Overview"
-                },
+                "user-guide/admin-manual/workload-management/workload-management-summary",
                 {
                   "type": "category",
                   "label": "Resource Isolation",
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/workload-management/resource-isolation/resource-group",
-                      "label": "Resource Group"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/workload-management/resource-isolation/compute-group",
-                      "label": "Compute Group"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/admin-manual/workload-management/resource-isolation/workload-group",
-                      "label": "Workload Group"
-                    }
+                    "user-guide/admin-manual/workload-management/resource-isolation/resource-group",
+                    "user-guide/admin-manual/workload-management/resource-isolation/compute-group",
+                    "user-guide/admin-manual/workload-management/resource-isolation/workload-group"
                   ]
                 },
-                {
-                  "type": "doc",
-                  "id": "user-guide/admin-manual/workload-management/analysis-diagnosis",
-                  "label": "Workload Analysis Diagnosis"
-                },
-                {
-                  "type": "doc",
-                  "id": "user-guide/admin-manual/workload-management/concurrency-control-and-queuing",
-                  "label": "Concurrency Control and Queuing"
-                },
-                {
-                  "type": "doc",
-                  "id": "user-guide/admin-manual/workload-management/sql-blocking",
-                  "label": "Query Circuit Breaker"
-                },
-                {
-                  "type": "doc",
-                  "id": "user-guide/admin-manual/workload-management/kill-query",
-                  "label": "Kill Query"
-                },
-                {
-                  "type": "doc",
-                  "id": "user-guide/admin-manual/workload-management/job-scheduler",
-                  "label": "Job Scheduler"
-                }
+                "user-guide/admin-manual/workload-management/analysis-diagnosis",
+                "user-guide/admin-manual/workload-management/concurrency-control-and-queuing",
+                "user-guide/admin-manual/workload-management/sql-blocking",
+                "user-guide/admin-manual/workload-management/kill-query",
+                "user-guide/admin-manual/workload-management/job-scheduler"
               ]
             },
-            {
-              "type": "doc",
-              "id": "user-guide/admin-manual/time-zone",
-              "label": "Basic concepts"
-            }
+            "user-guide/admin-manual/time-zone"
           ]
         },
         {
           "type": "category",
           "label": "VeloDB Studio",
           "items": [
-            {
-              "type": "doc",
-              "id": "user-guide/studio/overview",
-              "label": "Introduce VeloDB Studio"
-            },
-            {
-              "type": "doc",
-              "id": "user-guide/studio/release-notes",
-              "label": "Release Notes"
-            },
+            "user-guide/studio/overview",
+            "user-guide/studio/release-notes",
             {
               "type": "category",
               "label": "Connect To Studio",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/connect-to-studio/server",
-                  "label": "VeloDB Studio Server Edition Connection"
-                },
+                "user-guide/studio/connect-to-studio/server",
                 {
                   "type": "category",
                   "label": "Desktop Version",
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "user-guide/studio/connect-to-studio/desktop/connection-management",
-                      "label": "Connection Overview"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "user-guide/studio/connect-to-studio/desktop/create-connection",
-                      "label": "Regular"
-                    }
+                    "user-guide/studio/connect-to-studio/desktop/connection-management",
+                    "user-guide/studio/connect-to-studio/desktop/create-connection"
                   ]
                 }
               ]
@@ -863,96 +587,40 @@
               "type": "category",
               "label": "Query",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/query/sql-console",
-                  "label": "SQL Console"
-                },
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/query/log-analytics",
-                  "label": "Search and Analysis"
-                },
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/query/session-management",
-                  "label": "Session Management"
-                },
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/query/audit-log",
-                  "label": "Audit Log"
-                },
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/query/workload-group",
-                  "label": "Workload Group Management"
-                }
+                "user-guide/studio/query/sql-console",
+                "user-guide/studio/query/log-analytics",
+                "user-guide/studio/query/session-management",
+                "user-guide/studio/query/audit-log",
+                "user-guide/studio/query/workload-group"
               ]
             },
-            {
-              "type": "doc",
-              "id": "user-guide/studio/data",
-              "label": "Data"
-            },
+            "user-guide/studio/data",
             {
               "type": "category",
               "label": "Privileges",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/privileges/authorization",
-                  "label": "Authorization"
-                },
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/privileges/role",
-                  "label": "Role"
-                },
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/privileges/user",
-                  "label": "User"
-                }
+                "user-guide/studio/privileges/authorization",
+                "user-guide/studio/privileges/role",
+                "user-guide/studio/privileges/user"
               ]
             },
-            {
-              "type": "doc",
-              "id": "user-guide/studio/load-task",
-              "label": "Load tasks"
-            },
+            "user-guide/studio/load-task",
             {
               "type": "category",
               "label": "Desktop Contents",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/desktop-contents/menu",
-                  "label": "Application Menu"
-                }
+                "user-guide/studio/desktop-contents/menu"
               ]
             },
             {
               "type": "category",
               "label": "FAQ",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/faq/server",
-                  "label": "Server Version FAQ"
-                },
-                {
-                  "type": "doc",
-                  "id": "user-guide/studio/faq/desktop",
-                  "label": "Desktop Version FAQ"
-                }
+                "user-guide/studio/faq/server",
+                "user-guide/studio/faq/desktop"
               ]
             },
-            {
-              "type": "doc",
-              "id": "user-guide/studio/security-trust",
-              "label": "Security and Trust"
-            }
+            "user-guide/studio/security-trust"
           ]
         }
       ]
@@ -962,11 +630,7 @@
       "collapsed": false,
       "label": "Management Guide",
       "items": [
-        {
-          "type": "doc",
-          "id": "management-guide/console-overview",
-          "label": "Overview"
-        },
+        "management-guide/console-overview",
         {
           "type": "category",
           "label": "Warehouse Management",
@@ -975,11 +639,7 @@
             "id": "management-guide/warehouse-management/warehouse-management"
           },
           "items": [
-            {
-              "type": "doc",
-              "id": "management-guide/warehouse-management/create-saas-warehouse",
-              "label": "Create SaaS Warehouse"
-            },
+            "management-guide/warehouse-management/create-saas-warehouse",
             {
               "type": "category",
               "label": "Create BYOC Warehouse",
@@ -992,16 +652,8 @@
                   "type": "category",
                   "label": "AWS",
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "management-guide/warehouse-management/create-byoc-warehouse/aws/create-warehouse-using-wizard-mode",
-                      "label": "Create a BYOC warehouse Using Wizard Mode"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "management-guide/warehouse-management/create-byoc-warehouse/aws/create-warehouse-using-template-mode",
-                      "label": "Create a BYOC warehouse Using Template Mode"
-                    }
+                    "management-guide/warehouse-management/create-byoc-warehouse/aws/create-warehouse-using-wizard-mode",
+                    "management-guide/warehouse-management/create-byoc-warehouse/aws/create-warehouse-using-template-mode"
                   ]
                 },
                 {
@@ -1012,11 +664,7 @@
                     "id": "management-guide/warehouse-management/create-byoc-warehouse/gcp"
                   },
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "management-guide/warehouse-management/create-byoc-warehouse/gcp/gcp-guide",
-                      "label": "GCP Preparation"
-                    }
+                    "management-guide/warehouse-management/create-byoc-warehouse/gcp/gcp-guide"
                   ]
                 },
                 {
@@ -1027,67 +675,23 @@
                     "id": "management-guide/warehouse-management/create-byoc-warehouse/azure"
                   },
                   "items": [
-                    {
-                      "type": "doc",
-                      "id": "management-guide/warehouse-management/create-byoc-warehouse/azure/azure-guide",
-                      "label": "Azure Preparation"
-                    }
+                    "management-guide/warehouse-management/create-byoc-warehouse/azure/azure-guide"
                   ]
                 }
               ]
             },
-            {
-              "type": "doc",
-              "id": "management-guide/warehouse-management/use-warehouse",
-              "label": "Use Warehouse"
-            },
-            {
-              "type": "doc",
-              "id": "management-guide/warehouse-management/multi-az",
-              "label": "Disaster Recovery on Multi Avaliable Zone"
-            }
+            "management-guide/warehouse-management/use-warehouse",
+            "management-guide/warehouse-management/multi-az"
           ]
         },
-        {
-          "type": "doc",
-          "id": "management-guide/cluster-management",
-          "label": "Cluster Management"
-        },
-        {
-          "type": "doc",
-          "id": "management-guide/connections",
-          "label": "Connections"
-        },
-        {
-          "type": "doc",
-          "id": "management-guide/studio",
-          "label": "Studio"
-        },
-        {
-          "type": "doc",
-          "id": "management-guide/migration",
-          "label": "Migration"
-        },
-        {
-          "type": "doc",
-          "id": "management-guide/monitoring-overview",
-          "label": "Monitoring Overview"
-        },
-        {
-          "type": "doc",
-          "id": "management-guide/backup",
-          "label": "Backup"
-        },
-        {
-          "type": "doc",
-          "id": "management-guide/usage-and-billing",
-          "label": "Billing Center"
-        },
-        {
-          "type": "doc",
-          "id": "management-guide/user-and-organization",
-          "label": "Registration and Login"
-        },
+        "management-guide/cluster-management",
+        "management-guide/connections",
+        "management-guide/studio",
+        "management-guide/migration",
+        "management-guide/monitoring-overview",
+        "management-guide/backup",
+        "management-guide/usage-and-billing",
+        "management-guide/user-and-organization",
         {
           "type": "category",
           "label": "More",
@@ -1108,11 +712,7 @@
       "collapsed": false,
       "label": "Integration",
       "items": [
-        {
-          "type": "doc",
-          "id": "integration/overview",
-          "label": "Integration Overview"
-        },
+        "integration/overview",
         {
           "type": "category",
           "label": "Observability",
@@ -1127,83 +727,31 @@
           "type": "category",
           "label": "Data Processing",
           "items": [
-            {
-              "type": "doc",
-              "id": "integration/data-processing/spark-doris-connector",
-              "label": "Spark Doris Connector"
-            },
-            {
-              "type": "doc",
-              "id": "integration/data-processing/flink-doris-connector",
-              "label": "Flink Doris Connector"
-            },
-            {
-              "type": "doc",
-              "id": "integration/data-processing/dbt-doris-adapter",
-              "label": "DBT Doris Adapter"
-            }
+            "integration/data-processing/spark-doris-connector",
+            "integration/data-processing/flink-doris-connector",
+            "integration/data-processing/dbt-doris-adapter"
           ]
         },
         {
           "type": "category",
           "label": "BI",
           "items": [
-            {
-              "type": "doc",
-              "id": "integration/bi/tableau",
-              "label": "Tableau"
-            },
-            {
-              "type": "doc",
-              "id": "integration/bi/powerbi",
-              "label": "Power BI"
-            },
-            {
-              "type": "doc",
-              "id": "integration/bi/quicksight",
-              "label": "QuickSight"
-            },
-            {
-              "type": "doc",
-              "id": "integration/bi/apache-superset",
-              "label": "Apache Superset"
-            },
-            {
-              "type": "doc",
-              "id": "integration/bi/finebi",
-              "label": "FineBI"
-            },
-            {
-              "type": "doc",
-              "id": "integration/bi/metabase",
-              "label": "Metabase"
-            },
-            {
-              "type": "doc",
-              "id": "integration/bi/smartbi",
-              "label": "Smartbi"
-            },
-            {
-              "type": "doc",
-              "id": "integration/bi/quickbi",
-              "label": "Quick BI"
-            }
+            "integration/bi/tableau",
+            "integration/bi/powerbi",
+            "integration/bi/quicksight",
+            "integration/bi/apache-superset",
+            "integration/bi/finebi",
+            "integration/bi/metabase",
+            "integration/bi/smartbi",
+            "integration/bi/quickbi"
           ]
         },
         {
           "type": "category",
           "label": "SQL Client",
           "items": [
-            {
-              "type": "doc",
-              "id": "integration/sql-client/dbeaver",
-              "label": "DBeaver"
-            },
-            {
-              "type": "doc",
-              "id": "integration/sql-client/datagrip",
-              "label": "DataGrip"
-            }
+            "integration/sql-client/dbeaver",
+            "integration/sql-client/datagrip"
           ]
         },
         {
@@ -1219,11 +767,7 @@
                 "id": "integration/data-source/kafka"
               },
               "items": [
-                {
-                  "type": "doc",
-                  "id": "integration/data-source/doris-kafka-connector",
-                  "label": "Doris Kafka Connector"
-                }
+                "integration/data-source/doris-kafka-connector"
               ]
             },
             {
@@ -1235,11 +779,7 @@
                 "id": "integration/data-source/confluent-cloud"
               },
               "items": [
-                {
-                  "type": "doc",
-                  "id": "integration/data-source/confluent-cloud/setup",
-                  "label": "Confluent Cloud Setup"
-                }
+                "integration/data-source/confluent-cloud/setup"
               ]
             },
             {
@@ -1251,18 +791,10 @@
                 "id": "integration/data-source/aws-glue"
               },
               "items": [
-                {
-                  "type": "doc",
-                  "id": "integration/data-source/aws-glue/setup",
-                  "label": "AWS Setup Guide"
-                }
+                "integration/data-source/aws-glue/setup"
               ]
             },
-            {
-              "type": "doc",
-              "id": "integration/data-source/s3",
-              "label": "Amazon S3"
-            },
+            "integration/data-source/s3",
             {
               "type": "category",
               "label": "Postgres",
@@ -1272,21 +804,9 @@
                 "id": "integration/data-source/postgres-cdc"
               },
               "items": [
-                {
-                  "type": "doc",
-                  "id": "integration/data-source/postgres-cdc/generic",
-                  "label": "Generic PostgreSQL"
-                },
-                {
-                  "type": "doc",
-                  "id": "integration/data-source/postgres-cdc/aurora-rds",
-                  "label": "Aurora RDS"
-                },
-                {
-                  "type": "doc",
-                  "id": "integration/data-source/postgres-cdc/aurora-serverless",
-                  "label": "Aurora Serverless v2"
-                }
+                "integration/data-source/postgres-cdc/generic",
+                "integration/data-source/postgres-cdc/aurora-rds",
+                "integration/data-source/postgres-cdc/aurora-serverless"
               ]
             }
           ]
@@ -1365,87 +885,27 @@
           "type": "category",
           "label": "Data Catalog",
           "items": [
-            {
-              "type": "doc",
-              "id": "integration/data-catalog/amazon-s3-tables-en",
-              "label": "AWS S3 Tables"
-            },
-            {
-              "type": "doc",
-              "id": "integration/data-catalog/apache-polaris-catalog-en",
-              "label": "Apache Polaris"
-            },
-            {
-              "type": "doc",
-              "id": "integration/data-catalog/aws-glue-catalog-en",
-              "label": "AWS Glue Catalog"
-            },
-            {
-              "type": "doc",
-              "id": "integration/data-catalog/databricks-en",
-              "label": "Databricks Unity Catalog"
-            },
-            {
-              "type": "doc",
-              "id": "integration/data-catalog/hive-metastore-catalog-en",
-              "label": "Hive Metastore"
-            },
-            {
-              "type": "doc",
-              "id": "integration/data-catalog/iceberg-rest-catalog-en",
-              "label": "Iceberg Rest Catalog"
-            },
-            {
-              "type": "doc",
-              "id": "integration/data-catalog/mysql-catalog-en",
-              "label": "MySQL"
-            },
-            {
-              "type": "doc",
-              "id": "integration/data-catalog/postgresql-catalog-en",
-              "label": "PostgreSQL"
-            },
-            {
-              "type": "doc",
-              "id": "integration/data-catalog/sample-data-catalog-en",
-              "label": "Sample Data Generator"
-            }
+            "integration/data-catalog/amazon-s3-tables-en",
+            "integration/data-catalog/apache-polaris-catalog-en",
+            "integration/data-catalog/aws-glue-catalog-en",
+            "integration/data-catalog/databricks-en",
+            "integration/data-catalog/hive-metastore-catalog-en",
+            "integration/data-catalog/iceberg-rest-catalog-en",
+            "integration/data-catalog/mysql-catalog-en",
+            "integration/data-catalog/postgresql-catalog-en",
+            "integration/data-catalog/sample-data-catalog-en"
           ]
         },
         {
           "type": "category",
           "label": "More",
           "items": [
-            {
-              "type": "doc",
-              "id": "integration/more/automq-load",
-              "label": "AutoMQ Load"
-            },
-            {
-              "type": "doc",
-              "id": "integration/more/datax",
-              "label": "DataX Doriswriter"
-            },
-            {
-              "type": "doc",
-              "id": "integration/more/kettle",
-              "label": "Kettle Doris Plugin"
-            },
-            {
-              "type": "doc",
-              "id": "integration/more/kyuubi",
-              "label": "Use Kyuubi with Doris"
-            },
-            {
-              "type": "doc",
-              "id": "integration/more/hive-bitmap-udf",
-              "label": "Hive UDF"
-            },
-            {
-              "type": "doc",
-              "id": "integration/more/hive-hll-udf",
-              "label": "Hive HLL UDF"
-            }
+            "integration/more/automq-load",
+            "integration/more/datax",
+            "integration/more/kettle",
+            "integration/more/kyuubi",
+            "integration/more/hive-bitmap-udf",
+            "integration/more/hive-hll-udf"
           ]
         }
       ]
@@ -2724,36 +2184,12 @@
       "collapsed": false,
       "label": "Best Practices",
       "items": [
-        {
-          "type": "doc",
-          "id": "best-practice/data-faq",
-          "label": "Data Operation Error"
-        },
-        {
-          "type": "doc",
-          "id": "best-practice/sql-faq",
-          "label": "SQL Error"
-        },
-        {
-          "type": "doc",
-          "id": "best-practice/lakehouse-faq",
-          "label": "Data Lakehouse FAQ"
-        },
-        {
-          "type": "doc",
-          "id": "best-practice/bi-faq",
-          "label": "BI FAQ"
-        },
-        {
-          "type": "doc",
-          "id": "best-practice/correctness-faq",
-          "label": "Data Integrity Issues"
-        },
-        {
-          "type": "doc",
-          "id": "best-practice/load-faq",
-          "label": "Load FAQ"
-        }
+        "best-practice/data-faq",
+        "best-practice/sql-faq",
+        "best-practice/lakehouse-faq",
+        "best-practice/bi-faq",
+        "best-practice/correctness-faq",
+        "best-practice/load-faq"
       ]
     },
     {
@@ -2761,87 +2197,43 @@
       "collapsed": false,
       "label": "Security",
       "items": [
-        {
-          "type": "doc",
-          "id": "security/security-overview",
-          "label": "Security Overview"
-        },
+        "security/security-overview",
         {
           "type": "category",
           "label": "Authentication and Authorization",
           "items": [
-            {
-              "type": "doc",
-              "id": "security/auth/authentication-and-authorization",
-              "label": "Authentication and Authorization"
-            },
+            "security/auth/authentication-and-authorization",
             {
               "type": "category",
               "label": "Authentication",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "security/auth/authentication/internal",
-                  "label": "Built-in Authentication"
-                },
-                {
-                  "type": "doc",
-                  "id": "security/auth/authentication/federation",
-                  "label": "Federated Authentication"
-                }
+                "security/auth/authentication/internal",
+                "security/auth/authentication/federation"
               ]
             },
             {
               "type": "category",
               "label": "Authorization",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "security/auth/authorization/internal",
-                  "label": "Built-in Authorization"
-                },
-                {
-                  "type": "doc",
-                  "id": "security/auth/authorization/data",
-                  "label": "Data Access Control"
-                },
-                {
-                  "type": "doc",
-                  "id": "security/auth/authorization/ranger",
-                  "label": "Ranger Authorization"
-                }
+                "security/auth/authorization/internal",
+                "security/auth/authorization/data",
+                "security/auth/authorization/ranger"
               ]
             }
           ]
         },
-        {
-          "type": "doc",
-          "id": "security/audit-plugin",
-          "label": "Audit Log"
-        },
+        "security/audit-plugin",
         {
           "type": "category",
           "label": "Data Encryption",
           "items": [
-            {
-              "type": "doc",
-              "id": "security/encryption/encryption-function",
-              "label": "Encryption and Masking Function"
-            },
+            "security/encryption/encryption-function",
             {
               "type": "category",
               "label": "Encryption in Transit",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "security/encryption/encryption-in-transit/certificate",
-                  "label": "MySQL Client Certificate"
-                },
-                {
-                  "type": "doc",
-                  "id": "security/encryption/encryption-in-transit/fe-certificate",
-                  "label": "Certificate Configuration"
-                }
+                "security/encryption/encryption-in-transit/certificate",
+                "security/encryption/encryption-in-transit/fe-certificate"
               ]
             }
           ]
@@ -2850,32 +2242,16 @@
           "type": "category",
           "label": "Integrations",
           "items": [
-            {
-              "type": "doc",
-              "id": "security/integrations/aws-authentication-and-authorization",
-              "label": "AWS authentication and authorization"
-            }
+            "security/integrations/aws-authentication-and-authorization"
           ]
         },
         {
           "type": "category",
           "label": "Privacy and Compliance",
           "items": [
-            {
-              "type": "doc",
-              "id": "security/privacy-compliance/security-features",
-              "label": "Security Features"
-            },
-            {
-              "type": "doc",
-              "id": "security/privacy-compliance/security-certification",
-              "label": "Security Certification"
-            },
-            {
-              "type": "doc",
-              "id": "security/privacy-compliance/security-trust-platform",
-              "label": "Security and Trust Platform"
-            }
+            "security/privacy-compliance/security-features",
+            "security/privacy-compliance/security-certification",
+            "security/privacy-compliance/security-trust-platform"
           ]
         }
       ]
@@ -2885,11 +2261,7 @@
       "collapsed": false,
       "label": "Release Notes",
       "items": [
-        {
-          "type": "doc",
-          "id": "release-notes/platform-release-notes",
-          "label": "Platform Release Notes"
-        },
+        "release-notes/platform-release-notes",
         {
           "type": "category",
           "label": "Core Release Notes",
@@ -2898,41 +2270,13 @@
             "id": "release-notes/core-release-notes"
           },
           "items": [
-            {
-              "type": "doc",
-              "id": "release-notes/core-release-notes/v41",
-              "label": "v4.1"
-            },
-            {
-              "type": "doc",
-              "id": "release-notes/core-release-notes/v40",
-              "label": "v4.0"
-            },
-            {
-              "type": "doc",
-              "id": "release-notes/core-release-notes/v30",
-              "label": "v3.0"
-            },
-            {
-              "type": "doc",
-              "id": "release-notes/core-release-notes/v24",
-              "label": "v2.4"
-            },
-            {
-              "type": "doc",
-              "id": "release-notes/core-release-notes/v23",
-              "label": "v2.3"
-            },
-            {
-              "type": "doc",
-              "id": "release-notes/core-release-notes/v22",
-              "label": "v2.2"
-            },
-            {
-              "type": "doc",
-              "id": "release-notes/core-release-notes/v20",
-              "label": "v2.0"
-            }
+            "release-notes/core-release-notes/v41",
+            "release-notes/core-release-notes/v40",
+            "release-notes/core-release-notes/v30",
+            "release-notes/core-release-notes/v24",
+            "release-notes/core-release-notes/v23",
+            "release-notes/core-release-notes/v22",
+            "release-notes/core-release-notes/v20"
           ]
         }
       ]

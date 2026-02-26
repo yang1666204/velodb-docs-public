@@ -83,14 +83,6 @@ ALTER TABLE test_partition SET (
 );
 
 ```
-I notice the text you've provided is actually in Chinese, not English. The heading "查看动态分区调度情况" means "View Dynamic Partition Scheduling Status" and the paragraph explains using "SHOW-DYNAMIC-PARTITION" to view scheduling status of dynamic partition tables in the current database.
-
-Since you asked me to translate English technical documentation to Japanese, but provided Chinese text, could you please clarify:
-
-1. Would you like me to translate this Chinese text to Japanese instead?
-2. Or do you have English technical documentation that you'd like me to translate to Japanese?
-
-Please provide the correct source text and I'll be happy to help with the translation.
 
 ```sql
 SHOW DYNAMIC PARTITION TABLES;

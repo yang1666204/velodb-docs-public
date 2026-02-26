@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate English technical documentation into Japanese following your specifications. However, I don't see the actual text to translate in your message - it just shows \"AI_TRANSLATE\" at the end.\n\nCould you please provide the English technical documentation text that you'd like me to translate?",
+  "title": "AI_TRANSLATE",
   "description": "指定された言語にテキストを翻訳するために使用されます。",
   "language": "ja"
 }

@@ -151,19 +151,17 @@ const config: Config = {
       /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
       {
         hashed: true,
-        language: ["en"],
+        language: ["en", "ja"],
         highlightSearchTermsOnTargetPage: true,
-        // indexPages: true,
         indexDocs: true,
-        // docsRouteBasePath: ["/"],
-        // docsRouteBasePath: ['enterprise/3.x','enterprise/2.1', 'cloud/4.x', 'cloud/5.x'],
         docsRouteBasePath: ["cloud", "enterprise"],
         indexBlog: false,
         explicitSearchResultPath: true,
         searchBarShortcut: true,
         searchBarShortcutHint: true,
         searchResultLimits: 100,
-        forceIgnoreNoIndex: true
+        forceIgnoreNoIndex: true,
+        
       },
     ],
   ],

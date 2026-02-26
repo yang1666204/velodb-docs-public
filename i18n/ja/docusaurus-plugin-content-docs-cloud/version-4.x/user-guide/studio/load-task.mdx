@@ -1,0 +1,28 @@
+---
+{
+  "title": "タスクを読み込む",
+  "description": "VeloDB Studioは、接続においてStream Load、Routine Load、Broker Load、Insert Intoなどのロードタスクの管理をサポートしており、現在サポ...",
+  "language": "ja"
+}
+---
+# Load tasks
+
+VeloDB Studio は接続でStream Load、Routine Load、Broker Load、Insert Intoなどのloadタスクの管理をサポートしており、現在以下の操作をサポートしています：
+- loadタスクの情報クエリ
+- Routine Load、Broker Load、Insert Intoの停止
+- Routine Loadの一時停止/編集/復旧
+
+## Loadタスクリスト
+
+まずデータベースを選択し、そのデータベース配下のすべてのloadタスクをloadタスクリストで表示します。
+<img className='pt-5' src={`/img/studio/load-task.png`} alt="load-task" width={1400} height={600}/>
+
+## Loadタスク詳細
+loadタスク名をクリックすると、loadタスクの詳細情報を表示できます。
+<img className='pt-5' src={`/img/studio/load-task-detail.png`} alt="load-task-detail" width={1400} height={600}/>
+
+:::note
+  Q: 特定のデータベース配下のloadタスクだけでなく、すべてのloadタスクを表示したい
+  <br />
+  A: Apache Dorisの制限により、現在は特定のデータベース配下のloadタスクの表示のみをサポートしています。開発チームと連携していますが、この機能はコミュニティの優先プログラムに含まれていません。強いニーズがある場合は、コミュニティにIssueを提出してフィードバックすることができます。継続的に連携し、可能な限り早期のサポート実現に努めます。
+:::

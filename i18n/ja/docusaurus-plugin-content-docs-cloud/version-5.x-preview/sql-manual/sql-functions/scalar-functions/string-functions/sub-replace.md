@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate English technical documentation into Japanese following your specifications. However, I notice that the text you want me to translate shows \"SUB_REPLACE\" instead of the actual content.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate?",
+  "title": "SUB_REPLACE",
   "description": "subreplace関数は、文字列内の部分文字列を置換するために使用されます。",
   "language": "ja"
 }

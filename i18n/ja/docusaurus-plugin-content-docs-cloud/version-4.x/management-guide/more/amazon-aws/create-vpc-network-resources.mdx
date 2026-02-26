@@ -1,0 +1,37 @@
+---
+{
+  "title": "VPCネットワークリソースの作成",
+  "description": "BYOC warehouseを作成するための前提条件として、ネットワーク要件に準拠したVPCとサブネットが必要です。",
+  "language": "ja"
+}
+---
+# VPCネットワークリソースの作成
+
+ネットワーク要件に準拠したVPCとサブネットは、BYOCウェアハウスを作成するための前提条件です。これらのリソースがまだ存在しない場合は、最初に準備する必要があります。
+
+> **注記**
+> 現在、VeloDBウェアハウスはシングルAZデプロイメントのみをサポートしています。パブリックとプライベートの2つのサブネットをプロビジョニングすることを推奨します。VeloDBサービスは最終的にプライベートサブネット内にデプロイされます。
+
+コンソールを使用してVPC、サブネット、その他のVPCリソースを作成するには
+
+1. 管理者権限を持つユーザーとして[AWS VPCコンソール](https://console.aws.amazon.com/vpc/)にログインします。
+2. VeloDBウェアハウスデプロイメントに使用するAWSリージョンを選択します。
+3. **Create VPC**ボタンをクリックします。
+4. **Resources to create**で**VPC and more**を選択します。
+5. 以下のオプションを変更し、その他はデフォルト設定のままにします：
+   - **Name tag**に値を入力します（例：velodb-project）
+   - **IPv4 CIDR block**で、VPCの開始IPとサイズを決定します。
+   - **Number of Availability Zones**で**1**を選択します。
+   - **Number of public subnets**で**1**を選択します。
+   - **Number of private subnets**で**1**を選択します。
+   - **NAT gateways**で**In 1 AZ**を選択します。
+   - **VPC Endpoints**で**S3 Gateway**を選択します。S3 GatewayはVPCから直接S3にアクセスすることで、NATゲートウェイの料金を削減し、セキュリティを向上させることができます。
+
+6. **Create VPC**をクリックします。
+7. ワークフローが完了するまで待機し、**View VPC**をクリックします。
+
+以下の図はVPCプロビジョニングプロセスを示しています。
+
+![create-vpc-overview](/images/cloud/management-guide/more/amazon-aws/create-vpc-overview.png)
+![create-vpc-overview2](/images/cloud/management-guide/more/amazon-aws/create-vpc-overview2.png)
+![view-vpc](/images/cloud/management-guide/more/amazon-aws/vpc-view.png)

@@ -287,7 +287,6 @@ node is used to specify which node's configuration information is returned, the 
         ]
     }
     ```
-I'm ready to translate English technical documentation into Japanese following your specifications. However, I don't see any text provided after "Text:" in your message. Could you please provide the English technical documentation text that you'd like me to translate?
 
     ```json
     {  
@@ -393,9 +392,6 @@ failed Indicates a configuration message that failed to be modified.
         }
     }
     ```
-I'm ready to translate English technical documentation into Japanese following your specifications. However, I don't see the actual text you'd like me to translate after "Text:" - it appears to end with just "Response:". 
-
-Could you please provide the English technical documentation text that you'd like me to translate?
 
     ```
     {

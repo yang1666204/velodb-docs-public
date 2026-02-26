@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate English technical documentation into Japanese following your specifications. However, I don't see any actual text to translate after \"Text:\" - only \"AI_GENERATE\" which appears to be a placeholder or command.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate?",
+  "title": "AI_GENERATE",
   "description": "入力プロンプトテキストに基づいてレスポンスを生成します。",
   "language": "ja"
 }

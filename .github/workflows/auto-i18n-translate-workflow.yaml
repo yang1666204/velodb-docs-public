@@ -19,7 +19,7 @@ jobs:
           BASE=${{ github.event.before }}
           HEAD=${{ github.sha }}
           git diff --name-only "$BASE" "$HEAD" \
-            | grep '^docs/.*\.md$' > changed.txt || true
+            | grep -E '^(enterprise_versioned_docs|cloud_versioned_docs)/.*\.mdx?$' > changed.txt || true
           echo "files=$(jq -R -s -c 'split("\n")[:-1]' changed.txt)" >> $GITHUB_OUTPUT
 
       - name: Debug outputs
@@ -190,5 +190,3 @@ jobs:
             enterprise_versioned_docs/**
             i18n/ja/**
             docs/**
-
-

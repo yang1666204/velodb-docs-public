@@ -25,6 +25,11 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
+const SOURCE_PLUGIN_MAP = {
+  cloud_versioned_docs: 'docusaurus-plugin-content-docs-cloud',
+  enterprise_versioned_docs: 'docusaurus-plugin-content-docs-enterprise',
+};
+
 const [, , filesJsonPath, outDir, manifestPath] = process.argv;
 
 if (!filesJsonPath || !outDir || !manifestPath) {
@@ -37,6 +42,24 @@ const files = JSON.parse(fs.readFileSync(filesJsonPath, 'utf8'));
 fs.mkdirSync(outDir, { recursive: true });
 
 const manifest = [];
+
+function normalizeSourcePath(sourcePath) {
+  return sourcePath.replace(/\\/g, '/').replace(/^\.\/+/, '');
+}
+
+function resolveI18nTargetPath(sourcePath) {
+  const normalizedSource = normalizeSourcePath(sourcePath);
+
+  for (const [sourcePrefix, pluginDir] of Object.entries(SOURCE_PLUGIN_MAP)) {
+    const prefix = `${sourcePrefix}/`;
+    if (normalizedSource.startsWith(prefix)) {
+      const relative = normalizedSource.slice(prefix.length);
+      return path.posix.join('i18n/ja', pluginDir, relative);
+    }
+  }
+
+  throw new Error(`Unsupported source path for translation target: ${sourcePath}`);
+}
 
 for (const file of files) {
   const absPath = path.resolve(file);
@@ -111,12 +134,7 @@ for (const file of files) {
   console.log(`Wrote intermediate: ${intermediatePath}`);
 
   // 4. 计算最终 ja 输出路径
-  const targetPath = path
-    .join(
-      'i18n/ja/docusaurus-plugin-content-docs-enterprise',
-      relative
-    )
-    .replace(/\\/g, '/');
+  const targetPath = resolveI18nTargetPath(relative);
 
   manifest.push({
     source: file,

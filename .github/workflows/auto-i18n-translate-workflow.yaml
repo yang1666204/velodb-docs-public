@@ -131,7 +131,7 @@ jobs:
         run: |
           node scripts/i18n/post-process.js \
             .i18n/output \
-            i18n/ja/docusaurus-plugin-content-docs-enterprise/version-2.1
+            i18n/ja
 
 
       - name: Commit changes
@@ -174,7 +174,7 @@ jobs:
         run: |
           node scripts/i18n/post-process.js \
             .i18n/output \
-            i18n/ja/docusaurus-plugin-content-docs-enterprise/version-2.1
+            i18n/ja
 
       # 4. 创建 PR
       - uses: peter-evans/create-pull-request@v6

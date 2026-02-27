@@ -21,9 +21,35 @@ const matter = require('gray-matter');
 const INPUT_DIR = process.argv[2];
 const TARGET_ROOT = process.argv[3];
 
+const SOURCE_PLUGIN_MAP = {
+  cloud_versioned_docs: 'docusaurus-plugin-content-docs-cloud',
+  enterprise_versioned_docs: 'docusaurus-plugin-content-docs-enterprise',
+};
+
 if (!INPUT_DIR || !TARGET_ROOT) {
-  console.error('Usage: node post-process.js <translatedDir> <targetRoot>');
+  console.error('Usage: node post-process.js <translatedDir> <i18nRoot>');
   process.exit(1);
+}
+
+function normalizeSourcePath(sourcePath) {
+  const raw = path.isAbsolute(sourcePath)
+    ? path.relative(process.cwd(), sourcePath)
+    : sourcePath;
+  return raw.replace(/\\/g, '/').replace(/^\.\/+/, '');
+}
+
+function resolveTargetPath(sourcePath, i18nRoot) {
+  const normalizedSource = normalizeSourcePath(sourcePath);
+
+  for (const [sourcePrefix, pluginDir] of Object.entries(SOURCE_PLUGIN_MAP)) {
+    const prefix = `${sourcePrefix}/`;
+    if (normalizedSource.startsWith(prefix)) {
+      const relative = normalizedSource.slice(prefix.length);
+      return path.join(i18nRoot, pluginDir, relative);
+    }
+  }
+
+  throw new Error(`Unsupported source path for translation output: ${sourcePath}`);
 }
 
 /**
@@ -65,11 +91,8 @@ function main() {
     // 2. 重新注入 front matter
     const finalMarkdown = matter.stringify(body, { ...frontMatter, language: 'ja' }, { language: 'json' });
 
-    // 3. 计算目标路径
-    const relative = path.relative('version-2.1', path.resolve(source));
-    console.log('relative',relative);
-    
-    const targetPath = path.join(TARGET_ROOT, relative);
+    // 3. 根据源文档路径计算目标路径（cloud / enterprise）
+    const targetPath = resolveTargetPath(source, TARGET_ROOT);
 
     ensureDir(targetPath);
 

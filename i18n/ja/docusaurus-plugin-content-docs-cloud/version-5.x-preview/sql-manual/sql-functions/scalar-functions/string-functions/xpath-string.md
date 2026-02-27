@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text: XPATH_STRING\" but this appears to be a placeholder rather than actual content to translate.\n\nPlease provide the English technical documentation text you would like me to translate into Japanese, and I will follow your specified requirements to translate it accurately while preserving code blocks, commands, and technical identifiers.",
+  "title": "XPATH_STRING",
   "description": "XPATHSTRING関数は、XML文字列を解析し、XPath式に一致する最初のXMLノードを返すために使用されます。",
   "language": "ja"
 }

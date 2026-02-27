@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You've included \"FILE\" at the end, but there's no actual technical documentation content provided. \n\nCould you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "FILE",
   "description": "Fileテーブル値関数（tvf）は、S3、HDFS、LOCALなどのテーブル関数のラッパーです。",
   "language": "ja"
 }

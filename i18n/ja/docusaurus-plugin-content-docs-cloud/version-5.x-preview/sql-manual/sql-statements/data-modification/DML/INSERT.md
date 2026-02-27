@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your English technical documentation into Japanese following all the specified rules. However, I don't see any text after \"Text:\" in your message - it just shows \"INSERT\". \n\nCould you please provide the actual English text you'd like me to translate?",
+  "title": "INSERT",
   "description": "change文は、データ挿入操作を完了するためのものです。",
   "language": "ja"
 }

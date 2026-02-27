@@ -277,7 +277,7 @@ Object{
     "a": (Decimal 18446744073709551616.123)
 }
 ```
-I notice that you've provided the instruction "Converted to plain text:" but there doesn't appear to be any actual text content to translate after that line. Could you please provide the English technical documentation text that you'd like me to translate into Japanese?
+Converted to plain text:
 
 ```
 {"a": 18446744073709551616.123}

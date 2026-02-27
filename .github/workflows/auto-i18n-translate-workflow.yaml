@@ -1,25 +1,36 @@
-name: Manual Translate Docs (EN -> JA)
+name: Auto Translate Docs (EN -> JA)
 
 on:
-  workflow_dispatch:
-    inputs:
-      source_dir:
-        description: "Directory containing English docs to translate"
-        required: true
-        default: "cloud_versioned_docs/version-5.x-preview"
-      target_dir:
-        description: "Target directory for Japanese docs"
-        required: true
-        default: "i18n/ja/docusaurus-plugin-content-docs-cloud/version-5.x-preview"
-      file_glob:
-        description: "Glob pattern for files to translate"
-        required: false
-        default: "**/*.{md,mdx}"
-
+  push:
 
 jobs:
+  detect_changes:
+    runs-on: ubuntu-latest
+    outputs:
+      files: ${{ steps.diff.outputs.files }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: diff
+        name: Detect changed English docs
+        run: |
+          BASE=${{ github.event.before }}
+          HEAD=${{ github.sha }}
+          git diff --name-only "$BASE" "$HEAD" \
+            | grep '^docs/.*\.md$' > changed.txt || true
+          echo "files=$(jq -R -s -c 'split("\n")[:-1]' changed.txt)" >> $GITHUB_OUTPUT
+
+      - name: Debug outputs
+        run: |
+          echo "files output is:"
+          echo '${{ steps.diff.outputs.files }}'
+
   prepare_translation_input:
     runs-on: ubuntu-latest
+    needs: detect_changes
+    if: needs.detect_changes.outputs.files != '[]'
     outputs:
       manifest: ${{ steps.prepare.outputs.manifest }}
     steps:
@@ -29,7 +40,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
             node-version: 20     
-      
+
       - name: Test AWS API Access
         env:
           AWS_API_KEY: ${{ secrets.AWS_API_KEY }}
@@ -46,27 +57,10 @@ jobs:
         name: Prepare translation input
         run: |
           mkdir -p .i18n/input
-
-          node scripts/i18n/collect-files.js \
-            "${{ inputs.source_dir }}" \
-            "${{ inputs.file_glob }}" \
-            files.json
-
-          echo "Collected files:"
-          cat files.json
-
-          if [ "$(jq length files.json)" -eq 0 ]; then
-            echo "❌ No markdown files found under ${{ inputs.source_dir }}"
-            exit 1
-          fi
-
-          node scripts/i18n/prepare.js \
-            files.json \
-            .i18n/input \
-            manifest.json
-
+          echo '${{ needs.detect_changes.outputs.files }}' > files.json
+          node scripts/i18n/prepare.js files.json .i18n/input manifest.json
           echo "manifest=$(cat manifest.json | jq -c '.')" >> $GITHUB_OUTPUT
-
+      
       - name: Debug:list .i18n/input
         run: |
           echo "Contents of .i18n/input:"
@@ -85,7 +79,6 @@ jobs:
         with:
           name: i18n-input
           path: .i18n/input
-          include-hidden-files: true
 
   translate_docs:
     runs-on: ubuntu-latest
@@ -97,7 +90,6 @@ jobs:
         with:
           name: i18n-input
           path: .i18n/input
-          include-hidden-files: true
 
       - name: Translate via Claude API
         env:
@@ -134,13 +126,13 @@ jobs:
         with:
           name: i18n-output
           path: .i18n/output
-          include-hidden-files: true
 
       - name: Restore markdown and write ja docs
         run: |
           node scripts/i18n/post-process.js \
             .i18n/output \
             i18n/ja/docusaurus-plugin-content-docs-enterprise/version-2.1
+
 
       - name: Commit changes
         run: |
@@ -198,4 +190,5 @@ jobs:
             enterprise_versioned_docs/**
             i18n/ja/**
             docs/**
+
 

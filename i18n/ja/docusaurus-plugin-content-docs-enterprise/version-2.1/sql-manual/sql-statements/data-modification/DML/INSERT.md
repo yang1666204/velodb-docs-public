@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your English technical documentation into Japanese following all the specified rules and requirements. However, I notice that the text you want me to translate just says \"INSERT\" - it appears you may have forgotten to include the actual content you'd like translated.\n\nPlease provide the English technical documentation text you'd like me to translate, and I'll translate it according to your specifications.",
+  "title": "INSERT",
   "description": "change文は、データ挿入操作を完了するためのものです。",
   "language": "ja"
 }

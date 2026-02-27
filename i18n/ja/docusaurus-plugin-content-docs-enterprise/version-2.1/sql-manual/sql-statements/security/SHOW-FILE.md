@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text:\" followed by \"SHOW FILE\", but there's no actual technical documentation content provided.\n\nCould you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "SHOW FILE",
   "description": "この文は、データベース内で作成されたファイルを表示するために使用されます。",
   "language": "ja"
 }

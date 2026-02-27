@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your technical documentation from English to Japanese following your specifications. However, I don't see the actual text content after \"Text:\" - only the word \"QUERY\" appears.\n\nCould you please provide the English technical documentation text that you'd like me to translate?",
+  "title": "QUERY",
   "description": "Query table function（table-valued-function、tvf）は、データクエリのためにクエリステートメントを直接カタログに透過的に送信するために使用できます。",
   "language": "ja"
 }

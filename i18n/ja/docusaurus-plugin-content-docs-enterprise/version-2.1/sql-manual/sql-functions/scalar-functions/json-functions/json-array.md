@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text:\" followed by \"JSON_ARRAY\", but JSON_ARRAY appears to be a technical term or identifier rather than documentation text that needs translation.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "JSON_ARRAY",
   "description": "指定された値を含むjson配列を生成し、値が存在しない場合は空を返す",
   "language": "ja"
 }

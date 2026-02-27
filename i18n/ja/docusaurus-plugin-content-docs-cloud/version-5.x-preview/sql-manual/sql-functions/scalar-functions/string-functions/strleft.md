@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your technical documentation. However, I don't see any text after \"Text:\" in your message. Could you please provide the English text you'd like me to translate into Japanese?",
+  "title": "STRLEFT",
   "description": "STRLEFT関数は、文字列の左側から指定された文字数を返します。長さはUTF8文字で測定されます。",
   "language": "ja"
 }

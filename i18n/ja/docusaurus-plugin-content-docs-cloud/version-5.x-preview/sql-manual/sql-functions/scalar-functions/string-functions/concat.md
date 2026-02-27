@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate after \"CONCAT\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "CONCAT",
   "description": "CONCAT関数は、複数の文字列を順番に連結して1つの文字列にします。",
   "language": "ja"
 }

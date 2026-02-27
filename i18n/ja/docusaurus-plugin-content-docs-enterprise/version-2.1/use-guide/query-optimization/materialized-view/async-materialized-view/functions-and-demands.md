@@ -450,8 +450,7 @@ FROM (SELECT FROM lineitem WHERE l_linenumber > 1) t1
 LEFT OUTER JOIN orders
 ON l_orderkey = o_orderkey;
 ```
-I don't see any text to translate after "**Original Query:**". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?
-
+**Original Query:**
 ```sql
 SELECT t1.l_linenumber,
 o_custkey,

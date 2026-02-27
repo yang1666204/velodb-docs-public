@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that the text you want me to translate appears to be incomplete. The input shows \"CONVERT_TO\" which seems like a placeholder or incomplete content.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "CONVERT_TO",
   "description": "列の文字エンコーディングを指定されたターゲット文字セットに変換します。",
   "language": "ja"
 }

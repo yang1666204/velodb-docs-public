@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I understand the instructions for translating English technical documentation to Japanese while preserving code elements and maintaining professional technical writing style. However, I don't see any text to translate after \"Text:\" - only the word \"REPEAT\".\n\nCould you please provide the actual English technical documentation text you'd like me to translate?",
+  "title": "REPEAT",
   "description": "REPEAT関数は、指定された文字列を指定された回数繰り返して新しい文字列を生成するために使用されます。",
   "language": "ja"
 }

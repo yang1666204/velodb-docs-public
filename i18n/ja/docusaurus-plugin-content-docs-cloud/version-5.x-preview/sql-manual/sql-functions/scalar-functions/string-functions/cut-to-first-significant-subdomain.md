@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text:\" followed by \"CUT_TO_FIRST_SIGNIFICANT_SUBDOMAIN\", but this appears to be a placeholder or instruction rather than the actual English technical documentation text that needs translation.\n\nCould you please provide the actual English text you'd like me to translate into Japanese?",
+  "title": "CUT_TO_FIRST_SIGNIFICANT_SUBDOMAIN",
   "description": "CUTTOFIRSTSIGNIFICANTSUBDOMAIN関数は、URLからドメインの有効な部分を抽出します。",
   "language": "ja"
 }

@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your technical documentation from English to Japanese following your specifications. However, I don't see any text after \"TRIM_IN\" in your message. Could you please provide the English text that you'd like me to translate?",
+  "title": "TRIM_IN",
   "description": "TRIMIN関数は、文字列から先頭と末尾の指定された文字を削除するために使用されます。文字セットが指定されていない場合、",
   "language": "ja"
 }

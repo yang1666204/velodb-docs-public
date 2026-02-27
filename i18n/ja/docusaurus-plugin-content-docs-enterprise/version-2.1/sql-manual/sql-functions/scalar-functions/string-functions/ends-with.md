@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate the English technical documentation into Japanese following your specified rules. However, I notice that the text to be translated appears to end with \"ENDS_WITH\" but I don't see the actual content to translate before that marker.\n\nCould you please provide the English technical documentation text that you'd like me to translate?",
+  "title": "ENDS_WITH",
   "description": "指定されたsuffixで文字列が終わっている場合はtrueを返し、そうでなければfalseを返します。特殊なケース：",
   "language": "ja"
 }

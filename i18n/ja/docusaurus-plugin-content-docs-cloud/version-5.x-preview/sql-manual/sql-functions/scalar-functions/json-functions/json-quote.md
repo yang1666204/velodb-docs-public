@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your English technical documentation into Japanese following the rules you've specified. However, I don't see the actual text content between the JSON_QUOTE markers that you'd like me to translate. Could you please provide the English text you want translated?",
+  "title": "JSON_QUOTE",
   "description": "入力文字列パラメータを二重引用符で囲み、文字列内の特殊文字と制御文字をエスケープします。",
   "language": "ja"
 }

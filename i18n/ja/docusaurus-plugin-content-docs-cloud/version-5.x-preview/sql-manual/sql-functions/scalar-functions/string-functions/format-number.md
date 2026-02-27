@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text:\" followed by \"FORMAT_NUMBER\", but there doesn't appear to be any actual English technical documentation content provided.\n\nCould you please provide the English text that you'd like me to translate into Japanese?",
+  "title": "FORMAT_NUMBER",
   "description": "FORMATNUMBER関数は数値を単位記号付きの文字列にフォーマットします。サポートされている単位は以下の通りです：K（千）、M（百万）、B（十億）、",
   "language": "ja"
 }

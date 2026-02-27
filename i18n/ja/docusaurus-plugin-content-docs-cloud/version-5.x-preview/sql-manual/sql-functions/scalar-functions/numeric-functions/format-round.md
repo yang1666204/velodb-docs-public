@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that you've provided \"FORMAT_ROUND\" as the text to translate, but this appears to be just a single identifier or constant name rather than actual technical documentation content with sentences and paragraphs.\n\nAccording to the rules you specified, identifiers like this should not be translated and should remain as-is in English.\n\nFORMAT_ROUND",
+  "title": "FORMAT_ROUND",
   "description": "数値を「#,###,###.##」のような形式でフォーマットし、指定された小数点以下桁数で四捨五入して、結果を文字列として返します。",
   "language": "ja"
 }

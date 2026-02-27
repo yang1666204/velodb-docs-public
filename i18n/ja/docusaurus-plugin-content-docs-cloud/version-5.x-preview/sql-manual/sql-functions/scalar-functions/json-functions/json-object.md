@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text provided after \"Text:\" in your message. Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "JSON_OBJECT",
   "description": "指定されたKey-Valueペアを含むJSONオブジェクトを1つ生成します。",
   "language": "ja"
 }

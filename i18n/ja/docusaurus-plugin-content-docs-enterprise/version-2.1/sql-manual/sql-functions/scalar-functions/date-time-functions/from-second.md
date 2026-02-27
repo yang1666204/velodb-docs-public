@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate after \"Text:\" in your message. You mentioned \"FROM_SECOND\" but this appears to be a placeholder or identifier rather than the actual English technical documentation text you want me to translate.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "FROM_SECOND",
   "description": "この関数は、Unixタイムスタンプ（秒単位）をDATETIME値に変換します。",
   "language": "ja"
 }

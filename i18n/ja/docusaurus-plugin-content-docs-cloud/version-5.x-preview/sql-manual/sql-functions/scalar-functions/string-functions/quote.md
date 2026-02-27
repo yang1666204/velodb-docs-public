@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your English technical documentation into Japanese following the strict rules you've outlined. However, I don't see any text to translate after \"QUOTE\" - it appears the actual content may not have been included in your message.\n\nCould you please provide the English text that needs to be translated?",
+  "title": "QUOTE",
   "description": "QUOTE関数は、文字列を単一引用符で囲み、その中の特殊文字をエスケープするために使用され、SQL文での安全な使用を可能にします。",
   "language": "ja"
 }

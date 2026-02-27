@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You've provided \"MINUTES_SUB\" which appears to be a variable name or identifier that should not be translated according to your rules.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "MINUTES_SUB",
   "description": "日時値から指定された分数を減算し、新しい日時値を返します。",
   "language": "ja"
 }

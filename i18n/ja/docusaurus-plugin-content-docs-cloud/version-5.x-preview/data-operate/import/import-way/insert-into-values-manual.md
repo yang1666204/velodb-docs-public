@@ -239,7 +239,7 @@ INSERT INTOの結果にURLフィールドが含まれている場合、以下の
 ```SQL
 SHOW LOAD WARNINGS ON "url";
 ```
-I'm ready to translate your technical documentation. However, I notice that you've only provided "Example:" without the actual text content to translate. Could you please provide the complete English text that you'd like me to translate into Japanese?
+Example:
 
 ```sql
 mysql> SHOW LOAD WARNINGS ON "http://10.16.10.7:8743/api/_load_error_log?file=__shard_18/error_log_insert_stmt_a8d99ae931194d2b-93357aac59981a19_a8d99ae931194d2b_93357aac59981a19"\G

@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text: EMBED\" but there doesn't appear to be any actual content following that. Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "EMBED",
   "description": "入力テキストに基づいてセマンティック埋め込みベクトルを生成し、テキストのセマンティック情報を表現します。",
   "language": "ja"
 }

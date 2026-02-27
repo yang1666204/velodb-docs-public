@@ -1,0 +1,58 @@
+{
+    "sidebar.enterprise.category.Getting Started": {
+        "message": "はじめに",
+        "description": "The label for category Getting Started in sidebar docs"
+    },
+    "sidebar.enterprise.category.Use Cases": {
+        "message": "ユースケース",
+        "description": "The label for category Use Cases in sidebar docs"
+    },
+    "sidebar.enterprise.category.Observability": {
+        "message": "オブザーバビリティ",
+        "description": "The label for category Observability in sidebar docs"
+    },
+    "sidebar.enterprise.category.Integrations": {
+        "message": "インテグレーション",
+        "description": "The label for category Integrations in sidebar docs"
+    },
+    "sidebar.enterprise.category.Enterprise Manager": {
+        "message": "エンタープライズマネージャー",
+        "description": "The label for category Enterprise Manager in sidebar docs"
+    },
+    "sidebar.enterprise.category.Doris Manager Management": {
+        "message": "Doris マネージャー管理",
+        "description": "The label for category Doris Manager Management in sidebar docs"
+    },
+    "sidebar.enterprise.category.VeloDB Cluster Management": {
+        "message": "VeloDB クラスタ管理",
+        "description": "The label for category VeloDB Cluster Management in sidebar docs"
+    },
+    "sidebar.enterprise.category.Deploy Cluster": {
+        "message": "クラスタのデプロイ",
+        "description": "The label for category Deploy Cluster in sidebar docs"
+    },
+    "sidebar.enterprise.category.Takeover Cluster": {
+        "message": "クラスタの引き継ぎ",
+        "description": "The label for category Takeover Cluster in sidebar docs"
+    },
+    "sidebar.enterprise.category.Upgrade Cluster": {
+        "message": "クラスタのアップグレード",
+        "description": "The label for category Upgrade Cluster in sidebar docs"
+    },
+    "sidebar.enterprise.category.Scale Cluster": {
+        "message": "クラスタのスケール",
+        "description": "The label for category Scale Cluster in sidebar docs"
+    },
+    "sidebar.enterprise.category.VeloDB Monitor and Alerting": {
+        "message": "VeloDB モニタリングとアラート",
+        "description": "The label for category VeloDB Monitor and Alerting in sidebar docs"
+    },
+    "sidebar.enterprise.category.Enterprise Core": {
+        "message": "エンタープライズコア",
+        "description": "The label for category Enterprise Core in sidebar docs"
+    },
+    "sidebar.enterprise.category.Release Notes": {
+        "message": "リリースノート",
+        "description": "The label for category Release Notes in sidebar docs"
+    }
+}

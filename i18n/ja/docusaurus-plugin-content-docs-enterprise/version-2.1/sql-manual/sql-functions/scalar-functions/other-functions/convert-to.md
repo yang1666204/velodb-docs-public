@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate after \"Text:\" and \"CONVERT_TO\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "CONVERT_TO",
   "description": "列の文字エンコーディングを指定されたターゲット文字セットに変換します。",
   "language": "ja"
 }

@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text: ANY_VALUE\" but there's no actual content provided after that.\n\nPlease provide the English technical documentation text you'd like me to translate into Japanese, and I'll follow the guidelines you've specified.",
+  "title": "ANY_VALUE",
   "description": "グループ内の式または列から任意の値を返します。NULL以外の値が存在する場合は、任意のNULL以外の値を返します。それ以外の場合はNULLを返します。",
   "language": "ja"
 }

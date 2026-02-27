@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text: MASK\" at the end, but there's no actual content provided after that.\n\nPlease provide the English technical documentation text that you'd like me to translate into Japanese, and I'll translate it following the rules and requirements you've specified.",
+  "title": "MASK",
   "description": "MASK関数は、機密情報を保護するためにデータをマスクするために使用されます。デフォルトの動作は、大文字をXに変換することです。",
   "language": "ja"
 }

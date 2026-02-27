@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate the English technical documentation into Japanese following your requirements. However, I don't see the text that needs to be translated after \"BEGIN\". Could you please provide the English text you'd like me to translate?",
+  "title": "BEGIN",
   "description": "ユーザーはLabelを指定できます。指定されない場合、システムが自動的にLabelを生成します。",
   "language": "ja"
 }

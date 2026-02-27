@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate after \"TRIM_IN\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "TRIM_IN",
   "description": "rhs パラメータがない場合、この関数は str 文字列の先頭と末尾のスペースを削除します。rhs パラメータが提供された場合、",
   "language": "ja"
 }

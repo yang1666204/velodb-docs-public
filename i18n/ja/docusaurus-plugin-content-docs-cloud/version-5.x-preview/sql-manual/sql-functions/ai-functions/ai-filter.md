@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text provided after \"Text:\" in your message. Could you please provide the English technical documentation text that you would like me to translate into Japanese?",
+  "title": "AI_FILTER",
   "description": "指定された条件に基づいてテキストをフィルタリングします。",
   "language": "ja"
 }

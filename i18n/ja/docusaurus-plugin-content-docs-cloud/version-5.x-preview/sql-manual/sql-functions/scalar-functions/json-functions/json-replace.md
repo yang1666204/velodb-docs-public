@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text:\" followed by \"JSON_REPLACE\", but there doesn't appear to be any actual English technical documentation content provided.\n\nCould you please provide the English text that you'd like me to translate into Japanese?",
+  "title": "JSON_REPLACE",
   "description": "JSONREPLACE関数は、JSON内のデータを置換し、結果を返すために使用されます。",
   "language": "ja"
 }

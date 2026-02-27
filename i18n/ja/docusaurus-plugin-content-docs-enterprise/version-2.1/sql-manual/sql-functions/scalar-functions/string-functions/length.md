@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that you've provided \"LENGTH\" as the text to translate, but this appears to be just a single word or placeholder rather than actual technical documentation content. \n\nCould you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "LENGTH",
   "description": "文字列のバイト数を返します。",
   "language": "ja"
 }

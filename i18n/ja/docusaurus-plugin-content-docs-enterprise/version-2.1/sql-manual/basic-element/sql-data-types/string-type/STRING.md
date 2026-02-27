@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate after \"Text:\" in your message. Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "STRING",
   "description": "STRING (M) 可変長文字列。デフォルトサポートは1048576バイト（1M）で、最大2147483643バイト（2G）まで調整可能。",
   "language": "ja"
 }

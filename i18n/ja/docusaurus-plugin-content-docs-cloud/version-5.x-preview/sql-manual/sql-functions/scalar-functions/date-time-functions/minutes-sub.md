@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that you've provided \"MINUTES_SUB\" as the text to translate, but this appears to be just a single identifier or variable name rather than actual technical documentation content.\n\nAccording to your rules, I should not translate code blocks, inline code, file paths, CLI commands, URLs, configuration keys, or product names. \"MINUTES_SUB\" appears to fall into one of these categories (likely a configuration key or identifier).\n\nTherefore, the output would be:\n\nMINUTES_SUB",
+  "title": "MINUTES_SUB",
   "description": "MINUTESSUB関数は、入力されたdatetime値から指定された分数を減算し、結果として得られる新しいdatetime値を返します。",
   "language": "ja"
 }

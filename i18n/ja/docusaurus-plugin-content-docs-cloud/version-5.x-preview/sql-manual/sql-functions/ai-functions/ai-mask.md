@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text: AI_MASK\" but there's no actual content after that. Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "AI_MASK",
   "description": "指定されたラベルに関連するテキスト内の機密情報をマスクするために使用されます。",
   "language": "ja"
 }

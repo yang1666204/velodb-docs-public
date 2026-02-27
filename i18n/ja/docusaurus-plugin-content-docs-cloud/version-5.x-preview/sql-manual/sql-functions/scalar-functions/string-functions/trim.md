@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your technical documentation from English to Japanese following the specified rules. However, I don't see any text to translate after \"Text:\" - only the word \"TRIM\" appears.\n\nCould you please provide the English technical documentation text that you'd like me to translate?",
+  "title": "TRIM",
   "description": "TRIM関数は、文字列の両端から連続するスペースまたは指定された文字列を削除するために使用されます。第2パラメータが指定されていない場合、",
   "language": "ja"
 }

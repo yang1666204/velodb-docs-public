@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that the text you've provided is just \"INSTR\" which appears to be incomplete or a placeholder. Could you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "INSTR",
   "description": "INSTR関数は、メイン文字列内での部分文字列の最初の出現位置を返します。位置のカウントは1から開始されます。",
   "language": "ja"
 }

@@ -473,8 +473,7 @@ FROM (SELECT FROM lineitem WHERE l_linenumber > 1) t1
 LEFT OUTER JOIN orders
 ON l_orderkey = o_orderkey;
 ```
-I don't see any text to translate after "**Original Query:**". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?
-
+**Original Query:**
 ```sql
 SELECT t1.l_linenumber,
 o_custkey,
@@ -1067,10 +1066,7 @@ SELECT *
 FROM mv_infos('database'='db_name')
 WHERE Name = 'mv_name' \G 
 ```
-I'm ready to translate the English technical documentation text into Japanese following your specifications. However, I don't see the actual text to translate in your message - it appears you've only provided "Example output:" without the content that follows.
-
-Could you please provide the English technical documentation text that you'd like me to translate?
-
+Example output:
 ```sql
 *************************** 1. row ***************************
                 Id: 139570

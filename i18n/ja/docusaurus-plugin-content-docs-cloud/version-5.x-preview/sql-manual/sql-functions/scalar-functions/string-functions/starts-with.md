@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your English technical documentation into Japanese following all the specified rules. However, I don't see the actual text to translate after \"STARTS_WITH\". \n\nCould you please provide the English text that you'd like me to translate?",
+  "title": "STARTS_WITH",
   "description": "STARTSWITH関数は、文字列が指定されたプレフィックスで始まるかどうかを確認します。",
   "language": "ja"
 }

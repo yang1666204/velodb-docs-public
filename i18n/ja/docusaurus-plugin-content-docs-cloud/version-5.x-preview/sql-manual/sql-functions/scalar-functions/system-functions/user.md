@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I understand the instructions for translating technical documentation from English to Japanese while preserving code, commands, and technical identifiers. However, I don't see any actual text to translate after \"Text:\" - it only shows \"USER\" which appears to be a placeholder or system identifier.\n\nCould you please provide the specific English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "USER",
   "description": "Dorisが接続している現在のユーザー名とIPを取得します。",
   "language": "ja"
 }

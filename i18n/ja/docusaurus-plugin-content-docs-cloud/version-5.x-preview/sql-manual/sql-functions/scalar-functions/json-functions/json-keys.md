@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"JSON_KEYS\" at the end, but there's no actual technical documentation content provided for translation.\n\nPlease provide the English technical documentation text that you'd like me to translate into Japanese, and I'll follow the rules and requirements you've outlined.",
+  "title": "JSON_KEYS",
   "description": "JSON オブジェクトのすべてのキーを配列形式で返します。デフォルトでは、ルートオブジェクトのキーを返します。",
   "language": "ja"
 }

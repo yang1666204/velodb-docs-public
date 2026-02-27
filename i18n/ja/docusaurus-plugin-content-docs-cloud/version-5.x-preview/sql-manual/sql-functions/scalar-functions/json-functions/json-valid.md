@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that you've provided \"JSON_VALID\" as the text to translate, but this appears to be just a single identifier or constant name rather than a full technical documentation text with sentences and paragraphs.\n\nAccording to your rules, I should not translate code blocks, inline code, configuration keys, or technical identifiers. \"JSON_VALID\" appears to be a technical identifier/constant that should remain untranslated.\n\nTherefore, the output is:\n\nJSON_VALID",
+  "title": "JSON_VALID",
   "description": "JSONVALID関数は、入力が有効なJSONかどうかを示すために0または1を返します。入力がNULLの場合、NULLを返します。",
   "language": "ja"
 }

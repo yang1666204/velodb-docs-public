@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that you've provided \"STRLEFT\" as the text to translate, but this appears to be just a single term or function name rather than a complete technical documentation text with sentences and paragraphs.\n\nSince \"STRLEFT\" appears to be a function name or technical identifier, according to your rules I should not translate it. However, you've asked me to translate it as if it were documentation text.\n\nCould you please clarify if:\n1. This is indeed the complete text you want translated, or\n2. If you meant to include additional documentation text that explains what STRLEFT does?\n\nIf \"STRLEFT\" is the complete text and you want me to treat it as documentation content rather than a code identifier, please confirm and I'll provide the appropriate translation.",
+  "title": "STRLEFT",
   "description": "STRLEFT関数は、文字列の左側から指定された文字数を返します。長さはUTF8文字で測定されます。",
   "language": "ja"
 }

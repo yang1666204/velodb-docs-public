@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate after \"Text:\" in your message. You've written \"AI_FIXGRAMMAR\" but that appears to be a placeholder or command rather than the actual English technical documentation text you want me to translate.\n\nCould you please provide the actual English text that you'd like me to translate into Japanese?",
+  "title": "AI_FIXGRAMMAR",
   "description": "テキスト内の文法エラーを修正するために使用されます。",
   "language": "ja"
 }

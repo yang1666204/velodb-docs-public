@@ -435,10 +435,7 @@ action：ADD/DROP/DECOMMISSION
 hostPorts A set of be node addresses to be operated, ip:heartbeat_port
 properties The configuration passed in when adding a node is only used to configure the tag. If not, the default tag is used
 ```
-I'm ready to translate the English technical documentation text into Japanese following all the specified requirements. However, I don't see the actual text content to translate after "### Response". 
-
-Could you please provide the English technical documentation text that you'd like me to translate?
-
+### Response
 ```json
 {
     "msg": "Error",

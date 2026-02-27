@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that the text you provided is \"STRUCT_ELEMENT\", which appears to be a technical identifier or constant name. According to the rules you specified, I should not translate code blocks, inline code, configuration keys, or technical identifiers.\n\nSTRUCT_ELEMENT",
+  "title": "STRUCT_ELEMENT",
   "description": "struct のデータ列内の特定のフィールドを返します。",
   "language": "ja"
 }

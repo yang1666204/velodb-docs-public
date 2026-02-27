@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that you've provided the setup instructions for translation, but the actual text to translate appears to be just \"CONV\" at the end. \n\nCould you please provide the complete English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "CONV",
   "description": "入力パラメータに対して基数変換を行います。",
   "language": "ja"
 }

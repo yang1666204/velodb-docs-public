@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate your English technical documentation into Japanese following the strict rules you've outlined. However, I don't see the actual text to translate after \"Text:\" - it just shows \"TRANSLATE\" which appears to be a placeholder.\n\nCould you please provide the specific English technical documentation text that you'd like me to translate?",
+  "title": "TRANSLATE",
   "description": "TRANSLATE関数は文字単位での文字列置換を実行し、マッピングルールに従ってソース文字列内の文字を変換します。",
   "language": "ja"
 }

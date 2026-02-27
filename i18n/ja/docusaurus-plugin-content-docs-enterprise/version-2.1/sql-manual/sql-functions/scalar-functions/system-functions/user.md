@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text provided to translate after \"Text:\" - it appears to end with \"USER\" which seems to be a label or placeholder. Could you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "USER",
   "description": "Dorisが接続している現在のユーザー名とIPを取得します。",
   "language": "ja"
 }

@@ -44,10 +44,7 @@ ALTER MATERIALIZED VIEW mv1 rename mv2;
 ```sql
 ALTER MATERIALIZED VIEW mv1 set("grace_period"="3000");
 ```
-I'm ready to translate the English technical documentation into Japanese following your specifications. However, I notice that the text you want me to translate appears to be just "##### REPLACE" - which seems like a placeholder rather than the actual content you want translated.
-
-Could you please provide the actual English technical documentation text that you'd like me to translate?
-
+##### REPLACE
 ```sql
 ALTER MATERIALIZED VIEW [db.]mv1 REPLACE WITH MATERIALIZED VIEW mv2
 [PROPERTIES('swap' = 'true')];

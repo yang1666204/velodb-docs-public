@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that the text you provided is \"REPLACE_EMPTY\" which appears to be a placeholder. Could you please provide the actual English technical documentation text that you would like me to translate into Japanese?",
+  "title": "REPLACE_EMPTY",
   "description": "REPLACEEMPTY関数は、文字列内の文字の一部を他の文字で置き換えるために使用されます。REPLACE関数とは異なり、",
   "language": "ja"
 }

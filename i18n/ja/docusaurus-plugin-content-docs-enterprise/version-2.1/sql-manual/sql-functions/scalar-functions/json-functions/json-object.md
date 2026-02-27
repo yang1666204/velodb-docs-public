@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text:\" followed by \"JSON_OBJECT\" but there doesn't appear to be any actual English technical documentation content provided.\n\nCould you please provide the English text that you would like me to translate into Japanese?",
+  "title": "JSON_OBJECT",
   "description": "指定されたKey-Valueを含むjsonオブジェクトを生成します。Keyがnullの場合、またはパラメータ数が奇数の場合は例外エラーが返されます。",
   "language": "ja"
 }

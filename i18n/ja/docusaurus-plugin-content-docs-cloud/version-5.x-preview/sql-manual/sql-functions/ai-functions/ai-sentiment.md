@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that you've provided \"AI_SENTIMENT\" as the text to translate, but this appears to be a configuration key, variable name, or identifier rather than actual documentation text that needs translation.\n\nAccording to the rules you specified, I should not translate code blocks, inline code, configuration keys, or product names. \"AI_SENTIMENT\" falls into the category of configuration keys/identifiers that should remain untranslated.\n\nIf this is indeed the complete text you want me to work with, the output would simply be:\n\nAI_SENTIMENT\n\nIf you intended to provide a longer piece of technical documentation that includes \"AI_SENTIMENT\" along with other text, please provide the complete text and I'll translate the documentation portions while keeping identifiers like \"AI_SENTIMENT\" unchanged.",
+  "title": "AI_SENTIMENT",
   "description": "テキストの感情を分析するために使用されます。",
   "language": "ja"
 }

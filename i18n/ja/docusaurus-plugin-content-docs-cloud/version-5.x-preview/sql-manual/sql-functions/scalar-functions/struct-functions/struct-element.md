@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that the text you provided appears to be just \"STRUCT_ELEMENT\" which looks like a technical identifier or code element. According to the rules you specified, technical identifiers and code elements should not be translated.\n\nTherefore, the output would be:\n\nSTRUCT_ELEMENT",
+  "title": "STRUCT_ELEMENT",
   "description": "struct データカラム内の特定のフィールドを返します。この関数は、フィールドの位置（インデックス）またはフィールド名を通じて struct 内のフィールドにアクセスすることをサポートします。",
   "language": "ja"
 }

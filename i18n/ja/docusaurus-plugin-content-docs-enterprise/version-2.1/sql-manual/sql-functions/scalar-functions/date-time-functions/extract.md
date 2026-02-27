@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate after \"Text:\" and \"EXTRACT\". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "EXTRACT",
   "description": "extract関数は、年、月、日、時、分、秒などの日付や時刻値の指定された部分を抽出するために使用されます。",
   "language": "ja"
 }

@@ -226,8 +226,7 @@ INSERT INTOの結果にURLフィールドが含まれている場合、以下の
 ```SQL
 SHOW LOAD WARNINGS ON "url";
 ```
-I don't see any text to translate after "Example:". Could you please provide the English technical documentation text that you'd like me to translate into Japanese?
-
+Example:
 ```SQL
 SHOW LOAD WARNINGS ON "http://ip:port/api/_load_error_log?file=_shard_13/error_loginsert_stmt_d2cac0a0a16d482d-9041c949a4b71605_d2cac0a0a16d482d_9041c949a4b71605";
 ```

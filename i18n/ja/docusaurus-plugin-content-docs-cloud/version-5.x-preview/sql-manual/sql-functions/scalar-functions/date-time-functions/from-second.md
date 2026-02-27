@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate after \"Text:\" in your message. You mentioned \"FROM_SECOND\" but this appears to be a placeholder or identifier rather than the actual English technical documentation text you want me to translate.\n\nCould you please provide the actual English technical documentation text that you would like me to translate into Japanese?",
+  "title": "FROM_SECOND",
   "description": "FROMSECOND関数は、Unixタイムスタンプ（秒単位）をDATETIME型の日時値に変換するために使用されます。",
   "language": "ja"
 }

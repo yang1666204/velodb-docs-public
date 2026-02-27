@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text:\" followed by \"JSON_HASH\", but there doesn't appear to be any actual English technical documentation content provided.\n\nCould you please provide the English text that you'd like me to translate into Japanese?",
+  "title": "JSON_HASH",
   "description": "JSONHASH は JSON オブジェクトのハッシュ値を計算します。この関数は JSON 型のパラメータを受け取り、BIGINT のハッシュ値を返します。",
   "language": "ja"
 }

@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that you've provided \"EXPLODE_NUMBERS_OUTER\" as the text to translate, but this appears to be a single identifier or constant name rather than technical documentation text with sentences and paragraphs.\n\nFollowing the rules you specified:\n- Rule 2 states not to translate configuration keys or technical identifiers\n- This appears to be a technical identifier/constant name\n\nTherefore, the output would be:\n\nEXPLODE_NUMBERS_OUTER",
+  "title": "EXPLODE_NUMBERS_OUTER",
   "description": "explodenumbersouter関数は整数を受け取り、範囲内の各数値を個別の行にマップします。",
   "language": "ja"
 }

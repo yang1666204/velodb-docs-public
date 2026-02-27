@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I'm ready to translate the English technical documentation into Japanese following your requirements. However, I notice that the text you want me to translate appears to end with \"ENDS_WITH\" but I don't see the actual content to translate.\n\nCould you please provide the English technical documentation text that you'd like me to translate?",
+  "title": "ENDS_WITH",
   "description": "ENDSWITH関数は、文字列が指定されたサフィックスで終わるかどうかをチェックします。",
   "language": "ja"
 }

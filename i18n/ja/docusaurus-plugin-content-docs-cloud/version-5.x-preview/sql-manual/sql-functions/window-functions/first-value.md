@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You mentioned \"Text: FIRST_VALUE\" but FIRST_VALUE appears to be a placeholder or variable name rather than actual documentation text to translate.\n\nCould you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "FIRST_VALUE",
   "description": "FIRSTVALUE()は、ウィンドウパーティション内の順序付けられた値のセットから最初の値を返すウィンドウ関数です。",
   "language": "ja"
 }

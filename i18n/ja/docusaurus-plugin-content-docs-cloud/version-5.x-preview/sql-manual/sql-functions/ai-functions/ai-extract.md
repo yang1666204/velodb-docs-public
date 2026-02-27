@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text following \"AI_EXTRACT\" in your message. Could you please provide the English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "AI_EXTRACT",
   "description": "特定のラベルに対応する情報をテキストから抽出するために使用されます。",
   "language": "ja"
 }

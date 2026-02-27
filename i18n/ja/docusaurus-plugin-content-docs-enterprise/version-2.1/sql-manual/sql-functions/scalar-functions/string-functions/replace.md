@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I notice that the text you want me to translate shows \"REPLACE\" which appears to be a placeholder. Could you please provide the actual English technical documentation text that you'd like me to translate into Japanese?",
+  "title": "REPLACE",
   "description": "REPLACE関数は、文字列内の文字の一部を他の文字に置き換えるために使用されます。",
   "language": "ja"
 }

@@ -160,9 +160,7 @@ DELETE FROM t1
 ```sql
 SHOW DELETE [FROM db_name]
 ```
-I'm ready to translate your English technical documentation into Japanese following all the specified rules. However, I notice that you've only provided "Example:" without any actual text content to translate.
-
-Could you please provide the actual English technical documentation text that you'd like me to translate?
+Example:
 
 ```sql
 mysql> show delete from test_db;

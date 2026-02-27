@@ -1,6 +1,6 @@
 ---
 {
-  "title": "I don't see any text to translate in your message. You've included \"AI_SUMMARIZE\" at the end, but there's no actual English technical documentation content provided for me to translate into Japanese.\n\nCould you please provide the English text that you'd like me to translate?",
+  "title": "AI_SUMMARIZE",
   "description": "テキストの簡潔な要約を生成するために使用されます。",
   "language": "ja"
 }

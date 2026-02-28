@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 histogram関数は、データの分布を記述するために使用されます。この関数は「equal height」バケット戦略を使用し、データの値に従ってデータをバケットに分割します。各バケットは、バケットに含まれる値の数などの簡単なデータで記述されます。
 
@@ -18,9 +18,9 @@ HIST
 ```sql
 HISTOGRAM(<expr>[, <num_buckets>])
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Description |
+| パラメータ | デスクリプション |
 | -- | -- |
 | `expr` | 取得する必要がある式。 |
 | `num_buckets` | オプション。ヒストグラムバケットの数を制限します。デフォルト値は128です。|

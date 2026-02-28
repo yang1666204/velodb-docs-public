@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 datetime値から指定されたミリ秒数を減算し、新しいdatetime値を返します。
 

@@ -1,13 +1,13 @@
 ---
 {
   "title": "ICEBERG_META",
-  "description": "icebergmeta table-valued-function(tvf)は、icebergメタデータ、操作履歴、テーブルのスナップショット、ファイルメタデータなどの読み取りに使用します。",
+  "description": "icebergmeta table-valued-function(tvf)は、icebergメタデータ、操作履歴、Tableのスナップショット、ファイルメタデータなどの読み取りに使用します。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-iceberg_meta テーブル値関数（tvf）は、icebergメタデータ、操作履歴、テーブルのスナップショット、ファイルメタデータなどを読み取るために使用されます。
+iceberg_meta Table値関数（tvf）は、icebergメタデータ、操作履歴、Tableのスナップショット、ファイルメタデータなどを読み取るために使用されます。
 
 ## Syntax
 
@@ -18,11 +18,11 @@ ICEBERG_META(
   );
 ```
 ## 必要なパラメータ
-`iceberg_meta`テーブル関数（tvf）の各パラメータは`"key"="value"`ペアです。
+`iceberg_meta`Table関数（tvf）の各パラメータは`"key"="value"`ペアです。
 
 | フィールド        | 説明                                                                                                                           |
 |--------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| `<table>`    | 完全なテーブル名で、表示したいIcebergテーブルに対して`database_name.table_name`の形式で指定する必要があります。 |
+| `<table>`    | 完全なTable名で、表示したいIcebergTableに対して`database_name.table_name`の形式で指定する必要があります。 |
 | `<query_type>` | 表示したいメタデータのタイプ。現在は`snapshots`のみがサポートされています。                                                      |
 
 
@@ -38,7 +38,7 @@ ICEBERG_META(
     ```sql
     desc function iceberg_meta("table" = "ctl.db.tbl", "query_type" = "snapshots");
     ```
-- iceberg テーブルスナップショットを検査する：
+- iceberg Tableスナップショットを検査する：
 
     ```sql
     select * from iceberg_meta("table" = "iceberg_ctl.test_db.test_tbl", "query_type" = "snapshots");

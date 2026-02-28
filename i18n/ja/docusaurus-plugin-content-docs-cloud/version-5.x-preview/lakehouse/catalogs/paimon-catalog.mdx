@@ -1,16 +1,16 @@
 ---
 {
-  "title": "Paimon Catalog",
-  "description": "Apache Doris 4.xのPaimon Catalogは、複数のPaimonメタデータサービスに接続し、HDFSやクラウドオブジェクトストレージ上のPaimonテーブルをクエリできます。詳細な設定、プロパティ、クエリ操作が提供され、書き込みサポートが計画されています。",
+  "title": "Paimon カタログ",
+  "description": "Apache Doris 4.xのPaimon カタログは、複数のPaimonメタデータサービスに接続し、HDFSやクラウドオブジェクトストレージ上のPaimonTableをクエリできます。詳細な設定、プロパティ、クエリ操作が提供され、書き込みサポートが計画されています。",
   "language": "ja"
 }
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Dorisは現在、様々なメタデータサービスを通じてPaimonテーブルメタデータへのアクセスとPaimonデータのクエリをサポートしています。
+Dorisは現在、様々なメタデータサービスを通じてPaimonTableメタデータへのアクセスとPaimonデータのクエリをサポートしています。
 
-現在のところ、Paimonテーブルに対する読み取り操作のみがサポートされています。Paimonテーブルへの書き込み操作は将来的にサポート予定です。
+現在のところ、PaimonTableに対する読み取り操作のみがサポートされています。PaimonTableへの書き込み操作は将来的にサポート予定です。
 
 [Apache DorisとApache Paimonのクイックスタート](../best-practices/doris-paimon.md)。
 
@@ -19,10 +19,10 @@ Dorisは現在、様々なメタデータサービスを通じてPaimonテーブ
 | シナリオ | 説明 |
 | ------------ | ------------------------------------------------------------ |
 | クエリアクセラレーション | Dorisの分散コンピューティングエンジンを使用してPaimonデータに直接アクセスし、クエリを高速化します。 |
-| データインテグレーション | Paimonデータを読み取ってDoris内部テーブルに書き込むか、Dorisコンピューティングエンジンを使用してZeroETL操作を実行します。 |
+| データインテグレーション | Paimonデータを読み取ってDoris内部Tableに書き込むか、Dorisコンピューティングエンジンを使用してZeroETL操作を実行します。 |
 | データライトバック | まだサポートされていません。 |
 
-## Catalogの設定
+## カタログの設定
 
 ### 構文
 
@@ -39,7 +39,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 ```
 * `<paimon_catalog_type>`
 
-  Paimon Catalogのタイプです。以下をサポートしています：
+  Paimon カタログのタイプです。以下をサポートしています：
 
   * `filesystem`: デフォルト。ファイルシステムに保存されたメタデータに直接アクセスします。
 
@@ -51,7 +51,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
   Paimonのwarehouseパスです。`<paimon_catalog_type>`が`filesystem`の場合、このパラメータを指定する必要があります。
 
-  `warehouse`パスは`Database`パスの1階層上を指す必要があります。例えば、テーブルパスが`s3://bucket/path/to/db1/table1`の場合、`warehouse`は`s3://bucket/path/to/`とする必要があります。
+  `warehouse`パスは`Database`パスの1階層上を指す必要があります。例えば、Tableパスが`s3://bucket/path/to/db1/table1`の場合、`warehouse`は`s3://bucket/path/to/`とする必要があります。
 
 * `{MetaStoreProperties}`
 
@@ -59,7 +59,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 * `{StorageProperties}`
 
-  StoragePropertiesセクションは、ストレージシステムに関連する接続と認証情報を記入するために使用されます。詳細については[Supported Storage Systems]のセクションを参照してください。
+  StoragePropertiesセクションは、ストレージシステムに関連する接続と認証情報を記入するために使用されます。詳細については[Supported Storage システム]のセクションを参照してください。
 
 * `{PaimonProperties}`
 
@@ -83,7 +83,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 * `{CommonProperties}`
 
-  CommonPropertiesセクションは共通プロパティを設定するために使用されます。[Common Properties]については[Catalog Overview](../catalog-overview.md)セクションを参照してください。
+  CommonPropertiesセクションは共通プロパティを設定するために使用されます。[Common Properties]については[カタログ 概要](../catalog-overview.md)セクションを参照してください。
   
 ### サポートされているPaimonバージョン
 
@@ -129,7 +129,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 ## カラムタイプマッピング
 
-| Paimon Type                        | Doris Type    | Comment                                                                 |
+| Paimon タイプ                        | Doris タイプ    | コメント                                                                 |
 | ---------------------------------- | ------------- | ----------------------------------------------------------------------- |
 | boolean                            | boolean       |                                                                         |
 | tinyint                            | tinyint       |                                                                         |
@@ -141,7 +141,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 | decimal(P, S)                      | decimal(P, S) |                                                                         |
 | varchar                            | string        |                                                                         |
 | char                               | string        |                                                                         |
-| binary, varbinary                             | string/varbinary | Catalogの`enable.mapping.varbinary`プロパティによって制御されます（4.0.2以降でサポート）。デフォルトは`false`で`string`にマッピングされます。`true`の場合は`varbinary`タイプにマッピングされます。|
+| binary, varbinary                             | string/varbinary | カタログの`enable.mapping.varbinary`プロパティによって制御されます（4.0.2以降でサポート）。デフォルトは`false`で`string`にマッピングされます。`true`の場合は`varbinary`タイプにマッピングされます。|
 | date                               | date          |                                                                         |
 | timestamp\_without\_time\_zone     | datetime(N)   | 精度に応じてマッピングされます。精度が6を超える場合は最大6にマッピングされます（精度の損失が発生する可能性があります）。 |
 | timestamp\_with\_local\_time\_zone | datetime(N)   | 精度に応じてマッピングされます。精度が6を超える場合は最大6にマッピングされます（精度の損失が発生する可能性があります）。 |
@@ -700,7 +700,7 @@ OSS-HDFSを使用する
 
 ### 基本クエリ
 
-Catalogが設定されると、以下のようにCatalog内のテーブルデータをクエリできます：
+カタログが設定されると、以下のようにカタログ内のTableデータをクエリできます：
 
 ```sql
 -- 1. Switch to catalog, use database, and query
@@ -738,7 +738,7 @@ SELECT * FROM paimon_table@incr('startTimestamp'='1750844949000', 'endTimestamp'
 ```
 パラメータ:
 
-| Parameter | Description | Example |
+| Parameter | デスクリプション | Example |
 | --- | --- | -- |
 | `startSnapshotId` | 開始スナップショットID、0より大きい値である必要があります。`endSnapshotId`と一緒に指定する必要があります。 | `'startSnapshotId'='3'` |
 | `endSnapshotId` | 終了スナップショットID、`startSnapshotId`より大きい値である必要があります。`startSnapshotId`と一緒に指定する必要があります。 | `'endSnapshotId'='10'` |
@@ -760,11 +760,11 @@ SELECT * FROM paimon_table@incr('startTimestamp'='1750844949000', 'endTimestamp'
 
 > バージョン3.1.0以降
 
-Paimonテーブルの指定されたスナップショットの読み取りをサポートします。
+PaimonTableの指定されたスナップショットの読み取りをサポートします。
 
 デフォルトでは、読み取りリクエストは最新バージョンのスナップショットのみを読み取ります。
 
-指定されたPaimonテーブルのスナップショットは`$snapshots`テーブル関数を通じてクエリできます:
+指定されたPaimonTableのスナップショットは`$snapshots`Table関数を通じてクエリできます:
 
 ```sql
 Doris > SELECT snapshot_id,commit_time FROM paimon_tbl$snapshots;
@@ -792,13 +792,13 @@ SELECT * FROM paimon_tbl FOR TIME AS OF 1755381952740;
 -- Use snapshot id
 SELECT * FROM paimon_tbl FOR VERSION AS OF 1;
 ```
-### Branch and Tag
+### ブランチとタグ
 
 > Since version 3.1.0
 
-指定されたPaimonテーブルのブランチとタグの読み取りをサポートします。
+指定されたPaimonTableのブランチとタグの読み取りをサポートします。
 
-`$branches`と`$tags`システムテーブルを使用して、Paimonテーブルのブランチとタグを表示できます：
+`$branches`と`$tags`システムTableを使用して、PaimonTableのブランチとタグを表示できます：
 
 ```
 Doris > SELECT * FROM paimon_tbl$branches;
@@ -833,23 +833,23 @@ SELECT * FROM paimon_tbl FOR VERSION AS OF 'tag1';
 ```
 `FOR VERSION AS OF` 構文では、Doris はパラメータがタイムスタンプかどうかを自動的に判断します
 
-## System Tables
+## システム Tables
 
 > バージョン 3.1.0 以降
 
-Doris は Paimon system tables のクエリをサポートしており、テーブル関連のメタデータを取得できます。System tables は、スナップショット履歴、manifest ファイル、データファイル、パーティション、およびその他の情報を表示するために使用できます。
+Doris は Paimon system tables のクエリをサポートしており、Table関連のメタデータを取得できます。システム tables は、スナップショット履歴、manifest ファイル、データファイル、パーティション、およびその他の情報を表示するために使用できます。
 
-Paimon テーブルのメタデータにアクセスするには、テーブル名の後に `$` シンボルを追加し、その後に system table 名を続けます：
+Paimon Tableのメタデータにアクセスするには、Table名の後に `$` シンボルを追加し、その後に system table 名を続けます：
 
 ```sql
 SELECT * FROM my_table$system_table_name;
 ```
-> Note: Doris は Paimon グローバルシステムテーブルの読み取りをサポートしていません。これらは Flink でのみサポートされています。
+> Note: Doris は Paimon グローバルシステムTableの読み取りをサポートしていません。これらは Flink でのみサポートされています。
 
 
 ### schemas
 
-テーブルの現在および履歴のスキーマ情報を表示します。`ALTER TABLE`、`CREATE TABLE AS`、または `CREATE DATABASE AS` ステートメントを使用してテーブルスキーマを変更する際、各変更により schemas テーブルにレコードが生成されます：
+Tableの現在および履歴のスキーマ情報を表示します。`ALTER TABLE`、`CREATE TABLE AS`、または `CREATE DATABASE AS` ステートメントを使用してTableスキーマを変更する際、各変更により schemas Tableにレコードが生成されます：
 
 ```sql
 SELECT * FROM my_table$schemas;
@@ -865,7 +865,7 @@ SELECT * FROM my_table$schemas;
 ```
 ### snapshots
 
-テーブルのすべての有効なスナップショット情報を表示します。スナップショット作成時刻、コミットユーザー、操作タイプなどが含まれます：
+Tableのすべての有効なスナップショット情報を表示します。スナップショット作成時刻、コミットユーザー、操作タイプなどが含まれます：
 
 ```sql
 SELECT * FROM my_table$snapshots;
@@ -886,7 +886,7 @@ SELECT * FROM my_table$snapshots;
 ```
 ### options
 
-テーブルの現在の設定オプションを表示します。テーブルオプションがテーブルに含まれていない場合、そのオプションはデフォルト値に設定されています：
+Tableの現在の設定オプションを表示します。TableオプションがTableに含まれていない場合、そのオプションはデフォルト値に設定されています：
 
 ```sql
 SELECT * FROM my_table$options;
@@ -919,7 +919,7 @@ mysql> SELECT * FROM my_table$files;
 ```
 ### tags
 
-タグ名と関連するスナップショットを含む、テーブルのすべてのタグ情報を表示します：
+タグ名と関連するスナップショットを含む、Tableのすべてのタグ情報を表示します：
 
 ```sql
 SELECT * FROM my_table$tags;
@@ -935,7 +935,7 @@ Result:
 ```
 ### branches
 
-テーブルの既知のブランチ情報をすべて表示します：
+Tableの既知のブランチ情報をすべて表示します：
 
 ```sql
 SELECT * FROM my_table$branches;
@@ -952,7 +952,7 @@ SELECT * FROM my_table$branches;
 ```
 ### consumers
 
-テーブルのコンシューマー情報を表示します。データ消費を追跡するために使用されます：
+Tableのコンシューマー情報を表示します。データ消費を追跡するために使用されます：
 
 ```sql
 SELECT * FROM my_table$consumers;
@@ -968,7 +968,7 @@ Result:
 ```
 ### manifests
 
-テーブルの現在のスナップショットのマニフェストファイル情報を表示します：
+Tableの現在のスナップショットのマニフェストファイル情報を表示します：
 
 ```sql
 SELECT * FROM my_table$manifests;
@@ -989,7 +989,7 @@ SELECT * FROM my_table$manifests;
 ```
 ### aggregation_fields
 
-テーブルの集約フィールド情報を表示します。集約テーブルでのフィールド設定に使用されます：
+Tableの集約フィールド情報を表示します。集約Tableでのフィールド設定に使用されます：
 
 ```sql
 SELECT * FROM my_table$aggregation_fields;
@@ -1007,7 +1007,7 @@ SELECT * FROM my_table$aggregation_fields;
 ```
 ### partitions
 
-テーブルのパーティション情報を表示します。各パーティションの総レコード数と総ファイルサイズを含みます：
+Tableのパーティション情報を表示します。各パーティションの総レコード数と総ファイルサイズを含みます：
 
 ```sql
 SELECT * FROM my_table$partitions;
@@ -1023,7 +1023,7 @@ SELECT * FROM my_table$partitions;
 ```
 ### buckets
 
-テーブルのバケット情報を表示します。各バケットの統計情報を含みます：
+Tableのバケット情報を表示します。各バケットの統計情報を含みます：
 
 ```sql
 SELECT * FROM my_table$buckets;
@@ -1039,7 +1039,7 @@ SELECT * FROM my_table$buckets;
 ```
 ### statistics
 
-行数、データサイズ、その他の統計情報を含む、テーブルの統計情報を表示します：
+行数、データサイズ、その他の統計情報を含む、Tableの統計情報を表示します：
 
 ```sql
 SELECT * FROM my_table$statistics;
@@ -1055,7 +1055,7 @@ SELECT * FROM my_table$statistics;
 ```
 ### table_indexes
 
-テーブルのインデックス情報を表示します：
+Tableのインデックス情報を表示します：
 
 ```sql
 SELECT * FROM my_table$table_indexes;
@@ -1070,11 +1070,11 @@ SELECT * FROM my_table$table_indexes;
 |                   {2025-04-01} |           0 |               DELETION_VECTORS | index-633857e7-cdce-47d2-87... |                   33 |                    1 | [(data-346cb9c8-4032-4d66-a... |
 +--------------------------------+-------------+--------------------------------+--------------------------------+----------------------+----------------------+--------------------------------+
 ```
-### System Table Use Cases
+### システム Table Use Cases
 
-システムテーブルを通じて、以下の操作と監視タスクを簡単に実行できます。
+システムTableを通じて、以下の操作と監視タスクを簡単に実行できます。
 
-#### テーブルの最新スナップショット情報を表示して現在の状態を把握する
+#### Tableの最新スナップショット情報を表示して現在の状態を把握する
 
 ```sql
 SELECT snapshot_id, commit_time, commit_kind, total_record_count FROM catalog_sales$snapshots ORDER BY snapshot_id DESC;
@@ -1088,7 +1088,7 @@ SELECT snapshot_id, commit_time, commit_kind, total_record_count FROM catalog_sa
 |           1 | 2025-07-01 21:21:54.179 | APPEND      |           14329288 |
 +-------------+-------------------------+-------------+--------------------+
 ```
-#### スナップショットのテーブル情報を表示する
+#### スナップショットのTable情報を表示する
 
 ```sql
 SELECT s.snapshot_id, t.schema_id, t.fields FROM store_sales$snapshots s JOIN store_sales$schemas t ON s.schema_id=t.schema_id;
@@ -1108,7 +1108,7 @@ SELECT s.snapshot_id, t.schema_id, t.fields FROM store_sales$snapshots s JOIN st
 ```sql
 SELECT `bucket` , COUNT(*) as file_count, SUM(file_size_in_bytes)/1024/1024 as total_size_mb from paimon_s3.tpcds.catalog_sales$files GROUP BY `bucket`  ORDER BY total_size_mb;
 ```
-> 注意: Paimonシステムテーブルの多くのフィールドはDorisのキーワードであるため、バッククォートで囲む必要があります。
+> 注意: PaimonシステムTableの多くのフィールドはDorisのキーワードであるため、バッククォートで囲む必要があります。
 
 ```text
 +--------+------------+--------------------+

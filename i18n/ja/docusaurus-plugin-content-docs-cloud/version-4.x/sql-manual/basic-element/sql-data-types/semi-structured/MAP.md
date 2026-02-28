@@ -30,7 +30,7 @@ DATEV2, DATETIME, DATETIMEV2, CHAR, VARCHAR, STRING
 ```
 ### example
 
-テーブル作成例：
+Table作成例：
 
 ```sql
 CREATE TABLE IF NOT EXISTS test.simple_map (

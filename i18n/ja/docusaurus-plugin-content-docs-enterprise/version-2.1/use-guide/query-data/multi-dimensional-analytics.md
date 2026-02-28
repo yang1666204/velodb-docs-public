@@ -157,7 +157,7 @@ GROUPING、GROUPING_ID、およびGROUPING SETSは前述の課題を効果的に
 
 **1. 原理**
 
-GROUPINGは単一の列をパラメータとして使用し、ROLLUPまたはCUBE操作によって作成されたNULL値に遭遇した場合は1を返し、その行が小計であることを示します。その他のタイプの値（テーブルデータに本来存在するNULLを含む）は0を返します。
+GROUPINGは単一の列をパラメータとして使用し、ROLLUPまたはCUBE操作によって作成されたNULL値に遭遇した場合は1を返し、その行が小計であることを示します。その他のタイプの値（Tableデータに本来存在するNULLを含む）は0を返します。
 
 例：
 
@@ -291,7 +291,7 @@ group by cube(year(d_date), i_category)
 
 データベースにおいて、GROUPING_IDとGROUPING関数の両方は、ROLLUPやCUBEなどの多次元データ集約クエリを処理するための補助関数として機能し、ユーザーが異なるレベルの集約結果を区別するのを支援します。特定の行の集約レベルを決定したい場合、単一カラムだけの計算結果では不十分であるため、すべてのGROUP BYカラムを計算するためにGROUPING関数を使用する必要があります。
 
-GROUPING_ID関数は、複数のカラムを同時に検出できるため、GROUPINGよりも強力です。GROUPING_ID関数は複数のカラムをパラメータとして受け取り、バイナリビットを通じてこれらのカラムの集約状態を表す整数を返します。テーブルやマテリアライズドビューを使用して計算結果を格納する場合、GROUPINGを使用して異なるレベルの集約を表現すると、かなりのストレージ領域を消費する可能性があります。このようなシナリオでは、GROUPING_IDがより適切です。
+GROUPING_ID関数は、複数のカラムを同時に検出できるため、GROUPINGよりも強力です。GROUPING_ID関数は複数のカラムをパラメータとして受け取り、バイナリビットを通じてこれらのカラムの集約状態を表す整数を返します。Tableやマテリアライズドビューを使用して計算結果を格納する場合、GROUPINGを使用して異なるレベルの集約を表現すると、かなりのストレージ領域を消費する可能性があります。このようなシナリオでは、GROUPING_IDがより適切です。
 
 CUBE(a, b)を例にとると、そのGROUPING_IDは以下のように表現できます：
 
@@ -472,7 +472,7 @@ HAVING grouping_id(YEAR(d_date), ca_state, i_category) = 0
   UNION ALL  
   SELECT NULL, NULL, SUM(k3) FROM t;
   ```
-`UNION ALL`を使用すると、クエリが長くなり、ベーステーブルの複数回のスキャンが必要となるため、記述と実行の両方において効率が劣ります。
+`UNION ALL`を使用すると、クエリが長くなり、ベースTableの複数回のスキャンが必要となるため、記述と実行の両方において効率が劣ります。
 
 - GROUPING SETS vs. ROLLUP
 
@@ -509,4 +509,4 @@ HAVING grouping_id(YEAR(d_date), ca_state, i_category) = 0
   ```
 ## 付録
 
-テーブル作成文とデータファイルについては、[Window Function](window-function.md) の付録を参照してください。
+Table作成文とデータファイルについては、[Window ファンクション](window-function.md) の付録を参照してください。

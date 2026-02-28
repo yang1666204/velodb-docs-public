@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW CONVERT LIGHT SCHEMA CHANGE PROCESS",
-  "description": "非軽量スキーマ変更OLAPテーブルから軽量スキーマ変更テーブルへの変換プロセスを表示するために使用されます。",
+  "description": "非軽量スキーマ変更OLAPTableから軽量スキーマ変更Tableへの変換プロセスを表示するために使用されます。",
   "language": "ja"
 }
 ---
 ## 説明
 
-非軽量スキーマ変更OLAP テーブルから軽量スキーマ変更テーブルへの変換プロセスを確認するために使用します。
+非軽量スキーマ変更OLAP Tableから軽量スキーマ変更Tableへの変換プロセスを確認するために使用します。
 
 ## 構文
 

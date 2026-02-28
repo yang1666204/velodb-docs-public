@@ -17,7 +17,7 @@ ANN indexはベクトル列（通常は`ARRAY<FLOAT> NOT NULL`型）上に構築
 
 ANN indexは`USING ANN`を指定した`CREATE INDEX`文を使用して作成できます。主なアプローチは2つあります：
 
-1. **テーブル作成時にindexを定義**: データがロードされるのと同期してindexが構築されます。
+1. **Table作成時にindexを定義**: データがロードされるのと同期してindexが構築されます。
 
 ### 構文
 
@@ -94,7 +94,7 @@ quantizerプロパティについて:
 
 ### 例
 
-#### ANNインデックス付きテーブルの作成
+#### ANNインデックス付きTableの作成
 
 ```sql
 CREATE TABLE tbl_ann (
@@ -183,7 +183,7 @@ CREATE INDEX ann_ivf_pq ON tbl_ivf (`embedding`) USING ANN PROPERTIES(
 ```
 ## ANN Indexの構築
 
-個別に作成されたindex（テーブル作成時以外）については、`BUILD INDEX`を使用して既存のデータに対してindexを構築してください。この操作は非同期で実行されます。
+個別に作成されたindex（Table作成時以外）については、`BUILD INDEX`を使用して既存のデータに対してindexを構築してください。この操作は非同期で実行されます。
 
 ### 構文
 
@@ -233,7 +233,7 @@ ALTER TABLE [<db_name>.]<table_name> DROP INDEX <index_name>
 ```
 ## ANN Indexesの表示
 
-`SHOW INDEX`または`SHOW CREATE TABLE`を使用してテーブル上のインデックスに関する情報を表示します。
+`SHOW INDEX`または`SHOW CREATE TABLE`を使用してTable上のインデックスに関する情報を表示します。
 
 ### 構文
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `PERCENTILE_ARRAY`関数は正確なパーセンタイル配列を計算し、複数のパーセンタイル値を一度に計算することができます。この関数は主に小さなデータセットに適しています。
 
@@ -20,9 +20,9 @@
 ```sql
 PERCENTILE_ARRAY(<col>, <array_p>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col>` | 正確なパーセンタイルを計算する対象の列。サポートされる型: Double、Float、LargeInt、BigInt、Int、SmallInt、TinyInt。 |
 | `<array_p>` | パーセンタイル配列。各要素は Array<Double> 型の定数である必要があり、値は `[0.0, 1.0]` の範囲内である必要があります。例: `[0.5, 0.95, 0.99]`。 |

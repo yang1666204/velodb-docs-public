@@ -1,6 +1,6 @@
 ---
 {
-  "title": "Iceberg JDBC Catalog",
+  "title": "Iceberg JDBC カタログ",
   "description": "このドキュメントでは、JDBCインターフェースを使用してIceberg Catalogメタデータサービスに接続およびアクセスする際にサポートされるパラメータについて説明します。",
   "language": "ja"
 }
@@ -13,13 +13,13 @@
 
 ## パラメータ概要
 
-| Property Name | Description | Default Value | Required |
+| Property Name | デスクリプション | デフォルト値 | Required |
 | --- | --- | --- | --- | 
 | iceberg.jdbc.uri | JDBC接続URIを指定 | - | Yes |
 | iceberg.jdbc.user | JDBC接続ユーザー名 | - | Yes |
 | iceberg.jdbc.password | JDBC接続パスワード | - | Yes |
 | warehouse | icebergウェアハウスを指定 | - | Yes |
-| iceberg.jdbc.init-catalog-tables | 初回使用時にCatalog関連のテーブル構造を自動的に初期化するかどうか | `true` | No |
+| iceberg.jdbc.init-catalog-tables | 初回使用時にCatalog関連のTable構造を自動的に初期化するかどうか | `true` | No |
 | iceberg.jdbc.schema-version | JDBC Catalogで使用されるスキーマバージョン、`V0`と`V1`をサポート | `V0` | No |
 | iceberg.jdbc.strict-mode | 厳密モードを有効にするかどうか、メタデータのより厳密な検証を実行 | `false` | No |
 | iceberg.jdbc.driver_class | JDBCドライバークラス名、例：`org.postgresql.Driver`、`com.mysql.cj.jdbc.Driver`など | - | No |

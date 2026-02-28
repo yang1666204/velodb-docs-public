@@ -22,8 +22,8 @@ SUBSTRING(<str>, <pos> [, <len>])
 
 SUBSTRING(<str> FROM <pos> [FOR <len>])
 ```
-## Parameters
-| Parameter | Description                                      |
+## パラメータ
+| Parameter | デスクリプション                                      |
 | --------- | ------------------------------------------------ |
 | `<str>` | ソース文字列。型: VARCHAR                     |
 | `<pos>` | 開始位置、負の値も可能。型: INT    |

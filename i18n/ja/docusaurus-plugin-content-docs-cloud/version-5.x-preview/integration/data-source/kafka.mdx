@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 # KafkaからVeloDBへのデータ取り込み（Routine Loadを使用）
 
-Routine Loadは、Kafkaトピックからメッセージを継続的に消費し、VeloDBテーブルにロードする永続的なストリーミングジョブを作成します。
+Routine Loadは、Kafkaトピックからメッセージを継続的に消費し、VeloDBTableにロードする永続的なストリーミングジョブを作成します。
 
 ## 前提条件
 
@@ -43,7 +43,7 @@ VeloDBでSQLクエリを実行し、データベースを作成するには、Ve
 
 **セットアップ:**
 1. **Cluster Settings**からBootstrapサーバーを取得
-2. **Cluster Overview → API Keys**でAPI Keyを作成
+2. **Cluster 概要 → API Keys**でAPI Keyを作成
 3. サンプルデータには、**JSON**形式の**Datagen Source**コネクターを使用
 
   </TabItem>
@@ -110,7 +110,7 @@ rpk security acl create \
 
 **SSL証明書は不要です。** Confluent CloudはSSLを内部で処理します。
 
-この手順をスキップし、[ターゲットテーブルの作成](#3-create-target-table-in-velodb)に進んでください。
+この手順をスキップし、[ターゲットTableの作成](#3-create-target-table-in-velodb)に進んでください。
 
 Routine Loadジョブを作成する際は、以下を使用してください：
 
@@ -238,9 +238,9 @@ rpk topic consume clickstream --num 3
 
 ---
 
-## 3. VeloDBでターゲットテーブルを作成
+## 3. VeloDBでターゲットTableを作成
 
-KafkaメッセージフォーマットをベースにVeloDBテーブルスキーマを設計してください。
+KafkaメッセージフォーマットをベースにVeloDBTableスキーマを設計してください。
 
 ### スキーママッピング: KafkaからVeloDBへ
 
@@ -249,9 +249,9 @@ KafkaメッセージフォーマットをベースにVeloDBテーブルスキー
 ```json
 {"event_time": "2025-01-15 10:30:00", "user_id": 1001, "event_type": "page_view", "page": "/home"}
 ```
-**VeloDBテーブルへのマッピング:**
+**VeloDBTableへのマッピング:**
 
-| Kafka JSON Field | JSON Type | VeloDB Column | VeloDB Type |
+| Kafka JSON Field | JSON タイプ | VeloDB Column | VeloDB タイプ |
 |------------------|-----------|---------------|-------------|
 | `event_time` | string | `event_time` | `DATETIME` |
 | `user_id` | number | `user_id` | `BIGINT` |
@@ -260,9 +260,9 @@ KafkaメッセージフォーマットをベースにVeloDBテーブルスキー
 
 ### 型マッピング参考資料
 
-VeloDBの完全なデータ型については、[Data Type Overview](../../sql-manual/basic-element/sql-data-types/data-type-overview)を参照してください。
+VeloDBの完全なデータ型については、[Data タイプ 概要](../../sql-manual/basic-element/sql-data-types/data-type-overview)を参照してください。
 
-| Kafka/JSON Type | VeloDB Type |
+| Kafka/JSON タイプ | VeloDB タイプ |
 |-----------------|-------------|
 | string (datetime) | `DATETIME`, `DATE` |
 | string | `VARCHAR(n)`, `STRING`, `TEXT` |
@@ -272,9 +272,9 @@ VeloDBの完全なデータ型については、[Data Type Overview](../../sql-m
 | nested object | `JSON`, `VARIANT` |
 | array | `ARRAY<T>`, `JSON` |
 
-### テーブルの作成
+### Tableの作成
 
-**SQL Editor**で、データベースとテーブルを作成します:
+**SQL Editor**で、データベースとTableを作成します:
 
 ```sql
 CREATE DATABASE IF NOT EXISTS demo;
@@ -291,7 +291,7 @@ DUPLICATE KEY(event_time, user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
 :::tip
-Routine Loadの`jsonpaths`パラメータは、JSON フィールドをテーブルカラムに順序通りにマッピングします。テーブルカラムが`jsonpaths`で指定された順序と一致することを確認してください。
+Routine Loadの`jsonpaths`パラメータは、JSON フィールドをTableカラムに順序通りにマッピングします。Tableカラムが`jsonpaths`で指定された順序と一致することを確認してください。
 :::
 
 ---
@@ -331,8 +331,8 @@ FROM KAFKA (
 | `<API_SECRET>` | Your Confluent Cloud API Secret |
 
 :::tip Confluent Cloud接続詳細の確認方法
-- **Bootstrap server**: Cluster Overview → Cluster Settings
-- **API Key/Secret**: Cluster Overview → API Keys → Create key
+- **Bootstrap server**: Cluster 概要 → Cluster Settings
+- **API Key/Secret**: Cluster 概要 → API Keys → Create key
 :::
 
 :::caution データフォーマット
@@ -501,10 +501,10 @@ Kafkaプロバイダーが提供するパブリックエンドポイントを使
 |-------|----------|
 | "Broker transport failure" | Confluent Cloudの場合：**PLAIN**を使用。その他の場合：**SCRAM-SHA-512**を使用（SCRAM-SHA-256ではない） |
 | "SSL handshake failed" | CA証明書がプロバイダーと一致することを確認（RedpandaにはISRG Root X1、MSKにはAmazon Root CA 1） |
-| "Authentication failed" | ユーザー名/パスワードを確認し、ユーザーがトピック権限を持っていることを確認 |
+| "認証 failed" | ユーザー名/パスワードを確認し、ユーザーがトピック権限を持っていることを確認 |
 | "Topic authorization failed" | ACL権限を付与：`rpk security acl create --allow-principal "User:xxx" --operation read,describe --topic xxx --group "*"` |
 | 接続タイムアウト | パブリックアクセスを有効化するかPrivate Linkを設定 |
-| ジョブの自動一時停止："max_error_number exceeded" | JSONとテーブル間のスキーマの不一致。`jsonpaths`がJSONフィールドと一致することを確認。一部のエラーを許容するために`"max_filter_ratio" = "0.5"`を追加 |
+| ジョブの自動一時停止："max_error_number exceeded" | JSONとTable間のスキーマの不一致。`jsonpaths`がJSONフィールドと一致することを確認。一部のエラーを許容するために`"max_filter_ratio" = "0.5"`を追加 |
 | ジョブステータスが`PAUSED`を表示 | `SHOW ROUTINE LOAD FOR <job_name>;`で理由を確認し、修正後に`RESUME ROUTINE LOAD FOR <job_name>;`を実行 |
 | ファイルが既に存在 | 作成前に`SHOW FILE;`で既存ファイルを確認 |
 

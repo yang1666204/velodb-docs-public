@@ -1,12 +1,12 @@
 ---
 {
   "title": "EXPLODE_MAP",
-  "description": "explodemap テーブル関数は map 型を受け取り、map を複数の行に展開します。各行にはキーと値のペアが含まれます。",
+  "description": "explodemap Table関数は map 型を受け取り、map を複数の行に展開します。各行にはキーと値のペアが含まれます。",
   "language": "ja"
 }
 ---
 ## 説明
-`explode_map`テーブル関数はマップ型を受け取り、マップを複数の行に展開し、各行にキーと値のペアを含めます。
+`explode_map`Table関数はマップ型を受け取り、マップを複数の行に展開し、各行にキーと値のペアを含めます。
 この関数は[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
 
 ## 構文

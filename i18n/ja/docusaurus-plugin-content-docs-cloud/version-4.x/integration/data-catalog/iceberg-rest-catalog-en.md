@@ -1,11 +1,11 @@
 ---
 {
-  "title": "Iceberg REST Catalog",
-  "description": "Iceberg REST Catalogは、Apache Icebergによって定義された標準のREST API仕様であり、Icebergテーブルメタデータを管理およびアクセスするための汎用的な方法を提供します。この仕様を実装するあらゆるサービスをIceberg REST Catalogとして使用できます。Iceberg REST Catalogを作成することで、VeloDB Cloud内でIceberg REST仕様と互換性のあるあらゆるCatalogサービスに接続できます。",
+  "title": "Iceberg REST カタログ",
+  "description": "Iceberg REST Catalogは、Apache Icebergによって定義された標準のREST API仕様であり、IcebergTableメタデータを管理およびアクセスするための汎用的な方法を提供します。この仕様を実装するあらゆるサービスをIceberg REST Catalogとして使用できます。Iceberg REST Catalogを作成することで、VeloDB Cloud内でIceberg REST仕様と互換性のあるあらゆるCatalogサービスに接続できます。",
   "language": "ja"
 }
 ---
-Iceberg REST Catalogは、Apache Icebergによって定義された標準のREST API仕様であり、Icebergテーブルメタデータを管理・アクセスするための汎用的な方法を提供します。この仕様を実装したサービスはすべて、Iceberg REST Catalogとして使用できます。
+Iceberg REST Catalogは、Apache Icebergによって定義された標準のREST API仕様であり、IcebergTableメタデータを管理・アクセスするための汎用的な方法を提供します。この仕様を実装したサービスはすべて、Iceberg REST Catalogとして使用できます。
 
 Iceberg REST Catalogを作成することで、VeloDB Cloud内でIceberg REST仕様と互換性のある任意のCatalogサービスに接続できます。
 
@@ -18,7 +18,7 @@ Iceberg REST Catalogを作成する前に、以下の条件が満たされてい
 ### REST Catalogサービスの準備
 
 * Iceberg REST CatalogサービスがデプロイされていてVeloDB Cloudからネットワーク経由でアクセス可能であること。
-* REST Catalogで認証が有効化されている場合は、OAuth2認証情報（Client ID、Client Secret）を準備してください。
+* REST Catalogで認証が有効化されている場合は、OAuth2認証情報（クライアント ID、クライアント Secret）を準備してください。
 
 ### ストレージの準備
 
@@ -45,8 +45,8 @@ Iceberg REST Catalogを作成する前に、以下の条件が満たされてい
 
 1. VeloDB Cloudコンソールにログインします。
 2. 左側のナビゲーションバーで、**Catalogs**をクリックします。
-3. **Add External Catalog**ボタンをクリックします。
-4. Data Lakeカテゴリの下で、**Iceberg REST Catalog**を選択します。
+3. **Add 外部カタログ**ボタンをクリックします。
+4. Data Lakeカテゴリの下で、**Iceberg REST カタログ**を選択します。
 
 ### ステップ2: 基本情報の入力
 
@@ -56,7 +56,7 @@ Iceberg REST Catalogを作成する前に、以下の条件が満たされてい
 
 | フィールド | 必須 | 説明 |
 | ---------------- | -- | -------------------------------- |
-| **Catalog Name** | ✓  | Catalogの一意な名前で、SQLクエリでこのデータソースを識別するために使用されます。 |
+| **カタログ Name** | ✓  | Catalogの一意な名前で、SQLクエリでこのデータソースを識別するために使用されます。 |
 | **Comment**      |    | オプションの説明。                         |
 
 ### ステップ3: Metastoreの設定
@@ -70,9 +70,9 @@ Iceberg REST Catalogを作成する前に、以下の条件が満たされてい
 | フィールド | 必須 | 説明 |
 | ------------- | -- | --------------------------------------------------------------------------------------- |
 | **URI**       | ✓  | REST CatalogサービスのAPIエンドポイントアドレス。Iceberg REST APIのエントリURLです。                                  |
-| **Warehouse** | ✓  | IcebergテーブルのデータウェアハウスID。フォーマットはREST Catalogの実装によって異なり、ストレージパス（例：`s3://bucket/warehouse`）またはCatalog名を指定できます。 |
+| **Warehouse** | ✓  | IcebergTableのデータウェアハウスID。フォーマットはREST Catalogの実装によって異なり、ストレージパス（例：`s3://bucket/warehouse`）またはCatalog名を指定できます。 |
 
-#### Auth Type
+#### Auth タイプ
 
 REST Catalogサービスの要件に基づいて、適切な認証方法を選択してください。
 
@@ -92,10 +92,10 @@ REST CatalogサービスでID認証にOAuth2を使用している場合は、**O
 
 | フィールド | 必須 | 説明 |
 | ----------------- | -- | ------------------------------------------------------------------- |
-| **Client ID**     | ✓  | OAuth2 Client ID。REST Catalogサービスによって提供されます。                                  |
-| **Client Secret** | ✓  | OAuth2 Client Secret。Client IDと組み合わせて認証に使用されます。                               |
+| **クライアント ID**     | ✓  | OAuth2 クライアント ID。REST Catalogサービスによって提供されます。                                  |
+| **クライアント Secret** | ✓  | OAuth2 クライアント Secret。クライアント IDと組み合わせて認証に使用されます。                               |
 | **Scope**         | ✓  | OAuth2権限スコープ。認証情報でアクセス可能なリソースの範囲を定義します。一般的な値は`PRINCIPAL_ROLE:ALL`です。                |
-| **Server URI**    |    | OAuth2 Tokenエンドポイントアドレス。アクセストークンを取得するためのURL。空の場合は、REST CatalogのデフォルトOAuthエンドポイントが使用されます。 |
+| **サーバー URI**    |    | OAuth2 Tokenエンドポイントアドレス。アクセストークンを取得するためのURL。空の場合は、REST CatalogのデフォルトOAuthエンドポイントが使用されます。 |
 
 ### ステップ4: ストレージアクセスの設定
 
@@ -153,10 +153,10 @@ REST CatalogサービスでID認証にOAuth2を使用している場合は、**O
 ```
 ![irc-6](/images/integrations/data-catalog/irc-6.png)
 
-| Field | Required | Description |
+| Field | Required | デスクリプション |
 | ------------------ | -- | ------------------------ |
 | **Region**         | ✓  | ストレージバケットが配置されているリージョン（例：`us-east-1`）。 |
-| **Authentication** | ✓  | 認証方法。Access Keyを選択してください。      |
+| **認証** | ✓  | 認証方法。Access Keyを選択してください。      |
 | **AK**             | ✓  | AWS Access Key ID。       |
 | **SK**             | ✓  | AWS Secret Access Key。   |
 
@@ -193,7 +193,7 @@ REST CatalogサービスでID認証にOAuth2を使用している場合は、**O
 ### NamespaceとTableの表示
 
 ```sql
--- View all Namespaces under the Catalog
+-- View all Namespaces under the カタログ
 SHOW DATABASES FROM iceberg_rest;
 
 -- View all tables under a Namespace

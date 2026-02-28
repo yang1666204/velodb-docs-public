@@ -36,7 +36,7 @@ CREATE DATABASE [IF NOT EXISTS] <db_name>
 
 ## 注意事項
 
-db配下のテーブルに対してデフォルトのレプリカ配布戦略を指定したい場合は、`<replication_allocation>`を指定する必要があります（tableの`<replication_allocation>`属性はdbよりも高い優先度を持ちます）：
+db配下のTableに対してデフォルトのレプリカ配布戦略を指定したい場合は、`<replication_allocation>`を指定する必要があります（tableの`<replication_allocation>`属性はdbよりも高い優先度を持ちます）：
 
   ```sql
   PROPERTIES (

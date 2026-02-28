@@ -14,9 +14,9 @@
 ```sql
 INITCAP ( <str> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-----------|
 | `<str>`   | 変換対象の文字列 |
 

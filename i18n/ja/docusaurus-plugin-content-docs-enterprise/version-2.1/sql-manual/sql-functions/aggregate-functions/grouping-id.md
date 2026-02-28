@@ -14,9 +14,9 @@ GROUP BYクエリにおける行のグループ化レベルを計算します。
 ```sql
 GROUPING_ID(<column_expression> [, ...])
 ```
-## Parameters
+## パラメータ
 
-| Parameters               | Description                                       |
+| パラメータ               | デスクリプション                                       |
 |-------------------------|---------------------------------------------------|
 | `<column_expression>`   | GROUP BY句のカラム式。     |
 

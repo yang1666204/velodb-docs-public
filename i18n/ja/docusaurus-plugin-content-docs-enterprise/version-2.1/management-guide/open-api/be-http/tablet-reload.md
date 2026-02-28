@@ -10,7 +10,7 @@
 
 `GET /api/reload_tablet?tablet_id={int}&schema_hash={int}&path={string}"`
 
-## Description
+## デスクリプション
 
 タブレットをリロードします
 

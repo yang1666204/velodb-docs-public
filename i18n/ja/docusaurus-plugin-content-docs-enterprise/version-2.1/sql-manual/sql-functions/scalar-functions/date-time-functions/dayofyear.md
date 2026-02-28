@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定された日付に対応する年間通算日を取得します。
 
@@ -14,9 +14,9 @@
 ```sql
 DAYOFYEAR(<dt>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<dt>` | 計算対象となる日付式 |
 

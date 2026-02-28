@@ -17,9 +17,9 @@ MINUTE_CEIL(<datetime>, <origin>)
 MINUTE_CEIL(<datetime>, <period>)
 MINUTE_CEIL(<datetime>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<datetime>`  | 切り上げる日時値。DATETIME型またはDATETIMEV2型 |
 | `<period>`    | 分間隔値。INT型で、各間隔の分数を表す |

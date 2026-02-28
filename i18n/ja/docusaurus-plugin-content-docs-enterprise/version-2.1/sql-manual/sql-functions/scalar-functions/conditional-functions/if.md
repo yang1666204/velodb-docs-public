@@ -16,7 +16,7 @@ IF(<condition>, <value_true>, <value_false_or_null>)
 ```
 ## パラメータ
 
-| Parameter               | Description                                                  |
+| Parameter               | デスクリプション                                                  |
 |-------------------------|--------------------------------------------------------------|
 | `<condition>`           | 評価するboolean条件。                           |
 | `<value_true>`          | `<condition>`がtrueと評価された場合に返される値。      |

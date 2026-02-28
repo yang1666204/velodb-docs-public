@@ -16,9 +16,9 @@ datetimeから日付を抽出します。
 ```sql
 DATE DATE(DATETIME datetime)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | datetime | 有効な日付式 |
 

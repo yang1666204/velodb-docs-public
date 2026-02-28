@@ -22,7 +22,7 @@ DROP MATERIALIZED VIEW (IF EXISTS)? mvName=multipartIdentifier
 
 ## 例
 
-1. テーブルマテリアライズドビューmv1を削除
+1. Tableマテリアライズドビューmv1を削除
 
 ```sql
 DROP MATERIALIZED VIEW mv1;

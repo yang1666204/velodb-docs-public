@@ -14,9 +14,9 @@
 ```sql
 BITMAP_SUBSET_IN_RANGE(<bitmap>, <range_start_include>, <range_end_exclude>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter             | Description                   |
+| Parameter             | デスクリプション                   |
 |-----------------------|-------------------------------|
 | `<bitmap>`            | Bitmap値              |
 | `<range_start_include>` | 範囲の開始位置（含む） |

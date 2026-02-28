@@ -14,9 +14,9 @@
 ```sql
 TO_MONDAY(`<date_or_time_expr>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<date_or_date_expr>` | 入力datetime値、date/datetimeタイプをサポートします。datetimeとdateフォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 

@@ -1,7 +1,7 @@
 ---
 {
   "title": "プロファイリング",
-  "description": "MySQL互換性のためのinformation_schema内のプロファイリングテーブル。常に空であり、レガシーサポートのために使用されます。",
+  "description": "MySQL互換性のためのinformation_schema内のプロファイリングTable。常に空であり、レガシーサポートのために使用されます。",
   "language": "ja"
 }
 ---
@@ -9,15 +9,15 @@
 
 ## 概要
 
-このテーブルは、MySQLの動作との互換性を維持する目的でのみ存在します。常に空です。
+このTableは、MySQLの動作との互換性を維持する目的でのみ存在します。常に空です。
 
 ## データベース
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name         | Type        | Description |
+| Column Name         | タイプ        | デスクリプション |
 | ------------------- | ----------- | ----------- |
 | QUERY_ID            | int         |             |
 | SEQ                 | int         |             |

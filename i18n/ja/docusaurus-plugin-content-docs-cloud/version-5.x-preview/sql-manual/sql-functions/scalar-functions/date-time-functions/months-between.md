@@ -18,9 +18,9 @@ MONTHS_BETWEEN関数は、2つのdatetime値間の月の差分を計算するた
 ```sql
 MONTHS_BETWEEN(`<date_or_time_expr1>`, `<date_or_time_expr2>` [, `<round_type>`])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<date_or_time_expr1>` | 終了日。date/datetimeタイプをサポートします。具体的なdatetimeとdateフォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |
 | `<date_or_time_expr2>` | 開始日。date/datetimeタイプとdatetimeフォーマットに準拠した文字列をサポートします。 |

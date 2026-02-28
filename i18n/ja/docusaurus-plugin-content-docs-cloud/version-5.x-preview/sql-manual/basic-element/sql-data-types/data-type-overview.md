@@ -45,7 +45,7 @@ Dorisは以下の数値データ型をサポートしています：
 
 ## 日付型
 
-日付型にはDATE、TIME、DATETIMEがあります。DATE型は日までの精度で日付のみを格納し、DATETIME型は日付と時間を格納し、マイクロ秒まで正確に記録できます。TIME型は時間のみを格納し、**現在のところテーブル格納の構築をサポートしておらず、クエリ処理でのみ使用できます**。
+日付型にはDATE、TIME、DATETIMEがあります。DATE型は日までの精度で日付のみを格納し、DATETIME型は日付と時間を格納し、マイクロ秒まで正確に記録できます。TIME型は時間のみを格納し、**現在のところTable格納の構築をサポートしておらず、クエリ処理でのみ使用できます**。
 
 datetime型の計算や数値型への変換には、[TIME_TO_SEC](../../sql-functions/scalar-functions/date-time-functions/time-to-sec)、[DATE_DIFF](../../sql-functions/scalar-functions/date-time-functions/datediff)、[UNIX_TIMESTAMP](../../sql-functions/scalar-functions/date-time-functions/unix-timestamp)などの関数を使用してください。数値型として直接変換した結果は保証されません。
 
@@ -66,7 +66,7 @@ Dorisは固定長と可変長の両方の文字列をサポートしており、
 
 ## バイナリ型
 
-- **[VARBINARY](./binary-type/VARBINARY)**: 可変長バイナリバイトシーケンス。Mは最大長（バイト単位）。VARCHARに似ていますが、文字セットや照合順序が関与しないバイト単位の格納と比較を使用します。任意のバイナリデータ（ファイルフラグメント、暗号化データ、圧縮データなど）の格納に適しています。4.0以降でサポートされていますが、現在Dorisでのテーブル作成と格納はサポートされておらず、Catalogsを使用して他のデータベースのBINARYカラムをDorisにマッピングして使用することができます。
+- **[VARBINARY](./binary-type/VARBINARY)**: 可変長バイナリバイトシーケンス。Mは最大長（バイト単位）。VARCHARに似ていますが、文字セットや照合順序が関与しないバイト単位の格納と比較を使用します。任意のバイナリデータ（ファイルフラグメント、暗号化データ、圧縮データなど）の格納に適しています。4.0以降でサポートされていますが、現在DorisでのTable作成と格納はサポートされておらず、Catalogsを使用して他のデータベースのBINARYカラムをDorisにマッピングして使用することができます。
 
 ## 半構造化型
 

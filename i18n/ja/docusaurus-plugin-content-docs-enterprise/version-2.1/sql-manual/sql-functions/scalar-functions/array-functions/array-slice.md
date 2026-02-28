@@ -14,9 +14,9 @@
 ```sql
 ARRAY_SLICE(<arr>, <off>, <len>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<arr>` | 対応する配列 |
 | `<off>` | 開始位置。offが正の数の場合、左からのオフセットを示します。offが負の数の場合、右からのオフセットを示します。指定されたoffが配列の実際の範囲内にない場合、空の配列が返されます。 |

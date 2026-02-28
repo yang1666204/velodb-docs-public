@@ -14,9 +14,9 @@
 ```sql
 CORR(<expr1>, <expr2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr1>` | 数値式（カラム） |
 | `<expr2>` | 数値式（カラム） |

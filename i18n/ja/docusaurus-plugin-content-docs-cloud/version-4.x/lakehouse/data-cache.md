@@ -9,7 +9,7 @@ Data Cacheは、リモートストレージシステム（HDFSまたはオブジ
 
 ## 適用シナリオ
 
-データキャッシュ機能は、Hive、Iceberg、Hudi、およびPaimonテーブルのクエリでのみ機能します。内部テーブルクエリや非ファイル外部テーブルクエリ（JDBCやElasticsearchなど）には効果がありません。
+データキャッシュ機能は、Hive、Iceberg、Hudi、およびPaimonTableのクエリでのみ機能します。内部Tableクエリや非ファイル外部Tableクエリ（JDBCやElasticsearchなど）には効果がありません。
 
 データキャッシュがクエリ効率を向上させることができるかどうかは、複数の要因に依存します。以下は、データキャッシュの適用シナリオです：
 
@@ -48,7 +48,7 @@ file_cache_path=[{"path": "/path/to/file_cache1", "total_size":53687091200},{"pa
 
 `total_size` はキャッシュ領域サイズの上限値で、バイト単位で指定します。キャッシュ領域が上限を超えた場合、LRU戦略を使用してキャッシュデータが削除されます。
 
-### FE Configuration
+### FE 構成
 
 単一セッションでData Cacheを有効にする：
 
@@ -62,7 +62,7 @@ SET GLOBAL enable_file_cache = true;
 ```
 `enable_file_cache`が有効でない場合、BEがキャッシュディレクトリで設定されていてもキャッシュは使用されないことに注意してください。同様に、BEがキャッシュディレクトリで設定されていない場合、`enable_file_cache`が有効であってもキャッシュは使用されません。
 
-## Cache Observability
+## Cache オブザーバビリティ
 
 ### View Cache Hit Rate
 
@@ -100,7 +100,7 @@ SET GLOBAL enable_file_cache = true;
 
 ### 監視メトリクス
 
-ユーザーはシステムテーブル`file_cache_statistics`を通じて、各Backendノードのキャッシュ統計を確認できます。
+ユーザーはシステムTable`file_cache_statistics`を通じて、各Backendノードのキャッシュ統計を確認できます。
 
 ## 付録
 

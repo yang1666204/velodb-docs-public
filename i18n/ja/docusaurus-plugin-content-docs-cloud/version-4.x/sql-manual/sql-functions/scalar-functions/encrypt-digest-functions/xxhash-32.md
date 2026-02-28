@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力文字列の32ビットxxhash値を計算します
 
@@ -16,7 +16,7 @@
 ```sql
 XXHASH_32( <str> [ , <str> ... ] )
 ```
-## Parameters
+## パラメータ
 
 | parameter | description      |
 |-----------|------------------|

@@ -6,7 +6,7 @@
 }
 ---
 ## DOUBLE
-### Description
+### デスクリプション
 DOUBLE
 8バイト浮動小数点数
 

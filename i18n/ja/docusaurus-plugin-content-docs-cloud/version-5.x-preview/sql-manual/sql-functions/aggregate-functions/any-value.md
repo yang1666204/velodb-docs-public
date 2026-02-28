@@ -19,9 +19,9 @@
 ANY_VALUE(<expr>)
 ANY(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 集約される列または式。サポートされる型は String、Date、DateTime、IPv4、IPv6、Bool、TinyInt、SmallInt、Integer、BigInt、LargeInt、Float、Double、Decimal、Array、Map、Struct、AggState、Bitmap、HLL、QuantileState です。 |
 

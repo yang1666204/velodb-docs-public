@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 histogram関数は、データの分布を記述するために使用されます。この関数は「equal height」バケット戦略を使用し、データの値に応じてデータをバケットに分割します。各バケットは、バケットに該当する値の数など、いくつかの簡単なデータで記述されます。NULL以外のデータのみがカウントされます。
 
@@ -19,9 +19,9 @@ HIST
 HISTOGRAM(<expr>[, <num_buckets>])
 HIST(<expr>[, <num_buckets>])
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Description |
+| パラメータ | デスクリプション |
 | -- | -- |
 | `expr` | 計算対象の式。サポートされる型：TinyInt、SmallInt、Integer、BigInt、LargeInt、Float、Double、Decimal、String。 |
 | `num_buckets` | オプション。ヒストグラムバケットの数を制限します。デフォルト値は128です。サポートされる型：Integer。|

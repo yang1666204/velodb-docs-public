@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 expr式のサンプル標準偏差を返します
 
@@ -14,9 +14,9 @@ expr式のサンプル標準偏差を返します
 ```sql
 STDDEV_SAMP(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 標準偏差を計算する値 |
 

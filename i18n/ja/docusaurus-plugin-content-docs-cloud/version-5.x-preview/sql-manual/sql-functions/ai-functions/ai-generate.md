@@ -16,7 +16,7 @@ AI_GENERATE([<resource_name>], <prompt>)
 ```
 ## パラメータ
 
-|    Parameter      | Description                                      |
+|    Parameter      | デスクリプション                                      |
 | ----------------- | ------------------------------------------------|
 | `<resource_name>` | 指定されたリソース名、オプション                    |
 | `<prompt>`        | AI生成を導くために使用されるプロンプトテキスト       |

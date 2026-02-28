@@ -16,8 +16,8 @@ IPv6NumToStringの逆関数で、IPアドレス文字列を受け取り、バイ
 ```sql
 IPV6_STRING_TO_NUM_OR_NULL(<ipv6_string>)
 ```
-## Parameters
-| Parameter | Description                                      |
+## パラメータ
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ipv6_string>`      | String型のIPv6アドレス  |
 

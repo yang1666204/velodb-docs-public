@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力BITMAPの要素数をカウントします
 
@@ -14,9 +14,9 @@
 ```sql
 BITMAP_COUNT(<bitmap>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description |
+| Parameter  | デスクリプション |
 |------------|-------------|
 | `<bitmap>` | BITMAP |
 

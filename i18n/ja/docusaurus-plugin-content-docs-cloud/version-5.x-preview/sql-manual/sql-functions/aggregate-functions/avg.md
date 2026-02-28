@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定された列または式の全ての非NULL値の平均を計算します。
 
@@ -14,9 +14,9 @@
 ```sql
 AVG([DISTINCT] <expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 式または列で、通常は数値列または数値に変換可能な式です。サポートされる型は TinyInt、SmallInt、Integer、BigInt、LargeInt、Double、Decimal です。 |
 | `[DISTINCT]` | expr から重複値を除去した後に平均値を計算することを示すオプションのキーワードです。 |

@@ -18,7 +18,7 @@ PROPERTIES (
   [ , ... ]
 );
 ```
-## Parameters
+## パラメータ
 
 1.`<property>`
 

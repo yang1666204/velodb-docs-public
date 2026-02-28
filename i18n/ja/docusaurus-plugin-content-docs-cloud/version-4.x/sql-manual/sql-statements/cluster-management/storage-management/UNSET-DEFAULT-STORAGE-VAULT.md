@@ -13,9 +13,9 @@
 ```sql
 UNSET DEFAULT STORAGE VAULT
 ```
-## Permission Control
+## 許可 Control
 
-| Privilege  | Object        | Notes                                                      |
+| Privilege  | Object        | 注釈                                                      |
 | :--------- | :------------ | :--------------------------------------------------------- |
 | ADMIN_PRIV | Storage Vault | 管理者ユーザーのみがこのステートメントを実行する権限を持ちます |
 

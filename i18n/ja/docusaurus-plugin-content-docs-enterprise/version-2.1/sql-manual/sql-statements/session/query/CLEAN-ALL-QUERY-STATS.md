@@ -26,7 +26,7 @@ CLEAN [ { ALL| DATABASE | TABLE } ] QUERY STATS [ { [ FOR <db_name>] | [ { FROM 
 
 **3. `TABLE`**
 
-> TABLEを使用してテーブルのクエリ統計をクリアします
+> TABLEを使用してTableのクエリ統計をクリアします
 
 ## オプションパラメータ
 
@@ -36,18 +36,18 @@ CLEAN [ { ALL| DATABASE | TABLE } ] QUERY STATS [ { [ FOR <db_name>] | [ { FROM 
 
 **2. `<table_name>`**
 
-> このパラメータが設定されている場合、対応するテーブルの統計がクリアされます
+> このパラメータが設定されている場合、対応するTableの統計がクリアされます
 
 
 ## アクセス制御要件
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege    | Object   | Notes                 |
+| Privilege    | Object   | 注釈                 |
 |:-------------|:---------|:--------------------------|
 | ADMIN_PRIV        | ALL      | ALLが指定されている場合、ADMIN権限が必要です     |
 | ALTER_PRIV        | DATABASE | データベースが指定されている場合、対応するデータベースのALTER権限が必要です |
-| ADMIN_PRIV        | TABLE    | テーブルを指定する場合、そのテーブルのalter権限が必要です     |
+| ADMIN_PRIV        | TABLE    | Tableを指定する場合、そのTableのalter権限が必要です     |
 
 
 ## 例

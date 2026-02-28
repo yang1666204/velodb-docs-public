@@ -73,7 +73,7 @@ DorisWriterプラグインの[ソースコード](https://github.com/apache/dori
   - 必須： はい
   - デフォルト： なし
 * **connection. table**
-  - 説明： 書き込みが必要なDorisテーブルの名前。
+  - 説明： 書き込みが必要なDorisTableの名前。
     - 必須： はい
     - デフォルト： なし
 * **flushInterval**
@@ -81,17 +81,17 @@ DorisWriterプラグインの[ソースコード](https://github.com/apache/dori
   - 必須： いいえ
   - デフォルト： 30000（ms）
 * **column**
-  - 説明： 宛先テーブルにデータを書き込む必要があるフィールド。これらのフィールドは生成されるJsonデータのフィールド名として使用される。フィールドはカンマで区切る。例： "column": ["id","name","age"]。
+  - 説明： 宛先Tableにデータを書き込む必要があるフィールド。これらのフィールドは生成されるJsonデータのフィールド名として使用される。フィールドはカンマで区切る。例： "column": ["id","name","age"]。
   - 必須： はい
   - デフォルト： なし
 * **preSql**
 
-  - 説明： 宛先テーブルにデータを書き込む前に、ここの標準ステートメントが最初に実行される。
+  - 説明： 宛先Tableにデータを書き込む前に、ここの標準ステートメントが最初に実行される。
   - 必須： いいえ
   - デフォルト： なし
 * **postSql**
 
-  - 説明： 宛先テーブルにデータを書き込んだ後、ここの標準ステートメントが実行される。
+  - 説明： 宛先Tableにデータを書き込んだ後、ここの標準ステートメントが実行される。
   - 必須： いいえ
   - デフォルト： なし
 
@@ -137,7 +137,7 @@ doriswriterプラグインの使用方法については、[こちら](https://g
 
 #### 2. Mysqlがデータを読み取ってDorisにインポートする
 
-1. Mysqlテーブル構造
+1. MysqlTable構造
 
 ```sql
 CREATE TABLE `t_test`(
@@ -151,7 +151,7 @@ CREATE TABLE `t_test`(
  PRIMARY KEY(`id`) USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='';
 ```
-2.Dorisテーブル構造
+2.DorisTable構造
 
 ```sql
 CREATE TABLE `ods_t_test` (

@@ -1,30 +1,30 @@
 ---
 {
   "title": "データカタログの概要",
-  "description": "Data Catalogは、データソースの属性を記述するために使用されます。",
+  "description": "データカタログは、データソースの属性を記述するために使用されます。",
   "language": "ja"
 }
 ---
-Data Catalogは、データソースの属性を記述するために使用されます。
+データカタログは、データソースの属性を記述するために使用されます。
 
-Dorisでは、異なるデータソース（Hive、Iceberg、MySQLなど）を指すように複数のcatalogを作成できます。Dorisは、catalogを通じて対応するデータソースのデータベース、テーブル、カラム、パーティション、データの場所などを自動的に取得します。ユーザーは標準のSQL文を通じてこれらのcatalogにアクセスしてデータ分析を行うことができ、複数のcatalogからのデータに対してjoinクエリを実行できます。
+Dorisでは、異なるデータソース（Hive、Iceberg、MySQLなど）を指すように複数のcatalogを作成できます。Dorisは、catalogを通じて対応するデータソースのデータベース、Table、カラム、パーティション、データの場所などを自動的に取得します。ユーザーは標準のSQL文を通じてこれらのcatalogにアクセスしてデータ分析を行うことができ、複数のcatalogからのデータに対してjoinクエリを実行できます。
 
 Dorisには2種類のcatalogがあります：
 
-| Type                         | Description |
+| タイプ                         | デスクリプション |
 | ---------------- | -------------------------------------------------------- |
-| Internal Catalog | 組み込みのcatalogで、`internal`という名前が付けられており、Doris内部のテーブルデータを格納するために使用されます。作成、変更、削除はできません。      |
-| External Catalog | External catalogはInternal Catalog以外のすべてのcatalogを指します。ユーザーはexternal catalogを作成、変更、削除できます。 |
+| 内部カタログ | 組み込みのcatalogで、`internal`という名前が付けられており、Doris内部のTableデータを格納するために使用されます。作成、変更、削除はできません。      |
+| 外部カタログ | 外部カタログは内部カタログ以外のすべてのcatalogを指します。ユーザーは外部カタログを作成、変更、削除できます。 |
 
 Catalogは主に以下の3つのシナリオに適用されますが、異なるcatalogは異なるシナリオに適しています。詳細については、対応するcatalogのドキュメントを参照してください。
 
-| Scenario | Description      |
+| シナリオ | デスクリプション      |
 | ---- | ------------------------------------------- |
-| Query Acceleration | Hive、Iceberg、Paimonなどのデータレイクに対する直接クエリアクセラレーション。      |
-| Data Integration | ZeroETLソリューション、異なるデータソースに直接アクセスして結果データを生成、または異なるデータソース間のデータフローを促進。 |
-| Data Write-back | Doris経由でのデータ処理後、外部データソースへの書き戻し。                |
+| クエリ加速 | Hive、Iceberg、Paimonなどのデータレイクに対する直接クエリアクセラレーション。      |
+| データ統合 | ZeroETLソリューション、異なるデータソースに直接アクセスして結果データを生成、または異なるデータソース間のデータフローを促進。 |
+| データ書き戻し | Doris経由でのデータ処理後、外部データソースへの書き戻し。                |
 
-このドキュメントでは[Iceberg Catalog](./catalogs/iceberg-catalog.mdx)を例として使用し、catalogの基本的な操作に焦点を当てます。異なるcatalogの詳細な説明については、対応するcatalogのドキュメントを参照してください。
+このドキュメントでは[Iceberg カタログ](./catalogs/iceberg-catalog.mdx)を例として使用し、catalogの基本的な操作に焦点を当てます。異なるcatalogの詳細な説明については、対応するcatalogのドキュメントを参照してください。
 
 ## Catalogの作成
 
@@ -58,7 +58,7 @@ CREATE CATALOG iceberg_catalog PROPERTIES (
 
 `UNION`、`INTERVAL`など、現在Dorisのカラム型にマッピングできない外部データ型については、Dorisはカラム型を`UNSUPPORTED`にマッピングします。`UNSUPPORTED`型を含むクエリについては、以下の例を参照してください：
 
-同期されたテーブルスキーマが以下であると仮定します：
+同期されたTableスキーマが以下であると仮定します：
 
 ```text
 k1 INT,
@@ -76,26 +76,26 @@ SELECT k1, k4 FROM table;           -- Query OK.
 ```
 ### Nullable 属性
 
-Doris は現在、外部テーブル列の Nullable 属性サポートに特別な制限があり、具体的な動作は以下の通りです：
+Doris は現在、外部Table列の Nullable 属性サポートに特別な制限があり、具体的な動作は以下の通りです：
 
-| Source Type | Doris Read Behavior | Doris Write Behavior |
+| Source タイプ | Doris Read Behavior | Doris Write Behavior |
 | ---   | ------------  | ------------ |
 | Nullable | Nullable  | Null 値の書き込みを許可 |
 | Not Null | Nullable、つまり読み取り時に NULL を許可する列として扱われる | Null 値の書き込みを許可、つまり Null 値に対する厳密なチェックは行わない。ユーザーはデータの整合性と一貫性を自分で確保する必要がある。|
 
-## Catalog の使用
+## カタログ の使用
 
-### Catalog の表示
+### カタログ の表示
 
 作成後、`SHOW CATALOGS` コマンドを使用して catalog を表示できます：
 
 ```text
 mysql> SHOW CATALOGS;
 +-----------+-----------------+----------+-----------+-------------------------+---------------------+------------------------+
-| CatalogId | CatalogName     | Type     | IsCurrent | CreateTime              | LastUpdateTime      | Comment                |
+| CatalogId | CatalogName     | タイプ     | IsCurrent | CreateTime              | LastUpdateTime      | Comment                |
 +-----------+-----------------+----------+-----------+-------------------------+---------------------+------------------------+
 |     10024 | iceberg_catalog | hms      | yes       | 2023-12-25 16:11:41.687 | 2023-12-25 20:43:18 | NULL                   |
-|         0 | internal        | internal |           | NULL                    | NULL                | Doris internal catalog |
+|         0 | internal        | internal |           | NULL                    | NULL                | Doris 内部カタログ |
 +-----------+-----------------+----------+-----------+-------------------------+---------------------+------------------------+
 ```
 [SHOW CREATE CATALOG](../sql-manual/sql-statements/catalog/SHOW-CREATE-CATALOG)を使用してカタログを作成するステートメントを表示できます。
@@ -149,13 +149,13 @@ SET PROPERTY default_init_catalog=hive_catalog;
 
 ### Simple Query
 
-Dorisでサポートされている任意のSQL文を使用して、外部catalogのテーブルをクエリできます。
+Dorisでサポートされている任意のSQL文を使用して、外部catalogのTableをクエリできます。
 
 ```sql
 SELECT id, SUM(cost) FROM iceberg_db.table1
 GROUP BY id ORDER BY id;
 ```
-### Cross-Catalog Query
+### Cross-カタログ Query
 
 Dorisは異なるカタログ間でのjoinクエリをサポートしています。
 
@@ -171,7 +171,7 @@ CREATE CATALOG mysql_catalog properties(
     'driver_class' = 'com.mysql.cj.jdbc.Driver'
 );
 ```
-その後、SQLを使用してIcebergテーブルとMySQLテーブル間で結合クエリを実行します：
+その後、SQLを使用してIcebergTableとMySQLTable間で結合クエリを実行します：
 
 ```sql
 SELECT * FROM
@@ -186,7 +186,7 @@ ON tbl1.id = tbl2.id;
 INSERT INTO internal.doris_db.tbl1
 SELECT * FROM iceberg_catalog.iceberg_db.table1;
 ```
-外部データソースからDoris内部テーブルを作成し、データをインポートするために`CTAS (Create Table As Select)`ステートメントを使用することもできます：
+外部データソースからDoris内部Tableを作成し、データをインポートするために`CTAS (Create Table As Select)`ステートメントを使用することもできます：
 
 ```sql
 CREATE TABLE internal.doris_db.tbl1
@@ -194,15 +194,15 @@ PROPERTIES('replication_num' = '1')
 AS
 SELECT * FROM iceberg_catalog.iceberg_db.table1;
 ```
-### Data Write-Back
+### データ書き戻し
 
 Dorisは`INSERT`文を使用して外部データソースへのデータの書き戻しをサポートしています。詳細については、以下を参照してください：
 
-* [Hive Catalog](./catalogs/hive-catalog.mdx)
-* [Iceberg Catalog](./catalogs/iceberg-catalog.mdx)
-* [JDBC Catalog](./catalogs/jdbc-catalog-overview.md)
+* [Hive カタログ](./catalogs/hive-catalog.mdx)
+* [Iceberg カタログ](./catalogs/iceberg-catalog.mdx)
+* [JDBC カタログ](./catalogs/jdbc-catalog-overview.md)
 
-## Refreshing Catalog
+## Refreshing カタログ
 
 Dorisで作成されたCatalogは、対応するデータソースのメタデータサービスにアクセスするための「プロキシ」として機能します。Dorisはアクセス性能を向上させ、頻繁なネットワーク間リクエストを削減するために一部のメタデータをキャッシュします。しかし、キャッシュには有効期限があり、更新しなければ最新のメタデータにアクセスすることができません。そのため、Dorisはcatalogを更新するためのいくつかの方法を提供しています。
 
@@ -234,15 +234,15 @@ ALTER CATALOG iceberg_catalog SET PROPERTIES ('key1' = 'value1' [, 'key' = 'valu
 -- Modify the comment of a catalog
 ALTER CATALOG iceberg_catalog MODIFY COMMENT 'my iceberg catalog';
 ```
-## Catalog の削除
+## カタログ の削除
 
 `DROP CATALOG` ステートメントを使用して、指定された外部 catalog を削除できます。
 
 ```sql
 DROP CATALOG [IF EXISTS] iceberg_catalog;
 ```
-DorisからExternal Catalogを削除しても実際のデータは削除されません。Dorisに保存されているマッピング関係のみが削除されます。
+Dorisから外部カタログを削除しても実際のデータは削除されません。Dorisに保存されているマッピング関係のみが削除されます。
 
-## Permission Management
+## 許可 Management
 
-External Catalog内のデータベースとテーブルのPermission Managementは、内部テーブルと同じです。詳細については、Authentication and Authorizationドキュメントを参照してください。
+外部カタログ内のデータベースとTableのPermission Managementは、内部Tableと同じです。詳細については、認証 and Authorizationドキュメントを参照してください。

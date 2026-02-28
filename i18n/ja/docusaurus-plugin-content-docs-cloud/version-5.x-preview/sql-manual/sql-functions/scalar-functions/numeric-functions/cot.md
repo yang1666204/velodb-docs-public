@@ -16,7 +16,7 @@ COT(<x>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | コタンジェントを計算する値 |
 

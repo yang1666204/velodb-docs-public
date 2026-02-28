@@ -31,7 +31,7 @@ SHOW CATALOG <catalog_name>
 
 | 権限                                                                                         | オブジェクト | 備考                          |
 |:---------------------------------------------------------------------------------------------|:-------------|:------------------------------|
-| ADMIN_PRIV / SELECT_PRIV / LOAD_PRIV / ALTER_PRIV / CREATE_PRIV / SHOW_VIEW_PRIV / DROP_PRIV | Catalog      | 上記のいずれかの権限が必要。  |
+| ADMIN_PRIV / SELECT_PRIV / LOAD_PRIV / ALTER_PRIV / CREATE_PRIV / SHOW_VIEW_PRIV / DROP_PRIV | カタログ      | 上記のいずれかの権限が必要。  |
 
 ## 例
 

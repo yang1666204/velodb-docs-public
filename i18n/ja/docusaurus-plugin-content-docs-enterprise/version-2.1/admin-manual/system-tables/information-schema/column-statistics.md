@@ -1,7 +1,7 @@
 ---
 {
   "title": "カラム統計 | Information Schema",
-  "description": "このテーブルはMySQLの動作との互換性のためにのみ使用され、常に空です。",
+  "description": "このTableはMySQLの動作との互換性のためにのみ使用され、常に空です。",
   "language": "ja"
 }
 ---
@@ -9,7 +9,7 @@
 
 ## 概要
 
-このテーブルはMySQLの動作との互換性のためにのみ使用され、常に空です。Doris内のデータの統計情報を真に反映するものではありません。Dorisによって収集された統計情報を表示するには、Statistics セクションを参照してください。
+このTableはMySQLの動作との互換性のためにのみ使用され、常に空です。Doris内のデータの統計情報を真に反映するものではありません。Dorisによって収集された統計情報を表示するには、Statistics セクションを参照してください。
 
 ## Database
 
@@ -17,7 +17,7 @@
 
 ## Table Information
 
-| Column Name | Type        | Description |
+| Column Name | タイプ        | デスクリプション |
 | ----------- | ----------- | ----------- |
 | SCHEMA_NAME | varchar(64) |             |
 | TABLE_NAME  | varchar(64) |             |

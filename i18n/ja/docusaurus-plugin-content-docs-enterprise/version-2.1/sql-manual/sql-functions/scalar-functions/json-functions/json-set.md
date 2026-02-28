@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 json_set関数は、JSONにデータを挿入または更新し、結果を返します。
 
 ## Syntax

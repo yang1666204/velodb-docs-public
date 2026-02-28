@@ -25,7 +25,7 @@ LEAST(<expr> [, ...])
 - いずれかの引数が`NULL`の場合、`NULL`を返します。
 
 ## 使用上の注意
-1. 同じ型の引数を渡すことを推奨します。引数の型が異なる場合、関数は同じ型に変換を試みます。変換ルールについては、[Type Conversion](../../../basic-element/sql-data-types/conversion/overview.md)を参照してください。
+1. 同じ型の引数を渡すことを推奨します。引数の型が異なる場合、関数は同じ型に変換を試みます。変換ルールについては、[タイプ Conversion](../../../basic-element/sql-data-types/conversion/overview.md)を参照してください。
 2. いずれかの引数がNULLの場合、結果はNULLになります。
 
 

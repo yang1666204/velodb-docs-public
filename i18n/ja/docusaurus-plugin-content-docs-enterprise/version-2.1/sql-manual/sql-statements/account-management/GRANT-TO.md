@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 GRANT コマンドは以下の用途で使用されます：
 
@@ -46,11 +46,11 @@ GRANT <role_list> TO <user_identity>
 - NODE_PRIV: クラスターノード操作権限。ノードのオンライン・オフライン操作を含みます。
 - ADMIN_PRIV: NODE_PRIVを除くすべての権限。
 - GRANT_PRIV: 操作権限の権限。ユーザー、ロールの作成・削除、認可・取消、パスワード設定などを含みます。
-- SELECT_PRIV: 指定されたデータベースまたはテーブルの読み取り権限。
-- LOAD_PRIV: 指定されたデータベースまたはテーブルのインポート権限。
-- ALTER_PRIV: 指定されたデータベースまたはテーブルのスキーマ変更権限。
-- CREATE_PRIV: 指定されたデータベースまたはテーブルの作成権限。
-- DROP_PRIV: 指定されたデータベースまたはテーブルの削除権限。
+- SELECT_PRIV: 指定されたデータベースまたはTableの読み取り権限。
+- LOAD_PRIV: 指定されたデータベースまたはTableのインポート権限。
+- ALTER_PRIV: 指定されたデータベースまたはTableのスキーマ変更権限。
+- CREATE_PRIV: 指定されたデータベースまたはTableの作成権限。
+- DROP_PRIV: 指定されたデータベースまたはTableの削除権限。
 - USAGE_PRIV: 指定されたリソースおよびWorkload Group権限へのアクセス。
 - SHOW_VIEW_PRIV: ビュー作成文を表示する権限。
 
@@ -63,10 +63,10 @@ GRANT <role_list> TO <user_identity>
 
 以下の4つの形式をサポートします：
 
-- ..*: すべてのカタログおよびその中のすべてのデータベースとテーブルに権限を適用できます。
-- catalog_name..: 指定されたカタログ内のすべてのデータベースとテーブルに権限を適用できます。
-- catalog_name.db.*: 指定されたデータベース下のすべてのテーブルに権限を適用できます。
-- catalog_name.db.tbl: 指定されたデータベース下の指定されたテーブルに権限を適用できます。
+- ..*: すべてのカタログおよびその中のすべてのデータベースとTableに権限を適用できます。
+- catalog_name..: 指定されたカタログ内のすべてのデータベースとTableに権限を適用できます。
+- catalog_name.db.*: 指定されたデータベース下のすべてのTableに権限を適用できます。
+- catalog_name.db.tbl: 指定されたデータベース下の指定されたTableに権限を適用できます。
 
 **3. `<resource_name>`**
 
@@ -98,17 +98,17 @@ GRANT <role_list> TO <user_identity>
 
 ## 例
 
-- ユーザーにすべてのカタログとデータベースとテーブルの権限を付与：
+- ユーザーにすべてのカタログとデータベースとTableの権限を付与：
 
     ```sql
     GRANT SELECT_PRIV ON *.*.* TO 'jack'@'%';
     ```
-- 指定されたデータベーステーブルに対する権限をユーザーに付与する：
+- 指定されたデータベースTableに対する権限をユーザーに付与する：
 
     ```sql
     GRANT SELECT_PRIV,ALTER_PRIV,LOAD_PRIV ON ctl1.db1.tbl1  TO 'jack'@'192.8.%';
     ```
-- 指定されたデータベーステーブルに対する権限をロールに付与する：
+- 指定されたデータベースTableに対する権限をロールに付与する：
 
     ```sql
     GRANT LOAD_PRIV ON ctl1.db1.* TO ROLE 'my_role';

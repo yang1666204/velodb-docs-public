@@ -17,9 +17,9 @@
 EXPLODE_MAP(map<k,v>)
 EXPLODE_MAP_OUTER(map<k,v>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `map<k,v>` | mapタイプ |
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 データベース配下のすべてのカスタムキーを表示します。ユーザーがデータベースを指定した場合は、対応するデータベースを確認し、指定しない場合は現在のセッションが配置されているデータベースを直接クエリします。
 
@@ -27,7 +27,7 @@ SHOW ENCRYPTKEYS [ { IN | FROM } <db> ] [ LIKE '<key_pattern>']
 
 ## 戻り値
 
-| Column              | Description      |
+| Column              | デスクリプション      |
 |:--------------------|:-----------------|
 | `EncryptKey Name`   | キーの名前       |
 | `EncryptKey String` | キーの値         |
@@ -36,7 +36,7 @@ SHOW ENCRYPTKEYS [ { IN | FROM } <db> ] [ LIKE '<key_pattern>']
 
 このSQLコマンドを実行するユーザーは、以下の最小権限を持つ必要があります：
 
-| Privilege    | Object      | Notes                                                                    |
+| Privilege    | Object      | 注釈                                                                    |
 |:-------------|:------------|:-------------------------------------------------------------------------|
 | `ADMIN_PRIV` | User / Role | 暗号化キーを表示するには、対象のユーザー/ロールに対する`ADMIN_PRIV`権限を持つ必要があります |
 

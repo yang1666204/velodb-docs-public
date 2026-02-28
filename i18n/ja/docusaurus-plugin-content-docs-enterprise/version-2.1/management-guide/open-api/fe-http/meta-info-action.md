@@ -6,7 +6,7 @@
 ---
 # Meta Action
 
-Meta Info Actionは、クラスタ内のメタデータ情報を取得するために使用されます。データベース一覧、テーブル構造などの情報を取得できます。
+Meta Info Actionは、クラスタ内のメタデータ情報を取得するために使用されます。データベース一覧、Table構造などの情報を取得できます。
 
 ## List Database
 
@@ -60,7 +60,7 @@ GET /api/meta/namespaces/<ns_name>/databases/<db_name>/tables
 ```
 ### 説明
 
-指定されたデータベース内のテーブル一覧をアルファベット順で取得します。
+指定されたデータベース内のTable一覧をアルファベット順で取得します。
 
 ### Pathパラメータ
 
@@ -94,7 +94,7 @@ GET /api/meta/namespaces/<ns_name>/databases/<db_name>/tables
 	"count": 0
 }
 ```
-* dataフィールドはテーブル名のリストを返します。
+* dataフィールドはTable名のリストを返します。
 
 ## Schema Info
 
@@ -103,9 +103,9 @@ GET /api/meta/namespaces/<ns_name>/databases/<db_name>/tables
 ```
 GET /api/meta/namespaces/<ns_name>/databases/<db_name>/tables/<tbl_name>/schema
 ```
-### Description
+### デスクリプション
 
-指定されたデータベース内の指定されたテーブルのテーブル構造情報を取得します。
+指定されたデータベース内の指定されたTableのTable構造情報を取得します。
 
 ### Path parameters
 
@@ -115,13 +115,13 @@ GET /api/meta/namespaces/<ns_name>/databases/<db_name>/tables/<tbl_name>/schema
 
 * `<tbl_name>`
 
-    テーブル名を指定します
+    Table名を指定します
 
 ### Query parameters
 
 * `with_mv`
 
-    オプション。指定されない場合、デフォルトでベーステーブルのテーブル構造が返されます。指定された場合、すべてのrollup indexも返されます。
+    オプション。指定されない場合、デフォルトでベースTableのTable構造が返されます。指定された場合、すべてのrollup indexも返されます。
 
 ### Request body
 
@@ -202,4 +202,4 @@ GET /api/meta/namespaces/default/databases/db1/tables/tbl1/schema?with_mv?=1
 	"count": 0
 }
 ```
-* dataフィールドは、ベーステーブルまたはrollupテーブルのテーブル構造情報を返します。
+* dataフィールドは、ベースTableまたはrollupTableのTable構造情報を返します。

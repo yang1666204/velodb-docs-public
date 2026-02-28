@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 Explainはリライトされた実行プランを表示できます。
 
@@ -26,7 +26,7 @@ USING (<filter>);
 
 **<table_name>**
 
-> テーブル名
+> Table名
 
 **<filter_type>**
 

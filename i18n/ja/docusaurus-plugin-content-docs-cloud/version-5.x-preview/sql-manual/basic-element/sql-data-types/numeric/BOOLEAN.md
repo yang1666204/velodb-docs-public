@@ -6,7 +6,7 @@
 }
 ---
 ## BOOLEAN
-### Description
+### デスクリプション
 BOOL, BOOLEAN
 TINYINTと同様に、0はfalseを表し、1はtrueを表します。
 

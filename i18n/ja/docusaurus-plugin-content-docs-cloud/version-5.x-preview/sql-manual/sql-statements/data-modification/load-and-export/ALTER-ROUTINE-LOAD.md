@@ -68,7 +68,7 @@ FROM [<data_source>]
 
 | 権限 | オブジェクト | 備考 |
 | :-------- | :----- | :---- |
-| LOAD_PRIV | Table | SHOW ROUTINE LOADにはテーブルのLOAD権限が必要 |
+| LOAD_PRIV | Table | SHOW ROUTINE LOADにはTableのLOAD権限が必要 |
 
 ## 注意事項
 

@@ -17,7 +17,7 @@ CONVERT_TZ(<dt>, <from_tz>, <to_tz>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- | 
 | `<dt>` | 変換対象の日時値 |
 | `<from_tz>` | dtの元のタイムゾーン |

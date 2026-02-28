@@ -6,7 +6,7 @@
 }
 ---
 ## 説明
-`explode`関数は1つ以上の配列を受け取り、配列の各要素を別々の行にマッピングします。ネストされたデータ構造を標準的なフラットテーブル形式に平坦化するため、[`LATERAL VIEW`](../../../query-data/lateral-view.md)と一緒に使用する必要があります。`explode`と[`explode_outer`](./explode-outer.md)の主な違いは、null値の処理方法です。
+`explode`関数は1つ以上の配列を受け取り、配列の各要素を別々の行にマッピングします。ネストされたデータ構造を標準的なフラットTable形式に平坦化するため、[`LATERAL VIEW`](../../../query-data/lateral-view.md)と一緒に使用する必要があります。`explode`と[`explode_outer`](./explode-outer.md)の主な違いは、null値の処理方法です。
 
 ## 構文
 

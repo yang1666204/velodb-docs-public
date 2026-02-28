@@ -7,7 +7,7 @@
 ---
 DorisはTrino Connector互換フレームワークを通じて[TPCDS Connector](https://trino.io/docs/current/connector/tpcds.html)を使用し、TPCDSテストセットを迅速に構築することをサポートしています。
 
-Hive/Icebergテーブルのデータ書き戻し機能と組み合わせることで、Doris、Hive、Icebergテーブル用のTPCDSテストデータセットをDorisを通じて迅速に構築できます。
+Hive/IcebergTableのデータ書き戻し機能と組み合わせることで、Doris、Hive、IcebergTable用のTPCDSテストデータセットをDorisを通じて迅速に構築できます。
 
 このドキュメントでは主に、TPCDS Connectorをデプロイして使用し、テストデータセットを構築する方法について紹介します。
 
@@ -53,9 +53,9 @@ CREATE CATALOG `tpcds` PROPERTIES (
 ```
 `tpcds.split-count` は並行性の数であり、最適な並行性を実現するためにBEマシンごとのコア数の2倍に設定することが推奨されています。データ生成効率を向上させます。
 
-## TPCDS Catalog の使用
+## TPCDS カタログ の使用
 
-TPCDS Catalog には異なるScale Factorの事前構築されたTPCDSデータセットがあり、`SHOW DATABASES` および `SHOW TABLES` コマンドを使用して表示できます。
+TPCDS カタログ には異なるScale Factorの事前構築されたTPCDSデータセットがあり、`SHOW DATABASES` および `SHOW TABLES` コマンドを使用して表示できます。
 
 ```sql
 mysql> SWITCH tpcds;
@@ -110,10 +110,10 @@ mysql> SHOW TABLES;
 | web_site               |
 +------------------------+
 ```
-SELECT文を使用してこれらのテーブルを直接クエリできます。
+SELECT文を使用してこれらのTableを直接クエリできます。
 
 :::tip
-これらの事前構築データセットのデータは実際には保存されておらず、クエリ実行時にリアルタイムで生成されます。そのため、これらの事前構築データセットは直接のBenchmarkテストには適していません。`INSERT INTO SELECT`を通じてこれらのデータセットを他のターゲットテーブル（Doris内部テーブル、Hive、Iceberg、その他Dorisが書き込みをサポートするデータソース）に書き込み、そのターゲットテーブルでパフォーマンステストを実行することに適しています。
+これらの事前構築データセットのデータは実際には保存されておらず、クエリ実行時にリアルタイムで生成されます。そのため、これらの事前構築データセットは直接のBenchmarkテストには適していません。`INSERT INTO SELECT`を通じてこれらのデータセットを他のターゲットTable（Doris内部Table、Hive、Iceberg、その他Dorisが書き込みをサポートするデータソース）に書き込み、そのターゲットTableでパフォーマンステストを実行することに適しています。
 :::
 
 ## TPCDSテストデータセットの構築

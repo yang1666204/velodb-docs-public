@@ -1,13 +1,13 @@
 ---
 {
   "title": "Sync-Materialized View",
-  "description": "同期マテリアライズドビューは、定義されたSELECT文に基づいて事前計算されたデータセットを格納するDorisの特別なタイプのテーブルです。",
+  "description": "同期マテリアライズドビューは、定義されたSELECT文に基づいて事前計算されたデータセットを格納するDorisの特別なタイプのTableです。",
   "language": "ja"
 }
 ---
 ## Synchronous Materialized Viewとは
 
-Synchronous Materialized Viewは、定義されたSELECT文に基づいて事前計算されたデータセットを格納するDorisの特別なテーブルタイプです。Dorisは自動的にsynchronous materialized viewのデータを維持し、ベーステーブルでの新しいインポートや削除がmaterialized viewにリアルタイムで反映されることを保証し、追加の手動メンテナンスを必要とすることなくデータの整合性を維持します。クエリ時には、Dorisが自動的に最適なmaterialized viewを選択し、そこから直接データを取得します。
+Synchronous Materialized Viewは、定義されたSELECT文に基づいて事前計算されたデータセットを格納するDorisの特別なTableタイプです。Dorisは自動的にsynchronous materialized viewのデータを維持し、ベースTableでの新しいインポートや削除がmaterialized viewにリアルタイムで反映されることを保証し、追加の手動メンテナンスを必要とすることなくデータの整合性を維持します。クエリ時には、Dorisが自動的に最適なmaterialized viewを選択し、そこから直接データを取得します。
 
 ## 適用シナリオ
 
@@ -21,7 +21,7 @@ Synchronous Materialized Viewは、定義されたSELECT文に基づいて事前
 
 ## 制限事項
 
-- Synchronous materialized viewは単一テーブルに対するSELECT文のみをサポートし、WHERE、GROUP BY、ORDER BY句を含みますが、JOIN、HAVING、LIMIT句、LATERAL VIEWはサポートしません。
+- Synchronous materialized viewは単一Tableに対するSELECT文のみをサポートし、WHERE、GROUP BY、ORDER BY句を含みますが、JOIN、HAVING、LIMIT句、LATERAL VIEWはサポートしません。
 
 - Asynchronous materialized viewとは異なり、synchronous materialized viewは直接クエリできません。
 
@@ -29,19 +29,19 @@ Synchronous Materialized Viewは、定義されたSELECT文に基づいて事前
 
 - SELECT listにはVARBINARY型の列を含めることはできません。
 
-- Sync materialized viewのselect listの列名は、ベーステーブルの既存の列名や、同じベーステーブル上の他のsync materialized viewの列名と同じであってはなりません。エイリアスを指定することで名前の競合を回避できます（例：col as xxx）。
+- Sync materialized viewのselect listの列名は、ベースTableの既存の列名や、同じベースTable上の他のsync materialized viewの列名と同じであってはなりません。エイリアスを指定することで名前の競合を回避できます（例：col as xxx）。
 
 - SELECT listに集約関数が含まれる場合、これらはルート式でなければならず（例：`sum(a + 1)`はサポートされますが、`sum(a) + 1`はサポートされません）、集約関数の後に非集約関数式を続けることはできません（例：`SELECT x, sum(a)`は許可されますが、`SELECT sum(a), x`は許可されません）。
 
 - DELETE文の条件列がmaterialized viewに存在する場合、DELETE操作は実行できません。データの削除が必要な場合は、まずmaterialized viewを削除する必要があります。
 
-- 単一テーブル上の過度なmaterialized viewはインポート効率に影響を与える可能性があります。データのインポート時には、materialized viewとベーステーブルの両方が同期的に更新されます。テーブル上の過度なmaterialized viewは、複数のテーブルに同時にデータをインポートするのと同様に、インポートを遅くする可能性があります。
+- 単一Table上の過度なmaterialized viewはインポート効率に影響を与える可能性があります。データのインポート時には、materialized viewとベースTableの両方が同期的に更新されます。Table上の過度なmaterialized viewは、複数のTableに同時にデータをインポートするのと同様に、インポートを遅くする可能性があります。
 
 - Unique Keyデータモデル上のMaterialized viewは列の並び替えのみが可能で、集約はサポートしません。そのため、Unique Keyモデル上のmaterialized viewを通じて粗粒度の集約操作を実行することはできません。
 
 ## Materialized Viewの使用
 
-Dorisはmaterialized viewに対する包括的なDDL構文を提供しており、作成、表示、削除が含まれます。以下は、materialized viewを使用して集約計算を高速化する方法を実演する例です。ユーザーが取引ID、販売担当者、店舗、販売日、金額を格納する販売記録詳細テーブルを持っているとします。テーブル作成とデータ挿入文は以下の通りです：
+Dorisはmaterialized viewに対する包括的なDDL構文を提供しており、作成、表示、削除が含まれます。以下は、materialized viewを使用して集約計算を高速化する方法を実演する例です。ユーザーが取引ID、販売担当者、店舗、販売日、金額を格納する販売記録詳細Tableを持っているとします。Table作成とデータ挿入文は以下の通りです：
 
 ```sql
 -- Create a test_db  
@@ -65,7 +65,7 @@ insert into sales_records values(1,1,1,"2020-02-02",1), (1,1,1,"2020-02-02",2);
 ```
 ### Materialized Viewの作成
 
-ユーザーが異なる店舗別の売上高を頻繁に分析する必要がある場合、`sales_records`テーブルに対してMaterialized Viewを作成できます。これは店舗IDでグループ化し、各店舗の売上金額を合計します。作成文は以下の通りです：
+ユーザーが異なる店舗別の売上高を頻繁に分析する必要がある場合、`sales_records`Tableに対してMaterialized Viewを作成できます。これは店舗IDでグループ化し、各店舗の売上金額を合計します。作成文は以下の通りです：
 
 ```sql
 create materialized view store_amt as   
@@ -100,7 +100,7 @@ cancel alter table materialized view from test_db.sales_records;
 
 ### マテリアライズドビュー構造の表示
 
-ターゲットテーブル上に作成されたすべてのマテリアライズドビューの構造は、以下のコマンドを使用して表示できます：
+ターゲットTable上に作成されたすべてのマテリアライズドビューの構造は、以下のコマンドを使用して表示できます：
 
 ```sql
 desc sales_records all;
@@ -114,7 +114,7 @@ show create materialized view store_amt on sales_records;
 ```
 ### Materialized Viewのクエリ
 
-materialized viewが作成されると、ユーザーが異なる店舗の売上高をクエリする際、Dorisは新しく作成されたmaterialized view `store_amt`から集約されたデータを直接読み取り、これによりクエリ効率が向上します。ユーザーは依然としてクエリで`sales_records`テーブルを指定します。例えば：
+materialized viewが作成されると、ユーザーが異なる店舗の売上高をクエリする際、Dorisは新しく作成されたmaterialized view `store_amt`から集約されたデータを直接読み取り、これによりクエリ効率が向上します。ユーザーは依然としてクエリで`sales_records`Tableを指定します。例えば：
 
 ```sql
 SELECT store_id, SUM(sale_amt) FROM sales_records GROUP BY store_id;
@@ -204,7 +204,7 @@ EXPLAIN SELECT store_id, SUM(sale_amt) FROM sales_records GROUP BY store_id;
 |   internal.test_db.sales_records.store_amt chose,                      |  
 +------------------------------------------------------------------------+
 ```
-上記の内容は、クエリが `store_amt` という名前のマテリアライズドビューに正常にマッチしたことを示しています。対象テーブルにデータがない場合、マテリアライズドビューがヒットしない可能性があることに注意してください。
+上記の内容は、クエリが `store_amt` という名前のマテリアライズドビューに正常にマッチしたことを示しています。対象Tableにデータがない場合、マテリアライズドビューがヒットしない可能性があることに注意してください。
 
 MATERIALIZATIONS の詳細説明：
 
@@ -228,7 +228,7 @@ drop materialized view store_amt on sales_records;
 
 ビジネスシナリオ: 広告のUV（Unique Visitors）とPV（Page Views）の計算。
 
-1. 広告のクリック生データがDorisに保存されていると仮定し、`bitmap_union`を使用したmaterialized viewを作成することで、広告のPVとUVのクエリを高速化できます。まず、広告クリック詳細を保存するテーブルを作成します：
+1. 広告のクリック生データがDorisに保存されていると仮定し、`bitmap_union`を使用したmaterialized viewを作成することで、広告のPVとUVのクエリを高速化できます。まず、広告クリック詳細を保存するTableを作成します：
 
     ```sql
     create table advertiser_view_record  
@@ -265,7 +265,7 @@ drop materialized view store_amt on sales_records;
     group by 
         advertiser, channel;
     ```
-4. マテリアライズドビューテーブルが作成されると、広告のUVをクエリする際に、Dorisは新しく作成されたマテリアライズドビュー`advertiser_uv`から自動的にデータを取得します。前のSQLが実行される場合：
+4. マテリアライズドビューTableが作成されると、広告のUVをクエリする際に、Dorisは新しく作成されたマテリアライズドビュー`advertiser_uv`から自動的にデータを取得します。前のSQLが実行される場合：
 
     ```sql
     select 
@@ -380,7 +380,7 @@ drop materialized view store_amt on sales_records;
 
 ビジネスシナリオ: プレフィックスインデックスのマッチング。
 
-1. テーブルがk1とk2にプレフィックスインデックスを持つが、クエリでk3を含む場合がある時、k3を最初の列としてマテリアライズドビューを作成し、インデックスを活用できます:
+1. Tableがk1とk2にプレフィックスインデックスを持つが、クエリでk3を含む場合がある時、k3を最初の列としてマテリアライズドビューを作成し、インデックスを活用できます:
 
    ```sql
    create table test_table  
@@ -457,7 +457,7 @@ drop materialized view store_amt on sales_records;
 
 ビジネスシナリオ: データの事前フィルタリングまたは式計算の高速化。
 
-1. 事前フィルタリングと式計算用のテーブルとマテリアライズドビューを作成します：
+1. 事前フィルタリングと式計算用のTableとマテリアライズドビューを作成します：
 
    ```sql
    create table d_table (

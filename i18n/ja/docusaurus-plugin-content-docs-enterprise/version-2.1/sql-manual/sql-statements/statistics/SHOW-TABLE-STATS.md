@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW TABLE STATS",
-  "description": "このステートメントは、テーブルの概要統計を表示するために使用されます。",
+  "description": "このステートメントは、Tableの概要統計を表示するために使用されます。",
   "language": "ja"
 }
 ---
 ## 説明
 
-このステートメントは、テーブルの概要統計を表示するために使用されます。
+このステートメントは、Tableの概要統計を表示するために使用されます。
 
 ## 構文
 
@@ -18,7 +18,7 @@ SHOW TABLE STATS <table_name>;
 
 **1. `<table_name>`**
 
-> テーブル名
+> Table名
 
 ## オプションパラメータ
 
@@ -28,10 +28,10 @@ SHOW TABLE STATS <table_name>;
 
 | Column | Note           |
 | -- |--------------|
-| updated_rows | テーブル更新行数           |
-| query_times |   テーブルクエリ回数           |
-| row_count | テーブル行数           |
-| updated_time | テーブル最終変更時刻        |
+| updated_rows | Table更新行数           |
+| query_times |   Tableクエリ回数           |
+| row_count | Table行数           |
+| updated_time | Table最終変更時刻        |
 | columns | 解析対象列一覧           |
 | trigger |   最後の解析トリガー方式           |
 | new_partition |  新規パーティション初回ロードフラグ           |
@@ -43,13 +43,13 @@ SHOW TABLE STATS <table_name>;
 
 このSQLを実行するユーザーは、最低限以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes                                    |
+| Privilege | Object | 注釈                                    |
 |:--------------| :------------- |:------------------------------------------------|
-| SELECT_PRIV   | Table    | SHOWを実行する際、クエリ対象テーブルのSELECT_PRIV権限が必要です。 |
+| SELECT_PRIV   | Table    | SHOWを実行する際、クエリ対象TableのSELECT_PRIV権限が必要です。 |
 
 ## 例
 
-1. テーブルtest1の概要統計を表示します。
+1. Tabletest1の概要統計を表示します。
 
 ```sql
 SHOW TABLE STATS test1;

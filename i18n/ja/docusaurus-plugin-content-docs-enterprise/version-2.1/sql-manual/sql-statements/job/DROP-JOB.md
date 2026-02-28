@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 ユーザーはJOBジョブを削除します。ジョブは即座に停止され、削除されます。
 
@@ -23,7 +23,7 @@ DROP JOB where jobName = <job_name> ;
 
 このSQLコマンドを実行するユーザーは、最低限以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes |
+| Privilege | Object | 注釈 |
 |:--------------|:-----------|:------------------------|
 | ADMIN_PRIV | Database | 現在この操作を実行するには**ADMIN**権限のみサポートされています |
 

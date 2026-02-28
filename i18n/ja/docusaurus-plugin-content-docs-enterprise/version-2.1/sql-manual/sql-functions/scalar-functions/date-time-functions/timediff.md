@@ -13,9 +13,9 @@
 ```sql
 TIMEDIFF(<end_datetime>, <start_datetime>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter          | Description                  |
+| Parameter          | デスクリプション                  |
 |--------------------|------------------------------|
 | `<end_datetime>`   | 終了日時の値。   |
 | `<start_datetime>` | 開始日時の値。 |

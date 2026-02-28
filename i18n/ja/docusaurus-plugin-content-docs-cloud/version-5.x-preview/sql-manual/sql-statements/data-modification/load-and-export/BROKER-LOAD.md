@@ -54,7 +54,7 @@ WITH BROKER "<broker_name>"
 > 各インポートタスクは一意のLabelを指定する必要があります。後でこのLabelを使用してジョブの進行状況を照会できます。
 
 **3. `<table_name>`**
-> インポートタスクに対応するテーブルを指定します。
+> インポートタスクに対応するTableを指定します。
 
 **4. `<file_path>`**
 > インポートするファイルパスを指定します。複数のパスを指定でき、ワイルドカードを使用できます。パスは最終的にファイルと一致する必要があります。ディレクトリのみと一致する場合、インポートは失敗します。
@@ -76,13 +76,13 @@ WITH BROKER "<broker_name>"
 ## オプションパラメータ
 
 **1. `merge | append | delete`**  
-> データマージタイプ。デフォルトは`append`で、このインポートが通常の追記操作であることを示します。`merge`と`delete`タイプは、unique keyモデルのテーブルにのみ適用されます。`merge`タイプは`[delete on]`文と組み合わせて使用し、削除フラグ列をマークする必要があります。`delete`タイプは、今回インポートされるすべてのデータが削除データであることを示します。
+> データマージタイプ。デフォルトは`append`で、このインポートが通常の追記操作であることを示します。`merge`と`delete`タイプは、unique keyモデルのTableにのみ適用されます。`merge`タイプは`[delete on]`文と組み合わせて使用し、削除フラグ列をマークする必要があります。`delete`タイプは、今回インポートされるすべてのデータが削除データであることを示します。
 
 **2. `negative`**  
-> 「negative」インポートを示します。この方法は、整数sum集約タイプの集約データテーブルにのみ適用されます。インポートデータ内のsum集約列に対応する整数値を負の値にし、誤ったデータを相殺するために使用されます。
+> 「negative」インポートを示します。この方法は、整数sum集約タイプの集約データTableにのみ適用されます。インポートデータ内のsum集約列に対応する整数値を負の値にし、誤ったデータを相殺するために使用されます。
 
 **3. `<partition_name>`**  
-> テーブルの特定のパーティションのみをインポートすることを指定します。例：`partition (p1, p2,...)`。パーティション範囲外の他のデータは無視されます。
+> Tableの特定のパーティションのみをインポートすることを指定します。例：`partition (p1, p2,...)`。パーティション範囲外の他のデータは無視されます。
 
 **4. `<column_separator>`**  
 > 列区切り文字を指定します。CSV形式でのみ有効で、単一バイト区切り文字のみを指定できます。
@@ -112,10 +112,10 @@ WITH BROKER "<broker_name>"
 > 条件に従ってインポートデータをフィルタリングします。
 
 **13. `delete on <expr>`**  
-> `merge`インポートモードと組み合わせて使用し、unique keyモデルのテーブルにのみ適用されます。インポートデータ内の削除フラグを表す列と計算関係を指定します。
+> `merge`インポートモードと組み合わせて使用し、unique keyモデルのTableにのみ適用されます。インポートデータ内の削除フラグを表す列と計算関係を指定します。
 
 **14. `<source_sequence>`**  
-> unique keyモデルのテーブルにのみ適用されます。インポートデータ内のsequence列を表す列を指定し、主にインポート時のデータ順序を保証するために使用されます。
+> unique keyモデルのTableにのみ適用されます。インポートデータ内のsequence列を表す列を指定し、主にインポート時のデータ順序を保証するために使用されます。
 
 **15. `properties ("<key>"="<value>",...)`**  
 > インポートファイル形式のパラメータを指定します。CSV、JSONなどの形式に適用されます。例えば、`json_root`、`jsonpaths`、`fuzzy_parse`などのパラメータを指定できます。  
@@ -132,11 +132,11 @@ WITH BROKER "<broker_name>"
 | max_filter_ratio | フィルタリング可能なデータの最大許容比率（データの不規則性などの理由による）。デフォルトはゼロ許容で、値の範囲は0から1です。 |
 | exec_mem_limit | インポートメモリ制限。デフォルトは2GBで、単位はバイトです。 |
 | strict_mode | データに厳密な制限を課すかどうか。デフォルトは`false`です。 |
-| partial_columns | ブール型。`true`に設定すると、部分列更新の使用を示し、デフォルト値は`false`です。テーブルモデルがUniqueでMerge on Writeを使用している場合のみ設定できます。 |
+| partial_columns | ブール型。`true`に設定すると、部分列更新の使用を示し、デフォルト値は`false`です。TableモデルがUniqueでMerge on Writeを使用している場合のみ設定できます。 |
 | timezone | タイムゾーンを指定します。`strftime`、`alignment_timestamp`、`from_unixtime`などのタイムゾーンに影響される一部の関数に影響します。詳細については、[Time Zone](https://chatgpt.com/advanced/time - zone.md)ドキュメントを参照してください。指定されていない場合は、「Asia/Shanghai」が使用されます。 |
 | load_parallelism | インポート並行性。デフォルトは1です。インポート並行性を増加させると、複数の実行プランが開始され、インポートタスクを同時に実行し、インポートプロセスを高速化します。 |
 | send_batch_parallelism | バッチデータ送信の並列性を設定します。並列性の値がBE設定の`max_send_batch_parallelism_per_job`を超える場合、`max_send_batch_parallelism_per_job`の値が使用されます。 |
-| load_to_single_tablet | ブール型。`true`に設定すると、対応するパーティションの単一タブレットへのデータインポートをサポートし、デフォルト値は`false`です。ジョブ内のタスク数は全体の並行性に依存し、random bucketを持つOLAPテーブルをインポートする際にのみ設定できます。 |
+| load_to_single_tablet | ブール型。`true`に設定すると、対応するパーティションの単一タブレットへのデータインポートをサポートし、デフォルト値は`false`です。ジョブ内のタスク数は全体の並行性に依存し、random bucketを持つOLAPTableをインポートする際にのみ設定できます。 |
 | priority | インポートタスクの優先度を設定します。オプションは`HIGH/NORMAL/LOW`で、デフォルトは`NORMAL`です。`PENDING`状態のインポートタスクの場合、優先度の高いタスクが最初に`LOADING`状態に入ります。 |
 | comment | インポートタスクの備考情報を指定します。 |
 
@@ -146,11 +146,11 @@ WITH BROKER "<broker_name>"
 
 | 権限 | オブジェクト | 備考 |
 | :---------------- | :------------- | :---------------------------- |
-| LOAD_PRIV | Table | 指定されたデータベーステーブルのインポート権限。 |
+| LOAD_PRIV | Table | 指定されたデータベースTableのインポート権限。 |
 
 ## 例
 
-1. HDFSから一括データをインポートします。インポートファイルは`file.txt`で、カンマ区切りで、テーブル`my_table`にインポートします。
+1. HDFSから一括データをインポートします。インポートファイルは`file.txt`で、カンマ区切りで、Table`my_table`にインポートします。
 
     ```sql
     LOAD LABEL example_db.label1
@@ -165,7 +165,7 @@ WITH BROKER "<broker_name>"
         "password"="hdfs_password"
     );
     ```
-2. ワイルドカードを使用してHDFSからデータをインポートし、2つのファイルバッチをマッチさせてそれぞれを2つのテーブルにインポートします。ワイルドカードを使用して2つのファイルバッチ`file - 10*`と`file - 20*`をマッチさせ、それぞれをテーブル`my_table1`と`my_table2`にインポートします。`my_table1`については、パーティション`p1`にインポートするよう指定し、ソースファイルの2列目と3列目の値に1を加算した後にインポートします。
+2. ワイルドカードを使用してHDFSからデータをインポートし、2つのファイルバッチをマッチさせてそれぞれを2つのTableにインポートします。ワイルドカードを使用して2つのファイルバッチ`file - 10*`と`file - 20*`をマッチさせ、それぞれをTable`my_table1`と`my_table2`にインポートします。`my_table1`については、パーティション`p1`にインポートするよう指定し、ソースファイルの2列目と3列目の値に1を加算した後にインポートします。
 
     ```sql
     LOAD LABEL example_db.label2
@@ -298,7 +298,7 @@ WITH BROKER "<broker_name>"
    /user/data/data_time=2020-02-17 00%3A00%3A00/test.txt
    /user/data/data_time=2020-02-18 00%3A00%3A00/test.txt
    ```
-テーブル構造は以下の通りです：
+Table構造は以下の通りです：
 
    ```text
    data_time DATETIME,
@@ -326,11 +326,11 @@ WITH BROKER "<broker_name>"
        "max_filter_ratio" = "0.1"
    );
    ```
-インポートには`MERGE`メソッドを使用します。`my_table`はUnique Keyモデルを持つテーブルである必要があります。インポートデータの`v2`列の値が100より大きい場合、その行は削除行とみなされます。
+インポートには`MERGE`メソッドを使用します。`my_table`はUnique Keyモデルを持つTableである必要があります。インポートデータの`v2`列の値が100より大きい場合、その行は削除行とみなされます。
 
    インポートタスクのタイムアウト期間は3600秒で、最大10%のエラー率が許可されます。
 
-9. インポート時に`source_sequence`列を指定して、`UNIQUE_KEYS`テーブルでの置換順序を確保します：
+9. インポート時に`source_sequence`列を指定して、`UNIQUE_KEYS`Tableでの置換順序を確保します：
 
    ```sql
    LOAD LABEL example_db.label9
@@ -347,7 +347,7 @@ WITH BROKER "<broker_name>"
        "password"="pass"
    )
    ```
-`my_table`はUnique Keyモデルを持つテーブルである必要があり、`Sequence Col`を指定する必要があります。データはソースデータの`source_sequence`列の値に従って順序付けされます。
+`my_table`はUnique Keyモデルを持つTableである必要があり、`Sequence Col`を指定する必要があります。データはソースデータの`source_sequence`列の値に従って順序付けされます。
 
 10. HDFSからデータのバッチをインポートし、ファイル形式を`json`として指定し、`json_root`と`jsonpaths`を設定します：
 

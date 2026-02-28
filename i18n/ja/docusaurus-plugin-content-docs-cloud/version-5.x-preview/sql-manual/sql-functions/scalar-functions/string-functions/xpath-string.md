@@ -18,8 +18,8 @@ XPATH_STRING関数は、XML文字列を解析し、[XPath](https://www.w3.org/TR
 ```sql
 XPATH_STRING(<xml_string>, <xpath_expression>)
 ```
-## Parameters
-| Parameter | Description                                   |
+## パラメータ
+| Parameter | デスクリプション                                   |
 | --------- | ----------------------------------------------|
 | `<xml_string>` | ソース文字列。タイプ: VARCHAR             |
 | `<xpath_expression>` | [XPath](https://www.w3.org/TR/xpath-10/) 式。タイプ: VARCHAR    |

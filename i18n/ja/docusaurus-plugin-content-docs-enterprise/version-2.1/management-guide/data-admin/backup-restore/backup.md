@@ -6,7 +6,7 @@
 ---
 バックアップに関する概念については、[Backup and Restore](./overview.md)を参照してください。このガイドでは、Repositoryを作成してデータをバックアップする手順を説明します。
 
-## Step 1. Repository作成
+## ステップ 1. Repository作成
 
 <!--
 suites/backup_restore/test_create_and_drop_repository.groovy
@@ -137,9 +137,9 @@ PROPERTIES
 
 ## ステップ2. バックアップ
 
-データベース、テーブル、またはパーティションをバックアップするには、以下のステートメントを参照してください。詳細な使用方法については、[Backup](../../../sql-manual/sql-statements/data-modification/backup-and-restore/BACKUP)を参照してください。
+データベース、Table、またはパーティションをバックアップするには、以下のステートメントを参照してください。詳細な使用方法については、[Backup](../../../sql-manual/sql-statements/data-modification/backup-and-restore/BACKUP)を参照してください。
 
-バックアップに含まれるデータベースやテーブルを含む、意味のあるラベル名を使用することをお勧めします。
+バックアップに含まれるデータベースやTableを含む、意味のあるラベル名を使用することをお勧めします。
 
 ### オプション1: 現在のデータベースのバックアップ
 
@@ -157,9 +157,9 @@ TO example_repo;
 BACKUP SNAPSHOT destdb.`destdb_20241225`
 TO example_repo;
 ```
-### オプション3: 指定したテーブルのバックアップ
+### オプション3: 指定したTableのバックアップ
 
-以下のSQL文は、スナップショットラベル`exampledb_tbl_tbl1_20241225`を使用して、2つのテーブルを`example_repo`という名前のRepositoryにバックアップします。
+以下のSQL文は、スナップショットラベル`exampledb_tbl_tbl1_20241225`を使用して、2つのTableを`example_repo`という名前のRepositoryにバックアップします。
 
 ```sql
 BACKUP SNAPSHOT exampledb_tbl_tbl1_20241225
@@ -168,7 +168,7 @@ ON (example_tbl, example_tbl1);
 ```
 ### Option 4: 指定パーティションのバックアップ
 
-以下のSQL文は、`example_tbl2`という名前のテーブルと`p1`および`p2`という名前の2つのパーティションを`example_repo`という名前のRepositoryにバックアップし、スナップショットラベル`example_tbl_p1_p2_tbl1_20241225`を使用します。
+以下のSQL文は、`example_tbl2`という名前のTableと`p1`および`p2`という名前の2つのパーティションを`example_repo`という名前のRepositoryにバックアップし、スナップショットラベル`example_tbl_p1_p2_tbl1_20241225`を使用します。
 
 ```sql
 BACKUP SNAPSHOT example_tbl_p1_p2_tbl1_20241225
@@ -179,9 +179,9 @@ ON
       example_tbl2
 );
 ```
-### オプション 5: 特定のテーブルを除外して現在のデータベースをバックアップ
+### オプション 5: 特定のTableを除外して現在のデータベースをバックアップ
 
-以下のSQL文は、現在のデータベースを`example_repo`という名前のRepositoryにバックアップし、スナップショットラベル`exampledb_20241225`を使用して、`example_tbl`と`example_tbl1`という名前の2つのテーブルを除外します。
+以下のSQL文は、現在のデータベースを`example_repo`という名前のRepositoryにバックアップし、スナップショットラベル`exampledb_20241225`を使用して、`example_tbl`と`example_tbl1`という名前の2つのTableを除外します。
 
 ```sql
 BACKUP SNAPSHOT exampledb_20241225
@@ -192,7 +192,7 @@ EXCLUDE
       example_tbl1
 );
 ```
-## Step 3. 最近のバックアップジョブの実行状態を確認する
+## ステップ 3. 最近のバックアップジョブの実行状態を確認する
 
 次のSQL文を使用して、最近のバックアップジョブの実行状態を確認できます。
 
@@ -215,7 +215,7 @@ mysql> show BACKUP\G;
                 Timeout: 86400
    1 row in set (0.01 sec)
 ```
-## Step 4. Repository内の既存バックアップを表示する
+## ステップ 4. Repository内の既存バックアップを表示する
 
 以下のSQL文を使用して、`example_repo`という名前のRepository内の既存バックアップを表示できます。ここで、Snapshot列はスナップショットラベル、Timestampはタイムスタンプです。
 

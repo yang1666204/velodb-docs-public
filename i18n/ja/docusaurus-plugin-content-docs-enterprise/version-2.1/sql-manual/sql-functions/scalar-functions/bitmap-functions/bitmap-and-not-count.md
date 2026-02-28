@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つのBITMAP上でNOT演算を実行し、結果セット内の要素数を返します。最初の入力パラメータは`base BITMAP`と呼ばれ、2番目は`exclusion BITMAP`と呼ばれます。
 
@@ -18,9 +18,9 @@
 ```sql
 BITMAP_AND_NOT_COUNT(<bitmap1>, <bitmap2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter   | Description                      |
+| Parameter   | デスクリプション                      |
 |-------------|----------------------------------|
 | `<bitmap1>` | 否定するベース BITMAP      |
 | `<bitmap2>` | 否定する除外 BITMAP |

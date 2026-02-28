@@ -16,9 +16,9 @@ NEXT_DAY関数は、指定された日付の後で、対象の曜日に一致す
 ```sql
 NEXT_DAY(`<date_or_time_expr>`, `<day_of_week>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<date_or_time_expr>` | date/datetime型をサポートします。特定のdatetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |
 | `<day_of_week>` | 曜日を識別するために使用される文字列式で、string型です。 |
@@ -87,7 +87,7 @@ SELECT NEXT_DAY(NULL, 'SUN') AS result;
 
 --- Invalid weekday identifier (throws exception)
 mysql> SELECT NEXT_DAY('2023-07-13', 'ABC') AS result;
-ERROR 1105 (HY000): errCode = 2, detailMessage = (10.16.10.3)[INVALID_ARGUMENT]Function next_day failed to parse weekday: ABC
+ERROR 1105 (HY000): errCode = 2, detailMessage = (10.16.10.3)[INVALID_ARGUMENT]ファンクション next_day failed to parse weekday: ABC
 
 --- Maximum date (returns itself)
 SELECT NEXT_DAY('9999-12-31 12:00:00', 'SUNDAY') AS result;

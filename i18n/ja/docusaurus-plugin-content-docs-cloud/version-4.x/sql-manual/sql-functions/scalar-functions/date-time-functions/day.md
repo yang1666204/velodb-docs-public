@@ -18,9 +18,9 @@
 ```sql
 DAY(<dt>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | <`dt`> | 有効な日付式 |
 

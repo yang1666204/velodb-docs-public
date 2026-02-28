@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この関数は、JSON ドキュメントに指定された JSON 要素が含まれているかどうかを確認するために使用されます。指定された要素が JSON ドキュメントに存在する場合は 1 を返し、そうでない場合は 0 を返します。JSON ドキュメントまたはクエリされる要素が無効な場合は、`NULL` を返します。
 
@@ -13,16 +13,16 @@
 
 `JSON_CONTAINS(<json_str>,  <candidate> [,  <json_path>])`
 
-## Required Parameters
+## Required パラメータ
 
-| Parameter   | Description                                         |
+| Parameter   | デスクリプション                                         |
 |-------------|-----------------------------------------------------|
 | `<json_str>` | チェック対象の JSON 文字列。                      |
 | `<candidate>` | 包含を確認する JSON 要素。            |
 
-## Optional Parameters
+## Optional パラメータ
 
-| Parameter   | Description                                         |
+| Parameter   | デスクリプション                                         |
 |-------------|-----------------------------------------------------|
 | `<json_path>` | チェックするサブドキュメントを指定するオプションの JSON パス。提供されない場合、デフォルトでルートドキュメントが使用されます。 |
 

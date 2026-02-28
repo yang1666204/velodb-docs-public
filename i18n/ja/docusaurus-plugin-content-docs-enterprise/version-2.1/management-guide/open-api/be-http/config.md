@@ -11,7 +11,7 @@
 `GET /api/show_config`
 `POST /api/update_config?{key}={val}`
 
-## Description
+## デスクリプション
 
 BEの設定を照会および更新します
 
@@ -37,7 +37,7 @@ BEの設定を照会および更新します
 ```
 [["agent_task_trace_threshold_sec","int32_t","2","true"], ...]
 ```
-### Update
+### アップデート
 
 ```
 [

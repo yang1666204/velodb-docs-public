@@ -1,6 +1,6 @@
 ---
 {
-  "title": "テーブルスキーマアクション",
+  "title": "Tableスキーマアクション",
   "language": "ja"
 }
 ---
@@ -10,9 +10,9 @@
 
 `GET /api/<db>/<table>/_schema`
 
-## Description
+## デスクリプション
 
-指定されたテーブルのテーブル構造情報を取得するために使用されます。このインターフェースは現在Spark/Flink Doris Connectorで使用されており、Dorisテーブル構造情報を取得します。
+指定されたTableのTable構造情報を取得するために使用されます。このインターフェースは現在Spark/Flink Doris Connectorで使用されており、DorisTable構造情報を取得します。
 
 ## Path parameters
 
@@ -22,7 +22,7 @@
 
 * `<table>`
 
-    テーブルを指定
+    Tableを指定
 
 ## Query parameters
 
@@ -83,7 +83,7 @@
 
 ## Examples
 
-1. httpインターフェースを介して指定されたテーブルのテーブル構造情報を取得します。
+1. httpインターフェースを介して指定されたTableのTable構造情報を取得します。
 
     ```
     GET /api/db1/tbl1/_schema
@@ -110,7 +110,7 @@
     	"count": 0
     }
     ```
-2. http v2 インターフェースを介して指定されたテーブルのテーブル構造情報を取得します。
+2. http v2 インターフェースを介して指定されたTableのTable構造情報を取得します。
 
     ```
     GET /api/db1/tbl1/_schema

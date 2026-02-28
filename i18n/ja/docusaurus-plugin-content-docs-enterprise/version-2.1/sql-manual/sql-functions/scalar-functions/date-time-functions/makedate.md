@@ -18,9 +18,9 @@
 ```sql
 MAKEDATE(<year>, <day_of_year>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter   | Description                               |
+| Parameter   | デスクリプション                               |
 |-------------|-------------------------------------------|
 | `<year>`    | 指定された年、型はINT          |
 | `<day_of_year>` | 年内の日数（1-366）、型はINT |

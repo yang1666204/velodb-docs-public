@@ -18,9 +18,9 @@ Apache Doris 3.0.6以降でサポートされています。
 ```sql
 ST_INTERSECTS( <shape1>, <shape2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter       | Description                     |
+| Parameter       | デスクリプション                     |
 |----------|------------------------|
 | `<shape1>` | 別の図形との交差を判定する最初の幾何図形。Point、Line、Polygon、Circleなどの型をサポート。 |
 | `<shape2>` | 	別の図形との交差を判定する2番目の幾何図形。Point、Line、Polygon、Circleなどの型をサポート。 |

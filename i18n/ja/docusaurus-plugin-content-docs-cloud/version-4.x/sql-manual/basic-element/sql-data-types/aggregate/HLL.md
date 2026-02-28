@@ -9,7 +9,7 @@
 ### 説明
 HLL
 
-HLLはキーカラムとして使用することはできません。HLL型のカラムは、Aggregateテーブル、Duplicateテーブル、およびUniqueテーブルで使用できます。Aggregateテーブルで使用する場合、テーブル構築時の集約タイプはHLL_UNIONです。
+HLLはキーカラムとして使用することはできません。HLL型のカラムは、AggregateTable、DuplicateTable、およびUniqueTableで使用できます。AggregateTableで使用する場合、Table構築時の集約タイプはHLL_UNIONです。
 ユーザーは長さとデフォルト値を指定する必要はありません。
 長さはデータ集約の度合いに応じてシステム内で制御されます。
 そして、HLLカラムは、対応するhll_union_agg、hll_raw_agg、hll_cardinality、およびhll_hashを通じてのみクエリまたは使用できます。

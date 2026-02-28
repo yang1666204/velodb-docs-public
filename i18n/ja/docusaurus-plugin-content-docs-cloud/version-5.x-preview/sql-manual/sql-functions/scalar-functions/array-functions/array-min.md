@@ -19,7 +19,7 @@
 ```sql
 array_min(ARRAY<T> arr)
 ```
-### Parameters
+### パラメータ
 
 - `arr`：ARRAY<T>型、最小値を計算する対象の配列。
 

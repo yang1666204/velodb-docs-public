@@ -16,9 +16,9 @@ ISO8601形式の日付式をDATE型の日付式に変換します。
 ```sql
 from_iso8601_date(<dt>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<dt>` | ISO8601形式でフォーマットされた日付 |
 

@@ -14,9 +14,9 @@ BitmapをArrayに変換します。
 ```sql
 BITMAP_TO_ARRAY(<bitmap>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description                     |
+| Parameter  | デスクリプション                     |
 |------------|---------------------------------|
 | `<bitmap>` | Bitmap型の列または式 |
 

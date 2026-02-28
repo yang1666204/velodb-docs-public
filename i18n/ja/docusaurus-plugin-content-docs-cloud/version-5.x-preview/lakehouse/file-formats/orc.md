@@ -34,7 +34,7 @@
 
 * `hive_orc_use_column_names` (2.1.6+, 3.0.3+)
 
-    HiveテーブルからORCデータ型を読み取る際、Dorisはデフォルトで、Hiveテーブルの列と同じ名前を持つORCファイル内の列からデータを読み取ります。この変数が`false`に設定されると、Dorisは列名に関係なく、Hiveテーブルの列順序に基づいてORCファイルからデータを読み取ります。これはHiveの`orc.force.positional.evolution`変数と同様です。このパラメータはトップレベルの列名にのみ適用され、Structs内の列には効果がありません。
+    HiveTableからORCデータ型を読み取る際、Dorisはデフォルトで、HiveTableの列と同じ名前を持つORCファイル内の列からデータを読み取ります。この変数が`false`に設定されると、Dorisは列名に関係なく、HiveTableの列順序に基づいてORCファイルからデータを読み取ります。これはHiveの`orc.force.positional.evolution`変数と同様です。このパラメータはトップレベルの列名にのみ適用され、Structs内の列には効果がありません。
 
 * `orc_tiny_stripe_threshold_bytes` (2.1.8+, 3.0.3+)
 
@@ -56,7 +56,7 @@
 
     ORC述語プッシュダウンが成功したかどうかをチェックします。デバッグに使用されます。デフォルトはfalseです。
 
-### BE Configuration
+### BE 構成
 
 * `orc_natural_read_size_mb` (2.1+, 3.0+)
 

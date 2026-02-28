@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この文は FRONTEND の OBSERVER ロールを持つノードを削除します（管理者のみが使用！）
 

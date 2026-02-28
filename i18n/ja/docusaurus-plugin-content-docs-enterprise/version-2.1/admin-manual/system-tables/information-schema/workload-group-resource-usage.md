@@ -15,9 +15,9 @@ Workload Groupリソースの使用情報を格納します。
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
-| Column Name                  | Type   | Description                               |
+| Column Name                  | タイプ   | デスクリプション                               |
 | ---------------------------- | ------ | ----------------------------------------- |
 | BE_ID                        | bigint | BackendのID                     |
 | WORKLOAD_GROUP_ID            | bigint | Workload GroupのID              |

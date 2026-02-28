@@ -16,7 +16,7 @@ MAP_CONTAINS_ENTRY(<map>, <key>, <value>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<map>` | 入力マップの内容 |
 | `<key>` | 取得するキー |

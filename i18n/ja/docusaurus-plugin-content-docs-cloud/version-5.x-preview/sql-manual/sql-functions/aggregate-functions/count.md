@@ -16,9 +16,9 @@ COUNT(DISTINCT <expr> [,<expr>,...])
 COUNT(*)
 COUNT(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 式が指定された場合、NULL以外のレコード数をカウントします。指定されない場合、行の総数をカウントします。 |
 

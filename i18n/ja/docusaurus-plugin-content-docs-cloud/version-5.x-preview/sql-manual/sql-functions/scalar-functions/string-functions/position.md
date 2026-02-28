@@ -16,9 +16,9 @@ POSITION(<substr> IN <str>)
 
 POSITION(<substr>, <str> [, <pos>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -------- | ----------------------------------------------- |
 | `substr` | 検索する部分文字列。型: VARCHAR |
 | `str`    | 検索対象のメイン文字列。型: VARCHAR |

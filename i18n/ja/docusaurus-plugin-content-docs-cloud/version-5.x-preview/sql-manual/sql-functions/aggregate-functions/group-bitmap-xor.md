@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 主に複数のbitmapの値をマージし、結果に対してビット単位のxor計算を実行するために使用されます。
 
@@ -14,9 +14,9 @@
 ```sql
 GROUP_BITMAP_XOR(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | サポートされているビットマップデータ型 |
 

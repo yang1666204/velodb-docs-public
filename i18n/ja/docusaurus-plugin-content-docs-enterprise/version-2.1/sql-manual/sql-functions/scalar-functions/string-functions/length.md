@@ -14,9 +14,9 @@
 ```sql
 LENGTH ( <str> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------| --------------- |
 | `<str>`   | バイト数を計算する必要がある文字列 |
 

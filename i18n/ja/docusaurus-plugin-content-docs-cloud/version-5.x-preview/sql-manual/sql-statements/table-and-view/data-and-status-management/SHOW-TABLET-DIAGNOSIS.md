@@ -28,8 +28,8 @@ SHOW TABLET DIAGNOSIS <tablet_id>
 | TabletExist                      | String   | タブレットが存在するかどうかを示します。                                                |
 | TabletId                         | String   | タブレットのIDです。                                                                   |
 | Database                         | String   | タブレットが属するデータベースとそのIDです。                                            |
-| Table                            | String   | タブレットが属するテーブルとそのIDです。                                               |
-| Partition                        | String   | タブレットが属するパーティションとそのIDです。                                          |
+| Table                            | String   | タブレットが属するTableとそのIDです。                                               |
+| パーティション                        | String   | タブレットが属するパーティションとそのIDです。                                          |
 | MaterializedIndex                | String   | タブレットが属するマテリアライズドインデックスとそのIDです。                              |
 | Replicas(ReplicaId -> BackendId) | String   | タブレットのレプリカとそれぞれのBEノードです。                                          |
 | ReplicasNum                      | String   | レプリカ数が正しいかどうかを示します。                                                  |
@@ -42,9 +42,9 @@ SHOW TABLET DIAGNOSIS <tablet_id>
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege  | Object   | Notes                                                                                                                            |
+| Privilege  | Object   | 注釈                                                                                                                            |
 |:-----------|:---------|:---------------------------------------------------------------------------------------------------------------------------------|
-| Admin_priv | Database | テーブル、パーティション、システムレベルコマンドの管理を含む、データベースに対する管理操作の実行に必要です。 |
+| Admin_priv | Database | Table、パーティション、システムレベルコマンドの管理を含む、データベースに対する管理操作の実行に必要です。 |
 
 ## 例
 
@@ -59,7 +59,7 @@ SHOW TABLET DIAGNOSIS 10145;
 | TabletId                         | 10145            |            |
 | Database                         | test: 10103      |            |
 | Table                            | sell_user: 10143 |            |
-| Partition                        | sell_user: 10142 |            |
+| パーティション                        | sell_user: 10142 |            |
 | MaterializedIndex                | sell_user: 10144 |            |
 | Replicas(ReplicaId -> BackendId) | {"10146":10009}  |            |
 | ReplicasNum                      | OK               |            |

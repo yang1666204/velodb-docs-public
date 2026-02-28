@@ -14,9 +14,9 @@
 ```sql
 PMOD(<x> , <y>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>` | 被除数 |
 | `<y>` | 除数　0にしてはいけません |

@@ -18,7 +18,7 @@ NORMALIZE_JSON_NUMBERS_TO_DOUBLE(json_value)
 
 `NORMALIZE_JSONB_NUMBERS_TO_DOUBLE`
 
-## Parameters
+## パラメータ
 
 **json_value** - 処理対象のJSON値。JSON型である必要があります。
 

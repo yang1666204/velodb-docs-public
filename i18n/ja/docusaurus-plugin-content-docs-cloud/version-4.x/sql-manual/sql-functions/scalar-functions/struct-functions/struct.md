@@ -16,9 +16,9 @@
 ```sql
 STRUCT( <expr1> [ , <expr2> ... ] )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 構造体の入力コンテンツを構築する |
 

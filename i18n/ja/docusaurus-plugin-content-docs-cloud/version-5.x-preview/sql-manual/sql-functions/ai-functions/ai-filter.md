@@ -14,9 +14,9 @@
 ```sql
 AI_FILTER([<resource_name>], <text>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter         | Description                       |
+| Parameter         | デスクリプション                       |
 |-------------------|-----------------------------------|
 | `<resource_name>` | 指定されたリソース名、省略可能 |
 | `<text>`          | 評価対象の情報   |
@@ -31,7 +31,7 @@ boolean値を返します。
 
 ## Example
 
-配送会社が受け取ったコメントを表す以下のテーブルがあるとします：
+配送会社が受け取ったコメントを表す以下のTableがあるとします：
 
 ```sql
 CREATE TABLE user_comments (

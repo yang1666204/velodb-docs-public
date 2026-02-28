@@ -1,13 +1,13 @@
 ---
 {
   "title": "DROP INDEX",
-  "description": "この文は、テーブルから指定された名前のインデックスを削除するために使用されます。現在、inverted indexesとann indexesのみがサポートされています。",
+  "description": "この文は、Tableから指定された名前のインデックスを削除するために使用されます。現在、inverted indexesとann indexesのみがサポートされています。",
   "language": "ja"
 }
 ---
 ## 説明
 
-このステートメントは、テーブルから指定された名前のインデックスを削除するために使用されます。現在、inverted indexesとann indexesのみがサポートされています。
+このステートメントは、Tableから指定された名前のインデックスを削除するために使用されます。現在、inverted indexesとann indexesのみがサポートされています。
 
 ## 構文
 
@@ -18,7 +18,7 @@ DROP INDEX [ IF EXISTS ] <index_name> ON [ <db_name> . ] <table_name>;
 
 **1. `<index_name>`**: インデックスの名前。
 
-**2. `<table_name>`**: インデックスが属するテーブルの名前。
+**2. `<table_name>`**: インデックスが属するTableの名前。
 
 ## オプションパラメータ
 
@@ -30,7 +30,7 @@ DROP INDEX [ IF EXISTS ] <index_name> ON [ <db_name> . ] <table_name>;
 
 | 権限                 | オブジェクト        | 注記                                          |
 |:---------------------|:-------------------|:----------------------------------------------|
-| ALTER_PRIV           | Table              | DROP INDEXはテーブルに対するALTER操作です      |
+| ALTER_PRIV           | Table              | DROP INDEXはTableに対するALTER操作です      |
 
 ## 例
 

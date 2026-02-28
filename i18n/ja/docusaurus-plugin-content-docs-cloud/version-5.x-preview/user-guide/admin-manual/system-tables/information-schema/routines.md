@@ -1,7 +1,7 @@
 ---
 {
   "title": "ルーチン",
-  "description": "MySQL互換性のための常に空のroutinesテーブル。Dorisのストアドルーチンは反映されません。",
+  "description": "MySQL互換性のための常に空のroutinesTable。Dorisのストアドルーチンは反映されません。",
   "language": "ja"
 }
 ---
@@ -9,15 +9,15 @@
 
 ## 概要
 
-このテーブルはMySQLの動作との互換性を維持することのみを目的としています。常に空です。
+このTableはMySQLの動作との互換性を維持することのみを目的としています。常に空です。
 
 ## データベース
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name          | Type        | Description |
+| Column Name          | タイプ        | デスクリプション |
 | -------------------- | ----------- | ----------- |
 | SPECIFIC_NAME        | varchar(64) |             |
 | ROUTINE_CATALOG      | varchar(64) |             |

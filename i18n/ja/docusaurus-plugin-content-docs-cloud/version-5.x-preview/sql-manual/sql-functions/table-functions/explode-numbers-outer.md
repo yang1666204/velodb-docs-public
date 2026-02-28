@@ -6,7 +6,7 @@
 }
 ---
 ## 説明
-`explode_numbers_outer`関数は整数を受け取り、範囲内の各数値を別々の行にマッピングします。この関数は[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用し、ネストされたデータ構造を標準的なフラットテーブル形式に展開する必要があります。`explode_numbers_outer`と[`explode_numbers`](./explode-numbers.md)の主な違いは、null値の処理方法です。
+`explode_numbers_outer`関数は整数を受け取り、範囲内の各数値を別々の行にマッピングします。この関数は[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用し、ネストされたデータ構造を標準的なフラットTable形式に展開する必要があります。`explode_numbers_outer`と[`explode_numbers`](./explode-numbers.md)の主な違いは、null値の処理方法です。
 
 ## 構文
 

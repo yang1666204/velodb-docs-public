@@ -26,9 +26,9 @@ UNIX_TIMESTAMP()
 UNIX_TIMESTAMP(`<date_or_date_expr>`)
 UNIX_TIMESTAMP(`<date_or_date_expr>`, `<fmt>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<date_or_date_expr>` | 入力datetime値で、date/datetimeタイプをサポートします。datetimeとdateの形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<fmt>` | dateパラメータはタイムスタンプに変換される特定の部分を指定し、型はstringです。このパラメータが提供される場合、形式にマッチする部分のみがタイムスタンプに変換されます。 |

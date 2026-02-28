@@ -1,12 +1,12 @@
 ---
 {
   "title": "POSEXPLODE_OUTER",
-  "description": "posexplodeouter テーブル関数は <array> カラムを複数の行に展開し、位置を示すカラムを追加して、STRUCT 型を返します。",
+  "description": "posexplodeouter Table関数は <array> カラムを複数の行に展開し、位置を示すカラムを追加して、STRUCT 型を返します。",
   "language": "ja"
 }
 ---
 ## 説明
-`posexplode_outer`テーブル関数は、`<array>`列を複数行に展開し、位置を示す列を追加して、[`STRUCT`](../../basic-element/sql-data-types/semi-structured/STRUCT.md)型を返します。
+`posexplode_outer`Table関数は、`<array>`列を複数行に展開し、位置を示す列を追加して、[`STRUCT`](../../basic-element/sql-data-types/semi-structured/STRUCT.md)型を返します。
 Lateral Viewと組み合わせて使用する必要があり、複数のLateral Viewをサポートします。
 `posexplode_outer`と[`posexplode`](./posexplode.md)の主な違いは、null値の処理方法です。
 

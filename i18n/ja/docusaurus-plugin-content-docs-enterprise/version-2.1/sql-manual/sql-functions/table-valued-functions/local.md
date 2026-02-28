@@ -1,13 +1,13 @@
 ---
 {
   "title": "LOCAL",
-  "description": "Local table-valued-function(tvf)は、ユーザーがbeノード上のローカルファイルの内容を、リレーショナルテーブルにアクセスするのと同じように読み取りアクセスすることを可能にします。",
+  "description": "Local table-valued-function(tvf)は、ユーザーがbeノード上のローカルファイルの内容を、リレーショナルTableにアクセスするのと同じように読み取りアクセスすることを可能にします。",
   "language": "ja"
 }
 ---
 ## 説明
 
-ローカルtable-valued-function(tvf)は、ユーザーがbeノード上のローカルファイルコンテンツをリレーショナルテーブルにアクセスするのと同じように読み取りおよびアクセスできるようにします。現在、`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`ファイル形式をサポートしています。
+ローカルtable-valued-function(tvf)は、ユーザーがbeノード上のローカルファイルコンテンツをリレーショナルTableにアクセスするのと同じように読み取りおよびアクセスできるようにします。現在、`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`ファイル形式をサポートしています。
 
 ## syntax
 
@@ -135,7 +135,7 @@ desc function local(
 ```
 ```text
 +-------+------+------+-------+---------+-------+
-| Field | Type | Null | Key   | Default | Extra |
+| Field | タイプ | Null | Key   | Default | Extra |
 +-------+------+------+-------+---------+-------+
 | c1    | TEXT | Yes  | false | NULL    | NONE  |
 | c2    | TEXT | Yes  | false | NULL    | NONE  |

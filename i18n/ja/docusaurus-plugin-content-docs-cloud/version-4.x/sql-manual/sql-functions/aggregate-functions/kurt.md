@@ -19,9 +19,9 @@ KURT_POP,KURTOSIS
 ```sql
 KURTOSIS(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Description |
+| パラメータ | デスクリプション |
 | -- | -- |
 | `<expr>` | 取得する必要がある式 |
 

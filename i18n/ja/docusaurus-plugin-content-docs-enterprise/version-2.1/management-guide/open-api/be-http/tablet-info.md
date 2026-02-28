@@ -10,7 +10,7 @@
 
 `GET /tablets_json?limit={int}`
 
-## Description
+## デスクリプション
 
 タブレット情報（IDとスキーマハッシュを含む）を表示します。
 

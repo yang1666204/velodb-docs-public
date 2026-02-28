@@ -30,18 +30,18 @@ make
 ```
 ビルド出力は build/bin/fluent-bit です。
 
-## Configuration
+## 構成
 
-Fluent Bit Doris output plugin の設定は以下の通りです：
+Fluent Bit Doris 出力プラグイン の設定は以下の通りです：
 
-Configuration | Description
+構成 | デスクリプション
 --- | ---
 `host` | Stream Load HTTP host
 `port` | Stream Load HTTP port
-`user` | Doris ユーザー名。このユーザーは対応する Doris データベースとテーブルに対するインポート権限が必要です
+`user` | Doris ユーザー名。このユーザーは対応する Doris データベースとTableに対するインポート権限が必要です
 `password` | Doris ユーザーのパスワード
 `database` | 書き込み先の Doris データベース名
-`table` | 書き込み先の Doris テーブル名
+`table` | 書き込み先の Doris Table名
 `label_prefix` | Doris Stream Load Label プレフィックス。最終的に生成される Label は *{label_prefix}\_{timestamp}\_{uuid}* で、デフォルト値は fluentbit です。false に設定すると、Label は追加されません
  `time_key` | データに追加するタイムスタンプカラムの名前。デフォルト値は date です。false に設定すると、このカラムは追加されません
 `header` |  Doris Stream Load headers パラメータ。複数設定可能です
@@ -52,7 +52,7 @@ Configuration | Description
 
 ## Usage Example
 
-### TEXT Log Collection Example
+### TEXT ログ Collection Example
 
 この例では、Doris FE ログを例として TEXT ログ収集を実演します。
 
@@ -69,7 +69,7 @@ org.apache.doris.common.UserException: errCode = 2, detailMessage = tablet 10031
 ```
 **2. Table Creation**
 
-テーブル構造には、ログの作成時間、収集時間、ホスト名、ログファイルパス、ログタイプ、ログレベル、スレッド名、コードの場所、ログ内容などのフィールドが含まれます。
+Table構造には、ログの作成時間、収集時間、ホスト名、ログファイルパス、ログタイプ、ログレベル、スレッド名、コードの場所、ログ内容などのフィールドが含まれます。
 
 ```
 CREATE TABLE `doris_log` (
@@ -106,7 +106,7 @@ PROPERTIES (
 "compaction_policy" = "time_series"
 );
 ```
-**3. Configuration**
+**3. 構成**
 
 Fluent Bitログ収集の設定ファイルは以下の通りです。doris_log.confはETLコンポーネントの各部分を定義するために使用され、parsers.confは異なるログパーサーを定義するために使用されます。
 
@@ -219,7 +219,7 @@ fluent-bit -c doris_log.conf
 
 [2024/10/31 18:40:13] [ info] [output:doris:doris.1] total 0 MB 2 ROWS, total speed 0 MB/s 0 R/s, last 10 seconds speed 0 MB/s 0 R/s
 ```
-### JSON Log Collection Example
+### JSON ログ Collection Example
 
 この例では、GitHub events archiveのデータを使用したJSONログ収集について説明します。
 
@@ -262,7 +262,7 @@ wget https://data.gharchive.org/2024-01-01-15.json.gz
   "created_at": "2024-04-01T23:00:00Z"
 }
 ```
-**2. テーブル作成**
+**2. Table作成**
 
 ```
 CREATE DATABASE log_db;
@@ -302,7 +302,7 @@ PROPERTIES (
 "dynamic_partition.replication_num" = "1"
 );
 ```
-**3. Configuration**
+**3. 構成**
 
 以前のTEXTログ収集とは対照的に、この設定では追加の処理変換が不要なためFILTERを使用しません。
 

@@ -14,9 +14,9 @@ MICROSECOND_TIMESTAMP関数は、入力された日時の値を、1970-01-01 00:
 ```sql
 MICROSECOND_TIMESTAMP(`<datetime>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter       | Description                                                                                   |
+| Parameter       | デスクリプション                                                                                   |
 |------------------|-----------------------------------------------------------------------------------------------|
 | `<datetime>`     | Unix タイムスタンプに変換される datetime を表します。`DATETIME` 型をサポートします。特定の datetime 形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion) を参照してください |
 

@@ -1,6 +1,6 @@
 ---
 {
-  "title": "Auto Partition",
+  "title": "Auto パーティション",
   "description": "Auto Partition機能は、データインポートプロセス中に対応するパーティションが存在するかどうかの自動検出をサポートします。",
   "language": "ja"
 }
@@ -9,11 +9,11 @@
 
 Auto Partition機能は、データインポートプロセス中に対応するパーティションが存在するかどうかを自動的に検出することをサポートします。パーティションが存在しない場合、パーティションは自動的に作成され、正常にインポートされます。
 
-auto partition機能は主に、ユーザーが特定のカラムに基づいてテーブルをパーティション分割したいが、そのカラムのデータ分布が分散しているか予測不可能であるため、テーブルの構造を構築または調整する際に必要なパーティションを正確に作成することが困難であるか、パーティション数が非常に大きいため手動で作成するには煩雑すぎるという問題を解決します。
+auto partition機能は主に、ユーザーが特定のカラムに基づいてTableをパーティション分割したいが、そのカラムのデータ分布が分散しているか予測不可能であるため、Tableの構造を構築または調整する際に必要なパーティションを正確に作成することが困難であるか、パーティション数が非常に大きいため手動で作成するには煩雑すぎるという問題を解決します。
 
 時間型パーティションカラムを例に取ると、動的パーティショニングでは、特定の時間期間でリアルタイムデータを収容するための新しいパーティションの自動作成をサポートしています。リアルタイムユーザー行動ログなどのシナリオでは、この機能は基本的に要件を満たします。しかし、より複雑なシナリオ、例えば非リアルタイムデータを扱う場合、パーティションカラムは現在のシステム時刻とは独立しており、多数の離散値を含んでいます。この時、効率を向上させるためにこのカラムに基づいてデータをパーティション分割したいのですが、データが実際に関与する可能性のあるパーティションを事前に把握することができないか、期待される必要なパーティション数が大きすぎます。この場合、動的パーティショニングや手動で作成されたパーティションでは要求を満たすことができませんが、Auto Partitionはこのような需要をカバーします。
 
-テーブルDDLが以下のようになっているとします：
+TableDDLが以下のようになっているとします：
 
 ```sql
 CREATE TABLE `DAILY_TRADE_VALUE`
@@ -53,11 +53,11 @@ PROPERTIES (
   "replication_num" = "1"
 );
 ```
-このテーブルは大量の業務履歴データを格納しており、取引が発生した日付に基づいてパーティショニングされています。テーブルを構築する際に確認できるように、事前に手動でパーティションを作成する必要があります。パーティション列のデータ範囲が変更された場合、例えば上記のテーブルに2022年が追加された場合、[ALTER-TABLE-PARTITION によってパーティションを作成し、テーブルパーティションに変更を加える必要があります。このようなパーティションを変更したり、より細かい粒度レベルで細分化したりする必要がある場合、それらを修正するのは非常に面倒です。この時点で、Auto Partitionを使用してテーブルDDLを書き直すことができます。
+このTableは大量の業務履歴データを格納しており、取引が発生した日付に基づいてパーティショニングされています。Tableを構築する際に確認できるように、事前に手動でパーティションを作成する必要があります。パーティション列のデータ範囲が変更された場合、例えば上記のTableに2022年が追加された場合、[ALTER-TABLE-PARTITION によってパーティションを作成し、Tableパーティションに変更を加える必要があります。このようなパーティションを変更したり、より細かい粒度レベルで細分化したりする必要がある場合、それらを修正するのは非常に面倒です。この時点で、Auto Partitionを使用してTableDDLを書き直すことができます。
 
 ## 構文
 
-テーブルを作成する際は、[CREATE-TABLE文の`partitions_definition`セクションを入力するために以下の構文を使用してください。
+Tableを作成する際は、[CREATE-TABLE文の`partitions_definition`セクションを入力するために以下の構文を使用してください。
 
 1. AUTO RANGE PARTITION:
 
@@ -76,7 +76,7 @@ PROPERTIES (
         AUTO PARTITION BY LIST(`partition_col1` [, `partition_col2`, ...])
         <origin_partitions_definition>
     ```
-### Sample
+### サンプル
 
 1. AUTO RANGE PARTITION
 
@@ -186,13 +186,13 @@ PROPERTIES (
   "replication_num" = "1"
 );
 ```
-2つの列のみを持つテーブルの例を見てみましょう。この時点で、新しいテーブルにはデフォルトパーティションがありません：
+2つの列のみを持つTableの例を見てみましょう。この時点で、新しいTableにはデフォルトパーティションがありません：
 
 ```sql
 show partitions from `DAILY_TRADE_VALUE`;
 Empty set (0.12 sec)
 ```
-データを挿入して再度確認すると、テーブルが対応するパーティションを作成していることが確認できます：
+データを挿入して再度確認すると、Tableが対応するパーティションを作成していることが確認できます：
 
 ```sql
 insert into `DAILY_TRADE_VALUE` values ('2012-12-13', 1), ('2008-02-03', 2), ('2014-11-11', 3);
@@ -237,7 +237,7 @@ properties(
     "dynamic_partition.enable" = "true",
     "dynamic_partition.prefix" = "p",
     "dynamic_partition.start" = "-50",
-    "dynamic_partition.end" = "0", --- Dynamic Partition No Partition Creation
+    "dynamic_partition.end" = "0", --- Dynamic パーティション No パーティション Creation
     "dynamic_partition.time_unit" = "year",
     "replication_num" = "1"
 );
@@ -248,13 +248,13 @@ properties(
 2.1.7より前の一部の初期バージョンでは、この機能は無効化されていませんでしたが、推奨されていませんでした。
 :::
 
-## Partition Management
+## パーティション Management
 
 :::tip
-2.1.6以降、Dorisは`partitions`テーブル関数と`auto_partition_name`関数をサポートしており、これらを使用してデータのパーティションを簡単に検索・管理できます。
+2.1.6以降、Dorisは`partitions`Table関数と`auto_partition_name`関数をサポートしており、これらを使用してデータのパーティションを簡単に検索・管理できます。
 :::
 
-Auto Partitionが有効な場合、`auto_partition_name`関数を使用してパーティション名をパーティションにマッピングできます。`partitions`テーブル関数は、パーティション名から詳細なパーティション情報を生成します。データを挿入した後の現在のパーティションを確認するため、`DAILY_TRADE_VALUE`テーブルを例に見てみましょう。
+Auto Partitionが有効な場合、`auto_partition_name`関数を使用してパーティション名をパーティションにマッピングできます。`partitions`Table関数は、パーティション名から詳細なパーティション情報を生成します。データを挿入した後の現在のパーティションを確認するため、`DAILY_TRADE_VALUE`Tableを例に見てみましょう。
 
 ```sql
 select * from partitions("catalog"="internal","database"="optest","table"="DAILY_TRADE_VALUE") where PartitionName = auto_partition_name('range', 'year', '2008-02-03');
@@ -270,10 +270,10 @@ select * from partitions("catalog"="internal","database"="optest","table"="DAILY
 
 ## 重要なポイント
 
-- 通常のパーティションテーブルと同様に、aoto List Partitionは構文の違いなく複数列パーティショニングをサポートします。
+- 通常のパーティションTableと同様に、aoto List Partitionは構文の違いなく複数列パーティショニングをサポートします。
 - データの挿入またはインポート処理中にパーティションが作成され、インポート処理全体が完了しない場合（失敗またはキャンセル）、作成されたパーティションは自動的に削除されません。
-- Auto Partitionを使用するテーブルは、パーティション作成方法のみが異なり、手動から自動に切り替わります。テーブルおよび作成されたパーティションの元の使用方法は、非Auto Partitionテーブルやパーティションと同じです。
-- 過度に多くのパーティションが誤って作成されることを防ぐため、Apache DorisはFE設定の`max_auto_partition_num setting`を通じて、Auto Partitionテーブルが収容できる最大パーティション数を制御します。この値は必要に応じて調整可能です。
-- Auto Partitionが有効になっているテーブルにデータをインポートする際、コーディネーターは通常のテーブルとは異なるポーリング間隔でデータを送信します。詳細については、BE ConfigurationのOLAP_table_sink_send_interval_auto_partition_factor`を参照してください。この設定は`enable_memtable_on_sink_node`が有効になった後は影響しません。
-- insert-overwriteを使用してAuto Partitionテーブルにデータをロードする場合、その動作はINSERT OVERWRITEドキュメントに詳細が記載されています。
+- Auto Partitionを使用するTableは、パーティション作成方法のみが異なり、手動から自動に切り替わります。Tableおよび作成されたパーティションの元の使用方法は、非Auto PartitionTableやパーティションと同じです。
+- 過度に多くのパーティションが誤って作成されることを防ぐため、Apache DorisはFE設定の`max_auto_partition_num setting`を通じて、Auto PartitionTableが収容できる最大パーティション数を制御します。この値は必要に応じて調整可能です。
+- Auto Partitionが有効になっているTableにデータをインポートする際、コーディネーターは通常のTableとは異なるポーリング間隔でデータを送信します。詳細については、BE ConfigurationのOLAP_table_sink_send_interval_auto_partition_factor`を参照してください。この設定は`enable_memtable_on_sink_node`が有効になった後は影響しません。
+- insert-overwriteを使用してAuto PartitionTableにデータをロードする場合、その動作はINSERT OVERWRITEドキュメントに詳細が記載されています。
 - パーティションのインポートと作成時にメタデータ操作が関与する場合、インポート処理が失敗する可能性があります。

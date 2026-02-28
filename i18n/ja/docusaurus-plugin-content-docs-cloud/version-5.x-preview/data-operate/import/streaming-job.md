@@ -7,7 +7,7 @@
 ---
 ## 概要
 
-Dorisでは、Job + TVFアプローチを使用して継続的なインポートタスクを作成できます。Jobを送信後、Dorisは継続的にインポートジョブを実行し、リアルタイムでTVFをクエリしてデータをDorisテーブルに書き込みます。
+Dorisでは、Job + TVFアプローチを使用して継続的なインポートタスクを作成できます。Jobを送信後、Dorisは継続的にインポートジョブを実行し、リアルタイムでTVFをクエリしてデータをDorisTableに書き込みます。
 
 ## サポートされているTVF
 
@@ -17,7 +17,7 @@ Dorisでは、Job + TVFアプローチを使用して継続的なインポート
 
 ### S3
 
-S3の指定されたディレクトリ内のファイルを反復処理し、各ファイルをリストに分割して小さなバッチでDorisテーブルに書き込みます。
+S3の指定されたディレクトリ内のファイルを反復処理し、各ファイルをリストに分割して小さなバッチでDorisTableに書き込みます。
 
 **増分読み込み方法**
 
@@ -126,7 +126,7 @@ DO <Insert_Command>
 ```
 モジュールの説明は以下の通りです：
 
-| Module | Description |
+| Module | デスクリプション |
 
 | -------------- | ------------------------------------------------------------ |
 | job_name | タスク名 |
@@ -138,7 +138,7 @@ DO <Insert_Command>
 
 #### FE設定パラメータ
 
-| Parameter | Default Value | |
+| Parameter | デフォルト値 | |
 | ------------------------------------ | ------ | ------------------------------------------- |
 | max_streaming_job_num | 1024 | Streamingジョブの最大数 |
 | job_streaming_task_exec_thread_num | 10 | StreamingTasksを実行するために使用されるスレッド数 |
@@ -146,9 +146,9 @@ DO <Insert_Command>
 
 #### インポート設定パラメータ
 
-| Parameter | Default Value | Description |
+| Parameter | デフォルト値 | デスクリプション |
 | ------------------ | ------ | ------------------------------------------------------------ |
-| session.* | None | job_propertiesでのすべてのセッション変数の設定をサポート。インポート変数については、[Insert Into Select](../../data-operate/import/import-way/insert-into-manual.md#Import Configuration Parameters)を参照してください |
+| session.* | None | job_propertiesでのすべてのセッション変数の設定をサポート。インポート変数については、[Insert Into Select](../../data-operate/import/import-way/insert-into-manual.md#Import 構成 パラメータ)を参照してください |
 | s3.max_batch_files | 256 | 累積ファイル数がこの値に達したときにインポート書き込みをトリガーします。 |
 | s3.max_batch_bytes | 10G | 累積データ量がこの値に達したときにインポート書き込みをトリガーします。 |
 | max_interval | 10s | 上流で新しいファイルやデータが追加されていない場合のアイドル・スケジューリング間隔。 |
@@ -191,7 +191,7 @@ CanceledTaskCount: 0
 ```
 特定のパラメータ結果は以下のように表示されます：
 
-| Result Columns | Description |
+| Result Columns | デスクリプション |
 | ----------------- | ------------------------------------------------------------ |
 | ID | Job ID |
 | NAME | Job Name |
@@ -236,7 +236,7 @@ LoadStatistic: {"scannedRows":20,"loadBytes":425,"fileNumber":2,"fileSize":256}
 FirstErrorMsg: \N
 RunningOffset: {"startFileName":"s3/demo/1.csv","endFileName":"s3/demo/8.csv"}
 ```
-| Results Columns | Description |
+| Results Columns | デスクリプション |
 | ------------- | ---------------------------------------------------- |
 | TaskId | タスクID |
 | JobID | JobID |

@@ -14,9 +14,9 @@
 ```sql
 LOG2(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>`   | 逆対数は0より大きくなければなりません |
 

@@ -16,9 +16,9 @@ datetime値をISO8601形式の文字列に変換します。
 ```sql
 TO_ISO8601(<dt>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<dt>`      | 入力される日時の値で、DATETIME型またはDATE型を指定できます |
 

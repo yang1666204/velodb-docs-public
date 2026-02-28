@@ -12,9 +12,9 @@
 `GET /api/meta/namespaces/<ns>/databases/<db>/tables`
 `GET /api/meta/namespaces/<ns>/databases/<db>/tables/<tbl>/schema`
 
-## Description
+## デスクリプション
 
-クラスターに関するメタデータ情報を取得するために使用されます。データベース一覧、テーブル一覧、テーブルスキーマが含まれます。
+クラスターに関するメタデータ情報を取得するために使用されます。データベース一覧、Table一覧、Tableスキーマが含まれます。
 
 ## Path parameters
 
@@ -28,7 +28,7 @@
 
 * `tbl`
 
-    テーブル名を指定します。
+    Table名を指定します。
 
 ## Query parameters
 

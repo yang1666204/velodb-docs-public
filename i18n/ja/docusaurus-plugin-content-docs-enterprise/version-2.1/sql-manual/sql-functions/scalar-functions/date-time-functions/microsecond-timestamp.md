@@ -16,7 +16,7 @@ MICROSECOND_TIMESTAMP(<datetime>)
 ```
 ## パラメータ
 
-| Parameter    | Description                                                         |
+| Parameter    | デスクリプション                                                         |
 |--------------|---------------------------------------------------------------------|
 | `<datetime>` | 必須。Unixタイムスタンプに変換するDATETIME値。 |
 

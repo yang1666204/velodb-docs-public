@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、クラスターからBEノードを安全に廃止するために使用されます。この操作は非同期です。
 
@@ -43,7 +43,7 @@ be_identifier
 
 この SQL を実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes |
+| Privilege | Object | 注釈 |
 |-----------|----|-------|
 | NODE_PRIV |    |       |
 
@@ -53,11 +53,11 @@ be_identifier
 2. 通常の状況では、`TabletNum` 列の値が 0 まで下がった後、この BE ノードは削除されます。Doris が自動的に BE を削除することを望まない場合は、FE Master の設定 `drop_backend_after_decommission` を false に変更できます。
 3. 現在の BE が比較的大量のデータを保存している場合、DECOMMISSION 操作は数時間または数日間続く可能性があります。
 4. DECOMMISSION 操作の進行が停滞した場合、具体的には [SHOW BACKENDS](./SHOW-BACKENDS.md) ステートメントの `TabletNum` 列が特定の値で固定されたままの場合、以下のような状況が原因である可能性があります：
-   - 現在の BE 上のタブレットを移行するのに適した他の BE がありません。例えば、3 つのレプリカを持つテーブルがある 3 ノードクラスターで、そのうちの 1 つのノードを廃止する場合、このノードは他の BE にデータを移行することができません（他の 2 つの BE はすでにそれぞれ 1 つのレプリカを持っています）。
+   - 現在の BE 上のタブレットを移行するのに適した他の BE がありません。例えば、3 つのレプリカを持つTableがある 3 ノードクラスターで、そのうちの 1 つのノードを廃止する場合、このノードは他の BE にデータを移行することができません（他の 2 つの BE はすでにそれぞれ 1 つのレプリカを持っています）。
    - 現在の BE 上のタブレットがまだ[ゴミ箱](../../recycle/SHOW-CATALOG-RECYCLE-BIN.md)にあります。[ゴミ箱を空にして](../../recycle/DROP-CATALOG-RECYCLE-BIN.md)から廃止を待つことができます。
    - 現在の BE 上のタブレットが大きすぎるため、単一タブレットの移行が常にタイムアウトし、このタブレットを移行できません。FE Master の設定 `max_clone_task_timeout_sec` をより大きな値に調整できます（デフォルトは 7200 秒です）。
    - 現在の BE のタブレットに未完了のトランザクションがあります。トランザクションの完了を待つか、手動でトランザクションを中止できます。
-   - その他の場合、FE Master のログでキーワード `replicas to decommission` をフィルタリングして異常なタブレットを見つけ、[SHOW TABLET](../../table-and-view/data-and-status-management/SHOW-TABLET.md) ステートメントを使用してこのタブレットが属するテーブルを見つけ、その後新しいテーブルを作成し、古いテーブルから新しいテーブルにデータを移行し、最後に [DROP TABLE FORCE](../../table-and-view/table/DROP-TABLE.md) を使用して古いテーブルを削除できます。
+   - その他の場合、FE Master のログでキーワード `replicas to decommission` をフィルタリングして異常なタブレットを見つけ、[SHOW TABLET](../../table-and-view/data-and-status-management/SHOW-TABLET.md) ステートメントを使用してこのタブレットが属するTableを見つけ、その後新しいTableを作成し、古いTableから新しいTableにデータを移行し、最後に [DROP TABLE FORCE](../../table-and-view/table/DROP-TABLE.md) を使用して古いTableを削除できます。
 
 ## 例
 

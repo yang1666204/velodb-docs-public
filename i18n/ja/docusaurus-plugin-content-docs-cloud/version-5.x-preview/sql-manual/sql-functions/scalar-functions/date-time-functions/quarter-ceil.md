@@ -27,9 +27,9 @@ QUARTER_CEIL(`<date_or_time_expr>`, `<origin>`)
 QUARTER_CEIL(`<date_or_time_expr>`, `<period>`)
 QUARTER_CEIL(`<date_or_time_expr>`, `<period>`, `<origin>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | ---- | ---- |
 | `<date_or_time_expr>` | 切り上げる日時値。date/datetimeタイプをサポートする有効な日付式です。具体的なdatetimeとdateの形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |
 | `<period>` | 四半期期間値、タイプはINT、各期間に含まれる四半期数を示します |

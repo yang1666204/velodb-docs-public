@@ -23,7 +23,7 @@ DROP JOB where jobName = <job_name> ;
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | ExecuteType | Notes |
+| Privilege | Object | ExecuteType | 注釈 |
 |:--------------|:-----------|:------------------------|:------------------------|
 | ADMIN_PRIV | Database | NO Streaming | 現在この操作を実行するには**ADMIN**権限のみをサポートしています |
 | LOAD_PRIV | Database | Streaming | この操作を実行するために**LOAD**権限をサポートしています |

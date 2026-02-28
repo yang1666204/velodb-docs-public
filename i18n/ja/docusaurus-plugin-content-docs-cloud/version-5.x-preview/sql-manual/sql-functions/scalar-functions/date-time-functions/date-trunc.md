@@ -15,9 +15,9 @@ DATE_TRUNC関数は、日付または時刻値（`datetime`）を指定された
 DATE_TRUNC(<datetime>, <time_unit>)
 DATE_TRUNC(<time_unit>, <datetime>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<date_or_time_part>` | 有効な日付式で、datetimeまたはdate型をサポートします。具体的なdatetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<time_unit>` | 切り捨てる時間間隔。使用可能な値は次のとおりです：[`second`,`minute`,`hour`,`day`,`week`,`month`,`quarter`,`year`] |

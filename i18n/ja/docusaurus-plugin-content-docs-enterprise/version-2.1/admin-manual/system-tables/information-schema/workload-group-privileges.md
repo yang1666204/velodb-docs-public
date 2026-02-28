@@ -15,9 +15,9 @@ Workload Groupsの権限情報を格納します。
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
-| Column Name         | Type         | Description                              |
+| Column Name         | タイプ         | デスクリプション                              |
 | ------------------- | ------------ | ---------------------------------------- |
 | GRANTEE             | varchar(64)  | 権限を付与されたユーザー                 |
 | WORKLOAD_GROUP_NAME | varchar(256) | Workload Groupの名前                     |

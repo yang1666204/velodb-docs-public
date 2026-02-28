@@ -14,9 +14,9 @@
 ```sql
 BITMAP_AND(<bitmap>, <bitmap>,[, <bitmap>...])
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description                                                    |
+| Parameter  | デスクリプション                                                    |
 |------------|----------------------------------------------------------------|
 | `<bitmap>` | 交差が求められている元のBITMAPの1つ |
 

@@ -7,7 +7,7 @@
 ---
 # Star Schema Benchmark
 
-[Star Schema Benchmark(SSB)](https://www.cs.umb.edu/~poneil/StarSchemaB.PDF) は、データウェアハウスシナリオにおける軽量なパフォーマンステストセットです。SSBは [TPC-H](http://www.tpc.org/tpch/) に基づく簡略化されたスタースキーマデータを提供し、主にスタースキーマ下での複数テーブルJOINクエリのパフォーマンスをテストするために使用されます。さらに、業界では通常SSBをワイドテーブルモデル（SSB flatと呼ばれる）に平坦化して、クエリエンジンのパフォーマンスをテストします。
+[Star Schema Benchmark(SSB)](https://www.cs.umb.edu/~poneil/StarSchemaB.PDF) は、データウェアハウスシナリオにおける軽量なパフォーマンステストセットです。SSBは [TPC-H](http://www.tpc.org/tpch/) に基づく簡略化されたスタースキーマデータを提供し、主にスタースキーマ下での複数TableJOINクエリのパフォーマンスをテストするために使用されます。さらに、業界では通常SSBをワイドTableモデル（SSB flatと呼ばれる）に平坦化して、クエリエンジンのパフォーマンスをテストします。
 
 この文書では主に、SSB 1000Gテストセットにおけるtestドキュメント:name="test.html";charset=UTF-8;length=128のパフォーマンスを紹介します。
 
@@ -15,7 +15,7 @@ Apache Dorisバージョン2.0.15.1に基づいて、SSB標準テストデータ
 
 ## 1. ハードウェア環境
 
-| Hardware           | Configuration Instructions               |
+| Hardware           | 構成 Instructions               |
 |--------------------|------------------------------------------|
 | Number of Machines | 4 Aliyun Virtual Machine (1FE，3BEs)      |
 | CPU                | Intel Xeon (Ice Lake) Platinum 8369B 32C |
@@ -39,7 +39,7 @@ Apache Dorisバージョン2.0.15.1に基づいて、SSB標準テストデータ
 | part           | 2,000,000     | 部品情報                |
 | supplier       | 2,000,000     | サプライヤー情報             |
 | dates          | 2,556         | 日付             |
-| lineorder_flat | 5,999,989,709 | データ平坦化後のワイドテーブル |
+| lineorder_flat | 5,999,989,709 | データ平坦化後のワイドTable |
 
 ## 4. SSB Flatテスト結果
 
@@ -111,7 +111,7 @@ sh bin/gen-ssb-data.sh -s 1000
 >
 > Note 3: デフォルトでは100Gの標準テストデータセットが生成されます。
 
-### 7.3 テーブルの作成
+### 7.3 Tableの作成
 
 #### 7.3.1 `doris-cluster.conf`ファイルの準備
 
@@ -135,16 +135,16 @@ export PASSWORD=''
 # The database where SSB tables located
 export DB='ssb'
 ```
-#### 7.3.2 以下のスクリプトを実行してSSBテーブルを生成・作成する：
+#### 7.3.2 以下のスクリプトを実行してSSBTableを生成・作成する：
 
 ```shell
 sh bin/create-ssb-tables.sh -s 1000
 ```
-または、[create-ssb-tables.sql](https://github.com/apache/doris/blob/master/tools/ssb-tools/ddl/create-ssb-tables-sf1000.sql) と [create-ssb-flat-table.sql](https://github.com/apache/doris/blob/master/tools/ssb-tools/ddl/create-ssb-flat-tables-sf1000.sql) のテーブル作成文をコピーして、MySQLクライアントで実行してください。
+または、[create-ssb-tables.sql](https://github.com/apache/doris/blob/master/tools/ssb-tools/ddl/create-ssb-tables-sf1000.sql) と [create-ssb-flat-table.sql](https://github.com/apache/doris/blob/master/tools/ssb-tools/ddl/create-ssb-flat-tables-sf1000.sql) のTable作成文をコピーして、MySQLクライアントで実行してください。
 
 ### 7.4 データのインポート
 
-以下のコマンドを使用して、SSBテストセットの全データインポートとSSB FLATワイドテーブルデータの合成を完了し、テーブルにインポートします。
+以下のコマンドを使用して、SSBテストセットの全データインポートとSSB FLATワイドTableデータの合成を完了し、Tableにインポートします。
 
 ```shell
  sh bin/load-ssb-data.sh

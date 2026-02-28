@@ -1,22 +1,22 @@
 ---
 {
   "title": "column_privileges",
-  "description": "このテーブルはMySQLの動作との互換性のためだけに使用され、常に空です。",
+  "description": "このTableはMySQLの動作との互換性のためだけに使用され、常に空です。",
   "language": "ja"
 }
 ---
 ## 概要
 
-このテーブルはMySQLの動作との互換性のためのみに使用され、常に空です。DorisのカラムPermission情報を真に反映するものではありません。
+このTableはMySQLの動作との互換性のためのみに使用され、常に空です。DorisのカラムPermission情報を真に反映するものではありません。
 
 ## Database
 
 ```
 information_schema
 ```
-## テーブル情報
+## Table情報
 
-| Column Name    | Type         | Description |
+| Column Name    | タイプ         | デスクリプション |
 | -------------- | ------------ | ----------- |
 | GRANTEE        | varchar(128) |             |
 | TABLE_CATALOG  | varchar(512) |             |

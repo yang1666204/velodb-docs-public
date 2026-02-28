@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 HLL_RAW_AGG関数は、複数のHyperLogLogデータ構造を1つにマージするために主に使用される集約関数です。
 
@@ -21,7 +21,7 @@ HLL_UNION(<hll>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<hll>` | 計算対象の式、HLL型をサポート。 |
 

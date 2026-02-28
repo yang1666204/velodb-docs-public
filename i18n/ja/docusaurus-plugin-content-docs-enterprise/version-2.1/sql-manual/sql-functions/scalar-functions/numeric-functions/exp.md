@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `x` を底 `e` で累乗した値を返します。
 
@@ -18,9 +18,9 @@
 ```sql
 EXP(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | 独立変数 |
 

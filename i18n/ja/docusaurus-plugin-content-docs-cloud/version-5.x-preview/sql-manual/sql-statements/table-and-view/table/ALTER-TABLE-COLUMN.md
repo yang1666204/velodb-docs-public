@@ -1,18 +1,18 @@
 ---
 {
   "title": "ALTER TABLE COLUMN",
-  "description": "このステートメントは、既存のテーブルに対してスキーマ変更操作を実行するために使用されます。スキーマ変更は非同期で実行され、",
+  "description": "このステートメントは、既存のTableに対してスキーマ変更操作を実行するために使用されます。スキーマ変更は非同期で実行され、",
   "language": "ja"
 }
 ---
 ## 説明
 
-このステートメントは、既存のテーブルに対してスキーマ変更操作を実行するために使用されます。スキーマ変更は非同期で行われ、タスクが正常に送信されるとタスクが返されます。その後、[SHOW ALTER TABLE COLUMN](../../../../sql-manual/sql-statements/table-and-view/table/SHOW-ALTER-TABLE)コマンドを使用して進行状況を確認できます。
+このステートメントは、既存のTableに対してスキーマ変更操作を実行するために使用されます。スキーマ変更は非同期で行われ、タスクが正常に送信されるとタスクが返されます。その後、[SHOW ALTER TABLE COLUMN](../../../../sql-manual/sql-statements/table-and-view/table/SHOW-ALTER-TABLE)コマンドを使用して進行状況を確認できます。
 
-Dorisには、テーブル構築後にマテリアライズドインデックスという概念があります。テーブル構築が成功すると、それがベーステーブルとなり、マテリアライズドインデックスがベースインデックスとなります。rollupインデックスは、ベーステーブルに基づいて作成できます。ベースインデックスとrollupインデックスの両方がマテリアライズドインデックスです。スキーマ変更操作中にrollup_index_nameが指定されない場合、デフォルトでベーステーブルに基づいて操作が実行されます。
+Dorisには、Table構築後にマテリアライズドインデックスという概念があります。Table構築が成功すると、それがベースTableとなり、マテリアライズドインデックスがベースインデックスとなります。rollupインデックスは、ベースTableに基づいて作成できます。ベースインデックスとrollupインデックスの両方がマテリアライズドインデックスです。スキーマ変更操作中にrollup_index_nameが指定されない場合、デフォルトでベースTableに基づいて操作が実行されます。
 
 :::tip
-Doris 1.2.0では、軽量なスケール構造変更に対してlight schema changeをサポートしており、value列の加算および減算操作をより迅速かつ同期的に完了できます。テーブル作成時に手動で"light_schema_change" = 'true'を指定できます。このパラメータは、バージョン2.0.0以降ではデフォルトで有効になっています。
+Doris 1.2.0では、軽量なスケール構造変更に対してlight schema changeをサポートしており、value列の加算および減算操作をより迅速かつ同期的に完了できます。Table作成時に手動で"light_schema_change" = 'true'を指定できます。このパラメータは、バージョン2.0.0以降ではデフォルトで有効になっています。
 :::
 
 ### 文法:
@@ -58,7 +58,7 @@ ALTER TABLE [database.]table table_name ADD COLUMN column_name column_type [KEY 
   ALTER TABLE example_db.my_table   
   ADD COLUMN new_col INT SUM DEFAULT "0" AFTER value_1; 
   ```
-5. example_db.my_table テーブル（非集約モデル）の最初の列位置に new_col を追加する
+5. example_db.my_table Table（非集約モデル）の最初の列位置に new_col を追加する
 
   ```sql
   ALTER TABLE example_db.my_table
@@ -153,7 +153,7 @@ ALTER TABLE [database.]table table_name MODIFY COLUMN column_name column_type [K
 列のデータ型のみを変更できます。列の他の属性は変更されません。
 :::
 
-3. Duplicate key テーブルの Key 列にあるフィールドの長さを変更する
+3. Duplicate key Tableの Key 列にあるフィールドの長さを変更する
 
   ```sql
   ALTER TABLE example_db.my_table 
@@ -209,7 +209,7 @@ ALTER TABLE [database.]table table_name MODIFY COLUMN column_name column_type [K
 
   mysql> desc my_table;
   +-------+------------+------+-------+---------+-------+
-  | Field | Type       | Null | Key   | Default | Extra |
+  | Field | タイプ       | Null | Key   | Default | Extra |
   +-------+------------+------+-------+---------+-------+
   | k_2   | INT        | Yes  | true  | NULL    |       |
   | k_1   | INT        | Yes  | true  | NULL    |       |
@@ -241,7 +241,7 @@ ALTER TABLE [database.]table table_name MODIFY COLUMN column_name column_type [K
 
   mysql> desc my_table;
   +-------+------------+------+-------+---------+-------+
-  | Field | Type       | Null | Key   | Default | Extra |
+  | Field | タイプ       | Null | Key   | Default | Extra |
   +-------+------------+------+-------+---------+-------+
   | k_2   | INT        | Yes  | true  | NULL    |       |
   | k_1   | INT        | Yes  | true  | NULL    |       |

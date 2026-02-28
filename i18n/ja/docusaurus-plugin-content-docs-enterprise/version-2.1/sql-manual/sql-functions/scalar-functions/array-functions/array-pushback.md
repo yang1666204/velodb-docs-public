@@ -16,7 +16,7 @@ ARRAY_PUSHBACK(<arr>, <value>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|---|
 | `<arr>` | 対応する配列 |
 | `<value>` | 追加する値 |

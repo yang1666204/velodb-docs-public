@@ -41,7 +41,7 @@ USE { [<catalog_name>.]<database_name>[@<compute_group_name>] | @<compute_group_
 
 | 権限        | オブジェクト           | 備考                                                                |
 |-------------|----------------------|---------------------------------------------------------------------|
-| SELECT_PRIV | Catalog、Database    | 切り替え先のカタログまたはデータベースにSELECT_PRIV権限が必要です。    |
+| SELECT_PRIV | カタログ、Database    | 切り替え先のカタログまたはデータベースにSELECT_PRIV権限が必要です。    |
 | USAGE_PRIV  | Compute Group        | 切り替え先のコンピュートグループにUSAGE_PRIV権限が必要です。          |
 
 ## 例

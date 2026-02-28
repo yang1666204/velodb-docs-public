@@ -46,9 +46,9 @@
 
 
 ## アクセス制御要件
-| Privilege  | Object    | Notes                                     |
+| Privilege  | Object    | 注釈                                     |
 |:-----------|:----------|:------------------------------------------|
-| ALTER_PRIV | Catalog   | カタログのALTER_PRIVが必要 |
+| ALTER_PRIV | カタログ   | カタログのALTER_PRIVが必要 |
 
 ## 使用上の注意
 

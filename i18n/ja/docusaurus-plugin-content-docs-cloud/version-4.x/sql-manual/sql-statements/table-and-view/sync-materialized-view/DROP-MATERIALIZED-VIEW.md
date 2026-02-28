@@ -24,19 +24,19 @@ ON <table_name>
 
 **2. `<table_name>`**
 
-> マテリアライズドビューが属するテーブル。
+> マテリアライズドビューが属するTable。
 
 ## アクセス制御要件
 
 このSQLコマンドを実行するユーザーは、最低限以下の権限を持つ必要があります：
 
-| Privilege  | Object | Notes                                                        |
+| Privilege  | Object | 注釈                                                        |
 | ---------- | ------ | ------------------------------------------------------------ |
-| ALTER_PRIV | Table  | 削除対象のマテリアライズドビューが属するテーブルに対するALTER_PRIV権限が必要 |
+| ALTER_PRIV | Table  | 削除対象のマテリアライズドビューが属するTableに対するALTER_PRIV権限が必要 |
 
 ## 例
 
-`lineitem`テーブル上の同期マテリアライズドビュー`sync_agg_mv`を削除
+`lineitem`Table上の同期マテリアライズドビュー`sync_agg_mv`を削除
 
 ```sql
 DROP MATERIALIZED VIEW sync_agg_mv on lineitem;

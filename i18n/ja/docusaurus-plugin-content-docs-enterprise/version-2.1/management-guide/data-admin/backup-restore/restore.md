@@ -49,9 +49,9 @@ PROPERTIES
     "backup_timestamp"="2022-04-08-15-52-29"
 );
 ```
-### オプション 3: スナップショットから単一テーブルを復元
+### オプション 3: スナップショットから単一Tableを復元
 
-`example_repo` 内のスナップショットからテーブル `backup_tbl` を現在のデータベースに復元します。スナップショットのラベルは `restore_label1`、タイムスタンプは `2022-04-08-15-52-29` です。
+`example_repo` 内のスナップショットからTable `backup_tbl` を現在のデータベースに復元します。スナップショットのラベルは `restore_label1`、タイムスタンプは `2022-04-08-15-52-29` です。
 
 ```sql
 RESTORE SNAPSHOT `restore_label1`
@@ -62,9 +62,9 @@ PROPERTIES
     "backup_timestamp"="2022-04-08-15-52-29"
 );
 ```
-### オプション 4: スナップショットからパーティションとテーブルを復元
+### オプション 4: スナップショットからパーティションとTableを復元
 
-バックアップスナップショット `snapshot_2` からスナップショットタイムスタンプ `"2018-05-04-17-11-01"` を使用して、テーブル `backup_tbl` のパーティション p1 と p2、およびテーブル `backup_tbl2` を現在のデータベース `example_db1` に `new_tbl` として名前を変更して復元します。
+バックアップスナップショット `snapshot_2` からスナップショットタイムスタンプ `"2018-05-04-17-11-01"` を使用して、Table `backup_tbl` のパーティション p1 と p2、およびTable `backup_tbl2` を現在のデータベース `example_db1` に `new_tbl` として名前を変更して復元します。
 
    ```sql
    RESTORE SNAPSHOT `restore_label1`

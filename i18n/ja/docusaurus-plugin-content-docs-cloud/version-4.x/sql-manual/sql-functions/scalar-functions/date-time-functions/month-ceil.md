@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 datetime値を指定された月間隔の最も近い値に切り上げます。開始時刻（origin）が提供された場合、間隔の計算の基準としてその時刻を使用します。
 
@@ -17,9 +17,9 @@ MONTH_CEIL(<datetime>, <origin>)
 MONTH_CEIL(<datetime>, <period>)
 MONTH_CEIL(<datetime>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<datetime>`  | 切り上げする日時値。DATETIME または DATETIMEV2 型 |
 | `<period>`    | 月間隔値。INT 型で、各間隔における月数を表す |

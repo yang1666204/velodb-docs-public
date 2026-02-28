@@ -14,9 +14,9 @@
 ```sql
 ABS(<x>) 
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | 絶対値を計算する値 |
 

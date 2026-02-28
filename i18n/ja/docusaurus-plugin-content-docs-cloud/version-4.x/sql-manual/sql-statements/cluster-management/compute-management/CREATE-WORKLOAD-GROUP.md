@@ -7,7 +7,7 @@
 ---
 # CREATE WORKLOAD GROUP
 
-## Description
+## デスクリプション
 
 このステートメントはワークロードグループの作成に使用されます。ワークロードグループは、単一のbe上でcpuリソースとメモリリソースの分離を可能にします。
 
@@ -20,13 +20,13 @@ PROPERTIES (
     [ , ... ]
 );
 ```
-## Parameters
+## パラメータ
 
 1.`<property>`
 
 `<property>` の形式は `<key>` = `<value>` で、`<key>` で利用可能な具体的な値は以下の通りです：
 
-| Parameter | Description | Required |
+| Parameter | デスクリプション | Required |
 | -- | -- | -- |
 | `<cpu_share>` | workload groupが取得できるcpu時間を設定するために使用され、cpuリソースのソフト分離を実現できます。cpu_shareは実行中のworkload groupが利用可能なcpuリソースの重みを示す相対値です。例えば、ユーザーがcpu_shareをそれぞれ10、30、40として3つのworkload group rg-a、rg-b、rg-cを作成し、ある瞬間にrg-aとrg-bがタスクを実行している一方でrg-cにタスクがない場合、rg-aは(10 / (10 + 30)) = 25%のcpuリソースを取得でき、workload group rg-bは75%のcpuリソースを取得できます。システムで実行中のworkload groupが1つのみの場合、そのcpu_shareの値に関係なく、すべてのcpuリソースを取得します。 | Y |
 | `<memory_limit>` | workload groupが使用できるbeメモリの割合を設定します。workload groupのメモリ制限の絶対値は：`physical_memory * mem_limit * memory_limit` で、mem_limitはbe設定項目です。システム内のすべてのworkload groupのmemory_limitの合計は100%を超えてはいけません。workload groupは、ほとんどの場合でグループ内のタスクにmemory_limitの使用が保証されます。workload groupのメモリ使用量がこの制限を超えた場合、グループ内のより大きなメモリ使用量を持つタスクが余分なメモリを解放するためにキャンセルされる場合があります。enable_memory_overcommitを参照してください。 | Y |

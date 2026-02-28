@@ -23,7 +23,7 @@ SHOW FRONTEND CONFIG [LIKE "<pattern>"];
 | カラム名 | 説明                                            |
 |-------------|-----------------------------------------------------|
 | Value       | 設定項目の値                            |
-| Type        | 設定項目のタイプ                             |
+| タイプ        | 設定項目のタイプ                             |
 | IsMutable   | `ADMIN SET CONFIG`コマンドで設定可能かどうか |
 | MasterOnly  | Master FEにのみ適用されるかどうか                  |
 | Comment     | 設定項目の説明                      |
@@ -43,7 +43,7 @@ SHOW FRONTEND CONFIG [LIKE "<pattern>"];
     ```
     ```text
     +--------------------+-------+---------+-----------+------------+---------+
-    | Key                | Value | Type    | IsMutable | MasterOnly | Comment |
+    | Key                | Value | タイプ    | IsMutable | MasterOnly | Comment |
     +--------------------+-------+---------+-----------+------------+---------+
     | check_java_version | true  | boolean | false     | false      |         |
     +--------------------+-------+---------+-----------+------------+---------+

@@ -68,7 +68,7 @@ SELECT sort_json_object_keys(null);
 | NULL                        |
 +-----------------------------+
 ```
-## Notes
+## 注釈
 
 1. `SORT_JSON_OBJECT_KEYS`関数には`SORT_JSONB_OBJECT_KEYS`というエイリアスがあり、両方の関数は同一の機能を持ちます。
 

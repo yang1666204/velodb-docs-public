@@ -38,14 +38,14 @@ TO `<repository_name>`
 
 **1.`<table_name>`**
 
-バックアップするテーブルの名前。指定されない場合、データベース全体がバックアップされます。
+バックアップするTableの名前。指定されない場合、データベース全体がバックアップされます。
 
-- ON句は、バックアップが必要なテーブルとパーティションを識別します。パーティションが指定されない場合、デフォルトでテーブルの全パーティションがバックアップされます
-- バックアップが不要なテーブルとパーティションはEXCLUDE句で識別されます。指定されたテーブルまたはパーティション以外の、このデータベース内の全テーブルの全パーティションデータをバックアップします。
+- ON句は、バックアップが必要なTableとパーティションを識別します。パーティションが指定されない場合、デフォルトでTableの全パーティションがバックアップされます
+- バックアップが不要なTableとパーティションはEXCLUDE句で識別されます。指定されたTableまたはパーティション以外の、このデータベース内の全Tableの全パーティションデータをバックアップします。
 
 **2.`<partition_name>`**
 
-バックアップするパーティションの名前。指定されない場合、対応するテーブルの全パーティションがバックアップされます。
+バックアップするパーティションの名前。指定されない場合、対応するTableの全パーティションがバックアップされます。
 
 **3.`[ PROPERTIES ( "<key>" = "<value>" [ , ... ] ) ]`**
 
@@ -63,14 +63,14 @@ TO `<repository_name>`
 
 ## 使用上の注意
 
-- OLAP タイプのテーブルのバックアップのみサポートされています。
+- OLAP タイプのTableのバックアップのみサポートされています。
 - 同一データベース下では一度に一つのバックアップ操作のみ実行できます。
-- バックアップ操作は、指定されたテーブルまたはパーティションの基底テーブルと同期マテリアライズドビューをバックアップし、一つのレプリカのみがバックアップされます。非同期マテリアライズドビューはサポートされていません。
+- バックアップ操作は、指定されたTableまたはパーティションの基底Tableと同期マテリアライズドビューをバックアップし、一つのレプリカのみがバックアップされます。非同期マテリアライズドビューはサポートされていません。
 - バックアップ操作の効率性：バックアップ操作の効率性は、データ量、Compute Nodeの数、ファイル数に依存します。バックアップデータシャードが配置されている各Compute Nodeは、バックアップ操作のアップロードフェーズに参加します。ノード数が多いほど、アップロード効率は高くなります。ファイルデータ量は、シャード数と各シャード内のファイル数のみを指します。シャードが多い場合、またはシャード内に小さなファイルが多い場合、バックアップ操作時間が延長される可能性があります。
 
 ## 例
 
-1. example_db下のテーブルexample_tblをウェアハウスexample_repoに完全バックアップ：
+1. example_db下のTableexample_tblをウェアハウスexample_repoに完全バックアップ：
 
 ```sql
 BACKUP SNAPSHOT example_db.snapshot_label1
@@ -78,7 +78,7 @@ TO example_repo
 ON (example_tbl)
 PROPERTIES ("type" = "full");
 ```
-2. フルバックアップの下で、example_db、テーブルexample_tblのp1、p2パーティション、およびテーブルexample_tbl2をウェアハウスexample_repoに：
+2. フルバックアップの下で、example_db、Tableexample_tblのp1、p2パーティション、およびTableexample_tbl2をウェアハウスexample_repoに：
 
 ```sql
 BACKUP SNAPSHOT example_db.snapshot_label2
@@ -89,14 +89,14 @@ ON
     example_tbl2
 );
 ```
-3. example_db配下のtable example_tblを除く全テーブルのフルバックアップをwarehouse example_repoに実行：
+3. example_db配下のtable example_tblを除く全Tableのフルバックアップをwarehouse example_repoに実行：
 
 ```sql
 BACKUP SNAPSHOT example_db.snapshot_label3
 TO example_repo
 EXCLUDE (example_tbl);
 ```
-4. example_db 配下のテーブルを example_repo リポジトリに完全バックアップする：
+4. example_db 配下のTableを example_repo リポジトリに完全バックアップする：
 
 ```sql
 BACKUP SNAPSHOT example_db.snapshot_label3

@@ -21,7 +21,7 @@ INTO OUTFILE "<file_path>"
 
 **1. `<query_stmt>`**   
 
-クエリステートメント。有効なSQLである必要があります。[query statement documentation](../../data-query/SELECT.md)を参照してください。
+クエリステートメント。有効なSQLである必要があります。[query statement ドキュメント](../../data-query/SELECT.md)を参照してください。
 
 **2. `<file_path>`**
 
@@ -107,7 +107,7 @@ Outfile ステートメントが返す結果、各列の意味は以下の通り
 
 | 権限  | オブジェクト        | 説明                    |
 |:------------|:-------------|:-------------------------------|
-| SELECT_PRIV | Database     | データベースとテーブルに対する読み取り権限が必要です。 |
+| SELECT_PRIV | Database     | データベースとTableに対する読み取り権限が必要です。 |
 
 ## 注意事項
 
@@ -115,10 +115,10 @@ Outfile ステートメントが返す結果、各列の意味は以下の通り
 
 - すべてのファイル型は基本データ型のエクスポートをサポートしていますが、複合データ型（ARRAY/MAP/STRUCT）については、現在 `csv`, `orc`, `csv_with_names` および `csv_with_names_and_types` のみが複合型のエクスポートをサポートしており、ネストした複合型はサポートされていません。
 
-- Parquet および ORC ファイル形式には独自のデータ型があり、Doris のエクスポート機能は Doris データ型を Parquet/ORC ファイル形式の対応するデータ型に自動的にエクスポートできます。以下は Apache Doris データ型と Parquet/ORC ファイル形式間のデータ型マッピングテーブルです:
+- Parquet および ORC ファイル形式には独自のデータ型があり、Doris のエクスポート機能は Doris データ型を Parquet/ORC ファイル形式の対応するデータ型に自動的にエクスポートできます。以下は Apache Doris データ型と Parquet/ORC ファイル形式間のデータ型マッピングTableです:
 
-1. **Doris から ORC ファイル形式データ型マッピングテーブル:**
-   | Doris Type              | Orc Type  |
+1. **Doris から ORC ファイル形式データ型マッピングTable:**
+   | Doris タイプ              | Orc タイプ  |
    |-------------------------|-----------|
    | boolean                 | boolean   |
    | tinyint                 | tinyint   |
@@ -138,10 +138,10 @@ Outfile ステートメントが返す結果、各列の意味は以下の通り
    | map                     | map       |
    | array                   | array     |
 
-2. **Doris から Parquet ファイル形式データ型マッピングテーブル:**
+2. **Doris から Parquet ファイル形式データ型マッピングTable:**
 
    Doris が Parquet ファイル形式にエクスポートする場合、まず Doris メモリデータを Arrow メモリデータ形式に変換し、その後 Arrow が Parquet ファイル形式に書き込みます。Doris データ型と Arrow データ型間のマッピング関係は:
-   | Doris Type              | Arrow Type |
+   | Doris タイプ              | Arrow タイプ |
    |-------------------------|------------|
    | boolean                 | boolean    |
    | tinyint                 | int8       |

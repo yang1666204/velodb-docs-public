@@ -107,7 +107,7 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO cdc_user;
 |------|---------|
 | `rds_replication` | レプリケーションスロットの作成とWALの読み取り |
 | `rds_superuser` | パブリケーションの管理（CDCに必要） |
-| `pg_read_all_data` | 全スキーマの全テーブルの読み取り |
+| `pg_read_all_data` | 全スキーマの全Tableの読み取り |
 
 > **注意:** Auroraマスターユーザーは完全なSUPERUSER権限を持ちません。代わりにロールを使用してください。
 
@@ -167,7 +167,7 @@ psql -h your-cluster.cluster-xxxxx.us-west-2.rds.amazonaws.com -p 5432 -U cdc_us
 ```sql
 SELECT * FROM pg_publication;
 ```
-3. **テーブルの読み取り:**
+3. **Tableの読み取り:**
 
 ```sql
 SELECT COUNT(*) FROM your_table;

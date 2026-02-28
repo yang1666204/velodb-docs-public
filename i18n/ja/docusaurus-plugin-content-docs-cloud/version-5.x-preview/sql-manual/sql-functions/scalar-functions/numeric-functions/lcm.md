@@ -16,7 +16,7 @@ LCM(<a>, <b>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<a>` | 最初の整数 |
 | `<b>` | 2番目の整数 |

@@ -13,7 +13,7 @@ Github: https://github.com/apache/doris-spark-connector
 
 - `RDD`、`DataFrame`、`Spark SQL`を通じて`Doris`からバッチモードでのデータ読み取りをサポート。`DataFrame`または`Spark SQL`の使用を推奨
 - DataFrame APIとSpark SQLを使用してバッチまたはストリーミングモードで`Doris`へのデータ書き込みをサポート
-- `Doris`テーブルを`DataFrame`または`RDD`にマップ可能、`DataFrame`の使用を推奨
+- `Doris`Tableを`DataFrame`または`RDD`にマップ可能、`DataFrame`の使用を推奨
 - `Doris`側でのデータフィルタリングの完了をサポートし、データ転送量を削減
 
 ## バージョン互換性
@@ -230,11 +230,11 @@ df.writeStream
 ```
 ##### 直接書き込み
 
-データストリームの最初のデータ列が`Doris`テーブル構造に準拠したフォーマット済みデータである場合、例えば同じ列順序のCSVフォーマットデータや同じフィールド名のJSONフォーマットデータの場合、`doris.sink.streaming.passthrough`オプションを`true`に設定することで、`DataFrame`に変換することなく直接`Doris`に書き込むことができます。
+データストリームの最初のデータ列が`Doris`Table構造に準拠したフォーマット済みデータである場合、例えば同じ列順序のCSVフォーマットデータや同じフィールド名のJSONフォーマットデータの場合、`doris.sink.streaming.passthrough`オプションを`true`に設定することで、`DataFrame`に変換することなく直接`Doris`に書き込むことができます。
 
 kafkaを例にとります。
 
-そして、書き込み対象のテーブル構造が以下であると仮定します：
+そして、書き込み対象のTable構造が以下であると仮定します：
 
 ```sql
 CREATE TABLE `t2` (
@@ -288,11 +288,11 @@ df.write.format("doris")
         .option("doris.sink.properties.format", "json")
         .save()
 ```
-### Spark Doris Catalog
+### Spark Doris カタログ
 
 バージョン24.0.0以降、Spark Catalogを通じてDorisへのアクセスをサポートしています。
 
-#### Catalog Config
+#### カタログ Config
 
 | Key                                                  | Required | Comment                                                                                                                         |
 |------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------|
@@ -374,14 +374,14 @@ select * from your_catalog_name.your_doris_db.your_doris_table;
 insert into your_catalog_name.your_doris_db.your_doris_table values(xxx);
 insert into your_catalog_name.your_doris_db.your_doris_table select * from your_source_table;
 ```
-## Configuration
+## 構成
 
 ### General
 
-| Key                              | Default Value | Comment                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Key                              | デフォルト値 | Comment                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 |----------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | doris.fenodes                    | --            | Doris FE httpアドレス、複数のアドレスをサポート、カンマで区切り                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| doris.table.identifier           | --            | Dorisテーブル識別子、例：db1.tbl1                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| doris.table.identifier           | --            | DorisTable識別子、例：db1.tbl1                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | doris.user                       | --            | Dorisユーザー名                                                                                                                                                                                 |
 | doris.password                   | 空文字列  | Dorisパスワード                                                                                                                                                                                 |
 | doris.request.retries            | 3             | Dorisへのリクエスト送信の再試行回数                                                                                                                                                                                                                                                                                                                                                                                                                                     |
@@ -389,10 +389,10 @@ insert into your_catalog_name.your_doris_db.your_doris_table select * from your_
 | doris.request.read.timeout.ms    | 30000         | Dorisへのリクエスト送信時の読み取りタイムアウト                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | doris.request.query.timeout.s    | 21600          | dorisクエリのタイムアウト時間、デフォルトは6時間、-1はタイムアウト制限なしを意味する                                                                                                                                                                                                                                                                                                                                                                                               |
 | doris.request.tablet.size        | 1             | RDD Partitionに対応するDoris Tabletの数。この値を小さく設定するほど、より多くのパーティションが生成される。これによりSpark側の並列性が向上するが、同時にDorisにより大きな負荷をかけることになる。                                                                                                                                                                                                                                                                                           |
-| doris.read.field                 | --            | Dorisテーブルの列名リスト、カンマで区切り                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| doris.read.field                 | --            | DorisTableの列名リスト、カンマで区切り                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | doris.batch.size                 | 4064          | 一度にBEからデータを読み取る最大行数。この値を増やすと、SparkとDoris間の接続数を減らすことができる。これによりネットワーク遅延による余分な時間オーバーヘッドを削減できる。                                                                                                                                                                                                                                                                                                              |
 | doris.exec.mem.limit             | 8589934592    | 単一クエリのメモリ制限。デフォルトは8GB、バイト単位。                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| doris.write.fields               | --            | Dorisテーブルに書き込むフィールド（またはフィールドの順序）を指定、フィールドはカンマで区切り。<br/>デフォルトでは、すべてのフィールドがDorisテーブルフィールドの順序で書き込まれる。                                                                                                                                                                                                                                                                                           |
+| doris.write.fields               | --            | DorisTableに書き込むフィールド（またはフィールドの順序）を指定、フィールドはカンマで区切り。<br/>デフォルトでは、すべてのフィールドがDorisTableフィールドの順序で書き込まれる。                                                                                                                                                                                                                                                                                           |
 | doris.sink.batch.size            | 500000        | 単一のBE書き込みでの最大行数                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | doris.sink.max-retries           | 0             | BE書き込み後の再試行回数。バージョン1.3.0以降、デフォルト値は0で、デフォルトで再試行を実行しないことを意味する。このパラメータが0より大きく設定された場合、バッチレベルの失敗再試行が実行され、`doris.sink.batch.size`の設定サイズのデータがSpark Executorメモリにキャッシュされる。メモリ割り当てを適切に増やす必要がある場合がある。                                                                               |
 | doris.sink.retry.interval.ms           | 10000             | 再試行回数設定後の各再試行間の間隔、ミリ秒単位    |      
@@ -417,21 +417,21 @@ insert into your_catalog_name.your_doris_db.your_doris_table select * from your_
 | doris.query.port                 | -             | Doris FEクエリポート、Catalogの上書きとメタデータ取得に使用。                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 
-### SQL & Dataframe Configuration
+### SQL & Dataframe 構成
 
-| Key                             | Default Value | Comment                                                                                                                                                                                        |
+| Key                             | デフォルト値 | Comment                                                                                                                                                                                        |
 |---------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | doris.filter.query.in.max.count | 100           | 述語プッシュダウンにおいて、in式の値リストの要素の最大数。この数を超える場合、in式条件フィルタリングはSpark側で処理される。 |
 
-### Structured Streaming Configuration
+### Structured Streaming 構成
 
-| Key                              | Default Value | Comment                                                          |
+| Key                              | デフォルト値 | Comment                                                          |
 | -------------------------------- | ------------- | ---------------------------------------------------------------- |
 | doris.sink.streaming.passthrough | false         | 処理を行わずに最初の列の値を直接書き込む。 |
 
-### RDD Configuration
+### RDD 構成
 
-| Key                         | Default Value | Comment                                                                                                                                         |
+| Key                         | デフォルト値 | Comment                                                                                                                                         |
 |-----------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | doris.request.auth.user     | --            | Dorisユーザー名                                                                                                                                  |
 | doris.request.auth.password | --            | Dorisパスワード                                                                                                                                  |
@@ -440,7 +440,7 @@ insert into your_catalog_name.your_doris_db.your_doris_table select * from your_
 
 ## DorisからSparkへのデータ型マッピング
 
-| Doris Type | Spark Type              |
+| Doris タイプ | Spark タイプ              |
 |------------|-------------------------|
 | NULL_TYPE  | DataTypes.NullType      |
 | BOOLEAN    | DataTypes.BooleanType   |
@@ -466,7 +466,7 @@ insert into your_catalog_name.your_doris_db.your_doris_table select * from your_
 
 ## SparkからDorisへのデータ型マッピング
 
-| Spark Type     | Doris Type     |
+| Spark タイプ     | Doris タイプ     |
 |----------------|----------------|
 | BooleanType    | BOOLEAN        |
 | ShortType      | SMALLINT       |
@@ -492,7 +492,7 @@ insert into your_catalog_name.your_doris_db.your_doris_table select * from your_
 
 1. Bitmapタイプの書き込み方法
 
-   Spark SQLでinsert intoを通じてデータを書き込む際、dorisのターゲットテーブルに`BITMAP`または`HLL`タイプのデータが含まれている場合、オプション`doris.ignore-type`を対応するタイプに設定し、`doris.write.fields`を通じて列をマッピングする必要があります。使用方法は以下のとおりです：
+   Spark SQLでinsert intoを通じてデータを書き込む際、dorisのターゲットTableに`BITMAP`または`HLL`タイプのデータが含まれている場合、オプション`doris.ignore-type`を対応するタイプに設定し、`doris.write.fields`を通じて列をマッピングする必要があります。使用方法は以下のとおりです：
 
    **BITMAP**
 
@@ -530,7 +530,7 @@ insert into your_catalog_name.your_doris_db.your_doris_table select * from your_
 
 2. **overwriteを使用して書き込む方法**
 
-   バージョン1.3.0以降、overwriteモードでの書き込みがサポートされています（テーブル全体レベルでのデータ上書きのみサポート）。具体的な使用方法は以下の通りです：
+   バージョン1.3.0以降、overwriteモードでの書き込みがサポートされています（Table全体レベルでのデータ上書きのみサポート）。具体的な使用方法は以下の通りです：
 
    **DataFrame**
 

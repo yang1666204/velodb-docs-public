@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Function
+## ファンクション
 
 配列内の要素の順序をランダムにシャッフルします。
 
@@ -14,7 +14,7 @@
 - `ARRAY_SHUFFLE(arr)`
 - `ARRAY_SHUFFLE(arr, seed)`
 
-## Parameters
+## パラメータ
 
 - `arr`: `ARRAY<T>`
 - `seed`: オプション、ランダムシード

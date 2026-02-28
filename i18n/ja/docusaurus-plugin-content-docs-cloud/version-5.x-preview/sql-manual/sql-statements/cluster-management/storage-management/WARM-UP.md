@@ -7,9 +7,9 @@
 ---
 ## 説明
 
-`WARM UP COMPUTE GROUP`文は、クエリパフォーマンスを向上させるために、compute group内のデータをウォームアップするために使用されます。ウォームアップ操作では、別のcompute groupからリソースを取得するか、ウォームアップする特定のテーブルとパーティションを指定できます。ウォームアップ操作は、ウォームアップジョブのステータスを追跡するために使用できるjob IDを返します。
+`WARM UP COMPUTE GROUP`文は、クエリパフォーマンスを向上させるために、compute group内のデータをウォームアップするために使用されます。ウォームアップ操作では、別のcompute groupからリソースを取得するか、ウォームアップする特定のTableとパーティションを指定できます。ウォームアップ操作は、ウォームアップジョブのステータスを追跡するために使用できるjob IDを返します。
 
-> Catalogクエリシナリオでのキャッシュのウォームアップ方法については、[Data Cache documentation](../../../../lakehouse/data-cache.md)を参照してください。
+> Catalogクエリシナリオでのキャッシュのウォームアップ方法については、[Data Cache ドキュメント](../../../../lakehouse/data-cache.md)を参照してください。
 
 ## 構文
 
@@ -26,14 +26,14 @@ warm_up_list ::= warm_up_item [AND warm_up_item...];
 warm_up_item ::= TABLE <table_name> [PARTITION <partition_name>];
 
 ```
-## Parameters
+## パラメータ
 
-| Parameter Name                  | Description                                                         |
+| パラメータ名                  | デスクリプション                                                         |
 |---------------------------|--------------------------------------------------------------|
 | destination_compute_group_name | ウォームアップ対象となるコンピュートグループの名前。                                   |
 | source_compute_group_name  | リソースを取得する元のコンピュートグループの名前。                                 |
-| warm_up_list              | ウォームアップする特定のアイテムのリスト。テーブルとパーティションを含めることができます。                   |
-| table_name                | ウォームアップに使用するテーブルの名前。                                         |
+| warm_up_list              | ウォームアップする特定のアイテムのリスト。Tableとパーティションを含めることができます。                   |
+| table_name                | ウォームアップに使用するTableの名前。                                         |
 | partition_name            | ウォームアップに使用するパーティションの名前。                                       |
 
 ## Return Value
@@ -47,7 +47,7 @@ warm_up_item ::= TABLE <table_name> [PARTITION <partition_name>];
 ```sql
    WARM UP COMPUTE GROUP destination_group_name WITH COMPUTE GROUP source_group_name;
 ```
-2. compute groupのdestination_groupを使用して、テーブルsales_dataとcustomer_info、およびテーブルordersのパーティションq1_2024をウォームアップします。
+2. compute groupのdestination_groupを使用して、Tablesales_dataとcustomer_info、およびTableordersのパーティションq1_2024をウォームアップします。
 
 ```sql
     WARM UP COMPUTE GROUP destination_group WITH 

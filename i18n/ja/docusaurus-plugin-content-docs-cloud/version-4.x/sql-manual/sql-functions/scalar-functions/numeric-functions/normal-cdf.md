@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 値 `x` における正規分布の累積分布関数（CDF）を計算します。
 
@@ -18,7 +18,7 @@ NORMAL_CDF(<mean>, <sd>, <x>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<mean>` | 正規分布の平均 |
 | `<sd>` | 正規分布の標準偏差 |

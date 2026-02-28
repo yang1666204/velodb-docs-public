@@ -14,9 +14,9 @@
 ```sql
 HOUR(<dt>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<dt>` | 計算対象の日付。 |
 

@@ -65,7 +65,7 @@ void Status foo() {
 ```
 POST /api/debug_point/add/{debug_point_name}[?timeout=<int>&execute=<int>]
 ```
-### Query Parameters
+### Query パラメータ
 
 * `debug_point_name`
     デバッグポイント名。必須パラメータ。
@@ -182,7 +182,7 @@ DBUG_EXECUTE_IF("TxnManager.prepare_txn.random_failed",
 ```
 	POST /api/debug_point/remove/{debug_point_name}
 ```
-### Query Parameters
+### Query パラメータ
 
 * `debug_point_name`
     デバッグポイント名。必須パラメータ。

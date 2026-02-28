@@ -15,9 +15,9 @@
 ```sql
 ST_AREA_SQUARE_KM( <geo>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | 説明     |
+| パラメータ | 説明     |
 | -- |--------|
 | `<geo>` | 地球の球面位置 |
 

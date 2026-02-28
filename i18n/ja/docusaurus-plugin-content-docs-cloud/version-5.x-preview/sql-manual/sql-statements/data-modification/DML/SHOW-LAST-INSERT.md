@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この構文は、現在のセッション接続における最新のinsert操作の結果を表示するために使用されます
 
@@ -30,7 +30,7 @@ TransactionStatus: VISIBLE
 * TransactionId: トランザクション id
 * Label: insertタスクに対応するラベル
 * Database: insertに対応するデータベース
-* Table: insertに対応するテーブル
+* Table: insertに対応するTable
 * TransactionStatus: トランザクションステータス
    * PREPARE: 準備段階
    * PRECOMMITTED: Pre-commitステージ

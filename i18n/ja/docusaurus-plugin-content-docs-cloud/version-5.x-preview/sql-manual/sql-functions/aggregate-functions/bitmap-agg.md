@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力式のnon-NULL値をBitmapに集約します。
 値が0未満または18446744073709551615より大きい場合、その値は無視されBitmapにマージされません。
@@ -17,7 +17,7 @@ BITMAP_AGG(<expr>)
 ```
 ## Arguments
 
-| Argument | Description |
+| Argument | デスクリプション |
 | -- | -- |
 | `<expr>` | 集約対象の列または式。サポートされる型：TinyInt、SmallInt、Integer、BigInt。 |
 

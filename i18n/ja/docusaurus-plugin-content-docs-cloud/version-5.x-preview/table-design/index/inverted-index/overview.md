@@ -13,13 +13,13 @@
 
 バージョン2.0.0以降、Dorisはinverted indexをサポートしており、テキストタイプでの全文検索、通常の数値型や日付型での等価・範囲クエリに使用でき、大量のデータから条件を満たす行を高速にフィルタリングできます。
 
-DorisのInverted Indexの実装では、テーブルの各行が一つの文書に対応し、各列が文書内のフィールドに対応します。したがって、inverted indexを使用することで、特定のキーワードを含む行を高速に特定でき、WHERE句を加速できます。
+DorisのInverted Indexの実装では、Tableの各行が一つの文書に対応し、各列が文書内のフィールドに対応します。したがって、inverted indexを使用することで、特定のキーワードを含む行を高速に特定でき、WHERE句を加速できます。
 
 Dorisの他のインデックスとは異なり、inverted indexはストレージ層で独立したファイルを使用し、データファイルと一対一で対応しますが、物理的には独立して格納されます。この方法により、データファイルを書き換えることなくインデックスの作成と削除が可能になり、処理オーバーヘッドを大幅に削減できます。
 
 ## 使用シナリオ
 
-Inverted indexは幅広い用途があり、等価、範囲、全文検索（キーワードマッチング、フレーズマッチングなど）を加速できます。テーブルには複数のinverted indexを設定でき、クエリ時には複数のinverted indexの条件を任意に組み合わせることができます。
+Inverted indexは幅広い用途があり、等価、範囲、全文検索（キーワードマッチング、フレーズマッチングなど）を加速できます。Tableには複数のinverted indexを設定でき、クエリ時には複数のinverted indexの条件を任意に組み合わせることができます。
 
 Inverted indexの機能を簡単に紹介します：
 
@@ -49,11 +49,11 @@ Inverted indexの機能を簡単に紹介します：
 
 **4. 柔軟で効率的なインデックス管理**
 
-- テーブル作成時のinverted index定義をサポート
+- Table作成時のinverted index定義をサポート
 
-- 既存テーブルへのinverted index追加をサポート、テーブル内の既存データを書き換えることなく増分インデックス構築
+- 既存Tableへのinverted index追加をサポート、Table内の既存データを書き換えることなく増分インデックス構築
 
-- 既存テーブルからのinverted index削除をサポート、テーブル内の既存データを書き換えることなく実行
+- 既存Tableからのinverted index削除をサポート、Table内の既存データを書き換えることなく実行
 
 :::tip
 
@@ -63,15 +63,15 @@ Inverted indexの使用にはいくつかの制限があります：
 
 2. 一部の複合データ型は、MAP、STRUCT、JSON、HLL、BITMAP、QUANTILE_STATE、AGG_STATEを含め、まだinverted indexをサポートしていません。
 
-3. DUPLICATEおよびMerge-on-Writeが有効なUNIQUEテーブルモデルは、任意の列でinverted indexの構築をサポートします。しかし、AGGREGATEおよびMerge-on-Writeが無効なUNIQUEモデルは、Key列でのみinverted indexの構築をサポートし、非Key列にはinverted indexを設定できません。これは、これらの2つのモデルがマージのためにすべてのデータを読み込む必要があるため、事前フィルタリングにインデックスを使用できないからです。
+3. DUPLICATEおよびMerge-on-Writeが有効なUNIQUETableモデルは、任意の列でinverted indexの構築をサポートします。しかし、AGGREGATEおよびMerge-on-Writeが無効なUNIQUEモデルは、Key列でのみinverted indexの構築をサポートし、非Key列にはinverted indexを設定できません。これは、これらの2つのモデルがマージのためにすべてのデータを読み込む必要があるため、事前フィルタリングにインデックスを使用できないからです。
 
 :::
 
 ## インデックスの管理
 
-### テーブル作成時のInverted Index定義
+### Table作成時のInverted Index定義
 
-テーブル作成文では、COLUMN定義の後にインデックス定義を記述します：
+Table作成文では、COLUMN定義の後にインデックス定義を記述します：
 
 ```sql
 CREATE TABLE table_name
@@ -86,7 +86,7 @@ table_properties;
 ```
 構文の説明：
 
-**1. `idx_column_name(column_name)` は必須です。`column_name` はインデックス対象のカラム名で、事前に定義されたカラムである必要があります。`idx_column_name` はインデックス名で、テーブルレベルで一意である必要があります。推奨される命名規則：カラム名の前に `idx_` プレフィックスを付ける**
+**1. `idx_column_name(column_name)` は必須です。`column_name` はインデックス対象のカラム名で、事前に定義されたカラムである必要があります。`idx_column_name` はインデックス名で、Tableレベルで一意である必要があります。推奨される命名規則：カラム名の前に `idx_` プレフィックスを付ける**
 
 **2. `USING INVERTED` は必須で、インデックスタイプが転置インデックスであることを指定します**
 
@@ -190,9 +190,9 @@ table_properties;
 
 **4. `COMMENT`はインデックスコメントを指定するためのオプションです**
 
-**5. テーブルレベルプロパティ `inverted_index_storage_format`（3.1.0以降でサポート）**
+**5. Tableレベルプロパティ `inverted_index_storage_format`（3.1.0以降でサポート）**
 
-  転置インデックスに新しいV3ストレージフォーマットを使用するには、テーブル作成時にこのプロパティを指定してください：
+  転置インデックスに新しいV3ストレージフォーマットを使用するには、Table作成時にこのプロパティを指定してください：
 
 ```sql
 CREATE TABLE table_name (
@@ -209,13 +209,13 @@ CREATE TABLE table_name (
   <p>  - 大規模テキストデータとログ解析シナリオにおいて最大20%のストレージ容量節約</p>
   <p>  - 用語辞書に対するZSTD辞書圧縮（dict_compressionが有効な場合）</p>
   <p>  - 各用語に関連する位置情報の圧縮</p>
-  <p>- 推奨事項: 大規模テキストデータセットを持つ新しいテーブル、ログ分析ワークロード、またはストレージ最適化が重要な場合にV3を使用してください</p>
+  <p>- 推奨事項: 大規模テキストデータセットを持つ新しいTable、ログ分析ワークロード、またはストレージ最適化が重要な場合にV3を使用してください</p>
 
-### 既存テーブルへのInverted Indexの追加
+### 既存TableへのInverted Indexの追加
 
 **1. ADD INDEX**
 
-`CREATE INDEX`と`ALTER TABLE ADD INDEX`の両方の構文をサポートします。パラメータはテーブル作成時にインデックスを定義する際に使用されるものと同じです。
+`CREATE INDEX`と`ALTER TABLE ADD INDEX`の両方の構文をサポートします。パラメータはTable作成時にインデックスを定義する際に使用されるものと同じです。
 
 ```sql
 -- Syntax 1
@@ -260,7 +260,7 @@ CANCEL BUILD INDEX ON table_name (job_id1, job_id2, ...);
 
 :::
 
-### 既存テーブルからの転置インデックスの削除
+### 既存Tableからの転置インデックスの削除
 
 ```sql
 -- Syntax 1
@@ -276,7 +276,7 @@ ALTER TABLE table_name DROP INDEX idx_name;
 
 ### 転置インデックスの表示
 
--- 構文1: テーブルスキーマのINDEXセクションでUSING INVERTEDが転置インデックスを示します
+-- 構文1: TableスキーマのINDEXセクションでUSING INVERTEDが転置インデックスを示します
 SHOW CREATE TABLE table_name;
 
 -- 構文2: IndexTypeがINVERTEDの場合、転置インデックスを示します
@@ -338,7 +338,7 @@ SELECT * FROM table_name WHERE ts > '2023-01-01 00:00:00';
 SELECT * FROM table_name WHERE op_type IN ('add', 'delete');
 
 -- 4. Full-text search across multiple columns using the multi_match function
--- Parameters:
+-- パラメータ:
 --   First N parameters are column names to search
 --   Second-to-last parameter specifies match mode: 'any'/'all'/'phrase'/'phrase_prefix'
 --   Last parameter is the keyword or phrase to search for

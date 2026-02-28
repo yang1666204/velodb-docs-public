@@ -1,13 +1,13 @@
 ---
 {
   "title": "DESC TABLE",
-  "description": "この文は、指定されたテーブルのスキーマ情報を表示するために使用されます。",
+  "description": "この文は、指定されたTableのスキーマ情報を表示するために使用されます。",
   "language": "ja"
 }
 ---
 ## 説明
 
-このステートメントは、指定されたテーブルのスキーマ情報を表示するために使用されます。
+このステートメントは、指定されたTableのスキーマ情報を表示するために使用されます。
 
 ## 構文
 
@@ -16,7 +16,7 @@ DESC[RIBE] [db_name.]table_name [ALL];
 ```
 ## 必須パラメータ
 **1.`<table_name>`**
-> テーブル識別子（名前）を指定します。これは配置されるデータベース内で一意である必要があります。
+> Table識別子（名前）を指定します。これは配置されるデータベース内で一意である必要があります。
 >
 > 識別子は英字（またはunicode name supportが有効な場合は任意の言語の文字）で始まる必要があり、識別子文字列全体がバッククォートで囲まれていない限り（例：`My Object`）、スペースや特殊文字を含むことはできません。
 >
@@ -36,7 +36,7 @@ DESC[RIBE] [db_name.]table_name [ALL];
 > 詳細については、Identifier Requirements and Reserved Keywordsを参照してください。
 
 **2.`RIBE`**
-> テーブル内のすべての列の説明情報を返します
+> Table内のすべての列の説明情報を返します
 
 **3.`ALL`**
 > すべての列の説明情報を返します
@@ -45,10 +45,10 @@ DESC[RIBE] [db_name.]table_name [ALL];
 
 | column name | description                       |
 | -- |-----------------------------------|
-| IndexName | テーブル名                        |
-| IndexKeysType | テーブルモデル                       |
+| IndexName | Table名                        |
+| IndexKeysType | Tableモデル                       |
 | Field | 列名                       |
-| Type | データタイプ                        |
+| タイプ | データタイプ                        |
 | Null | NULL値が許可されるかどうか |
 | Key | キー列かどうか                           |
 | Default | デフォルト値                     |
@@ -61,38 +61,38 @@ DESC[RIBE] [db_name.]table_name [ALL];
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege    | Object    | Notes                                                                                         |
+| Privilege    | Object    | 注釈                                                                                         |
 |:-------------|:----------|:----------------------------------------------------------------------------------------------|
-| SELECT_PRIV  | Table     | DESCを実行する際は、クエリ対象のテーブルに対してSELECT_PRIV権限が必要です    |
+| SELECT_PRIV  | Table     | DESCを実行する際は、クエリ対象のTableに対してSELECT_PRIV権限が必要です    |
 
 ## 使用上の注意
-- ALLが指定された場合、テーブルのすべてのインデックス（rollup）のスキーマが表示されます。
+- ALLが指定された場合、Tableのすべてのインデックス（rollup）のスキーマが表示されます。
 
 
 ## 例
 
-1. Baseテーブルスキーマを表示
+1. BaseTableスキーマを表示
 
 ```sql
 DESC test_table;
 ```
 ```text
 +---------+-------------+------+-------+---------+-------+
-| Field   | Type        | Null | Key   | Default | Extra |
+| Field   | タイプ        | Null | Key   | Default | Extra |
 +---------+-------------+------+-------+---------+-------+
 | user_id | bigint      | No   | true  | NULL    |       |
 | name    | varchar(20) | Yes  | false | NULL    | NONE  |
 | age     | int         | Yes  | false | NULL    | NONE  |
 +---------+-------------+------+-------+---------+-------+
 ```
-2. テーブル内のすべてのインデックスのスキーマを表示する
+2. Table内のすべてのインデックスのスキーマを表示する
 
 ```sql
 DESC demo.test_table ALL;
 ```
 ```text
 +------------+---------------+---------+-------------+--------------+------+-------+---------+-------+---------+------------+-------------+
-| IndexName  | IndexKeysType | Field   | Type        | InternalType | Null | Key   | Default | Extra | Visible | DefineExpr | WhereClause |
+| IndexName  | IndexKeysType | Field   | タイプ        | InternalType | Null | Key   | Default | Extra | Visible | DefineExpr | WhereClause |
 +------------+---------------+---------+-------------+--------------+------+-------+---------+-------+---------+------------+-------------+
 | test_table | DUP_KEYS      | user_id | bigint      | bigint       | No   | true  | NULL    |       | true    |            |             |
 |            |               | name    | varchar(20) | varchar(20)  | Yes  | false | NULL    | NONE  | true    |            |             |

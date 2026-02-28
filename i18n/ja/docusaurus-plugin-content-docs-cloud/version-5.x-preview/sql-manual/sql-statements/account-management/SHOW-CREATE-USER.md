@@ -16,7 +16,7 @@ SHOW CREATE USER '<user_identity>'
 ```
 ## 戻り値
 
-| Column         | Description         |
+| Column         | デスクリプション         |
 |:------------|:------------|
 | User Identity  | 指定されたユーザーアイデンティティ |
 | Create Stmt  | 指定されたユーザーの作成文 |
@@ -25,7 +25,7 @@ SHOW CREATE USER '<user_identity>'
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持っている必要があります：
 
-| Privilege | Object | Notes                |
+| Privilege | Object | 注釈                |
 | :---------------- | :------------- | :---------------------------- |
 | ADMIN_PRIV        | User or Role    | この`SHOW CREATE USER`操作は、`ADMIN_PRIV`権限を持つユーザーまたはロールのみが実行できます。 |
 

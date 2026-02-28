@@ -1,11 +1,11 @@
 ---
 {
-  "title": "Kudu Catalog",
-  "description": "Kudu CatalogはTrino Connector互換性フレームワークを使用して、Kudu Connectorを通じてKuduテーブルにアクセスします。",
+  "title": "Kudu カタログ",
+  "description": "Kudu CatalogはTrino Connector互換性フレームワークを使用して、Kudu Connectorを通じてKuduTableにアクセスします。",
   "language": "ja"
 }
 ---
-Kudu Catalog は [Trino Connector](https://doris.apache.org/zh-CN/community/how-to-contribute/trino-connector-developer-guide/) 互換性フレームワークを使用して、Kudu Connector を通じて Kudu テーブルにアクセスします。
+Kudu カタログ は [Trino Connector](https://doris.apache.org/zh-CN/community/how-to-contribute/trino-connector-developer-guide/) 互換性フレームワークを使用して、Kudu Connector を通じて Kudu Tableにアクセスします。
 
 :::note
 この機能は実験的であり、バージョン 3.0.1 以降でサポートされています。
@@ -15,7 +15,7 @@ Kudu Catalog は [Trino Connector](https://doris.apache.org/zh-CN/community/how-
 
 | シナリオ       | 説明                          |
 | -------------- | ------------------------------------ |
-| データ統合 | Kudu データを読み取り、Doris 内部テーブルに書き込みます。 |
+| データ統合 | Kudu データを読み取り、Doris 内部Tableに書き込みます。 |
 | データライトバック  | サポートされていません。                     |
 
 ## 環境準備
@@ -66,7 +66,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 * `[CommonProperties]`
 
-  CommonPropertiesセクションは、一般的なプロパティを指定するために使用されます。「Common Properties」セクション配下の[Catalog Overview](../catalog-overview.md)を参照してください。
+  CommonPropertiesセクションは、一般的なプロパティを指定するために使用されます。「Common Properties」セクション配下の[カタログ 概要](../catalog-overview.md)を参照してください。
 
 ### サポートされているKuduバージョン
 
@@ -82,7 +82,7 @@ Kuduの詳細については、[Trinoドキュメント](https://trino.io/docs/c
 
 ## カラム型マッピング
 
-| Kudu Type        | Trino Type    | Doris Type    | Comment                                                                 |
+| Kudu タイプ        | Trino タイプ    | Doris タイプ    | Comment                                                                 |
 | ---------------- | ------------- | ------------- | ----------------------------------------------------------------------- |
 | boolean          | boolean       | boolean       |                                                                         |
 | int8             | tinyint       | tinyint       |                                                                         |
@@ -108,9 +108,9 @@ CREATE CATALOG kudu_catalog PROPERTIES (
     'trino.kudu.authentication.type' = 'NONE'
 );
 ```
-## Query Operations
+## Query 運用
 
-Catalogを設定した後、以下の方法を使用してCatalog内のテーブルデータをクエリできます：
+Catalogを設定した後、以下の方法を使用してCatalog内のTableデータをクエリできます：
 
 ```sql
 -- 1. switch to catalog, use database and query

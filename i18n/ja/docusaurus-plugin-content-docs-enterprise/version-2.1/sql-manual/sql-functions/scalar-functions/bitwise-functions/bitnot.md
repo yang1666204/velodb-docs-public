@@ -18,7 +18,7 @@ BITNOT( <x>)
 ## パラメータ
 | parameter | description |
 |-----------|-------------|
-| `<x>`     | Integer operations      |
+| `<x>`     | Integer 運用      |
 
 ## 戻り値
 1つの整数のNOT演算の結果を返します。

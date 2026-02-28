@@ -14,7 +14,7 @@
 ARRAY_JOIN(<arr> , <sep> [, <null_replace>])
 ```
 ## パラメータ
-| Parameter      | Description |
+| Parameter      | デスクリプション |
 |---|---|
 | `<arr>`         | 結合する配列 |
 | `<sep>`         | 区切り文字列 |

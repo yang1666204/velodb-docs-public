@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 HOURS_ADD関数は、入力された日付またはdatetime値に対して指定された時間数を加算または減算し、計算された新しいdatetimeを返します。この関数はDATEとDATETIMEの両方の入力タイプをサポートします。入力がDATE型（年、月、日のみを含む）の場合、時間を加算する前に時刻部分をデフォルトで00:00:00に設定します。
 
@@ -16,9 +16,9 @@ HOURS_ADD関数は、入力された日付またはdatetime値に対して指定
 ```sql
 HOURS_ADD(`<date_or_time_expr>`, `<hours>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | ---- | ---- |
 | `<date_or_time_expr>` | date/datetime型をサポートする有効な日付式。具体的なdatetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<hours>` | 加算する時間数。整数（INT）型。正数または負数を指定可能：正数は指定した時間数を加算し、負数は指定した時間数を減算します（時間の減算と同等） |

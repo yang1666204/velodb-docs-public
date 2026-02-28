@@ -17,7 +17,7 @@ ARRAY_MAX(<arr>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --- | --- |
 | `<arr>` | ARRAY配列 |
 

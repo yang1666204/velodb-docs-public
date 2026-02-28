@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントはユーザー権限を表示するために使用されます。
 
@@ -35,7 +35,7 @@ SHOW [ALL] GRANTS [FOR <user_identity>];
   | GlobalPrivs | グローバル権限 |
   | CatalogPrivs | カタログ権限 |
   | DatabasePrivs | データベース権限 |
-  | TablePrivs | テーブル権限 |
+  | TablePrivs | Table権限 |
   | ColPrivs | カラム権限 |
   | ResourcePrivs | リソース権限 |
   | WorkloadGroupPrivs | WorkloadGroup権限 |

@@ -14,9 +14,9 @@
 ```sql
 ARRAY_ZIP(<array>[, <array> ])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<array>` | 入力配列 |
 

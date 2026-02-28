@@ -1,6 +1,6 @@
 ---
 {
-  "title": "Elasticsearch Catalog",
+  "title": "Elasticsearch カタログ",
   "description": "Elasticsearch Catalogは、ESメタデータの自動マッピングをサポートするだけでなく、",
   "language": "ja"
 }
@@ -9,7 +9,7 @@ Elasticsearch Catalogは、ESメタデータの自動マッピングをサポー
 
 1. ESにおけるマルチインデックス分散Joinクエリ。
 
-2. DorisとESのテーブル間での結合クエリ、より複雑な全文検索フィルタリング。
+2. DorisとESのTable間での結合クエリ、より複雑な全文検索フィルタリング。
 
 ## 前提条件
 
@@ -26,7 +26,7 @@ CREATE CATALOG es_catalog PROPERTIES (
 ```
 * {ElasticsearchProperties}
 
-| Parameter              | Required | Default | Description                                                                                    |
+| Parameter              | Required | Default | デスクリプション                                                                                    |
 | ---------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------- |
 | `hosts`                | Yes      |         | ESアドレス、単一または複数、またはESロードバランサーアドレス                               |
 | `user`                 | No       | Empty   | ESユーザー名                                                                                    |
@@ -53,7 +53,7 @@ SWITCHコマンドを使用してES Catalogに切り替えた後、自動的に`
 
 ## カラムタイプマッピング
 
-| ES Type           | Doris Type  | Comment                                                                                        |
+| ES タイプ           | Doris タイプ  | Comment                                                                                        |
 | ----------------- | ----------- | ---------------------------------------------------------------------------------------------- |
 | null              | null        |                                                                                                |
 | boolean           | boolean     |                                                                                                |
@@ -105,7 +105,7 @@ Elasticsearch 6.x以前のバージョンについては、[\_meta](https://www.
 
 ```shell
 # ES 7.x and above
-curl -X PUT "localhost:9200/doc/_mapping?pretty" -H 'Content-Type:application/json' -d '
+curl -X PUT "localhost:9200/doc/_mapping?pretty" -H 'Content-タイプ:application/json' -d '
 {
     "_meta": {
         "doris":{
@@ -119,7 +119,7 @@ curl -X PUT "localhost:9200/doc/_mapping?pretty" -H 'Content-Type:application/js
 }'
 
 # ES 6.x and before
-curl -X PUT "localhost:9200/doc/_mapping/_doc?pretty" -H 'Content-Type: application/json' -d '
+curl -X PUT "localhost:9200/doc/_mapping/_doc?pretty" -H 'Content-タイプ: application/json' -d '
 {
     "_meta": {
         "doris":{
@@ -134,7 +134,7 @@ curl -X PUT "localhost:9200/doc/_mapping/_doc?pretty" -H 'Content-Type: applicat
 ```
 `array_fields`：配列型のフィールドを示すために使用されます。
 
-### flattened Type
+### flattened タイプ
 
 `flattened`型の場合、`enable_docvalue_scan`プロパティが`false`の時、読み取られるJSONデータ形式はフラット化されます。`enable_docvalue_scan`プロパティが`true`の場合、元のJSON形式で読み取られます。例は以下の通りです：
 
@@ -188,9 +188,9 @@ curl -X PUT "localhost:9200/doc/_mapping/_doc?pretty" -H 'Content-Type: applicat
    ```json
    ["abc","element1","element2","element3"]
    ```
-## Query Operations
+## Query 運用
 
-Catalogを設定した後、以下の方法でCatalog内のテーブルデータをクエリできます：
+Catalogを設定した後、以下の方法でCatalog内のTableデータをクエリできます：
 
 ```sql
 -- 1. switch to catalog, use database and query
@@ -208,7 +208,7 @@ SELECT * FROM es_ctl.default_db.es_tbl LIMIT 10;
 
 ## Best Practices
 
-### Filter Predicate Pushdown
+### フィルタ述語プッシュダウン
 
 ES Catalogはfilter predicate pushdownをサポートしています：フィルター条件がESにプッシュダウンされ、条件を真に満たすデータのみが返されるため、クエリパフォーマンスを大幅に改善し、DorisとElasticsearchのCPU、Memory、IO使用量を削減できます。
 
@@ -249,7 +249,7 @@ ES Catalogはfilter predicate pushdownをサポートしています：フィル
 
 3. `keyword` タイプのフィールドは、この制限を超える長いテキストフィールドに対する [`ignore_above`](https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html#keyword-params) パラメータの制限により空になる場合があります。この場合、`enable_docvalue_scan` を無効にして `_source` から結果を取得する必要があります。
 
-### Keyword Type Fieldsを検出する
+### Keyword タイプ Fieldsを検出する
 
 `"enable_keyword_sniff" = "true"` を設定します
 
@@ -409,11 +409,11 @@ select * from es_table where esquery(k4, ' {
          }
       }');
 ```
-### Time Type Field使用推奨事項
+### Time タイプ Field使用推奨事項
 
-ESの外部テーブルにのみ適用されます。ES Catalogでは、dateタイプは自動的にDateまたはDatetimeにマッピングされます。
+ESの外部Tableにのみ適用されます。ES Catalogでは、dateタイプは自動的にDateまたはDatetimeにマッピングされます。
 
-ESでは、timeタイプフィールドは非常に柔軟に使用できますが、ESの外部テーブルでは、timeタイプフィールドが適切に設定されていない場合、フィルター条件をプッシュダウンできません。
+ESでは、timeタイプフィールドは非常に柔軟に使用できますが、ESの外部Tableでは、timeタイプフィールドが適切に設定されていない場合、フィルター条件をプッシュダウンできません。
 
 インデックスを作成する際は、最大限のフォーマット互換性のためにtimeタイプフォーマットを設定してください：
 
@@ -443,13 +443,13 @@ select * from doe where k2 < date_format(now(), '%Y-%m-%d');
   ```sql
   strict_date_optional_time||epoch_millis
   ```
-* ESにインポートする日付フィールドがタイムスタンプの場合、`ms`に変換する必要があります。ESは内部的にタイムスタンプを`ms`で処理するため、そうしないとES外部テーブルで表示エラーが発生します。
+* ESにインポートする日付フィールドがタイムスタンプの場合、`ms`に変換する必要があります。ESは内部的にタイムスタンプを`ms`で処理するため、そうしないとES外部Tableで表示エラーが発生します。
 
 ### ESメタデータフィールドIDの取得
 
 `_id`を指定せずにドキュメントをインポートする場合、ESは各ドキュメントにグローバルに一意な`_id`（主キー）を割り当てます。ユーザーはインポート時に特別な業務的意味を持つ`_id`を指定することもできます。
 
-ES外部テーブルでこのフィールド値を取得する必要がある場合、テーブル作成時に`varchar`型の`_id`フィールドを追加できます：
+ES外部Tableでこのフィールド値を取得する必要がある場合、Table作成時に`varchar`型の`_id`フィールドを追加できます：
 
 ```sql
 CREATE EXTERNAL TABLE `doe` (
@@ -536,7 +536,7 @@ ES Catalogでこのフィールド値を取得する必要がある場合は、`
 |           +-----------------------+          |
 +----------------------------------------------+
 ```
-1. FEは、テーブル作成時に指定されたホストに対してリクエストを送信し、全ノードのHTTPポート情報やインデックスのシャード分散情報などを取得します。リクエストが失敗した場合、成功するか完全に失敗するまで、ホストリストを順次走査します。
+1. FEは、Table作成時に指定されたホストに対してリクエストを送信し、全ノードのHTTPポート情報やインデックスのシャード分散情報などを取得します。リクエストが失敗した場合、成功するか完全に失敗するまで、ホストリストを順次走査します。
 
 2. クエリ実行時、FEによって取得されたノード情報とインデックスメタデータ情報に基づいて、クエリプランが生成され、対応するBEノードに送信されます。
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 WKT (Well-Known Text) 形式の文字列をメモリ内の Polygon ジオメトリオブジェクトに変換します。
 

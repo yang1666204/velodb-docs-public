@@ -16,7 +16,7 @@ COVAR_SAMP(<expr1>, <expr2>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr1>` | 数値式または列 |
 | `<expr2>` | 数値式または列 |

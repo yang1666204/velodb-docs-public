@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `JSON_PARSE_NULLABLE_ERROR_TO_VALUE`関数は、JSON文字列を有効なJSONオブジェクトに解析するために使用されます。入力されたJSON文字列が無効な場合、エラーを投げる代わりに、ユーザーが指定したデフォルト値を返します。入力が`NULL`の場合、デフォルト値を返します。
 

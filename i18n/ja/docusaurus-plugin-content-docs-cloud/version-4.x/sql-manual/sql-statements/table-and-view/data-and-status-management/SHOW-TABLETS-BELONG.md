@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW TABLETS BELONG",
-  "description": "この文は、タブレットとそれらが属するテーブルの情報を表示するために使用されます。",
+  "description": "この文は、タブレットとそれらが属するTableの情報を表示するために使用されます。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-この文は、タブレットとそれらが属するテーブルの情報を表示するために使用されます。
+この文は、タブレットとそれらが属するTableの情報を表示するために使用されます。
 
 ## Syntax
 
@@ -27,20 +27,20 @@ SHOW TABLETS BELONG <tablet_id> [, <tablet_id>]...;
 | Column        | DataType | Note                                                                   |
 |---------------|----------|------------------------------------------------------------------------|
 | DbName        | String   | タブレットを含むデータベースの名前。                                     |
-| TableName     | String   | タブレットを含むテーブルの名前。                                        |
-| TableSize     | String   | テーブルのサイズ（例："8.649 KB"）。                                     |
-| PartitionNum  | Int      | テーブル内のパーティション数。                                          |
-| BucketNum     | Int      | テーブル内のバケット数。                                               |
-| ReplicaCount  | Int      | テーブル内のレプリカ数。                                               |
-| TabletIds     | Array    | テーブルに属するタブレットIDのリスト。                                   |
+| TableName     | String   | タブレットを含むTableの名前。                                        |
+| TableSize     | String   | Tableのサイズ（例："8.649 KB"）。                                     |
+| PartitionNum  | Int      | Table内のパーティション数。                                          |
+| BucketNum     | Int      | Table内のバケット数。                                               |
+| ReplicaCount  | Int      | Table内のレプリカ数。                                               |
+| TabletIds     | Array    | Tableに属するタブレットIDのリスト。                                   |
 
 ## アクセス制御要件
 
 このSQLコマンドを実行するユーザーは、最低限以下の権限を持っている必要があります：
 
-| Privilege  | Object   | Notes                                                                                                                            |
+| Privilege  | Object   | 注釈                                                                                                                            |
 |:-----------|:---------|:---------------------------------------------------------------------------------------------------------------------------------|
-| Admin_priv | Database | テーブル、パーティション、システムレベルコマンドの管理を含む、データベース上での管理操作の実行に必要。                            |
+| Admin_priv | Database | Table、パーティション、システムレベルコマンドの管理を含む、データベース上での管理操作の実行に必要。                            |
 
 ## 例
 

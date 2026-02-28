@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-### Description
+### デスクリプション
 
 このステートメントは、指定されたStream Loadタスクの実行を表示するために使用されます
 
@@ -24,7 +24,7 @@ SHOW STREAM LOAD
 ```
 illustrate:
 
-1. デフォルトでは、BEはStream Loadレコードを記録しません。BEで有効化が必要なレコードを表示したい場合、設定パラメータは: `enable_stream_load_record=true`です。詳細については、BE Configuration Itemsを参照してください
+1. デフォルトでは、BEはStream Loadレコードを記録しません。BEで有効化が必要なレコードを表示したい場合、設定パラメータは: `enable_stream_load_record=true`です。詳細については、BE 構成 Itemsを参照してください
 2. db_nameが指定されていない場合、現在のデフォルトdbが使用されます
 3. LABEL LIKEが使用された場合、Stream LoadタスクのlabelにLabel_matcherが含まれるタスクがマッチします
 4. LABEL =が使用された場合、指定されたlabelと完全に一致します

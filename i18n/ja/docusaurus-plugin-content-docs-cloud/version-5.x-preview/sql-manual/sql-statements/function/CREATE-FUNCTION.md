@@ -46,7 +46,7 @@ CREATE [ GLOBAL ]
 
 **3. `TABLES`**
 
-> 指定した場合、作成される関数はテーブル関数になります。
+> 指定した場合、作成される関数はTable関数になります。
 
 **4. `ALIAS`**
 
@@ -109,7 +109,7 @@ CREATE [ GLOBAL ]
        "type"="JAVA_UDF"
    );
    ```
-4. カスタムエイリアス関数を作成します。詳細については、[Alias Function](../../../query-data/udf/alias-function)を参照してください。
+4. カスタムエイリアス関数を作成します。詳細については、[Alias ファンクション](../../../query-data/udf/alias-function)を参照してください。
 
    ```sql
    CREATE ALIAS FUNCTION id_masking(INT) WITH PARAMETER(id) AS CONCAT(LEFT(id, 3), '****', RIGHT(id, 4));

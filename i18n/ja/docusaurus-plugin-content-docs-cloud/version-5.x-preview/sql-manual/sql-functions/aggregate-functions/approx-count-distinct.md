@@ -17,9 +17,9 @@
 APPROX_COUNT_DISTINCT(<expr>)
 NDV(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Description |
+| パラメータ | デスクリプション |
 | -- | -- |
 | `<expr>` | 値を取得する式。サポートされている型は String、Date、DateTime、IPv4、IPv6、TinyInt、Bool、SmallInt、Integer、BigInt、LargeInt、Float、Double、Decimal です。 |
 

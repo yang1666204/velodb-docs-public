@@ -14,9 +14,9 @@
 ```sql
 ARRAY_AGG(<col>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col>` | 配列に格納される値を決定する式（通常は列名）。 |
 

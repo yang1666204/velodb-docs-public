@@ -7,7 +7,7 @@
 ---
 # IPV6_STRING_TO_NUM_OR_NULL
 
-## Description
+## デスクリプション
 IPv6NumToStringの逆関数で、IPアドレス文字列を受け取り、バイナリ形式のIPv6アドレスを返します。
 
 ## Alias
@@ -19,7 +19,7 @@ IPv6NumToStringの逆関数で、IPアドレス文字列を受け取り、バイ
 IPV6_STRING_TO_NUM_OR_NULL(<ipv6_string>)
 ```
 ## パラメータ
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ipv6_string>`      | String型のIPv6アドレス  |
 

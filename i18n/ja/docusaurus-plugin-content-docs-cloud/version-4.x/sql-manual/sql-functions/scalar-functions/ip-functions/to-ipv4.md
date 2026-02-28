@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 この関数は ipv4_string_to_num と同様に、IPv4アドレスの文字列形式を受け取り、ipv4_string_to_num が返す値とバイナリ等価な IPv4 型の値を返します。
 
 ## Syntax
@@ -13,8 +13,8 @@
 ```sql
 TO_IPV4(<ipv4_str>)
 ```
-## Parameters
-| Parameter | Description                                      |
+## パラメータ
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ipv4_str>`      | String型のIPv4アドレス |
 

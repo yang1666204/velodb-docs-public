@@ -14,7 +14,7 @@
 ```sql
 BIT_COUNT(<x>)
 ```
-## Parameters
+## パラメータ
 - `<x>`: バイナリ表現で1のビット数をカウントする整数。サポートされる型: TINYINT, SMALLINT, INT, BIGINT, LARGEINT。
 
 ## Return Value

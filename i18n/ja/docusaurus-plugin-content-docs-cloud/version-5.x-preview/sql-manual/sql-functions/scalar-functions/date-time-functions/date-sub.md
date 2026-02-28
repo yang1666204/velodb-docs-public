@@ -27,9 +27,9 @@ Dorisはこのタイプの入力をサポートしていません。
 ```sql
 DATE_SUB(<date_or_time_part>, <expr> <time_unit>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<date_or_time_part>` | 有効な日付値で、datetime型またはdate型をサポートします。具体的なdatetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion) および [date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion) を参照してください |
 | `<expr>` | 減算する時間間隔で、型は `INT` です |

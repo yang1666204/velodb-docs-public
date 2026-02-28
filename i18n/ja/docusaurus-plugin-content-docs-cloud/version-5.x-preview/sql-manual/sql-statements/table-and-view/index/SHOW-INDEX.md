@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW INDEX",
-  "description": "この文は、テーブル内のインデックスに関する情報を表示するために使用されます。現在、inverted indexesとann indexesのみがサポートされています。",
+  "description": "この文は、Table内のインデックスに関する情報を表示するために使用されます。現在、inverted indexesとann indexesのみがサポートされています。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-このステートメントは、テーブル内のインデックスに関する情報を表示するために使用されます。現在、inverted indexesとann indexesのみがサポートされています。
+このステートメントは、Table内のインデックスに関する情報を表示するために使用されます。現在、inverted indexesとann indexesのみがサポートされています。
 
 ## Syntax
 
@@ -21,7 +21,7 @@ SHOW KEY[ S ] FROM [ <db_name>. ] <table_name> [ FROM <db_name> ];
 ```
 ## 必須パラメータ
 
-**1. `<table_name>`**: インデックスが属するテーブルの名前。
+**1. `<table_name>`**: インデックスが属するTableの名前。
 
 ## オプションパラメータ
 
@@ -31,7 +31,7 @@ SHOW KEY[ S ] FROM [ <db_name>. ] <table_name> [ FROM <db_name> ];
 
 | カラム名       | 型     | 説明                                                                                                          |
 |----------------|--------|----------------------------------------------------------------------------------------------------------------|
-| Table          | string | インデックスが配置されているテーブルの名前。                                                                     |
+| Table          | string | インデックスが配置されているTableの名前。                                                                     |
 | Non_unique     | int    | インデックスが一意かどうかを示します: <br> - `0`: 一意インデックス <br> - `1`: 非一意インデックス                   |
 | Key_name       | string | インデックスの名前。                                                                                            |
 | Seq_in_index   | int    | インデックス内のカラムの位置。このカラムはインデックス内のカラムの順序を示し、複数のカラムが複合インデックスを形成する際に使用されます。 |

@@ -20,9 +20,9 @@
 ```sql
 PERCENTILE_ARRAY(<col>, <array_p>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col>` | パーセンタイルを計算する列 |
 | `<array_p>` | パーセンタイル配列、各要素は `[0.0, 1.0]` の範囲内である必要があります。例：`[0.5, 0.95, 0.99]` |

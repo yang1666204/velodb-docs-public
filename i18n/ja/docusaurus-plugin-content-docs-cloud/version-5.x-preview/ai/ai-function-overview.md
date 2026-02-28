@@ -123,7 +123,7 @@ SET default_ai_resource='ai_resource_name';
 
 case 1:
 
-データベースに関連するドキュメント内容を格納するデータテーブルがあると仮定します：
+データベースに関連するドキュメント内容を格納するデータTableがあると仮定します：
 
 ```sql
 CREATE TABLE doc_pool (
@@ -190,7 +190,7 @@ PROPERTIES (
 
 INSERT INTO candidate_profiles VALUES
 (1, 'Alice', 'I am a senior backend engineer with 7 years of experience in Java, Spring Cloud and high-concurrency systems.'),
-(2, 'Bob',   'Frontend developer focusing on React, TypeScript and performance optimization for e-commerce sites.'),
+(2, 'Bob',   'Frontend developer focusing on React, TypeScript and performance 最適化 for e-commerce sites.'),
 (3, 'Cathy', 'Data scientist specializing in NLP, large language models and recommendation systems.');
 
 INSERT INTO job_requirements VALUES
@@ -220,7 +220,7 @@ WHERE AI_FILTER(CONCAT('Does the following candidate self-introduction match the
 
 ### 関数実行フロー
 
-![AI Function Execution Flow](/images/LLM-function-flowchart.png)
+![AI ファンクション Execution Flow](/images/LLM-function-flowchart.png)
 
 注意事項：
 

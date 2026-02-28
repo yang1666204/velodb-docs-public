@@ -31,7 +31,7 @@ SHOW SNAPSHOT ON `<repo_name>`
 
 ## 戻り値
 
-| Column | Description |
+| Column | デスクリプション |
 | -- | -- |
 | Snapshot | バックアップの名前 |
 | Timestamp | バックアップの時刻バージョンに対応 |

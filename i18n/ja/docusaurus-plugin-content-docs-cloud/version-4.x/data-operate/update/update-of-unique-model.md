@@ -13,4 +13,4 @@ Stream Load、Broker Load、Routine Load、Insert Intoなど、Dorisがサポー
 
 ## 部分列更新
 
-Unique Key Modelテーブルの部分列更新に関する詳細情報（使用例、柔軟な部分列更新、新規行の処理を含む）については、[Partial Column Update](./partial-column-update.md#partial-column-update-for-unique-key-model)を参照してください。
+Unique Key ModelTableの部分列更新に関する詳細情報（使用例、柔軟な部分列更新、新規行の処理を含む）については、[Partial Column アップデート](./partial-column-update.md#partial-column-update-for-unique-key-model)を参照してください。

@@ -9,8 +9,8 @@
 
 `ARRAY<T>` T型の要素の配列で、キー列として使用することはできません。
 
-- バージョン2.0より前では、Duplicateモデルテーブルでのみサポートされていました。
-- バージョン2.0以降では、Uniqueモデルテーブルの非キー列でサポートされています。
+- バージョン2.0より前では、DuplicateモデルTableでのみサポートされていました。
+- バージョン2.0以降では、UniqueモデルTableの非キー列でサポートされています。
 
 T型は以下のいずれかになります：
 
@@ -20,7 +20,7 @@ DATEV2, DATETIME, DATETIMEV2, CHAR, VARCHAR, STRING
 ```
 ## CSV format import
 
-### Step 1: データの準備
+### ステップ 1: データの準備
 
 以下のcsvファイルを作成してください：`test_array.csv`
 区切り文字は、配列内のカンマと区別するため、カンマの代わりに`|`を使用します。
@@ -31,7 +31,7 @@ DATEV2, DATETIME, DATETIMEV2, CHAR, VARCHAR, STRING
 3|[]
 4|null
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE `array_test` (
@@ -44,7 +44,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```bash
 curl --location-trusted \
@@ -54,7 +54,7 @@ curl --location-trusted \
         -T "test_array.csv" \
         http://localhost:8040/api/testdb/array_test/_stream_load
 ```
-### Step 4: インポートされたデータの確認
+### ステップ 4: インポートされたデータの確認
 
 ```sql
 mysql> SELECT * FROM array_test;
@@ -82,7 +82,7 @@ mysql> SELECT * FROM array_test;
     {"id":4, "c_array":null}
 ]
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE `array_test` (
@@ -95,7 +95,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```bash
 curl --location-trusted \

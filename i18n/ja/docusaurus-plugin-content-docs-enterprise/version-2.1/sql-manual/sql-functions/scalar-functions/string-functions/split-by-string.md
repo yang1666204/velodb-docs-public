@@ -16,7 +16,7 @@ SPLIT_BY_STRING ( <str>, <separator> )
 ```
 ## パラメータ
 
-| Parameter     | Description                    |
+| Parameter     | デスクリプション                    |
 |---------------|--------------------------------|
 | `<str>`       | 分割する文字列。        |
 | `<separator>` | 分割に使用する文字列。 |

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `SET LDAP_ADMIN_PASSWORD`コマンドは、LDAP管理者パスワードを設定するために使用されます。LDAP認証を使用する場合、dorisはログインユーザー情報をLDAPサービスに問い合わせるために管理者アカウントとパスワードを使用する必要があります。
 

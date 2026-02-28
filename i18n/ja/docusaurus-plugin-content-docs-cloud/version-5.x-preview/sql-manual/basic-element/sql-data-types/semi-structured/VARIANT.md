@@ -13,9 +13,9 @@ VARIANT型は半構造化JSONデータを格納します。異なるプリミテ
 
 ## VARIANTの使用
 
-### テーブル作成構文
+### Table作成構文
 
-テーブル作成時にVARIANTカラムを宣言します：
+Table作成時にVARIANTカラムを宣言します：
 
 ```sql
 CREATE TABLE IF NOT EXISTS ${table_name} (
@@ -98,7 +98,7 @@ INSERT INTO vartab VALUES
 - Boolean
 - ARRAY&lt;T&gt; (Tは上記のいずれかで、一次元のみ)
 
-注意: 事前定義されたSchemaはテーブル作成時にのみ指定可能です。ALTERは現在サポートされていません（将来のバージョンでは新しいサブカラム定義の追加がサポートされる可能性がありますが、既存のサブカラム型の変更はサポートされません）。
+注意: 事前定義されたSchemaはTable作成時にのみ指定可能です。ALTERは現在サポートされていません（将来のバージョンでは新しいサブカラム定義の追加がサポートされる可能性がありますが、既存のサブカラム型の変更はサポートされません）。
 
 例:
 
@@ -179,7 +179,7 @@ v1 VARIANT<
     MATCH_NAME 'enumString*' : STRING
 > NULL
 ```
-マッチした subpath はデフォルトで列として具体化されます。あまりに多くのパスがマッチして過度な列が生成される場合は、`variant_enable_typed_paths_to_sparse` の有効化を検討してください（「Configuration」を参照）。
+マッチした subpath はデフォルトで列として具体化されます。あまりに多くのパスがマッチして過度な列が生成される場合は、`variant_enable_typed_paths_to_sparse` の有効化を検討してください（「構成」を参照）。
 
 ## 型の競合とプロモーションルール
 
@@ -192,7 +192,7 @@ v1 VARIANT<
 ```
 プロモーションルール:
 
-| Source type    | Current type  | Final type   |
+| ソースタイプ    | Current type  | Final type   |
 | -------------- | ------------- | ------------ |
 | `TinyInt`      | `BigInt`      | `BigInt`     |
 | `TinyInt`      | `Double`      | `Double`     |
@@ -373,7 +373,7 @@ SELECT * FROM tbl WHERE v['str'] MATCH 'Doris';
 
 ## 制限事項
 
-- `variant_max_subcolumns_count`: デフォルト0（制限なし）。本番環境では2048（tabletレベル）に設定して、マテリアライズされたパスの数を制御してください。閾値を超えると、低頻度/スパースなパスは共有データ構造に移動され、そこからの読み取りは遅くなる可能性があります（「Configuration」を参照）。
+- `variant_max_subcolumns_count`: デフォルト0（制限なし）。本番環境では2048（tabletレベル）に設定して、マテリアライズされたパスの数を制御してください。閾値を超えると、低頻度/スパースなパスは共有データ構造に移動され、そこからの読み取りは遅くなる可能性があります（「構成」を参照）。
 - Schema Templateでパスタイプが指定されている場合、そのパスは強制的にマテリアライズされます。`variant_enable_typed_paths_to_sparse = true`の場合、これも閾値にカウントされ、共有構造に移動される可能性があります。
 - JSONキー長は255以下です。
 - プライマリキーやソートキーにすることはできません。
@@ -395,7 +395,7 @@ CREATE TABLE example_table (
 );
 SELECT * FROM example_table WHERE data_string LIKE '%doris%';
 ```
-## Configuration
+## 構成
 
 3.1+より、VARIANTは列における型レベルプロパティをサポートしています：
 
@@ -426,7 +426,7 @@ CREATE TABLE example_table (
 4. 取り込みチューニング：クライアントの`batch_size`を適切に増やすか、Group Commitを使用します（必要に応じて`group_commit_interval_ms`/`group_commit_data_bytes`を増やす）。
 5. パーティションプルーニングが不要な場合は、RANDOMバケッティングを検討し、単一タブレット読み込みを有効にしてコンパクション書き込み増幅を減らします。
 6. BEチューニングノブ：`max_cumu_compaction_threads`（≥8）、`vertical_compaction_num_columns_per_group=500`（垂直コンパクションを改善しますが、メモリを増加）、`segment_cache_memory_percentage=20`（メタデータキャッシュ効率を改善）。
-7. Compaction Scoreを監視してください。継続的に上昇している場合、コンパクションが遅れています—取り込み圧力を減らしてください。
+7. コンパクション Scoreを監視してください。継続的に上昇している場合、コンパクションが遅れています—取り込み圧力を減らしてください。
 8. VARIANTで大きな`SELECT *`を避けてください。`SELECT v['path']`のような特定のプロジェクションを優先してください。
 
 注意：Stream Loadエラー`[DATA_QUALITY_ERROR]Reached max column size limit 2048`が表示された場合（2.1.xおよび3.0.xのみ）、マージされたタブレットスキーマがカラム制限に達したことを意味します。`variant_max_merged_tablet_schema_size`を増やすことができます（4096を超えることは推奨されません。強力なハードウェアが必要）。

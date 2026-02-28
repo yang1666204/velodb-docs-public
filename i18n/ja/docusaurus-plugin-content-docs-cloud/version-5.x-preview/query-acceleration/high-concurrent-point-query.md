@@ -11,18 +11,18 @@
 
 ## 説明
 
-Doris は列指向ストレージフォーマットエンジン上に構築されています。高並行性サービスシナリオでは、ユーザーは常にシステムから行全体のデータを取得したいと考えます。しかし、テーブルが幅広い場合、列指向フォーマットはランダムリード IO を大幅に増幅させます。Doris のクエリエンジンとプランナーは、ポイントクエリなどの単純なクエリには重すぎます。このようなクエリを処理するために、FE のクエリプランでショートパスを計画する必要があります。FE は SQL クエリのアクセス層サービスであり、Java で記述されています。SQL の解析と分析も、高並行性クエリに対して高い CPU オーバーヘッドをもたらします。これらの問題を解決するために、Doris に行ストレージ、ショートクエリパス、PreparedStatement を導入しました。以下は、これらの最適化を有効にするためのガイドです。
+Doris は列指向ストレージフォーマットエンジン上に構築されています。高並行性サービスシナリオでは、ユーザーは常にシステムから行全体のデータを取得したいと考えます。しかし、Tableが幅広い場合、列指向フォーマットはランダムリード IO を大幅に増幅させます。Doris のクエリエンジンとプランナーは、ポイントクエリなどの単純なクエリには重すぎます。このようなクエリを処理するために、FE のクエリプランでショートパスを計画する必要があります。FE は SQL クエリのアクセス層サービスであり、Java で記述されています。SQL の解析と分析も、高並行性クエリに対して高い CPU オーバーヘッドをもたらします。これらの問題を解決するために、Doris に行ストレージ、ショートクエリパス、PreparedStatement を導入しました。以下は、これらの最適化を有効にするためのガイドです。
 
 ## Row Store Format
 
-olap テーブルのポイントルックアップ IO コストを削減するために行フォーマットをサポートしていますが、このフォーマットを有効にするには、行フォーマットストレージ用により多くのディスク容量が必要です。現在、簡単にするために `row column` という追加の列に行を保存しています。Row Storage モードは、テーブル作成時にのみ有効にできます。テーブル作成文のプロパティで以下のプロパティを指定する必要があります：
+olap Tableのポイントルックアップ IO コストを削減するために行フォーマットをサポートしていますが、このフォーマットを有効にするには、行フォーマットストレージ用により多くのディスク容量が必要です。現在、簡単にするために `row column` という追加の列に行を保存しています。Row Storage モードは、Table作成時にのみ有効にできます。Table作成文のプロパティで以下のプロパティを指定する必要があります：
 
 ```
 "store_row_column" = "true"
 ```
 ## Unique モデルのポイントクエリの高速化
 
-上記の行ストレージは、Unique モデルにおける Merge-On-Write 戦略を有効にして、列挙時の IO オーバーヘッドを削減するために使用されます。Unique テーブル作成時に `enable_unique_key_merge_on_write` と `store_row_column` が有効化されると、プライマリキーのクエリはショートパスを取って SQL 実行を最適化し、1 つの RPC のみでクエリを完了することができます。以下は、クエリと行の存在確認を組み合わせて Unique モデルで Merge-On-Write 戦略を有効にする例です：
+上記の行ストレージは、Unique モデルにおける Merge-On-Write 戦略を有効にして、列挙時の IO オーバーヘッドを削減するために使用されます。Unique Table作成時に `enable_unique_key_merge_on_write` と `store_row_column` が有効化されると、プライマリキーのクエリはショートパスを取って SQL 実行を最適化し、1 つの RPC のみでクエリを完了することができます。以下は、クエリと行の存在確認を組み合わせて Unique モデルで Merge-On-Write 戦略を有効にする例です：
 
 ```sql
 CREATE TABLE `tbl_point_query` (
@@ -52,7 +52,7 @@ PROPERTIES (
 
 3. ポイントクエリを実行する際に各カラムの`column unique id`に依存するため、`light_schema_change`も有効にする必要があります。
 
-4. 単一テーブルのキーカラムに対する等価クエリのみをサポートし、結合やネストされたサブクエリはサポートしません。WHERE条件はキーカラム単体で構成され、等価比較である必要があります。これはkey-valueクエリの一種と考えることができます。
+4. 単一Tableのキーカラムに対する等価クエリのみをサポートし、結合やネストされたサブクエリはサポートしません。WHERE条件はキーカラム単体で構成され、等価比較である必要があります。これはkey-valueクエリの一種と考えることができます。
 
 5. rowstoreを有効にすると容量拡張を招き、より多くのディスク容量を占有する可能性があります。特定のカラムのみをクエリする必要があるシナリオでは、Doris 3.0以降、`"row_store_columns"="k1,v1,v2"`を使用して特定のカラムをrowstoreストレージに指定することが推奨されます。その後、クエリでこれらのカラムを選択的にアクセスできます。例えば：
 
@@ -138,7 +138,7 @@ mysql> explain select * from tbl_point_query where k1 = -2147481418 ;
 A: Dorisにリクエストを送信した後、fe.audit.logで対応するクエリリクエストを見つけ、Stmt=EXECUTE()があることを確認してください。これはprepared statementが有効であることを示しています。
 
 ```text
-2024-01-02 11:15:51,248 [query] |Client=192.168.1.82:53450|User=root|Db=test|State=EOF|ErrorCode=0|ErrorMessage=|Time(ms)=49|ScanBytes=0|ScanRows=0|ReturnRows=1|StmtId=51|QueryId=b63d30b908f04dad-ab4a
+2024-01-02 11:15:51,248 [query] |クライアント=192.168.1.82:53450|User=root|Db=test|State=EOF|ErrorCode=0|ErrorMessage=|Time(ms)=49|ScanBytes=0|ScanRows=0|ReturnRows=1|StmtId=51|QueryId=b63d30b908f04dad-ab4a
    3ba21d2c776b|IsQuery=true|isNereids=false|feIp=10.16.10.6|Stmt=EXECUTE(-2147481418)|CpuTimeMS=0|SqlHash=eee20fa2ac13a4f93bd4503a87921024|peakMemoryBytes=0|SqlDigest=|TraceId=|WorkloadGroup=|FuzzyVaria
    bles=
 ```

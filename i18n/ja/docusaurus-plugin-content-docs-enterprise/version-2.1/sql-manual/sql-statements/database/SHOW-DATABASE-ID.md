@@ -21,7 +21,7 @@ SHOW DATABASE <database_id>
 
 ## 戻り値
 
-| Column | Description |
+| Column | デスクリプション |
 |:---------|:-----------|
 | DbName |  データベース名|
 
@@ -29,7 +29,7 @@ SHOW DATABASE <database_id>
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Permissions         | Object   | Notes            |
+| Permissions         | Object   | 注釈            |
 |:-----------|:-----|:--------------|
 | ADMIN_PRIV | クラスター全体 | クラスター全体の管理者権限が必要 |
 

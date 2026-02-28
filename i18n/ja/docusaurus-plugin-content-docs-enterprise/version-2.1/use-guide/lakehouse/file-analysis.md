@@ -7,7 +7,7 @@
 ---
 Table Value Function機能を通じて、DorisはオブジェクトストレージやHDFS上のファイルをTableとして直接クエリおよび分析できます。また、自動的な列タイプ推論もサポートしています。
 
-より詳細な使用方法については、Table Value Function documentationを参照してください：
+より詳細な使用方法については、Table Value ファンクション ドキュメントを参照してください：
 
 * S3: S3互換オブジェクトストレージ上でのファイル分析をサポートします。
 
@@ -29,7 +29,7 @@ SELECT * FROM S3 (
     's3.secret_key'='sk'
 )
 ```
-`S3(...)`はTVF（Table Value Function）です。Table Value Functionは本質的にはテーブルなので、「テーブル」が使用できるあらゆるSQL文で使用できます。
+`S3(...)`はTVF（Table Value ファンクション）です。Table Value Functionは本質的にはTableなので、「Table」が使用できるあらゆるSQL文で使用できます。
 
 TVFの属性には、分析対象のファイルパス、ファイル形式、オブジェクトストレージの接続情報などが含まれます。ファイルパス（URI）では、複数のファイルにマッチするためにワイルドカードを使用できます。以下のファイルパスが有効です：
 
@@ -66,7 +66,7 @@ DESC FUNCTION s3 (
     "use_path_style"="true"
 );
 +---------------+--------------+------+-------+---------+-------+
-| Field         | Type         | Null | Key   | Default | Extra |
+| Field         | タイプ         | Null | Key   | Default | Extra |
 +---------------+--------------+------+-------+---------+-------+
 | p_partkey     | INT          | Yes  | false | NULL    | NONE  |
 | p_name        | TEXT         | Yes  | false | NULL    | NONE  |
@@ -103,7 +103,7 @@ DorisはSchema推論を以下のルールに基づいて行います：
   ```
 現在サポートされているカラムタイプ名は以下の通りです：
 
-  | Column Type Name |
+  | Column タイプ Name |
   | ------------ |
   | tinyint      |
   | smallint     |
@@ -150,7 +150,7 @@ ORDER BY p_partkey LIMIT 5;
 |         5 | forest brown coral puff cream            | Manufacturer#3 | Brand#32 | STANDARD POLISHED TIN   |     15 | SM PKG      |           905 |  wake carefully     |
 +-----------+------------------------------------------+----------------+----------+-------------------------+--------+-------------+---------------+---------------------+
 ```
-TVFはTableが出現可能なSQLの任意の位置に配置できます。例えば、`CTE`の`WITH`句や`FROM`句などです。この方法により、ファイルを通常のテーブルとして任意の分析に使用できます。
+TVFはTableが出現可能なSQLの任意の位置に配置できます。例えば、`CTE`の`WITH`句や`FROM`句などです。この方法により、ファイルを通常のTableとして任意の分析に使用できます。
 
 また、`CREATE VIEW`文を使用してTVFの論理ビューを作成することもできます。その後、他のビューと同様にこのTVFにアクセスし、権限を管理するなどができ、他のユーザーが接続情報やその他の属性を繰り返し記述することなくこのViewにアクセスできるようになります。
 

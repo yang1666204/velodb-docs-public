@@ -1,13 +1,13 @@
 ---
 {
   "title": "EXPLODE_JSON_ARRAY_JSON",
-  "description": "explodejsonarrayjson テーブル関数は、各要素がJSONオブジェクト型のJSON配列を受け取ります。",
+  "description": "explodejsonarrayjson Table関数は、各要素がJSONオブジェクト型のJSON配列を受け取ります。",
   "language": "ja"
 }
 ---
 ## 説明
 
-`explode_json_array_json`テーブル関数は、各要素がJSONオブジェクト型のJSON配列を受け取り、配列内の各JSONオブジェクトを複数の行に展開します。各行には1つのJSONオブジェクトが含まれます。LATERAL VIEWと組み合わせて使用されます。
+`explode_json_array_json`Table関数は、各要素がJSONオブジェクト型のJSON配列を受け取り、配列内の各JSONオブジェクトを複数の行に展開します。各行には1つのJSONオブジェクトが含まれます。LATERAL VIEWと組み合わせて使用されます。
 
 ## 構文
 
@@ -17,11 +17,11 @@ EXPLODE_JSON_ARRAY_JSON_OUTER(<json>)
 ```
 ## 戻り値
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<json>` | json type |
 
-## Parameters
+## パラメータ
 
 JSON配列を展開し、各要素に対して行を作成して、JSONオブジェクトカラムを返します。
 

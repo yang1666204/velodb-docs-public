@@ -14,7 +14,7 @@
 ```sql
 CANCEL BACKUP FROM <db_name>;
 ```
-## Parameters
+## パラメータ
 
 **1.`<db_name>`**
 

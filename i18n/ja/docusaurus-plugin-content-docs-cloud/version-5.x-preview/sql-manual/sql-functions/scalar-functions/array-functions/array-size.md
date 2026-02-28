@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Function
+## ファンクション
 
 配列内の要素数を返します。
 
@@ -13,7 +13,7 @@
 
 - `ARRAY_SIZE(arr)`
 
-## Parameters
+## パラメータ
 
 - `arr`: `ARRAY<T>`。
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この関数は数値型を `QUANTILE_STATE` 型に変換します。compression パラメータはオプションで、[2048, 10000] の範囲で設定できます。値が大きいほど、後続の分位数近似計算の精度が高くなり、メモリ消費量が増加し、計算時間が長くなります。compression パラメータが指定されていない場合、または値が [2048, 10000] の範囲外に設定されている場合は、デフォルト値の 2048 で実行されます。
 
@@ -14,9 +14,9 @@
 ```sql
 TO_QUANTILE_STATE(<raw_data> <compression>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<raw_data>` | 対象の列。|
 | `<compression>` | 圧縮閾値。|

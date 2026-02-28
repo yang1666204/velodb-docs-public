@@ -20,7 +20,7 @@ JSON_HASH(json_value)
 
 `JSONB_HASH`
 
-## Parameters
+## パラメータ
 
 **json_value** - ハッシュ値を計算するJSON値。JSON型である必要があります。
 

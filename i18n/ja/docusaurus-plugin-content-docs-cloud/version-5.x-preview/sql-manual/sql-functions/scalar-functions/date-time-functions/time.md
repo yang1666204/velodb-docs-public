@@ -7,7 +7,7 @@
 ---
 # TIME
 
-## Description
+## デスクリプション
 `TIME`関数はDatetime値の`time`部分を取得します。
 
 ## Syntax
@@ -15,9 +15,9 @@
 ```sql
 TIME(<datetime>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter      | Description           |
+| Parameter      | デスクリプション           |
 |----------------|-----------------------|
 | `<datetime>`   | datetime値。   |
 

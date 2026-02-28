@@ -12,7 +12,7 @@
 
 `GET /api/_meta_replay_state`
 
-## Description
+## デスクリプション
 
 FEノードメタデータリプレイのステータスを取得します。
 

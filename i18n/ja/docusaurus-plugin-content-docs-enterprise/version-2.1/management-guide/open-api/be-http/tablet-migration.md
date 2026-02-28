@@ -10,7 +10,7 @@
 
 `GET /api/tablet_migration?goal={enum}&tablet_id={int}&schema_hash={int}&disk={string}`
 
-## Description
+## デスクリプション
 
 タブレットを指定されたディスクに移行します。
 

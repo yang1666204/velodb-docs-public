@@ -26,9 +26,9 @@
 ```sql
 MONTHS_BETWEEN(<enddate>, <startdate> [, <round_type>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter         | Description                                                |
+| Parameter         | デスクリプション                                                |
 |-------------------|------------------------------------------------------------|
 | `<enddate>`   | 終了日。差分計算における後の日付を表します。`DATE`（例：`YYYY-MM-DD`）または`DATETIME`（例：`YYYY-MM-DD HH:MM:SS`）タイプをサポートします。     |
 | `<startdate>` | 開始日。差分計算における前の日付を表します。`DATE`（例：`YYYY-MM-DD`）または`DATETIME`（例：`YYYY-MM-DD HH:MM:SS`）タイプをサポートします。 |

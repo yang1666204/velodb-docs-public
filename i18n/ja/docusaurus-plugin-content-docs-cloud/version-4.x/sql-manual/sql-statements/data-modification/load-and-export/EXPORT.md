@@ -1,7 +1,7 @@
 ---
 {
   "title": "EXPORT | ロードとエクスポート",
-  "description": "EXPORT コマンドは、指定されたテーブルからデータを指定された場所のファイルにエクスポートするために使用されます。",
+  "description": "EXPORT コマンドは、指定されたTableからデータを指定された場所のファイルにエクスポートするために使用されます。",
   "language": "ja"
 }
 ---
@@ -9,7 +9,7 @@
 
 ## 説明
 
-`EXPORT`コマンドは、指定されたテーブルからデータを指定された場所のファイルにエクスポートするために使用されます。現在、Brokerプロセス、S3プロトコル、またはHDFSプロトコルを通じて、HDFS、S3、BOS、COS（Tencent Cloud）などのリモートストレージへのエクスポートをサポートしています。
+`EXPORT`コマンドは、指定されたTableからデータを指定された場所のファイルにエクスポートするために使用されます。現在、Brokerプロセス、S3プロトコル、またはHDFSプロトコルを通じて、HDFS、S3、BOS、COS（Tencent Cloud）などのリモートストレージへのエクスポートをサポートしています。
 
 `EXPORT`は非同期操作です。このコマンドは`EXPORT JOB`をDorisに送信し、送信が成功するとすぐに戻ります。実行後は[SHOW EXPORT](./SHOW-EXPORT)コマンドを使用して進行状況を確認できます。
 
@@ -28,7 +28,7 @@
 
 **1. `<table_name>`**
 
-  エクスポートするテーブルの名前。Dorisローカルテーブル、ビュー、およびカタログ外部テーブルからのデータエクスポートをサポートします。
+  エクスポートするTableの名前。DorisローカルTable、ビュー、およびカタログ外部Tableからのデータエクスポートをサポートします。
 
 **2. `<export_path>`**
 
@@ -42,7 +42,7 @@
 
 **2. `<partation_name>`**
 
-  指定したテーブルの特定のパーティションのみをエクスポートできます。Dorisローカルテーブルでのみ有効です。
+  指定したTableの特定のパーティションのみをエクスポートできます。DorisローカルTableでのみ有効です。
 
 **3. `<properties>`**
 
@@ -58,19 +58,19 @@
 
   - `line_delimiter`: エクスポート用の行区切り文字を指定します。デフォルトは`\n`で、マルチバイトをサポートします。このパラメータはCSVファイル形式でのみ使用されます。
 
-  - `columns`: エクスポートテーブルの特定の列を指定します。
+  - `columns`: エクスポートTableの特定の列を指定します。
 
   - `format`: エクスポートジョブのファイル形式を指定します。サポートされているのは: parquet、orc、csv、csv_with_names、csv_with_names_and_typesです。デフォルトはCSV形式です。
 
   - `max_file_size`: エクスポートジョブの単一ファイルサイズ制限。結果がこの値を超える場合、複数のファイルに分割されます。`max_file_size`の値の範囲は[5MB、2GB]で、デフォルトは1GBです。（orcファイル形式でのエクスポートを指定する場合、実際の分割ファイルサイズは64MBの倍数になります。例：max_file_size = 5MBを指定すると実際には64MBで分割され、max_file_size = 65MBを指定すると実際には128MBで分割されます）
 
-  - `parallelism`: エクスポートジョブの並行性。デフォルトは`1`です。エクスポートジョブは`parallelism`数のスレッドを開始して`select into outfile`文を実行します。（Parallelismの数がテーブル内のTablets数より大きい場合、システムは自動的にParallelismをTablets数のサイズに設定します。つまり、各`select into outfile`文は一つのTabletを担当します）
+  - `parallelism`: エクスポートジョブの並行性。デフォルトは`1`です。エクスポートジョブは`parallelism`数のスレッドを開始して`select into outfile`文を実行します。（Parallelismの数がTable内のTablets数より大きい場合、システムは自動的にParallelismをTablets数のサイズに設定します。つまり、各`select into outfile`文は一つのTabletを担当します）
 
   - `delete_existing_files`: デフォルトは`false`です。`true`に指定された場合、`export_path`で指定されたディレクトリ内のすべてのファイルが最初に削除され、その後そのディレクトリにデータがエクスポートされます。例：「export_path」= "/user/tmp"の場合、"/user/"以下のすべてのファイルとディレクトリが削除されます。「file_path」= "/user/tmp/"の場合、"/user/tmp/"以下のすべてのファイルとディレクトリが削除されます。
 
   - `with_bom`: デフォルトは`false`です。`true`に指定された場合、エクスポートファイルのエンコーディングはBOM付きUTF8エンコーディングになります（csv関連ファイル形式でのみ有効）。
 
-  - `data_consistency`: `none` / `partition`に設定できます。デフォルトは`partition`です。エクスポートテーブルをどの粒度で分割するかを示します。`none`はTabletsレベル、`partition`はPartitionレベルを表します。
+  - `data_consistency`: `none` / `partition`に設定できます。デフォルトは`partition`です。エクスポートTableをどの粒度で分割するかを示します。`none`はTabletsレベル、`partition`はPartitionレベルを表します。
 
   - `timeout`: エクスポートジョブのタイムアウト。デフォルトは2時間、単位は秒です。
 
@@ -141,7 +141,7 @@
 | jobId               | long   | エクスポートジョブの一意識別子。                                        |
 | label               | string | エクスポートジョブのラベル。                                           |
 | dbId                | long   | データベースの識別子。                                                |
-| tableId             | long   | テーブルの識別子。                                                   |
+| tableId             | long   | Tableの識別子。                                                   |
 | state               | string | ジョブの現在の状態。                                                  |
 | path                | string | エクスポートファイルのパス。                                           |
 | partitions          | string | エクスポートされたパーティション名のリスト、複数のパーティション名はカンマで区切られます。|
@@ -158,25 +158,25 @@
 
 | 権限        | オブジェクト   | 説明                                   |
 |:------------|:-------------|:--------------------------------------|
-| SELECT_PRIV | Database     | データベースとテーブルの読み取り権限が必要です。|
+| SELECT_PRIV | Database     | データベースとTableの読み取り権限が必要です。|
 
 
 ## 注意事項
 
 ### 並行実行
 
-Exportジョブは`parallelism`パラメータを設定してデータを並行してエクスポートできます。`parallelism`パラメータは実際にはEXPORTジョブを実行するスレッド数を指定します。`"data_consistency" = "none"`が設定されている場合、各スレッドはテーブルのTabletsの一部をエクスポートする責任を持ちます。
+Exportジョブは`parallelism`パラメータを設定してデータを並行してエクスポートできます。`parallelism`パラメータは実際にはEXPORTジョブを実行するスレッド数を指定します。`"data_consistency" = "none"`が設定されている場合、各スレッドはTableのTabletsの一部をエクスポートする責任を持ちます。
 
 Exportジョブの基盤となる実行ロジックは実際には`SELECT INTO OUTFILE`文です。`parallelism`パラメータで設定された各スレッドは独立した`SELECT INTO OUTFILE`文を実行します。
 
-Exportジョブを複数の`SELECT INTO OUTFILE`に分割する具体的なロジックは：テーブルのすべてのtabletsをすべての並行スレッドに均等に配布することです。例：
+Exportジョブを複数の`SELECT INTO OUTFILE`に分割する具体的なロジックは：Tableのすべてのtabletsをすべての並行スレッドに均等に配布することです。例：
 - num(tablets) = 40, parallelism = 3の場合、これら3つのスレッドはそれぞれ14、13、13のtabletsを担当します。
 - num(tablets) = 2, parallelism = 3の場合、Dorisは自動的にparallelismを2に設定し、各スレッドが1つのtabletを担当します。
 
 スレッドが担当するtabletsが`maximum_tablets_of_outfile_in_export`値（デフォルトは10、fe.confに`maximum_tablets_of_outfile_in_export`パラメータを追加して変更可能）を超える場合、そのスレッドは複数の`SELECT INTO OUTFILE`文に分割されます。例：
 - あるスレッドが14のtabletsを担当し、`maximum_tablets_of_outfile_in_export = 10`の場合、このスレッドは2つの`SELECT INTO OUTFILE`文を担当します。最初の`SELECT INTO OUTFILE`文は10のtabletsをエクスポートし、2番目の`SELECT INTO OUTFILE`文は4のtabletsをエクスポートします。この2つの`SELECT INTO OUTFILE`文はこのスレッドによって順次実行されます。
 
-エクスポートするデータ量が非常に大きい場合、`parallelism`パラメータを適切に増やして並行エクスポートを増やすことを検討できます。マシンのコア数が不足していて`parallelism`を増やせない一方で、エクスポートテーブルに多くのTabletsがある場合、`maximum_tablets_of_outfile_in_export`を増やして1つの`SELECT INTO OUTFILE`文が担当するtablets数を増やすことを検討でき、これによってもエクスポートを高速化できます。
+エクスポートするデータ量が非常に大きい場合、`parallelism`パラメータを適切に増やして並行エクスポートを増やすことを検討できます。マシンのコア数が不足していて`parallelism`を増やせない一方で、エクスポートTableに多くのTabletsがある場合、`maximum_tablets_of_outfile_in_export`を増やして1つの`SELECT INTO OUTFILE`文が担当するtablets数を増やすことを検討でき、これによってもエクスポートを高速化できます。
 
 Partition粒度でTableをエクスポートしたい場合、Exportプロパティ`"data_consistency" = "partition"`を設定できます。この場合、ExportタスクのConCurrentスレッドはPartition粒度で複数のOutfile文に分割されます。異なるOutfile文は異なるPartitionsをエクスポートし、同じOutfile文でエクスポートされるデータは同じPartitionに属している必要があります。例：`"data_consistency" = "partition"`を設定した後
 
@@ -192,13 +192,13 @@ Partition粒度でTableをエクスポートしたい場合、Exportプロパテ
 
 ### その他の注意事項
 
-- 一度に大量のデータをエクスポートすることは推奨されません。1つのExportジョブで推奨される最大エクスポートデータ量は数十GBです。エクスポートが大きすぎると、より多くのガベージファイルと高い再試行コストが発生します。テーブルデータ量が大きすぎる場合は、パーティション別にエクスポートすることを推奨します。
+- 一度に大量のデータをエクスポートすることは推奨されません。1つのExportジョブで推奨される最大エクスポートデータ量は数十GBです。エクスポートが大きすぎると、より多くのガベージファイルと高い再試行コストが発生します。Tableデータ量が大きすぎる場合は、パーティション別にエクスポートすることを推奨します。
 
 - Exportジョブが失敗した場合、すでに生成されたファイルは削除されず、ユーザーが手動で削除する必要があります。
 
 - ExportジョブはデータをスキャンしてIOリソースを占有するため、システムのクエリレイテンシに影響する可能性があります。
 
-- 現在Export中は、Tabletsバージョンが一致しているかどうかの簡単なチェックのみが実行されます。Export実行中はテーブルに対してデータインポート操作を実行しないことを推奨します。
+- 現在Export中は、Tabletsバージョンが一致しているかどうかの簡単なチェックのみが実行されます。Export実行中はTableに対してデータインポート操作を実行しないことを推奨します。
 
 - Export Jobでは最大2000パーティションのエクスポートが可能です。`fe.conf`にパラメータ`maximum_number_of_export_partitions`を追加してFEを再起動することでこの設定を変更できます。
 
@@ -208,12 +208,12 @@ Partition粒度でTableをエクスポートしたい場合、Exportプロパテ
 ### データのローカルエクスポート
 > データをローカルファイルシステムにエクスポートするには、`fe.conf`に`enable_outfile_to_local=true`を追加してFEを再起動する必要があります。
 
-- Testテーブルのすべてのデータをローカルストレージにエクスポート、デフォルトでCSV形式ファイルをエクスポート
+- TestTableのすべてのデータをローカルストレージにエクスポート、デフォルトでCSV形式ファイルをエクスポート
 
 ```sql
 EXPORT TABLE test TO "file:///home/user/tmp/";
 ```
-- TestテーブルのK1、K2カラムをローカルストレージにエクスポートし、デフォルトでCSVファイル形式でエクスポートして、Labelを設定する
+- TestTableのK1、K2カラムをローカルストレージにエクスポートし、デフォルトでCSVファイル形式でエクスポートして、Labelを設定する
 
 ```sql
 EXPORT TABLE test TO "file:///home/user/tmp/"
@@ -222,7 +222,7 @@ PROPERTIES (
   "columns" = "k1,k2"
 );
 ```
-- Test テーブルで `k1 < 50` の行をローカルストレージにエクスポートし、デフォルトでは CSV 形式ファイルをエクスポートし、列区切り文字として `,` を使用する
+- Test Tableで `k1 < 50` の行をローカルストレージにエクスポートし、デフォルトでは CSV 形式ファイルをエクスポートし、列区切り文字として `,` を使用する
 
 ```sql
 EXPORT TABLE test WHERE k1 < 50 TO "file:///home/user/tmp/"
@@ -231,13 +231,13 @@ PROPERTIES (
   "column_separator"=","
 );
 ```
-- Test テーブルのパーティション p1、p2 をローカルストレージにエクスポートし、デフォルトで csv 形式のファイルをエクスポートする
+- Test Tableのパーティション p1、p2 をローカルストレージにエクスポートし、デフォルトで csv 形式のファイルをエクスポートする
 
 ```sql
 EXPORT TABLE test PARTITION (p1,p2) TO "file:///home/user/tmp/" 
 PROPERTIES ("columns" = "k1,k2");
 ```
-- Test テーブル内の全データをローカルストレージにエクスポートし、他の形式のファイルをエクスポートする
+- Test Table内の全データをローカルストレージにエクスポートし、他の形式のファイルをエクスポートする
 
 ```sql
 -- parquet
@@ -303,7 +303,7 @@ PROPERTIES (
 ```
 ### S3へのエクスポート
 
-- s3_testテーブルの全データをS3にエクスポートします。列または行の区切り文字として不可視文字`\x07`を使用します。minioにデータをエクスポートする必要がある場合は、`use_path_style`=`true`を指定する必要もあります。
+- s3_testTableの全データをS3にエクスポートします。列または行の区切り文字として不可視文字`\x07`を使用します。minioにデータをエクスポートする必要がある場合は、`use_path_style`=`true`を指定する必要もあります。
 
 ```sql
 EXPORT TABLE s3_test TO "s3://bucket/a/b/c" 
@@ -319,7 +319,7 @@ PROPERTIES (
 ```
 ### HDFSへのエクスポート
 
-- Testテーブルの全データをHDFSにエクスポートし、エクスポートファイル形式はParquet、エクスポートジョブの単一ファイルサイズ制限は512MB、指定されたディレクトリ内に全ファイルを保持します。
+- TestTableの全データをHDFSにエクスポートし、エクスポートファイル形式はParquet、エクスポートジョブの単一ファイルサイズ制限は512MB、指定されたディレクトリ内に全ファイルを保持します。
 
 ```sql
 EXPORT TABLE test TO "hdfs://hdfs_host:port/a/b/c/" 
@@ -335,7 +335,7 @@ with HDFS (
 ```
 ### Broker Node を通じたエクスポート
 まず Broker プロセスを開始し、この Broker を FE に追加する必要があります。
-- Test テーブルのすべてのデータを HDFS にエクスポートする
+- Test Tableのすべてのデータを HDFS にエクスポートする
 
 ```sql
 EXPORT TABLE test TO "hdfs://hdfs_host:port/a/b/c" 
@@ -345,7 +345,7 @@ WITH BROKER "broker_name"
   "password"="yyy"
 );
 ```
-- testTblテーブルのパーティションp1,p2をHDFSにエクスポートし、","を列区切り文字として使用し、Labelを指定する
+- testTblTableのパーティションp1,p2をHDFSにエクスポートし、","を列区切り文字として使用し、Labelを指定する
 
 ```sql
 EXPORT TABLE testTbl PARTITION (p1,p2) TO "hdfs://hdfs_host:port/a/b/c" 
@@ -359,7 +359,7 @@ WITH BROKER "broker_name"
   "password"="yyy"
 );
 ```
-- testTblテーブルの全データをHDFSにエクスポートし、列または行の区切り文字として不可視文字`\x07`を使用する。
+- testTblTableの全データをHDFSにエクスポートし、列または行の区切り文字として不可視文字`\x07`を使用する。
 
 ```sql
 EXPORT TABLE testTbl TO "hdfs://hdfs_host:port/a/b/c" 

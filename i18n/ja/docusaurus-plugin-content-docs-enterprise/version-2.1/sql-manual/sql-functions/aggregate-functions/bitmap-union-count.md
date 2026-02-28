@@ -16,7 +16,7 @@ BITMAP_UNION_COUNT(<expr>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | BITMAPでサポートされているデータ型 |
 

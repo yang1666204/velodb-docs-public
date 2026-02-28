@@ -16,7 +16,7 @@ DOMAIN_WITHOUT_WWW ( <url> )
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|----------------------|
 | `<url>`   | wwwドメイン名を除いた`URL`を抽出する必要がある |
 

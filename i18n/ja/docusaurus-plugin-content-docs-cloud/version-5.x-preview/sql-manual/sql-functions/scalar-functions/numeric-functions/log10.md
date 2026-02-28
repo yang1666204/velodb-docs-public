@@ -18,9 +18,9 @@
 ```sql
 LOG10(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>`   | 真数は0より大きくなければなりません |
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 データベース内で中断されているresident data synchronization jobを`job_name`によって再開します。再開されると、ジョブは中断前の最新の位置からデータの同期を継続します。
 

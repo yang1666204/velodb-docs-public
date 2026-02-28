@@ -25,9 +25,9 @@ function(<args>) OVER(
     [<window_clause>]
 )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<args>` | ウィンドウ関数の入力パラメータ、使用される関数によって異なる |
 | `<function>` | サポートされる関数には以下が含まれる: AVG(), COUNT(), DENSE_RANK(), FIRST_VALUE(), LAG(), LAST_VALUE(), LEAD(), MAX(), MIN(), RANK(), ROW_NUMBER(), SUM() およびすべての集約関数 |
@@ -59,7 +59,7 @@ select * from stock_ticker order by stock_symbol, closing_date
  | JDR          | 14.75         | 2014-10-07 00:00:00 |
  | JDR          | 13.98         | 2014-10-08 00:00:00 |
 ```
-2. このクエリは分析関数を使用してmoving_average列を生成し、3日間の平均株価（前日、当日、翌日）を計算します。初日は前日の値がなく、最終日は翌日の値がないため、これらの行は2日間の平均のみを計算します。すべてのデータがJDRのものであるため、Partition By句はここでは効果がありませんが、他の株式情報がある場合、Partition Byにより分析関数が独自のパーティション内でのみ動作することが保証されます。
+2. このクエリは分析関数を使用してmoving_average列を生成し、3日間の平均株価（前日、当日、翌日）を計算します。初日は前日の値がなく、最終日は翌日の値がないため、これらの行は2日間の平均のみを計算します。すべてのデータがJDRのものであるため、パーティション By句はここでは効果がありませんが、他の株式情報がある場合、パーティション Byにより分析関数が独自のパーティション内でのみ動作することが保証されます。
 
 ```sql
 select stock_symbol, closing_date, closing_price,    

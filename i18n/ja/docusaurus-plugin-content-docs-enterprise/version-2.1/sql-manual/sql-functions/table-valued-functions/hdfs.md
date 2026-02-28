@@ -1,7 +1,7 @@
 ---
 {
-  "title": "HDFS | テーブル値関数",
-  "description": "HDFS table-valued-function(tvf)は、ユーザーがS3互換オブジェクトストレージ上のファイルコンテンツを、リレーショナルテーブルにアクセスするのと同じように読み取りおよびアクセスすることを可能にします。",
+  "title": "HDFS | Table値関数",
+  "description": "HDFS table-valued-function(tvf)は、ユーザーがS3互換オブジェクトストレージ上のファイルコンテンツを、リレーショナルTableにアクセスするのと同じように読み取りおよびアクセスすることを可能にします。",
   "language": "ja"
 }
 ---
@@ -9,7 +9,7 @@
 
 ## 説明
 
-HDFSのtable-valued-function(tvf)は、ユーザーがS3互換オブジェクトストレージ上のファイル内容をリレーショナルテーブルにアクセスするのと同様に読み取りおよびアクセスできるようにします。現在、`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`ファイル形式をサポートしています。
+HDFSのtable-valued-function(tvf)は、ユーザーがS3互換オブジェクトストレージ上のファイル内容をリレーショナルTableにアクセスするのと同様に読み取りおよびアクセスできるようにします。現在、`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`ファイル形式をサポートしています。
 
 ## 構文
 

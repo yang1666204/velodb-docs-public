@@ -25,7 +25,7 @@ COALESCE( <expr1> [ , ... , <exprN> ] )
 
 ## 使用上の注意
 1. 複数の引数の型は可能な限り一貫している必要があります。
-2. 複数の引数の型が一貫していない場合、関数は同じ型に変換を試みます。変換ルールについては、[Type Conversion](../../../basic-element/sql-data-types/conversion/overview.md)を参照してください。
+2. 複数の引数の型が一貫していない場合、関数は同じ型に変換を試みます。変換ルールについては、[タイプ Conversion](../../../basic-element/sql-data-types/conversion/overview.md)を参照してください。
 3. 現在、引数として以下の型のみがサポートされています：
     * String型（String/VARCHAR/CHAR）
     * Boolean型（Boolean）

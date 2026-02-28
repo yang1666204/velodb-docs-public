@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 JSON_VALID関数は、入力が有効なJSONかどうかを示すために0または1を返します。入力がNULLの場合、NULLを返します。
 
@@ -16,7 +16,7 @@ JSON_VALID( <str> )
 
 ```
 必須パラメータ
-| Parameter | Description |
+| Parameter | デスクリプション |
 |------|------|
 | `<str>` | 解析対象となるJSON形式の入力文字列。 |
 

@@ -14,9 +14,9 @@
 ```sql
 DOMAIN ( <url> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|--------------------|
 | `<url>`   | ドメイン名を抽出する必要がある`URL` |
 

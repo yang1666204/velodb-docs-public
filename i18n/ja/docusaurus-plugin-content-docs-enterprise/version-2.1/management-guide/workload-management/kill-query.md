@@ -14,7 +14,7 @@
 
 ### PROCESSLIST
 
-`processlist`システムテーブルを通じて、現在のすべてのセッション接続と接続で実行されているクエリ操作を取得できます。これにはQuery IDとConnection IDが含まれます。
+`processlist`システムTableを通じて、現在のすべてのセッション接続と接続で実行されているクエリ操作を取得できます。これにはQuery IDとConnection IDが含まれます。
 
 ```sql
 mysql> SHOW PROCESSLIST;
@@ -39,7 +39,7 @@ SET show_all_fe_connection=true;
 ```
 その後、`SHOW PROCESSLIST`コマンドを再度実行して、すべてのFEノードからのセッション接続を表示します。
 
-`information_schema`のシステムテーブルからも確認できます：
+`information_schema`のシステムTableからも確認できます：
 
 ```
 SELECT * FROM information_schema.processlist;
@@ -50,16 +50,16 @@ SELECT * FROM information_schema.processlist;
 
 > この機能はバージョン2.1.11および3.0.7以降でサポートされています。
 
-デフォルトでは、システムは各クエリに対してQuery IDを自動的に生成します。ユーザーはKILL操作を実行する前に、まず`processlist`システムテーブルを通じてQuery IDを取得する必要があります。
+デフォルトでは、システムは各クエリに対してQuery IDを自動的に生成します。ユーザーはKILL操作を実行する前に、まず`processlist`システムTableを通じてQuery IDを取得する必要があります。
 
-さらに、ユーザーはTrace IDをカスタマイズし、Trace IDを使用してKILL操作を実行することもできます。
+さらに、ユーザーはTrace IDをカスタマイズし、トレース IDを使用してKILL操作を実行することもできます。
 
 ```
 SET session_context = "trace_id:your_trace_id";
 ```
 `your_trace_id` は、ユーザー定義のTrace IDです。任意の文字列を指定できますが、`;` 記号を含めることはできません。
 
-Trace IDはセッションレベルのパラメータであり、現在のセッションにのみ適用されます。Dorisは、現在のセッションで後続のクエリリクエストをこのTrace IDにマッピングします。
+トレース IDはセッションレベルのパラメータであり、現在のセッションにのみ適用されます。Dorisは、現在のセッションで後続のクエリリクエストをこのTrace IDにマッピングします。
 
 ## Kill Requests
 
@@ -78,7 +78,7 @@ KILL QUERY "query_id" | "trace_id" | connection_id;
 
 - `"query_id"`
 
-	`processlist`システムテーブルを通じて取得されたQuery ID。クォートで囲む必要があります。例：
+	`processlist`システムTableを通じて取得されたQuery ID。クォートで囲む必要があります。例：
 	
 	`KILL QUERY "d36417cc05ff41ab-9d3afe49be251055";`
 	
@@ -96,7 +96,7 @@ KILL QUERY "query_id" | "trace_id" | connection_id;
 
 - `connection_id`
 
-	`processlist`システムテーブルを通じて取得されたConnection ID。0より大きい整数である必要があり、クォートで囲むことはできません。例：
+	`processlist`システムTableを通じて取得されたConnection ID。0より大きい整数である必要があり、クォートで囲むことはできません。例：
 
 	`KILL QUERY 55;`
 	
@@ -115,7 +115,7 @@ KILL [CONNECTION] connection_id;
 
 - `connection_id`
 
-	`processlist`システムテーブルから取得するConnection ID。0より大きい整数である必要があり、引用符で囲むことはできません。例：
+	`processlist`システムTableから取得するConnection ID。0より大きい整数である必要があり、引用符で囲むことはできません。例：
 
 	```sql
 	KILL CONNECTION 55;
@@ -131,7 +131,7 @@ KILL [CONNECTION] connection_id;
 	
 	- 各クエリの前に`session_context`を設定する
 
-		ユーザーが独自のTrace IDを生成します。Trace IDの一意性を確保するため、UUIDの使用を推奨します。
+		ユーザーが独自のTrace IDを生成します。トレース IDの一意性を確保するため、UUIDの使用を推奨します。
 
 		```sql
 		SET session_context="trace_id:your_trace_id";

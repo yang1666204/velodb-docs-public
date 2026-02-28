@@ -14,7 +14,7 @@
 ```sql
 ARRAY_SUM(<src>)
 ```
-## Parameters
+## パラメータ
 
 | Parameter | 説明 |
 |--|--|

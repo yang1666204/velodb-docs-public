@@ -15,9 +15,9 @@ Rowsetに関する基本情報を返します。
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
-| Column Name            | Type        | Description                                                  |
+| Column Name            | タイプ        | デスクリプション                                                  |
 | ---------------------- | ----------- | ------------------------------------------------------------ |
 | BACKEND_ID             | bigint      | BackendのIDで、Backendの一意識別子です。 |
 | ROWSET_ID              | varchar(64) | RowsetのIDで、Rowsetの一意識別子です。 |
@@ -31,4 +31,4 @@ Rowsetに関する基本情報を返します。
 | DATA_DISK_SIZE         | bigint      | Rowset内のデータのストレージ容量です。                |
 | CREATION_TIME          | datetime    | Rowsetの作成時刻です。                             |
 | NEWEST_WRITE_TIMESTAMP | datetime    | Rowsetの最新の書き込み時刻です。                    |
-| SCHEMA_VERSION         | int         | Rowsetデータに対応するテーブルのSchemaバージョン番号です。 |
+| SCHEMA_VERSION         | int         | Rowsetデータに対応するTableのSchemaバージョン番号です。 |

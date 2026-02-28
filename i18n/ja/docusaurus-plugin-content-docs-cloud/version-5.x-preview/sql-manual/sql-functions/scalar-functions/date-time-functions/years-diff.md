@@ -14,9 +14,9 @@ YEARS_DIFF関数は、2つの日付または時刻値間の完全な年差を計
 ```sql
 YEARS_DIFF(`<date_or_time_expr1>`, `<date_or_time_expr2>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<date_or_time_expr1>` | 終了日付。date/datetimeタイプをサポートします。datetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<date_or_time_expr2>` | 開始日付。date/datetimeタイプおよび日付時刻形式に準拠した文字列をサポートします |

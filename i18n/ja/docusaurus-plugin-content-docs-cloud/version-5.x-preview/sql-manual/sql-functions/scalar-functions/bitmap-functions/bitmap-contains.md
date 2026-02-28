@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力値がBITMAPに含まれているかどうかを計算し、ブール値を返します。
 
@@ -16,7 +16,7 @@ BITMAP_CONTAINS(<bitmap>, <bigint>)
 ```
 ## パラメーター
 
-| Parameter  | Description                             |
+| Parameter  | デスクリプション                             |
 |------------|-----------------------------------------|
 | `<bitmap>` | BITMAPコレクション                        |
 | `<bitint>` | 存在を確認する整数                         |

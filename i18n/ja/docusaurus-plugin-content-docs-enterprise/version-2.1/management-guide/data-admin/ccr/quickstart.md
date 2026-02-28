@@ -27,7 +27,7 @@ cd bin && sh start_syncer.sh --daemon
 # Stop
 sh stop_syncer.sh
 ```
-## Step 3. ソースクラスター内の同期対象データベース/テーブルのBinlogを開く
+## ステップ 3. ソースクラスター内の同期対象データベース/TableのBinlogを開く
 
 ```shell
 -- If synchronizing the entire database, execute the following script to enable binlog for all tables in that database
@@ -36,7 +36,7 @@ sh stop_syncer.sh
 -- If synchronizing a single table, only enable the binlog for that table by executing:
 ALTER TABLE your_table_name ENABLE BINLOG SET ("binlog.enable" = "true");
 ```
-## Step 4. Syncer で同期ジョブを開始する
+## ステップ 4. Syncer で同期ジョブを開始する
 
 ```shell
 curl -X POST -H "Content-Type: application/json" -d '{

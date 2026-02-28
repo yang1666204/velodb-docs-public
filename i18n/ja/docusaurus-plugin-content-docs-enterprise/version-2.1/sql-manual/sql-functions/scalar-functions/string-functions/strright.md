@@ -18,8 +18,8 @@ RIGHT
 ```sql
 STRRIGHT(<str>, <len>)
 ```
-## Parameters
-| Parameter | Description                                   |
+## パラメータ
+| Parameter | デスクリプション                                   |
 | --------- | --------------------------------------------- |
 | `<str>` | 抽出元の文字列。型: VARCHAR     |
 | `<len>` | 返す文字数。型: INT |

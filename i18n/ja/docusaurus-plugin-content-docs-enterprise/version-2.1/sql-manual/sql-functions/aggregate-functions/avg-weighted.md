@@ -14,9 +14,9 @@
 ```sql
 AVG_WEIGHTED(<x>, <weight>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | 平均を計算する対象の数値式で、列名、定数、または複雑な数値式を指定できます。 |
 | `<weight>` | 数値式で、通常は列名、定数、または他の数値計算の結果を指定します。 |

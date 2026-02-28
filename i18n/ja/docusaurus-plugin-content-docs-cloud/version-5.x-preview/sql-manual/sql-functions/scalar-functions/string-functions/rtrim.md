@@ -14,9 +14,9 @@ RTRIM関数は、文字列の右側（末尾）から連続するスペースま
 ```sql
 RTRIM(<str>[, <rhs>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<str>` | 処理対象の文字列。型: VARCHAR |
 | `<rhs>` | オプションパラメータ、削除する末尾文字。型: VARCHAR |

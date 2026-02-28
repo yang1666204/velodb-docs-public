@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 バックグラウンドで実行されている統計情報収集ジョブを停止します。
 
@@ -28,7 +28,7 @@ KILL ANALYZE <job_id>
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege (Privilege) | Object (Object) | Notes (Notes) |
+| Privilege (Privilege) | Object (Object) | 注釈 (注釈) |
 | --------------------- | --------------- | ------------- |
 | SELECT_PRIV           | Table           |               |
 

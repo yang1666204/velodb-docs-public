@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-# MySQL Client Certificate
+# MySQL クライアント Certificate
 
 DorisでSSL機能を有効にするには、CAキー証明書とサーバーサイドキー証明書の両方を設定する必要があります。相互認証を有効にするには、クライアントサイドキー証明書も生成する必要があります：
 

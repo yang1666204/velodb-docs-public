@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは非同期マテリアライズドビューを削除するために使用されます。
 
@@ -22,7 +22,7 @@ DROP MATERIALIZED VIEW (IF EXISTS)? mvName=multipartIdentifier
 
 ## 例
 
-1. テーブルマテリアライズドビュー mv1 を削除
+1. Tableマテリアライズドビュー mv1 を削除
 
 ```sql
 DROP MATERIALIZED VIEW mv1;

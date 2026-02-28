@@ -4,7 +4,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 1. int配列を生成する
 2. 日付と時刻の配列を生成する
@@ -22,9 +22,9 @@ ARRAY_RANGE(<start>, <end>, <step>)
 ARRAY_RANGE(<start_datetime>, <end_datetime>)
 ARRAY_RANGE(<start_datetime>, <end_datetime>, INTERVAL <interval_step> <unit>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<start>` | 開始値は正の整数、デフォルト値は0 |
 | `<end>` | 終了値、正の整数 |

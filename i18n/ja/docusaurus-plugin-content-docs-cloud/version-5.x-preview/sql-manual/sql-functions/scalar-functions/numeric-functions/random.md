@@ -24,9 +24,9 @@ RANDOM(<seed>) -- Generates a fixed sequence of random numbers between 0 and 1 b
 
 RANDOM(<a> , <b>) -- Generates a random number between a and b
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<seed>` | 乱数ジェネレータのシード。0と1の間の固定された乱数シーケンスを返します。 |
 | `<a>` | 乱数の下限。 |

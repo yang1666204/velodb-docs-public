@@ -1,7 +1,7 @@
 ---
 {
   "title": "MAP | 複合型",
-  "description": "MAP<K, V> K, Vアイテムのマップです。キー列として使用することはできません。現在、MAPはDuplicateおよびUnique Modelテーブルでのみ使用できます。",
+  "description": "MAP<K, V> K, Vアイテムのマップです。キー列として使用することはできません。現在、MAPはDuplicateおよびUnique ModelTableでのみ使用できます。",
   "language": "ja"
 }
 ---
@@ -28,7 +28,7 @@ DATEV2, DATETIME, DATETIMEV2, CHAR, VARCHAR, STRING
 3|{}
 4|null
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE map_test (
@@ -41,7 +41,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```bash
 curl --location-trusted \
@@ -51,7 +51,7 @@ curl --location-trusted \
         -T "test_map.csv" \
         http://localhost:8040/api/testdb/map_test/_stream_load
 ```
-### Step 4: インポートされたデータを確認する
+### ステップ 4: インポートされたデータを確認する
 
 ```sql
 mysql> SELECT * FROM map_test;
@@ -79,7 +79,7 @@ mysql> SELECT * FROM map_test;
     {"id":4, "c_map":null}
 ]
 ```
-### ステップ2: データベースにテーブルを作成する
+### ステップ2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE map_test (
@@ -92,7 +92,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データを読み込む
+### ステップ 3: データを読み込む
 
 ```bash
 curl --location-trusted \
@@ -103,7 +103,7 @@ curl --location-trusted \
         -T "test_map.json" \
         http://localhost:8040/api/testdb/map_test/_stream_load
 ```
-### Step 4: インポートされたデータを確認する
+### ステップ 4: インポートされたデータを確認する
 
 ```sql
 mysql> SELECT * FROM map_test;

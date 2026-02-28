@@ -1,19 +1,19 @@
 ---
 {
   "title": "統計 | 最適化技術原理",
-  "description": "バージョン2.0以降、DorisはCost-Based Optimization (CBO)機能をオプティマイザーに統合しました。統計情報はCBOの基盤となるものです。",
+  "description": "バージョン2.0以降、DorisはCost-Based 最適化 (CBO)機能をオプティマイザーに統合しました。統計情報はCBOの基盤となるものです。",
   "language": "ja"
 }
 ---
 # Statistics
 
-バージョン2.0から、DorisはオプティマイザーにCost-Based Optimization (CBO)機能を統合しました。統計情報はCBOの基盤であり、その精度はコスト推定の精度を直接決定し、最適な実行計画の選択において極めて重要です。本ドキュメントは、未リリースの開発バージョンにおける統計情報の使用方法のガイドとして、収集と管理方法、関連する設定オプション、よくある質問に焦点を当てています。
+バージョン2.0から、DorisはオプティマイザーにCost-Based 最適化 (CBO)機能を統合しました。統計情報はCBOの基盤であり、その精度はコスト推定の精度を直接決定し、最適な実行計画の選択において極めて重要です。本ドキュメントは、未リリースの開発バージョンにおける統計情報の使用方法のガイドとして、収集と管理方法、関連する設定オプション、よくある質問に焦点を当てています。
 
 ## 統計情報の収集
 
-Dorisは内部テーブルの自動サンプリング収集をデフォルトで有効にしています。そのため、ほとんどの場合、ユーザーは統計情報の収集に注意を払う必要はありません。Dorisは各テーブルに対してカラムレベルで統計情報を収集します。収集される情報には以下が含まれます：
+Dorisは内部Tableの自動サンプリング収集をデフォルトで有効にしています。そのため、ほとんどの場合、ユーザーは統計情報の収集に注意を払う必要はありません。Dorisは各Tableに対してカラムレベルで統計情報を収集します。収集される情報には以下が含まれます：
 
-| Info of Statistics | Description                              |
+| Info of Statistics | デスクリプション                              |
 | ------------------ | ---------------------------------------- |
 | row_count          | 行の総数                                 |
 | data_size          | カラムの総データサイズ                   |
@@ -27,7 +27,7 @@ Dorisは内部テーブルの自動サンプリング収集をデフォルトで
 
 JSONB、VARIANT、MAP、STRUCT、ARRAY、HLL、BITMAP、TIME、TIMEV2等の複合型のカラムはスキップされます。
 
-統計情報は手動または自動で収集でき、結果は`internal.__internal_schema.column_statistics`テーブルに格納されます。以下のセクションでは、これら2つの収集方法について詳しく説明します。
+統計情報は手動または自動で収集でき、結果は`internal.__internal_schema.column_statistics`Tableに格納されます。以下のセクションでは、これら2つの収集方法について詳しく説明します。
 
 ### 手動収集
 
@@ -39,17 +39,17 @@ SQLマニュアルANALYZEを参照してください
 
 **2. 例**
 
-`lineitem`テーブルのすべてのカラムの統計情報を収集：
+`lineitem`Tableのすべてのカラムの統計情報を収集：
 
 ```sql
 ANALYZE TABLE lineitem;
 ```
-`tpch100` データベース内のすべてのテーブルのすべてのカラムについて統計情報を収集します：
+`tpch100` データベース内のすべてのTableのすべてのカラムについて統計情報を収集します：
 
 ```sql
 ANALYZE DATABASE tpch100;
 ```
-`lineitem`テーブルの`l_orderkey`と`l_linenumber`列の統計情報を100,000行をサンプリングして収集します（注意：正しい構文は`WITH SAMPLE ROWS`または`WITH SAMPLE PERCENT`を使用する必要があります）：
+`lineitem`Tableの`l_orderkey`と`l_linenumber`列の統計情報を100,000行をサンプリングして収集します（注意：正しい構文は`WITH SAMPLE ROWS`または`WITH SAMPLE PERCENT`を使用する必要があります）：
 
 ```sql
 ANALYZE TABLE lineitem WITH SAMPLE ROWS 100000;
@@ -62,22 +62,22 @@ ANALYZE TABLE lineitem WITH SAMPLE ROWS 100000;
 SET GLOBAL ENABLE_AUTO_ANALYZE = TRUE; // Enable automatic collection  
 SET GLOBAL ENABLE_AUTO_ANALYZE = FALSE; // Disable automatic collection
 ```
-有効にすると、バックグラウンドスレッドがクラスター内の`InternalCatalog`内のすべてのテーブルを定期的にスキャンします。統計情報の収集が必要なテーブルについて、システムは手動での介入なしに収集ジョブを自動的に作成し、実行します。
+有効にすると、バックグラウンドスレッドがクラスター内の`InternalCatalog`内のすべてのTableを定期的にスキャンします。統計情報の収集が必要なTableについて、システムは手動での介入なしに収集ジョブを自動的に作成し、実行します。
 
-幅の広いテーブルの統計情報収集による過度なリソース使用を避けるため、300列を超えるテーブルはデフォルトでは自動収集されません。ユーザーはセッション変数`auto_analyze_table_width_threshold`を変更することで、この閾値を調整できます：
+幅の広いTableの統計情報収集による過度なリソース使用を避けるため、300列を超えるTableはデフォルトでは自動収集されません。ユーザーはセッション変数`auto_analyze_table_width_threshold`を変更することで、この閾値を調整できます：
 
 ```sql
 SET GLOBAL auto_analyze_table_width_threshold = 350;
 ```
-自動収集のデフォルトポーリング間隔は5分です（`fe.conf`の`auto_check_statistics_in_minutes`設定で調整可能）。最初のイテレーションはクラスタ起動の5分後に開始されます。収集が必要なすべてのテーブルの処理が完了した後、バックグラウンドスレッドは次のイテレーションを開始する前に5分間スリープします。したがって、テーブルの数やサイズに基づいてすべてのテーブルを反復処理する時間が変動するため、テーブルの統計が5分以内に収集されることは保証されません。
+自動収集のデフォルトポーリング間隔は5分です（`fe.conf`の`auto_check_statistics_in_minutes`設定で調整可能）。最初のイテレーションはクラスタ起動の5分後に開始されます。収集が必要なすべてのTableの処理が完了した後、バックグラウンドスレッドは次のイテレーションを開始する前に5分間スリープします。したがって、Tableの数やサイズに基づいてすべてのTableを反復処理する時間が変動するため、Tableの統計が5分以内に収集されることは保証されません。
 
-テーブルがポーリングされると、システムはまず統計収集が必要かどうかを判断します。必要であれば収集ジョブが作成され実行されます。そうでなければテーブルはスキップされます。統計収集は以下の場合に必要となります：
+Tableがポーリングされると、システムはまず統計収集が必要かどうかを判断します。必要であれば収集ジョブが作成され実行されます。そうでなければTableはスキップされます。統計収集は以下の場合に必要となります：
 
-1. テーブルに統計のない列がある。
+1. Tableに統計のない列がある。
 
-2. テーブルのヘルスが閾値を下回っている（デフォルト90、`table_stats_health_threshold`で調整可能）。ヘルスは前回の統計収集以降に変更されていないデータの割合を示します：100は変更なし、0はすべて変更、90を下回るヘルスは現在の統計に大きな偏差があることを示し、再収集が必要です。
+2. Tableのヘルスが閾値を下回っている（デフォルト90、`table_stats_health_threshold`で調整可能）。ヘルスは前回の統計収集以降に変更されていないデータの割合を示します：100は変更なし、0はすべて変更、90を下回るヘルスは現在の統計に大きな偏差があることを示し、再収集が必要です。
 
-3. 内部テーブルの場合、データは変更されているが、過去24時間以内に統計情報が収集されていない
+3. 内部Tableの場合、データは変更されているが、過去24時間以内に統計情報が収集されていない
 
 バックグラウンドジョブのオーバーヘッドを削減し収集速度を向上させるため、自動収集はデフォルトでサンプリングを使用し、4,194,304（`2^22`）行をサンプリングします。ユーザーはより正確なデータ分布情報のため、`huge_table_default_sample_rows`を変更してサンプリングサイズを調整できます。
 
@@ -89,64 +89,64 @@ SET GLOBAL auto_analyze_end_time = "14:00:00"; // Set the end time to 2 PM
 ```
 ### External Table Collection
 
-外部テーブルには通常、Hive、Iceberg、JDBC、その他のタイプが含まれます。
+外部Tableには通常、Hive、Iceberg、JDBC、その他のタイプが含まれます。
 
-- 手動収集：Hive、Iceberg、JDBCテーブルは手動統計収集をサポートしています。Hiveテーブルは完全収集とサンプル収集の両方をサポートしていますが、IcebergとJDBCテーブルは完全収集のみをサポートしています。その他の外部テーブルタイプは手動収集をサポートしていません。
+- 手動収集：Hive、Iceberg、JDBCTableは手動統計収集をサポートしています。HiveTableは完全収集とサンプル収集の両方をサポートしていますが、IcebergとJDBCTableは完全収集のみをサポートしています。その他の外部Tableタイプは手動収集をサポートしていません。
 
-- 自動収集：現在、Hiveテーブルのみがサポートされています。
+- 自動収集：現在、HiveTableのみがサポートされています。
 
-External Catalogsは、大量の履歴データを含むことが多く、自動収集時に過剰なリソースを消費する可能性があるため、デフォルトでは自動カラム統計収集に参加しません。実際に必要な場合は、プロパティを設定することでExternal Catalogの自動カラム統計収集を有効または無効にすることができます：
+外部カタログは、大量の履歴データを含むことが多く、自動収集時に過剰なリソースを消費する可能性があるため、デフォルトでは自動カラム統計収集に参加しません。実際に必要な場合は、プロパティを設定することで外部カタログの自動カラム統計収集を有効または無効にすることができます：
 
 ```sql
 ALTER CATALOG external_catalog SET PROPERTIES ('enable.auto.analyze'='true'); // Enable automatic column statistics collection
 ALTER CATALOG external_catalog SET PROPERTIES ('enable.auto.analyze'='false'); // Disable automatic column statistics collection
 ```
-Catalog全体を制御する粒度が大きすぎる場合、テーブルレベルでの列統計収集の有効化と無効化もサポートしています。
+Catalog全体を制御する粒度が大きすぎる場合、Tableレベルでの列統計収集の有効化と無効化もサポートしています。
 
  ```sql
-ALTER TABLE <table_name> SET ("auto_analyze_policy" = "enable"); // Enable automatic collection of column statistical for this table (the priority is higher than the enable.auto.analyze property of the Catalog).
-ALTER TABLE <table_name> SET ("auto_analyze_policy" = "disable"); // Disnable automatic collection of column statistical for this table (the priority is higher than the enable.auto.analyze property of the Catalog).
-ALTER TABLE <table_name> SET ("auto_analyze_policy" = "base_on_catalog"); // It is determined by the enable.auto.analyze property of the table's Catalog.
+ALTER TABLE <table_name> SET ("auto_analyze_policy" = "enable"); // Enable automatic collection of column statistical for this table (the priority is higher than the enable.auto.analyze property of the カタログ).
+ALTER TABLE <table_name> SET ("auto_analyze_policy" = "disable"); // Disnable automatic collection of column statistical for this table (the priority is higher than the enable.auto.analyze property of the カタログ).
+ALTER TABLE <table_name> SET ("auto_analyze_policy" = "base_on_catalog"); // It is determined by the enable.auto.analyze property of the table's カタログ.
  ```
-外部テーブルにはヘルスの概念がありません。Catalog/Tableで自動収集列統計が有効になっている場合、システムは頻繁な収集を避けるため、外部テーブルの統計を最大24時間に1回収集するよう既定で設定されています。`external_table_auto_analyze_interval_in_millis`変数を使用して、外部テーブルの最小収集間隔を調整できます。
+外部Tableにはヘルスの概念がありません。カタログ/Tableで自動収集列統計が有効になっている場合、システムは頻繁な収集を避けるため、外部Tableの統計を最大24時間に1回収集するよう既定で設定されています。`external_table_auto_analyze_interval_in_millis`変数を使用して、外部Tableの最小収集間隔を調整できます。
 
-既定では、外部テーブルは列統計を収集せず、システムはテーブルの行数情報の取得のみを試行します。異なる外部テーブルの行数情報を収集する方法は以下の通りです。
+既定では、外部Tableは列統計を収集せず、システムはTableの行数情報の取得のみを試行します。異なる外部Tableの行数情報を収集する方法は以下の通りです。
 
 **1. Hive Tablesの場合:**
 
-Dorisは最初にHiveテーブルのParametersから`numRows`または`totalSize`情報の取得を試行します：
+Dorisは最初にHiveTableのParametersから`numRows`または`totalSize`情報の取得を試行します：
 
-- `numRows`が見つかった場合、その値がテーブルの行数として使用されます。
+- `numRows`が見つかった場合、その値がTableの行数として使用されます。
 
-- `numRows`が見つからないが`totalSize`が利用可能な場合、テーブルのスキーマと`totalSize`に基づいて行数が推定されます。
+- `numRows`が見つからないが`totalSize`が利用可能な場合、Tableのスキーマと`totalSize`に基づいて行数が推定されます。
 
-- `totalSize`も利用できない場合、既定では、システムはHiveテーブルに対応するファイルサイズとそのSchemaに基づいて行数を推定します。ファイルサイズの取得が過度なリソースを消費する懸念がある場合、以下の変数を設定してこの機能を無効にできます。
+- `totalSize`も利用できない場合、既定では、システムはHiveTableに対応するファイルサイズとそのSchemaに基づいて行数を推定します。ファイルサイズの取得が過度なリソースを消費する懸念がある場合、以下の変数を設定してこの機能を無効にできます。
 
   ```sql
   SET GLOBAL enable_get_row_count_from_file_list = FALSE
   ```
-**2. Icebergテーブルの場合:**
+**2. IcebergTableの場合:**
 
-DorisはIcebergのsnapshotAPIを呼び出して`total-records`と`total-position-deletes`の情報を取得し、テーブルの行数を計算します。
+DorisはIcebergのsnapshotAPIを呼び出して`total-records`と`total-position-deletes`の情報を取得し、Tableの行数を計算します。
 
-**3. Paimonテーブルの場合:**
+**3. PaimonTableの場合:**
 
-DorisはPaimonのscan APIを呼び出して各Splitに含まれる行数を取得し、Splitの行数を合計してテーブルの行数を計算します。
+DorisはPaimonのscan APIを呼び出して各Splitに含まれる行数を取得し、Splitの行数を合計してTableの行数を計算します。
 
-**4. JDBCテーブルの場合:**
+**4. JDBCTableの場合:**
 
-Dorisはテーブル統計を読み取るSQLをリモートデータベースに送信してテーブルの行数を取得します。これは、リモートデータベースがテーブルの行数情報を収集している場合にのみ実現できます。現在、DorisはMySQL、Oracle、PostgreSQL、SQLServerのテーブルの行数取得をサポートしています。
+DorisはTable統計を読み取るSQLをリモートデータベースに送信してTableの行数を取得します。これは、リモートデータベースがTableの行数情報を収集している場合にのみ実現できます。現在、DorisはMySQL、Oracle、PostgreSQL、SQLServerのTableの行数取得をサポートしています。
 
-**5. その他の外部テーブルの場合:**
+**5. その他の外部Tableの場合:**
 
 自動的な行数取得と推定は現在サポートされていません。
 
-ユーザーは以下のコマンドを使用して外部テーブルの推定行数を確認できます（詳細は`Viewing Table Statistics Overview`を参照）：
+ユーザーは以下のコマンドを使用して外部Tableの推定行数を確認できます（詳細は`Viewing Table Statistics 概要`を参照）：
 
 ```sql
 SHOW table stats table_name;
 ```
-- `row_count` が `-1` と表示される場合、行数情報を取得できなかったか、テーブルが空です。
+- `row_count` が `-1` と表示される場合、行数情報を取得できなかったか、Tableが空です。
 
 ## 統計ジョブ管理
 
@@ -162,10 +162,10 @@ SQL manual SHOW ANALYZE を参照してください
 
 以下の列を含みます:
 
-| Column Name   | Description                                   |
+| Column Name   | デスクリプション                                   |
 | ------------- | --------------------------------------------- |
 | job_id        | Statistics job ID                             |
-| catalog_name  | Catalog name                                  |
+| catalog_name  | カタログ name                                  |
 | db_name       | Database name                                 |
 | tbl_name      | Table name                                    |
 | col_name      | List of column names (index_name:column_name) |
@@ -231,7 +231,7 @@ SHOW COLUMN [cached] STATS table_name [ (column_name [, ...]) ];
 
 - `cached`: FEメモリに現在キャッシュされている統計情報を表示します。
 
-- `table_name`: 統計情報が収集された対象テーブル。`db_name.table_name`の形式で指定できます。
+- `table_name`: 統計情報が収集された対象Table。`db_name.table_name`の形式で指定できます。
 
 - `column_name`: 指定された対象カラム。`table_name`に存在する必要があり、複数のカラム名はカンマで区切ります。未指定の場合、すべてのカラムの情報を表示します。
 
@@ -256,26 +256,26 @@ avg_size_byte: 4.0
  updated_time: 2024-07-11 15:15:33
 1 row in set (0.36 sec)
 ```
-### テーブル統計の概要の表示
+### Table統計の概要の表示
 
-`SHOW TABLE STATS` を使用してテーブル統計収集の概要を表示します。
+`SHOW TABLE STATS` を使用してTable統計収集の概要を表示します。
 
 **1. 構文:**
 
 ```sql
 SHOW TABLE STATS table_name;
 ```
-場所: `table_name`: 対象テーブル名。`db_name.table_name`の形式で指定できます。
+場所: `table_name`: 対象Table名。`db_name.table_name`の形式で指定できます。
 
 **2. 出力:**
 
 以下のカラムを含みます:
 
-| Column Name   | Description                                                  |
+| Column Name   | デスクリプション                                                  |
 | ------------- | ------------------------------------------------------------ |
-| updated_rows  | 最後のANALYZE以降にテーブルで更新された行数   |
-| query_times   | 予約カラム。将来のバージョンでテーブルに対するクエリ数を記録するため |
-| row_count     | テーブルの行数（コマンド実行時の正確な数を反映していない場合があります） |
+| updated_rows  | 最後のANALYZE以降にTableで更新された行数   |
+| query_times   | 予約カラム。将来のバージョンでTableに対するクエリ数を記録するため |
+| row_count     | Tableの行数（コマンド実行時の正確な数を反映していない場合があります） |
 | updated_time  | 最後の統計更新時刻                           |
 | columns       | 統計が収集されたカラム             |
 | trigger       | 統計がトリガーされた方法                    |
@@ -323,14 +323,14 @@ mysql> KILL ANALYZE 52357;
 ```
 ### 統計情報の削除
 
-Catalog、Database、またはTableが削除された場合、ユーザーは手動でその統計情報を削除する必要はありません。バックグラウンドプロセスが定期的にこの情報をクリーンアップするためです。
+カタログ、Database、またはTableが削除された場合、ユーザーは手動でその統計情報を削除する必要はありません。バックグラウンドプロセスが定期的にこの情報をクリーンアップするためです。
 
-ただし、まだ存在するテーブルについては、システムは自動的にその統計情報をクリアしません。この場合、ユーザーは以下の構文を使用して手動で削除する必要があります：
+ただし、まだ存在するTableについては、システムは自動的にその統計情報をクリアしません。この場合、ユーザーは以下の構文を使用して手動で削除する必要があります：
 
 ```sql
 DROP STATS table_name
 ```
-## Session Variables と Configuration Options
+## Session Variables と 構成 Options
 
 ### Session Variables
 
@@ -339,12 +339,12 @@ DROP STATS table_name
 | auto_analyze_start_time             | 自動統計収集の開始時刻               | 0:00:00                             |
 | auto_analyze_end_time               | 自動統計収集の終了時刻                 | 23:59:59                            |
 | enable_auto_analyze                 | 自動収集機能を有効にするかどうか         | TRUE                                |
-| huge_table_default_sample_rows      | 大きなテーブルに対してサンプリングする行数                    | 4194304                             |
+| huge_table_default_sample_rows      | 大きなTableに対してサンプリングする行数                    | 4194304                             |
 | table_stats_health_threshold        | 値の範囲は0-100で、前回の統計収集以降に更新されたデータの割合を示し、(100 - table_stats_health_threshold)%で統計が古いとみなされる | 90                                  |
-| auto_analyze_table_width_threshold  | 自動統計収集の最大テーブル幅を制御し、この列数を超えるテーブルは自動統計収集に参加しない | 300                                 |
-| enable_get_row_count_from_file_list | ファイルサイズに基づいてHiveテーブルの行数を推定するかどうか | FALSE (2.1.5以降はデフォルトでTRUE) |
+| auto_analyze_table_width_threshold  | 自動統計収集の最大Table幅を制御し、この列数を超えるTableは自動統計収集に参加しない | 300                                 |
+| enable_get_row_count_from_file_list | ファイルサイズに基づいてHiveTableの行数を推定するかどうか | FALSE (2.1.5以降はデフォルトでTRUE) |
 
-### FE Configuration
+### FE 構成
 
 :::info Note
 
@@ -352,7 +352,7 @@ DROP STATS table_name
 
 :::
 
-| FE Configuration Option                    | 説明                                                  | デフォルト値           |
+| FE 構成 Option                    | 説明                                                  | デフォルト値           |
 | ------------------------------------------ | ------------------------------------------------------------ | ----------------------- |
 | analyze_record_limit                       | 統計ジョブ実行記録の永続化行数を制御する | 20000                   |
 | stats_cache_size                           | FE側でキャッシュされる統計エントリ数           | 500000                  |
@@ -361,11 +361,11 @@ DROP STATS table_name
 
 ## FAQs
 
-### Q1: テーブルに統計が収集されているか、および内容が正しいかを確認するにはどうすればよいですか？
+### Q1: Tableに統計が収集されているか、および内容が正しいかを確認するにはどうすればよいですか？
 
 まず、`show column stats table_name`を実行して、統計の出力があるかを確認します。
 
-次に、`show column cached stats table_name`を実行して、テーブルの統計がキャッシュにロードされているかを確認します。
+次に、`show column cached stats table_name`を実行して、Tableの統計がキャッシュにロードされているかを確認します。
 
 ```sql
 mysql> show column stats test_table\G
@@ -397,7 +397,7 @@ Select count(1), ndv(col1), min(col1), max(col1) from table
 ```
 `count`と`ndv`のエラーが1桁以内の範囲にある場合、精度は一般的に許容可能です。
 
-### Q2: テーブルの統計情報が自動収集されないのはなぜですか？
+### Q2: Tableの統計情報が自動収集されないのはなぜですか？
 
 まず、自動収集が有効になっているかどうかを確認してください：
 
@@ -406,7 +406,7 @@ Show variables like "enable_auto_analyze";  // If false, set it to true:
 
 Set global enable_auto_analyze = true
 ```
-既にtrueの場合は、テーブル内のカラム数を確認してください。`auto_analyze_table_width_threshold`を超えている場合、そのテーブルは自動収集に参加しません。この値をテーブルの現在のカラム数より大きくなるように変更してください：
+既にtrueの場合は、Table内のカラム数を確認してください。`auto_analyze_table_width_threshold`を超えている場合、そのTableは自動収集に参加しません。この値をTableの現在のカラム数より大きくなるように変更してください：
 
 ```sql
 Show variables like "auto_analyze_table_width_threshold"  
@@ -415,7 +415,7 @@ Show variables like "auto_analyze_table_width_threshold"
 
 Set global auto_analyze_table_width_threshold=350
 ```
-カラム数が閾値を超えない場合は、`show auto analyze`を実行して他のコレクションタスクが実行中（running状態）かどうかを確認してください。自動収集は単一スレッドによってシリアルに実行されるため、すべてのデータベースとテーブルをポーリングすることで実行サイクルが長くなる可能性があります。
+カラム数が閾値を超えない場合は、`show auto analyze`を実行して他のコレクションタスクが実行中（running状態）かどうかを確認してください。自動収集は単一スレッドによってシリアルに実行されるため、すべてのデータベースとTableをポーリングすることで実行サイクルが長くなる可能性があります。
 
 ### Q3: 一部のカラムで統計が利用できないのはなぜですか？
 
@@ -423,7 +423,7 @@ Set global auto_analyze_table_width_threshold=350
 
 ### Q4: エラー: "Stats table not available, please make sure your cluster status is normal"
 
-このエラーは通常、内部統計テーブルが正常でない状態にあることを示しています。
+このエラーは通常、内部統計Tableが正常でない状態にあることを示しています。
 
 まず、クラスター内のすべてのBE（Backend）が正常な状態にあるかを確認し、それらがすべて正しく機能していることを確かめてください。
 
@@ -441,14 +441,14 @@ ADMIN DIAGNOSE TABLET tablet_id
 
 ### Q5: 統計収集のタイミングが適切でない問題にはどのように対処できますか？
 
-自動収集の間隔は不確実で、システム内のテーブルの数とサイズに依存します。緊急の場合は、テーブルに対して手動で`analyze`操作を実行してください。
+自動収集の間隔は不確実で、システム内のTableの数とサイズに依存します。緊急の場合は、Tableに対して手動で`analyze`操作を実行してください。
 
-大量のデータをインポートした後に自動収集がトリガーされない場合は、`table_stats_health_threshold`パラメータの調整を検討してください。デフォルト値は90で、これはテーブルのデータの10%以上（100 - 90）が変更された時に自動収集がトリガーされることを意味します。この値を例えば95に増加させることで、テーブルのデータの5%以上が変更された時に統計が再収集されるようになります。
+大量のデータをインポートした後に自動収集がトリガーされない場合は、`table_stats_health_threshold`パラメータの調整を検討してください。デフォルト値は90で、これはTableのデータの10%以上（100 - 90）が変更された時に自動収集がトリガーされることを意味します。この値を例えば95に増加させることで、Tableのデータの5%以上が変更された時に統計が再収集されるようになります。
 
 ### Q6: 自動収集時の過剰なリソース使用量にはどのように対処できますか？
 
-自動収集はサンプリングを使用し、フルテーブルスキャンは不要で、タスクは単一のスレッドによって順次実行されます。通常、システムリソースの使用量は管理可能で、通常のクエリタスクに影響を与えません。
+自動収集はサンプリングを使用し、フルTableスキャンは不要で、タスクは単一のスレッドによって順次実行されます。通常、システムリソースの使用量は管理可能で、通常のクエリタスクに影響を与えません。
 
-多くのパーティションを持つテーブルや個別のtabletが大きいテーブルなど、一部の特殊なテーブルでは、メモリ使用量が高くなる可能性があります。
+多くのパーティションを持つTableや個別のtabletが大きいTableなど、一部の特殊なTableでは、メモリ使用量が高くなる可能性があります。
 
-テーブル作成時にtabletの数を合理的に計画し、過大なtabletの作成を避けることを推奨します。tabletの構造が容易に調整できない場合は、ビジネス運用への影響を避けるため、オフピーク時間に自動収集を有効にするか、大きなテーブルの統計を手動で収集することを検討してください。Doris 3.xシリーズでは、このようなシナリオに対する最適化を行う予定です。
+Table作成時にtabletの数を合理的に計画し、過大なtabletの作成を避けることを推奨します。tabletの構造が容易に調整できない場合は、ビジネス運用への影響を避けるため、オフピーク時間に自動収集を有効にするか、大きなTableの統計を手動で収集することを検討してください。Doris 3.xシリーズでは、このようなシナリオに対する最適化を行う予定です。

@@ -10,7 +10,7 @@
 
 `GET /api/snapshot?tablet_id={int}&schema_hash={int}"`
 
-## Description
+## デスクリプション
 
 tabletのsnapshotを作成します
 

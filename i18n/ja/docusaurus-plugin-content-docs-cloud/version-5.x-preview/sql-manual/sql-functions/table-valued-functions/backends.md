@@ -1,13 +1,13 @@
 ---
 {
   "title": "BACKENDS",
-  "description": "table関数は、バックエンドの一時テーブルを生成し、現在のdorisクラスター内のBEノード情報を表示することができます。",
+  "description": "table関数は、バックエンドの一時Tableを生成し、現在のdorisクラスター内のBEノード情報を表示することができます。",
   "language": "ja"
 }
 ---
 ## 説明
 
-table関数はバックエンドの一時テーブルを生成し、現在のdorisクラスター内のBEノード情報を表示することができます。
+table関数はバックエンドの一時Tableを生成し、現在のdorisクラスター内のBEノード情報を表示することができます。
 
 ## 構文
 
@@ -16,7 +16,7 @@ BACKENDS()
 ```
 ## Access Control Requirements
 
-| Privilege  | Object | Notes |
+| Privilege  | Object | 注釈 |
 | :--------- |:-------|:------|
 | ADMIN_PRIV | global |       |
 

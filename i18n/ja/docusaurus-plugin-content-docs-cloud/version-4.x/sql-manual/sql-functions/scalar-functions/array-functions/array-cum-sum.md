@@ -17,7 +17,7 @@ ARRAY_CUM_SUM(<arr>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |---|---|
 | `<arr>` | 累積和を計算する配列 |
 

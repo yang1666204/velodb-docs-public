@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 ユーザーはジョブを変更できます。PAUSE状態のジョブのみが変更可能で、Streamingタイプのジョブのみが変更できます。
 
@@ -16,7 +16,7 @@ Alter Job <job_name>
 [job_properties]
 DO <Insert_Command> 
 ```
-## Required Parameters
+## Required パラメータ
 
 **1. `<job_name>`**
 > ジョブのジョブ名を変更します
@@ -34,7 +34,7 @@ DO <Insert_Command>
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Job Type | Notes |
+| Privilege | Object | Job タイプ | 注釈 |
 |:--------------|:-----------|:------------------------|:------------------------|
 | LOAD_PRIV | Database (DB) | Streaming | この操作を実行するための**LOAD**権限をサポート |
 

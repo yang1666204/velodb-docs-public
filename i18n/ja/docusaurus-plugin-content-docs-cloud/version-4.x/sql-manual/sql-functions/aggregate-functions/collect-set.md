@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 Aggregation functionは、指定された列のすべての一意な値を集約し、重複する要素を削除して、set型の結果を返します。
 
@@ -18,9 +18,9 @@ Aggregation functionは、指定された列のすべての一意な値を集約
 ```sql
 COLLECT_SET(<expr> [,<max_size>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 集計する列または式 |
 | `<max_size>` | 結果配列のサイズをmax_size要素に制限するために設定できるオプションパラメータ |

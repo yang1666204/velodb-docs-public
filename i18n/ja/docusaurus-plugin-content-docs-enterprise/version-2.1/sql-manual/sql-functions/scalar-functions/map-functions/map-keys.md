@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 与えられた`map`のキーを対応する型の`ARRAY`に抽出します
 
@@ -14,9 +14,9 @@
 ```sql
 MAP_KEYS(<map>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<map>` | 入力するマップの内容 |
 

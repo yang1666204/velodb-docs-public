@@ -10,7 +10,7 @@
 
 `GET /api/show_meta_info`
 
-## Description
+## デスクリプション
 
 メタデータ情報を表示するために使用されます
 

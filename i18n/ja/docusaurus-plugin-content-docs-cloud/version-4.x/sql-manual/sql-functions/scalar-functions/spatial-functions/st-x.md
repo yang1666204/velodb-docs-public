@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 pointが有効なPOINT型の場合、対応するX座標値を返します。
 
@@ -14,9 +14,9 @@ pointが有効なPOINT型の場合、対応するX座標値を返します。
 ```sql
 ST_X( <point>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter   | Description       |
+| Parameter   | デスクリプション       |
 |------|----------|
 | `<point>` | X座標を抽出する幾何オブジェクト。有効なPOINT型（2D点）である必要があり、X（経度）の範囲は[-180, 180]、Y（緯度）の範囲は[-90, 90]です。|
 

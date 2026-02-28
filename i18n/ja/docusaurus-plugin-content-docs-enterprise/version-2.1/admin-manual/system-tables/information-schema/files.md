@@ -1,21 +1,21 @@
 ---
 {
   "title": "ファイル",
-  "description": "このテーブルはMySQLの動作との互換性のためにのみ使用され、常に空です。",
+  "description": "このTableはMySQLの動作との互換性のためにのみ使用され、常に空です。",
   "language": "ja"
 }
 ---
 ## 概要
 
-このテーブルはMySQLの動作との互換性のためのみに使用され、常に空です。
+このTableはMySQLの動作との互換性のためのみに使用され、常に空です。
 
 ## データベース
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name          | Type         | Description |
+| Column Name          | タイプ         | デスクリプション |
 | -------------------- | ------------ | ----------- |
 | FILE_ID              | bigint       |             |
 | FILE_NAME            | text         |             |

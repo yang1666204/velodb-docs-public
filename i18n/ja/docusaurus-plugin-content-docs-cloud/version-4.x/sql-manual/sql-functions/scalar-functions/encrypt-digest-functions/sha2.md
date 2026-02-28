@@ -14,7 +14,7 @@
 ```sql
 SHA2( <str>, <digest_length>)
 ```
-## Parameters
+## パラメータ
 
 | parameter         | description                |
 |-------------------|----------------------------|

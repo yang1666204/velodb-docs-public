@@ -23,9 +23,9 @@ YEAR_OF_WEEK関数は、ISO 8601週カレンダー標準に従って、指定さ
 YEAR_OF_WEEK(`<date_or_time_expr>`)
 YOW(`<date_or_time_expr>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<date_or_time_expr>` | 入力する日時値。date/datetimeタイプをサポートします。datetimeとdateの形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください|
 

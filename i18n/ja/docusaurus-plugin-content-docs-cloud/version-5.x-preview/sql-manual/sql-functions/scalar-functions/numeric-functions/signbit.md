@@ -14,9 +14,9 @@
 ```sql
 SIGNBIT(<a>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<a>` | 符号ビットをチェックする浮動小数点数 |
 

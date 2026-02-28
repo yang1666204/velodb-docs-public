@@ -17,9 +17,9 @@
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
-| Column Name    | Type         | Description                                    |
+| Column Name    | タイプ         | デスクリプション                                    |
 | -------------- | ------------ | ---------------------------------------------- |
 | GRANTEE        | varchar(81)  | 権限を付与されたユーザー          |
 | TABLE_CATALOG  | varchar(512) | 常に 'def'                                   |

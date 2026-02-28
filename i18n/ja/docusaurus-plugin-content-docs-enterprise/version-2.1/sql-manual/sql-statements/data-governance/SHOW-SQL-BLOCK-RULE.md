@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description  
+## デスクリプション  
 設定されたSQLブロッキングルールを表示します。ルール名が指定されていない場合、すべてのルールが表示されます。
 
 ## Syntax
@@ -13,7 +13,7 @@
 ```sql
 SHOW SQL_BLOCK_RULE [FOR <rule_name>];
 ```
-## Optional Parameters
+## Optional パラメータ
 
 `<rule_name>`
 
@@ -23,7 +23,7 @@ SHOW SQL_BLOCK_RULE [FOR <rule_name>];
 
 このコマンドを実行するユーザーは以下の権限を持つ必要があります：
 
-| Privilege | Object        | Notes  |
+| Privilege | Object        | 注釈  |
 |-----------|--------------|--------|
 | `ADMIN`   | User or Role | この操作を実行するために必要です。 |
 

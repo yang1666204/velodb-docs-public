@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この構文は、一時停止されたRoutine Loadジョブの1つまたはすべてを再開するために使用されます。再開されたジョブは、以前に消費されたオフセットから消費を継続します。
 
@@ -32,7 +32,7 @@ RESUME [ALL] ROUTINE LOAD FOR <job_name>
 
 | 権限 | オブジェクト | 備考 |
 | :-------- | :----- | :---- |
-| LOAD_PRIV | Table | SHOW ROUTINE LOADにはテーブルに対するLOAD権限が必要です |
+| LOAD_PRIV | Table | SHOW ROUTINE LOADにはTableに対するLOAD権限が必要です |
 
 ## 注意事項
 

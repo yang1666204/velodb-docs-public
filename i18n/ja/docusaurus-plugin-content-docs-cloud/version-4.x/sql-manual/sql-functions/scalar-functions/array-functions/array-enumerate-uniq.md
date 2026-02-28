@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 ソース配列と同じサイズの配列を返し、各要素について同じ値を持つ要素の中でのその位置を示します。例えば、array_enumerate_uniq([1, 2, 1, 4]) = [1, 1, 2, 1]となります。
 array_enumerate_uniq関数は、同じサイズの複数の配列を引数として取ることができます。この場合、全ての配列の同じ位置にある要素のタプルに対して一意性が考慮されます。例えば、array_enumerate_uniq([1, 2, 1, 1, 2], [2, 1, 2, 2, 1]) = [1, 1, 2, 3, 2]となります。
 
@@ -14,8 +14,8 @@ array_enumerate_uniq関数は、同じサイズの複数の配列を引数とし
 ```sql
 ARRAY_ENUMERATE_UNIQ(<arr1> [,<arr2> , ... ])
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 |---|---|
 | `<arr1>` | 計算が必要な配列arr1  |
 | `<arr2>` | 計算が必要な配列arr2  |

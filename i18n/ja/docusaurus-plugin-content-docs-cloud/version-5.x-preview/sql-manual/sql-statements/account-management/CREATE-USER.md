@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `CREATE USER`文は、Dorisユーザーを作成するために使用されます。
 

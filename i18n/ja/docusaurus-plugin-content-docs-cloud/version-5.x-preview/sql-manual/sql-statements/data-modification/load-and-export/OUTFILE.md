@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `SELECT INTO OUTFILE` コマンドは、クエリ結果をファイルにエクスポートするために使用されます。現在、Brokerプロセス、S3プロトコル、またはHDFSプロトコルを通じて、HDFS、S3、BOS、COS（Tencent Cloud）などのリモートストレージへのエクスポートをサポートしています。
 
@@ -21,7 +21,7 @@ INTO OUTFILE "<file_path>"
 
 **1. `<query_stmt>`**
 
-クエリステートメント。有効なSQLである必要があります。[query statement documentation](../../data-query/SELECT.md)を参照してください。
+クエリステートメント。有効なSQLである必要があります。[query statement ドキュメント](../../data-query/SELECT.md)を参照してください。
 
 **2. `<file_path>`**
 
@@ -107,7 +107,7 @@ Outfile文が返す結果の各カラムの意味は以下の通りです:
 
 | 権限        | オブジェクト  | 説明                              |
 |:------------|:-------------|:-------------------------------|
-| SELECT_PRIV | Database     | データベースとテーブルの読み取り権限が必要。|
+| SELECT_PRIV | Database     | データベースとTableの読み取り権限が必要。|
 
 ## 注意事項
 
@@ -115,10 +115,10 @@ Outfile文が返す結果の各カラムの意味は以下の通りです:
 
 - すべてのファイル型は基本データ型のエクスポートをサポートしますが、複合データ型（ARRAY/MAP/STRUCT）については、現在 `csv`, `orc`, `csv_with_names`, `csv_with_names_and_types` のみが複合型のエクスポートをサポートし、ネストした複合型はサポートしません。
 
-- ParquetとORCファイル形式には独自のデータ型があり、Dorisのエクスポート機能はDorisデータ型をParquet/ORCファイル形式の対応するデータ型に自動的にエクスポートできます。以下は、Apache Dorisデータ型とParquet/ORCファイル形式間のデータ型マッピングテーブルです:
+- ParquetとORCファイル形式には独自のデータ型があり、Dorisのエクスポート機能はDorisデータ型をParquet/ORCファイル形式の対応するデータ型に自動的にエクスポートできます。以下は、Apache Dorisデータ型とParquet/ORCファイル形式間のデータ型マッピングTableです:
 
-1. **DorisからORCファイル形式データ型マッピングテーブル:**
-   | Doris Type              | Orc Type  |
+1. **DorisからORCファイル形式データ型マッピングTable:**
+   | Doris タイプ              | Orc タイプ  |
    |-------------------------|-----------|
    | boolean                 | boolean   |
    | tinyint                 | tinyint   |
@@ -138,10 +138,10 @@ Outfile文が返す結果の各カラムの意味は以下の通りです:
    | map                     | map       |
    | array                   | array     |
 
-2. **DorisからParquetファイル形式データ型マッピングテーブル:**
+2. **DorisからParquetファイル形式データ型マッピングTable:**
 
    DorisがParquetファイル形式にエクスポートする際、最初にDorisメモリデータをArrowメモリデータ形式に変換し、その後ArrowがParquetファイル形式に書き込みます。Dorisデータ型とArrowデータ型間のマッピング関係は:
-   | Doris Type              | Arrow Type |
+   | Doris タイプ              | Arrow タイプ |
    |-------------------------|------------|
    | boolean                 | boolean    |
    | tinyint                 | int8       |

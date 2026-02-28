@@ -14,9 +14,9 @@
 ```sql
 ASIN(<x>)
 ```
-## Parameters  
+## パラメータ  
 
-| Parameter | Description |  
+| Parameter | デスクリプション |  
 | -- | -- |  
 | `<x>` | アークサインを計算する値 |  
 

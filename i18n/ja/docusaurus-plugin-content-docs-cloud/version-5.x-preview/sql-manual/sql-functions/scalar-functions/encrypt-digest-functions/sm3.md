@@ -14,7 +14,7 @@ SM3 256ビットの計算
 ```sql
 SM3( <input> )
 ```
-## Parameters
+## パラメータ
 
 
 | parameter | description |

@@ -61,7 +61,7 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO velodb_user;
 GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO velodb_user;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO velodb_user;
 ```
-**セキュリティ推奨事項**: 最小権限の原則に従い、必要なデータベースとテーブルの権限のみを付与してください。
+**セキュリティ推奨事項**: 最小権限の原則に従い、必要なデータベースとTableの権限のみを付与してください。
 
 ### 4. ネットワーク要件
 
@@ -74,7 +74,7 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE O
 
 1. VeloDB Cloudコンソールにログインします
 2. 左側のナビゲーションバーで、**Catalogs**をクリックします
-3. **Add External Catalog**ボタンをクリックします
+3. **Add 外部カタログ**ボタンをクリックします
 4. Databaseカテゴリから、**PostgreSQL**を選択します
 
 ### ステップ2: 接続情報の設定
@@ -83,7 +83,7 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE O
 
 | フィールド | 必須 | 説明 |
 | ---------------- | -------- | --------------------------------------------------------------------------------------------- |
-| **Catalog Name** | ✓        | Catalogの一意の名前で、SQLクエリでこのデータソースを識別するために使用されます。 |
+| **カタログ Name** | ✓        | Catalogの一意の名前で、SQLクエリでこのデータソースを識別するために使用されます。 |
 | **Comment**      |          | オプションの説明。 |
 | **JDBC URL**     | ✓        | PostgreSQLのJDBC接続文字列。形式: `jdbc:postgresql://<host>:<port>/<database>`。 |
 | **User**         | ✓        | データベースのユーザー名。 |

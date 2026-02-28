@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力されたdatetimeから指定された年数を減算した結果の新しいdatetime値を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 YEARS_SUB(<date>, <years>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<date>`      | 入力する日時値。DATETIME型またはDATE型を指定可能 |
 | `<years>`     | 減算する年数。INT型 |

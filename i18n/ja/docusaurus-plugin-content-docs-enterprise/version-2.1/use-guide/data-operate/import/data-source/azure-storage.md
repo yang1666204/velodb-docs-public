@@ -29,7 +29,7 @@ CSVファイルs3load_example.csvを作成します。このファイルはAzure
 9,Emma,37
 10,Liam,64
 ```
-### Step 2: Doris でテーブルを作成する
+### ステップ 2: Doris でTableを作成する
 
 ```sql
 CREATE TABLE test_s3load(
@@ -40,7 +40,7 @@ CREATE TABLE test_s3load(
 DUPLICATE KEY(user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
-### Step 3: S3 Loadを使用してデータをロードする
+### ステップ 3: S3 Loadを使用してデータをロードする
 
 :::caution 注意
 Azure StorageはデフォルトでHTTPS送信を要求し、対応するストレージアカウント設定は`Secure transfer required: Enabled`となります。
@@ -71,7 +71,7 @@ PROPERTIES
     "timeout" = "3600"
 );
 ```
-### Step 4: インポートされたデータを確認する
+### ステップ 4: インポートされたデータを確認する
 
 ```sql
 SELECT * FROM test_s3load;
@@ -114,7 +114,7 @@ CSVファイル s3load_example.csv を作成します。このファイルはAzu
 9,Emma,37
 10,Liam,64
 ```
-### Step 2: Dorisでテーブルを作成する
+### ステップ 2: DorisでTableを作成する
 
 ```sql
 CREATE TABLE test_s3load(
@@ -125,7 +125,7 @@ CREATE TABLE test_s3load(
 DUPLICATE KEY(user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
-### Step 3: TVFを使用してデータをロードする
+### ステップ 3: TVFを使用してデータをロードする
 
 :::caution 注意
 Azure StorageはデフォルトでHTTPS伝送を必要とし、対応するストレージアカウント設定は`Secure transfer required: Enabled`です。
@@ -149,7 +149,7 @@ SELECT * FROM S3
     "csv_schema" = "user_id:int;name:string;age:int"
 );
 ```
-### Step 4: インポートしたデータを確認する
+### ステップ 4: インポートしたデータを確認する
 
 ```sql
 SELECT * FROM test_s3load;

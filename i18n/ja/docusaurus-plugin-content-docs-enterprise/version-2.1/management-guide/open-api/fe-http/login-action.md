@@ -10,7 +10,7 @@
 
 `POST /rest/v1/login`
 
-## Description
+## デスクリプション
 
 サービスへのログインに使用されます。
 

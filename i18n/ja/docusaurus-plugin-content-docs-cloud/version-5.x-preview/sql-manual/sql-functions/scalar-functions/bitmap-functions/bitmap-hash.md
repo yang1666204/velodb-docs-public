@@ -14,9 +14,9 @@
 ```sql
 BITMAP_HASH(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description           |
+| Parameter | デスクリプション           |
 |-----------|-----------------------|
 | `<expr>`  | 任意の値またはフィールド式 |
 

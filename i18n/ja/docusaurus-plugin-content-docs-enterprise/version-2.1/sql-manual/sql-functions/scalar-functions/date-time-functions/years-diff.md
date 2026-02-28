@@ -14,9 +14,9 @@
 ```sql
 YEARS_DIFF(<enddate>, <startdate>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<enddate>`      | 終了日。DATETIME型またはDATE型を指定できます |
 | `<startdate>`     | 開始日。DATETIME型またはDATE型を指定できます |

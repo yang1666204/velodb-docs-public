@@ -16,7 +16,7 @@ NULL_OR_EMPTY (<str>)
 ```
 ## パラメータ
 
-| Parameter | Description            |
+| Parameter | デスクリプション            |
 | --------- | ---------------------- |
 | `<str>`   | チェックする文字列。   |
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 MySQLクライアントを使用してローカルデータファイルをDorisにインポートします。MySQL Loadは同期インポート方式であり、実行後すぐにインポート結果を返します。`LOAD DATA`ステートメントの戻り結果に基づいてインポートが成功したかどうかを判断できます。MySQL Loadは一連のインポートタスクの原子性を保証できます。つまり、すべてのインポートが成功するか、すべて失敗するかのどちらかです。
 
@@ -32,7 +32,7 @@ INTO TABLE "<tbl_name>"
 
 **2. `<tbl_name>`**
 
-> テーブル名には例に示すように、データベース名を含めることができます。データベース名が省略された場合、現在のユーザーのデータベースが使用されます。
+> Table名には例に示すように、データベース名を含めることができます。データベース名が省略された場合、現在のユーザーのデータベースが使用されます。
 
 ## オプションパラメータ
 
@@ -79,7 +79,7 @@ INTO TABLE "<tbl_name>"
 
 | 権限 | オブジェクト | 注記 |
 | :---------------- | :------------- | :---------------------------- |
-| LOAD_PRIV | Table | 指定されたデータベーステーブルのインポート権限。 |
+| LOAD_PRIV | Table | 指定されたデータベースTableのインポート権限。 |
 
 ## 使用上の注意
 
@@ -87,7 +87,7 @@ INTO TABLE "<tbl_name>"
 
 ## 例
 
-1. クライアントのローカルファイル`testData`からデータベース`testDb`のテーブル`testTbl`にデータをインポートします。タイムアウトを100秒に指定します。
+1. クライアントのローカルファイル`testData`からデータベース`testDb`のTable`testTbl`にデータをインポートします。タイムアウトを100秒に指定します。
 
     ```sql
     LOAD DATA LOCAL
@@ -95,7 +95,7 @@ INTO TABLE "<tbl_name>"
     INTO TABLE testDb.testTbl
     PROPERTIES ("timeout"="100")
     ```
-2. サーバーのローカルファイル `/root/testData` からデータをインポートします（FE設定 `mysql_load_server_secure_path` を `/root` に設定する必要があります）。データベース `testDb` のテーブル `testTbl` にインポートし、タイムアウトを100秒に指定します。
+2. サーバーのローカルファイル `/root/testData` からデータをインポートします（FE設定 `mysql_load_server_secure_path` を `/root` に設定する必要があります）。データベース `testDb` のTable `testTbl` にインポートし、タイムアウトを100秒に指定します。
 
     ```sql
     LOAD DATA
@@ -103,7 +103,7 @@ INTO TABLE "<tbl_name>"
     INTO TABLE testDb.testTbl
     PROPERTIES ("timeout"="100")
     ```
-3. クライアントのローカルファイル `testData` からデータベース `testDb` 内のテーブル `testTbl` にデータをインポートし、エラー率20%を許可する。
+3. クライアントのローカルファイル `testData` からデータベース `testDb` 内のTable `testTbl` にデータをインポートし、エラー率20%を許可する。
 
     ```sql
     LOAD DATA LOCAL
@@ -111,7 +111,7 @@ INTO TABLE "<tbl_name>"
     INTO TABLE testDb.testTbl
     PROPERTIES ("max_filter_ratio"="0.2")
     ```
-4. クライアントのローカルファイル`testData`から、データベース`testDb`内のテーブル`testTbl`にデータをインポートし、エラー率20%を許可し、ファイルの列名を指定します。
+4. クライアントのローカルファイル`testData`から、データベース`testDb`内のTable`testTbl`にデータをインポートし、エラー率20%を許可し、ファイルの列名を指定します。
 
     ```sql
     LOAD DATA LOCAL
@@ -120,7 +120,7 @@ INTO TABLE "<tbl_name>"
     (k2, k1, v1)
     PROPERTIES ("max_filter_ratio"="0.2")
     ```
-5. ローカルファイル`testData`からデータベース`testDb`内のテーブル`testTbl`のパーティション`p1`と`p2`にデータをインポートし、エラー率20%を許可します。
+5. ローカルファイル`testData`からデータベース`testDb`内のTable`testTbl`のパーティション`p1`と`p2`にデータをインポートし、エラー率20%を許可します。
 
     ```sql
     LOAD DATA LOCAL
@@ -129,7 +129,7 @@ INTO TABLE "<tbl_name>"
     PARTITION (p1, p2)
     PROPERTIES ("max_filter_ratio"="0.2")
     ```
-6. ローカルCSVファイル`testData`から、行区切り文字`0102`、列区切り文字`0304`を使用して、データベース`testDb`内のテーブル`testTbl`にデータをインポートします。
+6. ローカルCSVファイル`testData`から、行区切り文字`0102`、列区切り文字`0304`を使用して、データベース`testDb`内のTable`testTbl`にデータをインポートします。
 
     ```sql
     LOAD DATA LOCAL
@@ -138,7 +138,7 @@ INTO TABLE "<tbl_name>"
     COLUMNS TERMINATED BY '0304'
     LINES TERMINATED BY '0102'
     ```
-7. ローカルファイル`testData`から、データベース`testDb`のテーブル`testTbl`のパーティション`p1`および`p2`にデータをインポートし、最初の3行をスキップします。
+7. ローカルファイル`testData`から、データベース`testDb`のTable`testTbl`のパーティション`p1`および`p2`にデータをインポートし、最初の3行をスキップします。
 
     ```sql
     LOAD DATA LOCAL

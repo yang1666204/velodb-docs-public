@@ -19,9 +19,9 @@ strlistはコンマ区切りの文字列です。特殊なケース：
 ```sql
 FIND_IN_SET ( <str> , <strlist> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter   | Description |
+| Parameter   | デスクリプション |
 |-------------|----------|
 | `<str>`     | 検索対象の文字列 |
 | `<strlist>` | 検索される文字列 |

@@ -19,9 +19,9 @@
 ```sql
 ARRAY_SIZE(<arr>) 
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<arr>` | 計算対象の配列 |
 

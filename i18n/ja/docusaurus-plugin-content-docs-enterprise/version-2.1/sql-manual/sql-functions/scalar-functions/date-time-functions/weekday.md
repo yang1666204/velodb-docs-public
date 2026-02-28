@@ -6,7 +6,7 @@
 }
 ---
 ## weekday
-### Description
+### デスクリプション
 #### Syntax
 
 `INT WEEKDAY (DATETIME date)`

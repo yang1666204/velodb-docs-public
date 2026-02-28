@@ -17,7 +17,7 @@ SHA
 ``` sql
 SHA1( <str> )
 ```
-## Parameters
+## パラメータ
 
 | parameter | description         |
 |-----------|-------------|

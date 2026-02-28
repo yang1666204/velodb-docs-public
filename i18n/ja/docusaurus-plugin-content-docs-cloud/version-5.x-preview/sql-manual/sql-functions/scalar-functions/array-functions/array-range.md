@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Function
+## ファンクション
 
 数値またはdatetimeの等差数列配列を生成します。
 - 数値型の場合、デフォルトのstepは1です
@@ -19,7 +19,7 @@
 - `ARRAY_RANGE(start_dt, end_dt)`
 - `ARRAY_RANGE(start_dt, end_dt, interval step unit)`
 
-## Parameters
+## パラメータ
 
 - `start`、`end`: 非負整数。`end`は上限値であり、結果から除外されます。
 - `step`: 正の整数である必要があります。ステップ長。デフォルトは1です。

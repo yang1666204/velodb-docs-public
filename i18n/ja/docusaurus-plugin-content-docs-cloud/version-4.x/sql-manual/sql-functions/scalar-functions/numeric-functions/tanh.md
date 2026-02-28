@@ -14,9 +14,9 @@ xの双曲線正接を返します。
 ```sql
 TANH(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | 双曲線正接を計算する値 |
 

@@ -19,9 +19,9 @@ TIME型（'456:26:32'など）の場合、戻り値は24を超えることがあ
 ```sql
 HOUR(`<date_or_time_expr>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<date_or_time_expr>` | datetime/date/time型をサポートする有効な日付式。DATE型は対応する日付の開始時刻00:00:00に変換されます。具体的なdatetime/date/time形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)、[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)、および[time conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/time-conversion)を参照してください |
 

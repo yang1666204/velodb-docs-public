@@ -1,13 +1,13 @@
 ---
 {
   "title": "EXPLODE_JSON_ARRAY_DOUBLE",
-  "description": "explodejsonarraydouble テーブル関数は、各要素が倍精度浮動小数点型のJSON配列を受け取ります。",
+  "description": "explodejsonarraydouble Table関数は、各要素が倍精度浮動小数点型のJSON配列を受け取ります。",
   "language": "ja"
 }
 ---
 ## 説明
 
-`explode_json_array_double`テーブル関数は、各要素が倍精度浮動小数点型のJSON配列を受け取り、配列内の各浮動小数点数を複数の行に展開します。各行には1つの浮動小数点数が含まれます。この関数はLATERAL VIEWと組み合わせて使用されます。
+`explode_json_array_double`Table関数は、各要素が倍精度浮動小数点型のJSON配列を受け取り、配列内の各浮動小数点数を複数の行に展開します。各行には1つの浮動小数点数が含まれます。この関数はLATERAL VIEWと組み合わせて使用されます。
 
 `explode_json_array_double_outer`は`explode_json_array_double`と似ていますが、NULL値の処理が異なります。
 
@@ -23,7 +23,7 @@ EXPLODE_JSON_ARRAY_DOUBLE_OUTER(<json>)
 ```
 ## 戻り値
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<json>` | json type |
 

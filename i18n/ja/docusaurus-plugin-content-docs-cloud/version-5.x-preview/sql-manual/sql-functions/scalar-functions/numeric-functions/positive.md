@@ -14,9 +14,9 @@
 ```sql
 POSITIVE(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>`   | 返される必要がある値。 |
 

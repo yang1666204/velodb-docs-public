@@ -14,8 +14,8 @@
 ```sql
 IS_IPV4_MAPPED(INET6_ATON(<ipv4_addr>))
 ```
-## Parameters
-| Parameter | Description                                      |
+## パラメータ
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ipv4_addr>`      | IPv4互換アドレス、'::ipv4_address'のような形式  |
 

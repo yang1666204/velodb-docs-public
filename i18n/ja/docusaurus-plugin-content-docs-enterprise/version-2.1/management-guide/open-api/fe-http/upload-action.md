@@ -29,7 +29,7 @@ POST /api/<namespace>/<db>/<tbl>/upload
     
 * `<tbl>`
 
-    テーブルを指定
+    Tableを指定
 
 ### クエリパラメータ
 
@@ -81,7 +81,7 @@ PUT /api/<namespace>/<db>/<tbl>/upload
     
 * `<tbl>`
 
-    テーブルを指定
+    Tableを指定
 
 ### クエリパラメータ
 

@@ -14,9 +14,9 @@
 ```sql
 BITMAP_AND_COUNT(<bitmap>, <bitmap>,[, <bitmap>...])
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description                                                    |
+| Parameter  | デスクリプション                                                    |
 |------------|----------------------------------------------------------------|
 | `<bitmap>` | 交差を求める対象となる元のBITMAPの1つ |
 

@@ -20,7 +20,7 @@ SHOW ALTER TABLE MATERIALIZED VIEW FROM <database>
 
 **1. `<database>`**
 
-> 同期マテリアライズドビューのベーステーブルが属するデータベース。
+> 同期マテリアライズドビューのベースTableが属するデータベース。
 
 ## 権限
 
@@ -28,7 +28,7 @@ SHOW ALTER TABLE MATERIALIZED VIEW FROM <database>
 
 | 権限       | オブジェクト | 注意事項                                                     |
 | ---------- | ------------ | ------------------------------------------------------------ |
-| ALTER_PRIV | Table        | 現在のマテリアライズドビューが属するテーブルに対するALTER_PRIV権限が必要 |
+| ALTER_PRIV | Table        | 現在のマテリアライズドビューが属するTableに対するALTER_PRIV権限が必要 |
 
 ## 例
 

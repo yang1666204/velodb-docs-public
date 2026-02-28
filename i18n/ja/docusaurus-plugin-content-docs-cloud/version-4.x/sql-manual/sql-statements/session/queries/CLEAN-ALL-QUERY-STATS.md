@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントはクエリ統計をクリアするために使用されます
 
@@ -26,7 +26,7 @@ CLEAN [ { ALL| DATABASE | TABLE } ] QUERY STATS [ { [ FOR <db_name>] | [ { FROM 
 
 **3. `TABLE`**
 
-> テーブルのクエリ統計をクリアするためにTABLEを使用します
+> Tableのクエリ統計をクリアするためにTABLEを使用します
 
 ## オプションパラメータ
 
@@ -36,7 +36,7 @@ CLEAN [ { ALL| DATABASE | TABLE } ] QUERY STATS [ { [ FOR <db_name>] | [ { FROM 
 
 **2. `<table_name>`**
 
-> このパラメータが設定されている場合、対応するテーブルの統計がクリアされます
+> このパラメータが設定されている場合、対応するTableの統計がクリアされます
 
 
 ## アクセス制御要件
@@ -47,7 +47,7 @@ CLEAN [ { ALL| DATABASE | TABLE } ] QUERY STATS [ { [ FOR <db_name>] | [ { FROM 
 |:-------------|:---------|:--------------------------|
 | ADMIN_PRIV        | ALL      | ALLが指定されている場合、ADMIN権限が必要です     |
 | ALTER_PRIV        | DATABASE | データベースが指定されている場合、対応するデータベースのALTER権限が必要です |
-| ADMIN_PRIV        | TABLE    | テーブルを指定する場合、そのテーブルのalter権限が必要です     |
+| ADMIN_PRIV        | TABLE    | Tableを指定する場合、そのTableのalter権限が必要です     |
 
 
 ## 例

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `MILLISECONDS_DIFF`関数は、2つのdatetime値間のミリ秒単位の差を計算します。結果は、終了時刻から開始時刻を減算して得られるミリ秒数です。この関数は`DATETIME`型の処理をサポートしています。
 
@@ -14,9 +14,9 @@
 ```sql
 MILLISECONDS_DIFF(`<date_or_time_expr1>`, `<date_or_time_expr2>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<date_or_time_expr1>` | 終了時刻。`DATETIME`型。具体的なdatetimeフォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |
 | `<date_or_time_expr2>` | 開始時刻。`DATETIME`型。具体的なdatetimeフォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |

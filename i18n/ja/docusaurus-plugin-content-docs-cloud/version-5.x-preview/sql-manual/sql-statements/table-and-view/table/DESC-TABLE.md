@@ -1,13 +1,13 @@
 ---
 {
   "title": "DESCRIBE",
-  "description": "この文は、指定されたテーブルのスキーマ情報を表示するために使用されます。",
+  "description": "この文は、指定されたTableのスキーマ情報を表示するために使用されます。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-このステートメントは、指定されたテーブルのスキーマ情報を表示するために使用されます。
+このステートメントは、指定されたTableのスキーマ情報を表示するために使用されます。
 
 ## Syntax
 
@@ -18,7 +18,7 @@ DESC[RIBE] [<ctl_name>.][<db_name>.]<table_name> [ALL];
 
 **1.`<table_name>`**
 
-> テーブルの識別子（つまり、名前）を指定します。これはデータベース内で一意である必要があります。
+> Tableの識別子（つまり、名前）を指定します。これはデータベース内で一意である必要があります。
 >
 > 識別子は文字（Unicode名前サポートが有効な場合は任意の言語文字）で始まる必要があり、識別子文字列全体がバッククォートで囲まれている場合（例：`My Object`）を除き、スペースや特殊文字を含めることはできません。
 >
@@ -40,16 +40,16 @@ DESC[RIBE] [<ctl_name>.][<db_name>.]<table_name> [ALL];
 
 **2.`ALL`**
 
-> 内部テーブルでのみ有効です。内部テーブルのすべてのIndex情報を返します。
+> 内部Tableでのみ有効です。内部TableのすべてのIndex情報を返します。
 
 ## 戻り値
 
 `ALL`が指定されていない場合、戻り値は以下のとおりです：
 
-| Column | Description |
+| Column | デスクリプション |
 | -- |--------------|
 | Field | カラム名 |
-| Type | データ型 |
+| タイプ | データ型 |
 | Null | NULL値が許可されているか |
 | Key | キーカラムかどうか |
 | Default | デフォルト値 |
@@ -57,14 +57,14 @@ DESC[RIBE] [<ctl_name>.][<db_name>.]<table_name> [ALL];
 
 バージョン3.0.7では、新しいセッション変数`show_column_comment_in_describe`が追加されました。`true`に設定すると、カラムコメント情報を表示する追加の`Comment`カラムが追加されます。
 
-`ALL`が指定された場合、内部テーブルの戻り値は以下のとおりです：
+`ALL`が指定された場合、内部Tableの戻り値は以下のとおりです：
 
-| Column | Description |
+| Column | デスクリプション |
 | -- |--------------|
-| IndexName | テーブル名 |
-| IndexKeysType | テーブルモデル |
+| IndexName | Table名 |
+| IndexKeysType | Tableモデル |
 | Field | カラム名 |
-| Type | データ型 |
+| タイプ | データ型 |
 | Null | NULL値が許可されているか |
 | Key | キーカラムかどうか |
 | Default | デフォルト値 |
@@ -77,9 +77,9 @@ DESC[RIBE] [<ctl_name>.][<db_name>.]<table_name> [ALL];
 
 このSQLコマンドを実行するユーザーは、最低限以下の権限を持っている必要があります：
 
-| Permission (Privilege) | Object | Notes |
+| 許可 (Privilege) | Object | 注釈 |
 |:--------------| :------------- |:---------------------------------------------|
-| SELECT_PRIV   | Table    | DESCを実行する際、クエリ対象のテーブルに対してSELECT_PRIV権限を持つ必要があります |
+| SELECT_PRIV   | Table    | DESCを実行する際、クエリ対象のTableに対してSELECT_PRIV権限を持つ必要があります |
 
 ## 例
 
@@ -90,7 +90,7 @@ DESC test_table;
 ```
 ```text
 +---------+-------------+------+-------+---------+-------+
-| Field   | Type        | Null | Key   | Default | Extra |
+| Field   | タイプ        | Null | Key   | Default | Extra |
 +---------+-------------+------+-------+---------+-------+
 | user_id | bigint      | No   | true  | NULL    |       |
 | name    | varchar(20) | Yes  | false | NULL    | NONE  |

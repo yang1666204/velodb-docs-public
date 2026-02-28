@@ -16,7 +16,7 @@ BITMAP_MIN(<bitmap>)
 ```
 ## パラメータ
 
-| Parameter  | Description                     |
+| Parameter  | デスクリプション                     |
 |------------|---------------------------------|
 | `<bitmap>` | Bitmap型のカラムまたは式 |
 

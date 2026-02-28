@@ -17,7 +17,7 @@
 `GET /api/profile`
 `GET /api/profile/text`
 
-## Description
+## デスクリプション
 
 指定されたquery idのクエリプロファイルを取得するために使用されます。
 query_idが存在しない場合、404 NOT FOUND ERRORを返します。
@@ -25,7 +25,7 @@ query_idが存在する場合、次のようなクエリプロファイルを返
 
 ```
 Query:
-  Summary:
+  要約:
      - Query ID: a0a9259df9844029-845331577440a3bd
      - Start Time: 2020-06-15 14:10:05
      - End Time: 2020-06-15 14:10:05
@@ -157,7 +157,7 @@ None
     GET /api/profile/text?query_id=f732084bc8e74f39-8313581c9c3c0b58
     
     Response:
-        Summary:
+        要約:
         - Profile ID: 48bdf6d75dbb46c9-998b9c0368f4561f
         - Task Type: QUERY
         - Start Time: 2023-12-20 11:09:41

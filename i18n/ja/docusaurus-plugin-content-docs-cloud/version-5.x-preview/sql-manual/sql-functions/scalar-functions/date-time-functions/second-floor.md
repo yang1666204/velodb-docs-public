@@ -24,9 +24,9 @@ $k$は基準時刻から対象時刻までの期間数を表します。
 ```sql
 SECOND_FLOOR(<datetime>[, <period>][, <origin_datetime>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<datetime>` | 必須。入力となるdatetime値。datetime型をサポートします。具体的なdatetime形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)を参照してください |
 | `<period>` | オプション。各期間を構成する秒数を示します。正の整数型（INT）をサポートします。デフォルトは1秒です。 |

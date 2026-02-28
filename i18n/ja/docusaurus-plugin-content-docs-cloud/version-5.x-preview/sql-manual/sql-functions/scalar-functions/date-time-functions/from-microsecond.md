@@ -14,9 +14,9 @@ FROM_MICROSECOND関数は、Unixタイムスタンプ（マイクロ秒単位）
 ```sql
 FROM_MICROSECOND(<unix_timestamp>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<unix_timestamp>` | 入力するUnixタイムスタンプ。整数型（BIGINT）で、1970-01-01 00:00:00 UTCからのマイクロ秒数を表す |
 

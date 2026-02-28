@@ -14,7 +14,7 @@
 ```sql
 ST_ANGLE( <point1>, <point2>, <point3>)
 ```
-## Parameters
+## パラメータ
 
 | parameters       | descriptions                       |
 |----------|--------------------------|

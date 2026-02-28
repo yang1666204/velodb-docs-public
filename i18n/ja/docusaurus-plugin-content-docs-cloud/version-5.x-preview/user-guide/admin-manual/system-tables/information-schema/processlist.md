@@ -15,9 +15,9 @@
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name       | Type           | Description                          |
+| Column Name       | タイプ           | デスクリプション                          |
 | ----------------- | -------------- | ------------------------------------ |
 | CURRENT_CONNECTED | varchar(16)    | 非推奨、常にNoとなる                 |
 | ID                | largeint       | 接続ID                               |

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、FEノードの基本的なステータス情報を表示するために使用されます。
 
@@ -48,7 +48,7 @@ SHOW FRONTENDS
 
 ## 使用上の注意
 
-クエリ結果をさらにフィルタリングする必要がある場合は、テーブル値関数 [frontends()](../../../sql-functions/table-valued-functions/frontends.md) を使用できます。SHOW FRONTENDS は以下のステートメントと同等です：
+クエリ結果をさらにフィルタリングする必要がある場合は、Table値関数 [frontends()](../../../sql-functions/table-valued-functions/frontends.md) を使用できます。SHOW FRONTENDS は以下のステートメントと同等です：
 
 ```sql
 SELECT * FROM FRONTENDS();

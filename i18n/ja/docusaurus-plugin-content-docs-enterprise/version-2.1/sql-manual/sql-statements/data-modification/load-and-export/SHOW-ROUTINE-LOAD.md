@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、Routine Load ジョブの実行ステータスを表示するために使用されます。特定のジョブまたはすべてのジョブのステータス情報を表示できます。
 
@@ -39,8 +39,8 @@ SHOW [ALL] ROUTINE LOAD [FOR <jobName>];
 | PauseTime            | 最新のジョブ一時停止時刻                                     |
 | EndTime              | ジョブ終了時刻                                               |
 | DbName               | 対応するデータベース名                                       |
-| TableName            | 対応するテーブル名（複数テーブルの場合は'multi-table'と表示） |
-| IsMultiTbl           | マルチテーブルジョブかどうか                                 |
+| TableName            | 対応するTable名（複数Tableの場合は'multi-table'と表示） |
+| IsMultiTbl           | マルチTableジョブかどうか                                 |
 | State                | ジョブ実行ステータス                                         |
 | DataSourceType       | データソースタイプ：KAFKA                                    |
 | CurrentTaskNum       | 現在のサブタスク数                                           |
@@ -60,7 +60,7 @@ SHOW [ALL] ROUTINE LOAD [FOR <jobName>];
 
 | 権限         | オブジェクト | 備考                                                   |
 | :----------- | :----------- | :----------------------------------------------------- |
-| LOAD_PRIV    | Table        | SHOW ROUTINE LOADはテーブルに対するLOAD権限が必要です |
+| LOAD_PRIV    | Table        | SHOW ROUTINE LOADはTableに対するLOAD権限が必要です |
 
 ## 注意事項
 

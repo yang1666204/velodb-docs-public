@@ -16,7 +16,7 @@ LOCATE ( <substr> , <str> [, <pos> ] )
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-----------------|
 | `substr`  | 検索対象の部分文字列 |
 | `str`     | 検索される文字列 |

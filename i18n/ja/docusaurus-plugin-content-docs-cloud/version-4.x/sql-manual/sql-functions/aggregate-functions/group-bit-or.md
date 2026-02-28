@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 単一の整数列または式内のすべての値に対してビット単位のOR演算を実行します。
 
@@ -14,9 +14,9 @@
 ```sql
 GROUP_BIT_OR(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 全てのINT型をサポートします |
 

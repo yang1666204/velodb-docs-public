@@ -22,16 +22,16 @@ SHOW TYPE_CAST [ { IN | FROM } <db>]
 
 ## 戻り値
 
-| Column Name | Description     |
+| Column Name | デスクリプション     |
 |-------------|-----------------|
-| Origin Type | 元の型   |
-| Cast Type   | 変換型 |
+| Origin タイプ | 元の型   |
+| Cast タイプ   | 変換型 |
 
 ## アクセス制御要件
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege   | Object        | Notes                                                                                            |
+| Privilege   | Object        | 注釈                                                                                            |
 |-------------|---------------|--------------------------------------------------------------------------------------------------|
 | `Select_priv` | Database (DB) | データベース下のすべての型変換を表示するには、ユーザーまたはロールがDBに対する`Select_priv`を持つ必要があります |
 
@@ -48,7 +48,7 @@ SHOW TYPE_CAST [ { IN | FROM } <db>]
     ```
     ```text
     +----------------+----------------+
-    | Origin Type    | Cast Type      |
+    | Origin タイプ    | Cast タイプ      |
     +----------------+----------------+
     | DATETIMEV2     | BOOLEAN        |
     | DATETIMEV2     | TINYINT        |

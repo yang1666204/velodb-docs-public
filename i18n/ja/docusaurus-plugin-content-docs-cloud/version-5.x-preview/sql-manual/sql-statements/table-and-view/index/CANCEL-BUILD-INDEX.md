@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 インデックス構築のバックグラウンドタスクをキャンセルします。
 
@@ -24,7 +24,7 @@ job_list
 
 **<table_name>**
 
-> テーブルの識別子（つまり、名前）を指定します。この識別子はデータベース（Database）内で一意である必要があります。
+> Tableの識別子（つまり、名前）を指定します。この識別子はデータベース（Database）内で一意である必要があります。
 >
 > 識別子は文字（unicode名前サポートが有効な場合は任意の言語文字）で始まる必要があり、識別子文字列全体がバッククォートで囲まれていない限り（例：`My Object`）、スペースや特殊文字を含めることはできません。
 >
@@ -46,7 +46,7 @@ job_list
 
 | 権限       | オブジェクト | 注記                                                      |
 | :--------- | :----------- | :-------------------------------------------------------- |
-| ALTER_PRIV | Table        | CANCEL BUILD INDEXはテーブルのALTER操作と見なされます     |
+| ALTER_PRIV | Table        | CANCEL BUILD INDEXはTableのALTER操作と見なされます     |
 
 ## 使用上の注意
 
@@ -56,12 +56,12 @@ job_list
 
 ## 例
 
-- table1テーブルのすべてのインデックス構築タスクをキャンセル
+- table1Tableのすべてのインデックス構築タスクをキャンセル
 
   ```sql
   CANCEL BUILD INDEX ON TABLE table1
   ```
-- テーブル table1 上のインデックス構築タスク jobid1 と jobid2 をキャンセルする
+- Table table1 上のインデックス構築タスク jobid1 と jobid2 をキャンセルする
 
   ```sql
   CANCEL BUILD INDEX ON TABLE table1(jobid1, jobid2)

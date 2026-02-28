@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 文字列形式のIPv6アドレスをIPv6型に変換します。
 
 ## Syntax
@@ -13,8 +13,8 @@
 ```sql
 TO_IPV6_OR_NULL(<ipv6_str>)
 ```
-## Parameters
-| Parameter | Description                                      |
+## パラメータ
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ipv6_str>`      | String型のIPv6アドレス |
 

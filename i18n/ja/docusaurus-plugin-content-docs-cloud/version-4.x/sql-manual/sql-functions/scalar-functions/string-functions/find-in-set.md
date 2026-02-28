@@ -21,7 +21,7 @@ FIND_IN_SET ( <str> , <strlist> )
 ```
 ## パラメータ
 
-| Parameter   | Description |
+| Parameter   | デスクリプション |
 |-------------|----------|
 | `<str>`     | 検索される文字列 |
 | `<strlist>` | 検索対象の文字列 |

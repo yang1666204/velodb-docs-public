@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 幾何図形をWKT（Well Known Text）の表現に変換します
 
@@ -18,9 +18,9 @@
 ```sql
 ST_ASTEXT(GEOMETRY <geo>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | 説明 |
+| パラメータ | 説明 |
 | -- |----------|
 | `<geo>` | 変換が必要なグラフ |
 

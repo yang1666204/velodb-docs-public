@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、routine loadジョブの作成ステートメントを表示するために使用されます。
 
@@ -32,9 +32,9 @@ SHOW [ALL] CREATE ROUTINE LOAD for <load_name>;
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege  | Object | Notes                                                    |
+| Privilege  | Object | 注釈                                                    |
 | :--------- | :----- | :------------------------------------------------------- |
-| LOAD_PRIV  | Table  | SHOW ROUTINE LOADにはテーブルに対するLOAD権限が必要です |
+| LOAD_PRIV  | Table  | SHOW ROUTINE LOADにはTableに対するLOAD権限が必要です |
 
 ## 例
 

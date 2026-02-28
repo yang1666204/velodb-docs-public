@@ -18,9 +18,9 @@
 ```sql
 SQRT(<a>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<a>` | 平方根を計算する値 |
 

@@ -9,7 +9,7 @@ Elasticsearch Catalogは、ESメタデータの自動マッピングをサポー
 
 1. ES内でのマルチインデックス分散Joinクエリ。
 
-2. DorisとESのテーブル間での結合クエリ。より複雑な全文検索フィルタリングが可能。
+2. DorisとESのTable間での結合クエリ。より複雑な全文検索フィルタリングが可能。
 
 ## 前提条件
 
@@ -26,7 +26,7 @@ CREATE CATALOG es_catalog PROPERTIES (
 ```
 * {ElasticsearchProperties}
 
-| Parameter              | Required | Default | Description                                                                                    |
+| Parameter              | Required | Default | デスクリプション                                                                                    |
 | ---------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------- |
 | `hosts`                | Yes      |         | ESアドレス、単一または複数、またはESロードバランサーのアドレスを指定可能                               |
 | `user`                 | No       | Empty   | ESユーザー名                                                                                    |
@@ -53,7 +53,7 @@ SWITCHコマンドを使用してES Catalogに切り替えた後、自動的に`
 
 ## カラムタイプマッピング
 
-| ES Type           | Doris Type  | Comment                                                                                        |
+| ES タイプ           | Doris タイプ  | Comment                                                                                        |
 | ----------------- | ----------- | ---------------------------------------------------------------------------------------------- |
 | null              | null        |                                                                                                |
 | boolean           | boolean     |                                                                                                |
@@ -134,7 +134,7 @@ curl -X PUT "localhost:9200/doc/_mapping/_doc?pretty" -H 'Content-Type: applicat
 ```
 `array_fields`: 配列型のフィールドを示すために使用されます。
 
-### flattened Type
+### flattened タイプ
 
 `flattened` typeの場合、`enable_docvalue_scan` プロパティが `false` のとき、読み出されるJSONデータ形式はフラット化されます。`enable_docvalue_scan` プロパティが `true` の場合、元のJSON形式で読み出されます。以下に例を示します：
 
@@ -188,9 +188,9 @@ Index definition:
    ```json
    ["abc","element1","element2","element3"]
    ```
-## Query Operations
+## Query 運用
 
-Catalogを設定した後、以下の方法でCatalog内のテーブルデータをクエリできます：
+Catalogを設定した後、以下の方法でCatalog内のTableデータをクエリできます：
 
 ```sql
 -- 1. switch to catalog, use database and query
@@ -208,7 +208,7 @@ SELECT * FROM es_ctl.default_db.es_tbl LIMIT 10;
 
 ## Best Practices
 
-### Filter Predicate Pushdown
+### フィルタ述語プッシュダウン
 
 ES Catalogはfilter predicate pushdownをサポートしています。フィルタ条件がESにプッシュダウンされるため、条件に真に合致するデータのみが返され、クエリパフォーマンスを大幅に向上させ、DorisとElasticsearchのCPU、Memory、IO使用量を削減できます。
 
@@ -249,7 +249,7 @@ ES Catalogはfilter predicate pushdownをサポートしています。フィル
 
 3. `keyword`タイプフィールドは、この制限を超える長いテキストフィールドに対する[`ignore_above`](https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html#keyword-params)パラメータの制限により、空に見える場合があります。この場合、`enable_docvalue_scan`を無効にして`_source`から結果を取得する必要があります。
 
-### Keyword Type Fieldsの検出
+### Keyword タイプ Fieldsの検出
 
 `"enable_keyword_sniff" = "true"`を設定します。
 
@@ -409,11 +409,11 @@ select * from es_table where esquery(k4, ' {
          }
       }');
 ```
-### Time Type Field使用推奨事項
+### Time タイプ Field使用推奨事項
 
-ESの外部テーブルにのみ適用されます。ES Catalogでは、日付型は自動的にDateまたはDatetimeにマッピングされます。
+ESの外部Tableにのみ適用されます。ES Catalogでは、日付型は自動的にDateまたはDatetimeにマッピングされます。
 
-ESでは、時間型フィールドの使用は非常に柔軟ですが、ES外部テーブルにおいて、時間型フィールドが適切に設定されていない場合、フィルター条件をプッシュダウンできません。
+ESでは、時間型フィールドの使用は非常に柔軟ですが、ES外部Tableにおいて、時間型フィールドが適切に設定されていない場合、フィルター条件をプッシュダウンできません。
 
 インデックス作成時に、最大限のフォーマット互換性のために時間型フォーマットを設定してください：
 
@@ -443,13 +443,13 @@ select * from doe where k2 < date_format(now(), '%Y-%m-%d');
   ```sql
   strict_date_optional_time||epoch_millis
   ```
-* ESにインポートされる日付フィールドがタイムスタンプの場合、`ms`に変換する必要があります。ESは内部的にタイムスタンプを`ms`で処理するため、そうでなければES外部テーブルで表示エラーが発生します。
+* ESにインポートされる日付フィールドがタイムスタンプの場合、`ms`に変換する必要があります。ESは内部的にタイムスタンプを`ms`で処理するため、そうでなければES外部Tableで表示エラーが発生します。
 
 ### ESメタデータフィールドIDの取得
 
 `_id`を指定せずにドキュメントをインポートする場合、ESは各ドキュメントにグローバルに一意な`_id`（主キー）を割り当てます。ユーザーはインポート時に特別なビジネス的意味を持つ`_id`を指定することもできます。
 
-ES外部テーブルでこのフィールド値を取得する必要がある場合、テーブル作成時に`varchar`型の`_id`フィールドを追加できます：
+ES外部Tableでこのフィールド値を取得する必要がある場合、Table作成時に`varchar`型の`_id`フィールドを追加できます：
 
 ```sql
 CREATE EXTERNAL TABLE `doe` (
@@ -536,7 +536,7 @@ ES Catalogでこのフィールド値を取得する必要がある場合は、`
 |           +-----------------------+          |
 +----------------------------------------------+
 ```
-1. FEはテーブル作成時に指定されたホストに対してリクエストを送信し、全ノードのHTTPポート情報やインデックスのシャード分散情報などを取得します。リクエストが失敗した場合、成功するか完全に失敗するまでホストリストを順次トラバースします。
+1. FEはTable作成時に指定されたホストに対してリクエストを送信し、全ノードのHTTPポート情報やインデックスのシャード分散情報などを取得します。リクエストが失敗した場合、成功するか完全に失敗するまでホストリストを順次トラバースします。
 
 2. クエリ実行時、FEが取得したノード情報とインデックスメタデータ情報に基づいてクエリプランが生成され、対応するBEノードに送信されます。
 

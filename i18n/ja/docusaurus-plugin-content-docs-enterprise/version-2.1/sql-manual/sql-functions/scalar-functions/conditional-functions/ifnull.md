@@ -18,9 +18,9 @@
 ```sql
 IFNULL(<expr1>, <expr2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description |
+| Parameter  | デスクリプション |
 |-----------|-------------|
 | `<expr1>` | `NULL`をチェックする最初の式。 |
 | `<expr2>` | `<expr1>`が`NULL`の場合に返す値。 |

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 SHA1アルゴリズムを使用して情報をダイジェストします。
 
@@ -17,7 +17,7 @@ SHA
 ``` sql
 SHA1( <input> )
 ```
-## Parameters
+## パラメータ
 
 | parameter | description         |
 |-----------|-------------|

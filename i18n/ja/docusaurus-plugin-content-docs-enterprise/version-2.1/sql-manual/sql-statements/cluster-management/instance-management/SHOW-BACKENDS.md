@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、BEノードの基本ステータス情報を表示するために使用されます。
 
@@ -48,13 +48,13 @@
 
 このSQLを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege  | Object | Notes |
+| Privilege  | Object | 注釈 |
 |------------|----|----|
 | ADMIN_PRIV |    |    |
 
 ## 使用上の注意事項
 
-クエリ結果をさらにフィルタリングする必要がある場合、テーブル値関数[backends()](../../../sql-functions/table-valued-functions/backends.md)を使用できます。SHOW BACKENDSは以下のステートメントと同等です：
+クエリ結果をさらにフィルタリングする必要がある場合、Table値関数[backends()](../../../sql-functions/table-valued-functions/backends.md)を使用できます。SHOW BACKENDSは以下のステートメントと同等です：
 
 ```sql
 SELECT * FROM BACKENDS();

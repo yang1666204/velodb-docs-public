@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、バックエンドのガベージデータをクリアするために使用されます。
 
@@ -26,7 +26,7 @@ ADMIN CLEAN TRASH [ON ("<be_host>:<be_heartbeat_port>" [, ...])]
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
 
-| Privilege  | Object | Notes                                        |
+| Privilege  | Object | 注釈                                        |
 | :--------- | :----- | :------------------------------------------- |
 | ADMIN_PRIV | User or Role  | ADMIN_PRIV権限を持つユーザーまたはロールのみがCLEAN TRASH操作を実行できます。 |
 

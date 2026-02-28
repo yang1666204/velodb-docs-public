@@ -15,9 +15,9 @@
 ```sql
 SECOND_TIMESTAMP(<datetime>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter    | Description                                                         |
+| Parameter    | デスクリプション                                                         |
 |--------------|---------------------------------------------------------------------|
 | `<datetime>` | 必須。Unix タイムスタンプに変換される DATETIME 値。 |
 

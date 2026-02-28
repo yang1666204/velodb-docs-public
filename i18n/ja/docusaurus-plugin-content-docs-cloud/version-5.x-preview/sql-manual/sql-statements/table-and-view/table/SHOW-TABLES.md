@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW TABLES",
-  "description": "この文は、現在のdb配下のすべてのテーブルとビューを表示するために使用されます。",
+  "description": "この文は、現在のdb配下のすべてのTableとビューを表示するために使用されます。",
   "language": "ja"
 }
 ---
 ## 説明
 
-このステートメントは、現在のdb配下のすべてのテーブルとビューを表示するために使用されます。
+このステートメントは、現在のdb配下のすべてのTableとビューを表示するために使用されます。
 
 ## 構文
 
@@ -17,30 +17,30 @@ SHOW [ FULL ] TABLES [ FROM [ <catalog_name>.]<db_name> ][ LIKE <like_condition>
 ## オプションパラメータ
 
 **1. `FULL`**
-> このパラメータをステートメントに追加すると、返される結果にTable_type（テーブルタイプ）、Storage_format（ストレージフォーマット）、およびInverted_index_storage_format（転置インデックスストレージフォーマット）の3つの列が追加されます。
+> このパラメータをステートメントに追加すると、返される結果にTable_type（Tableタイプ）、Storage_format（ストレージフォーマット）、およびInverted_index_storage_format（転置インデックスストレージフォーマット）の3つの列が追加されます。
 
 **2. `FROM [ <catalog_name>.]<db_name>`**
 > FROM句では、クエリ対象のカタログ名とデータベース名を指定できます。
 
 **2. `LIKE <like_condition>`**
-> LIKE句では、テーブル名に基づいてあいまい検索を実行できます。
+> LIKE句では、Table名に基づいてあいまい検索を実行できます。
 
 ## 戻り値
 
-| Column name (Column) | Type (DataType) | Notes (Notes) |
+| Column name (Column) | タイプ (DataType) | 注釈 (注釈) |
 |:--------------------|:-------------|:----------------------------|
-| Tables_in_<db_name> | String | `<db_name>`が位置するデータベース配下のすべてのテーブルとビュー。 |
-| Table_type | String | テーブルとビューのタイプ。 |
-| Storage_format | String | テーブルとビューのストレージフォーマット。 |
-| Inverted_index_storage_format | String | テーブルとビューの転置インデックスストレージフォーマット。 |
+| Tables_in_<db_name> | String | `<db_name>`が位置するデータベース配下のすべてのTableとビュー。 |
+| Table_type | String | Tableとビューのタイプ。 |
+| Storage_format | String | Tableとビューのストレージフォーマット。 |
+| Inverted_index_storage_format | String | Tableとビューの転置インデックスストレージフォーマット。 |
 
 ## アクセス制御要件
 
 このSQLコマンドを実行するユーザーは、最低限以下の権限を持つ必要があります：
 
-| Privilege (Privilege) | Object (Object) | Notes (Notes) |
+| Privilege (Privilege) | Object (Object) | 注釈 (注釈) |
 |:--------------|:-----------|:------------------|
-| SELECT_PRIV | Table (Table), View (View) | クエリ権限を持つテーブルとビューのみが表示されます。 |
+| SELECT_PRIV | Table (Table), View (View) | クエリ権限を持つTableとビューのみが表示されます。 |
 
 ## 使用上の注意
 
@@ -48,7 +48,7 @@ SHOW [ FULL ] TABLES [ FROM [ <catalog_name>.]<db_name> ][ LIKE <like_condition>
 
 ## 例
 
-- DB配下のすべてのテーブルを表示
+- DB配下のすべてのTableを表示
 
      ```sql
      SHOW TABLES;
@@ -64,7 +64,7 @@ SHOW [ FULL ] TABLES [ FROM [ <catalog_name>.]<db_name> ][ LIKE <like_condition>
      | left_table                      |
      +---------------------------------+
      ```
-- テーブル名による曖昧検索
+- Table名による曖昧検索
 
      ```sql
      SHOW TABLES LIKE '%cm%'
@@ -77,7 +77,7 @@ SHOW [ FULL ] TABLES [ FROM [ <catalog_name>.]<db_name> ][ LIKE <like_condition>
      | cmy2           |
      +----------------+
      ```
-- FULLを使用してdb配下のテーブルとビューをクエリする
+- FULLを使用してdb配下のTableとビューをクエリする
 
      ```sql
      SHOW FULL TABLES

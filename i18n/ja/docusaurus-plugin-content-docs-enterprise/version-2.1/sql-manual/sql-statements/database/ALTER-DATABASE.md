@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、指定されたdbのプロパティを設定し、db名を変更し、dbの様々なクォータを設定するために使用されます。
 
@@ -59,12 +59,12 @@ ALTER DATABASE <db_name> SET <PROPERTIES> ("<key>" = "<value>" [, ...])
   ```sql
     ALTER DATABASE example_db SET REPLICA QUOTA 102400;
   ```
-- db配下のテーブルのデフォルトレプリカ配布戦略を変更する（この操作は新規作成されるテーブルに対してのみ有効であり、db配下の既存のテーブルは変更されません）
+- db配下のTableのデフォルトレプリカ配布戦略を変更する（この操作は新規作成されるTableに対してのみ有効であり、db配下の既存のTableは変更されません）
 
   ```sql
     ALTER DATABASE example_db SET PROPERTIES("replication_allocation" = "tag.location.default:2");
   ```
-- db配下のテーブルのデフォルトレプリカ配布ポリシーをキャンセルします（この操作は新しく作成されるテーブルに対してのみ有効で、db配下の既存のテーブルは変更されません）
+- db配下のTableのデフォルトレプリカ配布ポリシーをキャンセルします（この操作は新しく作成されるTableに対してのみ有効で、db配下の既存のTableは変更されません）
 
   ```sql
     ALTER DATABASE example_db SET PROPERTIES("replication_allocation" = "");

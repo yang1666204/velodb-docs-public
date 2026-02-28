@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 日付から日の情報を取得します。戻り値の範囲は1から31です。
 
@@ -18,9 +18,9 @@
 ```sql
 DAY(<dt>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | <`dt`> | 有効な日付式 |
 

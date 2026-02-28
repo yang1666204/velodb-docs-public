@@ -9,7 +9,7 @@
 
 カスタムアナライザーを使用することで、文字フィルター、トークナイザー、トークンフィルターを特定のニーズに応じて組み合わせることにより、組み込みトークナイザーの制限を克服できます。これにより、テキストが検索可能な用語にセグメント化される方法が細かく調整され、検索関連性とデータ分析の精度が直接決定されます。これは検索体験とデータ価値を向上させるための基盤となる重要な要素です。
 
-![Custom Analyzer Overview](/images/analyzer.png)
+![Custom Analyzer 概要](/images/analyzer.png)
 
 ## カスタムアナライザーの使用
 
@@ -99,7 +99,7 @@ DROP INVERTED INDEX TOKENIZER IF EXISTS x_tokenizer;
 DROP INVERTED INDEX TOKEN_FILTER IF EXISTS x_token_filter;
 DROP INVERTED INDEX ANALYZER IF EXISTS x_analyzer;
 ```
-## テーブル作成でのカスタムアナライザーの使用
+## Table作成でのカスタムアナライザーの使用
 
 カスタムアナライザーは、インデックスプロパティの`analyzer`パラメータを使用して指定します：
 
@@ -113,8 +113,8 @@ table_properties;
 ```
 ## 使用制限
 
-1. tokenizerとtoken_filterの`type`とパラメータは、サポートされたリストからのものでなければならず、そうでなければテーブル作成が失敗します
-2. analyzerは、それを使用しているテーブルがない場合にのみ削除できます
+1. tokenizerとtoken_filterの`type`とパラメータは、サポートされたリストからのものでなければならず、そうでなければTable作成が失敗します
+2. analyzerは、それを使用しているTableがない場合にのみ削除できます
 3. tokenizerとtoken_filterは、それらを使用しているanalyzerがない場合にのみ削除できます
 4. カスタムanalyzer構文を作成した後、データロードが正常に動作する前にBEへの同期に10秒かかります
 

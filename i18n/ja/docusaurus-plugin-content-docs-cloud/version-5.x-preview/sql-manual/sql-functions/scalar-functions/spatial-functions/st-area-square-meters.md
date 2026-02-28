@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 地球表面上の閉じた領域の面積を平方メートル単位で計算します。入力パラメータは地球表面上の領域を表す幾何オブジェクト（ポリゴン、円、多面体など）です。
 
@@ -17,9 +17,9 @@
 ```sql
 ST_AREA_SQUARE_METERS( <geo>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description     |
+| Parameter | デスクリプション     |
 | -- |--------|
 | `<geo>` | 地球表面上の幾何オブジェクト。GeoPolygon、GeoCircle、GeoMultiPolygonなどの閉じた領域タイプをサポートします。 |
 

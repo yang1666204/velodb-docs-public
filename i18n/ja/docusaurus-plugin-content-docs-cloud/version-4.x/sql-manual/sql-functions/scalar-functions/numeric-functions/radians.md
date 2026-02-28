@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 度からラジアンに変換された、`x` のラジアン値を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 RADIANS(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>`   | 変換する度数法での角度。 |
 

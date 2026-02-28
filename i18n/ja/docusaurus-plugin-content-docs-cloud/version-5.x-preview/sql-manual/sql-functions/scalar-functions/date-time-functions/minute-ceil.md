@@ -27,9 +27,9 @@ MINUTE_CEIL(`<date_or_time_expr>`, `<origin>`)
 MINUTE_CEIL(`<date_or_time_expr>`, `<period>`)
 MINUTE_CEIL(`<date_or_time_expr>`, `<period>`, `<origin>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<date_or_time_expr>` | 切り上げ対象のdatetime値。型はDATETIME。具体的なdatetimeフォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)を参照してください。 |
 | `<period>` | 分間隔値。型はINT。各間隔に含まれる分数を表します。 |

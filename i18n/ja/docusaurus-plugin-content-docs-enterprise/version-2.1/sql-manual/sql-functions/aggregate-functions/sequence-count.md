@@ -20,7 +20,7 @@ SEQUENCE_COUNT(<pattern>, <timestamp>, <cond_1> [, <cond_2>, ..., <cond_n>]);
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<pattern>` | パターン文字列。以下の**パターン構文**を参照してください。 |
 | `<timestamp>` | 時間データを含むと見なされるカラム。一般的なデータ型は`Date`と`DateTime`です。サポートされているUIntデータ型のいずれかも使用できます。 |

@@ -18,8 +18,8 @@ JSON_EXISTS_PATH (<json_str>,  <path>)
 
 * JSONB_EXISTS_PATH
 
-## Parameters
-| Parameter           | Description                                                     |
+## パラメータ
+| Parameter           | デスクリプション                                                     |
 |--------------|--------------------------------------------------------|
 | `<json_str>` | JSON配列に含める要素。NULL を含む任意の型の値を指定できます。要素が指定されない場合、空の配列が返されます。
 | `<path>`     | 判定するJSONパス。NULLの場合、NULLを返します。                      |

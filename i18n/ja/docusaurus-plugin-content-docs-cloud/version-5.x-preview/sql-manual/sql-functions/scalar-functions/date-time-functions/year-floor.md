@@ -27,8 +27,8 @@ YEAR_FLOOR(<date_or_time_expr>, origin)
 YEAR_FLOOR(<date_or_time_expr>, <period>)
 YEAR_FLOOR(<date_or_time_expr>, <period>, <origin>)
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<date_or_time_expr>` | 切り下げする日時の値。date/datetimeタイプをサポートします。datetimeおよびdateの形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<period>` | オプション。各期間が何秒で構成されるかを表します。正の整数タイプ（INT）をサポートします。デフォルトは1秒です。 |

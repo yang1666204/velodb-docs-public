@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 IPv6アドレスの文字列形式をIPv6型に変換します。
 
 ## Syntax

@@ -79,7 +79,7 @@ Dorisは以下の3つのJSON形式をサポートしています：
 
 以下の表は、各種ロード方法がサポートするJSON形式パラメータを一覧表示します：
 
-| Parameter | Default Value | Stream Load | Broker Load | Routine Load | TVF |
+| Parameter | デフォルト値 | Stream Load | Broker Load | Routine Load | TVF |
 |-----------|--------------|-------------|--------------|--------------|-----|
 | json paths | None | jsonpaths | properties.jsonpaths | properties.jsonpaths | jsonpaths |
 | json root | None | json_root | properties.json_root | properties.json_root | json_root |
@@ -193,16 +193,16 @@ Dorisは以下の3つのJSON形式をサポートしています：
    - 抽出されたフィールドはJSON Pathで定義された順序に従って並び替えられる
 
 **Columns**: データマッピングルールを定義
-   - 抽出されたフィールドを対象テーブルのカラムにマップ
+   - 抽出されたフィールドを対象Tableのカラムにマップ
    - カラムの並び替えと変換を実行可能
 
-これら2つのパラメータは順次処理されます：まずJSON Pathがソースデータからフィールドを抽出して順序付きデータセットを形成し、次にColumnsがこれらのデータをテーブルカラムにマップします。Columnsが指定されていない場合、抽出されたフィールドはテーブルカラムの順序に従って直接マップされます。
+これら2つのパラメータは順次処理されます：まずJSON Pathがソースデータからフィールドを抽出して順序付きデータセットを形成し、次にColumnsがこれらのデータをTableカラムにマップします。Columnsが指定されていない場合、抽出されたフィールドはTableカラムの順序に従って直接マップされます。
 
 #### 使用例
 
 ##### JSON Pathのみを使用
 
-テーブル構造とデータ：
+Table構造とデータ：
 
 ```sql
 -- Table structure
@@ -233,7 +233,7 @@ curl -v ... -H "format: json" \
 ```
 ##### JSON Path + Columns の使用
 
-同じテーブル構造とデータを使用して、columns パラメータを追加する場合：
+同じTable構造とデータを使用して、columns パラメータを追加する場合：
 
 Load コマンド：
 
@@ -255,7 +255,7 @@ curl -v ... -H "format: json" \
 ```
 ##### Field Reuse
 
-テーブル構造とデータ：
+Table構造とデータ：
 
 ```sql
 -- Table structure
@@ -288,7 +288,7 @@ curl -v ... -H "format: json" \
 ```
 ##### Nested Field Mapping
 
-テーブル構造とデータ：
+Table構造とデータ：
 
 ```sql
 -- Table structure

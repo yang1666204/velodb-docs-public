@@ -14,9 +14,9 @@
 ```sql
 INNER_PRODUCT(<array1>, <array2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- |--|
 | `<array1>` | 最初のベクトル。入力配列のサブタイプは TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE をサポートします。要素数は array2 と一致している必要があります |
 | `<array2>` | 2番目のベクトル。入力配列のサブタイプは TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE をサポートします。要素数は array1 と一致している必要があります |

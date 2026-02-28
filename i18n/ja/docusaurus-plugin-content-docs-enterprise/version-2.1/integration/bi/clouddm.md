@@ -26,7 +26,7 @@ CloudDMのバージョンは2.8.0.0以上である必要があります。
    ![add datasource](/images/clouddm1-en.png)
 
 4. Dorisインスタンスに接続するために以下の必要な情報を入力します。
-   - Client Address: DorisクラスターのFEクエリポート、例：hostID:9030
+   - クライアント Address: DorisクラスターのFEクエリポート、例：hostID:9030
    - Account: Dorisクラスターへのログインに使用するユーザー名、例：admin
    - Password: Dorisクラスターへのログインに使用するパスワード
 
@@ -48,13 +48,13 @@ CloudDMのバージョンは2.8.0.0以上である必要があります。
    ![connect to data source](/images/clouddm3-en.png)
 
 ## 機能サポート
-- Query Client
+- Query クライアント
   - Dorisのデータベースオブジェクトをビジュアルに管理
   - コンソールでのSQLの記述と実行
   - クエリ結果のエクスポート
 
 - Team Collaboration
-  - テーブルレベル粒度でのステートメントレベル認証
+  - Tableレベル粒度でのステートメントレベル認証
   - SQLリクエストのワークフローと承認
   - データベースCI/CD
   - 機密情報のデータマスキング

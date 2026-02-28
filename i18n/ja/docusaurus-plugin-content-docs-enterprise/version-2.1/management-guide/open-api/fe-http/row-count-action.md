@@ -10,9 +10,9 @@
 
 `GET /api/rowcount`
 
-## Description
+## デスクリプション
 
-指定されたテーブルの行数統計を手動で更新するために使用されます。行数の統計を更新する際、テーブルとrollupに対応する行数もJSON形式で返されます。
+指定されたTableの行数統計を手動で更新するために使用されます。行数の統計を更新する際、Tableとrollupに対応する行数もJSON形式で返されます。
 
 ## Path parameters
 
@@ -26,7 +26,7 @@
 
 * `table`
 
-    テーブルを指定
+    Tableを指定
 
 ## Request body
 

@@ -22,11 +22,11 @@ SHOW CREATE DATABASE [<catalog>.]<db_name>;
 ## オプションパラメータ
 
 ** 1. `<catalog>`**
->  テーブルが内部または外部かを示します
+>  Tableが内部または外部かを示します
 
 ## 戻り値
 
-| Column | Description |
+| Column | デスクリプション |
 |:---------|:-----------|
 | Database | データベース名 |
 | Create Database | 対応するデータベース作成文 |
@@ -35,7 +35,7 @@ SHOW CREATE DATABASE [<catalog>.]<db_name>;
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Permissions         | Object    | Notes             |
+| Permissions         | Object    | 注釈             |
 |:-----------|:------|:---------------|
 | SELECT_PRIV | 対応するデータベース | 対応するデータベースの読み取り権限が必要です |
 

@@ -16,9 +16,9 @@
 ```sql
 CONVERT_TZ(<dt>, <from_tz>, <to_tz>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- | 
 | `<dt>` | 変換される値で、datetime型またはdate型です。具体的なdatetimeとdateの形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<from_tz>` | dtの元のタイムゾーンで、このパラメータは`varchar`型です |

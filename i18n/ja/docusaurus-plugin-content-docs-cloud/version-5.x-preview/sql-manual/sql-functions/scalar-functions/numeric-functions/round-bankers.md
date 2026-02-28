@@ -36,9 +36,9 @@ banker's roundingアルゴリズムの規則によると、指定された小数
 ```sql
 ROUND_BANKERS(<x> [ , <d>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>` | 四捨五入する数値 |
 | `<d>` | オプション、四捨五入する小数点以下の桁数。デフォルト値は0 |

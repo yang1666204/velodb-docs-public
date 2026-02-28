@@ -16,7 +16,7 @@ DATEDIFF(<expr1>, <expr2>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr1>` | 被減数（減算される日付） |
 | `<expr2>` | 減数（減算する日付） |

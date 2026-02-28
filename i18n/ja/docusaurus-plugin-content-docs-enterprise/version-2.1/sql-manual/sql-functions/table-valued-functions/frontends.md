@@ -1,13 +1,13 @@
 ---
 {
   "title": "FRONTENDS",
-  "description": "table関数はフロントエンドの一時テーブルを生成し、現在のdorisクラスター内のFEノード情報を表示することができます。",
+  "description": "table関数はフロントエンドの一時Tableを生成し、現在のdorisクラスター内のFEノード情報を表示することができます。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-table関数はフロントエンドの一時テーブルを生成し、現在のdorisクラスタ内のFEノード情報を表示することができます。
+table関数はフロントエンドの一時Tableを生成し、現在のdorisクラスタ内のFEノード情報を表示することができます。
 
 ## Syntax
 
@@ -16,12 +16,12 @@ FRONTENDS()
 ```
 ## アクセス制御要件
 
-| Privilege  | Object | Notes |
+| Privilege  | Object | 注釈 |
 | :--------- |:-------|:------|
 | ADMIN_PRIV | global |       |
 
 ## 戻り値
-| Field                    | Description                                                                                             |
+| Field                    | デスクリプション                                                                                             |
 |--------------------------|---------------------------------------------------------------------------------------------------------|
 | **Name**                 | frontendノードの一意な名前。                                                                   |
 | **Host**                 | frontendノードのIPアドレスまたはホスト名。                                                        |

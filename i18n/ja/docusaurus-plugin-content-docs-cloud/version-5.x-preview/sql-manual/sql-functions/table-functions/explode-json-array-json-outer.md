@@ -1,12 +1,12 @@
 ---
 {
   "title": "EXPLODE_JSON_ARRAY_JSON_OUTER",
-  "description": "explodejsonarrayjsonouter テーブル関数は JSON 配列を受け取ります。",
+  "description": "explodejsonarrayjsonouter Table関数は JSON 配列を受け取ります。",
   "language": "ja"
 }
 ---
 ## 説明
-`explode_json_array_json_outer`テーブル関数はJSON配列を受け取ります。その実装ロジックは、JSON配列を配列型に変換してから`explode_outer`関数を呼び出して処理することです。この動作は`explode_outer(cast(<json_array> as Array<JSON>))`と等価です。
+`explode_json_array_json_outer`Table関数はJSON配列を受け取ります。その実装ロジックは、JSON配列を配列型に変換してから`explode_outer`関数を呼び出して処理することです。この動作は`explode_outer(cast(<json_array> as Array<JSON>))`と等価です。
 この関数は[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
 
 ## 構文

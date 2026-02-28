@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つの確率変数間のPearson相関係数を計算します。
 
@@ -14,9 +14,9 @@
 ```sql
 CORR(<expr1>, <expr2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Description |
+| パラメータ | デスクリプション |
 | -- | -- |
 | `<expr1>` | 計算用の式。サポートされる型はDoubleです。 |
 | `<expr2>` | 計算用の式。サポートされる型はDoubleです。 |

@@ -9,14 +9,14 @@ Dorisのデータロードは2つのステージに分かれています：fragm
 
 ## ロードメモリビュー
 
-どこかで`Label=load, Type=overview`のMemory Trackerの値が大きく表示されている場合、それはロードメモリが多く使用されていることを意味します。
+どこかで`Label=load, タイプ=overview`のMemory Trackerの値が大きく表示されている場合、それはロードメモリが多く使用されていることを意味します。
 
 ```
-MemTrackerLimiter Label=load, Type=overview, Limit=-1.00 B(-1 B), Used=0(0 B), Peak=0(0 B)
+MemTrackerLimiter Label=load, タイプ=overview, Limit=-1.00 B(-1 B), Used=0(0 B), Peak=0(0 B)
 ```
 Dorisによるメモリロードは2つの部分に分かれています。最初の部分はfragment実行で使用されるメモリで、2番目の部分はMemTableの構築とフラッシュプロセスで使用されるメモリです。
 
-BEウェブページ`http://{be_host}:{be_web_server_port}/mem_tracker?type=global`にある`Label=AllMemTableMemory, Parent Label=DetailsTrackerSet`のMemory Trackerは、このBEノード上のすべてのロードタスクが`MemTable`を構築およびフラッシュするために使用するメモリです。エラープロセスメモリが制限を超えるか、利用可能メモリが不足している場合、このMemory Trackerは`be.INFO`ログの`Memory Tracker Summary`でも確認できます。
+BEウェブページ`http://{be_host}:{be_web_server_port}/mem_tracker?type=global`にある`Label=AllMemTableMemory, Parent Label=DetailsTrackerSet`のMemory Trackerは、このBEノード上のすべてのロードタスクが`MemTable`を構築およびフラッシュするために使用するメモリです。エラープロセスメモリが制限を超えるか、利用可能メモリが不足している場合、このMemory Trackerは`be.INFO`ログの`Memory Tracker 要約`でも確認できます。
 
 ```
 MemTracker Label=AllMemTableMemory, Parent Label=DetailsTrackerSet, Used=25.08 MB(26303456 B), Peak=25.08 MB(26303456 B)

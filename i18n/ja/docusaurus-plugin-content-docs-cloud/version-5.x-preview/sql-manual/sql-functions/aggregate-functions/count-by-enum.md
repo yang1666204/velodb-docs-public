@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 列内のデータを列挙値として扱い、各列挙値の数をカウントします。各列の列挙値の数、および非NULL値の数とNULL値の数を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 COUNT_BY_ENUM(<expr1>, <expr2>, ... , <exprN>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr1>` | 少なくとも1つの入力が必要で、最大1024個の入力をサポートします。サポートされる型はStringです。 |
 

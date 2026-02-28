@@ -15,7 +15,7 @@ STARTS_WITH関数は、文字列が指定されたプレフィックスで始ま
 STARTS_WITH(<str>, <prefix>)
 ```
 ## パラメータ
-| Parameter | Description                               |
+| Parameter | デスクリプション                               |
 | --------- | ----------------------------------------- |
 | `<str>` | チェック対象の文字列。型: VARCHAR        |
 | `<prefix>` | マッチさせる接頭辞文字列。型: VARCHAR |

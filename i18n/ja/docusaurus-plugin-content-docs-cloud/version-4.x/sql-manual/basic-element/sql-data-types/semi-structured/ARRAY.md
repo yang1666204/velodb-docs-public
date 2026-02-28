@@ -17,7 +17,7 @@ ARRAY
 
 T型アイテムの配列で、キーカラムとして使用することはできません。現在、ARRAYはDuplicate Model Tablesでのみ使用可能です。
 
-バージョン2.0以降、Uniqueモデルテーブルの非キーカラムでの使用をサポートしています。
+バージョン2.0以降、UniqueモデルTableの非キーカラムでの使用をサポートしています。
 
 T型は以下のいずれかを指定できます：
 
@@ -27,7 +27,7 @@ DATEV2, DATETIME, DATETIMEV2, CHAR, VARCHAR, STRING
 ```
 ### example
 
-テーブル例を作成:
+Table例を作成:
 
 ```
 mysql> CREATE TABLE `array_test` (

@@ -16,7 +16,7 @@ STRUCT_ELEMENT( <struct>, '<filed_location>/<filed_name>')
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<struct>` | 入力する構造体カラムがnullの場合、nullを返す |
 | `<filed_location>` | フィールドの位置は1から開始し、定数のみサポート |

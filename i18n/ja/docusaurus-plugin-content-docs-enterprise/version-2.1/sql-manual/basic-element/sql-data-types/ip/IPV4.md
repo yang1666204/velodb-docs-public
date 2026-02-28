@@ -16,7 +16,7 @@ IPv4型は、IPv4アドレスを表すために使用され、4バイトのUInt3
 
 ### example
 
-テーブル作成例：
+Table作成例：
 
 ```
 CREATE TABLE ipv4_test (

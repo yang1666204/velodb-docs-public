@@ -18,13 +18,13 @@ PROPERTIES (
     [ , ... ]
 );
 ```
-## Parameters
+## パラメータ
 
 1.`<property>`
 
 `<property>`の形式は`<key>` = `<value>`で、`<key>`の利用可能な具体的な値は以下の通りです：
 
-| Parameter | Description | Required |
+| Parameter | デスクリプション | Required |
 | -- | -- | -- |
 | `<cpu_share>` | workload groupが取得できるcpu時間を設定するために使用され、cpuリソースのソフト分離を実現できます。cpu_shareは実行中のworkload groupが利用可能なcpuリソースの重みを示す相対値です。例えば、ユーザーがcpu_shareをそれぞれ10、30、40に設定した3つのworkload group rg-a、rg-b、rg-cを作成し、ある時点でrg-aとrg-bがタスクを実行している一方、rg-cにはタスクがない場合、rg-aは(10 / (10 + 30)) = 25%のcpuリソースを取得でき、workload group rg-bは75%のcpuリソースを取得できます。システムに実行中のworkload groupが1つしかない場合は、cpu_shareの値に関係なく、すべてのcpuリソースを取得します。 | Y |
 | `<memory_limit>` | workload groupが使用できるbeメモリの割合を設定します。workload groupメモリ制限の絶対値は：`physical_memory * mem_limit * memory_limit`です。ここでmem_limitはbe設定項目です。システム内のすべてのworkload groupのmemory_limitの合計は100%を超えてはいけません。workload groupは、ほとんどの場合、グループ内のタスクに対してmemory_limitの使用が保証されます。workload groupのメモリ使用量がこの制限を超えた場合、メモリ使用量の多いグループ内のタスクがキャンセルされ、超過メモリが解放される可能性があります。enable_memory_overcommitを参照してください。 | Y |

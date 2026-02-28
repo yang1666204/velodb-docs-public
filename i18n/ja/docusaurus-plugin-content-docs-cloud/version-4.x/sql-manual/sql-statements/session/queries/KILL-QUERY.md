@@ -45,7 +45,7 @@ KILL QUERY [ { <processlist_id> | <query_id> } ]
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege    | Object    | Notes                      |
+| Privilege    | Object    | 注釈                      |
 |:--------------|:-----------|:-----------------------|
 | GRANT_PRIV         | DATABASE   | KILL文にはGRANT権限が必要です |
 
@@ -66,7 +66,7 @@ SHOW PROCESSLIST
 ```
 ```text
 +------------------+------+------+--------------------+---------------------+----------+---------+---------+------+-------+-----------------------------------+---------------------------------------------------------------------------------------+
-| CurrentConnected | Id   | User | Host               | LoginTime           | Catalog  | Db      | Command | Time | State | QueryId                           | Info                                                                                  |
+| CurrentConnected | Id   | User | Host               | LoginTime           | カタログ  | Db      | Command | Time | State | QueryId                           | Info                                                                                  |
 +------------------+------+------+--------------------+---------------------+----------+---------+---------+------+-------+-----------------------------------+---------------------------------------------------------------------------------------+
 | Yes              |   48 | root | 10.16.xx.xx:44834   | 2025-01-21 16:49:47 | internal | test | Query   |    0 | OK    | e6e4ce9567b04859-8eeab8d6b5513e38 | SHOW PROCESSLIST                                                                      |
 |                  |   50 | root | 192.168.xx.xx:52837 | 2025-01-21 16:51:34 | internal |      | Sleep   | 1837 | EOF   | deaf13c52b3b4a3b-b25e8254b50ff8cb | SELECT @@session.transaction_isolation                                                |

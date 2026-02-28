@@ -1,6 +1,6 @@
 ---
 {
-  "title": "ビルトイン Authorization | Authentication",
+  "title": "ビルトイン Authorization | 認証",
   "description": "Dorisにおいて、useridentityはユーザーを一意に識別します。useridentityは、usernameとhostの2つの部分で構成されており、usernameはユーザー名です。",
   "language": "ja"
 }

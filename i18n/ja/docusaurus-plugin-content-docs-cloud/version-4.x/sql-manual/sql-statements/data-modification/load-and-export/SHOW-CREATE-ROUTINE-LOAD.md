@@ -34,7 +34,7 @@ SHOW [ALL] CREATE ROUTINE LOAD for <load_name>;
 
 | 権限       | オブジェクト | 備考                                                      |
 | :--------- | :----------- | :-------------------------------------------------------- |
-| LOAD_PRIV  | Table        | SHOW ROUTINE LOADにはテーブルに対するLOAD権限が必要です   |
+| LOAD_PRIV  | Table        | SHOW ROUTINE LOADにはTableに対するLOAD権限が必要です   |
 
 ## 例
 

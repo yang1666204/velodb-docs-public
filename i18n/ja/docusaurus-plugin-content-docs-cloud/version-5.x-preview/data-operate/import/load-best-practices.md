@@ -22,7 +22,7 @@ Random bucketingを使用する場合、load_to_single_tabletをtrueに設定す
 クライアント側バッチ処理：ロードする前にクライアント側でデータをバッチ処理（数MBからGBサイズ）することを推奨します。高頻度の小さなロードは頻繁なcompactionを引き起こし、深刻な書き込み増幅問題を引き起こします。
 サーバー側バッチ処理：高並行性の小容量データロードについては、[Group Commit](group-commit-manual.md)を有効にしてサーバー側でバッチ処理を実装することを推奨します。
 
-## Partition Loading
+## パーティション Loading
 
 一度に少数のpartitionからのみデータをロードすることを推奨します。同時に多数のpartitionからロードするとメモリ使用量が増加し、パフォーマンス問題を引き起こす可能性があります。Dorisの各tabletはメモリ内にアクティブなMemtableを持っており、一定のサイズに達するとディスクにフラッシュされます。プロセスOOMを防ぐため、アクティブなMemtableのメモリ使用量が高すぎる場合、早期フラッシュがトリガーされ、多くの小さなファイルが生成されてロードパフォーマンスに影響します。
 
@@ -36,7 +36,7 @@ Random bucketingを使用する場合、load_to_single_tabletをtrueに設定す
 
 非圧縮のCSVとJSONファイル：Dorisは自動的にファイルを分割し、並行してロードします。
 
-並行性戦略については、[Broker Load Configuration Parameters](./import-way/broker-load-manual#Related-Configurations)を参照してください。
+並行性戦略については、[Broker Load 構成 パラメータ](./import-way/broker-load-manual#Related-Configurations)を参照してください。
 
 ## Stream Load並行性
 

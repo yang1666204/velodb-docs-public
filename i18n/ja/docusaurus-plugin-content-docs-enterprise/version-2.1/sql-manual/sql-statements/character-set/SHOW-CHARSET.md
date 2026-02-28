@@ -20,7 +20,7 @@ SHOW CHARSET
 | column name | description |
 | -- |-------------|
 | Charset | 文字セット         |
-| Description | 説明          |
+| デスクリプション | 説明          |
 | Default Collation | デフォルトの照合順序名      |
 | Maxlen | 最大バイト長      |
 
@@ -31,7 +31,7 @@ SHOW CHARSET;
 ```
 ```text
 +---------+---------------+-------------------+--------+
-| Charset | Description   | Default collation | Maxlen |
+| Charset | デスクリプション   | Default collation | Maxlen |
 +---------+---------------+-------------------+--------+
 | utf8mb4 | UTF-8 Unicode | utf8mb4_0900_bin  | 4      |
 +---------+---------------+-------------------+--------+

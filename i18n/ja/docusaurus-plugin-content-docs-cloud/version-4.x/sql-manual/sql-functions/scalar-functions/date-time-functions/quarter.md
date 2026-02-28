@@ -19,7 +19,7 @@ QUARTER(<datetime>)
 ```
 ## パラメータ
 
-| Parameter    | Description                                              |
+| Parameter    | デスクリプション                                              |
 |--------------|----------------------------------------------------------|
 | `<datetime>` | 四半期を決定するための有効なDATEまたはDATETIME値。 |
 

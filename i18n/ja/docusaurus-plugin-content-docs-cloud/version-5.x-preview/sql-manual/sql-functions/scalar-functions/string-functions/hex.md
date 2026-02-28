@@ -18,9 +18,9 @@ HEX関数は入力パラメータを16進数文字列表現に変換します。
 ```sql
 HEX(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-------|--------------|
 | `<expr>` | 入力パラメータ。BIGINT型の数値またはVARCHAR型の文字列を指定可能 |
 

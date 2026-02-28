@@ -16,7 +16,7 @@ JSONデータ型は、JSONデータをバイナリ形式で効率的に保存し
 データ挿入時のJSON形式検証。
 より効率的なバイナリストレージ形式により、get_json_xx関数と比較して、json_extractなどの関数を使用したJSON内部フィールドへの高速アクセスが可能。
 
-注意：バージョン1.2.xでは、JSON型はJSONBという名前でした。MySQLとの互換性を維持するため、バージョン2.0.0から JSON に名前が変更されました。古いテーブルでは以前の名前を引き続き使用できます。
+注意：バージョン1.2.xでは、JSON型はJSONBという名前でした。MySQLとの互換性を維持するため、バージョン2.0.0から JSON に名前が変更されました。古いTableでは以前の名前を引き続き使用できます。
 
 ## CSV形式のインポート
 
@@ -32,7 +32,7 @@ JSONデータ型は、JSONデータをバイナリ形式で効率的に保存し
 4|{"name": null, "age": null}
 5|null
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE json_test (
@@ -45,7 +45,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```bash
 curl --location-trusted \
@@ -55,7 +55,7 @@ curl --location-trusted \
         -T "test_json.csv" \
         http://localhost:8040/api/testdb/json_test/_stream_load
 ```
-### Step 4: インポートされたデータを確認する
+### ステップ 4: インポートされたデータを確認する
 
 ```sql
 SELECT * FROM json_test;
@@ -85,7 +85,7 @@ SELECT * FROM json_test;
     {"id": 5, "c_json": null}
 ]
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE json_test (

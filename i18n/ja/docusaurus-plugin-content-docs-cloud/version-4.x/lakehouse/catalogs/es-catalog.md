@@ -9,7 +9,7 @@ Elasticsearch Catalogは、ESメタデータの自動マッピングをサポー
 
 1. ESにおけるマルチインデックス分散Joinクエリ。
 
-2. DorisとESのテーブル間でのジョイントクエリと、より複雑な全文検索フィルタリング。
+2. DorisとESのTable間でのジョイントクエリと、より複雑な全文検索フィルタリング。
 
 ## 前提条件
 
@@ -26,7 +26,7 @@ CREATE CATALOG es_catalog PROPERTIES (
 ```
 * {ElasticsearchProperties}
 
-| Parameter              | Required | Default | Description                                                                                    |
+| Parameter              | Required | Default | デスクリプション                                                                                    |
 | ---------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------- |
 | `hosts`                | Yes      |         | ESアドレス、単一または複数、またはESロードバランサーアドレスを指定可能                               |
 | `user`                 | No       | Empty   | ESユーザー名                                                                                    |
@@ -188,9 +188,9 @@ Index definition:
    ```json
    ["abc","element1","element2","element3"]
    ```
-## Query Operations
+## Query 運用
 
-Catalogを設定した後、以下の方法でCatalog内のテーブルデータをクエリできます：
+Catalogを設定した後、以下の方法でCatalog内のTableデータをクエリできます：
 
 ```sql
 -- 1. switch to catalog, use database and query
@@ -208,7 +208,7 @@ SELECT * FROM es_ctl.default_db.es_tbl LIMIT 10;
 
 ## Best Practices
 
-### Filter Predicate Pushdown
+### フィルタ述語プッシュダウン
 
 ES CatalogはFilter Predicate Pushdownをサポートしています：フィルタ条件はESにプッシュダウンされるため、条件を満たすデータのみが返され、クエリパフォーマンスが大幅に向上し、DorisとElasticsearchのCPU、Memory、IO使用量を削減できます。
 
@@ -411,9 +411,9 @@ select * from es_table where esquery(k4, ' {
 ```
 ### Time Type Field使用推奨事項
 
-ES外部テーブルにのみ適用されます。ES Catalogでは、date型は自動的にDateまたはDatetimeにマッピングされます。
+ES外部Tableにのみ適用されます。ES Catalogでは、date型は自動的にDateまたはDatetimeにマッピングされます。
 
-ESでは、time型フィールドは非常に柔軟に使用できますが、ES外部テーブルにおいて、time型フィールドが適切に設定されていない場合、フィルター条件をプッシュダウンできません。
+ESでは、time型フィールドは非常に柔軟に使用できますが、ES外部Tableにおいて、time型フィールドが適切に設定されていない場合、フィルター条件をプッシュダウンできません。
 
 インデックスを作成する際は、最大限のフォーマット互換性のためにtime型フォーマットを設定してください：
 
@@ -443,13 +443,13 @@ select * from doe where k2 < date_format(now(), '%Y-%m-%d');
   ```sql
   strict_date_optional_time||epoch_millis
   ```
-* ESにインポートされる日付フィールドがタイムスタンプの場合、`ms`に変換する必要があります。ESは内部的にタイムスタンプを`ms`で処理するため、そうしないとES外部テーブルで表示エラーが発生します。
+* ESにインポートされる日付フィールドがタイムスタンプの場合、`ms`に変換する必要があります。ESは内部的にタイムスタンプを`ms`で処理するため、そうしないとES外部Tableで表示エラーが発生します。
 
 ### ESメタデータフィールドIDの取得
 
 `_id`を指定せずにドキュメントをインポートする場合、ESは各ドキュメントにグローバルに一意な`_id`（主キー）を割り当てます。ユーザーは、インポート時に特別なビジネス意味を持つ`_id`を指定することもできます。
 
-ES外部テーブルでこのフィールド値を取得する必要がある場合、テーブル作成時に`varchar`型の`_id`フィールドを追加できます：
+ES外部Tableでこのフィールド値を取得する必要がある場合、Table作成時に`varchar`型の`_id`フィールドを追加できます：
 
 ```sql
 CREATE EXTERNAL TABLE `doe` (
@@ -536,7 +536,7 @@ ES Catalogでこのフィールド値を取得する必要がある場合は、`
 |           +-----------------------+          |
 +----------------------------------------------+
 ```
-1. FEはテーブル作成時に指定されたホストにリクエストを送信し、すべてのノードのHTTPポート情報やインデックスのシャード分散情報などを取得します。リクエストが失敗した場合、成功するか完全に失敗するまでホストリストを順次たどります。
+1. FEはTable作成時に指定されたホストにリクエストを送信し、すべてのノードのHTTPポート情報やインデックスのシャード分散情報などを取得します。リクエストが失敗した場合、成功するか完全に失敗するまでホストリストを順次たどります。
 
 2. クエリ実行時、FEが取得したノード情報とインデックスメタデータ情報に基づいてクエリプランが生成され、対応するBEノードに送信されます。
 

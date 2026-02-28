@@ -14,9 +14,9 @@ Bitmap内の最大値を計算して返します。
 ```sql
 BITMAP_MAX(<bitmap>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description                     |
+| Parameter  | デスクリプション                     |
 |------------|---------------------------------|
 | `<bitmap>` | Bitmap型のカラムまたは式 |
 

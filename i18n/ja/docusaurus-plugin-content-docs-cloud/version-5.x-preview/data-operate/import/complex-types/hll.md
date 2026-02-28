@@ -25,7 +25,7 @@ HLLは近似重複排除に使用され、大量のデータを扱う際にCount
 1009|huang
 1010|buag
 ```
-### Step 2: データベースにテーブルを作成
+### ステップ 2: データベースにTableを作成
 
 ```sql
 CREATE TABLE testdb.test_hll(
@@ -45,7 +45,7 @@ curl --location-trusted -u <doris_user>:<doris_password> \
     -T test_hll.csv \
     -XPUT http://<fe_ip>:<fe_http_port>/api/testdb/test_hll/_stream_load
 ```
-### Step 4: 読み込まれたデータの確認
+### ステップ 4: 読み込まれたデータの確認
 
 hll_cardinalityを使用してクエリを実行します：
 

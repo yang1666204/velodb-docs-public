@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 ジオメトリshape1がジオメトリshape2に接触しているかどうかを判定します。（つまり、2つのジオメトリの境界が交差しているが、内部は交差していないかどうか）
 
@@ -18,9 +18,9 @@ Apache Doris 2.1.10以降でサポートされています。
 ```sql
 ST_TOUCHES( <shape1>, <shape2> )
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Instructions |
+| パラメータ | Instructions |
 |----------|------------------------|
 | `<shape1>` | shape2に接触するかどうかを判定するために渡されるジオメトリ |
 | `<shape2>` | shape1に接触するかどうかを判定するために渡されるジオメトリ |

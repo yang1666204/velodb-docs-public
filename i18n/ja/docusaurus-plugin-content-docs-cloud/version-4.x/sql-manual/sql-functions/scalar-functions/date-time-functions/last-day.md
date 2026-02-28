@@ -18,9 +18,9 @@
 ```sql
 LAST_DAY(<date>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<date>` | 入力される日時値。型はDATETIMEまたはDATEが可能 |
 

@@ -11,13 +11,13 @@
 
 バージョン2.0.0以降、Dorisは転置インデックスをサポートしており、テキストタイプでの全文検索、通常の数値型と日付型での等価・範囲クエリに使用でき、大量のデータから条件を満たす行を素早くフィルタリングできます。
 
-Dorisの転置インデックス実装では、テーブルの各行が文書に対応し、各列が文書内のフィールドに対応します。従って、転置インデックスを使用することで、特定のキーワードを含む行を素早く特定し、WHERE句を高速化できます。
+Dorisの転置インデックス実装では、Tableの各行が文書に対応し、各列が文書内のフィールドに対応します。従って、転置インデックスを使用することで、特定のキーワードを含む行を素早く特定し、WHERE句を高速化できます。
 
 Dorisの他のインデックスとは異なり、転置インデックスはストレージ層で独立したファイルを使用し、データファイルと一対一で対応しながらも物理的には独立して保存されます。このアプローチにより、データファイルを書き換えることなくインデックスの作成と削除が可能になり、処理オーバーヘッドを大幅に削減できます。
 
 ## 使用シナリオ
 
-転置インデックスは幅広い用途があり、等価検索、範囲検索、全文検索（キーワードマッチング、フレーズマッチングなど）を高速化できます。テーブルには複数の転置インデックスを持つことができ、クエリ時に複数の転置インデックスの条件を任意に組み合わせることができます。
+転置インデックスは幅広い用途があり、等価検索、範囲検索、全文検索（キーワードマッチング、フレーズマッチングなど）を高速化できます。Tableには複数の転置インデックスを持つことができ、クエリ時に複数の転置インデックスの条件を任意に組み合わせることができます。
 
 転置インデックスの機能を簡単に紹介します：
 
@@ -44,11 +44,11 @@ Dorisの他のインデックスとは異なり、転置インデックスはス
 
 **4. 柔軟で効率的なインデックス管理**
 
-- テーブル作成時の転置インデックス定義をサポート
+- Table作成時の転置インデックス定義をサポート
 
-- 既存テーブルへの転置インデックス追加をサポート。テーブル内の既存データを書き換えずに増分インデックス構築
+- 既存Tableへの転置インデックス追加をサポート。Table内の既存データを書き換えずに増分インデックス構築
 
-- 既存テーブルからの転置インデックス削除をサポート。テーブル内の既存データを書き換えずに実行
+- 既存Tableからの転置インデックス削除をサポート。Table内の既存データを書き換えずに実行
 
 :::tip
 
@@ -58,15 +58,15 @@ Dorisの他のインデックスとは異なり、転置インデックスはス
 
 2. 一部の複合データ型はまだ転置インデックスをサポートしていません。MAP、STRUCT、JSON、HLL、BITMAP、QUANTILE_STATE、AGG_STATEが含まれます。
 
-3. DUPLICATEとMerge-on-Writeが有効なUNIQUEテーブルモデルは任意の列での転置インデックス構築をサポートします。ただし、AGGREGATEとMerge-on-Writeが無効なUNIQUEモデルはKey列でのみ転置インデックス構築をサポートします。非Key列には転置インデックスを設定できません。これは、これら2つのモデルではマージのためにすべてのデータを読み取る必要があり、事前フィルタリングにインデックスを使用できないためです。
+3. DUPLICATEとMerge-on-Writeが有効なUNIQUETableモデルは任意の列での転置インデックス構築をサポートします。ただし、AGGREGATEとMerge-on-Writeが無効なUNIQUEモデルはKey列でのみ転置インデックス構築をサポートします。非Key列には転置インデックスを設定できません。これは、これら2つのモデルではマージのためにすべてのデータを読み取る必要があり、事前フィルタリングにインデックスを使用できないためです。
 
 :::
 
 ## インデックスの管理
 
-### テーブル作成時の転置インデックス定義
+### Table作成時の転置インデックス定義
 
-テーブル作成文では、COLUMN定義の後にインデックス定義があります：
+Table作成文では、COLUMN定義の後にインデックス定義があります：
 
 ```sql
 CREATE TABLE table_name
@@ -81,7 +81,7 @@ table_properties;
 ```
 構文説明:
 
-**1. `idx_column_name(column_name)` は必須です。`column_name` はインデックス用のカラム名で、事前に定義されたカラムである必要があります。`idx_column_name` はインデックス名で、テーブルレベルでユニークである必要があります。推奨される命名規則: カラム名の前に `idx_` プレフィックスを付ける**
+**1. `idx_column_name(column_name)` は必須です。`column_name` はインデックス用のカラム名で、事前に定義されたカラムである必要があります。`idx_column_name` はインデックス名で、Tableレベルでユニークである必要があります。推奨される命名規則: カラム名の前に `idx_` プレフィックスを付ける**
 
 **2. `USING INVERTED` は必須で、インデックスタイプが転置インデックスであることを指定します**
 
@@ -167,11 +167,11 @@ table_properties;
 
 **4. `COMMENT`はインデックスコメントを指定するためのオプションです**
 
-### 既存のテーブルへの転置インデックスの追加
+### 既存のTableへの転置インデックスの追加
 
 **1. ADD INDEX**
 
-`CREATE INDEX`と`ALTER TABLE ADD INDEX`の両方の構文をサポートします。パラメータはテーブル作成時にインデックスを定義する際に使用するものと同じです。
+`CREATE INDEX`と`ALTER TABLE ADD INDEX`の両方の構文をサポートします。パラメータはTable作成時にインデックスを定義する際に使用するものと同じです。
 
 ```sql
 -- Syntax 1
@@ -216,7 +216,7 @@ CANCEL BUILD INDEX ON table_name (job_id1, job_id2, ...);
 
 :::
 
-### 既存テーブルからの転置インデックスの削除
+### 既存Tableからの転置インデックスの削除
 
 ```sql
 -- Syntax 1
@@ -232,7 +232,7 @@ ALTER TABLE table_name DROP INDEX idx_name;
 
 ### 転置インデックスの表示
 
--- 構文1: テーブルスキーマのINDEXセクションでUSING INVERTEDが指定されている場合は転置インデックスを示します
+-- 構文1: TableスキーマのINDEXセクションでUSING INVERTEDが指定されている場合は転置インデックスを示します
 SHOW CREATE TABLE table_name;
 
 -- 構文2: IndexTypeがINVERTEDの場合は転置インデックスを示します
@@ -294,7 +294,7 @@ SELECT * FROM table_name WHERE ts > '2023-01-01 00:00:00';
 SELECT * FROM table_name WHERE op_type IN ('add', 'delete');
 
 -- 4. Full-text search across multiple columns using the multi_match function
--- Parameters:
+-- パラメータ:
 --   First N parameters are column names to search
 --   Second-to-last parameter specifies match mode: 'any'/'all'/'phrase'/'phrase_prefix'
 --   Last parameter is the keyword or phrase to search for
@@ -349,7 +349,7 @@ CREATE DATABASE test_inverted_index;
 
 USE test_inverted_index;
 
--- comment フィールドに転置インデックスを持つテーブルを作成
+-- comment フィールドに転置インデックスを持つTableを作成
 --   USING INVERTED でインデックスタイプを転置インデックスとして指定
 --   PROPERTIES("parser" = "english") で "english" トークナイザーの使用を指定。その他のオプションには中国語トークン化用の "chinese" や混合言語トークン化用の "unicode" があります。"parser" パラメータが指定されない場合、トークン化は適用されません。
 
@@ -552,7 +552,7 @@ SHOW ALTER TABLE COLUMN;
   ```
 
   ```sql
--- テーブルにパーティションがない場合、PartitionName はデフォルトで TableName になります
+-- Tableにパーティションがない場合、PartitionName はデフォルトで TableName になります
   SHOW BUILD INDEX;
   +-------+---------------+---------------+----------------------------------------------------------+-------------------------+-------------------------+---------------+----------+------+----------+
   | JobId | TableName     | PartitionName | AlterInvertedIndexes                                     | CreateTime              | FinishTime              | TransactionId | State    | Msg  | Progress |
@@ -562,7 +562,7 @@ SHOW ALTER TABLE COLUMN;
 
   ```
 
-- After the index is created, range queries use the same query syntax. Doris will automatically recognize the index for optimization. However, due to the small dataset, the performance difference is not significant.
+- After the index is created, range queries use the same query syntax. Doris will automatically recognize the index for 最適化. However, due to the small dataset, the performance difference is not significant.
 
   ```sql
 SELECT count() FROM hackernews_1m WHERE timestamp > '2007-08-23 04:17:00';
@@ -574,7 +574,7 @@ SELECT count() FROM hackernews_1m WHERE timestamp > '2007-08-23 04:17:00';
 
   ```
 
-- Performing similar operations on a numeric column `parent` with an equality match query.
+- Performing similar 運用 on a numeric column `parent` with an equality match query.
 
   ```sql
 SELECT count() FROM hackernews_1m WHERE parent = 11189;

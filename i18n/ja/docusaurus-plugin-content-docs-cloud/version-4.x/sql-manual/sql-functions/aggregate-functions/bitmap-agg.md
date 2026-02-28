@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 列の値を集約し（NULL値は除外）、単一行のビットマップ値を返します。つまり、複数の行を1つに変換します。
 
@@ -14,9 +14,9 @@
 ```sql
 BITMAP_AGG(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 集約される値の列または式。exprの型はTINYINT、SMALLINT、INT、LARGEINT、またはBIGINTである必要があり、これらの型のいずれかに変換可能なVARCHARもサポートしています。 |
 

@@ -18,9 +18,9 @@ FROM_BINARY
 ```sql
 FROM_HEX ( <varbinary> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-------|--------------|
 | `<varbinary>` | 入力パラメータはバイナリデータです |
 

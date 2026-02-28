@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-# Complex Type
+# Complex タイプ
 
 DorisはArray、Map、Struct、JSONなどの複合型をサポートしています。
 

@@ -1,13 +1,13 @@
 ---
 {
   "title": "バックエンド",
-  "description": "table関数はバックエンドの一時テーブルを生成し、現在のdorisクラスター内のBEノード情報を表示できます。",
+  "description": "table関数はバックエンドの一時Tableを生成し、現在のdorisクラスター内のBEノード情報を表示できます。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-table関数はバックエンドの一時テーブルを生成し、現在のdorisクラスタ内のBEノード情報を表示することができます。
+table関数はバックエンドの一時Tableを生成し、現在のdorisクラスタ内のBEノード情報を表示することができます。
 
 ## Syntax
 

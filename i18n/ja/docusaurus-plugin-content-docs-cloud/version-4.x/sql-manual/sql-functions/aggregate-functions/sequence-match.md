@@ -19,9 +19,9 @@
 ```sql
 SEQUENCE_MATCH(<pattern>, <timestamp>, <cond_1> [, <cond_2>, ..., <cond_n>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<pattern>` | パターン文字列。以下の**パターン構文**を参照してください。 |
 | `<timestamp>` | 時間データを含むと見なされるカラム。典型的なデータ型は `Date` および `DateTime` です。サポートされている UInt データ型のいずれかも使用できます。 |

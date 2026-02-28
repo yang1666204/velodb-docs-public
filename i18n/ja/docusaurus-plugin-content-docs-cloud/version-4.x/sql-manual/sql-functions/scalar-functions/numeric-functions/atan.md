@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `x` の逆正接を返します。ここで `x` はラジアン単位です。
 
@@ -16,7 +16,7 @@ ATAN(<x>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | atan値を計算する対象の値 |
 

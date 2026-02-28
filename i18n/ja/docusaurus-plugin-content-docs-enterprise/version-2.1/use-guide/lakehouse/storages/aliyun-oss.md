@@ -19,7 +19,7 @@ DorisはS3 Clientを使用してS3互換プロトコル経由でAlibaba Cloud OS
 
 ### パラメータ概要
 
-| Property Name                  | Legacy Name                  | Description                                                  | Default Value |
+| Property Name                  | Legacy Name                  | デスクリプション                                                  | デフォルト値 |
 | ------------------------------ | ---------------------------- | ------------------------------------------------------------ | ------------- |
 | oss.endpoint                   | s3.endpoint                  | OSSエンドポイント。Alibaba Cloud OSSのアクセスエンドポイントを指定します。OSSとOSS HDFSは異なるエンドポイントを持つことに注意してください。 | None          |
 | oss.access_key                 | s3.access_key                | 認証用のOSS Access Key                            | None          |
@@ -63,7 +63,7 @@ OSS-HDFSに保存されたデータへのアクセスは、OSSサービスに直
 
 ### パラメータ概要
 
-| Property Name                  | Legacy Name    | Description                                                 | Default Value | Required |
+| Property Name                  | Legacy Name    | デスクリプション                                                 | デフォルト値 | Required |
 | ------------------------------ |----------------| ----------------------------------------------------------- | ------------- | -------- |
 | oss.hdfs.endpoint              | oss.endpoint   | Alibaba Cloud OSS-HDFSサービスエンドポイント、例：`cn-hangzhou.oss-dls.aliyuncs.com`。 | None          | Yes      |
 | oss.hdfs.access_key            | oss.access_key | 認証用のOSS Access Key                           | None          | Yes      |

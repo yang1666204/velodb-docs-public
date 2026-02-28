@@ -30,7 +30,7 @@ TransactionStatus: VISIBLE
 * TransactionId: トランザクションID
 * Label: insertタスクに対応するラベル
 * Database: insertに対応するデータベース
-* Table: insertに対応するテーブル
+* Table: insertに対応するTable
 * TransactionStatus: トランザクションステータス
    * PREPARE: 準備段階
    * PRECOMMITTED: プリコミット段階

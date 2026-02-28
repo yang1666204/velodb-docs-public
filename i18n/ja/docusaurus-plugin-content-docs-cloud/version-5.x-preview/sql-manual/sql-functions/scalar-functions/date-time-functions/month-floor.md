@@ -29,7 +29,7 @@ MONTH_FLOOR(`<datetime>`, `<period>`, `<origin>`)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<datetime>` | 切り捨てる対象のdatetime値で、DATETIMEおよびDATE型です。具体的なdatetimeフォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |
 | `<period>` | 月間隔値で、INT型です。各間隔に含まれる月数を表します。 |

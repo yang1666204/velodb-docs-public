@@ -121,7 +121,7 @@ GET /rest/v2/manager/query/query_info
     "count": 0  
 }
 ```
-## Get Query Id By Trace Id
+## Get Query Id By トレース Id
 
 `GET /rest/v2/manager/query/trace_id/{trace_id}`
 

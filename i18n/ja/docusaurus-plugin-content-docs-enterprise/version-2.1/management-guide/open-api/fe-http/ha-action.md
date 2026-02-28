@@ -11,7 +11,7 @@
 ```
 GET /rest/v1/ha
 ```
-## Description
+## デスクリプション
 
 HA Actionは、FEクラスターの高可用性グループ情報を取得するために使用されます。
 

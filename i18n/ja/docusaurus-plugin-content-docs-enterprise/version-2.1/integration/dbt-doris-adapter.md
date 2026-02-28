@@ -67,7 +67,7 @@ dbt run
 model：`my_first_dbt_model`と`my_second_dbt_model`
 
 これらはそれぞれ`table`と`view`として具現化されます。
-次に、dorisにログインして`my_first_dbt_model`と`my_second_dbt_model`のデータ結果とテーブル作成文を確認します。
+次に、dorisにログインして`my_first_dbt_model`と`my_second_dbt_model`のデータ結果とTable作成文を確認します。
 ### dbt-doris adapter Materialization
 dbt-doris Materializationは3つをサポートします：
 1. view
@@ -97,16 +97,16 @@ models:
 ```
 #### Table
 
-`table` materialization モードを使用する場合、モデルは各実行時に `create table as select` ステートメントでテーブルとして再構築されます。
+`table` materialization モードを使用する場合、モデルは各実行時に `create table as select` ステートメントでTableとして再構築されます。
 dbt の tablet materialization において、dbt-doris はデータ変更の原子性を保証するために以下の手順を使用します：
-1. 最初に一時テーブルを作成します：`create table this_table_temp as {{ model sql}}`。
-2. `this_table` が存在しないかどうか、つまり初回作成かどうかを判定し、`rename` を実行して一時テーブルを最終テーブルに変更します。
-3. 既に存在する場合は、`alter table this_table REPLACE WITH TABLE this_table_temp PROPERTIES('swap' = 'False')` を実行します。この操作はテーブル名を交換し、`this_table_temp` 一時テーブルを削除できます。[this](../sql-manual/sql-statements/table-and-view/table/ALTER-TABLE-REPLACE) は Doris のトランザクション機構を通じてこの操作の原子性を保証します。
+1. 最初に一時Tableを作成します：`create table this_table_temp as {{ model sql}}`。
+2. `this_table` が存在しないかどうか、つまり初回作成かどうかを判定し、`rename` を実行して一時Tableを最終Tableに変更します。
+3. 既に存在する場合は、`alter table this_table REPLACE WITH TABLE this_table_temp PROPERTIES('swap' = 'False')` を実行します。この操作はTable名を交換し、`this_table_temp` 一時Tableを削除できます。[this](../sql-manual/sql-statements/table-and-view/table/ALTER-TABLE-REPLACE) は Doris のトランザクション機構を通じてこの操作の原子性を保証します。
 
 ``` 
 Advantages: table query speed will be faster than view.
 Disadvantages: The table takes a long time to build or rebuild, additional data will be stored, and incremental data synchronization cannot be performed.
-Recommendation: It is recommended to use the table materialization method for models queried by BI tools or models with slow operations such as downstream queries and conversions.
+Recommendation: It is recommended to use the table materialization method for models queried by BI tools or models with slow 運用 such as downstream queries and conversions.
 ```
 config:
 
@@ -144,22 +144,22 @@ models:
 
 | item                 | description                                                | Required? |
 |---------------------|------------------------------------------------------------|-----------|
-| `materialized`      | テーブルの実体化形式（Doris Duplicateテーブル）                        | Required  |
+| `materialized`      | Tableの実体化形式（Doris DuplicateTable）                        | Required  |
 | `duplicate_key`     | Doris Duplicateキー                                         | Optional  |
-| `replication_num`   | テーブルレプリカの数                                              | Optional  |
-| `partition_by`      | テーブルパーティション列                                            | Optional  |
-| `partition_type`    | テーブルパーティションタイプ、`range`または`list`。（デフォルト：`RANGE`）        | Optional  |
-| `partition_by_init` | 初期化されたテーブルパーティション                                       | Optional  |
-| `distributed_by`    | テーブル分散列                                                 | Optional  |
+| `replication_num`   | Tableレプリカの数                                              | Optional  |
+| `partition_by`      | Tableパーティション列                                            | Optional  |
+| `partition_type`    | Tableパーティションタイプ、`range`または`list`。（デフォルト：`RANGE`）        | Optional  |
+| `partition_by_init` | 初期化されたTableパーティション                                       | Optional  |
+| `distributed_by`    | Table分散列                                                 | Optional  |
 | `buckets`           | バケットサイズ                                                 | Optional  |
-| `properties`        | Dorisテーブルプロパティ                                          | Optional  |
+| `properties`        | DorisTableプロパティ                                          | Optional  |
 
 
 
 
 #### Incremental
 
-dbtの前回実行のインクリメンタルモデルの結果に基づいて、レコードがテーブルにインクリメンタルに挿入または更新されます。
+dbtの前回実行のインクリメンタルモデルの結果に基づいて、レコードがTableにインクリメンタルに挿入または更新されます。
 dorisのインクリメントを実現する方法は2つあります。`incremental_strategy`には2つのインクリメンタル戦略があります：
 * `insert_overwrite`：doris `unique`モデルに依存します。インクリメンタルな要件がある場合、モデルのデータを初期化する際に実体化をincrementalとして指定し、集約列を指定して集約することでインクリメンタルデータカバレッジを実現します。
 * `append`：doris `duplicate`モデルに依存し、インクリメンタルデータのみを追加し、履歴データの変更は一切行いません。そのためunique_keyを指定する必要はありません。
@@ -207,16 +207,16 @@ models:
 
 | item                 | description                                                       | Required? |
 |----------------------------|-------------------------------------------------------------------|-----------|
-| `materialized`             | テーブルのmaterialized形式（Doris Duplicate/Uniqueテーブル）               | Required  |
+| `materialized`             | Tableのmaterialized形式（Doris Duplicate/UniqueTable）               | Required  |
 | `incremental_strategy`     | Incremental_strategy                                              | Optional  |
 | `unique_key`               | Doris Unique key                                                  | Optional  |
-| `replication_num`          | テーブルレプリカ数                                                        | Optional  |
-| `partition_by`             | テーブルパーティション列                                                     | Optional  |
-| `partition_type`           | テーブルパーティションタイプ、`range`または`list`（デフォルト：`RANGE`）              | Optional  |
-| `partition_by_init`        | 初期化されたテーブルパーティション                                              | Optional  |
-| `distributed_by`           | テーブル分散列                                                          | Optional  |
+| `replication_num`          | Tableレプリカ数                                                        | Optional  |
+| `partition_by`             | Tableパーティション列                                                     | Optional  |
+| `partition_type`           | Tableパーティションタイプ、`range`または`list`（デフォルト：`RANGE`）              | Optional  |
+| `partition_by_init`        | 初期化されたTableパーティション                                              | Optional  |
+| `distributed_by`           | Table分散列                                                          | Optional  |
 | `buckets`                  | バケットサイズ                                                          | Optional  |
-| `properties`               | Dorisテーブルプロパティ                                                  | Optional  |
+| `properties`               | DorisTableプロパティ                                                  | Optional  |
 
 
 
@@ -282,7 +282,7 @@ order by u.user_id
 ```
 ### Incremental model sample reference (duplicate mode)
 
-duplicate modeでテーブルを作成します。データ集計は行わず、unique_keyは指定しません
+duplicate modeでTableを作成します。データ集計は行わず、unique_keyは指定しません
 
 ```sql
 {{ config(
@@ -300,7 +300,7 @@ select * from source_data
 ```
 ### インクリメンタルモデルサンプルリファレンス（uniqueモード）
 
-uniqueモードでテーブルを作成し、データを集約する場合、unique_keyを指定する必要があります
+uniqueモードでTableを作成し、データを集約する場合、unique_keyを指定する必要があります
 
 ```sql
 {{ config(
@@ -461,7 +461,7 @@ select
 
 {% endif %}
 ```
-### テーブルデータのカラム型と精度をカスタマイズするサンプルリファレンス
+### Tableデータのカラム型と精度をカスタマイズするサンプルリファレンス
 
 `schema.yaml`ファイルでは、`models`内の`columns`に対して`data_type`を以下のように設定します：
 
@@ -484,7 +484,7 @@ models:
 ```
 ### Access catalog sample reference
 
-Data Catalogは、Dorisデータレイク機能内の異なるデータソースへの参照であり、Databaseの上に階層化されています。
+データカタログは、Dorisデータレイク機能内の異なるデータソースへの参照であり、Databaseの上に階層化されています。
 dbt-doris組み込みMacros: `catalog_source`を通じてアクセスすることが推奨されます。
 
 ```sql

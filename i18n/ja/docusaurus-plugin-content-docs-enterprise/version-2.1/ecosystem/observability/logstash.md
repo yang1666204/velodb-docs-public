@@ -5,15 +5,15 @@
   "language": "ja"
 }
 ---
-# Logstash Doris output plugin
+# Logstash Doris 出力プラグイン
 
 ## はじめに
 
-Logstashは、ログETLフレームワーク（収集、前処理、ストレージシステムへの送信）であり、ストレージシステムにデータを書き込むためのカスタム出力プラグインをサポートしています。Logstash Doris output pluginは、Dorisにデータを出力するためのプラグインです。
+Logstashは、ログETLフレームワーク（収集、前処理、ストレージシステムへの送信）であり、ストレージシステムにデータを書き込むためのカスタム出力プラグインをサポートしています。Logstash Doris 出力プラグインは、Dorisにデータを出力するためのプラグインです。
 
-Logstash Doris output pluginは、Doris Stream Load HTTPインターフェースを呼び出してDorisにリアルタイムでデータを書き込み、マルチスレッド並行処理、失敗時のリトライ、カスタムStream Loadフォーマットとパラメータ、出力書き込み速度などの機能を提供します。
+Logstash Doris 出力プラグインは、Doris Stream Load HTTPインターフェースを呼び出してDorisにリアルタイムでデータを書き込み、マルチスレッド並行処理、失敗時のリトライ、カスタムStream Loadフォーマットとパラメータ、出力書き込み速度などの機能を提供します。
 
-Logstash Doris output pluginの使用は主に3つのステップで構成されています：
+Logstash Doris 出力プラグインの使用は主に3つのステップで構成されています：
 1. Logstashにプラグインをインストールする
 2. Doris出力アドレスとその他のパラメータを設定する
 3. Logstashを起動してDorisにリアルタイムでデータを書き込む
@@ -61,20 +61,20 @@ export JARS_SKIP="true"
 ${LOGSTASH_HOME}/bin/logstash-plugin install logstash-output-doris-1.2.0.gem
 
 ```
-## Configuration
+## 構成
 
 Logstash Doris outputプラグインの設定は以下の通りです：
 
-Configuration | Description
+構成 | デスクリプション
 --- | ---
 `http_hosts` | Stream Load HTTPアドレス、文字列配列として書式設定され、1つまたは複数の要素を持つことができ、各要素はhost:port形式。例：["http://fe1:8030", "http://fe2:8030"]
-`user` | Dorisユーザー名、このユーザーは対応するDorisデータベースとテーブルに対するインポート権限が必要
+`user` | Dorisユーザー名、このユーザーは対応するDorisデータベースとTableに対するインポート権限が必要
 `password` | Dorisユーザーのパスワード
 `db` | 書き込み先のDorisデータベース名
-`table` | 書き込み先のDorisテーブル名
+`table` | 書き込み先のDorisTable名
 `label_prefix` | Doris Stream Load Labelプレフィックス、最終的に生成されるLabelは *{label_prefix}_{db}_{table}_{yyyymmdd_hhmmss}_{uuid}*、デフォルト値はlogstash
 `headers` | Doris Stream Load headersパラメータ、構文形式はruby map、例：headers => { "format" => "json", "read_json_by_line" => "true" }
-`mapping` | Logstashフィールドからorisテーブルフィールドへのマッピング、後続セクションの使用例を参照
+`mapping` | LogstashフィールドからorisTableフィールドへのマッピング、後続セクションの使用例を参照
 `message_only` | マッピングの特別な形式、Logstash @messageフィールドのみをDorisに出力、デフォルトはfalse
 `max_retries` | 失敗時のDoris Stream Load リクエストの再試行回数、デフォルトは-1で無限再試行によりデータの信頼性を保証
 `log_request` | トラブルシューティングのためにDoris Stream Load リクエストとレスポンスのメタデータをログに出力するかどうか、デフォルトはfalse
@@ -98,9 +98,9 @@ org.apache.doris.common.UserException: errCode = 2, detailMessage = tablet 10031
         at org.apache.doris.planner.OlapScanNode.addScanRangeLocations(OlapScanNode.java:931) ~[doris-fe.jar:1.2-SNAPSHOT]
         at org.apache.doris.planner.OlapScanNode.computeTabletInfo(OlapScanNode.java:1197) ~[doris-fe.jar:1.2-SNAPSHOT]
 ```
-**2. テーブル作成**
+**2. Table作成**
 
-テーブル構造には、ログの作成時刻、収集時刻、hostname、ログファイルパス、ログタイプ、ログレベル、スレッド名、コード位置、およびログ内容などのフィールドが含まれます。
+Table構造には、ログの作成時刻、収集時刻、hostname、ログファイルパス、ログタイプ、ログレベル、スレッド名、コード位置、およびログ内容などのフィールドが含まれます。
 
 ```
 CREATE TABLE `doris_log` (
@@ -242,7 +242,7 @@ ${LOGSTASH_HOME}/bin/logstash -f config/logstash_doris_log.conf
 
 [2024-07-08T22:35:38,285][INFO ][logstash.outputs.doris   ][main] total 11 MB 18978 ROWS, total speed 0 MB/s 632 R/s, last 10 seconds speed 1 MB/s 1897 R/s
 ```
-### JSON Log Collection Example
+### JSON ログ Collection Example
 
 この例では、GitHub events archiveのデータを使用してJSONログ収集を実演します。
 
@@ -285,7 +285,7 @@ wget https://data.gharchive.org/2024-01-01-15.json.gz
   "created_at": "2024-04-01T23:00:00Z"
 }
 ```
-**2. テーブル作成**
+**2. Table作成**
 
 ```
 CREATE DATABASE log_db;

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Function
+## ファンクション
 
 `ARRAY_ZIP`関数は、複数の`ARRAY`（例：`arr1, arr2, ... , arrN`）を要素ごとに結合して、単一の`ARRAY<STRUCT>`にします。各`STRUCT`には、各入力配列の対応する要素が含まれます。
 

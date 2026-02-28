@@ -10,7 +10,7 @@
 
 `POST /api/restore_tablet?tablet_id={int}&schema_hash={int}"`
 
-## Description
+## デスクリプション
 
 BE上のtrash dirからタブレットデータを復元する
 

@@ -14,7 +14,7 @@
 ```sql
 SHOW CREATE LOAD FOR <load_name>;
 ```
-## Required Parameters
+## Required パラメータ
 
 **`<load_name>`**
 
@@ -24,7 +24,7 @@ SHOW CREATE LOAD FOR <load_name>;
 
 このSQLコマンドを実行するユーザーは、最低限以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes |
+| Privilege | Object | 注釈 |
 | :---------------- | :------------- | :---------------------------- |
 | ADMIN/NODE_PRIV | Database | クラスター管理者権限が必要です。 |
 

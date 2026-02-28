@@ -21,7 +21,7 @@ ST_TOUCHES( <shape1>, <shape2>)
 ```
 ## Parameter
 
-| Parameter| Description                     |
+| Parameter| デスクリプション                     |
 |----------|------------------------|
 | `<shape1>` | 接触を判定する最初の幾何形状。Point、LineString、Polygon、Circle等のタイプをサポートします。 |
 | `<shape2>` | 接触を判定する2番目の幾何形状。Point、LineString、Polygon、Circle等のタイプをサポートします。 |

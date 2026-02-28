@@ -9,7 +9,7 @@ Data Cacheは、リモートストレージシステム（HDFSまたはオブジ
 
 ## 適用シナリオ
 
-データキャッシュ機能は、Hive、Iceberg、Hudi、およびPaimonテーブルに対するクエリでのみ動作します。内部テーブルクエリや非ファイル外部テーブルクエリ（JDBCやElasticsearchなど）には効果がありません。
+データキャッシュ機能は、Hive、Iceberg、Hudi、およびPaimonTableに対するクエリでのみ動作します。内部Tableクエリや非ファイル外部Tableクエリ（JDBCやElasticsearchなど）には効果がありません。
 
 データキャッシュがクエリ効率を改善できるかどうかは、複数の要因に依存します。以下は、データキャッシュの適用シナリオです：
 
@@ -48,7 +48,7 @@ file_cache_path=[{"path": "/path/to/file_cache1", "total_size":53687091200},{"pa
 
 `total_size` はキャッシュ領域サイズの上限値で、単位はバイトです。キャッシュ領域を超過した場合、LRU戦略を使用してキャッシュされたデータを削除します。
 
-### FE Configuration
+### FE 構成
 
 単一セッションでData Cacheを有効にする：
 
@@ -62,7 +62,7 @@ SET GLOBAL enable_file_cache = true;
 ```
 `enable_file_cache`が有効でない場合、BEがキャッシュディレクトリで設定されていてもキャッシュは使用されないことに注意してください。同様に、BEがキャッシュディレクトリで設定されていない場合、`enable_file_cache`が有効であってもキャッシュは使用されません。
 
-## Cache Observability
+## Cache オブザーバビリティ
 
 ### キャッシュヒット率の確認
 
@@ -100,7 +100,7 @@ SET GLOBAL enable_file_cache = true;
 
 ### Monitoring Metrics
 
-ユーザーは、システムテーブル`file_cache_statistics`を通じて各Backendノードのキャッシュ統計を確認できます。
+ユーザーは、システムTable`file_cache_statistics`を通じて各Backendノードのキャッシュ統計を確認できます。
 
 ## Cache Warmup
 
@@ -119,7 +119,7 @@ FROM <table_reference>
 
 * サポート対象:
 
-  * 単一テーブルクエリ（一つのtable_referenceのみ許可）
+  * 単一Tableクエリ（一つのtable_referenceのみ許可）
   * 指定された列に対するシンプルなSELECT
   * WHERE フィルタリング（通常の述語をサポート）
 
@@ -129,12 +129,12 @@ FROM <table_reference>
   * GROUP BY、HAVING、ORDER BY
   * LIMIT
   * INTO OUTFILE
-  * マルチテーブル / 複雑なクエリプラン
+  * マルチTable / 複雑なクエリプラン
   * その他の複雑な構文
 
 ### 例
 
-1. テーブル全体をウォームアップする
+1. Table全体をウォームアップする
 
   ```sql
   WARM UP SELECT * FROM hive_db.tpch100_parquet.lineitem;

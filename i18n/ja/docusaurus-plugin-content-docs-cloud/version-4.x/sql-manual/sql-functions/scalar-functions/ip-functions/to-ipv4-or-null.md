@@ -14,7 +14,7 @@
 TO_IPV4_OR_NULL(<ipv4_str>)
 ```
 ## パラメータ
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ipv4_str>`      | String型のIPv4アドレス |
 

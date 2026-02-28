@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントはデータを更新するために使用されます。UPDATE ステートメントは現在 UNIQUE KEY モデルのみをサポートしています。
 
@@ -22,15 +22,15 @@ UPDATE target_table [table_alias]
 ```
 #### 必須パラメータ
 
-+ target_table: 更新するデータの対象テーブル。'db_name.table_name'の形式で指定可能
++ target_table: 更新するデータの対象Table。'db_name.table_name'の形式で指定可能
 + assignment_list: 更新する対象カラム。'col_name = value, col_name = value'の形式で指定
 + where condition: 更新が期待される条件。trueまたはfalseを返す式を指定可能
 
 #### オプションパラメータ
 
 + cte: Common Table Expression。例：'WITH a AS SELECT * FROM tbl'
-+ table_alias: テーブルのエイリアス
-+ FROM additional_tables: 更新する行を選択するため、または新しい値を設定するために使用する1つ以上のテーブルを指定。ここで対象テーブルを使用したい場合は、明示的にエイリアスを指定する必要があります。
++ table_alias: Tableのエイリアス
++ FROM additional_tables: 更新する行を選択するため、または新しい値を設定するために使用する1つ以上のTableを指定。ここで対象Tableを使用したい場合は、明示的にエイリアスを指定する必要があります。
 
 #### 注意
 
@@ -38,14 +38,14 @@ UPDATE target_table [table_alias]
 
 ## 例
 
-`test`テーブルはユニークモデルテーブルで、k1、k2、v1、v2の4つのカラムを含みます。k1、k2はキー、v1、v2は値で、集約方法はReplaceです。
+`test`TableはユニークモデルTableで、k1、k2、v1、v2の4つのカラムを含みます。k1、k2はキー、v1、v2は値で、集約方法はReplaceです。
 
-1. k1 =1、k2 =2の条件を満たす`test`テーブルのv1カラムを1に更新
+1. k1 =1、k2 =2の条件を満たす`test`Tableのv1カラムを1に更新
 
 ```sql
 UPDATE test SET v1 = 1 WHERE k1=1 and k2=2;
 ```
-2. 'test'テーブルのk1=1列のv1列を1だけインクリメントする
+2. 'test'Tableのk1=1列のv1列を1だけインクリメントする
 
 ```sql
 UPDATE test SET v1 = v1+1 WHERE k1=1;
@@ -94,7 +94,7 @@ UPDATE t1
   FROM t2 INNER JOIN t3 ON t2.id = t3.id
   WHERE t1.id = t2.id;
 ```
-期待される結果は、テーブルt1でid = 1の行のみを更新することです
+期待される結果は、Tablet1でid = 1の行のみを更新することです
 
 ```
 +----+----+----+--------+------------+

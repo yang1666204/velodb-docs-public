@@ -9,16 +9,16 @@
 
 ## Query Memory View
 
-どこかで`Label=query, Type=overview`のMemory Trackerの値が大きい場合、クエリのメモリ使用量が高いことを意味します。
+どこかで`Label=query, タイプ=overview`のMemory Trackerの値が大きい場合、クエリのメモリ使用量が高いことを意味します。
 
 ```
-MemTrackerLimiter Label=query, Type=overview, Limit=-1.00 B(-1 B), Used=83.32 MB(87369024 B), Peak=88.33 MB(92616000 B)
+MemTrackerLimiter Label=query, タイプ=overview, Limit=-1.00 B(-1 B), Used=83.32 MB(87369024 B), Peak=88.33 MB(92616000 B)
 ```
 分析対象のクエリが既に分かっている場合は、このセクションをスキップして以下の分析に進んでください。そうでなければ、以下の方法を参照して大容量メモリクエリを特定してください。
 
 まず、大容量メモリクエリのQueryIDを特定します。BEのWebページ `http://{be_host}:{be_web_server_port}/mem_tracker?type=query` では、`Current Consumption`でソートすることで、リアルタイムの大容量メモリクエリを確認できます。`label`でQueryIDを見つけることができます。
 
-エラープロセスのメモリが制限を超えるか、利用可能メモリが不足している場合、`be.INFO`ログの`Memory Tracker Summary`の下部には、メモリ使用量が最も多い上位10個のタスク（query/load/compaction等）のMemory Trackerが含まれています。形式は`MemTrackerLimiter Label=Query#Id=xxx, Type=query`です。通常、大容量メモリクエリのQueryIDは上位10個のタスクで特定できます。
+エラープロセスのメモリが制限を超えるか、利用可能メモリが不足している場合、`be.INFO`ログの`Memory Tracker Summary`の下部には、メモリ使用量が最も多い上位10個のタスク（query/load/compaction等）のMemory Trackerが含まれています。形式は`MemTrackerLimiter Label=Query#Id=xxx, タイプ=query`です。通常、大容量メモリクエリのQueryIDは上位10個のタスクで特定できます。
 
 履歴クエリのメモリ統計は、`fe/log/fe.audit.log`の各クエリの`peakMemoryBytes`で確認するか、`be/log/be.INFO`で`Deregister query/load memory tracker, queryId`を検索して、単一のBE上での各クエリのピークメモリを確認できます。
 
@@ -96,9 +96,9 @@ HASH_JOIN_SINK_OPERATOR  (id=12  ,  nereids_id=1304):(ExecTime:  1min14sec)
         -  HashTable:  6.24  GB
         -  PeakMemoryUsage:  21.89 GB
 ```
-Hash Join Build フェーズにおいて、`BuildBlocks` と `HashTable` が主にメモリを使用していることが確認できます。通常、Hash Join Build フェーズは過度にメモリを使用します。まず、Join Reorder の順序が適切かどうかを確認してください。通常、正しい順序は小さなテーブルを Hash Join Build に、大きなテーブルを Hash Join Probe に使用することです。これにより Hash Join の全体的なメモリ使用量を最小化でき、通常はより良いパフォーマンスが得られます。
+Hash Join Build フェーズにおいて、`BuildBlocks` と `HashTable` が主にメモリを使用していることが確認できます。通常、Hash Join Build フェーズは過度にメモリを使用します。まず、Join Reorder の順序が適切かどうかを確認してください。通常、正しい順序は小さなTableを Hash Join Build に、大きなTableを Hash Join Probe に使用することです。これにより Hash Join の全体的なメモリ使用量を最小化でき、通常はより良いパフォーマンスが得られます。
 
-Join Reorder の順序が適切かどうかを確認するために、id=12 の `HASH_JOIN_OPERATOR` のプロファイルを確認します。`ProbeRows` が 196240 行しかないことが確認できます。したがって、この Hash Join Reorder の正しい順序は、左側と右側のテーブルの位置を交換することです。`set disable_join_reorder=true` で Join Reorder を無効にし、左側と右側のテーブルの順序を手動で指定してから Query の検証を実行できます。詳細については、クエリオプティマイザの Join Reorder に関する関連文書を参照してください。
+Join Reorder の順序が適切かどうかを確認するために、id=12 の `HASH_JOIN_OPERATOR` のプロファイルを確認します。`ProbeRows` が 196240 行しかないことが確認できます。したがって、この Hash Join Reorder の正しい順序は、左側と右側のTableの位置を交換することです。`set disable_join_reorder=true` で Join Reorder を無効にし、左側と右側のTableの順序を手動で指定してから Query の検証を実行できます。詳細については、クエリオプティマイザの Join Reorder に関する関連文書を参照してください。
 
 ```
 HASH_JOIN_OPERATOR  (id=12  ,  nereids_id=1304):(ExecTime:  8sec223ms)

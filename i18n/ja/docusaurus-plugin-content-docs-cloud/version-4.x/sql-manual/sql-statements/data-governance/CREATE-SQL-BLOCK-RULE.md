@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントはSQLブロックルールを作成するために使用されます。
 
@@ -44,10 +44,10 @@ PROPERTIES (
 > - sqlHash: SQLのMD5ハッシュ値。これは主にスローログと組み合わせて使用されます。ユーザーがハッシュ値を自分で計算する必要はありません。例えば、スローログで特定のSQLの実行が遅いことが示されている場合、`fe.audit.log`から`SqlHash`をコピーしてSQL_BLOCK_RULEを作成し、このSQLの実行を制限できます。
 >
 > **スキャン制限カテゴリ**
-> ユーザーがクエリを開始すると、クエリオプティマイザは各テーブルでスキャンが必要なパーティション数、tablet数、データ行数を計算します。以下のプロパティを使用して、これら3つの数値をすべて同時に、または一部のみを制限できます。
-> - partition_num: テーブルがスキャンするパーティションの最大数。
-> - tablet_num: テーブルがスキャンするtabletの最大数。
-> - cardinality: テーブルがスキャンするデータの行数。
+> ユーザーがクエリを開始すると、クエリオプティマイザは各Tableでスキャンが必要なパーティション数、tablet数、データ行数を計算します。以下のプロパティを使用して、これら3つの数値をすべて同時に、または一部のみを制限できます。
+> - partition_num: Tableがスキャンするパーティションの最大数。
+> - tablet_num: Tableがスキャンするtabletの最大数。
+> - cardinality: Tableがスキャンするデータの行数。
 >
 > **スイッチカテゴリ**
 >
@@ -59,7 +59,7 @@ PROPERTIES (
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege    | Object | Notes |
+| Privilege    | Object | 注釈 |
 | ------------ | ------ | ----- |
 | ADMIN_PRIV | Global |       |
 
@@ -81,7 +81,7 @@ PROPERTIES (
    mysql> select * from order_analysis;
    ERROR 1064 (HY000): errCode = 2, detailMessage = sql match regex sql block rule: order_analysis_rule
    ```
-2. 同一テーブルの30パーティション以上のスキャンを防止し、クエリデータ量を100億行以下に制限するルールを作成する
+2. 同一Tableの30パーティション以上のスキャンを防止し、クエリデータ量を100億行以下に制限するルールを作成する
 
    ```sql
    CREATE SQL_BLOCK_RULE test_rule2 
@@ -93,7 +93,7 @@ PROPERTIES (
        "enable" = "true"
    );
    ```
-3. SQLマッチングは正規表現に基づいています。より多くのSQLパターンをマッチさせたい場合は、対応する正規表現を記述する必要があります。例えば、SQL内のスペースを無視し、"order"で始まるテーブルへのクエリを防ぐ場合は、以下のようになります：
+3. SQLマッチングは正規表現に基づいています。より多くのSQLパターンをマッチさせたい場合は、対応する正規表現を記述する必要があります。例えば、SQL内のスペースを無視し、"order"で始まるTableへのクエリを防ぐ場合は、以下のようになります：
 
    ```sql
    CREATE SQL_BLOCK_RULE test_rule3

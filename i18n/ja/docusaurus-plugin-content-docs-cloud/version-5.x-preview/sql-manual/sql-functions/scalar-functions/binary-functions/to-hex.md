@@ -18,9 +18,9 @@ TO_BINARY
 ```sql
 TO_HEX(<str>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<str>` | 変換される文字列データ |
 

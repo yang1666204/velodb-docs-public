@@ -14,9 +14,9 @@
 ```sql
 AI_SUMMARIZE([<resource_name>], <text>)
 ```
-## Parameters
+## パラメータ
 
-|    Parameter      | Description                |
+|    Parameter      | デスクリプション                |
 | ----------------- | ------------------------- |
 | `<resource_name>` | 指定されたリソース名|
 | `<text>`          | 要約対象のテキスト  |

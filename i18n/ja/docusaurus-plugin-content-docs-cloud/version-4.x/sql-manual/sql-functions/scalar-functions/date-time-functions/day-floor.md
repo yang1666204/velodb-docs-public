@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 日付を指定された時間間隔期間の最も近いタイムスタンプに切り下げます。
 
@@ -17,9 +17,9 @@ DAY_FLOOR(<datetime>, <origin>)
 DAY_FLOOR(<datetime>, <period>)
 DAY_FLOOR(<datetime>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<datetime>` | 有効な日付式 |
 | `<period>` | 各期間を構成する日数を指定する |

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 VAR_SAMP関数は、指定された式の標本分散を計算します。VARIANCE（母分散）とは異なり、VAR_SAMPは除数としてn-1を使用し、これは統計学において母分散の不偏推定値とされています。
 
@@ -18,9 +18,9 @@ VAR_SAMP関数は、指定された式の標本分散を計算します。VARIAN
 ```sql
 VAR_SAMP(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | サンプル分散を計算する列または式。Double型をサポートします。 |
 

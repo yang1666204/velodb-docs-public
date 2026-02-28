@@ -100,7 +100,7 @@ ERROR 1105 (HY000): errCode = 2, detailMessage = (127.0.0.1)[INVALID_ARGUMENT]Fa
 
 以下のDorisタイプは、精度を失うことなく直接JSONにキャストできます：
 
-| Doris Type | JSON Type |
+| Doris タイプ | JSON タイプ |
 |------------|-----------|
 | BOOLEAN | Bool |
 | TINYINT | Int8 |
@@ -258,7 +258,7 @@ mysql> SELECT CAST(TO_JSON(ARRAY(1,2,3)) AS ARRAY<INT>);
 | [1, 2, 3]                                 |
 +-------------------------------------------+
 
--- Type conversion within array elements
+-- タイプ conversion within array elements
 mysql> SELECT CAST(TO_JSON(ARRAY(1.2,2.3,3.4)) AS ARRAY<INT>);
 +-------------------------------------------------+
 | CAST(TO_JSON(ARRAY(1.2,2.3,3.4)) AS ARRAY<INT>) |

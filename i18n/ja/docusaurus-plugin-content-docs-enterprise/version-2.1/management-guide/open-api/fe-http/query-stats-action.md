@@ -18,7 +18,7 @@ delete api/query_stats/<catalog_name>/<db_name>/<tbl_name>
 ```
 ## 説明
 
-指定されたカタログデータベースまたはテーブルの統計情報を取得または削除します。dorisカタログの場合、default_clusterを使用できます。
+指定されたカタログデータベースまたはTableの統計情報を取得または削除します。dorisカタログの場合、default_clusterを使用できます。
 
 ## パスパラメータ
 
@@ -29,11 +29,11 @@ delete api/query_stats/<catalog_name>/<db_name>/<tbl_name>
     指定されたデータベース名
 
 * `<tbl_name>`
-    指定されたテーブル名
+    指定されたTable名
 
 ## クエリパラメータ
 * `summary`
-    trueの場合、サマリ情報のみを返します。それ以外の場合、テーブルの詳細な統計情報をすべて返します。取得時のみ使用されます。
+    trueの場合、サマリ情報のみを返します。それ以外の場合、Tableの詳細な統計情報をすべて返します。取得時のみ使用されます。
 
 ## リクエストボディ
 

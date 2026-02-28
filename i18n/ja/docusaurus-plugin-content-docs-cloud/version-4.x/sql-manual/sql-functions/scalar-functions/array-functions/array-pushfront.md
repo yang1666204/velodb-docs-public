@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 配列の先頭に値を追加します
 
@@ -14,9 +14,9 @@
 ```sql
 ARRAY_PUSHFRONT(<arr>, <value>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|---|
 | `<arr>` | 対応する配列 |
 | `<value>` | 追加される値 |

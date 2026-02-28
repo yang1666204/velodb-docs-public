@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 compute-storage結合モードでは、このステートメントは指定されたタブレットを診断するために使用されます。結果には、タブレットに関する情報といくつかの潜在的な問題が表示されます。
 
@@ -42,7 +42,7 @@ SHOW TABLET DIAGNOSIS <tablet_id>;
 
   > タブレットが属するTableとそのID
 
-- Partition
+- パーティション
 
   > タブレットが属するPartitionとそのID
 
@@ -87,7 +87,7 @@ SHOW TABLET DIAGNOSIS <tablet_id>;
   | TabletId                         | 10078                                       |            |
   | Database                         | __internal_schema: 10005                    |            |
   | Table                            | audit_log: 10058                            |            |
-  | Partition                        | p20241109: 10075                            |            |
+  | パーティション                        | p20241109: 10075                            |            |
   | MaterializedIndex                | audit_log: 10059                            |            |
   | Replicas(ReplicaId -> BackendId) | {"10099":10003,"10116":10002,"10079":10004} |            |
   | ReplicasNum                      | OK                                          |            |
@@ -101,7 +101,7 @@ SHOW TABLET DIAGNOSIS <tablet_id>;
 
 このSQLコマンドを正常に実行するための前提条件は、ADMIN_PRIV権限を持つことです。権限に関するドキュメントを参照してください。
 
-| Privilege (Privilege) | Object (Object)                      | Notes (Notes)                   |
+| Privilege (Privilege) | Object (Object)                      | 注釈 (注釈)                   |
 | :-------------------- | :----------------------------------- | :------------------------------ |
 | ADMIN_PRIV            | クラスター全体の管理権限 | NODE_PRIV以外のすべての権限 |
 

@@ -14,9 +14,9 @@
 ```sql
 sub_replace(<str>, <new_str>, [ ,<start> [ , <len> ] ])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<str>` | 置換が行われる対象の文字列 |
 | `<new_str>` | 指定された部分文字列を置き換える文字列 |

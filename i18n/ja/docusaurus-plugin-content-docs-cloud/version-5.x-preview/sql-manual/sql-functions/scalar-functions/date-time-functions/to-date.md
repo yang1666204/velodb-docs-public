@@ -16,8 +16,8 @@ TO_DATE関数は、datetime値をDATE型（年、月、日のみを含み、YYYY
 ```sql
 TO_DATE(`<datetime_value>`)
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<datetime_value>` | DATETIME型のdatetime値。DATETIME形式をサポートします。datetime形式については[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)を参照してください |
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-この文書では、[MaxCompute Catalog](../catalogs/maxcompute-catalog.md)を使用してAlibaba Cloud MaxComputeからApache Dorisにデータを迅速にインポートする方法について説明します。
+この文書では、[MaxCompute カタログ](../catalogs/maxcompute-catalog.md)を使用してAlibaba Cloud MaxComputeからApache Dorisにデータを迅速にインポートする方法について説明します。
 
 この文書はApache Dorisバージョン2.1.9に基づいています。
 
@@ -37,7 +37,7 @@ Doris クラスターと MaxCompute サービスが同じ VPC 内にあり、正
 
 ## MaxCompute データのインポート
 
-### 01 Catalog の作成
+### 01 カタログ の作成
 
 ```sql
 CREATE CATALOG mc PROPERTIES (
@@ -60,13 +60,13 @@ CREATE CATALOG mc PROPERTIES (
   'mc.enable.namespace.schema' = 'true'
 );
 ```
-詳細については、[MaxCompute Catalog](../catalogs/maxcompute-catalog.md)のドキュメントを参照してください。
+詳細については、[MaxCompute カタログ](../catalogs/maxcompute-catalog.md)のドキュメントを参照してください。
 
 ### 02 TPCHデータセットのインポート
 
 MaxComputeの公開データセットにあるTPCH 100データセットを例として使用し（データはすでにMaxComputeにインポート済み）、`CREATE TABLE AS SELECT`文を使ってMaxComputeのデータをDorisにインポートします。
 
-このデータセットには7つのテーブルが含まれています。最大のテーブルである`lineitem`は16列、600,037,902行で構成されており、約30GBのディスク容量を占有します。
+このデータセットには7つのTableが含まれています。最大のTableである`lineitem`は16列、600,037,902行で構成されており、約30GBのディスク容量を占有します。
 
 ```sql
 -- switch catalog
@@ -88,7 +88,7 @@ CREATE TABLE tpch_100g.supplier AS SELECT * FROM mc.selectdb_test.supplier;
 
 MaxComputeのパブリックデータセットからGithub Eventデータセットを例として使用し（データは既にMaxComputeにインポート済み）、`CREATE TABLE AS SELECT`文を使ってMaxComputeのデータをDorisにインポートします。
 
-ここでは、'2015-01-01'から'2016-01-01'までの365パーティションについて、`dwd_github_events_odps`テーブルからデータを選択します。データは32列、212,786,803行で、約10GBのディスク容量を占有します。
+ここでは、'2015-01-01'から'2016-01-01'までの365パーティションについて、`dwd_github_events_odps`Tableからデータを選択します。データは32列、212,786,803行で、約10GBのディスク容量を占有します。
 
 ```sql
 -- switch catalog

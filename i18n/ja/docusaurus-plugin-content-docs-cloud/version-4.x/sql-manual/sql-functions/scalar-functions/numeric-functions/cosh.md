@@ -15,7 +15,7 @@
 
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | 双曲線余弦を計算する値 |
 

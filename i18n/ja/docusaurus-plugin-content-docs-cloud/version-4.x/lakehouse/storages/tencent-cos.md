@@ -17,7 +17,7 @@
 
 ## パラメータ概要
 
-| Property Name                  | Legacy Name              | Description                                                  | Default Value | Required |
+| Property Name                  | Legacy Name              | デスクリプション                                                  | デフォルト値 | Required |
 | ------------------------------ | ------------------------ | ------------------------------------------------------------ | ------------- | -------- |
 | cos.endpoint                   | s3.endpoint              | COSエンドポイント、Tencent Cloud COSのアクセスエンドポイントを指定 |               | Yes      |
 | cos.access_key                 | s3.access_key            | COSアクセスキー、COSへのアクセス認証に使用                   |               | Yes      |

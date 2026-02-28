@@ -31,9 +31,9 @@ modeパラメータの効果は以下の表に示されています：
 WEEK(`<date_or_time_expr>`)
 WEEK(`<date_or_time_expr>`, `<mode>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<datetime_or_date>` | 入力するdatetime値、date/datetimeタイプをサポートします。datetimeとdateの形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `mode` | 年の最初の週の計算方法を指定、型はINT、範囲は0-7 |

@@ -14,9 +14,9 @@
 ```sql
 array_flatten(<a>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description | 
+| Parameter | デスクリプション | 
 | --- | --- |
 | `<a>` | ARRAY配列 |
 

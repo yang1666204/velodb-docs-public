@@ -16,7 +16,7 @@ FROM_MILLISECOND(<millisecond>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<millisecond>` | 入力するUnixタイムスタンプ、整数型（BIGINT）、1970-01-01 00:00:00 UTCからのミリ秒数を表す。 |
 

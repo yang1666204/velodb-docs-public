@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定されたdatetimeから時間情報を取得します。
 
@@ -14,9 +14,9 @@
 ```sql
 HOUR(<dt>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<dt>` | 計算対象の日付。 |
 

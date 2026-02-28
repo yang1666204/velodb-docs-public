@@ -14,9 +14,9 @@
 ```sql
 HLL_TO_BASE64(<hll_input>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter    | Description                                          |
+| Parameter    | デスクリプション                                          |
 | ------------ | ---------------------------------------------------- |
 | `<hll_input>` | base64エンコード文字列に変換するHyperLogLog（HLL）データ。 |
 

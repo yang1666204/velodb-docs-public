@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 符号なしbigintをBitmapに変換します。
 
@@ -16,9 +16,9 @@
 ```sql
 TO_BITMAP(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                        |
+| Parameter | デスクリプション                                        |
 |-----------|----------------------------------------------------|
 | `<expr>`  | 0から18446744073709551615の範囲の符号なしbigintまたは文字列として表現された数値 |
 

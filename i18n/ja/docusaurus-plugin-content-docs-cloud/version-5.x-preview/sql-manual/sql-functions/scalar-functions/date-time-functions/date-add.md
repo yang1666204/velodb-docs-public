@@ -22,9 +22,9 @@ DATE_ADD関数は、指定された日付または時刻の値に指定された
 ```sql
 DATE_ADD(<date_or_time_expr>, <expr> <time_unit>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<date_or_time_expr>` | 処理する日付/時刻値。サポートされる型：datetime型またはdate型、秒の最大精度は小数点以下6桁まで（例：2022-12-28 23:59:59.999999）。具体的なdatetimeとdateの形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<expr>` | 追加する時間間隔、`INT`型 |

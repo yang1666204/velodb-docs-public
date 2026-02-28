@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 パラメータ x の負の値を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 NEGATIVE(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>`   | 独立変数は `BIGINT, DOUBLE, and DECIMAL` 型をサポートします |
 

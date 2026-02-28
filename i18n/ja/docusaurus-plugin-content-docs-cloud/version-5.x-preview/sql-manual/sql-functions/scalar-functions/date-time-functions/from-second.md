@@ -13,9 +13,9 @@ FROM_SECOND関数は、Unixタイムスタンプ（秒単位）をDATETIME型の
 ```sql
 FROM_SECOND(<unix_timestamp>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<unix_timestamp>` | 入力するUnixタイムスタンプ。整数型（BIGINT）で、1970-01-01 00:00:00 UTCからの秒数を表す。 |
 

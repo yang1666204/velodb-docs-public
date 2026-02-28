@@ -51,15 +51,15 @@
 
 VeloDB Consoleサイドバーの**Data > Import**に移動し、**Create new**をクリックして**Object Storage S3**を選択します。
 
-![Step 1: Connection](/images/cloud/integration/s3/p1.png)
+![ステップ 1: Connection](/images/cloud/integration/s3/p1.png)
 
 ### 設定
 
 | フィールド | 説明 |
 |-------|-------------|
 | **Task Name** | このインポートタスクの一意の名前（例：`sales_data`、`user_logs`） |
-| **Comment** | *（オプション）* インポートタスクの説明 |
-| **Authentication** | Access Key認証を選択 |
+| **コメント** | *（オプション）* インポートタスクの説明 |
+| **認証** | Access Key認証を選択 |
 | **AK** | Your Access Key ID（例：`AKIAIOSFODNN7EXAMPLE`） |
 | **SK** | Your Secret Access Key |
 | **Object Storage Path** | データへのURL（以下の形式を参照） |
@@ -84,13 +84,13 @@ https://<bucket-name>.s3.<region>.amazonaws.com/<path>/<filename>
 
 VeloDBがデータファイルを解析する方法を設定します。
 
-![Step 2: Incoming Data](/images/cloud/integration/s3/p2.png)
+![ステップ 2: Incoming Data](/images/cloud/integration/s3/p2.png)
 
 ### ファイル設定
 
 | フィールド | 説明 |
 |-------|-------------|
-| **File Type** | ファイル形式を選択：CSV、Parquet、ORC、またはJSON |
+| **File タイプ** | ファイル形式を選択：CSV、Parquet、ORC、またはJSON |
 | **File Compression** | 自動検出または指定：GZ、BZ2、LZ4、LZO、DEFLATE、ZSTD、ZLIB |
 | **Specify Delimiter** | 列区切り文字（CSVの場合は`,`、TSVの場合は`\t`） |
 | **Enclose** | テキストフィールドの引用符文字（通常は空のままにします） |
@@ -110,11 +110,11 @@ VeloDBがデータファイルを解析する方法を設定します。
 
 **Next**をクリックして続行します。
 
-## ステップ3：テーブル設定
+## ステップ3：Table設定
 
-データをプレビューし、宛先テーブルを設定します。
+データをプレビューし、宛先Tableを設定します。
 
-![Step 3: Configure Table](/images/cloud/integration/s3/p3.png)
+![ステップ 3: Configure Table](/images/cloud/integration/s3/p3.png)
 
 ### データプレビュー
 
@@ -127,28 +127,28 @@ VeloDBがデータファイルを解析する方法を設定します。
 
 | オプション | 説明 |
 |--------|-------------|
-| **New Table** | 自動生成されたスキーマで新しいテーブルを作成 |
-| **Existing Table** | 既存のVeloDBテーブルにロード |
+| **New Table** | 自動生成されたスキーマで新しいTableを作成 |
+| **Existing Table** | 既存のVeloDBTableにロード |
 
-### テーブル設定
+### Table設定
 
 | フィールド | 説明 |
 |-------|-------------|
 | **Database** | ドロップダウンからターゲットデータベースを選択 |
-| **Table Name** | 新しいテーブルの名前（例：`orders`、`user_events`、`products`） |
+| **Table Name** | 新しいTableの名前（例：`orders`、`user_events`、`products`） |
 
 ## ステップ4：詳細設定
 
-テーブルモデルと分散設定を構成します。
+Tableモデルと分散設定を構成します。
 
-![Step 4: Advanced Settings](/images/cloud/integration/s3/p4.png)
+![ステップ 4: Advanced Settings](/images/cloud/integration/s3/p4.png)
 
-### テーブルモデル
+### Tableモデル
 
 | モデル | 用途 | 例 |
 |-------|----------|---------|
 | **DUPLICATE** | 生データ、アドホッククエリ - 書き込まれたすべての行を保持 | イベントログ、クリックストリーム、生のトランザクション |
-| **UNIQUE** | 更新を含むデータ - キーごとに最新の行のみを保持 | ユーザープロフィール、商品カタログ、ディメンションテーブル |
+| **UNIQUE** | 更新を含むデータ - キーごとに最新の行のみを保持 | ユーザープロフィール、商品カタログ、ディメンションTable |
 | **AGGREGATE** | 事前集計されたメトリクス - キー列で自動集計 | 売上サマリー、時系列メトリクス、カウンター |
 
 ### 分散設定
@@ -156,10 +156,10 @@ VeloDBがデータファイルを解析する方法を設定します。
 | フィールド | 説明 |
 |-------|-------------|
 | **Sorting Key** | データ順序付けのための列 - WHERE句やJOINで頻繁に使用される列を選択 |
-| **Partition** | 日付/時間やその他のディメンションによるパーティショニングを有効にしてクエリパフォーマンスを向上 |
-| **Bucket Key** | ノード間でのハッシュ分散のための列（クエリ同時実行性を向上させるためtenant_idやuser_idを使用） |
-| **Bucket Number** | データバケットの数（ほとんどの場合`AUTO`が推奨） |
-| **Properties** | 追加のテーブルプロパティ（通常は空のまま） |
+| **パーティション** | 日付/時間やその他のディメンションによるパーティショニングを有効にしてクエリパフォーマンスを向上 |
+| **バケット Key** | ノード間でのハッシュ分散のための列（クエリ同時実行性を向上させるためtenant_idやuser_idを使用） |
+| **バケット Number** | データバケットの数（ほとんどの場合`AUTO`が推奨） |
+| **Properties** | 追加のTableプロパティ（通常は空のまま） |
 
 **Next**をクリックして続行し、**Submit**をクリックしてインポートを開始します。
 
@@ -167,7 +167,7 @@ VeloDBがデータファイルを解析する方法を設定します。
 
 送信後、インポートリストでインポートタスクを確認できます。
 
-![Step 5: Import List](/images/cloud/integration/s3/p5.png)
+![ステップ 5: Import List](/images/cloud/integration/s3/p5.png)
 
 ## インポートの検証
 

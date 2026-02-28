@@ -7,7 +7,7 @@
 ---
 Doris JDBC Catalogは標準のJDBCインターフェースを通じてOceanBaseデータベースへの接続をサポートしています。このドキュメントでは、OceanBaseデータベース接続の設定方法について説明します。
 
-JDBC Catalogの概要については、次を参照してください：[JDBC Catalog Overview](./jdbc-catalog-overview.md)
+JDBC Catalogの概要については、次を参照してください：[JDBC カタログ 概要](./jdbc-catalog-overview.md)
 
 ## 使用上の注意
 
@@ -31,7 +31,7 @@ CREATE CATALOG oceanbase_catalog PROPERTIES (
     'driver_class' = 'com.oceanbase.jdbc.Driver'
 )
 ```
-`jdbc_url`は、OceanBase JDBCドライバーに渡される接続情報とパラメータを定義します。サポートされているURLパラメータは、[OceanBase JDBC Driver Configuration](https://www.oceanbase.com/docs/common-oceanbase-connector-j-cn-1000000000517111)で確認できます。
+`jdbc_url`は、OceanBase JDBCドライバーに渡される接続情報とパラメータを定義します。サポートされているURLパラメータは、[OceanBase JDBC Driver 構成](https://www.oceanbase.com/docs/common-oceanbase-connector-j-cn-1000000000517111)で確認できます。
 
 ## スキーマ互換性
 
@@ -39,6 +39,6 @@ OceanBase Catalogを作成する際、DorisはOceanBaseがMySQLモードかOracl
 
 異なるモードでの階層マッピング、型マッピング、およびクエリ最適化は、MySQLまたはOracleデータベースのCatalogと同じ方法で処理されます。詳細については以下のドキュメントを参照してください。
 
-* [MySQL Catalog](./jdbc-mysql-catalog.md)
+* [MySQL カタログ](./jdbc-mysql-catalog.md)
 
-* [Oracle Catalog](./jdbc-oracle-catalog.md)
+* [Oracle カタログ](./jdbc-oracle-catalog.md)

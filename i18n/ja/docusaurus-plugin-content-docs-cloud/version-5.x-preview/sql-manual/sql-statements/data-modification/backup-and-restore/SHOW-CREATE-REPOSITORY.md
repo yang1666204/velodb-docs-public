@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、リポジトリの作成ステートメントをデモンストレーションするために使用されます。
 
@@ -14,7 +14,7 @@
 ```sql
 SHOW CREATE REPOSITORY for <repo_name>;
 ```
-## Required Parameters
+## Required パラメータ
 **<repo_name>**
 > リポジトリの一意な名前。
 

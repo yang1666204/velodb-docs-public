@@ -16,7 +16,7 @@
 ```sql
 DEGREES(<a>)
 ```
-## Parameters
+## パラメータ
 
 | parameter | explain |
 | -- | -- |

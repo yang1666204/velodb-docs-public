@@ -23,9 +23,9 @@ ISO 8601標準に準拠した日付文字列で、サポートされる形式は
 ```sql
 from_iso8601_date(<dt>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<date>` | ISO8601形式の日付、文字列型 |
 

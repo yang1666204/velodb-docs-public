@@ -22,7 +22,7 @@
 3|{}
 4|null
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE map_test (
@@ -35,7 +35,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```bash
 curl --location-trusted \
@@ -45,7 +45,7 @@ curl --location-trusted \
         -T "test_map.csv" \
         http://localhost:8040/api/testdb/map_test/_stream_load
 ```
-### Step 4: インポートされたデータを確認する
+### ステップ 4: インポートされたデータを確認する
 
 ```sql
 mysql> SELECT * FROM map_test;
@@ -61,7 +61,7 @@ mysql> SELECT * FROM map_test;
 ```
 ## JSON format import
 
-### Step 1: データの準備
+### ステップ 1: データの準備
 
 以下のJSONファイル`test_map.json`を作成してください
 
@@ -73,7 +73,7 @@ mysql> SELECT * FROM map_test;
     {"id":4, "c_map":null}
 ]
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE map_test (
@@ -86,7 +86,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```bash
 curl --location-trusted \
@@ -97,7 +97,7 @@ curl --location-trusted \
         -T "test_map.json" \
         http://localhost:8040/api/testdb/map_test/_stream_load
 ```
-### Step 4: インポートしたデータを確認する
+### ステップ 4: インポートしたデータを確認する
 
 ```sql
 mysql> SELECT * FROM map_test;

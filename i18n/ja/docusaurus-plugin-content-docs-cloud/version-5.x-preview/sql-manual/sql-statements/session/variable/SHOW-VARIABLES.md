@@ -27,7 +27,7 @@ SHOW [<effective_scope>] VARIABLES [<like_pattern> | <where clause>]
 ## アクセス制御要件
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege  | Object | Notes                                        |
+| Privilege  | Object | 注釈                                        |
 | :--------- | :----- | :------------------------------------------- |
 | Any_PRIV | Session  | 任意の権限で変数を表示できます |
 

@@ -6,14 +6,14 @@
 }
 ---
 ## 説明
-`explode_numbers`関数は整数を受け取り、その範囲内の各数値を個別の行にマップします。この関数は[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用し、ネストされたデータ構造を標準的なフラットテーブル形式に展開する必要があります。`explode_numbers`と[`explode_numbers_outer`](./explode-numbers-outer.md)の主な違いは、null値の処理方法です。
+`explode_numbers`関数は整数を受け取り、その範囲内の各数値を個別の行にマップします。この関数は[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用し、ネストされたデータ構造を標準的なフラットTable形式に展開する必要があります。`explode_numbers`と[`explode_numbers_outer`](./explode-numbers-outer.md)の主な違いは、null値の処理方法です。
 
 ## 構文
 
 ```sql
 EXPLODE_NUMBERS(<int>)
 ```
-## Parameters
+## パラメータ
 - `<int>` 整数型
 
 ## Return Value

@@ -14,13 +14,13 @@
 ```sql
 ADMIN COPY TABLET <tablet_id> PROPERTIES ("<key>"="<value>" [,...]).
 ```
-## Required Parameters
+## Required パラメータ
 
 **1. `<tablet_id>`**
 
 コピーするタブレットのIDです。
 
-## Optional Parameters
+## Optional パラメータ
 
   ```sql
   [ PROPERTIES ("<key>"="<value>" [, ... ]) ]
@@ -48,15 +48,15 @@ PROPERTIESクローズでは追加のパラメータを指定できます：
 | Ip                | string   | スナップショットを保存しているBEノードのIPアドレス。                                                                                                                                                                  |
 | Path              | string   | BEノード上でスナップショットが保存されているストレージパス。                                                                                                                                                         |
 | ExpirationMinutes | string   | スナップショットが自動削除されるまでの期間（分単位）。                                                                                                                                                    |
-| CreateTableStmt   | string   | タブレットに対応するテーブルのテーブル作成文。この文は元のテーブル構築文ではなく、後でタブレットをローカルに読み込むための簡略化されたテーブル構築文です。 |
+| CreateTableStmt   | string   | タブレットに対応するTableのTable作成文。この文は元のTable構築文ではなく、後でタブレットをローカルに読み込むための簡略化されたTable構築文です。 |
 
 ## アクセス制御要件
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege  | Object   | Notes                                                                                                                            |
+| Privilege  | Object   | 注釈                                                                                                                            |
 |:-----------|:---------|:---------------------------------------------------------------------------------------------------------------------------------|
-| Admin_priv | Database | テーブル、パーティション、システムレベルのコマンドの管理を含む、データベース上での管理操作を実行するために必要です。 |
+| Admin_priv | Database | Table、パーティション、システムレベルのコマンドの管理を含む、データベース上での管理操作を実行するために必要です。 |
 
 ## 例
 

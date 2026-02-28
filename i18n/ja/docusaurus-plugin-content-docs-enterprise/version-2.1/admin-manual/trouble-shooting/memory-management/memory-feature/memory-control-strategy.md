@@ -13,7 +13,7 @@ Doris MemoryReclamationは、利用可能なメモリが不足した際にメモ
 
 ## Doris Allocator
 
-![Memory Management Overview](/images/memory-management-overview.png)
+![Memory Management 概要](/images/memory-management-overview.png)
 
 Allocatorはシステムからメモリを要求し、MemTrackerを使用してアプリケーションプロセス中のメモリアプリケーションとリリースのサイズを追跡します。オペレーターをバッチで実行するために必要な大きなメモリは、異なるデータ構造によって管理されます。
 
@@ -41,7 +41,7 @@ PODArrayはPOD型の動的配列です。要素を初期化しない点でstd::v
 
 ### メモリ再利用
 
-Dorisは実行レイヤーで多くのメモリ再利用を行い、可視的なメモリホットスポットは基本的にブロックされています。例えば、データブロックBlockの再利用はQueryの実行を貫いています。例えば、ShuffleのSender側は常に1つのBlockを保持してデータを受信し、RPC伝送で1つのBlockが交互に使用されます。ストレージレイヤーは述語列を再利用して読み込み、フィルター、上位レイヤーBlockへのコピー、Tablet読み込み時のClearを行います。Aggregate Keyテーブルをloadする際、キャッシュされたデータのMemTableが一定のサイズに達すると事前集約後に縮小し、書き込みを継続するなどです。
+Dorisは実行レイヤーで多くのメモリ再利用を行い、可視的なメモリホットスポットは基本的にブロックされています。例えば、データブロックBlockの再利用はQueryの実行を貫いています。例えば、ShuffleのSender側は常に1つのBlockを保持してデータを受信し、RPC伝送で1つのBlockが交互に使用されます。ストレージレイヤーは述語列を再利用して読み込み、フィルター、上位レイヤーBlockへのコピー、Tablet読み込み時のClearを行います。Aggregate KeyTableをloadする際、キャッシュされたデータのMemTableが一定のサイズに達すると事前集約後に縮小し、書き込みを継続するなどです。
 
 さらに、DorisはデータScan開始前にScannerとスレッド数に基づいてFree Blockのバッチを事前割り当てします。Scannerがスケジュールされるたびに、そこからBlockを取得してストレージレイヤーに渡してデータを読み込みます。読み込み完了後、Blockはプロデューサーキューに配置され、上位レイヤーオペレーターによる消費と後続の計算に使用されます。上位レイヤーオペレーターがデータをコピーした後、Blockを次のScannerスケジューリングのためにFree Blockに戻すことで、メモリ再利用を実現します。データScan完了後、Free Blockは以前に事前割り当てされたスレッドで統一的にリリースされ、メモリアプリケーションとリリースが同じスレッドにないことによる追加オーバーヘッドを避けます。Free Block数はデータScanの並行性をある程度制御もします。
 

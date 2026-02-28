@@ -1,23 +1,23 @@
 ---
 {
   "title": "OpenTelemetry",
-  "description": "OpenTelemetry（OTelとしても知られる）は、計装、生成、収集を行うためのベンダーニュートラルなオープンソースのObservabilityフレームワークです。",
+  "description": "OpenTelemetry（OTelとしても知られる）は、計装、生成、収集を行うためのベンダーニュートラルなオープンソースのオブザーバビリティフレームワークです。",
   "language": "ja"
 }
 ---
-# Doris OpenTelemetry Integration
+# Doris OpenTelemetry 統合
 
 ## 概要
 
-OpenTelemetryは、OTelとしても知られ、トレース、メトリクス、ログなどのテレメトリデータを計測、生成、収集、およびエクスポートするためのベンダーニュートラルなオープンソースのObservabilityフレームワークです。OpenTelemetryは可観測性の標準とプロトコルのセットを定義し、可観測性コミュニティとベンダーによって広く採用され、可観測性分野における事実上の標準となりつつあります。
+OpenTelemetryは、OTelとしても知られ、トレース、メトリクス、ログなどのテレメトリデータを計測、生成、収集、およびエクスポートするためのベンダーニュートラルなオープンソースのオブザーバビリティフレームワークです。OpenTelemetryはオブザーバビリティの標準とプロトコルのセットを定義し、オブザーバビリティコミュニティとベンダーによって広く採用され、オブザーバビリティ分野における事実上の標準となりつつあります。
 
-OpenTelemetryの主要な目標は、使用するプログラミング言語、インフラストラクチャ、ランタイム環境に関係なく、アプリケーションとシステムの計測を容易にすることです。テレメトリデータのバックエンド（ストレージ）とフロントエンド（可視化）は意図的に他のツールに委ねられています。DorisはOpenTelemetryと統合されたストレージバックエンドとして、高性能、低コスト、統合された可観測性データストレージと分析機能を提供します。全体的なアーキテクチャは以下の通りです：
+OpenTelemetryの主要な目標は、使用するプログラミング言語、インフラストラクチャ、ランタイム環境に関係なく、アプリケーションとシステムの計測を容易にすることです。テレメトリデータのバックエンド（ストレージ）とフロントエンド（可視化）は意図的に他のツールに委ねられています。DorisはOpenTelemetryと統合されたストレージバックエンドとして、高性能、低コスト、統合されたオブザーバビリティデータストレージと分析機能を提供します。全体的なアーキテクチャは以下の通りです：
 
-<img src="/images/observability/otel_demo_doris.png" alt="Doris OpenTelemetry Integration" />
+<img src="/images/observability/otel_demo_doris.png" alt="Doris OpenTelemetry 統合" />
 
 ## インストール
 
-[OpenTelemetry公式Releaseページ](https://github.com/open-telemetry/opentelemetry-collector-releases/releases)からOpenTelemetry Collector Contribインストールパッケージをダウンロードします。例えば：
+[OpenTelemetry公式リリースページ](https://github.com/open-telemetry/opentelemetry-collector-releases/releases)からOpenTelemetry Collector Contribインストールパッケージをダウンロードします。例えば：
 https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.132.2/otelcol-contrib_0.132.2_linux_amd64.tar.gz
 
 パッケージを展開して`otelcol-contrib`実行ファイルを取得します。
@@ -30,15 +30,15 @@ OpenTelemetry Collector Doris Exporterのコア設定は以下の通りです：
 |------------------------|-----------------------------------------------------------------------------|
 | `endpoint` | `host:port`形式のDoris FE HTTPアドレス（例：`"127.0.0.1:8030"`） |
 | `mysql_endpoint` | `host:port`形式のDoris FE MySQLアドレス（例：`"127.0.0.1:9030"`） |
-| `username` | 対応するデータベーステーブルへの書き込み権限を持つDorisユーザー名 |
+| `username` | 対応するデータベースTableへの書き込み権限を持つDorisユーザー名 |
 | `password` | Dorisユーザーのパスワード |
 | `database` | ターゲットDorisデータベース名 |
-| `table.logs` | ログデータのDorisテーブル名（デフォルト：`otel_logs`） |
-| `table.traces` | トレースデータのDorisテーブル名（デフォルト：`otel_traces`） |
-| `table.metrics` | メトリクスデータのDorisテーブル名（デフォルト：`otel_metrics`） |
-| `create_schema` | Dorisデータベーステーブルを自動作成するかどうか（デフォルト：`true`） |
-| `history_days` | 自動作成されるテーブルの履歴データ保持日数（デフォルト：`0`、永続保持を意味する） |
-| `create_history_days` | 自動作成されるテーブルの初期パーティション日数（デフォルト：`0`、パーティションを作成しないことを意味する） |
+| `table.logs` | ログデータのDorisTable名（デフォルト：`otel_logs`） |
+| `table.traces` | トレースデータのDorisTable名（デフォルト：`otel_traces`） |
+| `table.metrics` | メトリクスデータのDorisTable名（デフォルト：`otel_metrics`） |
+| `create_schema` | DorisデータベースTableを自動作成するかどうか（デフォルト：`true`） |
+| `history_days` | 自動作成されるTableの履歴データ保持日数（デフォルト：`0`、永続保持を意味する） |
+| `create_history_days` | 自動作成されるTableの初期パーティション日数（デフォルト：`0`、パーティションを作成しないことを意味する） |
 | `label_prefix` | Doris Stream Loadラベルのプレフィックス。最終ラベルは`{label_prefix}_{db}_{table}_{yyyymmdd_hhmmss}_{uuid}`（デフォルト：`open_telemetry`） |
 | `headers` | YAML map形式でのDoris Stream Load用ヘッダー |
 | `log_progress_interval` | スループットをログ出力する間隔（秒単位）（デフォルト：`10`、無効にするには`0`に設定） |
@@ -67,7 +67,7 @@ org.apache.doris.common.UserException: errCode = 2, detailMessage = tablet 10031
         at org.apache.doris.planner.OlapScanNode.addScanRangeLocations(OlapScanNode.java:931) ~[doris-fe.jar:1.2-SNAPSHOT]  
         at org.apache.doris.planner.OlapScanNode.computeTabletInfo(OlapScanNode.java:1197) ~[doris-fe.jar:1.2-SNAPSHOT]  
 ```
-**2. OpenTelemetry Configuration**
+**2. OpenTelemetry 構成**
 
 ログ収集設定ファイル（例：`opentelemetry_java_log.yml`）は、ETLプロセスに対応する3つの主要な部分で構成されています：
 1. **Receivers** – 生データを読み取ります。
@@ -288,7 +288,7 @@ service:
 
 ```yaml
 receivers:
-  otlp:  # OTLP protocol to receive data from OpenTelemetry Java Agent
+  otlp:  # OTLP protocol to receive data from OpenTelemetry Java エージェント
     protocols:
       grpc:
         endpoint: 0.0.0.0:4317
@@ -342,7 +342,7 @@ service:
 
 ここでは、"/"エンドポイントに対して"Hello World!"を返すSpring Bootサンプルアプリケーション（公式[demo](https://docs.spring.io/spring-boot/tutorial/first-application/index.html)より）を使用した統合を実演します。
 
-1. [OpenTelemetry Java Agent](https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases)をダウンロードします。
+1. [OpenTelemetry Java エージェント](https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases)をダウンロードします。
    - 利点：既存アプリケーションのコード変更が不要です。
    - 他の言語/統合方法については、OpenTelemetryドキュメントを参照してください：
      - [Language APIs & SDKs](https://opentelemetry.io/docs/languages/)
@@ -351,7 +351,7 @@ service:
 2. アプリケーション開始前に、以下の環境変数を設定します（コード修正は不要）：
 
 ```bash
-export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS} -javaagent:/your/path/to/opentelemetry-javaagent.jar"  # Path to OpenTelemetry Java Agent
+export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS} -javaagent:/your/path/to/opentelemetry-javaagent.jar"  # Path to OpenTelemetry Java エージェント
 export OTEL_JAVAAGENT_LOGGING="none"  # Disable OTEL logs to avoid interference with application logs
 export OTEL_SERVICE_NAME="myproject"
 export OTEL_TRACES_EXPORTER="otlp"  # Use OTLP protocol to send trace data

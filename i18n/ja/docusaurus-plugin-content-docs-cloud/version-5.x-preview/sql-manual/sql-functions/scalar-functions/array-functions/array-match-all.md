@@ -14,7 +14,7 @@
 ```sql
 array_match_all(lambda, <arr> [, <arr> ...])
 ```
-## Parameters
+## パラメータ
 
 - `lambda`: 各要素に対してチェックする条件を定義するlambda式
 - `<arr>`: チェックする1つ以上の配列。lambda関数はこれらの配列の各要素に適用されます

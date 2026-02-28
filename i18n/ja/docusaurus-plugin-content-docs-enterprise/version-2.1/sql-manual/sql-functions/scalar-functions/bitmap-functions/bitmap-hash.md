@@ -16,7 +16,7 @@ BITMAP_HASH(<expr>)
 ```
 ## パラメータ
 
-| Parameter | Description           |
+| Parameter | デスクリプション           |
 |-----------|-----------------------|
 | `<expr>`  | 任意の値またはフィールド式 |
 

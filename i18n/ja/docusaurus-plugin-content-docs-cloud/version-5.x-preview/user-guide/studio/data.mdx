@@ -8,53 +8,53 @@
 # Data
 
 "Data"モジュールは、VeloDB Studioでデータベースを管理する基本機能であり、主に2つの機能があります：
-1. ライブラリテーブル構造、データサイズ、テーブル作成文、テーブルフィールド情報、データプレビューなど、データの組織形式とデータの表示。
+1. ライブラリTable構造、データサイズ、Table作成文、Tableフィールド情報、データプレビューなど、データの組織形式とデータの表示。
 2. データベースオブジェクトの追加、削除、変更（新規作成、削除、データベースオブジェクトの名前変更を含む）。
 dataモジュールは、データベース内のデータの組織形式に従って表示され、以下の3つのレベルに分かれています：
-- Catalog
+- カタログ
 - Database
-- Table / View / Materialized View / Function
+- Table / View / Materialized View / ファンクション
 
 
-## Catalog
-ディレクトリ（Catalog）は、データベースの集合です。Apache Dorisはバージョン1.2以降、Catalogの概念を導入しました。Internal Catalogは、元のApache Dorisシステムとして理解できます。External directoryは、Apache DorisがData Lake機能をサポートするため、Hive、Iceberg、Hudiなどに接続できます。
-VeloDB StudioはCatalogオブジェクトの直接削除をサポートしています。
+## カタログ
+ディレクトリ（カタログ）は、データベースの集合です。Apache Dorisはバージョン1.2以降、カタログの概念を導入しました。内部カタログは、元のApache Dorisシステムとして理解できます。External directoryは、Apache DorisがData Lake機能をサポートするため、Hive、Iceberg、Hudiなどに接続できます。
+VeloDB Studioはカタログオブジェクトの直接削除をサポートしています。
 
 
 <img className='pt-5' src={`/img/studio/catalog.png`} alt="catalog" width={1400} height={600}/>
 
 
 ## Database
-データベースは、テーブル、ビュー、マテリアライズドビュー、ファンクションの集合です。データベースはディレクトリに属します。
+データベースは、Table、ビュー、マテリアライズドビュー、ファンクションの集合です。データベースはディレクトリに属します。
 ディレクトリが選択されると、ディレクトリ下のデータベースとデータベースのサイズを表示できます。同時に、ページ下でデータベースの作成、削除、名前変更が可能です。
 <img className='pt-5' src={`/img/studio/database.png`} alt="database" width={1400} height={600}/>
 
 
 
 ## Table
-Table（Table）は、Apache Dorisデータウェアハウスの基本コンポーネントで、テーブルはデータベースに属します。
-データベースが選択されると、データベース下のテーブルとテーブルのサイズ、および作成・変更時刻を確認できます。
+Table（Table）は、Apache Dorisデータウェアハウスの基本コンポーネントで、Tableはデータベースに属します。
+データベースが選択されると、データベース下のTableとTableのサイズ、および作成・変更時刻を確認できます。
 
 <img className='pt-5' src={`/img/studio/table.png`} alt="table" width={1400} height={600}/>
 
 
-テーブルをクリックすると、テーブルの詳細管理ページに入り、テーブルのDDL定義、フィールド、インデックスなどの情報を表示できます。
+Tableをクリックすると、Tableの詳細管理ページに入り、TableのDDL定義、フィールド、インデックスなどの情報を表示できます。
 
 <img className='pt-5' src={`/img/studio/table-detail.png`} alt="table-detail" width={1400} height={600}/>
-Data Previewページは、テーブルのデータをすばやくプレビューするために使用され、デフォルトでインターフェースからテーブルの最初の100件のデータをプレビューします。
+Data Previewページは、Tableのデータをすばやくプレビューするために使用され、デフォルトでインターフェースからTableの最初の100件のデータをプレビューします。
 「Total x data」はメタデータサービスから取得されるため、遅延が発生する場合があります。
 
 <img className='pt-5' src={`/img/studio/data-preview.png`} alt="data-preview" width={1400} height={600}/>
 
 
 ## View
-ビューは、SQL文の結果セットに基づく視覚的なテーブルです。ビューページは、テーブルページとほぼ同様です。ビューが持たない属性（インデックス、詳細など）は表示されません。ビューもデータプレビュー機能（最初の100件のデータ）をサポートしています。
+ビューは、SQL文の結果セットに基づく視覚的なTableです。ビューページは、Tableページとほぼ同様です。ビューが持たない属性（インデックス、詳細など）は表示されません。ビューもデータプレビュー機能（最初の100件のデータ）をサポートしています。
 
 
 ## Materialized View
-Materialized Viewは、クエリ結果を事前計算して格納するテーブルで、クエリパフォーマンスの高速化とリアルタイム計算圧力の軽減に使用できます。
+Materialized Viewは、クエリ結果を事前計算して格納するTableで、クエリパフォーマンスの高速化とリアルタイム計算圧力の軽減に使用できます。
 Studioデータベースページでは、データベース下のマテリアライズドビュー情報を一覧表示できます。
 
 
-## Function
+## ファンクション
 Studioデータベースページでは、データベース下のファンクション情報を一覧表示でき、ファンクションタイプ、戻り値タイプ、作成文などの情報の表示をサポートしています。

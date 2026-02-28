@@ -18,7 +18,7 @@ CLEAN ALL PROFILE
 
 このSQLコマンドを実行するユーザーは、最低限以下の権限を持っている必要があります：
 
-| Privilege    | Object    | Notes                                                |
+| Privilege    | Object    | 注釈                                                |
 |:--------------|:-----------|:-----------------------------------------------------|
 | GRANT_PRIV         | DATABASE   | CLEAN文にはGRANT権限が必要です |
 

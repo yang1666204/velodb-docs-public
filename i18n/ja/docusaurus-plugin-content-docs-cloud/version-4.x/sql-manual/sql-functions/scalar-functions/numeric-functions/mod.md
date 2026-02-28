@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 整数型における a を b で割った余りを求めます。浮動小数点型の場合は、fmod関数を使用してください。
 
@@ -14,9 +14,9 @@
 ```sql
 MOD(<col_a> , <col_b>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<col_a>`   | 被除数 |
 | `<col_b>`   | 除数は0であってはいけません |

@@ -7,7 +7,7 @@
 ---
 # Storage Vault の管理
 
-Storage Vault は、ストレージとコンピューティングを分離したモデルにおいて Doris が使用するリモート共有ストレージです。1つ以上の Storage Vault を設定して、異なるテーブルを異なる Storage Vault に保存することができます。
+Storage Vault は、ストレージとコンピューティングを分離したモデルにおいて Doris が使用するリモート共有ストレージです。1つ以上の Storage Vault を設定して、異なるTableを異なる Storage Vault に保存することができます。
 
 ## Storage Vault の作成
 
@@ -73,9 +73,9 @@ SHOW STORAGE VAULTS
 ```sql
 SET <vault_name> AS DEFAULT STORAGE VAULT
 ```
-## テーブル作成時にStorage Vaultを指定する
+## Table作成時にStorage Vaultを指定する
 
-テーブルを作成する際、`PROPERTIES`で`storage_vault_name`を指定すると、指定した`vault name`に対応するStorage Vaultにデータが保存されます。テーブルが正常に作成された後は、`storage_vault`を変更することはできません。つまり、Storage Vaultの変更はサポートされていません。
+Tableを作成する際、`PROPERTIES`で`storage_vault_name`を指定すると、指定した`vault name`に対応するStorage Vaultにデータが保存されます。Tableが正常に作成された後は、`storage_vault`を変更することはできません。つまり、Storage Vaultの変更はサポートされていません。
 
 **例**
 
@@ -98,7 +98,7 @@ PROPERTIES (
 ```
 ## データベース作成時のStorage Vaultの指定
 
-データベースを作成する際、`PROPERTIES`で`storage_vault_name`を指定します。データベース配下のテーブル作成時に`storage_vault_name`が指定されていない場合、テーブルはデータ保存にデータベースの`vault name`に対応するStorage Vaultを使用します。ユーザーは[ALTER-DATABASE](../../sql-manual/sql-statements/database/ALTER-DATABASE)を使用してデータベースの`storage_vault_name`を変更できます。ただし、この操作はデータベース配下で既に作成されたテーブルの`storage_vault`には影響せず、新しく作成されるテーブルのみが更新された`storage_vault`を使用します。
+データベースを作成する際、`PROPERTIES`で`storage_vault_name`を指定します。データベース配下のTable作成時に`storage_vault_name`が指定されていない場合、Tableはデータ保存にデータベースの`vault name`に対応するStorage Vaultを使用します。ユーザーは[ALTER-DATABASE](../../sql-manual/sql-statements/database/ALTER-DATABASE)を使用してデータベースの`storage_vault_name`を変更できます。ただし、この操作はデータベース配下で既に作成されたTableの`storage_vault`には影響せず、新しく作成されるTableのみが更新された`storage_vault`を使用します。
 
 **例**
 
@@ -112,7 +112,7 @@ PROPERTIES (
 
 この機能はバージョン3.0.5以降でサポートされています。
 
-テーブル作成時にStorage Vaultを使用する優先順位は：テーブル -> データベース -> デフォルトStorage Vaultです。テーブルのPROPERTYでStorage Vaultが指定されていない場合、データベースでStorage Vaultが指定されているかを確認し、データベースでも指定されていない場合は、デフォルトStorage Vaultがあるかをさらに確認します。
+Table作成時にStorage Vaultを使用する優先順位は：Table -> データベース -> デフォルトStorage Vaultです。TableのPROPERTYでStorage Vaultが指定されていない場合、データベースでStorage Vaultが指定されているかを確認し、データベースでも指定されていない場合は、デフォルトStorage Vaultがあるかをさらに確認します。
 
 Storage VaultのVAULT_NAME属性が変更された場合、データベースに設定されたStorage Vaultが無効になり、エラーが発生する可能性があります。ユーザーは実際の状況に基づいて、データベースに有効なstorage_vault_nameを設定する必要があります。
 
@@ -159,7 +159,7 @@ PROPERTIES (
 
 ## Storage Vaultの権限
 
-指定したMySQLユーザーに特定のStorage Vaultの使用権限を付与し、テーブル作成時やStorage Vault表示時にそのStorage Vaultを指定できるようにします。
+指定したMySQLユーザーに特定のStorage Vaultの使用権限を付与し、Table作成時やStorage Vault表示時にそのStorage Vaultを指定できるようにします。
 
 ### 権限の付与
 
@@ -172,7 +172,7 @@ GRANT
 AdminユーザーのみがGRANT文を実行する権限を持ち、これは指定されたStorage Vaultの権限をUser/Roleに付与するために使用されます。特定のStorage Vaultに対してUSAGE_PRIV権限を持つUsers/Rolesは、以下の操作を実行できます：
 
 - SHOW STORAGE VAULTSを通じて、そのStorage Vaultの情報を表示する
-- テーブル作成時にPROPERTIESでそのStorage Vaultの使用を指定する
+- Table作成時にPROPERTIESでそのStorage Vaultの使用を指定する
 
 **例**
 

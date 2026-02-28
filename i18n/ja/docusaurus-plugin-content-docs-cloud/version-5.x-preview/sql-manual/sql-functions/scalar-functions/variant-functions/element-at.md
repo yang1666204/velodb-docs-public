@@ -18,7 +18,7 @@
 ```sql
 ELEMENT_AT(container, key_or_index)
 ```
-## Parameters
+## パラメータ
 
 - `container`: `ARRAY`、`MAP`、または`VARIANT`を指定できます。
 - `key_or_index`:
@@ -34,7 +34,7 @@ ELEMENT_AT(container, key_or_index)
 - インデックスまたはキーが存在しない場合、`NULL`を返します。
 - パラメータが`NULL`の場合、`NULL`を返します。
 
-## Notes
+## 注釈
 
 1. **配列のインデックスは1から始まり**、0からではありません。
 2. 負のインデックスがサポートされています: `-1`は最後の要素、`-2`は最後から2番目の要素を表します。

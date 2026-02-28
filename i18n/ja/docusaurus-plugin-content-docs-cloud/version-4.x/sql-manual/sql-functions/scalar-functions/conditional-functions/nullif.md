@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つの入力値が等しい場合は`NULL`を返し、そうでなければ最初の入力値を返します。この関数は以下の`CASE WHEN`式と等価です：
 
@@ -20,9 +20,9 @@ END
 ```sql
 NULLIF(<expr1>, <expr2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<expr1>` | 比較する最初の入力値。 |
 | `<expr2>` | 最初の値と比較する2番目の入力値。 |

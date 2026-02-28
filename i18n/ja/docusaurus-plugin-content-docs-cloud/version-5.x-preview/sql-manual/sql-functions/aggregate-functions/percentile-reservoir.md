@@ -16,9 +16,9 @@
 ```sql
 PERCENTILE_RESERVOIR(<col>, <p>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col>` | 近似パーセンタイルとして計算される列、サポートされる型: Double |
 | `<p>` | 計算される近似パーセンタイル、定数値、サポートされる型: `[0.0, 1.0]`の値範囲を持つDouble |

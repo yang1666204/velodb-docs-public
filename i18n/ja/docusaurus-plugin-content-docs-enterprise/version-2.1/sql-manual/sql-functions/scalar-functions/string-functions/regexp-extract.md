@@ -24,9 +24,9 @@
 ```sql
 REGEXP_EXTRACT(<str>, <pattern>, <pos>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<str>` | 正規表現マッチングを行う対象の列。'string'型です。|
 | `<pattern>` | 対象となる正規表現パターン。'string'型です。|
@@ -68,7 +68,7 @@ mysql> select regexp_extract('这是一段中文 This is a passage in English 12
 | This is a passage in English 1234567                                                          |
 +-----------------------------------------------------------------------------------------------+
 ```
-変数の値を挿入してマッチングを実行します。この例では、テーブルにデータを挿入し、その後REGEXP_EXTRACT関数を使用して、保存されたパターンと位置に基づいて保存された文字列からマッチング部分を抽出します。
+変数の値を挿入してマッチングを実行します。この例では、Tableにデータを挿入し、その後REGEXP_EXTRACT関数を使用して、保存されたパターンと位置に基づいて保存された文字列からマッチング部分を抽出します。
 
 ```sql
 

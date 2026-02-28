@@ -5,14 +5,14 @@
   "language": "ja"
 }
 ---
-# ARRAY Documentation
+# ARRAY ドキュメント
 
 ## 型の説明
 
 `ARRAY<T>`型は、各要素が同じデータ型を持つ要素の順序付きコレクションを表すために使用されます。例えば、整数の配列は`[1, 2, 3]`として表現でき、文字列の配列は`["a", "b", "c"]`として表現できます。
 
 - `ARRAY<T>`は型Tの要素で構成される配列を表し、Tはnullableです。Tでサポートされる型には以下が含まれます：`BOOLEAN, TINYINT, SMALLINT, INT, BIGINT, LARGEINT, FLOAT, DOUBLE, DECIMAL, DATE, DATETIME, CHAR, VARCHAR, STRING, IPV4, IPV6, STRUCT, MAP, VARIANT, JSONB, ARRAY<T>`。
-  - 注意：上記のT型のうち、`JSONB`と`VARIANT`はDorisの計算層でのみサポートされ、**Dorisでのテーブル作成において`ARRAY<JSONB>`と`ARRAY<VARIANT>`の使用はサポートされていません**。
+  - 注意：上記のT型のうち、`JSONB`と`VARIANT`はDorisの計算層でのみサポートされ、**DorisでのTable作成において`ARRAY<JSONB>`と`ARRAY<VARIANT>`の使用はサポートされていません**。
 
 ## 型の制約
 
@@ -21,7 +21,7 @@
   - 例：`ARRAY<INT>`は`ARRAY<BIGINT>`に変換できます。これは`INT`と`BIGINT`が変換可能であるためです。
   - `Variant`型は`Array<T>`型に変換できます。
   - String型は`ARRAY<T>`型に変換できます（パースによって、パースに失敗した場合はNULLを返します）。
-- `AGGREGATE`テーブルモデルにおいて、`ARRAY<T>`型は`REPLACE`と`REPLACE_IF_NOT_NULL`のみをサポートします。**すべてのテーブルモデルにおいて、KEYカラム、パーティションカラム、バケットカラムとして使用することはできません**。
+- `AGGREGATE`Tableモデルにおいて、`ARRAY<T>`型は`REPLACE`と`REPLACE_IF_NOT_NULL`のみをサポートします。**すべてのTableモデルにおいて、KEYカラム、パーティションカラム、バケットカラムとして使用することはできません**。
 - `ARRAY<T>`型のカラムは**`ORDER BY`と`GROUP BY`操作をサポートします**。
   - `ORDER BY`と`GROUP BY`をサポートするT型には以下が含まれます：`BOOLEAN, TINYINT, SMALLINT, INT, BIGINT, LARGEINT, FLOAT, DOUBLE, DECIMAL, DATE, DATETIME, CHAR, VARCHAR, STRING, IPV4, IPV6`。
 - `ARRAY<T>`型のカラムは`JOIN KEY`として使用することをサポートせず、`DELETE`文での使用もサポートしません。
@@ -46,7 +46,7 @@
     -- ["1", "2", "abc"] , T is STRING
     SELECT [1, 2, 'abc'];
     ```
-## Type の変更
+## タイプ の変更
 
 - `ARRAY` 内の要素タイプが `VARCHAR` の場合のみ変更が許可されます。
    - `VARCHAR` のパラメータを小さい値から大きい値への変更のみ許可され、逆方向は許可されません。
@@ -172,7 +172,7 @@ select array(null) < array(-1), array(null) > array(-1);
 ```
 ## クエリアクセラレーション
 
-- Dorisテーブルの`ARRAY<T>`型の列では、この列の`ARRAY`関数を使用する計算を高速化するために転置インデックスの追加をサポートしています。
+- DorisTableの`ARRAY<T>`型の列では、この列の`ARRAY`関数を使用する計算を高速化するために転置インデックスの追加をサポートしています。
   - 転置インデックスでサポートされるT型：`BOOLEAN, TINYINT, SMALLINT, INT, BIGINT, LARGEINT, DECIMAL, DATE, DATETIME, CHAR, VARCHAR, STRING, IPV4, IPV6`。
   - 高速化される`ARRAY`関数：`ARRAY_CONTAINS`、`ARRAYS_OVERLAP`。ただし、関数パラメータにNULLが含まれる場合は、通常のベクトル化計算にフォールバックします。
 
@@ -256,7 +256,7 @@ select array(null) < array(-1), array(null) > array(-1);
   | {"id":1, "name":"John"} | {"id":2, "name":"Jane"} |
   +-------------------------+-------------------------+
   ```
-- Type の変更
+- タイプ の変更
 
   ```SQL
   -- Create table
@@ -276,7 +276,7 @@ select array(null) < array(-1), array(null) > array(-1);
   -- Check column type
   DESC array_table;
   +---------------+--------------------+------+-------+---------+-------+
-  | Field         | Type               | Null | Key   | Default | Extra |
+  | Field         | タイプ               | Null | Key   | Default | Extra |
   +---------------+--------------------+------+-------+---------+-------+
   | id            | int                | Yes  | true  | NULL    |       |
   | array_varchar | array<varchar(20)> | Yes  | false | NULL    | NONE  |

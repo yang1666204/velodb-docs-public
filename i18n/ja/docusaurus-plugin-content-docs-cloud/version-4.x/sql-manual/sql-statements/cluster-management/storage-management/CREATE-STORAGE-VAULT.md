@@ -17,19 +17,19 @@ CREATE STORAGE VAULT [IF NOT EXISTS] <vault_name> [ <properties> ]
 ```
 ## 必須パラメータ
 
-| Parameter     | Description                     |
+| Parameter     | デスクリプション                     |
 |-------|-----------------------|
 | `<vault_name>` |  ストレージボルトの名前。これは作成する新しいストレージボルトの一意識別子です。 |
 
 ## オプションパラメータ
-| Parameter   | Description                                                         |
+| Parameter   | デスクリプション                                                         |
 |-------------------|--------------------------------------------------------------|
 | `[IF NOT EXISTS]` | 指定したストレージボルトが既に存在する場合、作成操作は実行されず、エラーも発生しません。これにより、同じストレージボルトの重複作成を防ぎます。 |
 | `<properties>`    | ストレージボルトの特定のプロパティを設定または更新するために使用されるキー値ペアのセット。各プロパティはキー（<key>）と値（<value>）で構成され、等号（=）で区切られます。複数のキー値ペアはカンマ（,）で区切られます。 |
 
 ### S3 Vault
 
-| Parameter              | Required | Description                                                                                                      |
+| Parameter              | Required | デスクリプション                                                                                                      |
 |:----------------|:-----|:--------------------------------------------------------------------------------------------------------|
 | `s3.endpoint`    | Required   | オブジェクトストレージのエンドポイント。Azure Blob Storageの場合、エンドポイントはblob.core.windows.netに固定されます。 |
 | `s3.region`      | Required   | ストレージバケットのリージョン。（GCPまたはAZUREを使用する場合は不要）。 |
@@ -48,7 +48,7 @@ CREATE STORAGE VAULT [IF NOT EXISTS] <vault_name> [ <properties> ]
 
 ### HDFS vault
 
-| Parameter                               | Required | Description                                                    |
+| Parameter                               | Required | デスクリプション                                                    |
 |:---------------------------------|:-----|:------------------------------------------------------|
 | `fs.defaultFS`                   |Required| 使用するデフォルトファイルシステムを指定するHadoop設定プロパティ。                             |
 | `path_prefix`                    |Optional| データを保存するプレフィックスパス。指定されていない場合、ユーザーアカウント下のデフォルトパスが使用されます。                   |

@@ -14,9 +14,9 @@
 ```sql
 GROUP_BIT_OR(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | すべてのINT型をサポートします |
 

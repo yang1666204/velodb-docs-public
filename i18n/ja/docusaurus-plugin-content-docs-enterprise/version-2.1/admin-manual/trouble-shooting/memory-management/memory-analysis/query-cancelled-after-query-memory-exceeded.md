@@ -22,13 +22,13 @@ ERROR 1105 (HY000): errCode = 2, detailMessage = (10.16.10.8)[MEM_LIMIT_EXCEEDED
 
 `show variables;`でDoris Session Veriableを表示できます。ここで`exec_mem_limit`は単一クエリおよびloadの実行メモリ制限ですが、Doris 1.2以降、クエリメモリオーバーコミット（overcommit）がサポートされており、クエリがより柔軟なメモリ制限を設定できるようにすることを目的としています。十分なメモリがある場合、クエリメモリが上限を超えてもCancelされないため、ユーザーは通常クエリのメモリ使用量に注意を払う必要がありません。メモリが不足するまでは、クエリは新しいメモリを割り当てようとしながらしばらく待機します。この時、特定のルールに基づいて、`mem_used`と`exec_mem_limit`の比率が大きいクエリが最初にキャンセルされます。待機プロセス中に解放されたメモリ量が要件を満たせば、クエリは実行を継続し、そうでなければ例外がスローされ、クエリが終了します。
 
-クエリメモリオーバーコミットを無効にしたい場合は、BE Configuration Itemsを参照し、`conf/be.conf`に`enable_query_memory_overcommit=false`を追加してください。この時、`exec_mem_limit`を超える単一クエリおよびloadメモリはキャンセルされます。大きなクエリがクラスタの安定性に与える悪影響を避けたい場合、またはクラスタ上のタスク実行を正確に制御して十分な安定性を確保したい場合は、クエリメモリオーバーコミットを無効にすることを検討できます。
+クエリメモリオーバーコミットを無効にしたい場合は、BE 構成 Itemsを参照し、`conf/be.conf`に`enable_query_memory_overcommit=false`を追加してください。この時、`exec_mem_limit`を超える単一クエリおよびloadメモリはキャンセルされます。大きなクエリがクラスタの安定性に与える悪影響を避けたい場合、またはクラスタ上のタスク実行を正確に制御して十分な安定性を確保したい場合は、クエリメモリオーバーコミットを無効にすることを検討できます。
 
 ## クエリメモリ分析
 
 クエリのメモリ使用量を分析する必要がある場合は、[Query Memory Analysis](./query-memory-analysis.md)を参照してください。
 
-Query Profileを有効にするために`set enable_profile=true`を使用した後、タスクが単一実行のメモリ制限を超えると、`be/log/be.INFO`にメモリを要求するクエリのコールスタックが出力され、クエリ内の各operatorの現在のメモリ使用量とピーク値を確認できます。`Process Memory Summary`と`Memory Tracker Summary`を分析するために[Memory Log Analysis](./memory-log-analysis.md)を参照し、現在のクエリメモリ使用量が期待通りかどうかの確認に役立ててください。
+Query Profileを有効にするために`set enable_profile=true`を使用した後、タスクが単一実行のメモリ制限を超えると、`be/log/be.INFO`にメモリを要求するクエリのコールスタックが出力され、クエリ内の各operatorの現在のメモリ使用量とピーク値を確認できます。`Process Memory Summary`と`Memory Tracker Summary`を分析するために[Memory ログ Analysis](./memory-log-analysis.md)を参照し、現在のクエリメモリ使用量が期待通りかどうかの確認に役立ててください。
 
 ```sql
 Allocator mem tracker check failed, [MEM_LIMIT_EXCEEDED]failed alloc size 32.00 MB, memory tracker limit exceeded, tracker label:Query#I
@@ -37,7 +37,7 @@ d=41363cb6ba734ad5-bc8720bdf9b3090d, type:query, limit 100.00 MB, peak used 75.3
 Process Memory Summary:
     os physical memory 375.81 GB. process memory used 2.33 GB(= 2.60 GB[vm/rss] - 280.53 MB[tc/jemalloc_cache] + 0[reserved] + 0B[waiting_refresh]), limit 338.23 GB, soft limit 304.41 GB. sys availab
 le memory 337.33 GB(= 337.33 GB[proc/available] - 0[reserved] - 0B[waiting_refresh]), low water mark 6.40 GB, warning water mark 12.80 GB.
-Memory Tracker Summary:    MemTrackerLimiter Label=Query#Id=41363cb6ba734ad5-bc8720bdf9b3090d, Type=query, Limit=100.00 MB(104857600 B), Used=72.62 MB(76146688 B), Peak=75.32 MB(78981248 B)
+Memory Tracker Summary:    MemTrackerLimiter Label=Query#Id=41363cb6ba734ad5-bc8720bdf9b3090d, タイプ=query, Limit=100.00 MB(104857600 B), Used=72.62 MB(76146688 B), Peak=75.32 MB(78981248 B)
     MemTracker Label=HASH_JOIN_SINK_OPERATOR, Parent Label=Query#Id=41363cb6ba734ad5-bc8720bdf9b3090d, Used=122.00 B(122 B), Peak=122.00 B(122 B)
     MemTracker Label=VDataStreamRecvr:41363cb6ba734ad5-bc8720bdf9b309fe, Parent Label=Query#Id=41363cb6ba734ad5-bc8720bdf9b3090d, Used=0(0 B), Peak=384.00 B(384 B)
     MemTracker Label=local data queue mem tracker, Parent Label=Query#Id=41363cb6ba734ad5-bc8720bdf9b3090d, Used=0(0 B), Peak=384.00 B(384 B)

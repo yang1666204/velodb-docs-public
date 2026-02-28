@@ -224,7 +224,7 @@ curl -X POST -H "Accept: application/vnd.gravitino.v1+json" \
     "properties": {}
   }' http://localhost:8090/api/metalakes
 
-# Create Iceberg Catalog
+# Create Iceberg カタログ
 curl -X POST -H "Accept: application/vnd.gravitino.v1+json" \
   -H "Content-Type: application/json" \
   -d '{
@@ -252,7 +252,7 @@ curl -X POST -H "Accept: application/vnd.gravitino.v1+json" \
 Gravitino は一時的な認証情報を動的に生成し、Doris に配布します：
 
 ```sql
--- Create dynamic credential mode Catalog
+-- Create dynamic credential mode カタログ
 CREATE CATALOG gravitino_vending PROPERTIES (
     'type' = 'iceberg',
     'warehouse' = 'warehouse',
@@ -288,6 +288,6 @@ INSERT INTO gravitino_table VALUES (1, 'Doris'), (2, 'Gravitino');
 -- Query verification
 SELECT * FROM gravitino_table;
 ```
-## Summary
+## 要約
 
 このガイドを通して、GravitinoとDorisをベースとした最新のlakehouseアーキテクチャを正常に構築できるはずです。このアーキテクチャは、高いパフォーマンスと高可用性を提供するだけでなく、高度なセキュリティメカニズムによってデータアクセスのセキュリティとコンプライアンスも保証します。データ規模の拡大やビジネス要件の変化に応じて、このアーキテクチャは柔軟にスケールして、さまざまなエンタープライズレベルのニーズを満たすことができます。

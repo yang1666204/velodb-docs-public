@@ -9,7 +9,7 @@
 ### 説明
 HLL
 
-HLLはキー列として使用することはできません。HLL型の列は、Aggregateテーブル、Duplicateテーブル、Uniqueテーブルで使用できます。Aggregateテーブルで使用する場合、テーブル構築時の集計タイプはHLL_UNIONです。
+HLLはキー列として使用することはできません。HLL型の列は、AggregateTable、DuplicateTable、UniqueTableで使用できます。AggregateTableで使用する場合、Table構築時の集計タイプはHLL_UNIONです。
 ユーザーは長さとデフォルト値を指定する必要がありません。
 長さは、データ集計の度合いに応じてシステム内で制御されます。
 また、HLL列は、対応するhll_union_agg、hll_raw_agg、hll_cardinality、hll_hashを通じてのみクエリまたは使用できます。

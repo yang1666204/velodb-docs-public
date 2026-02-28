@@ -42,7 +42,7 @@ SHOW ROUTINE LOAD TASK WHERE JobName = <job_name>;
 
 | 権限 | オブジェクト | 備考 |
 | :-------- | :----- | :---- |
-| LOAD_PRIV | Table | SHOW ROUTINE LOAD TASKはテーブルに対するLOAD権限が必要 |
+| LOAD_PRIV | Table | SHOW ROUTINE LOAD TASKはTableに対するLOAD権限が必要 |
 
 ## 注意事項
 

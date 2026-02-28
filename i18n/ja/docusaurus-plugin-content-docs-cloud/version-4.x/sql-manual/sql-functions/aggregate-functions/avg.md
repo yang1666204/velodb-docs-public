@@ -16,7 +16,7 @@ AVG([DISTINCT] <expr>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 式または列で、通常は数値列または数値に変換可能な式です。 |
 | `[DISTINCT]` | exprから重複値を除去した後に平均値を計算することを示すオプションのキーワードです。 |

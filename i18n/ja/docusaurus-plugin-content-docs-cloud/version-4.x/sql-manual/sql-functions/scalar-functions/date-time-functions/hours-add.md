@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力されたdatetimeに指定された時間数を加算した結果として得られる新しいdatetime値を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 HOURS_ADD(<date>, <hours>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<date>`      | 入力する日時値。DATETIME型またはDATE型を指定可能 |
 | `<hours>`     | 追加する時間数。INT型を指定 |

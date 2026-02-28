@@ -14,9 +14,9 @@
 ```sql
 MILLISECOND_TIMESTAMP(`<datetime>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter    | Description                                                                                   |
+| Parameter    | デスクリプション                                                                                   |
 |--------------|-----------------------------------------------------------------------------------------------|
 | `<datetime>` | Unix タイムスタンプに変換される datetime を表します。`DATETIME` 型をサポートします。具体的な datetime フォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion) を参照してください。 |
 

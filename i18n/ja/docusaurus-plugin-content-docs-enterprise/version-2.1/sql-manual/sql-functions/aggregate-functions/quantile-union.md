@@ -14,9 +14,9 @@
 ```sql
 QUANTILE_UNION(<query_state>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<query_state>` | `TO_QUANTILE_STATE`関数によって生成された中間状態。 |
 

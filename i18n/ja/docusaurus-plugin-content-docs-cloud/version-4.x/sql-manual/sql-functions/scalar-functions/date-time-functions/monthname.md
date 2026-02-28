@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定された日付に対応する月の英語名を返します。返される値は月の完全な英語名です（January から December まで）。
 
@@ -14,9 +14,9 @@
 ```sql
 MONTHNAME(<date>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<date>`  | 入力される日時値で、DATE、DATETIME、またはDATETIMEV2型を指定できます |
 

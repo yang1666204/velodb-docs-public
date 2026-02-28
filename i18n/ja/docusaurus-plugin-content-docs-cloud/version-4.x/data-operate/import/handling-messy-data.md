@@ -40,7 +40,7 @@ Strict modeには2つの主要な目的があります：
 | Non-NULL          | 1                   | 1                             | ON/OFF      | Loaded Successfully |
 
 :::tip
-1. テーブル内の列はNULL値を許可します
+1. Table内の列はNULL値を許可します
 
 2. `abc`と`2000`の両方が型や精度の問題によりTinyIntへの変換後にNULLになります。strict modeがONの場合、そのようなデータはフィルタリングされます。OFFの場合、NULLがロードされます。
 :::
@@ -55,7 +55,7 @@ Strict modeには2つの主要な目的があります：
 | Non-NULL          | 1 or 10             | 1 or 10                      | ON/OFF      | Loaded Successfully |
 
 :::tip
-1. テーブル内の列はNULL値を許可します
+1. Table内の列はNULL値を許可します
 
 2. `abc`は型の問題によりDecimalへの変換後にNULLになります。strict modeがONの場合、そのようなデータはフィルタリングされます。OFFの場合、NULLがロードされます。
 
@@ -68,9 +68,9 @@ Strict modeには2つの主要な目的があります：
 3.0.x以前では、3.1.0以降はこの動作はload property/session var `partial_update_new_key_behavior`によって制御されます
 :::
 
-strict modeでは、部分列更新における各行は、そのKeyがテーブルに既に存在している必要があります。non-strict modeでは、部分列更新は既存行の更新（Keyが存在する場合）と新規行の挿入（Keyが存在しない場合）の両方を行うことができます。
+strict modeでは、部分列更新における各行は、そのKeyがTableに既に存在している必要があります。non-strict modeでは、部分列更新は既存行の更新（Keyが存在する場合）と新規行の挿入（Keyが存在しない場合）の両方を行うことができます。
 
-例えば、以下のようなテーブル構造が与えられた場合：
+例えば、以下のようなTable構造が与えられた場合：
 
 ```sql
 CREATE TABLE user_profile
@@ -88,7 +88,7 @@ PROPERTIES (
     "enable_unique_key_merge_on_write" = "true"
 );
 ```
-テーブルには以下のように1つのレコードが含まれています：
+Tableには以下のように1つのレコードが含まれています：
 
 ```sql
 mysql> select * from user_profile;
@@ -98,7 +98,7 @@ mysql> select * from user_profile;
 |    1 | kevin |   18 | shenzhen |     400 | 2023-07-01 12:00:00|
 +------+-------+------+----------+---------+---------------------+
 ```
-strict modeでInsert Intoを使用して部分的な列更新を実行する場合、キー`(3)`と`(18)`を持つ2番目と3番目の行が元のテーブルに存在しないため、挿入は失敗します：
+strict modeでInsert Intoを使用して部分的な列更新を実行する場合、キー`(3)`と`(18)`を持つ2番目と3番目の行が元のTableに存在しないため、挿入は失敗します：
 
 ```sql
 SET enable_unique_key_partial_update=true;

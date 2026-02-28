@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 WINDOW_FUNNEL関数は、指定された時間ウィンドウ内でイベントチェーンを検索し、イベントチェーンで完了したステップの最大数を計算することで、ユーザー行動シーケンスを分析します。この関数は、ウェブサイト訪問から最終購入までのユーザーコンバージョンの分析など、コンバージョンファネル分析に特に有用です。
 
@@ -22,7 +22,7 @@ WINDOW_FUNNEL(<window>, <mode>, <timestamp>, <event_1>[, event_2, ... , event_n]
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<window>` | windowは秒単位の時間ウィンドウの長さです |
 | `<mode>` | 全部で4つのモードがあります：`default`、`deduplication`、`fixed`、`increase`。詳細については、以下の**Mode**を参照してください。 |

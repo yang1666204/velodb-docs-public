@@ -5,25 +5,25 @@
   "language": "ja"
 }
 ---
-## Partition columns
+## パーティション columns
 
-- Partition columnsは1つまたは複数のカラムとして指定でき、partition columnsはKEY columnsである必要があります。
+- パーティション columnsは1つまたは複数のカラムとして指定でき、partition columnsはKEY columnsである必要があります。
 
 - `allow_partition_column_nullable`がtrueに設定されている場合、Range partitionはNULL partition columnsの使用をサポートします。List PartitionはNULL partition columnsを常にサポートしません。
 
 - partition columnのタイプに関係なく、partition valuesを記述する際にはダブルクォートが必要です。
 
-- partitionの数には理論的には上限がありません。ただし、各テーブルはデフォルトで4096個のpartitionに制限されています。この制限を超えたい場合は、FE設定パラメータ`max_multi_partition_num`と`max_dynamic_partition_num`を変更できます。
+- partitionの数には理論的には上限がありません。ただし、各Tableはデフォルトで4096個のpartitionに制限されています。この制限を超えたい場合は、FE設定パラメータ`max_multi_partition_num`と`max_dynamic_partition_num`を変更できます。
 
-- partitioningなしでテーブルを作成する場合、システムはテーブル名と同じ名前のfull-range partitionを自動的に生成します。このpartitionはユーザーには見えず、削除や変更はできません。
+- partitioningなしでTableを作成する場合、システムはTable名と同じ名前のfull-range partitionを自動的に生成します。このpartitionはユーザーには見えず、削除や変更はできません。
 
 - partitionを作成する際、範囲の重複は許可されません。
 
 ## RANGE partitioning
 
-Partition columnsは通常、古いデータと新しいデータの便利な管理のためにtime columnsが使用されます。RANGE partitioningは`DATE`、`DATETIME`、`TINYINT`、`SMALLINT`、`INT`、`BIGINT`、`LARGEINT`などのcolumn typesをサポートします。
+パーティション columnsは通常、古いデータと新しいデータの便利な管理のためにtime columnsが使用されます。RANGE partitioningは`DATE`、`DATETIME`、`TINYINT`、`SMALLINT`、`INT`、`BIGINT`、`LARGEINT`などのcolumn typesをサポートします。
 
-Partition informationは以下の4つの記述方法をサポートします：
+パーティション informationは以下の4つの記述方法をサポートします：
 
 - `FIXED RANGE`：この方法はpartitionを左閉右開区間として定義します。
 

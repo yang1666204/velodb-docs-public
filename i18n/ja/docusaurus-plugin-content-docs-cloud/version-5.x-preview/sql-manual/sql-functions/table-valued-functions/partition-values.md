@@ -1,15 +1,15 @@
 ---
 {
   "title": "PARTITION_VALUES",
-  "description": "特定のTABLEのパーティション値のリストを表示することを可能にする、パーティション値の一時テーブルを生成するテーブル関数。",
+  "description": "特定のTABLEのパーティション値のリストを表示することを可能にする、パーティション値の一時Tableを生成するTable関数。",
   "language": "ja"
 }
 ---
 ## 説明
 
-特定のTABLEのパーティション値のリストを表示できるよう、パーティション値の一時テーブルを生成するテーブル関数です。
+特定のTABLEのパーティション値のリストを表示できるよう、パーティション値の一時Tableを生成するTable関数です。
 
-この関数はFROM句で使用され、hiveテーブルのみをサポートします。
+この関数はFROM句で使用され、hiveTableのみをサポートします。
 
 ## 構文
 
@@ -21,19 +21,19 @@ PARTITION_VALUES(
 )
 ```
 ## 必要なパラメータ
-| Field               | Description                                       |
+| Field               | デスクリプション                                       |
 |------------------|------------------------------------------|
 | `<catalog>`  | クエリ対象のクラスタのカタログ名を指定します。                     |
 | `<database>` | クエリ対象のクラスタのデータベース名を指定します。                           |
-| `<table>`    | クエリ対象のクラスタのテーブル名を指定します。                             |
+| `<table>`    | クエリ対象のクラスタのTable名を指定します。                             |
 
 ## 戻り値
 
-クエリ対象のテーブルには複数のパーティションフィールドがあり、それに応じてテーブルには複数の列が存在します。
+クエリ対象のTableには複数のパーティションフィールドがあり、それに応じてTableには複数の列が存在します。
 
 ## 例
 
-multi_catalogの下にあるhive3 CATALOGの`text_partitioned_columns`のテーブル作成文は以下の通りです：
+multi_catalogの下にあるhive3 CATALOGの`text_partitioned_columns`のTable作成文は以下の通りです：
 
 ```sql
 CREATE TABLE `text_partitioned_columns`(

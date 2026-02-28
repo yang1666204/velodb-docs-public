@@ -16,7 +16,7 @@ FIRST_SIGNIFICANT_SUBDOMAIN ( <url> )
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|----------------------|
 | `<url>`   | "first valid subdomain"を抽出する必要があるURL |
 

@@ -14,8 +14,8 @@ STARTS_WITH関数は、文字列が指定されたプレフィックスで始ま
 ```sql
 STARTS_WITH(<str>, <prefix>)
 ```
-## Parameters
-| Parameter | Description                               |
+## パラメータ
+| Parameter | デスクリプション                               |
 | --------- | ----------------------------------------- |
 | `<str>` | チェックする文字列。型：VARCHAR        |
 | `<prefix>` | マッチするプレフィックス文字列。型：VARCHAR |

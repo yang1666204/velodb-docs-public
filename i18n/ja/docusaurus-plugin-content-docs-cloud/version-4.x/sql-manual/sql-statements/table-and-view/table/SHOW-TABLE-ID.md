@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW TABLE ID",
-  "description": "このステートメントは、テーブルIDに基づいて対応するデータベース名、テーブル名を検索するために使用されます。",
+  "description": "このステートメントは、TableIDに基づいて対応するデータベース名、Table名を検索するために使用されます。",
   "language": "ja"
 }
 ---
-### Description
+### デスクリプション
 
-このステートメントは、テーブルIDに基づいて対応するデータベース名、テーブル名を見つけるために使用されます。
+このステートメントは、TableIDに基づいて対応するデータベース名、Table名を見つけるために使用されます。
 
 ## Syntax
 
@@ -17,27 +17,27 @@ SHOW TABLE <table_id>
 ## 必須パラメータ
 
 **1. `<table_id>`**
-> データベース名、テーブル名テーブルの`<table_id>`を見つける必要があります。
+> データベース名、Table名Tableの`<table_id>`を見つける必要があります。
 
 ## 戻り値
 
-| Column name (Column) | Type (DataType) | Notes (Notes) |
+| Column name (Column) | タイプ (DataType) | 注釈 (注釈) |
 |:--------------------|:-------------|:----------|
 | DbName | String | データベース名 |
-| TableName | String | テーブル名 |
+| TableName | String | Table名 |
 | DbId | String | データベースID |
 
 ## アクセス制御要件
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege (Privilege) | Object (Object) | Notes (Notes) |
+| Privilege (Privilege) | Object (Object) | 注釈 (注釈) |
 |:--------------|:-----------|:------------------------|
 | ADMIN_PRIV | Table (table) | 現在、この操作を実行するには**ADMIN**権限のみがサポートされています |
 
 ## 例
 
-- table idに応じて、対応するデータベース名、テーブル名を検索する
+- table idに応じて、対応するデータベース名、Table名を検索する
 
    ```sql
    SHOW TABLE 2261121

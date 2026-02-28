@@ -14,9 +14,9 @@ HOURS_DIFF関数は、2つのdatetimeまたはdate値間の時間差を計算し
 ```sql
 HOURS_DIFF(`<date_or_time_expr1>`, `<date_or_time_expr2>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | ---- | ---- |
 | `<date_or_time_expr1>` | 終了時刻。date/datetimeタイプをサポートする有効な日付式。具体的なdatetimeおよびdateフォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<date_or_time_expr2>` | 開始時刻。date/datetimeタイプおよびdatetimeフォーマットの文字列をサポートする有効な日付式 |

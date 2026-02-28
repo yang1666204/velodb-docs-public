@@ -18,9 +18,9 @@
 ```text
 BOOL_XOR(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 論理XORで集約される式。BOOLEAN型と、0/非0ルールによってbooleanに変換可能な数値型をサポートします（0はFALSE、非0はTRUE）。 |
 
@@ -32,7 +32,7 @@ BOOL_XOR(<expr>)
 
 ## Examples
 
-テーブルの初期化：
+Tableの初期化：
 
 ```sql
 CREATE TABLE IF NOT EXISTS test_boolean_agg (

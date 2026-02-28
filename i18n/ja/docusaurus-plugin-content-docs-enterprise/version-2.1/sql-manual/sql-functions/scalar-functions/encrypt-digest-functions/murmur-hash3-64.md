@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 64ビットmurmur3ハッシュ値を計算します
 

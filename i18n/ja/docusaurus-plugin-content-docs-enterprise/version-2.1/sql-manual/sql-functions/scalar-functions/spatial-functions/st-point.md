@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 与えられたX座標値に対して、Y座標値は対応するPointを返します。
 

@@ -30,14 +30,14 @@ SHOW {ALL PROPERTIES | PROPERTY [FOR <user_name>]} [LIKE <key>]
 ## 戻り値
 - ステートメントが `PROPERTY` を使用する場合
 
-   | Column | Description |
+   | Column | デスクリプション |
    | -- | -- |
    | Key | 属性名 |
    | Value | 属性値 |
 
 - ステートメントが `PROPERTIES` を使用する場合
 
-   | Column | Description |
+   | Column | デスクリプション |
    | -- | -- |
    | User | ユーザー名 |
    | Properties | 対応するユーザーの各 `property` `key:value` |
@@ -46,7 +46,7 @@ SHOW {ALL PROPERTIES | PROPERTY [FOR <user_name>]} [LIKE <key>]
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持っている必要があります：
 
-| Privilege | Object | Notes                 |
+| Privilege | Object | 注釈                 |
 | :---------------- | :------------- | :---------------------------- |
 | GRANT_PRIV        | User or Role    | ユーザーまたはロールがすべてのユーザープロパティを表示するには `GRANT_PRIV` 権限が必要、`SHOW PROPERTY` は現在のユーザーのプロパティを表示するのに `GRANT_PRIV` 権限を必要としない |
 

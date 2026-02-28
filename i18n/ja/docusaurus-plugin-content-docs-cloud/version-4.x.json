@@ -252,7 +252,7 @@
     "description": "The label for category GIS Functions in sidebar docs"
   },
   "sidebar.cloud.category.Getting Started": {
-    "message": "はじめる",
+    "message": "はじめに",
     "description": "The label for category Getting Started in sidebar docs"
   },
   "sidebar.cloud.category.HLL Functions": {

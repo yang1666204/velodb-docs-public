@@ -17,12 +17,12 @@
 
 ### PROCESSLIST
 
-`processlist`システムテーブルを通じて、現在のすべてのセッション接続と、その接続で実行されているクエリ操作を取得できます。これにはQuery IDとConnection IDが含まれます。
+`processlist`システムTableを通じて、現在のすべてのセッション接続と、その接続で実行されているクエリ操作を取得できます。これにはQuery IDとConnection IDが含まれます。
 
 ```sql
 mysql> SHOW PROCESSLIST;
 +------------------+------+------+---------------------+---------------------+----------+------+---------+------+-------+-----------------------------------+------------------+---------------+--------------+
-| CurrentConnected | Id   | User | Host                | LoginTime           | Catalog  | Db   | Command | Time | State | QueryId                           | Info             | FE            | CloudCluster |
+| CurrentConnected | Id   | User | Host                | LoginTime           | カタログ  | Db   | Command | Time | State | QueryId                           | Info             | FE            | CloudCluster |
 +------------------+------+------+---------------------+---------------------+----------+------+---------+------+-------+-----------------------------------+------------------+---------------+--------------+
 | No               |    2 | root | 172.20.32.136:54850 | 2025-05-11 10:41:52 | internal |      | Query   |    6 | OK    | 12ccf7f95c1c4d2c-b03fa9c652757c15 | select sleep(20) | 172.20.32.152 | NULL         |
 | Yes              |    3 | root | 172.20.32.136:54862 | 2025-05-11 10:41:55 | internal |      | Query   |    0 | OK    | b710ed990d4144ee-8b15bb53002b7710 | show processlist | 172.20.32.152 | NULL         |
@@ -42,7 +42,7 @@ SET show_all_fe_connection=true;
 ```
 その後、`SHOW PROCESSLIST`コマンドを再度実行して、全てのFEノードからのセッション接続を表示します。
 
-`information_schema`のシステムテーブルからも確認できます：
+`information_schema`のシステムTableからも確認できます：
 
 ```
 SELECT * FROM information_schema.processlist;
@@ -53,7 +53,7 @@ SELECT * FROM information_schema.processlist;
 
 > この機能はバージョン2.1.11および3.0.7以降でサポートされています。
 
-デフォルトでは、システムは各クエリに対してQuery IDを自動生成します。ユーザーはKILL操作を実行する前に、まず`processlist`システムテーブルを通じてQuery IDを取得する必要があります。
+デフォルトでは、システムは各クエリに対してQuery IDを自動生成します。ユーザーはKILL操作を実行する前に、まず`processlist`システムTableを通じてQuery IDを取得する必要があります。
 
 さらに、ユーザーはTrace IDをカスタマイズし、そのTrace IDを使用してKILL操作を実行することも可能です。
 
@@ -62,7 +62,7 @@ SET session_context = "trace_id:your_trace_id";
 ```
 `your_trace_id` はユーザー定義のTrace IDです。任意の文字列を指定できますが、`;` 記号を含むことはできません。
 
-Trace IDはセッションレベルのパラメータで、現在のセッションにのみ適用されます。Dorisは現在のセッション内の後続のクエリリクエストをこのTrace IDにマッピングします。
+トレース IDはセッションレベルのパラメータで、現在のセッションにのみ適用されます。Dorisは現在のセッション内の後続のクエリリクエストをこのTrace IDにマッピングします。
 
 ## Kill Requests
 
@@ -81,7 +81,7 @@ KILL QUERY "query_id" | "trace_id" | connection_id;
 
 - `"query_id"`
 
-	`processlist`システムテーブルから取得したQuery IDです。クォートで囲む必要があります。例：
+	`processlist`システムTableから取得したQuery IDです。クォートで囲む必要があります。例：
 	
 	`KILL QUERY "d36417cc05ff41ab-9d3afe49be251055";`
 	
@@ -99,7 +99,7 @@ KILL QUERY "query_id" | "trace_id" | connection_id;
 
 - `connection_id`
 
-	`processlist`システムテーブルから取得したConnection IDです。0より大きい整数である必要があり、クォートで囲むことはできません。例：
+	`processlist`システムTableから取得したConnection IDです。0より大きい整数である必要があり、クォートで囲むことはできません。例：
 
 	`KILL QUERY 55;`
 	
@@ -118,7 +118,7 @@ KILL [CONNECTION] connection_id;
 
 - `connection_id`
 
-	`processlist`システムテーブルから取得されるConnection ID。0より大きい整数である必要があり、クォートで囲むことはできません。例：
+	`processlist`システムTableから取得されるConnection ID。0より大きい整数である必要があり、クォートで囲むことはできません。例：
 
 	```sql
 	KILL CONNECTION 55;
@@ -134,7 +134,7 @@ KILL [CONNECTION] connection_id;
 	
 	- 各クエリの前に`session_context`を設定
 	
-		ユーザーが独自のTrace IDを生成します。Trace IDの一意性を確保するため、UUIDの使用を推奨します。
+		ユーザーが独自のTrace IDを生成します。トレース IDの一意性を確保するため、UUIDの使用を推奨します。
 
 		```sql
 		SET session_context="trace_id:your_trace_id";

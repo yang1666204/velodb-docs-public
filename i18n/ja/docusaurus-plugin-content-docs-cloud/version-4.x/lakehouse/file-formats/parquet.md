@@ -35,7 +35,7 @@
 
 * `hive_parquet_use_column_names` (2.1.6+, 3.0.3+)
 
-    HiveテーブルからParquetデータ型を読み取る際、Dorisはデフォルトで、Hiveテーブルの列と同じ名前を持つParquetファイルの列からデータを読み取ります。この変数が`false`に設定されている場合、Dorisは列名に関係なく、Hiveテーブルの列順序に基づいてParquetファイルからデータを読み取ります。これはHiveの`parquet.column.index.access`変数と似ています。このパラメータはトップレベルの列名のみに適用され、Struct内の列には効果がありません。
+    HiveTableからParquetデータ型を読み取る際、Dorisはデフォルトで、HiveTableの列と同じ名前を持つParquetファイルの列からデータを読み取ります。この変数が`false`に設定されている場合、Dorisは列名に関係なく、HiveTableの列順序に基づいてParquetファイルからデータを読み取ります。これはHiveの`parquet.column.index.access`変数と似ています。このパラメータはトップレベルの列名のみに適用され、Struct内の列には効果がありません。
 
 ### BE設定
 

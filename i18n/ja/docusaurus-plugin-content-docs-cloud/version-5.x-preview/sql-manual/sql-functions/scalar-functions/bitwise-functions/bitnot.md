@@ -15,7 +15,7 @@
 ```sql
 BITNOT(<x>)
 ```
-## Parameters
+## パラメータ
 - `<x>`: 演算を実行する整数。
 
 ## Return Value

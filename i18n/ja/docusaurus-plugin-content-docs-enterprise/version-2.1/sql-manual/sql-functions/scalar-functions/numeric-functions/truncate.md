@@ -14,9 +14,9 @@ xを小数点以下d桁の数値切り捨てを実行します
 ```sql
 TRUNCATE(<x>, <d>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | 数値的に切り捨てが必要な値 |
 | `<d>` | 保持する小数点以下の桁数 |

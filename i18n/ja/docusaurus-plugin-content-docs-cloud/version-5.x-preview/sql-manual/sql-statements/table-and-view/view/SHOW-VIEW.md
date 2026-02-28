@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW VIEW",
-  "description": "この文は、指定されたテーブルに基づくすべてのviewを表示するために使用されます",
+  "description": "この文は、指定されたTableに基づくすべてのviewを表示するために使用されます",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-このステートメントは、指定されたテーブルに基づくすべてのビューを表示するために使用されます
+このステートメントは、指定されたTableに基づくすべてのビューを表示するために使用されます
 
 grammar:
 
@@ -16,7 +16,7 @@ grammar:
 ```
 ## Example
 
-1. テーブル testTbl に基づいて作成されたすべてのビューを表示する
+1. Table testTbl に基づいて作成されたすべてのビューを表示する
 
     ```sql
     SHOW VIEW FROM testTbl;

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 パターンにマッチしたイベントチェーンの数をカウントします。この関数は重複しないイベントチェーンを検索します。現在のチェーンがマッチした後、次のチェーンの検索を開始します。
 
@@ -18,9 +18,9 @@
 ```sql
 SEQUENCE_COUNT(<pattern>, <timestamp>, <cond_1> [, <cond_2>, ..., <cond_n>]);
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<pattern>` | パターン文字列、以下の**Pattern syntax**を参照してください。String型をサポートします。 |
 | `<timestamp>` | 時間データを含むとみなされる列。Date、DateTime型をサポートします。 |

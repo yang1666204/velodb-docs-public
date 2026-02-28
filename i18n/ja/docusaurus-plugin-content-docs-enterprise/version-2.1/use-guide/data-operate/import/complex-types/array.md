@@ -9,8 +9,8 @@
 
 `ARRAY<T>` T型アイテムの配列で、キー列として使用することはできません。
 
-- バージョン2.0より前では、Duplicateモデルテーブルでのみサポートされていました。
-- バージョン2.0以降では、Uniqueモデルテーブルの非キー列でサポートされています。
+- バージョン2.0より前では、DuplicateモデルTableでのみサポートされていました。
+- バージョン2.0以降では、UniqueモデルTableの非キー列でサポートされています。
 
 T型は以下のいずれかを指定できます：
 
@@ -31,7 +31,7 @@ DATEV2, DATETIME, DATETIMEV2, CHAR, VARCHAR, STRING
 3|[]
 4|null
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE `array_test` (
@@ -44,7 +44,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```bash
 curl --location-trusted \
@@ -82,7 +82,7 @@ mysql> SELECT * FROM array_test;
     {"id":4, "c_array":null}
 ]
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE `array_test` (
@@ -106,7 +106,7 @@ curl --location-trusted \
         -T "test_array.json" \
         http://localhost:8040/api/testdb/array_test/_stream_load
 ```
-### Step 4: インポートしたデータを確認する
+### ステップ 4: インポートしたデータを確認する
 
 ```sql
 mysql> SELECT * FROM array_test;

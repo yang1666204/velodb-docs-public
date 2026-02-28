@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 WKT (Well Known Text) を地球の球面上の円に変換します。
 
@@ -14,9 +14,9 @@ WKT (Well Known Text) を地球の球面上の円に変換します。
 ```sql
 ST_CIRCLE( <center_lng>, <center_lat>, <radius>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | 説明 |
+| パラメータ | 説明 |
 | -- | -- |
 | `<center_lng>` | 円の中心の経度 |
 | `<center_lat>` | 円の中心の緯度 |

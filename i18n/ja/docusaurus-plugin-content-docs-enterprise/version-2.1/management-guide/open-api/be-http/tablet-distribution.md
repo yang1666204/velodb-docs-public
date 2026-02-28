@@ -10,7 +10,7 @@
 
 `GET /api/tablets_distribution?group_by={enum}&partition_id={int}`
 
-## Description
+## デスクリプション
 
 BEノード上の異なるディスク間で各パーティション下のタブレットの分散状況を取得します
 

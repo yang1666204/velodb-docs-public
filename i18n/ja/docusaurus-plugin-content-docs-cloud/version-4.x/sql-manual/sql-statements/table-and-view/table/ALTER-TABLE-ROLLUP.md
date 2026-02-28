@@ -1,13 +1,13 @@
 ---
 {
   "title": "ALTER TABLE ROLLUP",
-  "description": "この文は既存のテーブルに対してrollup変更操作を実行するために使用されます。rollupは非同期操作であり、",
+  "description": "この文は既存のTableに対してrollup変更操作を実行するために使用されます。rollupは非同期操作であり、",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-このステートメントは、既存のテーブルに対してrollup変更操作を実行するために使用されます。rollupは非同期操作であり、タスクが正常に送信されるとタスクが返されます。その後、[SHOW ALTER](../../../../sql-manual/sql-statements/table-and-view/table/SHOW-ALTER-TABLE)コマンドを使用して進行状況を確認できます。
+このステートメントは、既存のTableに対してrollup変更操作を実行するために使用されます。rollupは非同期操作であり、タスクが正常に送信されるとタスクが返されます。その後、[SHOW ALTER](../../../../sql-manual/sql-statements/table-and-view/table/SHOW-ALTER-TABLE)コマンドを使用して進行状況を確認できます。
 
 文法:
 
@@ -39,7 +39,7 @@ ADD ROLLUP [rollup_name (column_name1, column_name2, ...)
 注意:
 
 - from_index_nameが指定されていない場合、デフォルトでベースインデックスから作成されます
-- rollupテーブルの列は、from_indexに既に存在する列である必要があります
+- rollupTableの列は、from_indexに既に存在する列である必要があります
 - propertiesでは、ストレージ形式を指定できます。詳細については、[CREATE TABLE](./CREATE-TABLE)を参照してください
 
 3. rollupインデックスの削除

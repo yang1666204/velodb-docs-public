@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 IPv4タイプのアドレスが有効なIPv4アドレスであるかどうかを判定します。
 
 ## Syntax
@@ -13,8 +13,8 @@ IPv4タイプのアドレスが有効なIPv4アドレスであるかどうかを
 ```sql
 IS_IPV4_STRING(<ipv4_str>)
 ```
-## Parameters
-| Parameter | Description                                      |
+## パラメータ
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ipv4_str>`      | String型のIPv4アドレス |
 

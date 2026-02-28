@@ -19,7 +19,7 @@
 ```sql
 array_map(lambda, ARRAY<T> arr1, [ARRAY<T> arr2, ...])
 ```
-### Parameters
+### パラメータ
 
 - `lambda`：変換ルールを定義するために使用されるlambda式
 - `arr1, arr2, ...`：ARRAY<T>型、変換対象の配列。1つ以上の配列パラメータをサポート。

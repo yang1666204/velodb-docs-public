@@ -26,7 +26,7 @@ CANCEL TASK WHERE jobName = '<job_name>' AND taskId = '<task_id>';
 
 **<task_id>**
 
-> タスクID、integer型。tasksテーブル値関数を通じて照会できます。例：SELECT * FROM tasks('type'='insert')。詳細については、「taskテーブル値関数」を参照してください。
+> タスクID、integer型。tasksTable値関数を通じて照会できます。例：SELECT * FROM tasks('type'='insert')。詳細については、「taskTable値関数」を参照してください。
 
 ## アクセス制御要件
 

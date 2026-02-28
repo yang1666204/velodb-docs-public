@@ -15,8 +15,8 @@
 UCASE( <str> )
 UPPER( <str> )
 ```
-## Required Parameters
-| Parameters | Description |
+## Required パラメータ
+| パラメータ | デスクリプション |
 |------|------|
 | `<str>` | 大文字に変換する文字列
 

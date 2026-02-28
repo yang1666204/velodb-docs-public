@@ -6,7 +6,7 @@
 }
 ---
 ## TINYINT
-### Description
+### デスクリプション
 TINYINT
 1バイト符号付き整数、範囲 [-128, 127]
 

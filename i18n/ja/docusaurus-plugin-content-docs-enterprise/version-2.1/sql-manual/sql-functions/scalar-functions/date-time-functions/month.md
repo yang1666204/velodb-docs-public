@@ -14,9 +14,9 @@ datetime値から月の値を抽出します。戻り値は1から12の範囲で
 ```sql
 MONTH(<date>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<date>`  | 入力する日時値。DATE、DATETIME、またはDATETIMEV2型を指定可能 |
 

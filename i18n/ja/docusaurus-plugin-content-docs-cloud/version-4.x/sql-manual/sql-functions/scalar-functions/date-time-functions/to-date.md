@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 日時（DATETIME）を日付型（DATE）に変換するための日付変換関数です。時間部分を削除し、日付部分（YYYY-MM-DD）のみを保持します。
 
 ## Syntax
@@ -14,7 +14,7 @@
 TO_DATE(<datetime_value>)
 ```
 ## 必須パラメータ
-| Parameter        | Description               |
+| Parameter        | デスクリプション               |
 |-----------------|--------------------------|
 | `datetime_value` | DATETIME型の日時 |
 

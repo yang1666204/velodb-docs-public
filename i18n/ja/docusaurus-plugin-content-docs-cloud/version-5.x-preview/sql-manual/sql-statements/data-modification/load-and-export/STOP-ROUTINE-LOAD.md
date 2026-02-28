@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この構文はRoutine Loadジョブを停止するために使用されます。PAUSEコマンドとは異なり、停止されたジョブは再開できません。再度データをインポートする必要がある場合は、新しいインポートジョブを作成する必要があります。
 
@@ -29,7 +29,7 @@ STOP ROUTINE LOAD FOR <job_name>;
 
 | 権限       | オブジェクト | 備考                                              |
 | :--------- | :----------- | :------------------------------------------------ |
-| LOAD_PRIV  | Table        | SHOW ROUTINE LOADにはテーブルのLOAD権限が必要です |
+| LOAD_PRIV  | Table        | SHOW ROUTINE LOADにはTableのLOAD権限が必要です |
 
 ## 注意事項
 

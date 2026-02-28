@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つ以上の入力BITMAPの積集合を計算し、新しいBITMAPを返します。
 

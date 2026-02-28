@@ -16,7 +16,7 @@ BITMAP_CONTAINS(<bitmap>, <bigint>)
 ```
 ## パラメータ
 
-| Parameter  | Description                             |
+| Parameter  | デスクリプション                             |
 |------------|-----------------------------------------|
 | `<bitmap>` | BITMAP コレクション                       |
 | `<bitint>` | 存在を確認する整数                         |

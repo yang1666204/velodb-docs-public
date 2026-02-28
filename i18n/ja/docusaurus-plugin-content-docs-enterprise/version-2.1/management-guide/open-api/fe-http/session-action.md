@@ -12,7 +12,7 @@
 
 `GET /rest/v1/session/all`
 
-## Description
+## デスクリプション
 
 Session Actionは現在のセッション情報を取得するために使用されます。
 
@@ -95,4 +95,4 @@ Session Actionは現在のセッション情報を取得するために使用さ
 	"count": 2
 }
 ```
-返される結果は`System Action`と同じです。テーブルの説明です。
+返される結果は`システム Action`と同じです。Tableの説明です。

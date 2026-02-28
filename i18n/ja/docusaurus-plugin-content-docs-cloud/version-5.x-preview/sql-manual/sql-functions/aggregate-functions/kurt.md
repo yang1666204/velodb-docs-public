@@ -20,9 +20,9 @@ KURTOSIS(<expr>)
 KURT_POP(<expr>)
 KURT(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 計算する式、Double型がサポートされています。 |
 

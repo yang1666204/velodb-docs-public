@@ -9,7 +9,7 @@ Redshiftの移行プロセスでは、通常オブジェクトストレージを
 
 ## 注意事項
 
-1. 移行前に、Redshiftのテーブル構造に応じて、Dorisの[Data Model](../../../table-design/data-model/overview.md)、[Partitioning](../../../table-design/data-partitioning/dynamic-partitioning.md)および[Bucketing](../../../table-design/data-partitioning/data-bucketing.md)の戦略を選択する必要があります。その他のテーブル作成戦略については、[Load Best Practices](../load-best-practices.md)を参照してください。
+1. 移行前に、RedshiftのTable構造に応じて、Dorisの[Data Model](../../../table-design/data-model/overview.md)、[Partitioning](../../../table-design/data-partitioning/dynamic-partitioning.md)および[Bucketing](../../../table-design/data-partitioning/data-bucketing.md)の戦略を選択する必要があります。その他のTable作成戦略については、[Load Best Practices](../load-best-practices.md)を参照してください。
 2. RedshiftでTime型のデータをエクスポートする場合、Varchar型にキャストしてからエクスポートする必要があります。
 
 
@@ -32,11 +32,11 @@ Redshiftの移行プロセスでは、通常オブジェクトストレージを
 | SUPER            | VARIANT        |                      |
 | OTHER            | UNSUPPORTED    |                      |
 
-## 1. テーブルの作成
+## 1. Tableの作成
 
-RedshiftテーブルをDorisに移行するには、まずDorisテーブルを作成します。
+RedshiftTableをDorisに移行するには、まずDorisTableを作成します。
 
-Redshiftに以下のテーブルとデータがあると仮定します：
+Redshiftに以下のTableとデータがあると仮定します：
 
 ```SQL
 CREATE TABLE sales_data (
@@ -183,7 +183,7 @@ LoadFinishTime: 2025-04-15 17:33:02
           User: root
        Comment: 
 ```
-上記の例で示されているように、この問題は**data quality error**(ETL_QUALITY_UNSATISFIED)です。詳細なエラーを確認するには、結果に提供されているURLにアクセスする必要があります。例えば、データがテーブルスキーマのcountryカラムで定義された長さを超えた場合などです。
+上記の例で示されているように、この問題は**data quality error**(ETL_QUALITY_UNSATISFIED)です。詳細なエラーを確認するには、結果に提供されているURLにアクセスする必要があります。例えば、データがTableスキーマのcountryカラムで定義された長さを超えた場合などです。
 
 ```python
 [root@VM-10-6-centos ~]$ curl "http://10.16.10.6:28747/api/_load_error_log?file=__shard_2/error_log_insert_stmt_7602ccd7c3a4854-95307efca7bfe342_7602ccd7c3a4854_95307efca7bfe342"
@@ -192,7 +192,7 @@ Reason: column_name[country], the length of input is too long than schema. first
 Reason: column_name[country], the length of input is too long than schema. first 32 bytes of input str: [UK] schema length: 1; actual length: 2; . src line []; 
 Reason: column_name[country], the length of input is too long than schema. first 32 bytes of input str: [Australia] schema length: 1; actual length: 9; . src line [];
 ```
-データ品質エラーについて、エラーレコードのスキップを許可したい場合は、S3 Loadタスクのプロパティセクションで障害許容率を設定できます。詳細については、[Import Configuration Parameters](../../import/import-way/broker-load-manual.md#related-configurations)を参照してください。
+データ品質エラーについて、エラーレコードのスキップを許可したい場合は、S3 Loadタスクのプロパティセクションで障害許容率を設定できます。詳細については、[Import 構成 パラメータ](../../import/import-way/broker-load-manual.md#related-configurations)を参照してください。
 
 **3.4 複数パーティションのデータロード**
 

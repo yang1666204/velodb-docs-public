@@ -67,7 +67,7 @@ Doris Operatorは標準K8s仕様に従って開発されており、主要クラ
 
 ### 前提条件
 
-デプロイメント前に、ホストシステムを確認する必要があります。Operating System Checkを参照してください
+デプロイメント前に、ホストシステムを確認する必要があります。Operating システム Checkを参照してください
 
 ### Doris Operatorのデプロイ
 

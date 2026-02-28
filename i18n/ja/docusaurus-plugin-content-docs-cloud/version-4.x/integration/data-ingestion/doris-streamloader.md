@@ -82,7 +82,7 @@ doris-streamloader --source_file="data.csv" --url="http://localhost:8330" --head
 ```
 上記のパラメータは必須であり、以下のパラメータはオプションです：
 
-| Parameter | Description  |  Default Value  |  Suggestions  |
+| Parameter | デスクリプション  |  デフォルト値  |  Suggestions  |
 |---|---|---|---|
 | --u      | データベースのユーザー名 |  root    |      |
 | --p      | パスワード |  empty string  |      |
@@ -108,7 +108,7 @@ doris-streamloader --source_file="data.csv" --url="http://localhost:8330" --head
 データロードが成功または失敗に関わらず、結果が返されます。
 
 
-|Parameter | Description |
+|Parameter | デスクリプション |
 |---|---|
 | Status | ロードが成功または失敗 |
 | TotalRows | 総行数 |

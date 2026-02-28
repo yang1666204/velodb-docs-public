@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 LAG()は、セルフ結合を実行せずに前の行のデータにアクセスするウィンドウ関数です。パーティション内で現在の行よりもN行前の行から値を取得します。
 
@@ -14,8 +14,8 @@ LAG()は、セルフ結合を実行せずに前の行のデータにアクセス
 ```sql
 LAG ( <expr> [, <offset> [, <default> ] ] )
 ```
-## Parameters
-| Parameter           | Description                                                                                        |
+## パラメータ
+| Parameter           | デスクリプション                                                                                        |
 | ------------------- | -------------------------------------------------------------------------------------------------- |
 | expr                | 値を取得する対象の式。サポートされている型：tinyint/smallint/int/bigint/float/double/decimal/string/date/datetime/                                                      |
 | offset              | オプションのBigint型。先読みする行数。デフォルトは1。 |

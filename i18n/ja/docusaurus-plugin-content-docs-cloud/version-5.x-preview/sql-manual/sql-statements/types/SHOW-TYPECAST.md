@@ -24,8 +24,8 @@ SHOW TYPE_CAST [ { IN | FROM } <db>]
 
 | カラム名 | 説明 |
 |----------|------|
-| Origin Type | 元の型 |
-| Cast Type | 変換型 |
+| Origin タイプ | 元の型 |
+| Cast タイプ | 変換型 |
 
 ## アクセス制御要件
 
@@ -48,7 +48,7 @@ SHOW TYPE_CAST [ { IN | FROM } <db>]
     ```
     ```text
     +----------------+----------------+
-    | Origin Type    | Cast Type      |
+    | Origin タイプ    | Cast タイプ      |
     +----------------+----------------+
     | DATETIMEV2     | BOOLEAN        |
     | DATETIMEV2     | TINYINT        |

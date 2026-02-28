@@ -14,9 +14,9 @@
 ```sql
 AI_FIXGRAMMAR([<resource_name>], <text>)
 ```
-## Parameters
+## パラメータ
 
-|    Parameter      | Description                                 |
+|    Parameter      | デスクリプション                                 |
 | ----------------- | ------------------------------------------- |
 | `<resource_name>` | 指定されたリソース名、省略可能       |
 | `<text>`          | 文法修正を行うテキスト            |

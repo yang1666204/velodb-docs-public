@@ -21,7 +21,7 @@ PERCENTILE_APPROX_WEIGHTED(<col>, <weight>, <p> [, <compression>])
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col>` | パーセンタイルを計算する列 |
 | `<weight>` | 重み列、正の数値である必要があります |

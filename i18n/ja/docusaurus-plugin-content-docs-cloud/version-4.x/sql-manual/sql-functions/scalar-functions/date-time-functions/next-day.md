@@ -18,9 +18,9 @@ NEXT_DAY関数は、指定された日付より後で、指定された曜日と
 ```sql
 NEXT_DAY(<datetime/date>, <day_of_week>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter         | Description                                                   |
+| Parameter         | デスクリプション                                                   |
 |-------------------|---------------------------------------------------------------|
 | `<datetime/date>` | 次の曜日を検索するために使用される日付。 |
 | `<day_of_week>`   | 曜日を特定するSTRING式。            |

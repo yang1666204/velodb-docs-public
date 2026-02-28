@@ -1,12 +1,12 @@
 ---
 {
   "title": "EXPLODE_JSON_ARRAY_INT_OUTER",
-  "description": "explodejsonarrayintouter テーブル関数は JSON 配列を受け入れます。",
+  "description": "explodejsonarrayintouter Table関数は JSON 配列を受け入れます。",
   "language": "ja"
 }
 ---
 ## 説明
-`explode_json_array_int_outer`テーブル関数はJSON配列を受け取ります。その実装ロジックは、JSON配列を配列型に変換してから`explode`関数を呼び出して処理することです。動作は`explode_outer(cast(<json_array> as Array<BIGINT>))`と同等です。
+`explode_json_array_int_outer`Table関数はJSON配列を受け取ります。その実装ロジックは、JSON配列を配列型に変換してから`explode`関数を呼び出して処理することです。動作は`explode_outer(cast(<json_array> as Array<BIGINT>))`と同等です。
 [`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
 
 ## 構文
@@ -20,7 +20,7 @@ EXPLODE_JSON_ARRAY_INT_OUTER(<json>)
 ## 戻り値
 - `<json>`内のすべての要素で構成された単一列、複数行の結果を返します。列の型は`Nullable<BIGINT>`です。
 - `<json>`がNULLまたは空の配列（要素数が0）の場合、NULLを含む1行を返します。
-- JSON配列内の要素がINT型でない場合、関数はそれらをINTに変換しようとします。INTに変換できない要素はNULLに変換されます。型変換ルールについては、[JSON Type Conversion](../../basic-element/sql-data-types/conversion/json-conversion.md)を参照してください。
+- JSON配列内の要素がINT型でない場合、関数はそれらをINTに変換しようとします。INTに変換できない要素はNULLに変換されます。型変換ルールについては、[JSON タイプ Conversion](../../basic-element/sql-data-types/conversion/json-conversion.md)を参照してください。
 
 ## 例
 0. データの準備

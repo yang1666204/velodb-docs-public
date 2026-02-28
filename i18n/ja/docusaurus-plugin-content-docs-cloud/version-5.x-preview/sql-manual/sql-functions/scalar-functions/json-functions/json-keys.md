@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 JSON オブジェクトのすべてのキーを配列形式で返します。デフォルトでは、ルートオブジェクトのキーを返しますが、パラメータを通じて特定のパスのオブジェクトキーを返すように制御することも可能です。
 
 ## Syntax
@@ -13,18 +13,18 @@ JSON オブジェクトのすべてのキーを配列形式で返します。デ
 ```sql
 JSON_KEYS(<json_object>[, <path>])
 ```
-## Parameters
-### Required Parameters
+## パラメータ
+### Required パラメータ
 - `<json_object>` JSON型、キーを抽出する必要があるJSONオブジェクト。
 
 
-### Optional Parameters
+### Optional パラメータ
 - `<path>` String型、チェックするJSONサブドキュメントを指定するオプションのJSONパス。指定されない場合、ルートドキュメントがデフォルトとなります。
 
 ## Return Value
 - Array<String> 文字列の配列を返します。配列のメンバーはJSONオブジェクトのすべてのキーです。
 
-## Notes
+## 注釈
 - `<json_object>`または`<path>`がNULLの場合、NULLを返します。
 - JSONオブジェクトでない場合（例：JSON配列の場合）、NULLを返します。
 - `<path>`で指定されたオブジェクトが存在しない場合、NULLを返します。

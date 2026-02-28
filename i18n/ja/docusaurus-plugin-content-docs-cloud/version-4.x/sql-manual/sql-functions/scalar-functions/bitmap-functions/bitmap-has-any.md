@@ -14,9 +14,9 @@
 ```sql
 BITMAP_HAS_ANY(<bitmap1>, <bitmap2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter   | Description          |
+| Parameter   | デスクリプション          |
 |-------------|----------------------|
 | `<bitmap1>` | 最初のBitmap     |
 | `<bitmap2>` | 2番目のBitmap    |

@@ -14,9 +14,9 @@
 ```sql
 TO_QUANTILE_STATE(<raw_data> <compression>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<raw_data>` | 対象列。|
 | `<compression>` | 圧縮閾値。|

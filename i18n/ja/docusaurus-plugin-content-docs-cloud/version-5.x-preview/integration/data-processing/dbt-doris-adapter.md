@@ -66,7 +66,7 @@ dbt run
 model：`my_first_dbt_model`と`my_second_dbt_model`
 
 これらはそれぞれ`table`と`view`としてマテリアライズされます。
-その後、dorisにログインして`my_first_dbt_model`と`my_second_dbt_model`のデータ結果とテーブル作成文を確認してください。
+その後、dorisにログインして`my_first_dbt_model`と`my_second_dbt_model`のデータ結果とTable作成文を確認してください。
 ### dbt-doris adapter Materialization
 dbt-doris Materializationは以下の3つをサポートします：
 1. view
@@ -96,16 +96,16 @@ models:
 ```
 #### Table
 
-`table` materialization modeを使用する場合、モデルは各実行時に `create table as select` ステートメントでテーブルとして再構築されます。
+`table` materialization modeを使用する場合、モデルは各実行時に `create table as select` ステートメントでTableとして再構築されます。
 dbtのtablet materializationについて、dbt-dorisはデータ変更のアトミック性を保証するために以下の手順を使用します：
-1. 最初に一時テーブルを作成します：`create table this_table_temp as {{ model sql}}`。
-2. `this_table` が存在しないかどうか、つまり初回作成かどうかを判定し、`rename` を実行して一時テーブルを最終テーブルに変更します。
-3. すでに存在する場合は、`alter table this_table REPLACE WITH TABLE this_table_temp PROPERTIES('swap' = 'False')` を実行します。この操作はテーブル名を交換し、`this_table_temp` 一時テーブルを削除することができ、[this](../../sql-manual/sql-statements/table-and-view/table/ALTER-TABLE-REPLACE) がDorisのトランザクションメカニズムを通じてこの操作のアトミック性を保証します。
+1. 最初に一時Tableを作成します：`create table this_table_temp as {{ model sql}}`。
+2. `this_table` が存在しないかどうか、つまり初回作成かどうかを判定し、`rename` を実行して一時Tableを最終Tableに変更します。
+3. すでに存在する場合は、`alter table this_table REPLACE WITH TABLE this_table_temp PROPERTIES('swap' = 'False')` を実行します。この操作はTable名を交換し、`this_table_temp` 一時Tableを削除することができ、[this](../../sql-manual/sql-statements/table-and-view/table/ALTER-TABLE-REPLACE) がDorisのトランザクションメカニズムを通じてこの操作のアトミック性を保証します。
 
 ``` 
 Advantages: table query speed will be faster than view.
 Disadvantages: The table takes a long time to build or rebuild, additional data will be stored, and incremental data synchronization cannot be performed.
-Recommendation: It is recommended to use the table materialization method for models queried by BI tools or models with slow operations such as downstream queries and conversions.
+Recommendation: It is recommended to use the table materialization method for models queried by BI tools or models with slow 運用 such as downstream queries and conversions.
 ```
 config:
 
@@ -143,22 +143,22 @@ models:
 
 | item                 | description                                                | Required? |
 |---------------------|------------------------------------------------------------|-----------|
-| `materialized`      | テーブルのマテリアライズ形式（Doris Duplicateテーブル）             | Required  |
+| `materialized`      | Tableのマテリアライズ形式（Doris DuplicateTable）             | Required  |
 | `duplicate_key`     | Doris Duplicateキー                                        | Optional  |
-| `replication_num`   | テーブルレプリカ数                                            | Optional  |
-| `partition_by`      | テーブルパーティション列                                        | Optional  |
-| `partition_type`    | テーブルパーティションタイプ、`range`または`list`（デフォルト：`RANGE`） | Optional  |
-| `partition_by_init` | 初期化されたテーブルパーティション                                | Optional  |
-| `distributed_by`    | テーブル分散列                                              | Optional  |
+| `replication_num`   | Tableレプリカ数                                            | Optional  |
+| `partition_by`      | Tableパーティション列                                        | Optional  |
+| `partition_type`    | Tableパーティションタイプ、`range`または`list`（デフォルト：`RANGE`） | Optional  |
+| `partition_by_init` | 初期化されたTableパーティション                                | Optional  |
+| `distributed_by`    | Table分散列                                              | Optional  |
 | `buckets`           | バケットサイズ                                              | Optional  |
-| `properties`        | Dorisテーブルプロパティ                                      | Optional  |
+| `properties`        | DorisTableプロパティ                                      | Optional  |
 
 
 
 
 #### Incremental
 
-dbtの前回実行時のincrementalモデル結果に基づいて、レコードがテーブルに増分挿入または更新されます。
+dbtの前回実行時のincrementalモデル結果に基づいて、レコードがTableに増分挿入または更新されます。
 dorisの増分を実現する方法は2つあります。`incremental_strategy`には2つの増分戦略があります：
 * `insert_overwrite`：doris `unique`モデルに依存します。増分要件がある場合は、モデルのデータを初期化する際にマテリアライゼーションをincrementalとして指定し、集約列を指定して集約することで増分データのカバレッジを実現します。
 * `append`：doris `duplicate`モデルに依存し、増分データのみを追加し、履歴データの変更は行いません。そのためunique_keyを指定する必要はありません。
@@ -206,16 +206,16 @@ models:
 
 | item                 | description                                                       | Required? |
 |----------------------------|-------------------------------------------------------------------|-----------|
-| `materialized`             | テーブルのマテリアライズ形式（Doris Duplicate/Uniqueテーブル） | Required  |
+| `materialized`             | Tableのマテリアライズ形式（Doris Duplicate/UniqueTable） | Required  |
 | `incremental_strategy`     | インクリメンタル戦略                                              | Optional  |
 | `unique_key`               | Doris Unique key                                                  | Optional  |
-| `replication_num`          | テーブルレプリカ数                                          | Optional  |
-| `partition_by`             | テーブルパーティションカラム                                            | Optional  |
-| `partition_type`           | テーブルパーティションタイプ、`range`または`list`（デフォルト：`RANGE`）        | Optional  |
-| `partition_by_init`        | 初期化されたテーブルパーティション                                      | Optional  |
-| `distributed_by`           | テーブル分散カラム                                          | Optional  |
+| `replication_num`          | Tableレプリカ数                                          | Optional  |
+| `partition_by`             | Tableパーティションカラム                                            | Optional  |
+| `partition_type`           | Tableパーティションタイプ、`range`または`list`（デフォルト：`RANGE`）        | Optional  |
+| `partition_by_init`        | 初期化されたTableパーティション                                      | Optional  |
+| `distributed_by`           | Table分散カラム                                          | Optional  |
 | `buckets`                  | バケットサイズ                                                       | Optional  |
-| `properties`               | Dorisテーブルプロパティ                                            | Optional  |
+| `properties`               | DorisTableプロパティ                                            | Optional  |
 
 
 
@@ -281,7 +281,7 @@ order by u.user_id
 ```
 ### Incremental model sample reference (duplicate mode)
 
-duplicate modeでテーブルを作成し、データの集約を行わず、unique_keyを指定しない
+duplicate modeでTableを作成し、データの集約を行わず、unique_keyを指定しない
 
 ```sql
 {{ config(
@@ -299,7 +299,7 @@ select * from source_data
 ```
 ### Incremental model sample reference (unique mode)
 
-unique modeでテーブルを作成し、データを集約します。unique_keyを指定する必要があります。
+unique modeでTableを作成し、データを集約します。unique_keyを指定する必要があります。
 
 ```sql
 {{ config(

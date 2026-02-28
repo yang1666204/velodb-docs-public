@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力されたdatetimeに指定された年数を加算した結果として、新しいdatetime値を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 YEARS_ADD(<date>, <years>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<date>`      | 入力する日時の値。DATETIME型またはDATE型を指定可能 |
 | `<years>`     | 追加する年数。INT型 |

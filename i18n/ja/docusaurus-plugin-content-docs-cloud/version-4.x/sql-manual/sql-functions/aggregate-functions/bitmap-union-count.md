@@ -14,9 +14,9 @@
 ```sql
 BITMAP_UNION_COUNT(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | BITMAPでサポートされるデータ型 |
 

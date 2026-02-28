@@ -21,7 +21,7 @@ ST_POLYGON( <wkt>)
 ```
 ## パラメータ
 
-| Parameter   | Description                 |
+| Parameter   | デスクリプション                 |
 |------|--------------------|
 | `<wkt>` | POLYGON関数によって生成されたポリゴンのWKTテキスト |
 

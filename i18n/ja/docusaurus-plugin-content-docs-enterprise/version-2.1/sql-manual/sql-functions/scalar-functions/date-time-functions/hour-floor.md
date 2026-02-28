@@ -17,9 +17,9 @@ HOUR_FLOOR(<datetime>, <origin>)
 HOUR_FLOOR(<datetime>, <period>)
 HOUR_FLOOR(<datetime>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<datetime>` | 有効な日付表現 |
 | `<period>` | 各期間を構成する時間数を指定 |

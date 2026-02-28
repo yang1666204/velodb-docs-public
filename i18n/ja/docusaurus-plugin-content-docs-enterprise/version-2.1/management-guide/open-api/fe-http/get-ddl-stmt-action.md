@@ -10,9 +10,9 @@
 
 `GET /api/_get_ddl`
 
-## Description
+## デスクリプション
 
-指定されたテーブルのテーブル作成文、パーティション作成文、rollup文を取得するために使用されます。
+指定されたTableのTable作成文、パーティション作成文、rollup文を取得するために使用されます。
     
 ## Path parameters
 
@@ -26,7 +26,7 @@
 
 * `table`
     
-    テーブルを指定
+    Tableを指定
 
 ## Request body
 
@@ -48,7 +48,7 @@
 ```
 ## 例
 
-1. 指定したテーブルのDDL文を取得する
+1. 指定したTableのDDL文を取得する
 
     ```
     GET GET /api/_get_ddl?db=db1&table=tbl1

@@ -1,7 +1,7 @@
 ---
 {
   "title": "partitions | Information Schema",
-  "description": "データベース内のすべてのテーブルのPartitionステータスを表示します。3.0.2(inclusive)以前では、テーブルは常に空でした。",
+  "description": "データベース内のすべてのTableのPartitionステータスを表示します。3.0.2(inclusive)以前では、Tableは常に空でした。",
   "language": "ja"
 }
 ---
@@ -9,20 +9,20 @@
 
 ## 概要
 
-データベース内の全テーブルのPartitionステータスを表示します。3.0.2(inclusive)以前では、テーブルは常に空でした。
+データベース内の全TableのPartitionステータスを表示します。3.0.2(inclusive)以前では、Tableは常に空でした。
 
 ## データベース
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name                   | Type          | Description                          |
+| Column Name                   | タイプ          | デスクリプション                          |
 | ----------------------------- | ------------- | ------------------------------------ |
 | PARTITION_ID	                | bigint        | Partitinon ID                        |
 | TABLE_CATALOG                 | varchar(64)   | カタログ名                         |
 | TABLE_SCHEMA                  | varchar(64)   | データベース名                        |
-| TABLE_NAME                    | varchar(64)   | テーブル名                           |
+| TABLE_NAME                    | varchar(64)   | Table名                           |
 | PARTITION_NAME                | varchar(64)   | パーティション名                       |
 | SUBPARTITION_NAME             | varchar(64)   | 常に空                         |
 | PARTITION_ORDINAL_POSITION    | int           | パーティションの順序位置    |

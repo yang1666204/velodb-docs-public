@@ -1,7 +1,7 @@
 ---
 {
   "title": "Alibaba Cloud DLF Rest Catalogの統合",
-  "description": "この記事では、Apache DorisとAlibaba Cloud DLF (Data Lake Formation) Rest Catalogを統合して、Paimonテーブルデータへのシームレスなアクセスと分析を行う方法について説明します。Catalogの作成、データのクエリ、増分読み取りに関するガイドも含まれています。",
+  "description": "この記事では、Apache DorisとAlibaba Cloud DLF (Data Lake Formation) Rest Catalogを統合して、PaimonTableデータへのシームレスなアクセスと分析を行う方法について説明します。Catalogの作成、データのクエリ、増分読み取りに関するガイドも含まれています。",
   "language": "ja"
 }
 ---
@@ -13,7 +13,7 @@ Alibaba Cloud [Data Lake Formation (DLF)](https://cn.aliyun.com/product/bigdata/
 
 - 統一された権限管理
 
-    ビッグデータ計算エンジンは、単一セットのレイクテーブル権限設定を共有し、一度の設定で全体に効果をもたらします。
+    ビッグデータ計算エンジンは、単一セットのレイクTable権限設定を共有し、一度の設定で全体に効果をもたらします。
 
 - ストレージ最適化
 
@@ -23,7 +23,7 @@ Alibaba Cloud [Data Lake Formation (DLF)](https://cn.aliyun.com/product/bigdata/
 
     ストリーミングやバッチ計算エンジンを含むAlibaba Cloud製品との深い統合により、すぐに使える機能と強化されたユーザー体験を提供します。
 
-DLFは、バージョン2.5からPaimon Rest Catalogをサポートしています。Dorisは、バージョン3.0.3/3.1.0からDLF 2.5+ Paimon Rest Catalogとの統合をサポートし、DLFへのシームレスな接続を可能にしてPaimonテーブルデータにアクセスし分析できます。この記事では、Apache DorisをDLF 2.5+と接続し、Paimonテーブルデータにアクセスする方法を説明します。
+DLFは、バージョン2.5からPaimon Rest Catalogをサポートしています。Dorisは、バージョン3.0.3/3.1.0からDLF 2.5+ Paimon Rest Catalogとの統合をサポートし、DLFへのシームレスな接続を可能にしてPaimonTableデータにアクセスし分析できます。この記事では、Apache DorisをDLF 2.5+と接続し、PaimonTableデータにアクセスする方法を説明します。
 
 :::tip
 この機能は、Dorisバージョン3.0.3/3.1.0から対応しています。
@@ -118,7 +118,7 @@ DLFサービスを有効にし、対応するCatalog、Database、Tableを作成
     |       6 | 18-24     | F                 |    0 |
     +---------+-----------+-------------------+------+
     ```
-- Query System Tables
+- Query システム Tables
 
     ```sql
     SELECT snapshot_id, commit_time, total_record_count FROM users_samples$snapshots;

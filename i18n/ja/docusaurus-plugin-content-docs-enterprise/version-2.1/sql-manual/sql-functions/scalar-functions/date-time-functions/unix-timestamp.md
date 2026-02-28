@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 DateまたはDatetime型をUNIXタイムスタンプに変換します。
 
@@ -25,7 +25,7 @@ UNIX_TIMESTAMP([DATETIME date[, STRING fmt]])
 ```
 ## Parameter
 
-| Paramters | Description |
+| Paramters | デスクリプション |
 | -- | -- | 
 | `<date>` | 変換される datetime 値は `datetime` または `date` 型で、変換可能な範囲は '1970-01-01 00:00:01.000000 UTC' から '3001-01-19 03:14:07.999999 UTC' までです。|
 | `<fmt>` | 'date' パラメータは、タイムスタンプに変換する必要がある特定の部分を指し、string 型のパラメータです。このパラメータが提供された場合、フォーマットに一致する部分のみがタイムスタンプに変換されます。 |

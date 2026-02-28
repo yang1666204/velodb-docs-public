@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 日付計算関数。日付を日数値に変換するために使用されます。つまり、西暦0年12月31日（基準日）から指定された日付までの総日数を計算します。
 
 ## Syntax
@@ -14,7 +14,7 @@
 TO_DAYS(<datetime_or_date_value>)
 ```
 ## 必須パラメータ
-| Parameter                  | Description                       |
+| Parameter                  | デスクリプション                       |
 |----------------------------|-----------------------------------|
 | `<datetime_or_date_value>` | `datetime` または `date` 型の日時 |
 

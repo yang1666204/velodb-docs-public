@@ -22,7 +22,7 @@
 3|[]
 4|null
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE `array_test` (
@@ -45,7 +45,7 @@ curl --location-trusted \
         -T "test_array.csv" \
         http://localhost:8040/api/testdb/array_test/_stream_load
 ```
-### Step 4: インポートされたデータを確認する
+### ステップ 4: インポートされたデータを確認する
 
 ```sql
 mysql> SELECT * FROM array_test;
@@ -61,7 +61,7 @@ mysql> SELECT * FROM array_test;
 ```
 ## JSON format import
 
-### Step 1: データを準備する
+### ステップ 1: データを準備する
 
 以下のJSONファイル`test_array.json`を作成してください
 
@@ -73,7 +73,7 @@ mysql> SELECT * FROM array_test;
     {"id":4, "c_array":null}
 ]
 ```
-### ステップ2: データベース内にテーブルを作成する
+### ステップ2: データベース内にTableを作成する
 
 ```sql
 CREATE TABLE `array_test` (
@@ -97,7 +97,7 @@ curl --location-trusted \
         -T "test_array.json" \
         http://localhost:8040/api/testdb/array_test/_stream_load
 ```
-### Step 4: インポートしたデータの確認
+### ステップ 4: インポートしたデータの確認
 
 ```sql
 mysql> SELECT * FROM array_test;

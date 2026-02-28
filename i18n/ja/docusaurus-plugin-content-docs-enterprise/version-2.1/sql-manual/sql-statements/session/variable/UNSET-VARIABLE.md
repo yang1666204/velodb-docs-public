@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、Dorisシステム変数を復元するために使用されます。これらのシステム変数は、グローバルレベルまたはセッションレベルで変更することができます。
 
@@ -25,7 +25,7 @@ UNSET [<effective_scope>] VARIABLE (<variable_name>)
 ## アクセス制御要件
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持っている必要があります：
 
-| Privilege  | Object | Notes                                        |
+| Privilege  | Object | 注釈                                        |
 | :--------- | :----- | :------------------------------------------- |
 | ADMIN_PRIV | Session  | unset global variables need admin privilege |
 

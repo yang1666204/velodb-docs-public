@@ -1,11 +1,11 @@
 ---
 {
   "title": "HTTP",
-  "description": "HTTP table-valued-function (tvf) を使用することで、ユーザーはHTTPパス上のファイルコンテンツをリレーショナルテーブル形式のデータにアクセスするように読み取りおよびアクセスすることができます。",
+  "description": "HTTP table-valued-function (tvf) を使用することで、ユーザーはHTTPパス上のファイルコンテンツをリレーショナルTable形式のデータにアクセスするように読み取りおよびアクセスすることができます。",
   "language": "ja"
 }
 ---
-HTTPテーブル値関数（tvf）を使用すると、ユーザーはHTTPパス上のファイルコンテンツをリレーショナルテーブル形式のデータにアクセスするかのように読み取りおよびアクセスできます。現在、`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`ファイル形式をサポートしています。
+HTTPTable値関数（tvf）を使用すると、ユーザーはHTTPパス上のファイルコンテンツをリレーショナルTable形式のデータにアクセスするかのように読み取りおよびアクセスできます。現在、`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`ファイル形式をサポートしています。
 
 :::note
 4.0.2以降でサポート
@@ -22,7 +22,7 @@ HTTP(
 ```
 ### 必須パラメーター
 
-| Parameter         | Description                  |
+| Parameter         | デスクリプション                  |
 |-------------------|------------------------------|
 | uri               | アクセス用のHTTPアドレス。`http`、`https`、`hf`プロトコルをサポートします。|
 | format            | ファイル形式。`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`をサポートします。 |
@@ -31,7 +31,7 @@ HTTP(
 
 ### オプションパラメーター
 
-| Parameter     | Description   | Notes    |
+| Parameter     | デスクリプション   | 注釈    |
 |-------|-----------|------------------------|
 |  `http.header.xxx`  | 任意のHTTP Headerを指定するために使用され、HTTP Clientに直接渡されます。例：`"http.header.Authorization" = "Bearer hf_MWYzOJJoZEymb..."`の場合、最終的なHeaderは`Authorization: Bearer hf_MWYzOJJoZEymb...`になります。 |
 | `http.enable.range.request` | HTTPサービスへのアクセスにrange requestを使用するかどうか。デフォルトは`true`です。|

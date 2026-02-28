@@ -14,7 +14,7 @@
 ```sql
 NULL_OR_EMPTY (<str>)
 ```
-## Parameters
+## パラメータ
 - `<str>`: String型、NULLまたは空かどうかをチェックする文字列。
 
 ## Return Value

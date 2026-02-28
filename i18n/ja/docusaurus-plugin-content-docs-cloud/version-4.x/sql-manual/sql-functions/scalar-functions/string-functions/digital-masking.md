@@ -14,9 +14,9 @@
 ```sql
 DIGITAL_MASKING( <digital_number> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<digital_number>` | マスクする必要がある数字文字列 |
 

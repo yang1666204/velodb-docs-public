@@ -4,16 +4,16 @@
   "language": "ja"
 }
 ---
-# Beats Doris output plugin
+# Beats Doris 出力プラグイン
 
-[Beats](https://github.com/elastic/beats)は、カスタムoutput pluginをサポートしてストレージシステムにデータを書き込むデータ収集エージェントで、Beats Doris output pluginはDorisに出力するためのものです。
+[Beats](https://github.com/elastic/beats)は、カスタム出力プラグインをサポートしてストレージシステムにデータを書き込むデータ収集エージェントで、Beats Doris 出力プラグインはDorisに出力するためのものです。
 
-Beats Doris output pluginは[Filebeat](https://github.com/elastic/beats/tree/master/filebeat)、[Metricbeat](https://github.com/elastic/beats/tree/master/metricbeat)、[Packetbeat](https://github.com/elastic/beats/tree/master/packetbeat)、[Winlogbeat](https://github.com/elastic/beats/tree/master/winlogbeat)、[Auditbeat](https://github.com/elastic/beats/tree/master/auditbeat)、および[Heartbeat](https://github.com/elastic/beats/tree/master/heartbeat)をサポートしています。
+Beats Doris 出力プラグインは[Filebeat](https://github.com/elastic/beats/tree/master/filebeat)、[Metricbeat](https://github.com/elastic/beats/tree/master/metricbeat)、[Packetbeat](https://github.com/elastic/beats/tree/master/packetbeat)、[Winlogbeat](https://github.com/elastic/beats/tree/master/winlogbeat)、[Auditbeat](https://github.com/elastic/beats/tree/master/auditbeat)、および[Heartbeat](https://github.com/elastic/beats/tree/master/heartbeat)をサポートしています。
 
-[Doris Stream Load](../../user-guide/data-operate/import/import-way/stream-load-manual) HTTP インターフェースを呼び出すことで、Beats Doris output pluginはDorisにリアルタイムでデータを書き込み、マルチスレッド並行処理、失敗時のリトライ、カスタムStream Loadフォーマットとパラメータ、出力書き込み速度などの機能を提供します。
+[Doris Stream Load](../../user-guide/data-operate/import/import-way/stream-load-manual) HTTP インターフェースを呼び出すことで、Beats Doris 出力プラグインはDorisにリアルタイムでデータを書き込み、マルチスレッド並行処理、失敗時のリトライ、カスタムStream Loadフォーマットとパラメータ、出力書き込み速度などの機能を提供します。
 
-Beats Doris output pluginを使用するには、主に3つのステップがあります：
-1. Doris output pluginが含まれたBeatsバイナリプログラムをダウンロードまたはコンパイルする。
+Beats Doris 出力プラグインを使用するには、主に3つのステップがあります：
+1. Doris 出力プラグインが含まれたBeatsバイナリプログラムをダウンロードまたはコンパイルする。
 2. Beatsの出力先アドレスとその他のパラメータを設定する。
 3. Beatsを起動してDorisにリアルタイムでデータを書き込む。
 
@@ -37,17 +37,17 @@ go build -o packetbeat-doris packetbeat/packetbeat.go
 go build -o auditbeat-doris auditbeat/auditbeat.go
 go build -o heartbeat-doris heartbeat/heartbeat.go
 ```
-## Configuration
+## 構成
 
 Beats Doris outputプラグインの設定は以下の通りです：
 
 設定 | 説明
 --- | ---
 `http_hosts` | Stream Load HTTPアドレス、文字列配列として形式化され、1つ以上の要素を持つことができ、各要素はhost:portです。例：["http://fe1:8030", "http://fe2:8030"]
-`user` | Dorisユーザー名、このユーザーは対応するDorisデータベースとテーブルへのインポート権限を持つ必要があります
+`user` | Dorisユーザー名、このユーザーは対応するDorisデータベースとTableへのインポート権限を持つ必要があります
 `password` | Dorisユーザーのパスワード
 `database` | 書き込み先のDorisデータベース名
-`table` | 書き込み先のDorisテーブル名
+`table` | 書き込み先のDorisTable名
 `label_prefix` | Doris Stream Load Labelプレフィックス、最終的に生成されるLabelは*{label_prefix}_{db}_{table}_{yyyymmdd_hhmmss}_{uuid}*で、デフォルト値はbeatsです
 `headers` | Doris Stream Loadヘッダーパラメーター、構文形式はYAML mapです
 `codec_format_string` | Doris Stream Loadへの出力用フォーマット文字列、%{[a][b]}は入力のa.bフィールドを表します。後続のセクションの使用例を参照してください
@@ -73,9 +73,9 @@ org.apache.doris.common.UserException: errCode = 2, detailMessage = tablet 10031
         at org.apache.doris.planner.OlapScanNode.addScanRangeLocations(OlapScanNode.java:931) ~[doris-fe.jar:1.2-SNAPSHOT]
         at org.apache.doris.planner.OlapScanNode.computeTabletInfo(OlapScanNode.java:1197) ~[doris-fe.jar:1.2-SNAPSHOT]
 ```
-**2. テーブル作成**
+**2. Table作成**
 
-テーブル構造には、ログの作成時刻、収集時刻、ホスト名、ログファイルパス、ログタイプ、ログレベル、スレッド名、コードの場所、およびログ内容などのフィールドが含まれます。
+Table構造には、ログの作成時刻、収集時刻、ホスト名、ログファイルパス、ログタイプ、ログレベル、スレッド名、コードの場所、およびログ内容などのフィールドが含まれます。
 
 ```
 CREATE TABLE `doris_log` (
@@ -112,7 +112,7 @@ PROPERTIES (
 "compaction_policy" = "time_series"
 );
 ```
-**3. Configuration**
+**3. 構成**
 
 filebeat_doris_log.ymlなどのfilebeatログ収集設定ファイルはYAML形式で、主にETLの各段階に対応する4つの部分で構成されています：
 1. Inputは生データの読み取りを担当します。
@@ -258,7 +258,7 @@ wget https://data.gharchive.org/2024-01-01-15.json.gz
   "created_at": "2024-04-01T23:00:00Z"
 }
 ```
-**2. テーブル作成**
+**2. Table作成**
 
 ```
 CREATE DATABASE log_db;
@@ -298,7 +298,7 @@ PROPERTIES (
 "dynamic_partition.replication_num" = "1"
 );
 ```
-**3. Filebeat Configuration**
+**3. Filebeat 構成**
 
 この設定ファイルは、以前のTEXTログ収集と以下の点で異なります：
 

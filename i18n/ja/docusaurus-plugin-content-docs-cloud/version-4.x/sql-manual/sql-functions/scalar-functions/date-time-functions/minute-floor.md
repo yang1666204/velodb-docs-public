@@ -17,9 +17,9 @@ MINUTE_FLOOR(<datetime>, <origin>)
 MINUTE_FLOOR(<datetime>, <period>)
 MINUTE_FLOOR(<datetime>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<datetime>`  | 切り下げる日時値。DATETIME型またはDATETIMEV2型 |
 | `<period>`    | 分単位の間隔値。INT型で、各間隔の分数を表す |

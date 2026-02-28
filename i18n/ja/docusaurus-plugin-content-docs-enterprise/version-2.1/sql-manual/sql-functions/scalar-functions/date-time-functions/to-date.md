@@ -14,7 +14,7 @@
 TO_DATE(<datetime_value>)
 ```
 ## 必須パラメータ
-| Parameter        | Description               |
+| Parameter        | デスクリプション               |
 |-----------------|--------------------------|
 | `datetime_value` | DATETIME型の日時 |
 

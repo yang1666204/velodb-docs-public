@@ -14,7 +14,7 @@
 ```sql
 MD5SUM( <str> [ , <str> ... ] )
 ```
-## Parameters
+## パラメータ
 
 |  parameter | description |
 |---------| -- |

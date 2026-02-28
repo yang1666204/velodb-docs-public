@@ -11,7 +11,7 @@
 
 `ipv6_string_to_num_or_null`のエイリアスです。
 
-## Description
+## デスクリプション
 IPv6テキストアドレスを16バイトのバイナリ表現に変換します。
 
 ## Syntax

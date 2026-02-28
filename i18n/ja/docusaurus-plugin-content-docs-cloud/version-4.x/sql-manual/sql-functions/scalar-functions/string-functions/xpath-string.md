@@ -19,7 +19,7 @@ XPATH_STRING関数は、XML文字列を解析し、[XPath](https://www.w3.org/TR
 XPATH_STRING(<xml_string>, <xpath_expression>)
 ```
 ## パラメータ
-| Parameter | Description                                   |
+| Parameter | デスクリプション                                   |
 | --------- | ----------------------------------------------|
 | `<xml_string>` | ソース文字列。型：VARCHAR             |
 | `<xpath_expression>` | [XPath](https://www.w3.org/TR/xpath-10/) 式。型：VARCHAR    |

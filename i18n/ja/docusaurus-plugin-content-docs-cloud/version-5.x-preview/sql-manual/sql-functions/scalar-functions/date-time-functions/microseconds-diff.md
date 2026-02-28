@@ -14,9 +14,9 @@ MICROSECONDS_DIFF関数は、2つのdatetime値間のマイクロ秒単位の差
 ```sql
 MICROSECONDS_DIFF(`<date_or_time_expr1>`, `<date_or_time_expr2>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<date_or_time_expr1>` | 終了時刻。DATETIME型です。datetime形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)を参照してください。 |
 | `<date_or_time_expr2>` | 開始時刻。DATETIME型または有効なdatetime文字列です。 |

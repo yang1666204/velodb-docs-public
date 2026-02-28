@@ -16,7 +16,7 @@ NEGATIVE(<x>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>` | 独立変数は `BIGINT, DOUBLE, and DECIMAL` 型をサポートします |
 

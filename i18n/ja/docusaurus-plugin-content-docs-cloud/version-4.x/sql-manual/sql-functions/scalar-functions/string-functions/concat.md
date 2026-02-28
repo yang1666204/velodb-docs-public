@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 複数の文字列を連結します。特殊なケース：
 
@@ -16,9 +16,9 @@
 ```sql
 CONCAT ( <expr> [ , <expr> ... ] )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|--------------|
 | `<expr>`  | 連結される文字列 |
 

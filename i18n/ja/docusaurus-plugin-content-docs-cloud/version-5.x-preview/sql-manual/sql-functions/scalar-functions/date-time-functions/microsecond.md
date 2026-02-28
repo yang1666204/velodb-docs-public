@@ -18,7 +18,7 @@ MICROSECOND(`<datetime>`)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<datetime>` | DATETIME型の入力datetime値。datetime形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion) を参照してください。精度は0より大きい必要があります。 |
 

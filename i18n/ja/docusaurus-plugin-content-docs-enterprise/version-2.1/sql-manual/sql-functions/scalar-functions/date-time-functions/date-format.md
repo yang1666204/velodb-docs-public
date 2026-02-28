@@ -14,16 +14,16 @@
 ```sql
 DATE_FORMAT(<date>, <format>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<date>` | 有効な日付値 |
 | `<format>` | 日付/時刻の出力形式を指定する |
 
 利用可能な形式は以下の通りです：
 
-| Format  | Description                                                          |
+| Format  | デスクリプション                                                          |
 |---------|----------------------------------------------------------------------|
 | %a      | 省略形の曜日名 (Sun..Sat)                                  |
 | %b      | 省略形の月名 (Jan..Dec)                                    |

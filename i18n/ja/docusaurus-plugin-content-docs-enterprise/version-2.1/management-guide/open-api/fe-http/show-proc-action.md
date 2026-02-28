@@ -10,7 +10,7 @@
 
 `GET /api/show_proc`
 
-## Description
+## デスクリプション
 
 PROC情報を取得するために使用されます。
     

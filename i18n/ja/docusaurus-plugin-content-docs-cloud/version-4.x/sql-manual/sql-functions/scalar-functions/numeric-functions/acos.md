@@ -16,7 +16,7 @@ ACOS(<x>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | acos値を計算する対象の値 |
 

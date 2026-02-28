@@ -18,9 +18,9 @@
 ```sql
 RETENTION(<event_1> [, <event_2>, ... , <event_n>]);
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<event_n>` | `n`番目のイベント条件。型は`UInt8`で、値は1または0です。 |
 

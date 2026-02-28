@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 重複する値が削除された配列を返します。
 NULL入力の場合はNULLを返します。
 
@@ -14,8 +14,8 @@ NULL入力の場合はNULLを返します。
 ```sql
 ARRAY_DISTINCT(<arr> )
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 |---|---|
 | `<arr>` | 重複する要素を削除する可能性がある配列 |
 

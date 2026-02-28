@@ -16,7 +16,7 @@ SPLIT_BY_REGEXP(<str>, <pattern> [, <max_limit>])
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<str>` | 分割対象のソース文字列。型: VARCHAR |
 | `<pattern>` | 区切り文字として使用される正規表現パターン。型: VARCHAR |

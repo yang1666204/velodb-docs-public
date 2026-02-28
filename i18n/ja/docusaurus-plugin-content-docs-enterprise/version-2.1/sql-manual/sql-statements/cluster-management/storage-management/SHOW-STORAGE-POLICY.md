@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW STORAGE POLICY",
-  "description": "全て/指定されたストレージポリシーに関連付けられたテーブルとパーティションを表示します。",
+  "description": "全て/指定されたストレージポリシーに関連付けられたTableとパーティションを表示します。",
   "language": "ja"
 }
 ---
 ## 説明
 
-すべて/指定されたストレージポリシーに関連付けられたテーブルとパーティションを表示します。
+すべて/指定されたストレージポリシーに関連付けられたTableとパーティションを表示します。
 
 ## 構文
 
@@ -22,7 +22,7 @@ SHOW STORAGE POLICY [ USING [ FOR <storage_policy_name> ] ]
 
 このSQLコマンドを正常に実行するための前提条件は、ADMIN_PRIV権限を持つことです。権限ドキュメントを参照してください。
 
-| Privilege (権限) | Object (オブジェクト)                      | Notes (備考)                   |
+| Privilege (権限) | Object (オブジェクト)                      | 注釈 (備考)                   |
 |-----------------------|--------------------------------------|---------------------------------|
 | ADMIN_PRIV            | クラスター全体の管理権限 | NODE_PRIV以外のすべての権限 |
 
@@ -64,7 +64,7 @@ SHOW STORAGE POLICY [ USING [ FOR <storage_policy_name> ] ]
    ```
    ```text
    +-------------+----------+---------+---------+-----------------+------------------+-------------+
-   | PolicyName  | Id       | Version | Type    | StorageResource | CooldownDatetime | CooldownTtl |
+   | PolicyName  | Id       | Version | タイプ    | StorageResource | CooldownDatetime | CooldownTtl |
    +-------------+----------+---------+---------+-----------------+------------------+-------------+
    | test_policy | 14589252 | 0       | STORAGE | remote_s3       | -1               | 300         |
    | dev_policy  | 14589521 | 0       | STORAGE | remote_s3       | -1               | 3000        |

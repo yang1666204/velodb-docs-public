@@ -1,13 +1,13 @@
 ---
 {
   "title": "DELETE",
-  "description": "この文は、指定されたテーブル（ベースインデックス）パーティション内のデータを条件付きで削除するために使用されます。",
+  "description": "この文は、指定されたTable（ベースインデックス）パーティション内のデータを条件付きで削除するために使用されます。",
   "language": "ja"
 }
 ---
 ## 説明
 
-このステートメントは、指定されたテーブル（base index）パーティション内のデータを条件付きで削除するために使用されます。
+このステートメントは、指定されたTable（base index）パーティション内のデータを条件付きで削除するために使用されます。
 
 この操作では、このbase indexに関連するrollup indexのデータも削除されます。
 
@@ -31,7 +31,7 @@ DELETE FROM table_name
 ```
 #### 必須パラメータ
 
-+ table_name: 行を削除するテーブルを指定します。
++ table_name: 行を削除するTableを指定します。
 + column_name: table_nameに属するカラム
 + op: 論理比較演算子。opのオプションタイプには以下が含まれます: =, >, <, >=, <=, !=, in, not in
 + value | value_list: 論理比較に使用される値または値のリスト
@@ -41,15 +41,15 @@ DELETE FROM table_name
 
 + cte: Common Table Expression、例: 'WITH a AS SELECT * FROM tbl'
 + PARTITION partition_name | PARTITIONS (partition_name [, partition_name]): 削除する行を選択するパーティションまたは複数のパーティションを指定します
-+ table_alias: テーブルのエイリアス
-+ USING additional_tables: 削除する行を特定するためにWHERE句で追加のテーブルを参照する必要がある場合、それらのテーブル名をUSING句で指定します。削除する行を特定するサブクエリを指定するためにUSING句を使用することもできます。
++ table_alias: Tableのエイリアス
++ USING additional_tables: 削除する行を特定するためにWHERE句で追加のTableを参照する必要がある場合、それらのTable名をUSING句で指定します。削除する行を特定するサブクエリを指定するためにUSING句を使用することもできます。
 
 #### 注意
 
 1. AGGREGATE (UNIQUE)モデルを使用する場合、キーカラムの条件のみ指定できます。
 2. 選択されたキーカラムがrollupに存在しない場合、削除を実行できません。
 3. 構文1を使用する場合、条件は「and」関係のみ持つことができます。「or」関係を実現したい場合は、2つのDELETE文で条件を記述する必要があります。
-4. 構文1において、パーティションテーブルの場合、パーティションを指定できます。指定されない場合、Dorisは与えられた条件からパーティションを推測します。2つのケースでDorisは条件からパーティションを推測できません: 1) 条件にパーティションカラムが含まれていない場合; 2) パーティションカラムの演算子がinではない場合。パーティションテーブルがUniqueテーブルではなく、パーティションが指定されていない、または条件からパーティションを推測できない場合、DELETE文をすべてのパーティションに適用するためにはセッション変数delete_without_partitionをtrueにする必要があります。
+4. 構文1において、パーティションTableの場合、パーティションを指定できます。指定されない場合、Dorisは与えられた条件からパーティションを推測します。2つのケースでDorisは条件からパーティションを推測できません: 1) 条件にパーティションカラムが含まれていない場合; 2) パーティションカラムの演算子がinではない場合。パーティションTableがUniqueTableではなく、パーティションが指定されていない、または条件からパーティションを推測できない場合、DELETE文をすべてのパーティションに適用するためにはセッション変数delete_without_partitionをtrueにする必要があります。
 
 :::tip Tips
 この機能はApache Doris 1.2バージョン以降でサポートされています
@@ -77,7 +77,7 @@ DELETE FROM table_name
    DELETE FROM my_table PARTITIONS (p1, p2)
    WHERE k1 >= 3 AND k2 = "abc";
    ```
-4. `t2`と`t3`のjoinの結果を使用して`t1`から行を削除します。deleteテーブルはunique keyモデルのみをサポートします
+4. `t2`と`t3`のjoinの結果を使用して`t1`から行を削除します。deleteTableはunique keyモデルのみをサポートします
 
    ```sql
    -- create t1, t2, t3 tables
@@ -120,7 +120,7 @@ DELETE FROM table_name
      USING t2 INNER JOIN t3 ON t2.id = t3.id
      WHERE t1.id = t2.id;
    ```
-期待される結果は、テーブルt1においてid = 1の行のみを削除することです
+期待される結果は、Tablet1においてid = 1の行のみを削除することです
 
    ```
    +----+----+----+--------+------------+

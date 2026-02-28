@@ -9,33 +9,33 @@
 
 最新バージョンにおいて、Apache Dorisはデータレイクとの統合を深化させ、現在成熟したData Lakehouseソリューションを提供しています。
 
-- バージョン0.15以降、Apache DorisはHiveとIcebergの外部テーブルを導入し、データレイクのためのApache Icebergとの結合機能を探求しています。
+- バージョン0.15以降、Apache DorisはHiveとIcebergの外部Tableを導入し、データレイクのためのApache Icebergとの結合機能を探求しています。
 - バージョン1.2以降、Apache Dorisは正式にMulti-Catalog機能を導入し、さまざまなデータソースの自動メタデータマッピングとデータアクセスを可能にし、外部データ読み取りとクエリ実行に対する多数のパフォーマンス最適化を行いました。現在、高速でユーザーフレンドリーなLakehouseアーキテクチャの構築を完全にサポートしています。
 - バージョン2.1において、Apache DorisはData Lakehouseアーキテクチャをさらに強化し、主要なデータレイク形式（Hudi、Iceberg、Paimonなど）の読み書き機能を向上させ、複数のSQL方言との互換性を導入し、既存システムからApache Dorisへのシームレスな移行を実現しました。データサイエンスと大規模データ読み取りシナリオに対して、DorisはArrow Flight高速読み取りインターフェースを統合し、データ転送効率を100倍向上させました。
 
-![Building Lakehouse using Doris and Iceberg](/images/lakehouse-architecture-for-doris-and-iceberg.png)
+![Building レイクハウス using Doris and Iceberg](/images/lakehouse-architecture-for-doris-and-iceberg.png)
 
 ## Apache Doris & Iceberg
 
-Apache Icebergは、大規模データの分析と管理を可能にするオープンソースで高性能、高信頼性のデータレイクテーブル形式です。Apache Dorisを含むさまざまな主要クエリエンジンをサポートし、HDFSとさまざまなオブジェクトクラウドストレージと互換性があり、ACID準拠、スキーマ進化、高度なフィルタリング、隠しパーティション、パーティションレイアウト進化などの機能により、高性能クエリ、データ信頼性、一貫性、タイムトラベルやバージョンロールバックなどの機能による柔軟性を保証します。
+Apache Icebergは、大規模データの分析と管理を可能にするオープンソースで高性能、高信頼性のデータレイクTable形式です。Apache Dorisを含むさまざまな主要クエリエンジンをサポートし、HDFSとさまざまなオブジェクトクラウドストレージと互換性があり、ACID準拠、スキーマ進化、高度なフィルタリング、隠しパーティション、パーティションレイアウト進化などの機能により、高性能クエリ、データ信頼性、一貫性、タイムトラベルやバージョンロールバックなどの機能による柔軟性を保証します。
 
 Apache DorisはIcebergの複数のコア機能をネイティブサポートしています：
 
 - Hive Metastore、Hadoop、REST、Glue、Google Dataproc Metastore、DLFなど、複数のIceberg Catalogタイプをサポート。
-- Iceberg V1/V2テーブル形式とPosition Delete、Equality Deleteファイルの読み取りをネイティブサポート。
-- テーブル関数を通じたIcebergテーブルスナップショット履歴のクエリをサポート。
+- Iceberg V1/V2Table形式とPosition Delete、Equality Deleteファイルの読み取りをネイティブサポート。
+- Table関数を通じたIcebergTableスナップショット履歴のクエリをサポート。
 - Time Travel機能をサポート。
-- Icebergテーブルエンジンをネイティブサポート。Apache DorisがIcebergテーブルを直接作成、管理、データ書き込みすることを可能にします。包括的なパーティションTransform機能をサポートし、隠しパーティションとパーティションレイアウト進化などの機能を提供します。
+- IcebergTableエンジンをネイティブサポート。Apache DorisがIcebergTableを直接作成、管理、データ書き込みすることを可能にします。包括的なパーティションTransform機能をサポートし、隠しパーティションとパーティションレイアウト進化などの機能を提供します。
 
 ユーザーはApache Doris + Apache Icebergベースの効率的なData Lakehouseソリューションを迅速に構築し、さまざまなリアルタイムデータ分析・処理ニーズに柔軟に対応できます。
 
-- Dorisの高性能クエリエンジンを使用してIcebergテーブルデータと他のデータソースを関連付けてデータ分析を実行し、**統合連邦データ分析プラットフォーム**を構築。
-- Dorisを通じてIcebergテーブルを直接管理・構築し、Doris内でデータクレンジング、処理、Icebergテーブルへの書き込みを完了し、**データレイクの統合データ処理プラットフォーム**を構築。
-- Icebergテーブルエンジンを通じて他の上流・下流システムとDorisデータを共有し、さらなる処理を行い、**統合オープンデータストレージプラットフォーム**を構築。
+- Dorisの高性能クエリエンジンを使用してIcebergTableデータと他のデータソースを関連付けてデータ分析を実行し、**統合連邦データ分析プラットフォーム**を構築。
+- Dorisを通じてIcebergTableを直接管理・構築し、Doris内でデータクレンジング、処理、IcebergTableへの書き込みを完了し、**データレイクの統合データ処理プラットフォーム**を構築。
+- IcebergTableエンジンを通じて他の上流・下流システムとDorisデータを共有し、さらなる処理を行い、**統合オープンデータストレージプラットフォーム**を構築。
 
-将来的に、Apache IcebergはApache Dorisのネイティブテーブルエンジンの一つとして機能し、レイク形式データにより包括的な分析・管理機能を提供します。Apache DorisはUpdate/Delete/Merge、書き戻し時のソート、増分データ読み取り、メタデータ管理など、Apache Icebergのより高度な機能を段階的にサポートし、統合された高性能リアルタイムデータレイクプラットフォームを共同で構築します。
+将来的に、Apache IcebergはApache DorisのネイティブTableエンジンの一つとして機能し、レイク形式データにより包括的な分析・管理機能を提供します。Apache DorisはUpdate/Delete/Merge、書き戻し時のソート、増分データ読み取り、メタデータ管理など、Apache Icebergのより高度な機能を段階的にサポートし、統合された高性能リアルタイムデータレイクプラットフォームを共同で構築します。
 
-詳細については、[Iceberg Catalog](../catalogs/iceberg-catalog.mdx)を参照してください。
+詳細については、[Iceberg カタログ](../catalogs/iceberg-catalog.mdx)を参照してください。
 
 ## ユーザーガイド
 
@@ -81,7 +81,7 @@ CREATE CATALOG `iceberg` PROPERTIES (
     "s3.endpoint" = "http://minio:9000"
 );
 ```
-Iceberg Catalogで、データベースとIcebergテーブルを作成します：
+Iceberg Catalogで、データベースとIcebergTableを作成します：
 
 ```
 mysql> SWITCH iceberg;
@@ -108,7 +108,7 @@ Query OK, 0 rows affected (0.15 sec)
 ```
 ### 04 データ挿入
 
-Icebergテーブルにデータを挿入します：
+IcebergTableにデータを挿入します：
 
 ```
 mysql> INSERT INTO iceberg.nyc.taxis
@@ -120,7 +120,7 @@ mysql> INSERT INTO iceberg.nyc.taxis
 Query OK, 4 rows affected (1.61 sec)
 {'status':'COMMITTED', 'txnId':'10085'}
 ```
-`CREATE TABLE AS SELECT`を使用してIcebergテーブルを作成する：
+`CREATE TABLE AS SELECT`を使用してIcebergTableを作成する：
 
 ```
 mysql> CREATE TABLE iceberg.nyc.taxis2 AS SELECT * FROM iceberg.nyc.taxis;
@@ -186,7 +186,7 @@ Query OK, 6 rows affected (0.25 sec)
 	```
 `EXPLAIN VERBOSE`文の結果を確認することで、述語条件`vendor_id = 2 and ts >= '2024-01-01' and ts < '2024-01-02'`が最終的に1つのパーティションのみにヒットする（`partition=1/0`）ことがわかります。
 
-	また、テーブル作成時にパーティションTransform関数`DAY(ts)`が指定されたため、データ内の元の値`2024-01-01 03:25:15.000000`がファイルディレクトリ内のパーティション情報`ts_day=2024-01-01`に変換されることも確認できます。
+	また、Table作成時にパーティションTransform関数`DAY(ts)`が指定されたため、データ内の元の値`2024-01-01 03:25:15.000000`がファイルディレクトリ内のパーティション情報`ts_day=2024-01-01`に変換されることも確認できます。
 
 ### 06 Time Travel
 
@@ -210,7 +210,7 @@ mysql> SELECT * FROM iceberg.nyc.taxis;
 +-----------+---------+---------------+-------------+--------------------+----------------------------+
 6 rows in set (0.11 sec)
 ```
-`iceberg_meta` テーブル関数を使用してテーブルのスナップショット情報を照会します：
+`iceberg_meta` Table関数を使用してTableのスナップショット情報を照会します：
 
 ```
 mysql> select * from iceberg_meta("table" = "iceberg.nyc.taxis", "query_type" = "snapshots");
@@ -278,7 +278,7 @@ mysql> SELECT * FROM iceberg.nyc.taxis FOR TIME AS OF "2024-07-29 03:40:22";
 
 > Doris 2.1.8/3.0.4以上を使用してください。
 
-icebergテーブルをロードする：
+icebergTableをロードする：
 
 ```python
 from pyiceberg.catalog import load_catalog
@@ -295,7 +295,7 @@ catalog = load_catalog(
 )
 table = catalog.load_table("nyc.taxis")
 ```
-テーブルを`Arrow Table`として読み取り：
+Tableを`Arrow Table`として読み取り：
 
 ```python
 print(table.scan().to_arrow())
@@ -315,7 +315,7 @@ fare_amount: [[15.32],[42.13],[9.01],[22.15]]
 store_and_fwd_flag: [["N"],["Y"],["N"],["N"]]
 ts: [[2024-01-01 09:15:23.000000],[2024-01-03 07:12:33.000000],[2024-01-01 03:25:15.000000],[2024-01-02 12:10:11.000000]]
 ```
-`Pandas DataFrame`としてテーブルを読み取り：
+`Pandas DataFrame`としてTableを読み取り：
 
 ```python
 print(table.scan().to_pandas())
@@ -326,7 +326,7 @@ vendor_id  trip_id  trip_distance  fare_amount store_and_fwd_flag               
 2          2  1000373            0.9         9.01                  N   2024-01-01 03:25:15
 3          2  1000372            2.5        22.15                  N   2024-01-02 12:10:11
 ```
-テーブルを`Polars DataFrame`として読み込む:
+Tableを`Polars DataFrame`として読み込む:
 
 ```python
 import polars as pl
@@ -345,13 +345,13 @@ shape: (4, 6)
 │ 2         ┆ 1000372 ┆ 2.5           ┆ 22.15       ┆ N                  ┆ 2024-01-02 12:10:11 │
 └───────────┴─────────┴───────────────┴─────────────┴────────────────────┴─────────────────────┘
 ```
-> PyIcebergでicebergテーブルを書き込む場合は、[ステップ](#write-iceberg-table-by-pyiceberg)を参照してください
+> PyIcebergでicebergTableを書き込む場合は、[ステップ](#write-iceberg-table-by-pyiceberg)を参照してください
 
 ### 08 付録
 
-#### PyIcebergでicebergテーブルを書き込む
+#### PyIcebergでicebergTableを書き込む
 
-icebergテーブルを読み込む：
+icebergTableを読み込む：
 
 ```python
 from pyiceberg.catalog import load_catalog
@@ -368,7 +368,7 @@ catalog = load_catalog(
 )
 table = catalog.load_table("nyc.taxis")
 ```
-`Arrow Table`でテーブルを書く：
+`Arrow Table`でTableを書く：
 
 ```python
 import pyarrow as pa
@@ -389,7 +389,7 @@ df = pa.Table.from_pydict(
 )
 table.append(df)
 ```
-`Pandas DataFrame`でテーブルを書く：
+`Pandas DataFrame`でTableを書く：
 
 ```python
 import pyarrow as pa
@@ -407,7 +407,7 @@ df = pd.DataFrame(
 )
 table.append(pa.Table.from_pandas(df))
 ```
-`Polars DataFrame` でテーブルを書き込む：
+`Polars DataFrame` でTableを書き込む：
 
 ```python
 import polars as pl

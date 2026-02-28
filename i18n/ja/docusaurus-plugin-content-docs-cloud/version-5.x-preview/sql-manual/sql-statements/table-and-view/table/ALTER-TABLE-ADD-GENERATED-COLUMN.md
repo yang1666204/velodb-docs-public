@@ -24,18 +24,18 @@ ERROR 1105 (HY000): errCode = 2, detailMessage = Not supporting alter table modi
 ALTER TABLE products ORDER BY (product_id, total_value, price, quantity);
 ```
 注意:
-変更されたカラムの順序は、カラムの生成とテーブルの作成時に順序制限を満たす必要があります。
+変更されたカラムの順序は、カラムの生成とTableの作成時に順序制限を満たす必要があります。
 ### RENAME COLUMN
 
 ```sql
 ALTER TABLE products RENAME COLUMN total_value new_name;
 ```
 注意:
-テーブル内のカラム（生成カラムまたは通常のカラム）が他の生成カラムによって参照されている場合、この生成カラムの名前を変更する前に、他の生成カラムを削除する必要があります。
+Table内のカラム（生成カラムまたは通常のカラム）が他の生成カラムによって参照されている場合、この生成カラムの名前を変更する前に、他の生成カラムを削除する必要があります。
 ### DROP COLUMN
 
 ```sql
 ALTER TABLE products DROP COLUMN total_value;
 ```
 注意:
-テーブル内のカラム（生成カラムまたは通常カラム）が他の生成カラムによって参照されている場合、参照されている生成カラムまたは通常カラムを削除する前に、まず他の生成カラムを削除する必要があります。
+Table内のカラム（生成カラムまたは通常カラム）が他の生成カラムによって参照されている場合、参照されている生成カラムまたは通常カラムを削除する前に、まず他の生成カラムを削除する必要があります。

@@ -70,7 +70,7 @@ array_contains(ARRAY<T> arr, T value)
 
 ### 例
 
-**テーブル作成例**
+**Table作成例**
 
 ```sql
 CREATE TABLE array_contains_test (
@@ -177,7 +177,7 @@ ERROR 1105 (HY000): errCode = 2, detailMessage = can not cast from origin type A
 SELECT array_contains([[1,2],[2,3]], [1,2]);
 ERROR 1105 (HY000): errCode = 2, detailMessage = (10.16.10.6)[RUNTIME_ERROR]execute failed or unsupported types for function array_contains(Array(Nullable(Array(Nullable(TINYINT)))), Array(Nullable(TINYINT)))
 ```
-### Notes
+### 注釈
 
 パフォーマンスに関する考慮事項：大きな配列を扱う場合、パフォーマンスが主要な懸念事項である場合は、クエリを高速化するためにinverted indexesを使用できますが、注意すべき使用制限があります：
 

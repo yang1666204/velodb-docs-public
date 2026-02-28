@@ -15,7 +15,7 @@
 
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `unit` | DATETIMEから抽出する単位。可能な値は、year、month、day、hour、minute、second、またはmicrosecond |
 | `datetime` | 引数は有効な日付式 |

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、実行中のALTER TABLE操作をキャンセル（取り消し）するために使用されます。このコマンドを使用して、ALTER TABLE操作が実行されている間にその操作を終了することができます。
 
@@ -17,7 +17,7 @@ CANCEL ALTER TABLE { COLUMN | MATERIALIZED VIEW | ROLLUP } FROM <db_name>.<table
 ## 必須パラメータ
 **1. `{ COLUMN | MATERIALIZED VIEW | ROLLUP }`**
 >キャンセルする変更の種類を指定します。以下のいずれかを選択する必要があります
->- `COLUMN`: テーブル列に対する変更操作をキャンセルします
+>- `COLUMN`: Table列に対する変更操作をキャンセルします
 >- `ROLLUP`: ビューに対する変更操作をキャンセルします
 >- `MATERIALIZED VIEW`: マテリアライズドビューに対する変更操作をキャンセルします
 
@@ -31,7 +31,7 @@ CANCEL ALTER TABLE { COLUMN | MATERIALIZED VIEW | ROLLUP } FROM <db_name>.<table
 > 詳細については、識別子要件と予約キーワードを参照してください。
 
 **3.`<table_name>`**
-> データベース（Database）内のテーブルの識別子（すなわち名前）を指定します。
+> データベース（Database）内のTableの識別子（すなわち名前）を指定します。
 >
 > 識別子はアルファベット文字で始まる必要があり（Unicode名前サポートが有効な場合は任意の言語の文字が許可されます）、引用符で囲まれた識別子文字列全体を除いて、スペースや特殊文字を含んではいけません（例：`My Object`）。
 >
@@ -43,7 +43,7 @@ CANCEL ALTER TABLE { COLUMN | MATERIALIZED VIEW | ROLLUP } FROM <db_name>.<table
 **1. `<job_id>`**
 > キャンセルする特定のジョブIDです。
 >
-> ジョブIDが指定された場合、指定されたジョブのみがキャンセルされます。指定されない場合、テーブル上の指定された種類（COLUMNまたはROLLUP）の進行中の変更がすべてキャンセルされます。
+> ジョブIDが指定された場合、指定されたジョブのみがキャンセルされます。指定されない場合、Table上の指定された種類（COLUMNまたはROLLUP）の進行中の変更がすべてキャンセルされます。
 >
 > 複数のジョブIDをカンマ区切りで指定できます。
 >
@@ -54,7 +54,7 @@ CANCEL ALTER TABLE { COLUMN | MATERIALIZED VIEW | ROLLUP } FROM <db_name>.<table
 
 | 権限 | オブジェクト | 注記                    |
 | :---------------- | :------------- | :---------------------------- |
-| ALTER_PRIV        | Table   | CANCEL ALTER TABLEはテーブルのALTER操作に属します |
+| ALTER_PRIV        | Table   | CANCEL ALTER TABLEはTableのALTER操作に属します |
 
 ## 注記
 - このコマンドは非同期操作であり、実際の実行結果は`SHOW ALTER TABLE COLUMN`または`SHOW ALTER TABLE ROLLUP`を使用してタスクのステータスを確認する必要があります。

@@ -11,7 +11,7 @@
 
 ## CSV format インポート
 
-### Step 1: データの準備
+### ステップ 1: データの準備
 
 以下のcsvファイルを作成します: `test_struct.csv`
 区切り文字は、struct内のカンマと区別するために、カンマの代わりに `|` を使用します。
@@ -23,7 +23,7 @@
 4|{}
 5|null
 ```
-### ステップ2: データベースにテーブルを作成する
+### ステップ2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE struct_test (
@@ -36,7 +36,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```bash
 curl --location-trusted \
@@ -51,7 +51,7 @@ curl --location-trusted \
 ```sql
 INSERT INTO struct_test VALUES(1, named_struct('f1', '1', 'f2', '2.0', 'f3', 'abc'));
 ```
-### Step 4: インポートしたデータを確認する
+### ステップ 4: インポートしたデータを確認する
 
 ```sql
 mysql> SELECT * FROM struct_test;
@@ -68,7 +68,7 @@ mysql> SELECT * FROM struct_test;
 ```
 ## JSON format import
 
-### Step 1: データを準備する
+### ステップ 1: データを準備する
 
 以下のJSONファイル `test_struct.json` を作成してください
 
@@ -81,7 +81,7 @@ mysql> SELECT * FROM struct_test;
     {"id":5, "c_struct":null}
 ]
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE struct_test (
@@ -94,7 +94,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```bash
 curl --location-trusted \
@@ -105,7 +105,7 @@ curl --location-trusted \
         -T "test_struct.json" \
         http://localhost:8040/api/testdb/struct_test/_stream_load
 ```
-### Step 4: インポートされたデータを確認する
+### ステップ 4: インポートされたデータを確認する
 
 ```sql
 mysql> SELECT * FROM struct_test;

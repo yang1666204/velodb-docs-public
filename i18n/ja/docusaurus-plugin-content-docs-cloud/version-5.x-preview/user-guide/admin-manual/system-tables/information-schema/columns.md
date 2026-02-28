@@ -15,15 +15,15 @@
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name              | Type          | Description                                                  |
+| Column Name              | タイプ          | デスクリプション                                                  |
 | ------------------------ | ------------- | ------------------------------------------------------------ |
 | TABLE_CATALOG            | varchar(512)  | カタログ名                                                   |
 | TABLE_SCHEMA             | varchar(64)   | データベース名                                               |
-| TABLE_NAME               | varchar(64)   | テーブル名                                                   |
+| TABLE_NAME               | varchar(64)   | Table名                                                   |
 | COLUMN_NAME              | varchar(64)   | カラム名                                                     |
-| ORDINAL_POSITION         | bigint        | テーブル内でのカラムの位置                                   |
+| ORDINAL_POSITION         | bigint        | Table内でのカラムの位置                                   |
 | COLUMN_DEFAULT           | varchar(1024) | カラムのデフォルト値                                         |
 | IS_NULLABLE              | varchar(3)    | NULLが許可されているかどうか                                 |
 | DATA_TYPE                | varchar(64)   | データ型                                                     |

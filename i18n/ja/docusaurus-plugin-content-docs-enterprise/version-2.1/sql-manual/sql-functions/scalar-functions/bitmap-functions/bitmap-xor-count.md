@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つ以上のBitmapセットの対称差集合（XOR演算）を計算し、結果セット内の要素数を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 BITMAP_XOR_COUNT(<bitmap1>, <bitmap2>, ..., <bitmapN>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter   | Description       |
+| Parameter   | デスクリプション       |
 |-------------|-------------------|
 | `<bitmap1>` | 最初のBitmap  |
 | `<bitmap2>` | 2番目のBitmap |

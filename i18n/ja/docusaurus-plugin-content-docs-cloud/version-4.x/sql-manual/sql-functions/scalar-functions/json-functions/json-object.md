@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 指定されたKey-Valueを含むjsonオブジェクトを生成します。
 KeyがNULLまたはパラメータの数が奇数の場合、例外エラーが返されます。
 

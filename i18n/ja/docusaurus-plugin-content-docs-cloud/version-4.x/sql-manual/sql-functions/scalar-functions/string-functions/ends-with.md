@@ -16,9 +16,9 @@
 ```sql
 ENDS_WITH ( <str> , <suffix> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|--------------|
 | `str`     | 判定対象となる元の文字列を指定します |
 | `suffix`  | 判定対象となる末尾文字列を指定します |

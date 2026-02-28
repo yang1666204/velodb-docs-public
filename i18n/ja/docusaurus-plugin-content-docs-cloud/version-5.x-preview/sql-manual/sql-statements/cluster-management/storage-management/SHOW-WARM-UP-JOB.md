@@ -14,10 +14,10 @@
 ```sql
    SHOW WARM UP JOB [ WHERE id = 'id' ] ;
 ```
-## Parameters
+## パラメータ
 
 
-| Parameter Name                  | Description                                                         |
+| パラメータ名                  | デスクリプション                                                         |
 |---------------------------|--------------------------------------------------------------|
 | id                        | warm-upジョブのID                                                |
 ## Examples

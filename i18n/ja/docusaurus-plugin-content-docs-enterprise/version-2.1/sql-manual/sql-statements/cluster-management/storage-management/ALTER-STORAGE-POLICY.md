@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、既存のホット・コールド階層化移行ポリシーを変更するために使用されます。rootまたはadminユーザーのみがリソースを変更できます。
 
@@ -14,13 +14,13 @@
 ```sql
 ALTER STORAGE POLICY  '<policy_name>' PROPERTIE ("<key>"="<value>"[, ... ]);
 ```
-## Required Parameters
+## Required パラメータ
 
 
 1.`<policy_name>`  
 > ストレージポリシーの名前。これは変更したいストレージポリシーの一意の識別子であり、既存のポリシー名を指定する必要があります。
 
-## Optional Parameters
+## Optional パラメータ
 `PROPERTIE ("<key>"="<value>"[, ... ])` 
 
 1.`retention_days`  

@@ -5,9 +5,9 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-クエリテーブル関数（table-valued-function、tvf）は、データクエリのためにクエリステートメントを直接catalogに透過的に送信するために使用できます
+クエリTable関数（table-valued-function、tvf）は、データクエリのためにクエリステートメントを直接catalogに透過的に送信するために使用できます
 
 Dorisバージョン2.1.3でサポートされており、現在はjdbc catalogの透過的クエリのみがサポートされています。
 まずDorisで対応するcatalogを作成する必要があります。
@@ -22,9 +22,9 @@ QUERY(
   );
 ```
 ## 必須パラメータ
-クエリテーブル関数tvfの各パラメータは`"key"="value"`ペアです。
+クエリTable関数tvfの各パラメータは`"key"="value"`ペアです。
 
-| Field      | Description                                |
+| Field      | デスクリプション                                |
 |------------|--------------------------------------------|
 | `catalog`  | カタログ名。カタログの名前に応じて入力する必要があります。 |
 | `query`    | 実行するクエリステートメント。       |
@@ -39,13 +39,13 @@ desc function query("catalog" = "jdbc", "query" = "select * from test.student");
 ```
 ```text
 +-------+------+------+-------+---------+-------+
-| Field | Type | Null | Key   | Default | Extra |
+| Field | タイプ | Null | Key   | Default | Extra |
 +-------+------+------+-------+---------+-------+
 | id    | int  | Yes  | true  | NULL    |       |
 | name  | text | Yes  | false | NULL    | NONE  |
 +-------+------+------+-------+---------+-------+
 ```
-jdbc catalogデータソース内のテーブルに対する透過的クエリ
+jdbc catalogデータソース内のTableに対する透過的クエリ
 
 ```sql
 select * from query("catalog" = "jdbc", "query" = "select * from test.student");
@@ -71,7 +71,7 @@ select * from query("catalog" = "jdbc", "query" = "select * from test.score");
 | 3    | 80      |
 +------+---------+
 ```
-jdbc catalogデータソース内のテーブルに対する透過的結合クエリ
+jdbc catalogデータソース内のTableに対する透過的結合クエリ
 
 ```sql
 select * from query("catalog" = "jdbc", "query" = "select a.id, a.name, b.score from test.student a join test.score b on a.id = b.id");

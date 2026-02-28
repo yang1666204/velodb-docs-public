@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-[Nessie](https://projectnessie.org/)は、データレイク用のオープンソーストランザクショナルカタログであり、データに対してGitライクなバージョン管理機能を提供します。Iceberg REST Catalogの仕様を実装し、Apache Icebergを含む複数のテーブルフォーマットにわたってブランチ作成、タグ付け、タイムトラベルなどの機能をサポートします。
+[Nessie](https://projectnessie.org/)は、データレイク用のオープンソーストランザクショナルカタログであり、データに対してGitライクなバージョン管理機能を提供します。Iceberg REST Catalogの仕様を実装し、Apache Icebergを含む複数のTableフォーマットにわたってブランチ作成、タグ付け、タイムトラベルなどの機能をサポートします。
 
 この記事では、Apache DorisとNessieを統合してIcebergデータの効率的なクエリと管理を実現する方法をガイドします。環境準備から最終的なクエリまでの全プロセスを段階的に説明します。
 
@@ -23,7 +23,7 @@
 
 ### 1.1 S3ストレージバケットの作成
 
-まず、後で作成するIcebergテーブルデータを格納するために、`nessie-doris-demo`という名前のS3 Bucketを作成します。
+まず、後で作成するIcebergTableデータを格納するために、`nessie-doris-demo`という名前のS3 Bucketを作成します。
 
 ```bash
 # Create S3 storage bucket
@@ -194,7 +194,7 @@ volumes:
 | --------- | ----------- |
 | `nessie.version.store.type` | バージョンストアタイプ。PostgreSQLバックエンドにはJDBC2を使用。 |
 | `nessie.catalog.default-warehouse` | デフォルトのwarehouse名。 |
-| `nessie.catalog.warehouses.<name>.location` | Icebergテーブルデータを格納するS3ロケーション。 |
+| `nessie.catalog.warehouses.<name>.location` | IcebergTableデータを格納するS3ロケーション。 |
 | `server-iam.enabled` | Credential Vendingを有効にするには`true`に設定。 |
 | `server-iam.assume-role` | NessieがS3にアクセスするために引き受けるIAM Role ARN。 |
 | `server-iam.role-session-name` | 引き受けたロールのセッション名。 |
@@ -264,11 +264,11 @@ volumes:
 ```
 **主要な設定パラメータ:**
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `nessie.version.store.type` | バージョンストアのタイプ。PostgreSQLバックエンドにはJDBC2を使用。 |
 | `nessie.catalog.default-warehouse` | デフォルトのウェアハウス名。 |
-| `nessie.catalog.warehouses.<name>.location` | Icebergテーブルデータを格納するS3の場所。 |
+| `nessie.catalog.warehouses.<name>.location` | IcebergTableデータを格納するS3の場所。 |
 | `nessie.catalog.service.s3.default-options.region` | S3バケット用のAWSリージョン。 |
 
 ## 3. DorisからNessieへの接続
@@ -291,7 +291,7 @@ CREATE CATALOG nessie_vc PROPERTIES (
     'iceberg.rest.vended-credentials-enabled' = 'true'
 );
 ```
-> 注意: Nessie REST Catalog URIの形式は`http://HOST:PORT/iceberg/{branch}`であり、`main`がデフォルトのブランチ名です。
+> 注意: Nessie REST カタログ URIの形式は`http://HOST:PORT/iceberg/{branch}`であり、`main`がデフォルトのブランチ名です。
 
 ### 方法2: 静的ストレージ認証情報 (AK/SK)
 
@@ -315,7 +315,7 @@ CREATE CATALOG nessie_static PROPERTIES (
 Catalogの作成にどの方法を使用したかに関係なく、以下のSQLを通じてエンドツーエンドの接続性を確認できます。
 
 ```sql
--- Switch to the Catalog
+-- Switch to the カタログ
 USE nessie_vc;
 
 -- Create a namespace (database)
@@ -346,6 +346,6 @@ SELECT * FROM my_iceberg_table;
 ```
 上記のすべての操作が正常に完了した場合は、おめでとうございます！完全なデータレイクパイプライン Doris -> Nessie -> S3 の構築に成功しました。
 
-Doris を使用してIcebergテーブルを管理する方法の詳細については、以下をご覧ください：
+Doris を使用してIcebergTableを管理する方法の詳細については、以下をご覧ください：
 
 https://doris.apache.org/docs/lakehouse/catalogs/iceberg-catalog

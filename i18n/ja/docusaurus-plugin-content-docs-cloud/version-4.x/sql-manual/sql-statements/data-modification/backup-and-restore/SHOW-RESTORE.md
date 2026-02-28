@@ -24,7 +24,7 @@ SHOW [BRIEF] RESTORE [FROM <db_name>]
 
 - brief: RESTOREタスクの主要な情報のみを表示し、RestoreObjs、Progress、TaskErrMsg列は表示されません
 
-| Column | Description |
+| Column | デスクリプション |
 | -- | -- |
 | JobId | 一意のジョブID |
 | Label | 復元するバックアップの名前 |
@@ -35,7 +35,7 @@ SHOW [BRIEF] RESTORE [FROM <db_name>]
 | ReplicationNum | 復元するレプリカ数を指定 |
 | ReserveReplica | コピーを保持するかどうか |
 | ReplicaAllocation | 動的パーティショニングを有効にしたままにするかどうか |
-| RestoreJobs | 復元するテーブルとパーティション |
+| RestoreJobs | 復元するTableとパーティション |
 | CreateTime | タスク投稿時刻 |
 | MetaPreparedTime | メタデータ準備完了時刻 |
 | SnapshotFinishedTime | スナップショット完了時刻 |

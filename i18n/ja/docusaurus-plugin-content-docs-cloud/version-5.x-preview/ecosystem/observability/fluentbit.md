@@ -29,18 +29,18 @@ make
 ```
 ビルド出力は build/bin/fluent-bit です。
 
-## Configuration
+## 構成
 
-Fluent Bit Doris output plugin の設定は以下のとおりです：
+Fluent Bit Doris 出力プラグイン の設定は以下のとおりです：
 
-Configuration | Description
+構成 | デスクリプション
 --- | ---
 `host` | Stream Load HTTP host
 `port` | Stream Load HTTP port
-`user` | Doris ユーザー名、このユーザーは対応する Doris データベースとテーブルに対するインポート権限が必要
+`user` | Doris ユーザー名、このユーザーは対応する Doris データベースとTableに対するインポート権限が必要
 `password` | Doris ユーザーのパスワード
 `database` | 書き込み先の Doris データベース名
-`table` | 書き込み先の Doris テーブル名
+`table` | 書き込み先の Doris Table名
 `label_prefix` | Doris Stream Load Label プレフィックス、最終的に生成される Label は *{label_prefix}\_{timestamp}\_{uuid}* 、デフォルト値は fluentbit。false に設定した場合、Label は追加されません
  `time_key` | データに追加するタイムスタンプ列の名前。デフォルト値は date。false に設定した場合、この列は追加されません
 `header` |  Doris Stream Load headers パラメータ、複数設定可能
@@ -51,7 +51,7 @@ Configuration | Description
 
 ## Usage Example
 
-### TEXT Log Collection Example
+### TEXT ログ Collection Example
 
 この例では、Doris FE ログを例として TEXT ログ収集を実演します。
 
@@ -68,7 +68,7 @@ org.apache.doris.common.UserException: errCode = 2, detailMessage = tablet 10031
 ```
 **2. Table Creation**
 
-テーブル構造には、ログの作成時刻、収集時刻、ホスト名、ログファイルパス、ログタイプ、ログレベル、スレッド名、コード位置、ログ内容などのフィールドが含まれます。
+Table構造には、ログの作成時刻、収集時刻、ホスト名、ログファイルパス、ログタイプ、ログレベル、スレッド名、コード位置、ログ内容などのフィールドが含まれます。
 
 ```
 CREATE TABLE `doris_log` (
@@ -105,7 +105,7 @@ PROPERTIES (
 "compaction_policy" = "time_series"
 );
 ```
-**3. Configuration**
+**3. 構成**
 
 Fluent Bitログ収集の設定ファイルは以下の通りです。doris_log.confはETLコンポーネントの各部分を定義するために使用され、parsers.confは異なるログパーサーを定義するために使用されます。
 
@@ -261,7 +261,7 @@ wget https://data.gharchive.org/2024-01-01-15.json.gz
   "created_at": "2024-04-01T23:00:00Z"
 }
 ```
-**2. テーブル作成**
+**2. Table作成**
 
 ```
 CREATE DATABASE log_db;
@@ -301,7 +301,7 @@ PROPERTIES (
 "dynamic_partition.replication_num" = "1"
 );
 ```
-**3. Configuration**
+**3. 構成**
 
 以前のTEXTログ収集とは対照的に、この設定では追加の処理変換が不要なためFILTERを使用しません。
 

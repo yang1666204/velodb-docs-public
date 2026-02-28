@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この文は現在表示されているデータベースを表示するために使用されます。
 
@@ -24,7 +24,7 @@ SHOW DATABASES [FROM <catalog>] [<filter_expr>];
 
 ## 戻り値
 
-| Column | Description |
+| Column | デスクリプション |
 |:---------|:-----------|
 | Database | データベース名 |
 
@@ -32,7 +32,7 @@ SHOW DATABASES [FROM <catalog>] [<filter_expr>];
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Permissions         | Object    | Notes             |
+| Permissions         | Object    | 注釈             |
 |:-----------|:------|:---------------|
 | SELECT_PRIV | 対応するデータベース | 対応するデータベースに対する読み取り権限が必要 |
 

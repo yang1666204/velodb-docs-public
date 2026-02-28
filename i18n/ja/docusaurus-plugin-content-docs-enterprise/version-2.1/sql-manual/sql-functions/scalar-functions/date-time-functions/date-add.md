@@ -20,9 +20,9 @@
 ```sql
 DATE_ADD(<date>, <expr> <time_unit>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<date>` | 有効な日付値 |
 | `<expr>` | 追加したい時間間隔 |

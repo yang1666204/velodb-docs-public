@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 banker's rounding方式を使用してxを四捨五入し、d桁の小数点以下を保持します。dのデフォルト値は0です。
 
@@ -36,9 +36,9 @@ banker's roundingアルゴリズムの規則に従い、指定された小数点
 ```sql
 ROUND_BANKERS(<x> [ , <d>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>` | 丸める数値 |
 | `<d>` | オプション。丸める小数点以下の桁数。デフォルト値は0。 |

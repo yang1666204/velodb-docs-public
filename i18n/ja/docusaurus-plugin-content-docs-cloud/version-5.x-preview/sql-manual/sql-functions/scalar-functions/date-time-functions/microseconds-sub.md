@@ -16,9 +16,9 @@
 ```sql
 MICROSECONDS_SUB(`<datetime>`, `<delta>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter    | Description                                                                                     |
+| Parameter    | デスクリプション                                                                                     |
 |--------------|-------------------------------------------------------------------------------------------------|
 | `<datetime>` | 入力する日時値。型は`DATETIME`です。具体的な日時フォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)を参照してください。 |
 | `<delta>`    | 減算するマイクロ秒数。型は`BIGINT`です。1秒 = 1,000,000マイクロ秒です。       |

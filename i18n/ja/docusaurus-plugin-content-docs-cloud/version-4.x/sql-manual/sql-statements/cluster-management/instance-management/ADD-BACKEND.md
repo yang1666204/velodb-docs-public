@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 ADD BACKENDは、Dorisクラスターに1つ以上のBEノードを追加するために使用されます。このコマンドにより、管理者は新しいBEノードのホストとポートを指定し、さらにそれらの動作を設定するオプションのプロパティを指定することができます。
 
@@ -38,7 +38,7 @@ ALTER SYSTEM ADD BACKEND "<host>:<heartbeat_port>"[,"<host>:<heartbeat_port>" [,
 
 このSQLを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes |
+| Privilege | Object | 注釈 |
 |-----------|----|-------|
 | NODE_PRIV |    |       |
 

@@ -5,16 +5,16 @@
   "language": "ja"
 }
 ---
-# Beats Doris output plugin
+# Beats Doris 出力プラグイン
 
-[Beats](https://github.com/elastic/beats)は、ストレージシステムにデータを書き込むためのカスタム出力プラグインをサポートするデータ収集エージェントで、Beats Doris output pluginはDorisに出力するためのプラグインです。
+[Beats](https://github.com/elastic/beats)は、ストレージシステムにデータを書き込むためのカスタム出力プラグインをサポートするデータ収集エージェントで、Beats Doris 出力プラグインはDorisに出力するためのプラグインです。
 
-Beats Doris output pluginは[Filebeat](https://github.com/elastic/beats/tree/master/filebeat)、[Metricbeat](https://github.com/elastic/beats/tree/master/metricbeat)、[Packetbeat](https://github.com/elastic/beats/tree/master/packetbeat)、[Winlogbeat](https://github.com/elastic/beats/tree/master/winlogbeat)、[Auditbeat](https://github.com/elastic/beats/tree/master/auditbeat)、[Heartbeat](https://github.com/elastic/beats/tree/master/heartbeat)をサポートしています。
+Beats Doris 出力プラグインは[Filebeat](https://github.com/elastic/beats/tree/master/filebeat)、[Metricbeat](https://github.com/elastic/beats/tree/master/metricbeat)、[Packetbeat](https://github.com/elastic/beats/tree/master/packetbeat)、[Winlogbeat](https://github.com/elastic/beats/tree/master/winlogbeat)、[Auditbeat](https://github.com/elastic/beats/tree/master/auditbeat)、[Heartbeat](https://github.com/elastic/beats/tree/master/heartbeat)をサポートしています。
 
-Beats Doris output pluginは[Doris Stream Load](../../../user-guide/data-operate/import/import-way/stream-load-manual) HTTPインターフェースを呼び出すことで、Dorisにリアルタイムでデータを書き込み、マルチスレッド並行処理、失敗時の再試行、カスタムStream Load形式とパラメータ、および出力書き込み速度などの機能を提供します。
+Beats Doris 出力プラグインは[Doris Stream Load](../../../user-guide/data-operate/import/import-way/stream-load-manual) HTTPインターフェースを呼び出すことで、Dorisにリアルタイムでデータを書き込み、マルチスレッド並行処理、失敗時の再試行、カスタムStream Load形式とパラメータ、および出力書き込み速度などの機能を提供します。
 
-Beats Doris output pluginを使用するには、主に3つのステップがあります：
-1. Doris output pluginを含むBeatsバイナリプログラムをダウンロードまたはコンパイルする。
+Beats Doris 出力プラグインを使用するには、主に3つのステップがあります：
+1. Doris 出力プラグインを含むBeatsバイナリプログラムをダウンロードまたはコンパイルする。
 2. Beats出力アドレスとその他のパラメータを設定する。
 3. Beatsを起動してDorisにリアルタイムでデータを書き込む。
 
@@ -45,10 +45,10 @@ Beats Doris出力プラグインの設定は以下の通りです：
 設定項目 | 説明
 --- | ---
 `http_hosts` | Stream Load HTTPアドレス。文字列配列として形式化され、1つ以上の要素を持つことができ、各要素はhost:port形式。例：["http://fe1:8030", "http://fe2:8030"]
-`user` | Dorisユーザー名。このユーザーは対応するDorisデータベースとテーブルのインポート権限を持つ必要がある
+`user` | Dorisユーザー名。このユーザーは対応するDorisデータベースとTableのインポート権限を持つ必要がある
 `password` | Dorisユーザーのパスワード
 `database` | 書き込み先のDorisデータベース名
-`table` | 書き込み先のDorisテーブル名
+`table` | 書き込み先のDorisTable名
 `label_prefix` | Doris Stream Load Labelプレフィックス。最終的に生成されるLabelは*{label_prefix}_{db}_{table}_{yyyymmdd_hhmmss}_{uuid}*形式。デフォルト値はbeats
 `headers` | Doris Stream Loadヘッダーパラメータ。構文形式はYAML map
 `codec_format_string` | Doris Stream Loadへの出力フォーマット文字列。%{[a][b]}は入力のa.bフィールドを表す。以降のセクションの使用例を参照
@@ -74,9 +74,9 @@ org.apache.doris.common.UserException: errCode = 2, detailMessage = tablet 10031
         at org.apache.doris.planner.OlapScanNode.addScanRangeLocations(OlapScanNode.java:931) ~[doris-fe.jar:1.2-SNAPSHOT]
         at org.apache.doris.planner.OlapScanNode.computeTabletInfo(OlapScanNode.java:1197) ~[doris-fe.jar:1.2-SNAPSHOT]
 ```
-**2. テーブル作成**
+**2. Table作成**
 
-テーブル構造には、ログの作成時刻、収集時刻、ホスト名、ログファイルパス、ログタイプ、ログレベル、スレッド名、コードの場所、ログ内容などのフィールドが含まれます。
+Table構造には、ログの作成時刻、収集時刻、ホスト名、ログファイルパス、ログタイプ、ログレベル、スレッド名、コードの場所、ログ内容などのフィールドが含まれます。
 
 ```
 CREATE TABLE `doris_log` (
@@ -216,7 +216,7 @@ doris stream load response:
 
 total 11 MB 18978 ROWS, total speed 0 MB/s 632 R/s, last 10 seconds speed 1 MB/s 1897 R/s
 ```
-### JSON Log Collection Example
+### JSON ログ Collection Example
 
 この例では、GitHub events archiveのデータを使用したJSONログ収集について説明します。
 
@@ -259,7 +259,7 @@ wget https://data.gharchive.org/2024-01-01-15.json.gz
   "created_at": "2024-04-01T23:00:00Z"
 }
 ```
-**2. テーブル作成**
+**2. Table作成**
 
 ```
 CREATE DATABASE log_db;
@@ -299,7 +299,7 @@ PROPERTIES (
 "dynamic_partition.replication_num" = "1"
 );
 ```
-**3. Filebeat Configuration**
+**3. Filebeat 構成**
 
 この設定ファイルは、以前のTEXTログ収集と以下の点で異なります：
 

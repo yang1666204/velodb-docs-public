@@ -19,7 +19,7 @@
 
 ## パラメータ概要
 
-| Property Name                  | Legacy Name              | Description                                                  | Default Value | Required |
+| Property Name                  | Legacy Name              | デスクリプション                                                  | デフォルト値 | Required |
 | ------------------------------ | ------------------------ | ------------------------------------------------------------ | ------------- | -------- |
 | minio.endpoint                 | s3.endpoint              | MinIOエンドポイント、MinIOのアクセスエンドポイント               |               | Yes      |
 | minio.access_key               | s3.access_key            | MinIOアクセスキー、認証に使用されるMinIOアクセスキー |               | Yes      |

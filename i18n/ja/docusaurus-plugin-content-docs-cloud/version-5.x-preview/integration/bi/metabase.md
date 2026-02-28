@@ -9,7 +9,7 @@ Metabaseは、シンプルで使いやすいデータ分析・可視化機能を
 
 Metabase Apache Doris Driverは、MetabaseがApache Dorisデータベースに接続できるようにし、Dorisの内部および外部データのクエリと可視化を可能にします。
 
-このドライバーにより、MetabaseはApache Dorisデータベースとテーブルをデータソースとして統合できます。この機能を有効にするには、以下のセットアップガイドに従ってください：
+このドライバーにより、MetabaseはApache DorisデータベースとTableをデータソースとして統合できます。この機能を有効にするには、以下のセットアップガイドに従ってください：
 
 - ドライバーのインストールと設定
 - MetabaseでのApache Dorisデータソースの設定
@@ -64,20 +64,20 @@ docker run -d -p 3000:3000 --name metabase  -v $host_path/doris.metabase-driver.
 
 Apache Dorisに接続する際に設定が必要なパラメータは以下の通りです：
 
-| Parameters | Meaning | Example |
+| パラメータ | Meaning | Example |
 |------|------|------|
 | **Display Name** | データソース表示名 | Doris-TPCH |
 | **Host** | Doris FEノードアドレス | 127.0.0.1 |
 | **Port** | Doris Query Port (MySQLプロトコルポート) | 9030 |
-| **Catalog name** | Catalog名 (オプション、デフォルトはinternal) | internal |
+| **カタログ name** | Catalog名 (オプション、デフォルトはinternal) | internal |
 | **Database name** | データベース名 (必須) | tpch |
 | **Username** | ユーザー名 | root |
 | **Password** | パスワード | your_password |
 
 **Database Name形式の説明：**
 
-- **内部テーブル**: `tpch`など、データベース名を直接入力します。システムは自動的に`internal` catalogを使用します。
-- **外部テーブル/Data Lake**: Catalog設定を入力します。内部テーブルのみをリンクする場合、この項目は必要ありません。
+- **内部Table**: `tpch`など、データベース名を直接入力します。システムは自動的に`internal` catalogを使用します。
+- **外部Table/Data Lake**: Catalog設定を入力します。内部Tableのみをリンクする場合、この項目は必要ありません。
 
 ### 設定手順
 
@@ -164,7 +164,7 @@ ORDER BY ship_month, l_shipmode
 
 ### 可視化チャートの設定
 
-1. デフォルトの表示はテーブルです。左下角の **Visualization** ボタンをクリックし、**Line** チャートタイプを選択します。
+1. デフォルトの表示はTableです。左下角の **Visualization** ボタンをクリックし、**Line** チャートタイプを選択します。
 
 ![Select Line Chart](/images/cloud/integration/bi/metabase/metabase-10.png)
 
@@ -205,7 +205,7 @@ ORDER BY ship_month, l_shipmode
 
 DorisはマルチCatalog機能をサポートしており、外部データソースへのクエリやデータソース間クエリが可能です。Metabaseで使用する場合：
 
-1. Links設定インターフェースで `Catalog` を設定し、そのCatalog下の外部データベースを `Database` で設定します。例：  
+1. Links設定インターフェースで `カタログ` を設定し、そのCatalog下の外部データベースを `Database` で設定します。例：  
    `catalog: hive_catalog`、`database: warehouse` - hive_catalogというwarehouse データベースにアクセス
 
 ![Configuring catalog](/images/cloud/integration/bi/metabase/metabase-15.png)
@@ -232,7 +232,7 @@ GROUP BY l_shipmode
 
 ### パフォーマンス最適化の推奨事項
 
-1. **Partition Clippingを使用する**: WHERE句にパーティション列のフィルタ条件を追加します。
+1. **パーティション Clippingを使用する**: WHERE句にパーティション列のフィルタ条件を追加します。
 
    ```sql
    WHERE date >= '2024-01-01' AND date < '2024-02-01'
@@ -247,10 +247,10 @@ GROUP BY l_shipmode
 
 - **ドライバーのインストール:** `doris.metabase-driver.jar`がMetabaseの`plugins`ディレクトリに配置されていることを確認し、Metabaseを再起動してください。
 - **タイムゾーン設定:** タイムゾーンの問題が発生した場合は、JDBC接続文字列に`serverTimezone=Asia/Shanghai`を追加してください。
-- **パーティションテーブルの最適化:** 適切なDorisパーティションテーブルを作成し、時間で分割してバケット化することで、クエリでスキャンされるデータ量を効果的に削減できます。
+- **パーティションTableの最適化:** 適切なDorisパーティションTableを作成し、時間で分割してバケット化することで、クエリでスキャンされるデータ量を効果的に削減できます。
 - **ネットワーク接続:** パブリックネットワークアクセスによるセキュリティリスクを避けるため、VPCプライベート接続の使用を推奨します。
 - **アクセス制御:** Dorisユーザーアカウントのロールとアクセス権限を細かく調整し、最小権限の原則に従ってください。
-- **メタデータ同期:** Dorisのテーブル構造が変更された場合は、Metabase管理ページで「Sync database schema now」をクリックして手動で同期してください。
+- **メタデータ同期:** DorisのTable構造が変更された場合は、Metabase管理ページで「Sync database schema now」をクリックして手動で同期してください。
 - **パフォーマンス監視**: 遅いクエリについては、Dorisで`SHOW QUERY PROFILE`を使用してパフォーマンスのボトルネックを分析できます。
 
 ### データ型表示の異常

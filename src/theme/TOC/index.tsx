@@ -2,6 +2,7 @@ import React, { type ReactNode } from "react";
 import clsx from "clsx";
 import TOCItems from "@theme/TOCItems";
 import type { Props } from "@theme/TOC";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 import styles from "./styles.module.css";
 
@@ -11,17 +12,19 @@ const LINK_CLASS_NAME = "table-of-contents__link toc-highlight";
 const LINK_ACTIVE_CLASS_NAME = "table-of-contents__link--active";
 
 export default function TOC({ className, ...props }: Props): ReactNode {
+  const { siteConfig } = useDocusaurusContext();
+  const isJA = siteConfig.baseUrl.indexOf("ja") > -1;
   return (
     <div
       className={clsx(
         styles.tableOfContents,
         "thin-scrollbar",
         "toc-container",
-        className
+        className,
       )}
     >
       <div>
-        <span className="ml-4 title-text">On This Page</span>
+        <span className="ml-4 title-text">{isJA ? "このページでは" : "On This Page"}</span>
         <TOCItems
           {...props}
           linkClassName={LINK_CLASS_NAME}

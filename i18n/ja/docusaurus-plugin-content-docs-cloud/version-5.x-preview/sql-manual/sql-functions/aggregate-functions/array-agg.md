@@ -14,9 +14,9 @@
 ```sql
 ARRAY_AGG(<col>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col>` | 配列に配置される値を決定する式。サポートされる型: Bool, TinyInt, SmallInt, Integer, BigInt, LargeInt, Float, Double, Decimal, Date, Datetime, IPV4, IPV6, String, Array, Map, Struct。 |
 

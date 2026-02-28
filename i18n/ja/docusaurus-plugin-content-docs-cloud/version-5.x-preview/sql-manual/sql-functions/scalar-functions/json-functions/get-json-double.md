@@ -5,6 +5,6 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 関数[`JSON_EXTRACT_DOUBLE`](./json-extract-double.md)のエイリアスです。

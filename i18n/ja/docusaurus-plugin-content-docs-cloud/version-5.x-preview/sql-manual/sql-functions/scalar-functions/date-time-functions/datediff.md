@@ -16,9 +16,9 @@ DATEDIFF関数は、2つの日付またはdatetime値の差を計算するため
 ```sql
 DATEDIFF(<expr1>, <expr2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr1>` | 被減数の日付で、datetimeまたはdate型をサポートします。具体的なdatetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<expr2>` | 減数の日付で、dateおよびdatetime型をサポートします |

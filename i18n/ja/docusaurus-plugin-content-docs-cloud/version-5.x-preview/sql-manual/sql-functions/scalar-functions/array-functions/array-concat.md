@@ -187,7 +187,7 @@ ERROR 1105 (HY000): errCode = 2, detailMessage = Can not found function 'array_c
 SELECT array_concat('not_an_array');
 ERROR 1105 (HY000): errCode = 2, detailMessage = Can not find the compatibility function signature: array_concat(VARCHAR(12))
 ```
-### Notes
+### 注釈
 
 すべての入力配列要素の型が互換性があることを確認してください。特にネストした複合型については、実行時の型変換エラーを避けるために構造が一貫している必要があります。
 

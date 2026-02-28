@@ -73,13 +73,13 @@ Dorisは以下の3つのJSON形式をサポートしています：
 {"id": 123, "city": "beijing"}
 {"id": 456, "city": "shanghai"}
 ```
-## Parameter Configuration
+## Parameter 構成
 
 ### Parameter Support
 
 以下の表は、各種ロード方法でサポートされているJSONフォーマットパラメータを示しています：
 
-| Parameter | Default Value | Stream Load | Broker Load | Routine Load | TVF |
+| Parameter | デフォルト値 | Stream Load | Broker Load | Routine Load | TVF |
 |-----------|--------------|-------------|--------------|--------------|-----|
 | json paths | None | supported | supported | supported | supported |
 | json root | None | supported | supported | supported | supported |
@@ -99,7 +99,7 @@ Dorisは以下の3つのJSON形式をサポートしています：
 7. "read_json_by_line not configurable"は、ストリーミング読み取りを有効にし、BEメモリ使用量を削減するために強制的にtrueに設定されることを意味します。
 :::
 
-### Parameter Description
+### Parameter デスクリプション
 
 #### JSON Path
 - 目的: JSONデータからフィールドを抽出する方法を指定します
@@ -195,16 +195,16 @@ Dorisは以下の3つのJSON形式をサポートしています：
    - 抽出されたフィールドはJSON Pathで定義された順序に従って並び替えられる
 
 **Columns**: データマッピングルールを定義
-   - 抽出されたフィールドを対象テーブルのカラムにマッピング
+   - 抽出されたフィールドを対象Tableのカラムにマッピング
    - カラムの並び替えと変換を実行可能
 
-これら2つのパラメータは順次処理されます：まず、JSON Pathがソースデータからフィールドを抽出して順序付きデータセットを形成し、次にColumnsがこれらのデータをテーブルカラムにマッピングします。Columnsが指定されていない場合、抽出されたフィールドはテーブルカラムの順序に従って直接マッピングされます。
+これら2つのパラメータは順次処理されます：まず、JSON Pathがソースデータからフィールドを抽出して順序付きデータセットを形成し、次にColumnsがこれらのデータをTableカラムにマッピングします。Columnsが指定されていない場合、抽出されたフィールドはTableカラムの順序に従って直接マッピングされます。
 
 #### 使用例
 
 ##### JSON Pathのみを使用
 
-テーブル構造とデータ：
+Table構造とデータ：
 
 ```sql
 -- Table structure
@@ -235,7 +235,7 @@ curl -v ... -H "format: json" \
 ```
 ##### JSON Path + Columns の使用
 
-同じテーブル構造とデータを使用し、columnsパラメータを追加します：
+同じTable構造とデータを使用し、columnsパラメータを追加します：
 
 Load コマンド：
 
@@ -257,7 +257,7 @@ curl -v ... -H "format: json" \
 ```
 ##### Field Reuse
 
-テーブル構造とデータ：
+Table構造とデータ：
 
 ```sql
 -- Table structure
@@ -290,7 +290,7 @@ curl -v ... -H "format: json" \
 ```
 ##### Nested Field Mapping
 
-テーブル構造とデータ:
+Table構造とデータ:
 
 ```sql
 -- Table structure

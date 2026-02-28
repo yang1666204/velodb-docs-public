@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 グループ内の式または列から任意の値を返します。非NULL値が存在する場合は、任意の非NULL値を返し、そうでなければNULLを返します。
 
@@ -18,9 +18,9 @@
 ```sql
 ANY_VALUE(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 集約される列または式。 |
 

@@ -33,7 +33,7 @@ SHOW CREATE VIEW <name>
 | ---------------- | ------------ | ---- |
 | SHOW_VIEW_PRIV   | Table        |      |
 
-ビュー情報はINFORMATION_SCHEMA.VIEWSテーブル経由でもクエリできます。
+ビュー情報はINFORMATION_SCHEMA.VIEWSTable経由でもクエリできます。
 
 ## 例
 

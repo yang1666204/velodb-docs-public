@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは既存のリソースを変更するために使用されます。rootまたはadminユーザーのみがリソースを変更できます。
 
@@ -18,7 +18,7 @@ PROPERTIES (
   [ , ... ]
 );
 ```
-## Parameters
+## パラメータ
 
 1.`<property>`
 

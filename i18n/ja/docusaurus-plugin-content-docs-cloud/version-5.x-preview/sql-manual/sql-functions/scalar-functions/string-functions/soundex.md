@@ -16,9 +16,9 @@ SOUNDEX関数は文字列の[Soundexエンコーディング](https://en.wikiped
 ```sql
 SOUNDEX(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -------- | ----------------------------------------- |
 | `<expr>` | Soundex エンコーディングを計算する文字列（ASCII文字のみサポート）。型：VARCHAR |
 

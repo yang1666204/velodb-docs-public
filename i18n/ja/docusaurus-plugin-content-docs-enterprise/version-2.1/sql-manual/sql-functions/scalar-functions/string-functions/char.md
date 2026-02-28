@@ -28,9 +28,9 @@
 ```sql
 CHAR ( <expr> [ , <expr> ... ] [ USING <charset_name> ] )
 ```
-## Parameters
+## パラメータ
 
-| Parameters       | Description |
+| パラメータ       | デスクリプション |
 |------------------|---------------------|
 | `<expr>`         | 文字として計算される整数 |
 | `<charset_name>` | 戻り値のエンコーディング、現在は`utf8`のみサポート |

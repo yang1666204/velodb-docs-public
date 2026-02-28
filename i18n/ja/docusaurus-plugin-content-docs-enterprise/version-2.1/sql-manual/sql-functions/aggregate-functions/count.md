@@ -16,9 +16,9 @@ COUNT(DISTINCT <expr> [,<expr>,...])
 COUNT(*)
 COUNT(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 条件式（カラム名） |
 

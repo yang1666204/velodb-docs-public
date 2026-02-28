@@ -1,13 +1,13 @@
 ---
 {
   "title": "TRUNCATE-TABLE",
-  "description": "この文は、指定されたテーブルとパーティションのデータをクリアするために使用されます。",
+  "description": "この文は、指定されたTableとパーティションのデータをクリアするために使用されます。",
   "language": "ja"
 }
 ---
 ## 説明
 
-このステートメントは、指定されたテーブルとパーティションのデータをクリアするために使用されます。
+このステートメントは、指定されたTableとパーティションのデータをクリアするために使用されます。
 
 ## 構文
 
@@ -26,7 +26,7 @@ TRUNCATE TABLE [<db_name>.]<table_name>[ PARTITION ( <partition_name1> [, <parti
 > 詳細については、Identifier Requirements and Reserved Keywordsを参照してください。
 
 **2.`<table_name>`**
-> テーブル識別子（名前）を指定します。これは配置されるデータベース内で一意である必要があります。
+> Table識別子（名前）を指定します。これは配置されるデータベース内で一意である必要があります。
 >
 > 識別子は英字（unicode name supportが有効な場合は任意の言語の文字）で始まる必要があり、識別子文字列全体がバッククォートで囲まれていない限り（例：`My Object`）、スペースや特殊文字を含むことはできません。
 >
@@ -50,27 +50,27 @@ TRUNCATE TABLE [<db_name>.]<table_name>[ PARTITION ( <partition_name1> [, <parti
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持っている必要があります：
 
 
-| Privilege       | Object    | Notes                      |
+| Privilege       | Object    | 注釈                      |
 |:----------------|:----------|:---------------------------|
-| Drop_priv       | Table     | TRUNCATE TABLEはテーブルのDROP操作に属します |
+| Drop_priv       | Table     | TRUNCATE TABLEはTableのDROP操作に属します |
 
 ## 使用上の注意
 
-- このステートメントはデータをクリアしますが、テーブルまたはパーティションは保持されます。
-- DELETEとは異なり、このステートメントは指定されたテーブルまたはパーティション全体のみをクリアでき、フィルタリング条件を追加することはできません。
+- このステートメントはデータをクリアしますが、Tableまたはパーティションは保持されます。
+- DELETEとは異なり、このステートメントは指定されたTableまたはパーティション全体のみをクリアでき、フィルタリング条件を追加することはできません。
 - DELETEとは異なり、この方法でデータをクリアしてもクエリパフォーマンスには影響しません。
 - この操作で削除されたデータは復旧できません。
-- このコマンドを使用する際、テーブルの状態はNORMALである必要があります。つまり、SCHEMA CHANGEなどの操作は許可されません。
+- このコマンドを使用する際、Tableの状態はNORMALである必要があります。つまり、SCHEMA CHANGEなどの操作は許可されません。
 - このコマンドは進行中のインポートを失敗させる可能性があります。
 
 ## 例
 
-1. example_db下のテーブルtblをクリアする
+1. example_db下のTabletblをクリアする
 
     ```sql
     TRUNCATE TABLE example_db.tbl;
     ```
-2. テーブル tbl の p1 と p2 パーティションをクリアする
+2. Table tbl の p1 と p2 パーティションをクリアする
 
     ```sql
     TRUNCATE TABLE tbl PARTITION(p1, p2);

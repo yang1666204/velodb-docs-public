@@ -11,40 +11,40 @@
 
 ![Tuning process](/images/query-tuning-steps.jpg)
 
-## Step 1: パフォーマンス診断ツールを使用してスロークエリを特定する
+## ステップ 1: パフォーマンス診断ツールを使用してスロークエリを特定する
 
 Doris上で実行されているビジネスシステムでは、前述の[パフォーマンス診断ツール](diagnostic-tools.md)を使用してスローSQLクエリを特定します。
 
 - Doris Managerがインストールされている場合は、Managerのログページを使用してスロークエリを視覚的に便利に特定することを推奨します。
-- Managerがインストールされていない場合は、FEノードの`fe.audit.log`ファイルまたはaudit_logシステムテーブルを直接確認して、スローSQLクエリのリストを取得し、チューニングの優先順位を付けることができます。
+- Managerがインストールされていない場合は、FEノードの`fe.audit.log`ファイルまたはaudit_logシステムTableを直接確認して、スローSQLクエリのリストを取得し、チューニングの優先順位を付けることができます。
 
-## Step 2: スキーマ設計とチューニング
+## ステップ 2: スキーマ設計とチューニング
 
 特定のスローSQLクエリを特定した後、最初の優先事項は、不合理なスキーマ設計によって引き起こされるパフォーマンスの問題を排除するために、ビジネススキーマ設計を検査してチューニングすることです。
 
 スキーマ設計チューニングは3つの側面に分けることができます：
 
-- [テーブルレベルのスキーマ設計チューニング](../tuning/tuning-plan/optimizing-table-schema.md)、パーティション数とバケット数の調整、フィールド最適化など；
+- [Tableレベルのスキーマ設計チューニング](../tuning/tuning-plan/optimizing-table-schema.md)、パーティション数とバケット数の調整、フィールド最適化など；
 - [インデックス設計とチューニング](../tuning/tuning-plan/optimizing-table-index.md)
 - [Colocate Groupを使用したJoinの最適化](../tuning/tuning-plan/optimizing-join-with-colocate-group.md)などの特定の最適化技術の使用。主な目標は、不合理なスキーマ設計や、Dorisの既存の最適化機能を十分に活用できないことによって引き起こされるパフォーマンスの問題を排除することです。
 
 詳細なチューニング例については、[プランチューニング](../tuning/tuning-plan/optimizing-table-schema.md)のドキュメントを参照してください。
 
-## Step 3: プランチューニング
+## ステップ 3: プランチューニング
 
 ビジネススキーマの検査とチューニングの後、チューニングの主要なタスクが始まります：プランチューニングと実行チューニング。上記のように、この段階での主要なタスクは、DorisによってProvideされる様々なレベルのExplainツールを十分に活用して、スローSQLクエリの実行プランを体系的に分析し、対象を絞った最適化のための主要な最適化ポイントを特定することです。
 
-- 単一テーブルクエリと分析シナリオでは、実行プランを分析して[パーティションプルーニング](../tuning/tuning-plan/optimizing-table-scanning.md)が正常に機能しているかを確認し、[単一テーブルマテリアライズドビューをクエリ高速化に使用](../tuning/tuning-plan/transparent-rewriting-with-sync-mv.md)できます。
-- 複雑な複数テーブル分析シナリオでは、Join Orderを分析してそれが合理的かを判断し、特定のパフォーマンスボトルネックを特定できます。また、[複数テーブルマテリアライズドビューを透過的な書き換えに使用してクエリを高速化](../tuning/tuning-plan/transparent-rewriting-with-async-mv.md)することもできます。不合理なJoin Orderなどの予期しない状況が発生した場合、実行プランをバインドするためにJoin Hintを手動で指定できます。例えば、[Leading hintを使用してJoin Orderを制御](../tuning/tuning-plan/reordering-join-with-leading-hint.md)、[Shuffle Hintを使用してJoinシャッフル方式を調整](../tuning/tuning-plan/adjusting-join-shuffle.md)、[Hintを使用してコストベース最適化ルールを制御](../tuning/tuning-plan/controlling-hints-with-cbo-rule.md)して、実行プランをチューニングする目標を達成します。
+- 単一Tableクエリと分析シナリオでは、実行プランを分析して[パーティションプルーニング](../tuning/tuning-plan/optimizing-table-scanning.md)が正常に機能しているかを確認し、[単一Tableマテリアライズドビューをクエリ高速化に使用](../tuning/tuning-plan/transparent-rewriting-with-sync-mv.md)できます。
+- 複雑な複数Table分析シナリオでは、Join Orderを分析してそれが合理的かを判断し、特定のパフォーマンスボトルネックを特定できます。また、[複数Tableマテリアライズドビューを透過的な書き換えに使用してクエリを高速化](../tuning/tuning-plan/transparent-rewriting-with-async-mv.md)することもできます。不合理なJoin Orderなどの予期しない状況が発生した場合、実行プランをバインドするためにJoin Hintを手動で指定できます。例えば、[Leading hintを使用してJoin Orderを制御](../tuning/tuning-plan/reordering-join-with-leading-hint.md)、[Shuffle Hintを使用してJoinシャッフル方式を調整](../tuning/tuning-plan/adjusting-join-shuffle.md)、[Hintを使用してコストベース最適化ルールを制御](../tuning/tuning-plan/controlling-hints-with-cbo-rule.md)して、実行プランをチューニングする目標を達成します。
 - 特定のシナリオでは、[SQLキャッシュを使用してクエリを高速化](../tuning/tuning-plan/accelerating-queries-with-sql-cache.md)など、Dorisが提供する高度な機能を活用することもできます。
 
 詳細なチューニング例については、[プランチューニング](../tuning/tuning-plan/optimizing-table-schema.md)のドキュメントを参照してください。
 
-## Step 4: 実行チューニング
+## ステップ 4: 実行チューニング
 
 実行チューニング段階では、SQLクエリの実際の実行に基づいてプランチューニングの効果を検証する必要があります。さらに、既存のプランのフレームワーク内で、実行側のボトルネックを継続的に分析し、どの実行段階が遅いか、または次善の並列性などの他の一般的な問題を特定します。
 
-複数テーブル分析クエリを例に取ると、Profileを分析して、計画されたJoin順序が合理的か、Runtime Filtersが効果的か、並列性が期待を満たしているかを確認できます。さらに、Profileは、遅いI/Oや予期しないネットワーク送信パフォーマンスなど、マシン負荷に関するフィードバックを提供できます。このような問題を確認して診断する際は、診断とチューニングを支援するためにシステムレベルのツールが必要です。
+複数Table分析クエリを例に取ると、Profileを分析して、計画されたJoin順序が合理的か、Runtime Filtersが効果的か、並列性が期待を満たしているかを確認できます。さらに、Profileは、遅いI/Oや予期しないネットワーク送信パフォーマンスなど、マシン負荷に関するフィードバックを提供できます。このような問題を確認して診断する際は、診断とチューニングを支援するためにシステムレベルのツールが必要です。
 
 詳細なチューニング例については、[実行チューニング](../tuning/tuning-execution/adjustment-of-runtimefilter-wait-time.md)のドキュメントを参照してください。
 

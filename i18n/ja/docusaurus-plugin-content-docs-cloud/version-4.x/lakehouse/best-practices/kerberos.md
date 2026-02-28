@@ -92,7 +92,7 @@ RULE:[<principal translation>](acceptance filter)<short name substitution>
 ```
 上記の設定は、`core-site.xml`内の`hadoop.security.auth_to_local`プロパティを追加または置換するために使用できます。`core-site.xml`を`fe/conf`と`be/conf`に配置して、Doris環境で有効にします。
 
-OUTFILE、EXPORT、Broker Load、Catalog（Hive、Iceberg、Hudi）、TVF、およびその他の機能で個別に有効にする必要がある場合は、それらのプロパティで直接設定できます：
+OUTFILE、EXPORT、Broker Load、カタログ（Hive、Iceberg、Hudi）、TVF、およびその他の機能で個別に有効にする必要がある場合は、それらのプロパティで直接設定できます：
 
 ```sql
 "hadoop.security.auth_to_local" = "RULE:[1:$1@$0](^.*@.*$)s/^(.*)@.*$/$1/g
@@ -204,7 +204,7 @@ docker inspect <container-name> | grep IPAddress
 ```
 または、127.0.0.1 を直接使用してください（サービスがホストネットワークにマッピングされている場合）。
 
-### 5. Kerberos Hive Catalog の作成
+### 5. Kerberos Hive カタログ の作成
 
 1. Hive Catalog1
 
@@ -315,7 +315,7 @@ udp_preference_limit = 1
    - すべてのノードでNTPを有効にして時刻を同期させてください。
    - 共有を避けるため、`service/_HOST@REALM`などのサービスインスタンスごとに一意のprincipalを使用してください。
 
-11. Client not found in Kerberos database
+11. クライアント not found in Kerberos database
 - 原因: クライアントprincipalがKerberosデータベースに存在しません。
 - 修正方法: KDCでprincipalを作成してください。
 

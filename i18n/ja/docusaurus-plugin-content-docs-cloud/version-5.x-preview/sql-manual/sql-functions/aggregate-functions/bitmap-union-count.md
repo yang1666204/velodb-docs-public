@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力されたBitmapの和集合を計算し、その濃度を返します。
 

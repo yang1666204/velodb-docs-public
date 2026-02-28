@@ -14,9 +14,9 @@
 ```sql
 FIND_IN_SET(<str>, <strlist>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-------------|----------|
 | `<str>`     | 検索対象の文字列。型: VARCHAR |
 | `<strlist>` | str を検索するカンマ区切りの文字列リスト。型: VARCHAR |

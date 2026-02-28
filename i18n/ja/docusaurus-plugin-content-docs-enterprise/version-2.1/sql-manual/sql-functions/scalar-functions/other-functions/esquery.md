@@ -16,7 +16,7 @@ ESQUERY(<field>, <query_dsl>)
 ```
 ## パラメータ
 
-| Parameter   | Description                                                                                 |
+| Parameter   | デスクリプション                                                                                 |
 |------------|---------------------------------------------------------------------------------------------|
 | `<field>`    | クエリ対象となるフィールド。インデックスの関連付けに使用される。                                         |
 | `<query_dsl>` | Elasticsearch Query DSLを表すJSON式。`{}`で囲まれ、ちょうど1つのルートキー（例：`match_phrase`、`geo_shape`、`bool`）を含む必要がある。 |

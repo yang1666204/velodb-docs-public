@@ -92,7 +92,7 @@ RULE:[<principal translation>](acceptance filter)<short name substitution>
 ```
 上記の設定は、`core-site.xml`内の`hadoop.security.auth_to_local`プロパティを追加または置換するために使用できます。`core-site.xml`を`fe/conf`と`be/conf`に配置することで、Doris環境で有効になります。
 
-OUTFILE、EXPORT、Broker Load、Catalog（Hive、Iceberg、Hudi）、TVF、およびその他の機能で個別に有効にする必要がある場合は、それらのプロパティで直接設定できます：
+OUTFILE、EXPORT、Broker Load、カタログ（Hive、Iceberg、Hudi）、TVF、およびその他の機能で個別に有効にする必要がある場合は、それらのプロパティで直接設定できます：
 
 ```sql
 "hadoop.security.auth_to_local" = "RULE:[1:$1@$0](^.*@.*$)s/^(.*)@.*$/$1/g
@@ -305,7 +305,7 @@ udp_preference_limit = 1
    - すべてのノードでNTPを有効にして時刻を同期させる。
    - `service/_HOST@REALM`などのサービスインスタンス固有のprincipalを使用して、共有を避ける。
 
-11. Client not found in Kerberos database
+11. クライアント not found in Kerberos database
 - 原因: クライアントprincipalがKerberosデータベースに存在しない。
 - 修正方法: KDCでprincipalを作成する。
 

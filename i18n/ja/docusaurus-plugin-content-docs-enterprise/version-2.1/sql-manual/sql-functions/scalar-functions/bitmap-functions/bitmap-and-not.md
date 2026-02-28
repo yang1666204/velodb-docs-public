@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つのBITMAPに対してNOT演算を実行し、結果を返します。最初の入力パラメータは`base BITMAP`と呼ばれ、2番目は`exclude BITMAP`と呼ばれます。
 

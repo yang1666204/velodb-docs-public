@@ -16,9 +16,9 @@ HOURS_SUB関数は、入力された日付またはdatetimeの値から指定さ
 ```sql
 HOURS_SUB(`<date_or_time_expr>`, `<hours>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | ---- | ---- |
 | `<date_or_time_expr>` | date/datetimeタイプをサポートする有効な日付式。具体的なdatetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<hours>` | 減算する時間数。INT型 |

@@ -1,13 +1,13 @@
 ---
 {
   "title": "EXPLODE_JSON_OBJECT",
-  "description": "explodejsonobject テーブル関数は、JSON オブジェクトを複数の行に展開し、各行にはキーと値のペアが含まれます。",
+  "description": "explodejsonobject Table関数は、JSON オブジェクトを複数の行に展開し、各行にはキーと値のペアが含まれます。",
   "language": "ja"
 }
 ---
 # EXPLODE_JSON_OBJECT
 ## 説明
-`explode_json_object`テーブル関数は、JSONオブジェクトを複数の行に展開し、各行にキーと値のペアを含めます。
+`explode_json_object`Table関数は、JSONオブジェクトを複数の行に展開し、各行にキーと値のペアを含めます。
 JSONオブジェクトをよりクエリしやすい形式に変換するために一般的に使用されます。この関数は要素を持つJSONオブジェクトのみをサポートします。
 [`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
 

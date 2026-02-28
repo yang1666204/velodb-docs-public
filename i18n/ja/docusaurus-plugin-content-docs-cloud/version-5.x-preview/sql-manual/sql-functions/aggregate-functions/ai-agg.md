@@ -77,7 +77,7 @@ GROUP BY subject;
 ```
 ケース2：
 
-以下のテーブルは、Eコマースプラットフォームのユーザーレビューテーブルをシミュレートしています。
+以下のTableは、EコマースプラットフォームのユーザーレビューTableをシミュレートしています。
 
 ```sql
 CREATE TABLE product_reviews (

@@ -1,15 +1,15 @@
 ---
 {
-  "title": "LOCAL | テーブル値関数",
-  "description": "Local table-valued-function(tvf)は、ユーザーがbeノード上のローカルファイルの内容を読み取りアクセスすることを可能にし、リレーショナルテーブルにアクセスするのと同じように操作できます。",
+  "title": "LOCAL | Table値関数",
+  "description": "Local table-valued-function(tvf)は、ユーザーがbeノード上のローカルファイルの内容を読み取りアクセスすることを可能にし、リレーショナルTableにアクセスするのと同じように操作できます。",
   "language": "ja"
 }
 ---
 # LOCAL
 
-## Description
+## デスクリプション
 
-Local table-valued-function（tvf）は、ユーザーがbeノード上のローカルファイル内容を、リレーショナルテーブルにアクセスするのと同様に読み取りおよびアクセスできるようにします。現在、`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`ファイル形式をサポートしています。
+Local table-valued-function（tvf）は、ユーザーがbeノード上のローカルファイル内容を、リレーショナルTableにアクセスするのと同様に読み取りおよびアクセスできるようにします。現在、`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`ファイル形式をサポートしています。
 
 ## syntax
 
@@ -21,15 +21,15 @@ LOCAL(
   [, "<optional_property_key>" = "<optional_property_value>" [, ...] ]
   );
 ```
-## Required Parameters
-| Parameter         | Description                                                                                                                                                                                          | Remarks                                           |
+## Required パラメータ
+| Parameter         | デスクリプション                                                                                                                                                                                          | Remarks                                           |
 |-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
 | `file_path`       | 読み取り対象のファイルパス。`user_files_secure_path`ディレクトリに対する相対パスです。`user_files_secure_path`パラメータはBE設定項目です。<br />パスに`..`を含むことはできません。`logs/*.log`のように、パターンマッチングにglobシンタックスを使用できます。 |                                                   |
 | `backend_id`      | ファイルが配置されているBEノードのIDです。`show backends`コマンドで取得できます。                                                                                                                                                  | バージョン2.1.1より前では、DorisはBEノードを指定してそのノード上のローカルデータファイルを読み取ることのみをサポートしています。 |
 | `format`          | ファイル形式、必須です。サポートされている形式は`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`です。                                                                             |                                                   |
 
-## Optional Parameters
-| Parameter              | Description                                                                                                                                                                       | Remarks                                                                |
+## Optional パラメータ
+| Parameter              | デスクリプション                                                                                                                                                                       | Remarks                                                                |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
 | `shared_storage`        | デフォルトはfalseです。trueの場合、指定されたファイルは共有ストレージ（例：NAS）に配置されています。共有ストレージはPOSIXファイルインターフェースをサポートし、すべてのBEノードにマウントされている必要があります。<br />`shared_storage`がtrueの場合、`backend_id`は省略可能です。DorisはすべてのBEノードを利用してデータにアクセスする場合があります。`backend_id`が設定されている場合、指定されたBEノードでのみデータにアクセスします。 | バージョン2.1.2以降でサポート                                      |
 | `column_separator`      | 列区切り文字、オプション、デフォルトは`\t`です。                                                                                                                                 |                                                                       |
@@ -47,12 +47,12 @@ LOCAL(
 | `enable_mapping_varbinary` | デフォルトはfalseです。PARQUET/ORC読み取り時、BYTE_ARRAYタイプをSTRINGにマップします。有効にすると、VARBINARYタイプにマップします。 | 4.0.3以降でサポート |
 
 ## Access Control Requirements
-| Privilege  | Object | Notes |
+| Privilege  | Object | 注釈 |
 | :--------- |:-------|:------|
 | ADMIN_PRIV | global |       |
 
 
-## Usage Notes
+## Usage 注釈
 
 - local tvfのより詳細な使用方法については、[S3](./s3.md) tvfを参照してください。両者の違いはストレージシステムへのアクセス方法のみです。
 
@@ -137,7 +137,7 @@ desc function local(
 ```
 ```text
 +-------+------+------+-------+---------+-------+
-| Field | Type | Null | Key   | Default | Extra |
+| Field | タイプ | Null | Key   | Default | Extra |
 +-------+------+------+-------+---------+-------+
 | c1    | TEXT | Yes  | false | NULL    | NONE  |
 | c2    | TEXT | Yes  | false | NULL    | NONE  |

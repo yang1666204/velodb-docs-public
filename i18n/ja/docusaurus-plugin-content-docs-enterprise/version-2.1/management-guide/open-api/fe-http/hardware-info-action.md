@@ -11,7 +11,7 @@
 ```
 GET /rest/v1/hardware_info/fe/
 ```
-## Description
+## デスクリプション
 
 Hardware Info Actionは、現在のFEのハードウェア情報を取得するために使用されます。
 

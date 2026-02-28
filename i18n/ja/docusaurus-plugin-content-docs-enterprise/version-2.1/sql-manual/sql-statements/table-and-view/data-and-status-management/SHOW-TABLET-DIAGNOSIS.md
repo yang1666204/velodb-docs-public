@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、指定されたタブレットを診断するために使用されます。結果には、タブレットに関する情報と潜在的な問題が表示されます。
 
@@ -28,8 +28,8 @@ SHOW TABLET DIAGNOSIS <tablet_id>
 | TabletExist                      | String   | タブレットが存在するかどうかを示します。                                                |
 | TabletId                         | String   | タブレットのIDです。                                                                   |
 | Database                         | String   | タブレットが属するデータベースとそのIDです。                                            |
-| Table                            | String   | タブレットが属するテーブルとそのIDです。                                                |
-| Partition                        | String   | タブレットが属するパーティションとそのIDです。                                          |
+| Table                            | String   | タブレットが属するTableとそのIDです。                                                |
+| パーティション                        | String   | タブレットが属するパーティションとそのIDです。                                          |
 | MaterializedIndex                | String   | タブレットが属するマテリアライズドインデックスとそのIDです。                            |
 | Replicas(ReplicaId -> BackendId) | String   | タブレットのレプリカとそれぞれのBEノードです。                                          |
 | ReplicasNum                      | String   | レプリカ数が正しいかどうかを示します。                                                  |
@@ -42,9 +42,9 @@ SHOW TABLET DIAGNOSIS <tablet_id>
 
 このSQLコマンドを実行するユーザーは、最低限以下の権限を持つ必要があります：
 
-| Privilege  | Object   | Notes                                                                                                                            |
+| Privilege  | Object   | 注釈                                                                                                                            |
 |:-----------|:---------|:---------------------------------------------------------------------------------------------------------------------------------|
-| Admin_priv | Database | データベース上で管理操作を実行するために必要です。テーブル、パーティション、およびシステムレベルコマンドの管理が含まれます。    |
+| Admin_priv | Database | データベース上で管理操作を実行するために必要です。Table、パーティション、およびシステムレベルコマンドの管理が含まれます。    |
 
 ## 例
 
@@ -59,7 +59,7 @@ SHOW TABLET DIAGNOSIS 10145;
 | TabletId                         | 10145            |            |
 | Database                         | test: 10103      |            |
 | Table                            | sell_user: 10143 |            |
-| Partition                        | sell_user: 10142 |            |
+| パーティション                        | sell_user: 10142 |            |
 | MaterializedIndex                | sell_user: 10144 |            |
 | Replicas(ReplicaId -> BackendId) | {"10146":10009}  |            |
 | ReplicasNum                      | OK               |            |

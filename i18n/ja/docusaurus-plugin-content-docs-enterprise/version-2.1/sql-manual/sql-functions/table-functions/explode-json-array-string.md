@@ -1,13 +1,13 @@
 ---
 {
   "title": "EXPLODE_JSON_ARRAY_STRING",
-  "description": "explodejsonarraystring テーブル関数は JSON 配列を受け取り、各要素は string 型である。",
+  "description": "explodejsonarraystring Table関数は JSON 配列を受け取り、各要素は string 型である。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-`explode_json_array_string`テーブル関数は、各要素が文字列型のJSON配列を受け取り、配列内の各文字列を複数の行に展開し、各行に1つの文字列を含めます。LATERAL VIEWと組み合わせて使用されます。
+`explode_json_array_string`Table関数は、各要素が文字列型のJSON配列を受け取り、配列内の各文字列を複数の行に展開し、各行に1つの文字列を含めます。LATERAL VIEWと組み合わせて使用されます。
 
 `explode_json_array_string_outer`は`explode_json_array_string`と似ていますが、NULL値の処理が異なります。
 
@@ -23,11 +23,11 @@ EXPLODE_JSON_ARRAY_STRING_OUTER(<json>)
 ```
 ## 戻り値
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<json>` | json type |
 
-## Parameters
+## パラメータ
 
 JSON配列を展開し、各要素に対して行を作成して、文字列列を返します。
 

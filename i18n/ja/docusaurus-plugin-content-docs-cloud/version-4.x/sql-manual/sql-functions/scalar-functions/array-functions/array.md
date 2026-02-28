@@ -7,7 +7,7 @@
 ---
 # ARRAY
 
-## Description
+## デスクリプション
 可変長引数要素で配列を構築して返します。Tは列またはリテラルです。
 
 ## Syntax
@@ -15,8 +15,8 @@
 ```sql
 ARRAY([ <element> [, ...] ])
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 |---|---|
 | `<element>` | このパラメータは複数の列または定数を指定できます |
 

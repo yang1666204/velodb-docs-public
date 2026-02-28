@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定された時間単位に従ってdatetimeを切り捨てます。
 
@@ -15,9 +15,9 @@
 DATE_TRUNC(<datetime>, <time_unit>)
 DATE_TRUNC(<time_unit>, <datetime>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter	 | Description |
+| Parameter	 | デスクリプション |
 | -- | -- |
 | `<datetime>` | 有効な日付式 |
 | `<time_unit>` | 切り捨てる時間間隔。指定可能な値は: [second, minute, hour, day, week, month, quarter, year] |

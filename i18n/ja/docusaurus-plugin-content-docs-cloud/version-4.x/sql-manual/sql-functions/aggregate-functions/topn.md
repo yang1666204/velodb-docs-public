@@ -14,8 +14,8 @@ TOPN関数は、指定された列のN個の最頻値を返します。これは
 ```sql
 TOPN(<expr>, <top_num> [, <space_expand_rate>])
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | カウント対象となる列または式。 |
 | `<top_num>` | 返される最頻値の数。正の整数である必要があります。 |

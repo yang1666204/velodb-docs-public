@@ -36,7 +36,7 @@
 
 1. **AWSコンソール**を開き、「Glue」を検索します
 
-2. **AWS Glue Console** > **Data Catalog** > **Databases**に移動します
+2. **AWS Glue Console** > **データカタログ** > **Databases**に移動します
 
 ![AWS Glue Getting Started](/images/cloud/integration/aws-glue/04-glue-getting-started.png)
 
@@ -134,9 +134,9 @@ VeloDBで「Lake Formation permission denied」エラーが表示される場合
 
 ---
 
-## Step 5: サンプルデータの書き込み（任意）
+## ステップ 5: サンプルデータの書き込み（任意）
 
-PyIcebergを使用してテスト用のテーブルを作成し、サンプルデータを書き込みます：
+PyIcebergを使用してテスト用のTableを作成し、サンプルデータを書き込みます：
 
 ```bash
 pip install "pyiceberg[glue,s3]" pyarrow pandas
@@ -177,7 +177,7 @@ df = pd.DataFrame({
     "value": [100.5, 200.3, 150.8]
 })
 table.append(pa.Table.from_pandas(df))
-print("Sample data written successfully!")
+print("サンプル data written successfully!")
 ```
 ## Regional Endpointsリファレンス
 
@@ -195,9 +195,9 @@ print("Sample data written successfully!")
 
 セットアップ完了後、VeloDBに接続するために以下の値が必要になります：
 
-| Value | Description |
+| Value | デスクリプション |
 |-------|-------------|
-| **S3 Bucket Path** | `s3://my-lakehouse-bucket/iceberg` |
+| **S3 バケット Path** | `s3://my-lakehouse-bucket/iceberg` |
 | **Glue Region** | 使用するAWSリージョン（例：`us-east-1`） |
 | **Glue Endpoint** | `https://glue.{region}.amazonaws.com` |
 | **Access Key ID** | IAMユーザー作成時に取得 |
@@ -207,7 +207,7 @@ print("Sample data written successfully!")
 
 ## セットアップの確認
 
-テーブル作成後、AWS Glue Consoleの**Data Catalog** > **Tables**でテーブルを確認できます：
+Table作成後、AWS Glue Consoleの**データカタログ** > **Tables**でTableを確認できます：
 
 ![Glue Iceberg Table Details](/images/cloud/integration/aws-glue/11-glue-iceberg-table-details.png)
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この文は、マテリアライズドビューのスケジュールされたスケジューリングを一時停止するために使用されます
 
@@ -29,7 +29,7 @@ PAUSE MATERIALIZED VIEW JOB ON <mv_name>
 ## アクセス制御要件
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege  | Object | Notes                                        |
+| Privilege  | Object | 注釈                                        |
 | :--------- | :----- | :------------------------------------------- |
 | ALTER_PRIV | Materialized View  | PAUSEはマテリアライズドビューに対するALTER操作です |
 

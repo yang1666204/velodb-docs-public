@@ -16,7 +16,7 @@ IPv6型は、UInt128形式で16バイトに格納され、IPv6アドレスを表
 
 ### example
 
-テーブル作成例:
+Table作成例:
 
 ```
 CREATE TABLE ipv6_test (

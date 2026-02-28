@@ -36,14 +36,14 @@ CREATE DATABASE [IF NOT EXISTS] <db_name>
 
 ## 注意事項
 
-db配下のテーブルに対するデフォルトレプリカ配布戦略を指定したい場合は、`<replication_allocation>`を指定する必要があります（tableの`<replication_allocation>`属性はdbより高い優先度を持ちます）：
+db配下のTableに対するデフォルトレプリカ配布戦略を指定したい場合は、`<replication_allocation>`を指定する必要があります（tableの`<replication_allocation>`属性はdbより高い優先度を持ちます）：
 
   ```sql
   PROPERTIES (
     "replication_allocation" = "tag.location.default:3"
   )
   ```
-db配下のテーブルに対してデフォルトのStorage Vaultを指定したい場合は、`<storage_vault_name>`を指定する必要があります（tableの`<storage_vault_name>`属性はdbよりも高い優先度を持ちます）：
+db配下のTableに対してデフォルトのStorage Vaultを指定したい場合は、`<storage_vault_name>`を指定する必要があります（tableの`<storage_vault_name>`属性はdbよりも高い優先度を持ちます）：
 
   ```sql
   PROPERTIES (

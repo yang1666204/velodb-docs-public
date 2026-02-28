@@ -60,19 +60,19 @@ Dorisにはいくつかの固有のデータ型があります。詳細は以下
 
 - **HyperLogLog**
 
-  HLL（HyperLogLog）はキーカラムとして使用できないデータ型です。集約モデルテーブルでは、HLLに対応する集約型はHLL_UNIONです。長さとデフォルト値を指定する必要はありません。長さはデータの集約レベルに基づいて内部的に制御されます。HLLカラムは`HLL_UNION_AGG`、`HLL_RAW_AGG`、`HLL_CARDINALITY`、`HLL_HASH`などの関連する関数でのみクエリまたは使用できます。
+  HLL（HyperLogLog）はキーカラムとして使用できないデータ型です。集約モデルTableでは、HLLに対応する集約型はHLL_UNIONです。長さとデフォルト値を指定する必要はありません。長さはデータの集約レベルに基づいて内部的に制御されます。HLLカラムは`HLL_UNION_AGG`、`HLL_RAW_AGG`、`HLL_CARDINALITY`、`HLL_HASH`などの関連する関数でのみクエリまたは使用できます。
 
   HLLは近似的なファジー重複除去に使用され、大量のデータを扱う際にcount distinctよりも優れた性能を発揮します。HLLの典型的なエラー率は約1%で、時には2%に達することもあります。
 
 - **Bitmap**
 
-  Bitmapはキーカラムとして使用できないデータ型です。集約モデルテーブルでは、BITMAPに対応する集約型はBITMAP_UNIONです。HLLと同様に、長さとデフォルト値を指定する必要はなく、長さはデータの集約レベルに基づいて内部的に制御されます。Bitmapカラムは`BITMAP_UNION_COUNT`、`BITMAP_UNION`、`BITMAP_HASH`、`BITMAP_HASH64`などの関数でのみクエリまたは使用できます。
+  Bitmapはキーカラムとして使用できないデータ型です。集約モデルTableでは、BITMAPに対応する集約型はBITMAP_UNIONです。HLLと同様に、長さとデフォルト値を指定する必要はなく、長さはデータの集約レベルに基づいて内部的に制御されます。Bitmapカラムは`BITMAP_UNION_COUNT`、`BITMAP_UNION`、`BITMAP_HASH`、`BITMAP_HASH64`などの関数でのみクエリまたは使用できます。
 
   従来のシナリオでBITMAPを使用すると読み込み速度に影響を与える可能性がありますが、通常、大量のデータを扱う際にはCount Distinctよりも優れた性能を発揮します。リアルタイムシナリオでは、BITMAPをグローバル辞書なしでbitmap_hash()関数と使用すると、約0.1%のエラーが発生する可能性があることに注意してください。このエラーが許容できない場合は、代わりにbitmap_hash64を使用できます。
 
 - **QUANTILE_PERCENT**
 
-  QUANTILE_STATEはキーカラムとして使用できないデータ型です。集約モデルテーブルでは、QUANTILE_STATEに対応する集約型はQUANTILE_UNIONです。長さとデフォルト値を指定する必要はなく、長さはデータの集約レベルに基づいて内部的に制御されます。QUANTILE_STATEカラムは`QUANTILE_PERCENT`、`QUANTILE_UNION`、`TO_QUANTILE_STATE`などの関数でのみクエリまたは使用できます。
+  QUANTILE_STATEはキーカラムとして使用できないデータ型です。集約モデルTableでは、QUANTILE_STATEに対応する集約型はQUANTILE_UNIONです。長さとデフォルト値を指定する必要はなく、長さはデータの集約レベルに基づいて内部的に制御されます。QUANTILE_STATEカラムは`QUANTILE_PERCENT`、`QUANTILE_UNION`、`TO_QUANTILE_STATE`などの関数でのみクエリまたは使用できます。
 
   QUANTILE_STATEは近似分位数値の計算に使用されます。インポート時に、同じキーで異なる値に対して事前集約を実行します。値の数が2048を超えない場合は、すべてのデータを詳細に格納します。値の数が2048を超える場合は、TDigestアルゴリズムを使用してデータを集約（クラスタ）し、クラスタの重心を保存します。
 
@@ -93,7 +93,7 @@ Dorisにはいくつかの固有のデータ型があります。詳細は以下
 
 - **Agg_State**
 
-  AGG_STATEはDorisのデータ型で、キーカラムとして使用することはできません。テーブル作成時に、集約関数のシグネチャを宣言する必要があります。
+  AGG_STATEはDorisのデータ型で、キーカラムとして使用することはできません。Table作成時に、集約関数のシグネチャを宣言する必要があります。
 
   長さとデフォルト値を指定する必要はなく、実際のストレージサイズは関数の実装に依存します。
 
@@ -125,15 +125,15 @@ distribution_desc
 
 | パラメーター | MySQLとの違い |
 | ---------------------- | ------------------------------------------------------------ |
-| Column_definition_list | - フィールドリスト定義：基本的な構文はMySQLと似ていますが、集約タイプの追加操作が含まれています。<br />- 集約タイプ操作は主にAggregateをサポートしています。<br />- テーブル作成時、MySQLではフィールドリスト定義の後にIndex（例：Primary Key、Unique Key）などの制約を追加できますが、Dorisではデータモデルを定義することでこれらの制約と計算をサポートします。 |
+| Column_definition_list | - フィールドリスト定義：基本的な構文はMySQLと似ていますが、集約タイプの追加操作が含まれています。<br />- 集約タイプ操作は主にAggregateをサポートしています。<br />- Table作成時、MySQLではフィールドリスト定義の後にIndex（例：Primary Key、Unique Key）などの制約を追加できますが、Dorisではデータモデルを定義することでこれらの制約と計算をサポートします。 |
 | Index_definition_list  | - インデックスリスト定義：基本的な構文はMySQLと似ており、bitmapインデックス、inverted インデックス、N-Gramインデックスをサポートしますが、Bloomフィルターインデックスはpropertiesを通じて設定されます。<br />- MySQLはB+TreeおよびHashインデックスをサポートします。 |
-| Engine_type            | - テーブルエンジンタイプ：オプション。<br />- 現在サポートされているテーブルエンジンは主にOLAPネイティブエンジンです。<br />- MySQLはInnodb、MyISAMなどのストレージエンジンをサポートします。 |
+| Engine_type            | - Tableエンジンタイプ：オプション。<br />- 現在サポートされているTableエンジンは主にOLAPネイティブエンジンです。<br />- MySQLはInnodb、MyISAMなどのストレージエンジンをサポートします。 |
 | Keys_type              | - データモデル：オプション。<br />- サポートされるタイプには以下が含まれます：1) DUPLICATE KEY（デフォルト）：指定されたカラムはソートカラムです。2) AGGREGATE KEY：指定されたカラムはディメンションカラムです。3) UNIQUE KEY：指定されたカラムはプライマリキーカラムです。<br />- MySQLにはデータモデルの概念がありません。 |
-| Table_comment          | テーブルコメント |
+| Table_comment          | Tableコメント |
 | Partition_info         | - パーティショニングアルゴリズム：オプション。Dorisがサポートするパーティショニングアルゴリズムには以下が含まれます：<br />- LESS THAN：パーティションの上限のみを定義します。下限は前のパーティションの上限によって決定されます。<br />- FIXED RANGE：パーティションの左閉右開区間を定義します。<br />- MULTI RANGE：複数のRANGEパーティションを一括作成し、左閉右開区間を定義し、時間単位とステップを設定します。時間単位は年、月、日、週、時間をサポートします。<br />MySQLはHash、Range、List、Keyなどのアルゴリズムをサポートします。MySQLはサブパーティションもサポートし、サブパーティションではHashとKeyのみがサポートされます。 |
 | Distribution_desc      | - バケットアルゴリズム：必須。以下が含まれます：1) Hashバケット構文：DISTRIBUTED BY HASH (k1[,k2 ...]) [BUCKETS num\|auto]。説明：指定されたキーカラムを使用してハッシュバケットを行います。2) Randomバケット構文：DISTRIBUTED BY RANDOM [BUCKETS num\|auto]。説明：ランダム数を使用してバケットを行います。<br />- MySQLにはバケットアルゴリズムがありません。 |
-| Rollup_list            | - テーブル作成時に複数の同期マテリアライズドビューを作成できます。<br />- 構文：`rollup_name (col1[, col2, ...]) [DUPLICATE KEY(col1[, col2, ...])][PROPERTIES("key" = "value")]`<br />- MySQLはこれをサポートしていません。 |
-| Properties             | テーブルプロパティ：MySQLのテーブルプロパティとは異なり、テーブルプロパティを定義する構文もMySQLとは異なります。 |
+| Rollup_list            | - Table作成時に複数の同期マテリアライズドビューを作成できます。<br />- 構文：`rollup_name (col1[, col2, ...]) [DUPLICATE KEY(col1[, col2, ...])][PROPERTIES("key" = "value")]`<br />- MySQLはこれをサポートしていません。 |
+| Properties             | Tableプロパティ：MySQLのTableプロパティとは異なり、Tableプロパティを定義する構文もMySQLとは異なります。 |
 
 
 #### 03 CREATE INDEX
@@ -222,7 +222,7 @@ DELETE FROM table_name [table_alias]
     [USING additional_tables]
     WHERE condition
 ```
-この構文はUNIQUE KEYモデルテーブルでのみ使用できます。
+この構文はUNIQUE KEYモデルTableでのみ使用できます。
 
 DorisのDELETE構文は基本的にMySQLと同じです。ただし、Dorisは分析データベースであるため、削除を頻繁に実行することはできません。
 
@@ -248,13 +248,13 @@ SELECT
 ```
 DorisのSELECT構文は基本的にMySQLと同じです。
 
-## SQL Function
+## SQL ファンクション
 
 Doris FunctionはMySQLの関数の大部分をカバーしています。
 
 ## SQL Mode
 
-| Name | 有効化時の動作 | 無効化時の動作 | Notes |
+| Name | 有効化時の動作 | 無効化時の動作 | 注釈 |
 | :-- | :-- | :-- | :-- |
 | PIPES_AS_CONCAT | `\|\|`を`concat`関数として解析します | `\|\|`を論理OR演算子として解析します | - |
 | NO_BACKSLASH_ESCAPES | 文字列内のバックスラッシュをリテラル文字として扱います | 文字列内のバックスラッシュをエスケープ文字として扱います | - |

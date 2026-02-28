@@ -14,9 +14,9 @@
 ```sql
 SUM0(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 合計を計算するフィールド |
 

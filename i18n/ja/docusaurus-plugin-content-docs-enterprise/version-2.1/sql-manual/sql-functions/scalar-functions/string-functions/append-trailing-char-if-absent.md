@@ -14,16 +14,16 @@
 ```sql
 APPEND_TRAILING_CHAR_IF_ABSENT ( <str> , <trailing_char> )
 ```
-## Parameters
+## パラメータ
 
-| Parameters        | Description |
+| パラメータ        | デスクリプション |
 |-------------------|-----------------------------|
 | `<str>`           | 判定対象となる文字列 |
 | `<trailing_char>` | 文字列の末尾に追加される文字（その文字が存在しない場合） |
 
 ## Return value
 
-Parameters `<str>`と`<trailing_char>`を連結した文字列（`<trailing_char>`が`<str>`に存在しない場合）
+パラメータ `<str>`と`<trailing_char>`を連結した文字列（`<trailing_char>`が`<str>`に存在しない場合）
 
 ## Example
 

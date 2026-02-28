@@ -14,7 +14,7 @@
 ```SQL
 ARRAY_SUM(ARRAY<T>)
 ```
-## Parameters
+## パラメータ
 
 `ARRAY<T>`: **数値型**の要素を含む配列。
 
@@ -24,7 +24,7 @@ ARRAY_SUM(ARRAY<T>)
 
     - すべての要素が`NULL`の場合、`NULL`を返します。
 
-## Usage Notes
+## Usage 注釈
 
 1. 要素の合計には`+`演算子を使用します。
 

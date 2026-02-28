@@ -74,12 +74,12 @@ Dorisがクエリ`SELECT COUNT(DISTINCT name) FROM t`を実行する際、プロ
 
 ## 精密重複排除にBITMAPを使用する
 
-### テーブル作成
+### Table作成
 
-1. 重複排除にBitmapを使用する場合、テーブル作成文でターゲット列の型を`BITMAP`に設定し、集約関数として`BITMAP_UNION`を指定します。
+1. 重複排除にBitmapを使用する場合、Table作成文でターゲット列の型を`BITMAP`に設定し、集約関数として`BITMAP_UNION`を指定します。
 2. Bitmap型の列はキー列として使用できません。
 
-集約テーブル`test_bitmap`を作成します。`id`列はユーザーIDを表し、`uv`列は`BITMAP`型で、集約関数`BITMAP_UNION`を使用します：
+集約Table`test_bitmap`を作成します。`id`列はユーザーIDを表し、`uv`列は`BITMAP`型で、集約関数`BITMAP_UNION`を使用します：
 
 ```
 CREATE TABLE test_bitmap(

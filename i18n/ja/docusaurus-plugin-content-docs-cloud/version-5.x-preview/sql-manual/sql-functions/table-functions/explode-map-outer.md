@@ -1,12 +1,12 @@
 ---
 {
   "title": "EXPLODE_MAP_OUTER",
-  "description": "explodemapouter テーブル関数は map 型を受け取り、そのマップを複数の行に展開し、各行にキーと値のペアを含めます。",
+  "description": "explodemapouter Table関数は map 型を受け取り、そのマップを複数の行に展開し、各行にキーと値のペアを含めます。",
   "language": "ja"
 }
 ---
 ## 説明
-`explode_map_outer` テーブル関数はmap型を受け取り、そのmapを複数の行に展開します。各行にはキーと値のペアが含まれます。
+`explode_map_outer` Table関数はmap型を受け取り、そのmapを複数の行に展開します。各行にはキーと値のペアが含まれます。
 この関数は[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
 
 ## 構文
@@ -14,7 +14,7 @@
 ```sql
 EXPLODE_MAP_OUTER(<map>)
 ```
-## Parameters
+## パラメータ
 - `<map>` MAP型。
 
 ## Return Value

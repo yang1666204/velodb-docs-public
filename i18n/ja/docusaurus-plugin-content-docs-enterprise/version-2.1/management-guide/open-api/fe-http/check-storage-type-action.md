@@ -1,18 +1,18 @@
 ---
 {
-  "title": "Storage Type Action を確認する",
+  "title": "Storage タイプ Action を確認する",
   "language": "ja"
 }
 ---
-# Check Storage Type Action
+# Check Storage タイプ Action
 
 ## Request
 
 `GET /api/_check_storagetype`
 
-## Description
+## デスクリプション
 
-指定されたデータベース配下のテーブルのストレージ形式が行ストレージ形式かどうかをチェックするために使用されます。（行形式は非推奨です）
+指定されたデータベース配下のTableのストレージ形式が行ストレージ形式かどうかをチェックするために使用されます。（行形式は非推奨です）
 
 ## Path parameters
 
@@ -41,11 +41,11 @@
 	"count": 0
 }
 ```
-テーブル名の後にコンテンツがある場合、ストレージ形式が行ストレージであるベーステーブルまたはロールアップテーブルが表示されます。
+Table名の後にコンテンツがある場合、ストレージ形式が行ストレージであるベースTableまたはロールアップTableが表示されます。
 
 ## Examples
 
-1. 指定されたデータベースの以下のテーブルのストレージ形式が行形式かどうかを確認する
+1. 指定されたデータベースの以下のTableのストレージ形式が行形式かどうかを確認する
 
     ```
     GET /api/_check_storagetype

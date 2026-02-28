@@ -7,7 +7,7 @@
 ---
 他のOLAPシステムからDorisにデータを移行するには、いくつかのオプションがあります：
 
-- Hive/Iceberg/Hudiなどのシステムの場合、Multi-Catalogを使用してそれらを外部テーブルとしてマッピングし、"Insert Into"を使用してデータをロードできます
+- Hive/Iceberg/Hudiなどのシステムの場合、Multi-Catalogを使用してそれらを外部Tableとしてマッピングし、"Insert Into"を使用してデータをロードできます
 
 - OLAPシステムからCSVなどの形式でデータをエクスポートし、これらのデータファイルをDorisにロードできます
 

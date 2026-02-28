@@ -1,13 +1,13 @@
 ---
 {
   "title": "EXPLODE_SPLIT",
-  "description": "explodesplit テーブル関数は、指定された区切り文字に基づいて文字列を複数の部分文字列に分割し、各部分文字列を展開するために使用されます",
+  "description": "explodesplit Table関数は、指定された区切り文字に基づいて文字列を複数の部分文字列に分割し、各部分文字列を展開するために使用されます",
   "language": "ja"
 }
 ---
 ## 説明
 
-`explode_split`テーブル関数は、指定された区切り文字に基づいて文字列を複数の部分文字列に分割し、各部分文字列を別々の行に展開するために使用されます。各部分文字列は個別の行として返され、通常はLATERAL VIEWと組み合わせて使用し、長い文字列を個別の部分に分解してより詳細なクエリを実行します。
+`explode_split`Table関数は、指定された区切り文字に基づいて文字列を複数の部分文字列に分割し、各部分文字列を別々の行に展開するために使用されます。各部分文字列は個別の行として返され、通常はLATERAL VIEWと組み合わせて使用し、長い文字列を個別の部分に分解してより詳細なクエリを実行します。
 
 `explode_split_outer`は`explode_split`と似ていますが、空の文字列やNULL文字列の処理方法が異なります。
 
@@ -17,9 +17,9 @@
 EXPLODE_SPLIT(<str>, <delimiter>)
 EXPLODE_SPLIT_OUTER(<str>, <delimiter>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<str>` | 文字列型 |
 | `<delimiter>` | 区切り文字 |

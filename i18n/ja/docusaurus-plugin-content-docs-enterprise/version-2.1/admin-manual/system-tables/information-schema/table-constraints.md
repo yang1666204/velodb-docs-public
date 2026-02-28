@@ -1,13 +1,13 @@
 ---
 {
   "title": "table_constraints",
-  "description": "このテーブルは、MySQLの動作との互換性を維持することのみを目的としています。常に空です。",
+  "description": "このTableは、MySQLの動作との互換性を維持することのみを目的としています。常に空です。",
   "language": "ja"
 }
 ---
 ## 概要
 
-このテーブルは、MySQLの動作との互換性を維持することのみを目的としています。常に空です。
+このTableは、MySQLの動作との互換性を維持することのみを目的としています。常に空です。
 
 ## データベース
 
@@ -15,9 +15,9 @@
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
-| Column Name        | Type         | Description |
+| Column Name        | タイプ         | デスクリプション |
 | ------------------ | ------------ | ----------- |
 | CONSTRAINT_CATALOG | varchar(512) |             |
 | CONSTRAINT_SCHEMA  | varchar(64)  |             |

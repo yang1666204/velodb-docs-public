@@ -34,9 +34,9 @@ TPC-H 標準テストデータセットの22のクエリについて、Apache Do
 
 ## 3. テストデータ量
 
-テスト全体のシミュレーションによって生成された TPC-H 1000G データをそれぞれ Apache Doris 3.0.3-rc03（Compute-Storage Coupled Mode）と Apache Doris 2.1.7-rc03 にインポートしてテストを行いました。以下はテーブルの関連説明とデータ量です。
+テスト全体のシミュレーションによって生成された TPC-H 1000G データをそれぞれ Apache Doris 3.0.3-rc03（Compute-Storage Coupled Mode）と Apache Doris 2.1.7-rc03 にインポートしてテストを行いました。以下はTableの関連説明とデータ量です。
 
-| TPC-H テーブル名 | 行数 | 説明 |
+| TPC-H Table名 | 行数 | 説明 |
 |:-----------------|:--------------|:--------------|
 | REGION | 5 | 地域 |
 | NATION | 25 | 国家 |
@@ -109,7 +109,7 @@ sh bin/gen-tpch-data.sh -s 1000
 >
 > 注意 3: デフォルトでは100Gの標準テストデータセットが生成されます。
 
-### 7.3 テーブル作成
+### 7.3 Table作成
 
 #### 7.3.1 `doris-cluster.conf` ファイルの準備
 
@@ -133,12 +133,12 @@ export PASSWORD=''
 # The database where TPC-H tables located
 export DB='tpch'
 ```
-#### TPC-Hテーブルを生成・作成するために以下のスクリプトを実行する
+#### TPC-HTableを生成・作成するために以下のスクリプトを実行する
 
 ```shell
 sh bin/create-tpch-tables.sh -s 1000
 ```
-または、[create-tpch-tables.sql](https://github.com/apache/doris/blob/master/tools/tpch-tools/ddl/create-tpch-tables-sf1000.sql)のテーブル作成文をコピーして、Dorisで実行してください。
+または、[create-tpch-tables.sql](https://github.com/apache/doris/blob/master/tools/tpch-tools/ddl/create-tpch-tables-sf1000.sql)のTable作成文をコピーして、Dorisで実行してください。
 
 
 ### 7.4 データのインポート

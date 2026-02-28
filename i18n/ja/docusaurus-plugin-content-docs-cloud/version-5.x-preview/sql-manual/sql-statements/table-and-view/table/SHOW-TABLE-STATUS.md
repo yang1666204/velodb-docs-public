@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW TABLE STATUS",
-  "description": "この文は、テーブルまたはビューに関する情報を表示するために使用されます。",
+  "description": "この文は、Tableまたはビューに関する情報を表示するために使用されます。",
   "language": "ja"
 }
 ---
 ## 説明
 
-このステートメントは、テーブルまたはビューに関する情報を表示するために使用されます。
+このステートメントは、Tableまたはビューに関する情報を表示するために使用されます。
 
 ## 構文
 
@@ -20,36 +20,36 @@ SHOW TABLE STATUS [ FROM [ <catalog_name>.]<db_name> ] [ LIKE <like_condition> ]
 > FROM句でクエリ対象のカタログ名とデータベース名を指定できます。
 
 **2. `LIKE <like_condition>`**
-> LIKE句でテーブル名に基づくあいまい検索を実行できます。
+> LIKE句でTable名に基づくあいまい検索を実行できます。
 
 ## 戻り値
 
-| Column              | DataType | Notes                                                                                                                                                                                                                     |
+| Column              | DataType | 注釈                                                                                                                                                                                                                     |
 |:--------------------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name                | String   | テーブル名                                                                                                                                                                                                                |
-| Engine              | String   | テーブルのストレージエンジン                                                                                                                                                                              |
+| Name                | String   | Table名                                                                                                                                                                                                                |
+| Engine              | String   | Tableのストレージエンジン                                                                                                                                                                              |
 | Version             | String   | バージョン                                                                                                                                                                                                                   |
 | Row_format          | String   | 行フォーマット。MyISAMエンジンの場合、Dynamic、Fixed、またはCompressedの場合があります。Dynamic行はVarcharやBlobタイプフィールドのような可変長です。Fixed行はCharやIntegerタイプフィールドのような固定長です。 |
-| Rows                | String   | テーブル内の行数。非トランザクショナルテーブルの場合、この値は正確です。トランザクショナルエンジンの場合、この値は通常推定値です。                                                                               |
+| Rows                | String   | Table内の行数。非トランザクショナルTableの場合、この値は正確です。トランザクショナルエンジンの場合、この値は通常推定値です。                                                                               |
 | Avg_row_length      | Integer  | 行あたりの平均バイト数                                                                                                                                                                           |
-| Data_length         | Integer  | テーブル全体のデータ量（バイト単位）                                                                                                                                                                         |
-| Max_data_length     | Integer  | テーブルが保持できるデータの最大量                                                                                                                                                                          |
+| Data_length         | Integer  | Table全体のデータ量（バイト単位）                                                                                                                                                                         |
+| Max_data_length     | Integer  | Tableが保持できるデータの最大量                                                                                                                                                                          |
 | Index_length        | Integer  | インデックスが占有するディスク容量                                                                                                                                                             |
 | Data_free           | Integer  | MyISAMエンジンの場合、割り当て済みだが現在未使用の領域を識別し、削除された行の領域を含みます。                                                                                           |
 | Auto_increment      | Integer  | 次のAuto_incrementの値                                                                                                                                                                                      |
-| Create_time         | Datetime | テーブルの作成時刻                                                                                                                                                                            |
-| Update_time         | Datetime | テーブルの最終更新時刻                                                                                                                                                                         |
-| Check_time          | Datetime | check tableまたはmyisamchkツールを使用してテーブルをチェックした最終時刻                                                                                                                                                  |
-| Collation           | String   | テーブルのデフォルト文字セット、現在はutf-8のみサポート                                                                                                                                                     |
-| Checksum            | String   | 有効な場合、テーブル全体のコンテンツに対して計算されるチェックサム                                                                                                                                                          |
-| Create_options      | String   | テーブル作成時のその他すべてのオプションを参照                                                                                                                                                                     |
-| Comment             | String   | テーブルコメント                                                                                                                                                                                             |
+| Create_time         | Datetime | Tableの作成時刻                                                                                                                                                                            |
+| Update_time         | Datetime | Tableの最終更新時刻                                                                                                                                                                         |
+| Check_time          | Datetime | check tableまたはmyisamchkツールを使用してTableをチェックした最終時刻                                                                                                                                                  |
+| Collation           | String   | Tableのデフォルト文字セット、現在はutf-8のみサポート                                                                                                                                                     |
+| Checksum            | String   | 有効な場合、Table全体のコンテンツに対して計算されるチェックサム                                                                                                                                                          |
+| Create_options      | String   | Table作成時のその他すべてのオプションを参照                                                                                                                                                                     |
+| Comment             | String   | Tableコメント                                                                                                                                                                                             |
 
 ## アクセス制御要件
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes |
+| Privilege | Object | 注釈 |
 |:--------------|:-----------|:------------------------|
 | ADMIN_PRIV | Table, View | 現在この操作を実行するには**ADMIN**権限のみサポートしています |
 
@@ -59,7 +59,7 @@ SHOW TABLE STATUS [ FROM [ <catalog_name>.]<db_name> ] [ LIKE <like_condition> ]
 
 ## 例
 
-- 現在のデータベース内のすべてのテーブルの情報を表示
+- 現在のデータベース内のすべてのTableの情報を表示
 
     ```sql
     SHOW TABLE STATUS
@@ -72,7 +72,7 @@ SHOW TABLE STATUS [ FROM [ <catalog_name>.]<db_name> ] [ LIKE <like_condition> ]
     | test_view  | View   |    NULL | NULL       |    0 |              0 |           0 |            NULL |         NULL |      NULL |           NULL | 2025-01-22 11:46:32 | NULL                | NULL       | utf-8     |     NULL | NULL           |         |
     +------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-----------+----------+----------------+---------+
     ```
-指定されたデータベース配下で、名前にexampleを含むテーブルの情報を表示する
+指定されたデータベース配下で、名前にexampleを含むTableの情報を表示する
 
     ```sql
     SHOW TABLE STATUS FROM db LIKE "%test%"

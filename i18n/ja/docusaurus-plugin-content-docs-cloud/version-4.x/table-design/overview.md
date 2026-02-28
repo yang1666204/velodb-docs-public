@@ -1,25 +1,25 @@
 ---
 {
-  "title": "概要 | テーブル設計",
-  "description": "ユーザーはCREATE TABLE文を使用してDorisにテーブルを作成できます。",
+  "title": "概要 | Table設計",
+  "description": "ユーザーはCREATE TABLE文を使用してDorisにTableを作成できます。",
   "language": "ja"
 }
 ---
 # 概要
 
-## テーブルの作成
+## Tableの作成
 
-ユーザーはCREATE TABLE文を使用してDorisでテーブルを作成できます。また、CREATE TABLE LIKEやCREATE TABLE AS句を使用して、別のテーブルからテーブル定義を導出することもできます。
+ユーザーはCREATE TABLE文を使用してDorisでTableを作成できます。また、CREATE TABLE LIKEやCREATE TABLE AS句を使用して、別のTableからTable定義を導出することもできます。
 
-## テーブル名
+## Table名
 
-Dorisでは、テーブル名はデフォルトで大文字小文字を区別します。初期クラスターセットアップ時にlower_case_table_namesを設定することで、大文字小文字を区別しないようにできます。テーブル名のデフォルト最大長は64バイトですが、table_name_length_limitを設定することで変更できます。この値を過度に高く設定することは推奨されません。テーブル作成の構文については、CREATE TABLEを参照してください。[動的パーティション](data-partitioning/dynamic-partitioning.md)では、これらのプロパティを個別に設定できます。
+Dorisでは、Table名はデフォルトで大文字小文字を区別します。初期クラスターセットアップ時にlower_case_table_namesを設定することで、大文字小文字を区別しないようにできます。Table名のデフォルト最大長は64バイトですが、table_name_length_limitを設定することで変更できます。この値を過度に高く設定することは推奨されません。Table作成の構文については、CREATE TABLEを参照してください。[動的パーティション](data-partitioning/dynamic-partitioning.md)では、これらのプロパティを個別に設定できます。
 
-## テーブルプロパティ
+## Tableプロパティ
 
-Dorisでは、CREATE TABLE文でテーブルプロパティを指定できます。これには以下が含まれます：
+Dorisでは、CREATE TABLE文でTableプロパティを指定できます。これには以下が含まれます：
 
-- **buckets**: テーブル内でのデータの分散を決定します。
+- **buckets**: Table内でのデータの分散を決定します。
 
 - **storage_medium**: HDD、SSD、またはリモート共有ストレージの使用など、データのストレージ方法を制御します。
 
@@ -27,11 +27,11 @@ Dorisでは、CREATE TABLE文でテーブルプロパティを指定できます
 
 - **storage_policy**: コールドデータとホットデータの分離ストレージのマイグレーション戦略を制御します。
 
-これらのプロパティはパーティションに適用されます。つまり、パーティションが作成されると、そのパーティションは独自のプロパティを持ちます。テーブルプロパティの変更は、将来作成されるパーティションにのみ影響し、既存のパーティションには影響しません。テーブルプロパティの詳細については、ALTER TABLE PROPERTYを参照してください。
+これらのプロパティはパーティションに適用されます。つまり、パーティションが作成されると、そのパーティションは独自のプロパティを持ちます。Tableプロパティの変更は、将来作成されるパーティションにのみ影響し、既存のパーティションには影響しません。Tableプロパティの詳細については、ALTER TABLE PROPERTYを参照してください。
 
 ## 注意事項
 
-1. **適切なデータモデルの選択**: データモデルは変更できないため、テーブル作成時に適切な[データモデル](../table-design/data-model/overview.md)を選択する必要があります。
+1. **適切なデータモデルの選択**: データモデルは変更できないため、Table作成時に適切な[データモデル](../table-design/data-model/overview.md)を選択する必要があります。
 
 2. **適切なバケット数の選択**: 既に作成されたパーティションのバケット数は変更できません。[パーティションの置換](../data-operate/delete/table-temp-partition.md)によってバケット数を変更するか、動的パーティションでまだ作成されていないパーティションのバケット数を変更できます。
 

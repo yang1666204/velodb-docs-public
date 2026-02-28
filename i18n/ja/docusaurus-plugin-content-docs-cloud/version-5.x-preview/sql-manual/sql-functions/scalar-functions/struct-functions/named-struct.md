@@ -14,7 +14,7 @@
 ```sql
 NAMED_STRUCT( <field_name> , <field_value> [ , <field_name> , <field_value> ... ] )
 ```
-## Parameters
+## パラメータ
 
 - `<field_name>`: struct構築用の奇数位置の入力内容、フィールド名、定数文字列である必要があります
 - `<field_value>`: struct構築用の偶数位置の入力内容、フィールドの値、複数列または定数が可能です

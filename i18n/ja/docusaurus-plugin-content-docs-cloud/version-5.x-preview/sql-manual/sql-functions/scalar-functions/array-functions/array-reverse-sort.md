@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Function
+## ファンクション
 
 配列要素を降順でソートします。
 
@@ -13,7 +13,7 @@
 
 - `ARRAY_REVERSE_SORT(arr)`
 
-## Parameters
+## パラメータ
 
 - `arr`: `ARRAY<T>`、ここで`T`は数値、boolean、文字列、datetime、IPなどが可能です。
 

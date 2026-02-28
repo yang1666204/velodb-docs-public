@@ -27,7 +27,7 @@ SHOW [AUTO] ANALYZE [ <table_name> | <job_id> ]
 
 **2. `<table_name>`**
 
-> テーブル名。指定後、このテーブルに対応するジョブ情報を表示できます。指定されていない場合、デフォルトですべてのテーブルのジョブ情報が返されます。
+> Table名。指定後、このTableに対応するジョブ情報を表示できます。指定されていない場合、デフォルトですべてのTableのジョブ情報が返されます。
 
 **3. `<job_id>`**
 
@@ -44,7 +44,7 @@ SHOW [AUTO] ANALYZE [ <table_name> | <job_id> ]
 | job_id | 一意の統計ジョブid           |
 | catalog_name |   Catalog名         |
 | db_name | データベース名           |
-| tbl_name | テーブル名         |
+| tbl_name | Table名         |
 | col_name | カラム名リスト           |
 | job_type |   ジョブタイプ           |
 | analysis_type |  分析タイプ           |
@@ -62,13 +62,13 @@ SHOW [AUTO] ANALYZE [ <table_name> | <job_id> ]
 
 このSQLを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes                                    |
+| Privilege | Object | 注釈                                    |
 |:--------------| :------------- |:------------------------------------------------|
-| SELECT_PRIV   | Table    | SHOWを実行する際、クエリ対象テーブルのSELECT_PRIV権限が必要です。 |
+| SELECT_PRIV   | Table    | SHOWを実行する際、クエリ対象TableのSELECT_PRIV権限が必要です。 |
 
 ## 例
 
-1. テーブル名でジョブを表示します。
+1. Table名でジョブを表示します。
 
 ```sql
 SHOW ANALYZE test1 WHERE STATE="FINISHED";

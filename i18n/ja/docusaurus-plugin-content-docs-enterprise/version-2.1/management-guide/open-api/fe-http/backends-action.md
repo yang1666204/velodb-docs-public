@@ -11,7 +11,7 @@
 ```
 GET /api/backends
 ```
-## Description
+## デスクリプション
 
 Backends ActionはBackendsのリストを返します。BackendのIP、PORT、その他の情報を含みます。
 

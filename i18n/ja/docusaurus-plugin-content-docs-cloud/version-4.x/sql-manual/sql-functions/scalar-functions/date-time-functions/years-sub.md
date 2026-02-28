@@ -14,9 +14,9 @@
 ```sql
 YEARS_SUB(<date>, <years>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<date>`      | 入力される日時の値で、DATETIME型またはDATE型を指定できます |
 | `<years>`     | 減算する年数で、INT型です         |

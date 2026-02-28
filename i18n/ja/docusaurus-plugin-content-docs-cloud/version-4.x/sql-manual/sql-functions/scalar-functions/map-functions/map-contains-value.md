@@ -14,9 +14,9 @@
 ```sql
 MAP_CONTAINS_VALUE(<map>, <value>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<map>` | 入力するマップの内容 |
 | `<value>` | 取得する値 |

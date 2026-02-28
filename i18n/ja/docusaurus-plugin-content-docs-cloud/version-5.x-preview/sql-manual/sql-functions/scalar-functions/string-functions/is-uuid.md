@@ -21,8 +21,8 @@ aaaaaaaabbbbccccddddeeeeeeeeeeee
 ```sql
 IS_UUID ( <str> )
 ```
-## Parameters
-| Parameter  | Description |
+## パラメータ
+| Parameter  | デスクリプション |
 |------------|-----------------|
 | `<str>` | 文字列 |
 

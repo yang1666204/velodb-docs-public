@@ -14,9 +14,9 @@
 ```sql
 INT_TO_UUID ( <int128> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description |
+| Parameter  | デスクリプション |
 |------------|-----------------|
 | `<int128>` | エンコードされたLARGEINT値 |
 

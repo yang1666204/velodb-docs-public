@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つ以上の入力Bitmapの和集合を計算し、和集合内の要素数を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 BITMAP_OR_COUNT(<bitmap1>, <bitmap2>, ..., <bitmapN>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter   | Description    |
+| Parameter   | デスクリプション    |
 |-------------|----------------|
 | `<bitmap1>` | 最初のBitmap   |
 | `<bitmap2>` | 2番目のBitmap  |

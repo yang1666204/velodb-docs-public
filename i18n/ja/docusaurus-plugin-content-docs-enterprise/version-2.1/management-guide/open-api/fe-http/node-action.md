@@ -232,12 +232,12 @@ node is used to specify which node's configuration information is returned, the 
     "code": 0,  
     "data": {  
         "column_names": [  
-            "Configuration Item",  
+            "構成 Item",  
             "Node",  
             "Node Type",  
-            "Configuration Value Type",  
+            "構成 Value Type",  
             "MasterOnly",  
-            "Configuration Value",  
+            "構成 Value",  
             "Modifiable"  
         ],  
         "rows": [  
@@ -257,11 +257,11 @@ node is used to specify which node's configuration information is returned, the 
     "code": 0,
     "data": {
         "column_names": [
-            "Configuration Item",
+            "構成 Item",
             "Node",
             "Node Type",
-            "Configuration Value Type",
-            "Configuration Value",
+            "構成 Value Type",
+            "構成 Value",
             "Modifiable"
         ],
         "rows": [
@@ -294,12 +294,12 @@ node is used to specify which node's configuration information is returned, the 
     "code": 0,  
     "data": {  
         "column_names": [  
-            "Configuration Item",  
+            "構成 Item",  
             "Node",  
             "Node Type",  
-            "Configuration Value Type",  
+            "構成 Value Type",  
             "MasterOnly",  
-            "Configuration Value",  
+            "構成 Value",  
             "Modifiable"  
         ],  
         "rows": [  
@@ -416,7 +416,7 @@ failed Indicates a configuration message that failed to be modified.
 
 `POST /rest/v2/manager/node/{action}/be`
 
-### Description
+### デスクリプション
 
 be nodeの追加/削除/オフライン化に使用されます
 

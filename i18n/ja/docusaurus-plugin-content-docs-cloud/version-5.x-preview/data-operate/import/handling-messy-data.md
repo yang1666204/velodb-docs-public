@@ -30,7 +30,7 @@ strict modeの主な機能は、読み込み中にカラム型変換が失敗す
 
 **1. TinyIntカラム型の例：**
 
-| Original Data Type | Original Data Example | Value After TinyInt Conversion | Strict Mode | Result |
+| Original Data タイプ | Original Data Example | Value After TinyInt Conversion | Strict Mode | Result |
 | ----------------- | -------------------- | ----------------------------- | ----------- | ------ |
 | NULL              | \N                   | NULL                          | ON/OFF      | NULL   |
 | Non-NULL          | "abc" or 2000       | NULL                          | ON          | Invalid (Filtered) |
@@ -38,14 +38,14 @@ strict modeの主な機能は、読み込み中にカラム型変換が失敗す
 | Non-NULL          | 1                   | 1                             | ON/OFF      | Loaded Successfully |
 
 :::tip
-1. テーブル内のカラムはNULL値を許可します
+1. Table内のカラムはNULL値を許可します
 
 2. `abc`と`2000`の両方が型や精度の問題によりTinyIntへの変換後にNULLになります。strict modeがONの場合、そのようなデータはフィルタリングされます。OFFの場合、NULLが読み込まれます。
 :::
 
 **2. Decimal(1,0)型の例：**
 
-| Original Data Type | Original Data Example | Value After Decimal Conversion | Strict Mode | Result |
+| Original Data タイプ | Original Data Example | Value After Decimal Conversion | Strict Mode | Result |
 | ----------------- | -------------------- | ---------------------------- | ----------- | ------ |
 | NULL              | \N                   | NULL                         | ON/OFF      | NULL   |
 | Non-NULL          | aaa                 | NULL                         | ON          | Invalid (Filtered) |
@@ -53,7 +53,7 @@ strict modeの主な機能は、読み込み中にカラム型変換が失敗す
 | Non-NULL          | 1 or 10             | 1 or 10                      | ON/OFF      | Loaded Successfully |
 
 :::tip
-1. テーブル内のカラムはNULL値を許可します
+1. Table内のカラムはNULL値を許可します
 
 2. `abc`は型の問題によりDecimalへの変換後にNULLになります。strict modeがONの場合、そのようなデータはフィルタリングされます。OFFの場合、NULLが読み込まれます。
 

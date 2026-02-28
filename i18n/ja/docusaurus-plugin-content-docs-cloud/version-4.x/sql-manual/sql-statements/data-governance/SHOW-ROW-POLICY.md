@@ -14,7 +14,7 @@
 ```sql
 SHOW ROW POLICY [ FOR { <user_name> | ROLE <role_name> } ];
 ```
-## Optional Parameters
+## Optional パラメータ
 
 **<user_name>**
 
@@ -28,7 +28,7 @@ SHOW ROW POLICY [ FOR { <user_name> | ROLE <role_name> } ];
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege  | Object | Notes |
+| Privilege  | Object | 注釈 |
 | :--------- | :----- | :---- |
 | ADMIN_PRIV | Global |       |
 

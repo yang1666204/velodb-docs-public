@@ -24,7 +24,7 @@ REGEXP_REPLACE_ONE(<str>, <pattern>, <repl>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<str>` | このパラメータは文字列型です。正規表現マッチングが実行される文字列を表します。これは変更したい対象文字列です。|
 | `<pattern>` | このパラメータも文字列型です。正規表現パターンです。関数は`<str>`文字列内でこのパターンの最初の出現を検索します。|
@@ -68,7 +68,7 @@ mysql> select regexp_replace_one('这是一段中文 This is a passage in Englis
 | 123是一段中文This is a passage in English 1234567                                              |
 +------------------------------------------------------------------------------------------------+
 ```
-テーブルにデータを挿入し、置換を実行する。まず、test_table_for_regexp_replace_oneという名前のテーブルが4つの列で作成される：id（整数）、text_data（置換が実行される文字列）、pattern（マッチング用の正規表現パターン）、repl（置換文字列）。次に、10行のデータがテーブルに挿入され、各行は4つの列に対して異なる値を含む。最後に、SELECT文を使用してテーブルをクエリする。各行に対して、対応するpatternとrepl値を使用してtext_data列にREGEXP_REPLACE_ONE関数が適用される。置換の結果はreplaced_resultとしてエイリアスされる。行はid列で順序付けされる。
+Tableにデータを挿入し、置換を実行する。まず、test_table_for_regexp_replace_oneという名前のTableが4つの列で作成される：id（整数）、text_data（置換が実行される文字列）、pattern（マッチング用の正規表現パターン）、repl（置換文字列）。次に、10行のデータがTableに挿入され、各行は4つの列に対して異なる値を含む。最後に、SELECT文を使用してTableをクエリする。各行に対して、対応するpatternとrepl値を使用してtext_data列にREGEXP_REPLACE_ONE関数が適用される。置換の結果はreplaced_resultとしてエイリアスされる。行はid列で順序付けされる。
 
 ```sql
 CREATE TABLE test_table_for_regexp_replace_one (

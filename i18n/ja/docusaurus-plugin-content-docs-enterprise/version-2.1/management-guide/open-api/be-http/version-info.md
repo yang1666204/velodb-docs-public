@@ -10,7 +10,7 @@
 
 `GET /api/be_version_info`
 
-## Description
+## デスクリプション
 
 BEバージョン情報を提供します
 

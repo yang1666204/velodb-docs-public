@@ -28,9 +28,9 @@ QUARTER_FLOOR(`<date_or_time_expr>`, `<origin>`)
 QUARTER_FLOOR(`<date_or_time_expr>`, `<period>`)
 QUARTER_FLOOR(`<date_or_time_expr>`, `<period>`, `<origin>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | ---- | ---- |
 | `<date_or_time_expr>` | 切り捨て対象となる日時値、型はDATETIMEまたはDATE。具体的な日時/日付フォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion.md)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照 |
 | `<period>` | 四半期期間値、型はINT、各期間に含まれる四半期数を示す |
@@ -70,9 +70,9 @@ QUARTER_CEIL(`<date_or_time_expr>`, `<origin>`)
 QUARTER_CEIL(`<date_or_time_expr>`, `<period>`)
 QUARTER_CEIL(`<date_or_time_expr>`, `<period>`, `<origin>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | ---- | ---- |
 | `<date_or_time_expr>` | 切り上げされるdatetime値です。date/datetimeタイプをサポートする有効な日付式です。具体的なdatetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion.md)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |
 | `<period>` | 四半期期間値、タイプINT、各期間に含まれる四半期数を示します |

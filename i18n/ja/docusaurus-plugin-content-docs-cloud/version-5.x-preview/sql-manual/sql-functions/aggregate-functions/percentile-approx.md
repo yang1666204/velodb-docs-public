@@ -19,9 +19,9 @@
 ```sql
 PERCENTILE_APPROX(<col>, <p> [, <compression>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col>` | パーセンタイルを計算する列、サポートされる型：Double。 |
 | `<p>` | パーセンタイル値、定数、型Double、範囲`[0.0, 1.0]`、例：`0.99`は99パーセンタイルを意味する。定数である必要がある。 |

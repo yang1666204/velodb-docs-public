@@ -7,7 +7,7 @@
 ---
 # WEEK_FLOOR
 
-## Description
+## デスクリプション
 
 datetime値を指定された週間隔の最も近い値に切り下げます。開始時刻（origin）が提供されている場合、その時刻を間隔計算の基準として使用します。
 
@@ -19,9 +19,9 @@ WEEK_FLOOR(<datetime>, <origin>)
 WEEK_FLOOR(<datetime>, <period>)
 WEEK_FLOOR(<datetime>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<datetime>`  | 切り下げる日時値。DATETIME または DATETIMEV2 型 |
 | `<period>`    | 週間隔値。INT 型で、各間隔の週数を表す |

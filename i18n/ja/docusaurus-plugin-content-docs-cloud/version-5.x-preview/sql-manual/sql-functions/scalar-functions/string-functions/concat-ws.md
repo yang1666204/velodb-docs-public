@@ -20,7 +20,7 @@ CONCAT_WS(<sep>, <array> [, <array> ...])
 ```
 ## パラメータ
 
-| Parameter    | Description              |
+| Parameter    | デスクリプション              |
 |-------|-----------------|
 | `<sep>` | 部分を結合するために使用される区切り文字列。タイプ: VARCHAR |
 | `<str>` | 連結される文字列引数。タイプ: VARCHAR |

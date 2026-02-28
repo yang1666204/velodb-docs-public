@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定された文字列に従って入力文字列を文字列配列に分割します。
 
@@ -16,7 +16,7 @@ SPLIT_BY_STRING ( <str>, <separator> )
 ```
 ## パラメータ
 
-| Parameter     | Description                    |
+| Parameter     | デスクリプション                    |
 |---------------|--------------------------------|
 | `<str>`       | 分割対象の文字列。        |
 | `<separator>` | 分割に使用する文字列。 |

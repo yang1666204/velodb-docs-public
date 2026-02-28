@@ -13,9 +13,9 @@
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name                | Type         | Description                                  |
+| Column Name                | タイプ         | デスクリプション                                  |
 | -------------------------- | ------------ | -------------------------------------------- |
 | CATALOG_NAME               | varchar(512) | Catalogの名前                                |
 | SCHEMA_NAME                | varchar(32)  | Databaseの名前                               |

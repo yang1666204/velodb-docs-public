@@ -16,7 +16,7 @@ TOPN_WEIGHTED(<expr>, <weight>, <top_num> [, <space_expand_rate>])
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | カウント対象となるカラムまたは式 |
 | `<weight>` | 重みを調整するカラムまたは式 |

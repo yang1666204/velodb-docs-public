@@ -34,7 +34,7 @@ INDEX `idx_column_name` (`column_name`) USING NGRAM_BF PROPERTIES("gram_size"="3
 ```
 構文の説明:
 
-1. **`idx_column_name(column_name)`** は必須です。`column_name` はインデックスを作成する対象の列で、上記の列定義に含まれている必要があります。`idx_column_name` はインデックス名で、テーブルレベルで一意である必要があります。列名の前に `idx_` プレフィックスを付けた名前にすることを推奨します。
+1. **`idx_column_name(column_name)`** は必須です。`column_name` はインデックスを作成する対象の列で、上記の列定義に含まれている必要があります。`idx_column_name` はインデックス名で、Tableレベルで一意である必要があります。列名の前に `idx_` プレフィックスを付けた名前にすることを推奨します。
 2. **`USING NGRAM_BF`** は必須で、インデックスタイプがNGram BloomFilterインデックスであることを指定します。
 3. **`PROPERTIES`** はオプションで、NGram BloomFilterインデックスの追加プロパティを指定するために使用されます。サポートされているプロパティは以下のとおりです:
    - **gram_size**: NgramのNで、トークンを形成する連続する文字数を指定します。例えば、'This is a simple ngram example'でN = 3の場合、'This is a'、'is a simple'、'a simple ngram'、'simple ngram example'（4つのトークン）にトークン化されます。
@@ -46,7 +46,7 @@ INDEX `idx_column_name` (`column_name`) USING NGRAM_BF PROPERTIES("gram_size"="3
 
 ### NGram BloomFilterインデックスの確認
 
--- 構文1: テーブルスキーマのINDEXセクションでUSING NGRAM_BFが指定されている場合は転置インデックスを示します
+-- 構文1: TableスキーマのINDEXセクションでUSING NGRAM_BFが指定されている場合は転置インデックスを示します
 
 ```sql
 SHOW CREATE TABLE table_name;
@@ -86,7 +86,7 @@ BloomFilter インデックス（NGram を含む）の高速化効果は、Query
 
 このセクションでは、Amazon 商品レビューのデータセット `amazon_reviews` を使用して、NGram BloomFilter インデックスの使用方法と効果を示します。
 
-### テーブル作成
+### Table作成
 
 ```sql
 CREATE TABLE `amazon_reviews` (  

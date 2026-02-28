@@ -1,13 +1,13 @@
 ---
 {
   "title": "MV_INFOS",
-  "description": "Table関数、非同期マテリアライズドビュー用の一時テーブルを生成",
+  "description": "Table関数、非同期マテリアライズドビュー用の一時Tableを生成",
   "language": "ja"
 }
 ---
 ## 説明
 
-非同期マテリアライズドビューの一時テーブルを生成するテーブル関数で、特定のデータベース内に作成された非同期マテリアライズドビューに関する情報を表示できます。
+非同期マテリアライズドビューの一時Tableを生成するTable関数で、特定のデータベース内に作成された非同期マテリアライズドビューに関する情報を表示できます。
 
 ## 構文
 
@@ -21,7 +21,7 @@ MV_INFOS("database"="<database>")
 
 ## 戻り値
 
-| Field                  | Type    | Description                                                         |
+| Field                  | タイプ    | デスクリプション                                                         |
 |------------------------|---------|---------------------------------------------------------------------|
 | Id                     | BIGINT  | Materialized view ID                                                |
 | Name                   | TEXT    | Materialized view名                                              |
@@ -34,7 +34,7 @@ MV_INFOS("database"="<database>")
 | EnvInfo                | TEXT    | Materialized view作成時の環境情報       |
 | MvProperties           | TEXT    | Materialized viewプロパティ                                         |
 | MvPartitionInfo        | TEXT    | Materialized viewのパーティション情報                       |
-| SyncWithBaseTables     | BOOLEAN | データがベーステーブルと同期されているかどうか。どのパーティションが同期されていないかを確認するには、[SHOW PARTITIONS](../../sql-statements/table-and-view/table/SHOW-PARTITIONS)を使用してください |
+| SyncWithBaseTables     | BOOLEAN | データがベースTableと同期されているかどうか。どのパーティションが同期されていないかを確認するには、[SHOW PARTITIONS](../../sql-statements/table-and-view/table/SHOW-PARTITIONS)を使用してください |
 
 ## 例
 

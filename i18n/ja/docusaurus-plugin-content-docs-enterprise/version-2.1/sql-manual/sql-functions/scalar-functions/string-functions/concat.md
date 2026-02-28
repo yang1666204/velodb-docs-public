@@ -18,7 +18,7 @@ CONCAT ( <expr> [ , <expr> ... ] )
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|--------------|
 | `<expr>`  | 連結される文字列 |
 

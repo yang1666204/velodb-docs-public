@@ -34,7 +34,7 @@ PROPERTIES (
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持っている必要があります：
 
-| Privilege   | Object | Notes |
+| Privilege   | Object | 注釈 |
 | ------------ | ------ | ----------- |
 | ADMIN_PRIV | Global |             |
 

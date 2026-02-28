@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Function
+## ファンクション
 
 `keys` 配列の順序に従って `values` 配列をソートします。
 - 例えば、`keys` が `[3, 0, 2]` で `values` が `[5, 7, 8]` の場合、ソート後に `keys` は `[0, 2, 3]` となり、対応する `values` は `[7, 8, 5]` となります。
@@ -16,7 +16,7 @@
 - `ARRAY_SORTBY(lambda, values)`
 - `ARRAY_SORTBY(lambda, values)` は `ARRAY_SORTBY(values, ARRAY_MAP(lambda, values))` と同等です
 
-## Parameters
+## パラメータ
 
 - `values`: `ARRAY<T>`、ソートされる値の配列。`T` は数値、boolean、文字列、datetime、IPなどをサポートします。
 - `keys`: `ARRAY<T>`、`values` と同じ長さのキー配列。`T` は数値、boolean、文字列、datetime、IPなどをサポートします。

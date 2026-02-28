@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定されたインデックスの文字列を返します。特別なケース：
 
@@ -16,9 +16,9 @@
 ```sql
 ELT ( <pos> , <str> [ , <str> ] )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<pos>`   | 指定されたインデックス値 |
 | `<str>`   | インデックス対象の文字列 |

@@ -1,12 +1,12 @@
 ---
 {
   "title": "EXPLODE_JSON_ARRAY_DOUBLE_OUTER",
-  "description": "explodejsonarraydoubleouter テーブル関数は JSON 配列を受け取ります。",
+  "description": "explodejsonarraydoubleouter Table関数は JSON 配列を受け取ります。",
   "language": "ja"
 }
 ---
 ## 説明
-`explode_json_array_double_outer`テーブル関数は JSON 配列を受け取ります。その実装ロジックは、JSON 配列を配列型に変換してから処理のために`explode_outer`関数を呼び出すことです。この動作は`explode_outer(cast(<json_array> as Array<DOUBLE>))`と同等です。
+`explode_json_array_double_outer`Table関数は JSON 配列を受け取ります。その実装ロジックは、JSON 配列を配列型に変換してから処理のために`explode_outer`関数を呼び出すことです。この動作は`explode_outer(cast(<json_array> as Array<DOUBLE>))`と同等です。
 これは[`LATERAL VIEW`](../../../query-data/lateral-view.md)と一緒に使用する必要があります。
 
 ## 構文
@@ -20,7 +20,7 @@ EXPLODE_JSON_ARRAY_DOUBLE_OUTER(<json>)
 ## 戻り値
 - `<json>`内のすべての要素で構成される単一列、複数行の結果を返します。列の型は`Nullable<DOUBLE>`です。
 - `<json>`がNULLまたは空の配列（要素数が0）の場合、NULLを含む1行が返されます。
-- JSON配列内の要素がDOUBLE型でない場合、関数はそれらをDOUBLEに変換しようとします。DOUBLEに変換できない要素はNULLに変換されます。型変換ルールについては、[JSON Type Conversion](../../basic-element/sql-data-types/conversion/json-conversion.md)を参照してください。
+- JSON配列内の要素がDOUBLE型でない場合、関数はそれらをDOUBLEに変換しようとします。DOUBLEに変換できない要素はNULLに変換されます。型変換ルールについては、[JSON タイプ Conversion](../../basic-element/sql-data-types/conversion/json-conversion.md)を参照してください。
 
 ## 例
 0. データを準備

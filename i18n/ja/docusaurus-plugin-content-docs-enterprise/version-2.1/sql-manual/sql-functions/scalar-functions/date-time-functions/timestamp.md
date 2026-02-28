@@ -18,9 +18,9 @@ TIMESTAMP関数には2つの用途があります：
 TIMESTAMP(string)
 TIMESTAMP(date, time)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `string`      | 日時文字列 |
 | `date`     | 日付値。DATE型または適切にフォーマットされた日付文字列を指定可能 |

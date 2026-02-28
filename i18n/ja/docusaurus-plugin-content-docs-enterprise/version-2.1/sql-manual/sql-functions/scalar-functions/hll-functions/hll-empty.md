@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `HLL_EMPTY`は空のHLL（HyperLogLog）値を返し、要素を持たないデータセットを表します。
 

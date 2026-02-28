@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 まず、keyカラムを昇順に並べ替え、次にこの順序でソートされたsrcカラムの対応するカラムを結果として返します。
 入力配列srcがNULLの場合、NULLを返します。
@@ -18,9 +18,9 @@
 ARRAY_SORTBY(<src>, <key>)
 ARRAY_SORTBY(<lambda>, <arr> [, ...])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description | 
+| Parameter | デスクリプション | 
 | --- | --- |
 | `<lambda>` | 入力パラメータが指定された配列の列数と一致する必要があるラムダ式。この式は有効なスカラー関数を実行できますが、集約関数はサポートしていません。 |
 | `<arr>` | ARRAY配列 |

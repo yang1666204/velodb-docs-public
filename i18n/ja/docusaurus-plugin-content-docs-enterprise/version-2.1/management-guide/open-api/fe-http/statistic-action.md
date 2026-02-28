@@ -10,9 +10,9 @@
 
 `GET /rest/v2/api/cluster_overview`
 
-## Description
+## デスクリプション
 
-クラスターの統計情報、データベースとテーブルの数などを取得します。
+クラスターの統計情報、データベースとTableの数などを取得します。
 
 ## Path parameters
 

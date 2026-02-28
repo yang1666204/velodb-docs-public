@@ -80,12 +80,12 @@ Error message解析:
 
 通常、より大きなメモリを使用するクエリがCancel段階で停止し、メモリを適時に解放できないことが原因です。Full GCはまずメモリ使用量順にクエリをキャンセルし、次にメモリ使用量順にロードをキャンセルします。メモリFull GCでクエリがキャンセルされたが、BEプロセス内に現在キャンセルされたクエリよりも多くのメモリを使用する他のクエリがある場合、これらのより大きなメモリ使用量を持つクエリがキャンセル処理中に停止していないかに注意を払う必要があります。
 
-まず`grep {queryID} be/log/be.INFO`を実行してクエリがキャンセルされた時刻を見つけ、次にコンテキスト内で`Memory Tracker Summary`を検索してプロセスメモリ統計ログを見つけます。`Memory Tracker Summary`でより多くのメモリを使用するクエリがある場合、`grep {queryID with larger memory} be/log/be.INFO`を実行して`Cancel`キーワードのログがあるかを確認します。対応する時点がクエリがキャンセルされた時刻です。そのクエリもキャンセルされており、より大きなメモリを持つクエリがキャンセルされた時点が現在のクエリがキャンセルされた時点と異なる場合は、[Memory Issue FAQ](../../../trouble-shooting/memory-management/memory-issue-faq)の[Query Cancel process stuck]を参照して、より大きなメモリを持つクエリがキャッシュ処理で停止していないかを分析してください。`Memory Tracker Summary`の分析については、[Memory Log Analysis](./memory-log-analysis.md)を参照してください。
+まず`grep {queryID} be/log/be.INFO`を実行してクエリがキャンセルされた時刻を見つけ、次にコンテキスト内で`Memory Tracker 要約`を検索してプロセスメモリ統計ログを見つけます。`Memory Tracker 要約`でより多くのメモリを使用するクエリがある場合、`grep {queryID with larger memory} be/log/be.INFO`を実行して`Cancel`キーワードのログがあるかを確認します。対応する時点がクエリがキャンセルされた時刻です。そのクエリもキャンセルされており、より大きなメモリを持つクエリがキャンセルされた時点が現在のクエリがキャンセルされた時点と異なる場合は、[Memory Issue FAQ](../../../trouble-shooting/memory-management/memory-issue-faq)の[Query Cancel process stuck]を参照して、より大きなメモリを持つクエリがキャッシュ処理で停止していないかを分析してください。`Memory Tracker 要約`の分析については、[Memory ログ Analysis](./memory-log-analysis.md)を参照してください。
 
 ## queryとloadタスク以外のプロセスメモリが大きすぎる場合
 
 メモリ位置を特定し、メモリ使用量を減らしてqueryとload実行のためにより多くのメモリを確保することを検討してください。
 
-利用可能メモリ不足によりタスクがキャンセルされた時刻は、`be/log/be.INFO`のプロセスメモリ統計ログで確認できます。`grep queryID be/log/be.INFO`を実行してクエリがキャンセルされた時刻を見つけ、次にコンテキスト内で`Memory Tracker Summary`を検索してプロセスメモリ統計ログを見つけます。その後、[Memory Log Analysis](./memory-log-analysis.md)の[Process Memory Statistics Log Analysis]セクションを参照してさらなる分析を行ってください。分析前に、[Memory Tracker](./../memory-feature/memory-tracker.md)の[Memory Tracker Statistics Missing]セクションを参照してMemory Trackerに統計の欠落があるかを分析してください。
+利用可能メモリ不足によりタスクがキャンセルされた時刻は、`be/log/be.INFO`のプロセスメモリ統計ログで確認できます。`grep queryID be/log/be.INFO`を実行してクエリがキャンセルされた時刻を見つけ、次にコンテキスト内で`Memory Tracker 要約`を検索してプロセスメモリ統計ログを見つけます。その後、[Memory ログ Analysis](./memory-log-analysis.md)の[Process Memory Statistics ログ Analysis]セクションを参照してさらなる分析を行ってください。分析前に、[Memory Tracker](./../memory-feature/memory-tracker.md)の[Memory Tracker Statistics Missing]セクションを参照してMemory Trackerに統計の欠落があるかを分析してください。
 
-Memory Trackerに統計の欠落がある場合は、[Memory Tracker Statistics Missing]セクションを参照してさらなる分析を行ってください。そうでなければ、Memory Trackerはメモリの大部分をカウントしており、統計の欠落はありません。[Overview](./../overview.md)を参照してDoris BEプロセスの異なる部分がメモリを過度に占有する理由とそのメモリ使用量を削減する方法を分析してください。
+Memory Trackerに統計の欠落がある場合は、[Memory Tracker Statistics Missing]セクションを参照してさらなる分析を行ってください。そうでなければ、Memory Trackerはメモリの大部分をカウントしており、統計の欠落はありません。[概要](./../overview.md)を参照してDoris BEプロセスの異なる部分がメモリを過度に占有する理由とそのメモリ使用量を削減する方法を分析してください。

@@ -19,9 +19,9 @@
 COVAR(<expr1>, <expr2>)
 COVAR_POP(<expr1>, <expr2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr1>` | 計算する式の1つで、サポートされる型はDoubleです。 |
 | `<expr2>` | 計算する式の1つで、サポートされる型はDoubleです。 |

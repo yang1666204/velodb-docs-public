@@ -14,9 +14,9 @@ datetime値からマイクロ秒部分を抽出します。戻り値の範囲は
 ```sql
 MICROSECOND(<date>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<date>`      | 精度が0より大きいDATETIMEV2型の入力datetime値 |
 

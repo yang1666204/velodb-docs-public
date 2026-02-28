@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、実行中の様々な変更タスクの実行状況を表示するために使用されます。
 
@@ -23,15 +23,15 @@ SHOW ALTER [TABLE [COLUMN | ROLLUP] [FROM db_name]];
 
 *SHOW ALTER TABLE COLUMN*
 
-| Field Name            | Description                                                         |
+| Field Name            | デスクリプション                                                         |
 |-----------------------|------------------------------------------------------------------|
 | JobId                 | 各Schema Changeジョブの一意のID。                          |
-| TableName             | Schema Changeに対応するベーステーブルの名前。 |
+| TableName             | Schema Changeに対応するベースTableの名前。 |
 | CreateTime            | ジョブ作成時刻。                                              |
 | FinishedTime          | ジョブ完了時刻。完了していない場合は「N/A」を表示。      |
-| IndexName             | この変更に関与するベーステーブル/同期マテリアライズドビューの名前。        |
-| IndexId               | 新しいベーステーブル/同期マテリアライズドビューのID。                                      |
-| OriginIndexId         | この変更に関与するベーステーブル/同期マテリアライズドビューのID。                                      |
+| IndexName             | この変更に関与するベースTable/同期マテリアライズドビューの名前。        |
+| IndexId               | 新しいベースTable/同期マテリアライズドビューのID。                                      |
+| OriginIndexId         | この変更に関与するベースTable/同期マテリアライズドビューのID。                                      |
 | SchemaVersion         | M:N形式で表示。MはSchema Changeのバージョンを表し、Nは対応するハッシュ値を表します。各Schema Changeでバージョンが増分されます。 |
 | TransactionId         | 履歴データ変換のためのトランザクションID。                  |
 | State                 | ジョブのフェーズ。                                               |
@@ -52,7 +52,7 @@ SHOW ALTER [TABLE [COLUMN | ROLLUP] [FROM db_name]];
    ```sql
    SHOW ALTER TABLE COLUMN;
    ```
-2. 特定のテーブルに対する最新の列変更タスクの実行ステータスを表示する。
+2. 特定のTableに対する最新の列変更タスクの実行ステータスを表示する。
 
    ```sql
    SHOW ALTER TABLE COLUMN WHERE TableName = "table1" ORDER BY CreateTime DESC LIMIT 1;

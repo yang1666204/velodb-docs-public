@@ -1,12 +1,12 @@
 ---
 {
   "title": "POSEXPLODE",
-  "description": "posexplode テーブル関数は <array> 列を複数の行に展開し、位置を示す列を追加して、STRUCT 型を返します。",
+  "description": "posexplode Table関数は <array> 列を複数の行に展開し、位置を示す列を追加して、STRUCT 型を返します。",
   "language": "ja"
 }
 ---
 ## 説明
-`posexplode`テーブル関数は`<array>`列を複数の行に展開し、位置を示す列を追加して、[`STRUCT`](../../basic-element/sql-data-types/semi-structured/STRUCT.md)型を返します。
+`posexplode`Table関数は`<array>`列を複数の行に展開し、位置を示す列を追加して、[`STRUCT`](../../basic-element/sql-data-types/semi-structured/STRUCT.md)型を返します。
 Lateral Viewと組み合わせて使用する必要があり、複数のLateral Viewをサポートしています。
 `posexplode`と[`posexplode_outer`](./posexplode-outer.md)の主な違いは、null値の処理方法です。
 
@@ -15,7 +15,7 @@ Lateral Viewと組み合わせて使用する必要があり、複数のLateral 
 ```sql
 POSEXPLODE(<array>)
 ```
-## Parameters
+## パラメータ
 - `<array>` 配列型、NULLはサポートされていません。
 
 ## Return Value
@@ -25,7 +25,7 @@ POSEXPLODE(<array>)
 
 - `<array>`がNULLまたは空の配列（要素数が0）の場合、0行が返されます。
 
-## Usage Notes
+## Usage 注釈
 1. `<array>`はNULLまたは他の型にすることはできません。そうでなければエラーが報告されます。
 
 ## Examples

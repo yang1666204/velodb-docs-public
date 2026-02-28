@@ -1,15 +1,15 @@
 ---
 {
   "title": "CANCEL REPAIR TABLE",
-  "description": "CANCEL REPAIR TABLE文は、指定されたテーブルまたはパーティションに対する高優先度の修復をキャンセルするために使用されます。",
+  "description": "CANCEL REPAIR TABLE文は、指定されたTableまたはパーティションに対する高優先度の修復をキャンセルするために使用されます。",
   "language": "ja"
 }
 ---
 ## 説明
 
-`CANCEL REPAIR TABLE`文は、指定されたテーブルまたはパーティションの高優先度修復をキャンセルするために使用されます。この文には以下の機能があります：
+`CANCEL REPAIR TABLE`文は、指定されたTableまたはパーティションの高優先度修復をキャンセルするために使用されます。この文には以下の機能があります：
 
-- テーブル全体の高優先度修復をキャンセルできます。
+- Table全体の高優先度修復をキャンセルできます。
 - 指定されたパーティションの高優先度修復をキャンセルできます。
 - システムのデフォルトレプリカ修復メカニズムには影響しません。
 
@@ -22,9 +22,9 @@ ADMIN CANCEL REPAIR TABLE <table_name> [ PARTITION (<partition_name> [, ...]) ];
 
 **1. `<table_name>`**
 
-> 修復をキャンセルするテーブルの名前を指定します。
+> 修復をキャンセルするTableの名前を指定します。
 >
-> テーブル名はそのデータベース内で一意である必要があります。
+> Table名はそのデータベース内で一意である必要があります。
 
 ## オプションパラメータ
 
@@ -32,7 +32,7 @@ ADMIN CANCEL REPAIR TABLE <table_name> [ PARTITION (<partition_name> [, ...]) ];
 
 > 修復をキャンセルするパーティション名のリストを指定します。
 >
-> このパラメータが指定されない場合、テーブル全体の高優先度修復がキャンセルされます。
+> このパラメータが指定されない場合、Table全体の高優先度修復がキャンセルされます。
 
 ## アクセス制御要件
 
@@ -40,7 +40,7 @@ ADMIN CANCEL REPAIR TABLE <table_name> [ PARTITION (<partition_name> [, ...]) ];
 
 | 権限       | オブジェクト      | 備考                                         |
 | :-------------- | :---------- | :-------------------------------------------- |
-| ADMIN           | System      | このコマンドを実行するには、ユーザーはADMIN権限を持つ必要があります。 |
+| ADMIN           | システム      | このコマンドを実行するには、ユーザーはADMIN権限を持つ必要があります。 |
 
 ## 使用上の注意
 
@@ -51,7 +51,7 @@ ADMIN CANCEL REPAIR TABLE <table_name> [ PARTITION (<partition_name> [, ...]) ];
 
 ## 例
 
-- テーブル全体の高優先度修復をキャンセルする：
+- Table全体の高優先度修復をキャンセルする：
 
     ```sql
     ADMIN CANCEL REPAIR TABLE tbl;

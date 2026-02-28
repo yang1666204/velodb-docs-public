@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、マテリアライズドビューのスケジュールされたスケジューリングを一時的に復元するために使用されます
 
@@ -27,7 +27,7 @@ RESUME MATERIALIZED VIEW JOB ON <mv_name>
 ## アクセス制御要件
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege  | Object | Notes                                        |
+| Privilege  | Object | 注釈                                        |
 | :--------- | :----- | :------------------------------------------- |
 | ALTER_PRIV | Materialized View  | RESUMEはマテリアライズドビューに対するALTER操作です |
 

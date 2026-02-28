@@ -20,9 +20,9 @@
 ```sql
 CHAR_LENGTH ( <str> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<str>`   | 長さを計算する文字列 |
 

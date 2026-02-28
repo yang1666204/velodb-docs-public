@@ -7,7 +7,7 @@
 ---
 Doris JDBC Catalogは標準のJDBCインターフェースを通じてClickHouseデータベースへの接続をサポートします。このドキュメントでは、ClickHouseデータベース接続の設定方法について説明します。
 
-JDBC Catalogの概要については、以下を参照してください：[JDBC Catalog Overview](./jdbc-catalog-overview.md)
+JDBC Catalogの概要については、以下を参照してください：[JDBC カタログ 概要](./jdbc-catalog-overview.md)
 
 ## 使用上の注意
 
@@ -31,7 +31,7 @@ CREATE CATALOG clickhouse PROPERTIES (
     'driver_class' = 'com.clickhouse.jdbc.ClickHouseDriver'
 )
 ```
-`jdbc_url`は、ClickHouse JDBCドライバーに渡される接続情報とパラメータを定義します。サポートされているURLパラメータは[ClickHouse JDBC Driver Configuration](https://clickhouse.com/docs/en/integrations/java#configuration)で確認できます。
+`jdbc_url`は、ClickHouse JDBCドライバーに渡される接続情報とパラメータを定義します。サポートされているURLパラメータは[ClickHouse JDBC Driver 構成](https://clickhouse.com/docs/en/integrations/java#configuration)で確認できます。
 
 ### 接続セキュリティ
 
@@ -42,7 +42,7 @@ CREATE CATALOG clickhouse PROPERTIES (
 ```sql
 'jdbc_url' = 'jdbc:clickhouse://example.net:8123/db?ssl=true'
 ```
-TLS設定オプションの詳細については、[Clickhouse JDBC Driver Documentation SSL Configuration Section](https://clickhouse.com/docs/en/integrations/java#connect-to-clickhouse-with-ssl)を参照してください。
+TLS設定オプションの詳細については、[Clickhouse JDBC Driver Documentation SSL 構成 Section](https://clickhouse.com/docs/en/integrations/java#connect-to-clickhouse-with-ssl)を参照してください。
 
 ## 階層マッピング
 
@@ -50,13 +50,13 @@ ClickHouseをマッピングする際、DorisのDatabaseはClickHouseのDatabase
 
 | Doris    | ClickHouse        |
 | -------- | ----------------- |
-| Catalog  | ClickHouse Server |
+| カタログ  | ClickHouse サーバー |
 | Database | Database          |
 | Table    | Table             |
 
 ## カラムタイプマッピング
 
-| ClickHouse Type           | Doris Type              | Comment                          |
+| ClickHouse タイプ           | Doris タイプ              | Comment                          |
 | ------------------------- | ----------------------- | -------------------------------- |
 | bool                      | boolean                 |                                  |
 | string                    | string                  |                                  |

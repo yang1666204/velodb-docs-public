@@ -1,11 +1,11 @@
 ---
 {
-  "title": "Data Lakehouse FAQ",
+  "title": "Data レイクハウス FAQ",
   "description": "これは通常、誤ったKerberos認証情報が原因です。以下の手順に従ってトラブルシューティングを行うことができます：",
   "language": "ja"
 }
 ---
-# Data Lakehouse FAQ
+# Data レイクハウス FAQ
 
 ## Certificate Issues
 
@@ -40,10 +40,10 @@ ln -s /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt /etc/ssl/certs/ca-
     - core-site.xmlとhdfs-site.xmlをfe/confおよびbe/confディレクトリに配置する。
     - BEノードでKerberos kinitを実行し、BEを再起動してからクエリを実行する。
     
-    Kerberosで設定されたテーブルをクエリ中に`GSSException: No valid credentials provided (Mechanism level: Failed to find any Kerberos Ticket)`エラーが発生した場合、FEおよびBEノードを再起動することで通常問題が解決されます。
+    Kerberosで設定されたTableをクエリ中に`GSSException: No valid credentials provided (Mechanism level: Failed to find any Kerberos Ticket)`エラーが発生した場合、FEおよびBEノードを再起動することで通常問題が解決されます。
     
     - すべてのノードを再起動する前に、`"${DORIS_HOME}/be/conf/be.conf"`のJAVA_OPTSパラメータで`-Djavax.security.auth.useSubjectCredsOnly=false`を設定し、アプリケーションではなく基盤メカニズムを通じてJAAS認証情報を取得します。
-    - 一般的なJAASエラーの解決策については、[JAAS Troubleshooting](https://docs.oracle.com/javase/8/docs/technotes/guides/security/jgss/tutorials/Troubleshooting.html)を参照してください。
+    - 一般的なJAASエラーの解決策については、[JAAS トラブルシューティング](https://docs.oracle.com/javase/8/docs/technotes/guides/security/jgss/tutorials/Troubleshooting.html)を参照してください。
     
     CatalogでKerberosを設定する際の`Unable to obtain password from user`エラーを解決するには：
     
@@ -87,7 +87,7 @@ Kerberosが設定されたBroker Loadを使用して`Cannot locate default realm
 
     詳細については次を参照してください：<https://seanjmullan.org/blog/2021/09/14/jdk17#kerberos>
 
-## JDBC Catalog
+## JDBC カタログ
 
 1. JDBC CatalogでSQLServerへの接続エラー：`unable to find valid certification path to requested target`
 
@@ -105,9 +105,9 @@ Kerberosが設定されたBroker Loadを使用して`Cannot locate default realm
 
 4. JDBC Catalogを使用してMySQLデータをDorisに同期する際、日付データの同期エラーが発生します。MySQLバージョンがMySQLドライバーパッケージと一致するかを確認してください。例えば、MySQL 8以上ではドライバーcom.mysql.cj.jdbc.Driverが必要です。
 
-## Hive Catalog
+## Hive カタログ
 
-1. Hive CatalogでIcebergまたはHiveテーブルにアクセスしてエラーを報告：`failed to get schema`または`Storage schema reading not supported`
+1. Hive CatalogでIcebergまたはHiveTableにアクセスしてエラーを報告：`failed to get schema`または`Storage schema reading not supported`
 
     次の方法を試すことができます：
     
@@ -145,18 +145,18 @@ Kerberosが設定されたBroker Loadを使用して`Cannot locate default realm
     ```
     'fs.defaultFS' = 'hdfs://<your_nameservice_or_actually_HDFS_IP_and_port>'
     ```
-4. Hive 1.xのorc形式のテーブルでは、基盤となるorcファイルスキーマ内でシステムカラム名が`_col0`、`_col1`、`_col2`などとして表示される場合があります。この場合、カタログ設定で`hive.version`を1.x.xとして追加し、hiveテーブル内のカラム名とマッピングしてください。
+4. Hive 1.xのorc形式のTableでは、基盤となるorcファイルスキーマ内でシステムカラム名が`_col0`、`_col1`、`_col2`などとして表示される場合があります。この場合、カタログ設定で`hive.version`を1.x.xとして追加し、hiveTable内のカラム名とマッピングしてください。
 
     ```sql
     CREATE CATALOG hive PROPERTIES (
         'hive.version' = '1.x.x'
     );
     ```
-5. Catalogを使用してテーブルデータをクエリする際に、`Invalid method name`などのHive Metastoreに関するエラーが発生する場合は、`hive.version`パラメータを設定してください。
+5. Catalogを使用してTableデータをクエリする際に、`Invalid method name`などのHive Metastoreに関するエラーが発生する場合は、`hive.version`パラメータを設定してください。
 
-6. ORC形式のテーブルをクエリする際に、FEが`Could not obtain block`または`Caused by: java.lang.NoSuchFieldError: types`を報告する場合、これはFEがデフォルトでHDFSにアクセスしてファイル情報を取得し、ファイル分割を実行することが原因である可能性があります。一部のケースでは、FEがHDFSにアクセスできない場合があります。この問題は、次のパラメータを追加することで解決できます：`"hive.exec.orc.split.strategy" = "BI"`。その他のオプションにはHYBRID（デフォルト）とETLがあります。
+6. ORC形式のTableをクエリする際に、FEが`Could not obtain block`または`Caused by: java.lang.NoSuchFieldError: types`を報告する場合、これはFEがデフォルトでHDFSにアクセスしてファイル情報を取得し、ファイル分割を実行することが原因である可能性があります。一部のケースでは、FEがHDFSにアクセスできない場合があります。この問題は、次のパラメータを追加することで解決できます：`"hive.exec.orc.split.strategy" = "BI"`。その他のオプションにはHYBRID（デフォルト）とETLがあります。
 
-7. Hiveでは、Hudiテーブルのパーティションフィールド値を見つけることができますが、Dorisではできません。DorisとHiveでは現在、Hudiをクエリする方法が異なります。Dorisでは、Hudiテーブルのavscファイル構造にパーティションフィールドを追加する必要があります。追加されていない場合、Dorisは（`hoodie.datasource.hive_sync.partition_fields=partition_val`が設定されていても）partition_valが空の状態でクエリを実行します。
+7. Hiveでは、HudiTableのパーティションフィールド値を見つけることができますが、Dorisではできません。DorisとHiveでは現在、Hudiをクエリする方法が異なります。Dorisでは、HudiTableのavscファイル構造にパーティションフィールドを追加する必要があります。追加されていない場合、Dorisは（`hoodie.datasource.hive_sync.partition_fields=partition_val`が設定されていても）partition_valが空の状態でクエリを実行します。
 
     ```
     {
@@ -184,9 +184,9 @@ Kerberosが設定されたBroker Loadを使用して`Cannot locate default realm
         ]
     }
     ```
-8. Hive外部テーブルをクエリする際に、エラー `java.lang.ClassNotFoundException: Class com.hadoop.compression.lzo.LzoCodec not found` が発生した場合は、Hadoop環境で `hadoop-lzo-*.jar` を検索し、`"${DORIS_HOME}/fe/lib/"` ディレクトリに配置してFEを再起動してください。バージョン2.0.2以降では、このファイルをFEの `custom_lib/` ディレクトリ（存在しない場合は手動で作成）に配置することで、libディレクトリが置き換えられることによるクラスターアップグレード時のファイル損失を防ぐことができます。
+8. Hive外部Tableをクエリする際に、エラー `java.lang.ClassNotFoundException: Class com.hadoop.compression.lzo.LzoCodec not found` が発生した場合は、Hadoop環境で `hadoop-lzo-*.jar` を検索し、`"${DORIS_HOME}/fe/lib/"` ディレクトリに配置してFEを再起動してください。バージョン2.0.2以降では、このファイルをFEの `custom_lib/` ディレクトリ（存在しない場合は手動で作成）に配置することで、libディレクトリが置き換えられることによるクラスターアップグレード時のファイル損失を防ぐことができます。
 
-9. serdeを `org.apache.hadoop.hive.contrib.serde2.MultiDelimitserDe` として指定したHiveテーブルを作成し、テーブルにアクセスする際にエラー `storage schema reading not supported` が発生した場合は、hive-site.xmlファイルに以下の設定を追加してHMSサービスを再起動してください：
+9. serdeを `org.apache.hadoop.hive.contrib.serde2.MultiDelimitserDe` として指定したHiveTableを作成し、Tableにアクセスする際にエラー `storage schema reading not supported` が発生した場合は、hive-site.xmlファイルに以下の設定を追加してHMSサービスを再起動してください：
 
     ```
     <property>
@@ -223,7 +223,7 @@ Kerberosが設定されたBroker Loadを使用して`Cannot locate default realm
     ```
 これは、Dorisの内蔵`libz.a`とシステム環境の`libz.so`が競合するためです。この問題を解決するには、まず`export LD_LIBRARY_PATH=/path/to/be/lib:$LD_LIBRARY_PATH`を実行し、その後BEプロセスを再起動してください。
 
-12. Hiveにデータを挿入する際に、`HiveAccessControlException Permission denied: user [user_a] does not have [UPDATE] privilege on [database/table]`のエラーが発生しました。
+12. Hiveにデータを挿入する際に、`HiveAccessControlException 許可 denied: user [user_a] does not have [UPDATE] privilege on [database/table]`のエラーが発生しました。
 
     データ挿入後は、対応する統計情報を更新する必要があり、この更新操作にはalter権限が必要です。したがって、Rangerでこのユーザーにalter権限を追加する必要があります。
 
@@ -245,7 +245,7 @@ Kerberosが設定されたBroker Loadを使用して`Cannot locate default realm
         'dfs.client.hedged.read.threshold.millis' = "500"
     );
     ```
-`dfs.client.hedged.read.threadpool.size` は Hedged Read に使用されるスレッド数を表し、これらは HDFS Client によって共有されます。通常、HDFS クラスターでは、BE ノードが HDFS Client を共有します。
+`dfs.client.hedged.read.threadpool.size` は Hedged Read に使用されるスレッド数を表し、これらは HDFS クライアント によって共有されます。通常、HDFS クラスターでは、BE ノードが HDFS クライアント を共有します。
 
 `dfs.client.hedged.read.threshold.millis` は読み取り閾値をミリ秒単位で設定します。読み取りリクエストがこの閾値を超えても戻らない場合、Hedged Read がトリガーされます。
 
@@ -255,7 +255,7 @@ Kerberosが設定されたBroker Loadを使用して`Cannot locate default realm
 
 `HedgedReadWins`: 成功した Hedged Read の回数（リクエストが開始され、元のリクエストより高速に戻った回数）
 
-これらの値は単一クエリではなく、単一の HDFS Client に対する累積値であることに注意してください。同じ HDFS Client は複数のクエリで再利用される可能性があります。
+これらの値は単一クエリではなく、単一の HDFS クライアント に対する累積値であることに注意してください。同じ HDFS クライアント は複数のクエリで再利用される可能性があります。
 
 3. `Couldn't create proxy provider class org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider`
 
@@ -279,13 +279,13 @@ Kerberosが設定されたBroker Loadを使用して`Cannot locate default realm
     - hdfs-site.xml と core-site.xml を be/conf と fe/conf ディレクトリにコピーする。（推奨）
     - hdfs-site.xml で対応する設定 `dfs.data.transfer.protection` を見つけ、このパラメータを catalog で設定する。
 
-## DLF Catalog
+## DLF カタログ
 
-1. DLF Catalog を使用する際、BE が JindoFS データを読み取り中に `Invalid address` が発生する場合、ログに表示されるドメイン名から IP へのマッピングを `/etc/hosts` に追加してください。
+1. DLF カタログ を使用する際、BE が JindoFS データを読み取り中に `Invalid address` が発生する場合、ログに表示されるドメイン名から IP へのマッピングを `/etc/hosts` に追加してください。
 
 2. データを読み取る権限がない場合、`hadoop.username` プロパティを使用して権限を持つユーザーを指定してください。
 
-3. DLF Catalog のメタデータは DLF と一致している必要があります。DLF を使用してメタデータを管理する場合、Hive で新しくインポートされたパーティションが DLF によって同期されていない可能性があり、DLF と Hive メタデータの間に不整合が生じる可能性があります。これに対処するため、Hive メタデータが DLF によって完全に同期されていることを確認してください。
+3. DLF カタログ のメタデータは DLF と一致している必要があります。DLF を使用してメタデータを管理する場合、Hive で新しくインポートされたパーティションが DLF によって同期されていない可能性があり、DLF と Hive メタデータの間に不整合が生じる可能性があります。これに対処するため、Hive メタデータが DLF によって完全に同期されていることを確認してください。
 
 ## その他の問題
 
@@ -303,4 +303,4 @@ Kerberosが設定されたBroker Loadを使用して`Cannot locate default realm
 
         `./parquet-tools meta /path/to/file.parquet`
 
-    4. その他の機能については、[Apache Parquet Cli documentation](https://github.com/apache/parquet-java/tree/apache-parquet-1.14.0/parquet-cli) を参照してください
+    4. その他の機能については、[Apache Parquet Cli ドキュメント](https://github.com/apache/parquet-java/tree/apache-parquet-1.14.0/parquet-cli) を参照してください

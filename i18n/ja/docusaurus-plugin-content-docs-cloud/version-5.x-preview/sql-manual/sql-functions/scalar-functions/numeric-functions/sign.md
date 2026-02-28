@@ -14,9 +14,9 @@
 ```sql
 SIGN(x)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>`   | 独立変数 |
 

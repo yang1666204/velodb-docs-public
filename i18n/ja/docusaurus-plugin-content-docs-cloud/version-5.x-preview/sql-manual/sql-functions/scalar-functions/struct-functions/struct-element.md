@@ -14,7 +14,7 @@
 ```sql
 STRUCT_ELEMENT( <struct>, <field_location_or_name> )
 ```
-## Parameters
+## パラメータ
 
 - `<struct>`: 入力する構造体カラム
 - `<field_location_or_name>`: フィールド位置（1から開始）またはフィールド名、定数のみサポート

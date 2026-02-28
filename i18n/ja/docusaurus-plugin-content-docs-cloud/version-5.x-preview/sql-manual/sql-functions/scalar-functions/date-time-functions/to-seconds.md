@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 秒数計算関数です。日付を秒数値に変換し、基準日（`0000-00-00`）から指定された日付までの総秒数を計算します。
 
@@ -16,9 +16,9 @@
 ```sql
 TO_SECONDS(`<date_or_time_expr>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter             | Description                                                                                                                                                                                                                                                                                                 |
+| Parameter             | デスクリプション                                                                                                                                                                                                                                                                                                 |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `<date_or_time_expr>` | 入力する日付/時刻の値。date/datetimeタイプをサポートします。特定のdatetimeおよびdateフォーマットについては、[datetime conversion](../../../basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |
 

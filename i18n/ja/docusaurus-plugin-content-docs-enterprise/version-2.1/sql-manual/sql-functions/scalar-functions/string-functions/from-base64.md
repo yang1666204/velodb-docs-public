@@ -16,9 +16,9 @@
 ```sql
 FROM_BASE64 ( <str> )
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Description |
+| パラメータ | デスクリプション |
 |------------|-----------------|
 | `<str>`    | Base64デコードする文字列 |
 

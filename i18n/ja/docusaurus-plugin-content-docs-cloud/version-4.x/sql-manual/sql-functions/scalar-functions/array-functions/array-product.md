@@ -14,7 +14,7 @@
 ```sql
 ARRAY_PRODUCT(<arr>)
 ```
-## Parameters
+## パラメータ
 
 | Parameter | 説明 |
 |--|--|

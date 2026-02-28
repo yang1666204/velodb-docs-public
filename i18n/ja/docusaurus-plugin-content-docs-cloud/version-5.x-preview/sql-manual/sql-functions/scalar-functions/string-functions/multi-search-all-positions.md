@@ -14,9 +14,9 @@ MULTI_SEARCH_ALL_POSITIONS関数は、文字列内で複数の部分文字列を
 ```sql
 MULTI_SEARCH_ALL_POSITIONS(<haystack>, <needles>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | ------------ | ----------------------------------------- |
 | `<haystack>` | 検索対象の文字列。型: VARCHAR |
 | `<needles>` | 検索する複数の部分文字列を含む配列。型: ARRAY<VARCHAR> |

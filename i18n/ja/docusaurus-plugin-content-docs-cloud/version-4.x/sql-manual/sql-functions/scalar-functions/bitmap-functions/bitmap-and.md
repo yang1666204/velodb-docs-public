@@ -16,7 +16,7 @@ BITMAP_AND(<bitmap>, <bitmap>,[, <bitmap>...])
 ```
 ## パラメータ
 
-| Parameter  | Description                                                    |
+| Parameter  | デスクリプション                                                    |
 |------------|----------------------------------------------------------------|
 | `<bitmap>` | 交差を求める元のBITMAPの1つ |
 

@@ -1,13 +1,13 @@
 ---
 {
   "title": "key_column_usage",
-  "description": "このテーブルはMySQL動作との互換性のためのものです。常に空です。",
+  "description": "このTableはMySQL動作との互換性のためのものです。常に空です。",
   "language": "ja"
 }
 ---
 ## 概要
 
-このテーブルはMySQLの動作との互換性のためのみに存在します。常に空です。
+このTableはMySQLの動作との互換性のためのみに存在します。常に空です。
 
 ## データベース
 
@@ -15,9 +15,9 @@
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
-| Column Name                   | Type        | Description |
+| Column Name                   | タイプ        | デスクリプション |
 | ----------------------------- | ----------- | ----------- |
 | CONSTRAINT_CATALOG            | varchar(64) |             |
 | CONSTRAINT_SCHEMA             | varchar(64) |             |

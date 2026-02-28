@@ -18,9 +18,9 @@
 ```sql
 MURMUR_HASH3_64_V2( <str> [ , <str> ... ] )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                           |
+| Parameter | デスクリプション                                           |
 | --------- | ----------------------------------------------------- |
 | `<str>`   | 64-bit MurmurHash3ハッシュとして計算される値 |
 

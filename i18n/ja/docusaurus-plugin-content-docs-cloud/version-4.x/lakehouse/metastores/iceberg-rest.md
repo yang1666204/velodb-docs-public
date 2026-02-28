@@ -1,6 +1,6 @@
 ---
 {
-  "title": "Iceberg Rest Catalog API",
+  "title": "Iceberg Rest カタログ API",
   "description": "この文書では、Iceberg Rest Catalogインターフェースをサポートするメタデータサービスに接続し、アクセスする際にサポートされるパラメータについて説明します。",
   "language": "ja"
 }

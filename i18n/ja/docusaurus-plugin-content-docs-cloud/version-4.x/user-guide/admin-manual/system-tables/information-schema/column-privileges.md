@@ -1,24 +1,24 @@
 ---
 {
   "title": "column_privileges",
-  "description": "MySQL互換の常に空のカラム権限テーブル。互換性のために使用され、Dorisカラム権限を反映しません。",
+  "description": "MySQL互換の常に空のカラム権限Table。互換性のために使用され、Dorisカラム権限を反映しません。",
   "language": "ja"
 }
 ---
 # column_privileges
 
-## Overview
+## 概要
 
-このテーブルはMySQLの動作との互換性のためのみに使用され、常に空です。Dorisの列権限情報を真に反映するものではありません。
+このTableはMySQLの動作との互換性のためのみに使用され、常に空です。Dorisの列権限情報を真に反映するものではありません。
 
 ## Database
 
 ```
 information_schema
 ```
-## テーブル情報
+## Table情報
 
-| Column Name    | Type         | Description |
+| Column Name    | タイプ         | デスクリプション |
 | -------------- | ------------ | ----------- |
 | GRANTEE        | varchar(128) |             |
 | TABLE_CATALOG  | varchar(512) |             |

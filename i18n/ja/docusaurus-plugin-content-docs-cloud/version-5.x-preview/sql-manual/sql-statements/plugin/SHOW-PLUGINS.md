@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、インストールされたプラグインを表示するために使用されます。
 
@@ -18,7 +18,7 @@ SHOW PLUGINS
 
 | カラム | 説明 |
 | ------ | ----------- |
-| Description | 対応するプラグインの説明 |
+| デスクリプション | 対応するプラグインの説明 |
 | Version | プラグインに対応するバージョン番号 |
 | JavaVersion | 対応するJavaバージョン番号 |
 | ClassName | プログラムクラス名 |
@@ -44,7 +44,7 @@ SHOW PLUGINS
     ```
     ```text
     +-------------------------------+---------+-----------------------------------------------------------+---------+-------------+------------------------------------------------------------+--------+---------+-----------+------------+
-   | Name                          | Type    | Description                                               | Version | JavaVersion | ClassName                                                  | SoName | Sources | Status    | Properties |
+   | Name                          | タイプ    | デスクリプション                                               | Version | JavaVersion | ClassName                                                  | SoName | Sources | Status    | Properties |
    +-------------------------------+---------+-----------------------------------------------------------+---------+-------------+------------------------------------------------------------+--------+---------+-----------+------------+
    | __builtin_AuditLoader         | AUDIT   | builtin audit loader, to load audit log to internal table | 2.1.0   | 1.8.31      | org.apache.doris.plugin.audit.AuditLoader                  | NULL   | Builtin | INSTALLED | {}         |
    | __builtin_AuditLogBuilder     | AUDIT   | builtin audit logger                                      | 0.12.0  | 1.8.31      | org.apache.doris.plugin.audit.AuditLogBuilder              | NULL   | Builtin | INSTALLED | {}         |

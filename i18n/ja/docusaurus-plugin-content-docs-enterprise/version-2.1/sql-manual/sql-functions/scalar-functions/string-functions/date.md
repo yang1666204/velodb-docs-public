@@ -18,7 +18,7 @@ DATE(<datetime>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<datetime>` | 有効な日付式 |
 

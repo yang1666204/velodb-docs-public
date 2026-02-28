@@ -21,7 +21,7 @@ UNHEX(<str>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<str>` | 16進数文字列 |
 

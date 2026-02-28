@@ -14,7 +14,7 @@ json文字列内の指定されたパスのinteger（BIGINT）コンテンツを
 ```sql
 GET_JSON_BIGINT( <json_str>, <json_path>)
 ```
-## Required Parameters
+## Required パラメータ
 | parameters| described|
 |------|------|
 | `<json_str>`| データを抽出するJSONストリングが必要です。 |
@@ -25,7 +25,7 @@ GET_JSON_BIGINT( <json_str>, <json_path>)
 - パスで指定されたフィールドのBIGINT値を返します。
 - 指定されたパスに対応するフィールドが見つからない場合、またはフィールド値がBIGINT型に変換できない場合はNULLを返します。
 
-## Usage Notes
+## Usage 注釈
 
 `<json_str>`は$記号で始まり、.をパス区切り文字として使用する必要があります。パスに.が含まれる場合は、ダブルクォートで囲むことができます。
 配列のインデックスを表すには[ ]を使用し、0から開始します。

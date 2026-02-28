@@ -24,7 +24,7 @@ INTO TABLE "<tbl_name>"
 [ SET (col_name={<expr> | DEFAULT} [, col_name={<expr> | DEFAULT}] ...) ]
 [ PROPERTIES ("<key>" = "<value>" [ , ... ]) ]
 ```
-## Required Parameters
+## Required パラメータ
 
 **1. `<file_name>`**
 
@@ -32,9 +32,9 @@ INTO TABLE "<tbl_name>"
 
 **2. `<tbl_name>`**
 
-> テーブル名には、例に示すようにデータベース名を含めることができます。データベース名を省略した場合、現在のユーザーのデータベースが使用されます。
+> Table名には、例に示すようにデータベース名を含めることができます。データベース名を省略した場合、現在のユーザーのデータベースが使用されます。
 
-## Optional Parameters
+## Optional パラメータ
 
 **1. `LOCAL`**
 
@@ -62,7 +62,7 @@ INTO TABLE "<tbl_name>"
 
 **7. `properties ("<key>"="<value>",...)`**
 
-| Parameter | Parameter Description |
+| Parameter | Parameter デスクリプション |
 | ---------------------- | ------------------------------------------------------------ |
 | max_filter_ratio | フィルタ可能なデータの最大許容比率（データ不整合などの理由による）で、デフォルトは許容なしです。 |
 | timeout | インポートタイムアウト期間を秒単位で指定します。デフォルトは600秒で、有効範囲は1秒から259,200秒です。 |
@@ -77,17 +77,17 @@ INTO TABLE "<tbl_name>"
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes |
+| Privilege | Object | 注釈 |
 | :---------------- | :------------- | :---------------------------- |
-| LOAD_PRIV | Table | 指定されたデータベーステーブルのインポート権限。 |
+| LOAD_PRIV | Table | 指定されたデータベースTableのインポート権限。 |
 
-## Usage Notes
+## Usage 注釈
 
 - MySQL Load文は`LOAD DATA`構文で開始し、LABELの指定は不要です。
 
 ## Examples
 
-1. クライアントのローカルファイル`testData`から、データベース`testDb`のテーブル`testTbl`にデータをインポートします。タイムアウトを100秒に指定します。
+1. クライアントのローカルファイル`testData`から、データベース`testDb`のTable`testTbl`にデータをインポートします。タイムアウトを100秒に指定します。
 
     ```sql
     LOAD DATA LOCAL
@@ -95,7 +95,7 @@ INTO TABLE "<tbl_name>"
     INTO TABLE testDb.testTbl
     PROPERTIES ("timeout"="100")
     ```
-2. サーバーのローカルファイル`/root/testData`からデータをインポートし（FE設定`mysql_load_server_secure_path`を`/root`に設定する必要があります）、データベース`testDb`のテーブル`testTbl`に取り込みます。タイムアウトを100秒に指定します。
+2. サーバーのローカルファイル`/root/testData`からデータをインポートし（FE設定`mysql_load_server_secure_path`を`/root`に設定する必要があります）、データベース`testDb`のTable`testTbl`に取り込みます。タイムアウトを100秒に指定します。
 
     ```sql
     LOAD DATA
@@ -103,7 +103,7 @@ INTO TABLE "<tbl_name>"
     INTO TABLE testDb.testTbl
     PROPERTIES ("timeout"="100")
     ```
-3. クライアントのローカルファイル`testData`から、データベース`testDb`内のテーブル`testTbl`にデータをインポートし、エラー率20%を許可します。
+3. クライアントのローカルファイル`testData`から、データベース`testDb`内のTable`testTbl`にデータをインポートし、エラー率20%を許可します。
 
     ```sql
     LOAD DATA LOCAL
@@ -111,7 +111,7 @@ INTO TABLE "<tbl_name>"
     INTO TABLE testDb.testTbl
     PROPERTIES ("max_filter_ratio"="0.2")
     ```
-4. クライアントのローカルファイル`testData`から、データベース`testDb`内のテーブル`testTbl`にデータをインポートします。エラー率20%を許可し、ファイルの列名を指定します。
+4. クライアントのローカルファイル`testData`から、データベース`testDb`内のTable`testTbl`にデータをインポートします。エラー率20%を許可し、ファイルの列名を指定します。
 
     ```sql
     LOAD DATA LOCAL
@@ -120,7 +120,7 @@ INTO TABLE "<tbl_name>"
     (k2, k1, v1)
     PROPERTIES ("max_filter_ratio"="0.2")
     ```
-5. ローカルファイル`testData`からデータベース`testDb`内のテーブル`testTbl`のパーティション`p1`と`p2`にデータをインポートし、エラー率20%を許可します。
+5. ローカルファイル`testData`からデータベース`testDb`内のTable`testTbl`のパーティション`p1`と`p2`にデータをインポートし、エラー率20%を許可します。
 
     ```sql
     LOAD DATA LOCAL
@@ -129,7 +129,7 @@ INTO TABLE "<tbl_name>"
     PARTITION (p1, p2)
     PROPERTIES ("max_filter_ratio"="0.2")
     ```
-6. ローカルCSVファイル`testData`から、行区切り文字`0102`と列区切り文字`0304`を使用して、データベース`testDb`のテーブル`testTbl`にデータをインポートします。
+6. ローカルCSVファイル`testData`から、行区切り文字`0102`と列区切り文字`0304`を使用して、データベース`testDb`のTable`testTbl`にデータをインポートします。
 
     ```sql
     LOAD DATA LOCAL
@@ -138,7 +138,7 @@ INTO TABLE "<tbl_name>"
     COLUMNS TERMINATED BY '0304'
     LINES TERMINATED BY '0102'
     ```
-7. ローカルファイル`testData`からデータをインポートし、データベース`testDb`内のテーブル`testTbl`のパーティション`p1`および`p2`に格納し、最初の3行をスキップします。
+7. ローカルファイル`testData`からデータをインポートし、データベース`testDb`内のTable`testTbl`のパーティション`p1`および`p2`に格納し、最初の3行をスキップします。
 
     ```sql
     LOAD DATA LOCAL

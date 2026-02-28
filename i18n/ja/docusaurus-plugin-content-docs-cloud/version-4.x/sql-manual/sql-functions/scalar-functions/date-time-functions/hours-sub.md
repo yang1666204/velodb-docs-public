@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力されたdatetimeから指定された時間数を減算した結果である新しいdatetime値を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 HOURS_SUB(<date>, <hours>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<date>`      | 入力となる日時値。DATETIME型またはDATE型を指定できます |
 | `<hours>`     | 減算する時間数。INT型で指定します     |

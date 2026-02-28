@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力文字列またはバイナリの64ビットxxhash値を計算します。
 

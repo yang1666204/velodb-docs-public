@@ -17,9 +17,9 @@ HOUR_CEIL(<datetime>, <origin>)
 HOUR_CEIL(<datetime>, <period>)
 HOUR_CEIL(<datetime>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<datetime>` | 有効な日付式 |
 | `<period>`| 各期間を構成する時間数を指定します|

@@ -16,9 +16,9 @@ MONTH関数は、datetime値から月の値を抽出します。戻り値は1か
 ```sql
 MONTH(`<date_or_time_expr>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<date_or_time_expr>` | 入力される日時値。date/datetime型をサポートします。特定の日時および日付形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |
 

@@ -1,13 +1,13 @@
 ---
 {
   "title": "COMPACT TABLE",
-  "description": "storage-computing coupled モードにおいて、これは指定されたテーブルパーティション配下のすべてのレプリカに対してcompactionをトリガーするために使用されます。",
+  "description": "storage-computing coupled モードにおいて、これは指定されたTableパーティション配下のすべてのレプリカに対してcompactionをトリガーするために使用されます。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-storage-computing結合モードにおいて、指定されたテーブルパーティション配下のすべてのレプリカに対してcompactionをトリガーするために使用されます。
+storage-computing結合モードにおいて、指定されたTableパーティション配下のすべてのレプリカに対してcompactionをトリガーするために使用されます。
 
 このコマンドはstorage-computing分離モードではサポートされていません。
 
@@ -22,11 +22,11 @@ WHERE TYPE={ BASE | CUMULATIVE }
 
 <table_name>
 
-> compactionを実行するテーブルの名前。
+> compactionを実行するTableの名前。
 
 <partition_name>
 
-> compactionを実行するパーティションの名前。（注意：この行はテーブル名の説明と重複しているため修正が必要です。パーティション名を指定する必要があります。）
+> compactionを実行するパーティションの名前。（注意：この行はTable名の説明と重複しているため修正が必要です。パーティション名を指定する必要があります。）
 
 TYPE={ BASE | CUMULATIVE }
 
@@ -36,13 +36,13 @@ TYPE={ BASE | CUMULATIVE }
 
 このSQLコマンドを正常に実行するための前提条件は、ADMIN_PRIV権限を持つことです。権限ドキュメントを参照してください。
 
-| Privilege  | Object                               | Notes                           |
+| Privilege  | Object                               | 注釈                           |
 | :--------- | :----------------------------------- | :------------------------------ |
 | ADMIN_PRIV | Entire cluster management privileges | All privileges except NODE_PRIV |
 
 ## 例
 
-1. テーブルtblのパーティションpar01に対してcumulative compactionを実行する。
+1. Tabletblのパーティションpar01に対してcumulative compactionを実行する。
 
   ```sql
   ADMIN COMPACT TABLE tbl PARTITION par01 WHERE TYPE='CUMULATIVE';

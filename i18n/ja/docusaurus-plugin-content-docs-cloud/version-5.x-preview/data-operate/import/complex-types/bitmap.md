@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-BITMAP型は、Duplicate テーブル、Unique テーブル、および Aggregate テーブルで使用でき、Value 列ではなく Key 型としてのみ使用できます。Aggregate テーブルで BITMAP 型を使用する場合、テーブルは集約型 BITMAP_UNION で作成する必要があります。ユーザーは長さとデフォルト値を指定する必要はありません。長さは、データ集約の度合いに基づいてシステムによって制御されます。詳細なドキュメントについては、[Bitmap](../../../sql-manual/basic-element/sql-data-types/aggregate/BITMAP) を参照してください。
+BITMAP型は、Duplicate Table、Unique Table、および Aggregate Tableで使用でき、Value 列ではなく Key 型としてのみ使用できます。Aggregate Tableで BITMAP 型を使用する場合、Tableは集約型 BITMAP_UNION で作成する必要があります。ユーザーは長さとデフォルト値を指定する必要はありません。長さは、データ集約の度合いに基づいてシステムによって制御されます。詳細なドキュメントについては、[Bitmap](../../../sql-manual/basic-element/sql-data-types/aggregate/BITMAP) を参照してください。
 
 ## 使用例
 
@@ -25,7 +25,7 @@ BITMAP型は、Duplicate テーブル、Unique テーブル、および Aggregat
 9|huang|969798
 10|buag|97997
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE testdb.test_bitmap(
@@ -45,7 +45,7 @@ curl --location-trusted -u <doris_user>:<doris_password> \
     -T test_bitmap.csv \
     -XPUT http://<fe_ip>:<fe_http_port>/api/testdb/test_bitmap/_stream_load
 ```
-### Step 4: ロードされたデータの確認
+### ステップ 4: ロードされたデータの確認
 
 ```sql
 mysql> select typ_id,hou,bitmap_to_string(arr) from testdb.test_bitmap;

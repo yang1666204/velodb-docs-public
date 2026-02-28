@@ -16,7 +16,7 @@ JSON_VALID( <str> )
 
 ```
 必須パラメータ
-| Parameter | Description |
+| Parameter | デスクリプション |
 |------|------|
 | `<str>` | パース対象となるJSON形式の入力文字列。 |
 

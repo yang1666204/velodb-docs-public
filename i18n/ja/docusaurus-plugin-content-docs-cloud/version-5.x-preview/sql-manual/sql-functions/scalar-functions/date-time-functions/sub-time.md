@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定された時間間隔を日付/時刻または時刻式から減算します。第2パラメータが負の値の場合、第1パラメータに間隔を加算することと同等です。
 
@@ -14,9 +14,9 @@
 ```sql
 SUB_TIME(`<date_or_time_expr>`, `<time>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter             | Description |
+| Parameter             | デスクリプション |
 | ---------------------| ----------- |
 | `<date_or_time_expr>`| 有効な日付表現。datetime/date/time型の入力をサポートします。型がdateの場合、その日の開始時刻（00:00:00）に変換されます。具体的なdatetime/time形式については、datetime変換およびtime変換を参照してください。 |
 | `<time>`             | 有効な時刻表現で、`<date_or_time_expr>`から減算される時刻値を表します。負の値の場合、加算を意味します。time型の入力をサポートします。 |

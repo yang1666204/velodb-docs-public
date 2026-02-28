@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 year_ceil関数は、入力されたdatetime値を指定された年間隔の開始時刻に切り上げる関数で、間隔単位は年です。originが指定されている場合はそれを基準として使用し、そうでなければデフォルトで0000-01-01 00:00:00を使用します。
 
@@ -29,7 +29,7 @@ YEAR_CEIL(<date_or_time_expr>, <period>, <origin>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<date_or_time_expr>` | 切り上げ対象のdatetime値。date/datetimeタイプをサポートします。datetimeとdateの形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<period>` | オプション。各期間が何秒で構成されるかを表します。正の整数タイプ（INT）をサポートします。デフォルトは1秒です。 |

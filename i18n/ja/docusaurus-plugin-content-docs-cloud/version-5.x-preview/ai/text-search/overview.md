@@ -162,7 +162,7 @@ LIMIT 20;
 
 ## クイックスタート
 
-### Step 1: 転置インデックス付きテーブルの作成
+### ステップ 1: 転置インデックス付きTableの作成
 
 ```sql
 CREATE TABLE docs (
@@ -181,7 +181,7 @@ CREATE TABLE docs (
 DUPLICATE KEY(id)
 DISTRIBUTED BY HASH(id) BUCKETS 10;
 ```
-### Step 2: テキストクエリの実行
+### ステップ 2: テキストクエリの実行
 
 ```sql
 -- Simple keyword search
@@ -251,9 +251,9 @@ SHOW INDEX FROM docs;
 
 ### コアドキュメント
 
-- [Inverted Index Overview](../../table-design/index/inverted-index/overview.md) — アーキテクチャ、インデックス化の原則、および管理
+- [Inverted Index 概要](../../table-design/index/inverted-index/overview.md) — アーキテクチャ、インデックス化の原則、および管理
 - [Text Search Operators](./search-operators.md) — 完全なオペレーターリファレンスとクエリ高速化
-- [SEARCH Function](./search-function.md) — 統合クエリDSL構文と例
+- [SEARCH ファンクション](./search-function.md) — 統合クエリDSL構文と例
 - [Relevance Scoring](./scoring.md) — 関連性ランキングアルゴリズムと使用方法
 
 ### 高度なトピック

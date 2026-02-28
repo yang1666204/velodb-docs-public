@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つの幾何形状が境界接触のみを持つかどうかを判定します（つまり、境界上に共通点が存在するが、内部の交差はない）。具体的には：
 
@@ -21,7 +21,7 @@ ST_TOUCHES( <shape1>, <shape2>)
 ```
 ## Parameter
 
-| Parameter| Description                     |
+| Parameter| デスクリプション                     |
 |----------|------------------------|
 | `<shape1>` | 接触判定に使用する最初の幾何図形。Point、LineString、Polygon、Circle等の型をサポート。 |
 | `<shape2>` | 接触判定に使用する2番目の幾何図形。Point、LineString、Polygon、Circle等の型をサポート。 |

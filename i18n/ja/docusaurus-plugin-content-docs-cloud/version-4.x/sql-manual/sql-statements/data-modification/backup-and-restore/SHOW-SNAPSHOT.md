@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、リポジトリに既に存在するバックアップを表示するために使用されます。
 
@@ -31,7 +31,7 @@ SHOW SNAPSHOT ON `<repo_name>`
 
 ## 戻り値
 
-| Column | Description |
+| Column | デスクリプション |
 | -- | -- |
 | Snapshot | バックアップの名前 |
 | Timestamp | バックアップの時刻バージョンに対応 |

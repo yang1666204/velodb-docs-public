@@ -14,9 +14,9 @@
 ```sql
 AI_SENTIMENT([<resource_name>], <text>)
 ```
-## Parameters
+## パラメータ
 
-|    Parameter      | Description                |
+|    Parameter      | デスクリプション                |
 | ----------------- | ------------------------- |
 | `<resource_name>` | 指定されたリソース名|
 | `<text>`          | センチメント分析を行うテキスト |

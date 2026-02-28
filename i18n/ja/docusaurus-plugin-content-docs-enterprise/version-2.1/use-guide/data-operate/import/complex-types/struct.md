@@ -37,7 +37,7 @@ DATEV2, DATETIME, DATETIMEV2, CHAR, VARCHAR, STRING
 4|{}
 5|null
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE struct_test (
@@ -50,7 +50,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```bash
 curl --location-trusted \
@@ -60,7 +60,7 @@ curl --location-trusted \
         -T "test_struct.csv" \
         http://localhost:8040/api/testdb/struct_test/_stream_load
 ```
-### Step 4: インポートしたデータを確認する
+### ステップ 4: インポートしたデータを確認する
 
 ```sql
 mysql> SELECT * FROM struct_test;
@@ -77,7 +77,7 @@ mysql> SELECT * FROM struct_test;
 ```
 ## JSON format import
 
-### Step 1: データの準備
+### ステップ 1: データの準備
 
 以下のJSONファイル`test_struct.json`を作成してください
 
@@ -90,7 +90,7 @@ mysql> SELECT * FROM struct_test;
     {"id":5, "c_struct":null}
 ]
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE struct_test (
@@ -103,7 +103,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データを読み込む
+### ステップ 3: データを読み込む
 
 ```bash
 curl --location-trusted \
@@ -114,7 +114,7 @@ curl --location-trusted \
         -T "test_struct.json" \
         http://localhost:8040/api/testdb/struct_test/_stream_load
 ```
-### Step 4: インポートしたデータを確認する
+### ステップ 4: インポートしたデータを確認する
 
 ```sql
 mysql> SELECT * FROM struct_test;

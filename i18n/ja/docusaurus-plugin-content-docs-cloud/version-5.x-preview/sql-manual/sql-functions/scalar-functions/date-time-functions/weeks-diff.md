@@ -13,8 +13,8 @@ WEEKS_DIFF関数は、2つの日付または時刻の値間の完全な週数の
 ```sql
 WEEKS_DIFF(`<date_or_time_expr1>`, `<date_or_time_expr2>`)
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<date_or_time_expr1>` | より後の日付または日時で、date/datetime型をサポートします。datetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<date_or_time_expr2>` | より前の日付または日時で、date/datetime型をサポートします |

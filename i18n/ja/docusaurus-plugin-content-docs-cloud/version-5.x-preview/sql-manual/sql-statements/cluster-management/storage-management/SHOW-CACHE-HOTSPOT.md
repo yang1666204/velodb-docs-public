@@ -5,13 +5,13 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、ファイルキャッシュのホットスポット情報を表示するために使用されます。
 
 :::info Note
 
-バージョン3.0.4より前では、`SHOW CACHE HOTSPOT`ステートメントを使用してキャッシュホットスポット情報の統計を照会できました。バージョン3.0.4以降、キャッシュホットスポット情報統計における`SHOW CACHE HOTSPOT`ステートメントの使用はサポートされなくなりました。照会にはシステムテーブル`__internal_schema.cloud_cache_hotspot`に直接アクセスしてください。詳細な使用方法については、MANAGING FILE CACHEを参照してください。
+バージョン3.0.4より前では、`SHOW CACHE HOTSPOT`ステートメントを使用してキャッシュホットスポット情報の統計を照会できました。バージョン3.0.4以降、キャッシュホットスポット情報統計における`SHOW CACHE HOTSPOT`ステートメントの使用はサポートされなくなりました。照会にはシステムTable`__internal_schema.cloud_cache_hotspot`に直接アクセスしてください。詳細な使用方法については、MANAGING FILE CACHEを参照してください。
 
 :::
 
@@ -20,13 +20,13 @@
 ```sql
    SHOW CACHE HOTSPOT '/[<compute_group_name>/<table_name>]';
 ```
-## Parameters
+## パラメータ
 
 
-| Parameter Name	                  | Description                                                         |
+| パラメータ名	                  | デスクリプション                                                         |
 |---------------------------|--------------------------------------------------------------|
 | <compute_group_name>        | コンピュートグループの名前。                                               |
-| <table_name>                | テーブルの名前。                                                   |
+| <table_name>                | Tableの名前。                                                   |
 ## Examples
 
 1. システム全体のキャッシュホットスポット情報を表示：

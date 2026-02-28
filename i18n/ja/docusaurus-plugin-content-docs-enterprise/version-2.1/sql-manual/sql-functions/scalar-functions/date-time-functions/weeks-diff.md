@@ -14,7 +14,7 @@
 WEEKS_DIFF(<end_date>, <start_date>)
 ```
 ## 必須パラメータ
-| Parameter Name | Data Type            | Description                 |
+| パラメータ名 | Data タイプ            | デスクリプション                 |
 |---------------|----------------------|-----------------------------|
 | `end_date`    | `DATE`, `DATETIME`   | 後の日付または日時     |
 | `start_date`  | `DATE`, `DATETIME`   | 前の日付または日時   |

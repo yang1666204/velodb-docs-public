@@ -1,13 +1,13 @@
 ---
 {
   "title": "統計",
-  "description": "このテーブルはMySQLの動作との互換性のためのみに存在します。常に空です。",
+  "description": "このTableはMySQLの動作との互換性のためのみに存在します。常に空です。",
   "language": "ja"
 }
 ---
 ## 概要
 
-このテーブルは、MySQLの動作との互換性のためにのみ存在します。常に空です。
+このTableは、MySQLの動作との互換性のためにのみ存在します。常に空です。
 
 ## データベース
 
@@ -15,9 +15,9 @@
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
-| Column Name   | Type          | Description |
+| Column Name   | タイプ          | デスクリプション |
 | ------------- | ------------- | ----------- |
 | TABLE_CATALOG | varchar(512)  |             |
 | TABLE_SCHEMA  | varchar(64)   |             |

@@ -58,10 +58,10 @@ REVOKE <role_list> FROM <user_identity>
 
 権限のスコープを指定します。サポートされる形式には以下が含まれます：
 
-- *.*.*: すべてのカタログ、データベース、テーブル
-- catalog_name.*.*: 指定されたカタログ内のすべてのデータベースとテーブルを指定
-- catalog_name.db.*: 指定されたデータベース内のすべてのテーブルを指定
-- catalog_name.db.tbl: 指定されたデータベース内の特定のテーブルを指定
+- *.*.*: すべてのカタログ、データベース、Table
+- catalog_name.*.*: 指定されたカタログ内のすべてのデータベースとTableを指定
+- catalog_name.db.*: 指定されたデータベース内のすべてのTableを指定
+- catalog_name.db.tbl: 指定されたデータベース内の特定のTableを指定
 
 **3. `<resource_name>`**
 

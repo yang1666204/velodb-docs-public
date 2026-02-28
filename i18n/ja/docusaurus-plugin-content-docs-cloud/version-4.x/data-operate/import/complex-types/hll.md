@@ -25,7 +25,7 @@ HLLは近似重複除去に使用され、大量のデータを扱う際にはCo
 1009|huang
 1010|buag
 ```
-### ステップ2: Databaseにテーブルを作成
+### ステップ2: DatabaseにTableを作成
 
 ```sql
 CREATE TABLE testdb.test_hll(
@@ -36,7 +36,7 @@ CREATE TABLE testdb.test_hll(
 AGGREGATE KEY(typ_id,typ_name)
 DISTRIBUTED BY HASH(typ_id) BUCKETS 10;
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```sql
 curl --location-trusted -u <doris_user>:<doris_password> \
@@ -45,7 +45,7 @@ curl --location-trusted -u <doris_user>:<doris_password> \
     -T test_hll.csv \
     -XPUT http://<fe_ip>:<fe_http_port>/api/testdb/test_hll/_stream_load
 ```
-### Step 4: 読み込まれたデータの確認
+### ステップ 4: 読み込まれたデータの確認
 
 hll_cardinalityを使用してクエリを実行します：
 

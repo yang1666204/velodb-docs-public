@@ -13,7 +13,7 @@ Aliyun [Data Lake Formation (DLF)](https://www.alibabacloud.com/en/product/datal
 
 - 統一権限管理
 
-    コンピューティングエンジンは統一されたレイクテーブル権限設定セットを共有し、一度の設定で複数箇所での有効性を実現します。
+    コンピューティングエンジンは統一されたレイクTable権限設定セットを共有し、一度の設定で複数箇所での有効性を実現します。
 
 - ストレージ最適化
 
@@ -23,7 +23,7 @@ Aliyun [Data Lake Formation (DLF)](https://www.alibabacloud.com/en/product/datal
 
     ストリーミングおよびバッチコンピューティングエンジンを含むAlibaba Cloud製品との深い統合により、すぐに使用可能な機能を実現し、ユーザーエクスペリエンスと運用の利便性を向上させます。
 
-DLF バージョン2.5から、Paimon Rest Catalog がサポートされています。Doris は、バージョン3.1.0以降、DLF 2.5+ Paimon Rest Catalog との統合をサポートし、DLFへのシームレスな接続によるPaimonテーブルデータのアクセスと分析を可能にします。本ドキュメントでは、Apache Doris を使用してDLF 2.5+に接続し、Paimonテーブルデータにアクセスする方法を説明します。
+DLF バージョン2.5から、Paimon Rest カタログ がサポートされています。Doris は、バージョン3.1.0以降、DLF 2.5+ Paimon Rest カタログ との統合をサポートし、DLFへのシームレスな接続によるPaimonTableデータのアクセスと分析を可能にします。本ドキュメントでは、Apache Doris を使用してDLF 2.5+に接続し、PaimonTableデータにアクセスする方法を説明します。
 
 :::tip
 この機能はDoris 3.1以降でサポートされています
@@ -118,7 +118,7 @@ DLFサービスを有効化し、対応するCatalog、Database、Tableを作成
     |       6 | 18-24     | F                 |    0 |
     +---------+-----------+-------------------+------+
     ```
-- システムテーブルのクエリ
+- システムTableのクエリ
 
     ```sql
     SELECT snapshot_id, commit_time, total_record_count FROM users_samples$snapshots;

@@ -13,8 +13,8 @@
 ```sql
 ARRAY_JOIN(<arr> , <sep> [, <null_replace>])
 ```
-## Parameters
-| Parameter      | Description |
+## パラメータ
+| Parameter      | デスクリプション |
 |---|---|
 | `<arr>`         | 結合する配列 |
 | `<sep>`         | 区切り文字列 |

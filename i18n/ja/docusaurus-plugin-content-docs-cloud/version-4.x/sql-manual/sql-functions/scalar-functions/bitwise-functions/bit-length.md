@@ -14,7 +14,7 @@
 ```sql
 BIT_LENGTH( <str>)
 ```
-## Parameters
+## パラメータ
 | parameter | description |
 |-----------|-------------|
 | `<str>`   | 計算対象の文字列     |

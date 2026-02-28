@@ -14,9 +14,9 @@ MAX関数は式の最大値を返します。
 ```sql
 MAX(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Description |
+| パラメータ | デスクリプション |
 | -- | -- |
 | `expr` | 取得する必要がある式 |
 

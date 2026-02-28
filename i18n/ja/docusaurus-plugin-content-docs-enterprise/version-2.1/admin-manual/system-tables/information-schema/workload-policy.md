@@ -15,9 +15,9 @@ Workload Policiesの設定情報を記録します。
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
-| Column Name    | Type         | Description                                    |
+| Column Name    | タイプ         | デスクリプション                                    |
 | -------------- | ------------ | ---------------------------------------------- |
 | ID             | bigint       | Workload PolicyのID                            |
 | NAME           | varchar(256) | Workload Policyの名前                          |

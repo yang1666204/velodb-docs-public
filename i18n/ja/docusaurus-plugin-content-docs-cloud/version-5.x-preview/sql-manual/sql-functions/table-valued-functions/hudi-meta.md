@@ -1,13 +1,13 @@
 ---
 {
   "title": "HUDI_META",
-  "description": "hudimeta table-valued-function(tvf)は、hudiメタデータ、操作履歴、テーブルのタイムライン、インスタント状態などを読み取るために使用されます。",
+  "description": "hudimeta table-valued-function(tvf)は、hudiメタデータ、操作履歴、Tableのタイムライン、インスタント状態などを読み取るために使用されます。",
   "language": "ja"
 }
 ---
 ## 説明
 
-`hudi_meta` table-valued-function(tvf)は、hudiメタデータ、操作履歴、テーブルのタイムライン、インスタント状態などを読み取るために使用されます。
+`hudi_meta` table-valued-function(tvf)は、hudiメタデータ、操作履歴、Tableのタイムライン、インスタント状態などを読み取るために使用されます。
 
 3.1.0以降でサポートされています。
 
@@ -20,17 +20,17 @@ HUDI_META(
   );
 ```
 ## 必須パラメーター
-`hudi_meta`テーブル関数（tvf）の各パラメーターは`"key"="value"`のペアです。
+`hudi_meta`Table関数（tvf）の各パラメーターは`"key"="value"`のペアです。
 
 | フィールド        | 説明                                                                                                                        |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------|
-| `<table>`    | 完全なテーブル名。表示したいhudiテーブルに対して`database_name.table_name`の形式で指定する必要があります。 |
+| `<table>`    | 完全なTable名。表示したいhudiTableに対して`database_name.table_name`の形式で指定する必要があります。 |
 | `<query_type>` | 表示したいメタデータのタイプ。現在は`timeline`のみがサポートされています。                                                    |
 
 
 ## 例
 
-- timelineのhudiテーブルメタデータを読み取りアクセスします。
+- timelineのhudiTableメタデータを読み取りアクセスします。
 
     ```sql
     select * from hudi_meta("table" = "ctl.db.tbl", "query_type" = "timeline");
@@ -40,7 +40,7 @@ HUDI_META(
     ```sql
     desc function hudi_meta("table" = "ctl.db.tbl", "query_type" = "timeline");
     ```
-- hudi テーブルのタイムラインを検査する
+- hudi Tableのタイムラインを検査する
 
     ```sql
     select * from hudi_meta("table" = "hudi_ctl.test_db.test_tbl", "query_type" = "timeline");

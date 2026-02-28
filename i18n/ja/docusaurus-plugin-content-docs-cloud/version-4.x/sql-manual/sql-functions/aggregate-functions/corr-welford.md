@@ -16,7 +16,7 @@ CORR_WELFORD(<expr1>, <expr2>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr1>` | Double式（列） |
 | `<expr2>` | Double式（列） |

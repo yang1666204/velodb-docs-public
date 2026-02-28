@@ -15,9 +15,9 @@
 
 `__internal_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name       | Type         | Description                                                  |
+| Column Name       | タイプ         | デスクリプション                                                  |
 | ----------------- | ------------ | ------------------------------------------------------------ |
 | query_id          | varchar(48)  | クエリのID                                              |
 | time              | datetime(3)  | クエリが実行された時刻（ミリ秒単位）                           |

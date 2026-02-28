@@ -16,7 +16,7 @@ TANH(<x>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | 双曲線正接を計算する値 |
 

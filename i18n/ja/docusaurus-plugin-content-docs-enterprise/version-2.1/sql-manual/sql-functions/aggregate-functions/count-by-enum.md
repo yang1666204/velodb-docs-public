@@ -14,9 +14,9 @@
 ```sql
 COUNT_BY_ENUM(<expr1>, <expr2>, ... , <exprN>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr1>` | 少なくとも1つの入力を記入してください。STRING型の値を持つカラム |
 

@@ -10,7 +10,7 @@
 
 `GET /api/show_runtime_info`
 
-## Description
+## デスクリプション
 
 FE JVMのRuntime情報を取得するために使用されます
 

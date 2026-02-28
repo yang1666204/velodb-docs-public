@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `TOKENIZE`関数は、指定されたアナライザーを使用して文字列をトークン化し、トークン化結果をJSON形式の文字列配列として返します。この関数は、全文検索機能を持つ転置インデックスを使用する際に、テキストがどのように解析されるかを理解するのに特に有用です。
 
@@ -14,7 +14,7 @@
 ```sql
 VARCHAR TOKENIZE(VARCHAR str, VARCHAR properties)
 ```
-## Parameters
+## パラメータ
 
 - `str`: トークン化する入力文字列。型: `VARCHAR`
 - `properties`: アナライザー設定を指定するプロパティ文字列。型: `VARCHAR`
@@ -138,7 +138,7 @@ SELECT TOKENIZE("Hello World", '"built_in_analyzer"="standard", "support_phrase"
 
 4. **JSON出力**: 出力は整形されたJSON文字列で、必要に応じてJSON関数を使用してさらに処理できます。
 
-5. **Inverted Indexesとの互換性**: `TOKENIZE`で使用されるのと同じアナライザー設定は、テーブル作成時にinverted indexesに適用できます：
+5. **Inverted Indexesとの互換性**: `TOKENIZE`で使用されるのと同じアナライザー設定は、Table作成時にinverted indexesに適用できます：
 
    ```sql
    CREATE TABLE example (

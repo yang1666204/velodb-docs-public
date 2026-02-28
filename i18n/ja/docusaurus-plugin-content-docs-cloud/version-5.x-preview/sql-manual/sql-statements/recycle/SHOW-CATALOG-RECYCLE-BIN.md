@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW CATALOG RECYCLE BIN",
-  "description": "この文は、リサイクルビン内のデータベース、テーブル、またはパーティションの復元可能なメタデータを表示するために使用されます。",
+  "description": "この文は、リサイクルビン内のデータベース、Table、またはパーティションの復元可能なメタデータを表示するために使用されます。",
   "language": "ja"
 }
 ---
 ## 説明
 
-このステートメントは、ごみ箱内のデータベース、テーブル、またはパーティションの復元可能なメタデータを表示するために使用されます。
+このステートメントは、ごみ箱内のデータベース、Table、またはパーティションの復元可能なメタデータを表示するために使用されます。
 
 ## 構文
 
@@ -19,29 +19,29 @@ SHOW CATALOG RECYCLE BIN [ WHERE NAME [ = "<name>" | LIKE "<name_matcher>"] ]
 名前によるフィルタリング
 
 **1. `<name>`**
-> データベース、テーブル、またはパーティションの名前。
+> データベース、Table、またはパーティションの名前。
 
 パターンマッチングによるフィルタリング
 
 **1. `<name_matcher>`**
-> データベース、テーブル、またはパーティションの名前のパターンマッチング。
+> データベース、Table、またはパーティションの名前のパターンマッチング。
 
 ## 戻り値
 
-| Column         | Type     | Note                                                                                                                                                                             |
+| Column         | タイプ     | Note                                                                                                                                                                             |
 |----------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Type           | String   | メタデータタイプ：Database、Table、Partition                                                                                                                                        |
+| タイプ           | String   | メタデータタイプ：Database、Table、パーティション                                                                                                                                        |
 | Name           | String   | メタデータ名                                                                                                                                                                    |
 | DbId           | Bigint   | データベースのID                                                                                                                                                               |
-| TableId        | Bigint   | テーブルのID                                                                                                                                                                  |
+| TableId        | Bigint   | TableのID                                                                                                                                                                  |
 | PartitionId    | Bigint   | パーティションのID                                                                                                                                                              |
 | DropTime       | DateTime | メタデータがrecycle binに移動された時刻                                                                                                                              |
-| DataSize       | Bigint   | データサイズ。メタデータタイプがdatabaseの場合、この値はrecycle bin内のすべてのテーブルとパーティションのデータサイズを含む                                                   |
-| RemoteDataSize | Decimal  | リモートストレージ（HDFSまたはオブジェクトストレージ）上のデータサイズ。メタデータタイプがdatabaseの場合、この値はrecycle bin内のすべてのテーブルとパーティションのリモートデータサイズを含む |
+| DataSize       | Bigint   | データサイズ。メタデータタイプがdatabaseの場合、この値はrecycle bin内のすべてのTableとパーティションのデータサイズを含む                                                   |
+| RemoteDataSize | Decimal  | リモートストレージ（HDFSまたはオブジェクトストレージ）上のデータサイズ。メタデータタイプがdatabaseの場合、この値はrecycle bin内のすべてのTableとパーティションのリモートデータサイズを含む |
 
 ## アクセス制御要件
 
-| Privilege   | Object | Notes |
+| Privilege   | Object | 注釈 |
 |-------------|--------|-------|
 | ADMIN_PRIV  |        |       |
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 storage-and-compute-separated版では、使用するcomputeクラスターを指定します。
 
@@ -36,11 +36,11 @@ USE { [ <catalog_name>. ]<database_name>[ @<compute_group_name> ] | @<compute_gr
     use mysql@compute_cluster
     Database changed
     ```
-## Permission Control
+## 許可 Control
 
 このSQLコマンドを正常に実行するための前提条件は、compute groupに対するUSAGE_PRIV権限を持つことです。権限ドキュメントを参照してください。
 
-| Privilege  | Object        | Notes                                 |
+| Privilege  | Object        | 注釈                                 |
 | :--------- | :------------ | :------------------------------------ |
 | USAGE_PRIV | Compute group | compute clusterを使用する権限 |
 
@@ -52,7 +52,7 @@ mysql -utest -h175.40.1.1 -P9030
 use @compute_cluster;
 ERROR 5042 (42000): errCode = 2, detailMessage = USAGE denied to user test'@'127.0.0.1' for compute group 'compute_cluster'
 ```
-## Notes
+## 注釈
 
 1. データベース名またはcompute group名が予約キーワードの場合、バッククォートで囲む必要があります。例：
 

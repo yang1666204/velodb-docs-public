@@ -63,7 +63,7 @@ FEを追加する際：
 | Editlog Port | FE bdbje通信ポート（デフォルト：9010） |
 | Deployment Directory | Dorisルートデプロイディレクトリ |
 | Metadata Directory | FEメタデータ格納ディレクトリ |
-| Log Directory | FEログディレクトリ |
+| ログ Directory | FEログディレクトリ |
 
 ## ステップ4：BE設定
 
@@ -83,7 +83,7 @@ BEを設定する際、以下から選択：
 | BRPC Port | BE間通信用のBE BRPCポート（デフォルト：8060） |
 | Deployment Directory | Dorisルートデプロイディレクトリ |
 | Data Directory | BEデータ格納ディレクトリ |
-| Log Directory | BEログディレクトリ |
+| ログ Directory | BEログディレクトリ |
 | External Table Cache Directory | フェデレーテッド分析ファイルキャッシュディレクトリ |
 | Total Cache Size | フェデレーテッド分析ファイルキャッシュサイズ |
 | Per-Query Cache Limit | 単一フェデレーテッドクエリのキャッシュサイズ制限 |
@@ -94,4 +94,4 @@ BEを設定する際、以下から選択：
 
 クラスターパラメータを設定：
 - 自動再起動オプション
-- テーブル名の大文字小文字区別
+- Table名の大文字小文字区別

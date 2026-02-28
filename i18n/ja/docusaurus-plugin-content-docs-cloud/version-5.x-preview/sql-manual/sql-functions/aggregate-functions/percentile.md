@@ -14,9 +14,9 @@
 ```sql
 PERCENTILE(<col>, <p>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col>` | 正確なパーセンタイルを計算する列。サポートされる型：Double、Float、LargeInt、BigInt、Int、SmallInt、TinyInt。 |
 | `<p>` | 計算する正確なパーセンタイル、定数値。サポートされる型：Double。範囲：`[0.0, 1.0]`。2番目のパラメータは定数である必要があります。 |

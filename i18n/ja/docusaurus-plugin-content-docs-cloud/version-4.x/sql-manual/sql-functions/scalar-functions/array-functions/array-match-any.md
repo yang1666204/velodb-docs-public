@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 配列内の任意の要素が指定された条件に一致する場合はtrueを返し、そうでなければfalseを返します。配列にNULL要素が含まれ、すべての非NULL要素がfalseの場合は、NULLを返します。
 
@@ -14,7 +14,7 @@
 ```sql
 array_match_any(lambda, <arr> [, <arr> ...])
 ```
-## Parameters
+## パラメータ
 
 - `lambda`: 各要素に対してチェックする条件を定義するlambda式
 - `<arr>`: チェック対象となる1つ以上の配列。lambda関数がこれらの配列の各要素に適用されます

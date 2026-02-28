@@ -44,7 +44,7 @@ Dorisユーザーのパスワード
 
 `table.identifier [string]`
 
-Dorisテーブルの名前、形式はDBName.TableNameです
+DorisTableの名前、形式はDBName.TableNameです
 
 `sink.label-prefix [string]`
 
@@ -56,7 +56,7 @@ stream loadインポートで使用されるラベルプレフィックス。2pc
 
 `sink.enable-delete [bool]`
 
-削除を有効にするかどうか。このオプションでは、Dorisテーブルでbatch delete機能を有効にする必要があり（0.15+バージョンではデフォルトで有効）、Uniqueモデルのみをサポートします。詳細はこのリンクで確認できます：
+削除を有効にするかどうか。このオプションでは、DorisTableでbatch delete機能を有効にする必要があり（0.15+バージョンではデフォルトで有効）、Uniqueモデルのみをサポートします。詳細はこのリンクで確認できます：
 
 batch delete
 
@@ -137,7 +137,7 @@ Dorisデータベース
 
 `table [string]`
 
-Dorisテーブル
+DorisTable
 
 `user [string]`
 
@@ -230,7 +230,7 @@ Dorisターゲットデータベース名
 
 `table [string]`
 
-Dorisターゲットテーブル名
+DorisターゲットTable名
 
 `user [string]`
 

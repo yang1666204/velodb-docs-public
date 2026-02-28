@@ -1,21 +1,21 @@
 ---
 {
-  "title": "SQL Server JDBC カタログ",
+  "title": "SQL サーバー JDBC カタログ",
   "description": "Doris JDBC CatalogはSQL ServerデータベースへのJDBC標準インターフェースを通じた接続をサポートしています。",
   "language": "ja"
 }
 ---
 Doris JDBC Catalogは、標準のJDBCインターフェースを通じてSQL Serverデータベースへの接続をサポートしています。このドキュメントでは、SQL Serverデータベース接続の設定方法について説明します。
 
-JDBC Catalogの概要については、こちらを参照してください: [JDBC Catalog Overview](./jdbc-catalog-overview.md)
+JDBC Catalogの概要については、こちらを参照してください: [JDBC カタログ 概要](./jdbc-catalog-overview.md)
 
 ## 使用上の注意
 
 SQL Serverデータベースに接続するには、以下が必要です
 
-* SQL Server 2012以降、またはAzure SQL Database。
+* SQL サーバー 2012以降、またはAzure SQL Database。
 
-* SQL ServerデータベースのJDBCドライバー。最新版または指定されたバージョンを[Maven Repository](https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc)からダウンロードできます。SQL Server JDBC Driver 11.2.x以上の使用を推奨します。
+* SQL ServerデータベースのJDBCドライバー。最新版または指定されたバージョンを[Maven Repository](https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc)からダウンロードできます。SQL サーバー JDBC Driver 11.2.x以上の使用を推奨します。
 
 * DorisのFEおよびBEノードとSQL Serverサーバー間のネットワーク接続。デフォルトポートは1433です。
 
@@ -31,7 +31,7 @@ CREATE CATALOG sqlserver_catalog PROPERTIES (
     'driver_class' = 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
 )
 ```
-`jdbc_url`は、SQL Server JDBCドライバーに渡される接続情報とパラメータを定義します。URLでサポートされているパラメータは、[SQL Server JDBC Driver Documentation](https://learn.microsoft.com/zh-cn/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver16)で提供されています。
+`jdbc_url`は、SQL サーバー JDBCドライバーに渡される接続情報とパラメータを定義します。URLでサポートされているパラメータは、[SQL サーバー JDBC Driver Documentation](https://learn.microsoft.com/zh-cn/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver16)で提供されています。
 
 ### Connection Security
 
@@ -42,21 +42,21 @@ JDBCドライバーとコネクタは、Transport Layer Security (TLS) 暗号化
 ```sql
 'jdbc_url' = 'jdbc:sqlserver://<host>:<port>;databaseName=<databaseName>;encrypt=false'
 ```
-[SQL Server JDBC Driver Documentation](https://learn.microsoft.com/zh-cn/sql/connect/jdbc/using-ssl-encryption?view=sql-server-ver16)のTLSセクションでは、`trustServerCertificate`、`hostNameInCertificate`、`trustStore`、`trustStorePassword`などの他のパラメータについて詳しく説明されています。
+[SQL サーバー JDBC Driver Documentation](https://learn.microsoft.com/zh-cn/sql/connect/jdbc/using-ssl-encryption?view=sql-server-ver16)のTLSセクションでは、`trustServerCertificate`、`hostNameInCertificate`、`trustStore`、`trustStorePassword`などの他のパラメータについて詳しく説明されています。
 
 ## 階層マッピング
 
 SQLServerをマッピングする際、DorisのDatabaseはSQL Serverの指定されたDatabase（`jdbc_url`の`<databaseName>`パラメータ）配下のSchemaに対応します。DorisのDatabase配下のTableは、SQLServerのSchema配下のTablesに対応します。マッピング関係は以下の通りです：
 
-| Doris    | SQL Server |
+| Doris    | SQL サーバー |
 | -------- | ---------- |
-| Catalog  | Database   |
+| カタログ  | Database   |
 | Database | Schema     |
 | Table    | Table      |
 
 ## カラム型マッピング
 
-| SQL Server Type                        | Doris Type    | Comment                                          |
+| SQL サーバー タイプ                        | Doris タイプ    | Comment                                          |
 | -------------------------------------- | ------------- | ------------------------------------------------ |
 | bit                                    | boolean       |                                                  |
 | tinyint                                | smallint      | SQLServerのtinyintはunsignedのため、Dorisのsmallintにマッピングされます |
@@ -81,7 +81,7 @@ SQLServerをマッピングする際、DorisのDatabaseはSQL Serverの指定さ
 1. SQL Serverへの接続時の証明書認証例外
 
    ```text
-   SQLServerException: The driver could not establish a secure connection to SQL Server by using Secure Sockets Layer (SSL) encryption.
+   SQLServerException: The driver could not establish a secure connection to SQL サーバー by using Secure Sockets Layer (SSL) encryption.
    Error: "sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException:
    unable to find valid certification path to requested target". ClientConnectionId:a92f3817-e8e6-4311-bc21-7c66
    ```
@@ -96,7 +96,7 @@ Catalogを作成する際、JDBC接続文字列の末尾に`encrypt=false`を追
 
    解決方法は以下の通りです：
 
-   1. SQL ServerでTLS 1.2を有効にする。参照：[SQL Server TLS 1.2 Support](https://learn.microsoft.com/zh-cn/troubleshoot/sql/database-engine/connect/tls-1-2-support-microsoft-sql-server)
+   1. SQL ServerでTLS 1.2を有効にする。参照：[SQL サーバー TLS 1.2 Support](https://learn.microsoft.com/zh-cn/troubleshoot/sql/database-engine/connect/tls-1-2-support-microsoft-sql-server)
 
    2. JDKでTLS 1.0を有効にする。
 

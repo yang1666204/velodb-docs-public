@@ -13,8 +13,8 @@ IPv6タイプのアドレスが有効なIPv6アドレスかどうかを判定し
 ```sql
 IS_IPV6_STRING(<ipv6_str>)
 ```
-## Parameters
-| Parameter | Description                                      |
+## パラメータ
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ipv6_str>`      | String型のIPv6アドレス |
 

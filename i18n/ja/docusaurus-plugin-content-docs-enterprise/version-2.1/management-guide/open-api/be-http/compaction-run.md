@@ -23,7 +23,7 @@
     - タブレットのID
 
 * `table_id`
-    - テーブルのID。なお、table_id=xxxはcompact_type=fullが指定された場合のみ有効になり、tablet_idとtable_idはどちらか一つのみ指定でき、同時に指定することはできません。table_idを指定すると、このテーブル配下のすべてのタブレットに対してfull_compactionが自動実行されます。
+    - TableのID。なお、table_id=xxxはcompact_type=fullが指定された場合のみ有効になり、tablet_idとtable_idはどちらか一つのみ指定でき、同時に指定することはできません。table_idを指定すると、このTable配下のすべてのタブレットに対してfull_compactionが自動実行されます。
 
 * `compact_type`
     - 値は`base`または`cumulative`または`full`です。full_compactionの使用シナリオについては、[Data Recovery](../../../admin-manual/trouble-shooting/repairing-data)を参照してください。

@@ -14,9 +14,9 @@
 ```sql
 AI_TRANSLATE([<resource_name>], <text>, <target_language>)
 ```
-## Parameters
+## パラメータ
 
-|    Parameter      | Description             |
+|    Parameter      | デスクリプション             |
 | ----------------- | ---------------------- |
 | `<resource_name>` | 指定されたリソース名 |
 | `<text>`          | 翻訳するテキスト  |

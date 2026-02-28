@@ -10,7 +10,7 @@
 
 `GET /api/basepath`
 
-## Description
+## デスクリプション
 
 httpベースパスを取得するために使用されます。
     

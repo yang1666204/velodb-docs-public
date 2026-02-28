@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW COLUMN STATS",
-  "description": "この文は、テーブルの列統計情報を表示するために使用されます。",
+  "description": "この文は、Tableの列統計情報を表示するために使用されます。",
   "language": "ja"
 }
 ---
 ## 概要
 
-このステートメントはテーブルの列統計を表示するために使用されます。
+このステートメントはTableの列統計を表示するために使用されます。
 
 ## 構文
 
@@ -18,17 +18,17 @@ SHOW COLUMN [CACHED] STATS <table_name> [ (<column_name> [, ...]) ];
 
 **1. `<table_name>`**
 
-> カラム統計を表示するテーブルの名前。
+> カラム統計を表示するTableの名前。
 
 ## オプションパラメータ
 
 **1. `CACHED`**
 
-> FEキャッシュ内のカラム統計を表示します。指定されない場合、デフォルトで統計テーブルに永続化された情報が表示されます。
+> FEキャッシュ内のカラム統計を表示します。指定されない場合、デフォルトで統計Tableに永続化された情報が表示されます。
 
 **2. `<column_name>`**
 
-> 表示する必要があるカラム名を指定します。カラム名はテーブル内に存在している必要があり、複数のカラム名はコンマで区切ります。指定されない場合、デフォルトですべてのカラムの情報が表示されます。
+> 表示する必要があるカラム名を指定します。カラム名はTable内に存在している必要があり、複数のカラム名はコンマで区切ります。指定されない場合、デフォルトですべてのカラムの情報が表示されます。
 
 ## 戻り値
 
@@ -49,20 +49,20 @@ SHOW COLUMN [CACHED] STATS <table_name> [ (<column_name> [, ...]) ];
 | query_times | クエリ回数          |
 | updated_time |   更新時刻           |
 | update_rows | 最後のanalyze時の更新行数           |
-| last_analyze_row_count | 最後のanalyze時のテーブル行数         |
-| last_analyze_version | 最後のanalyze時のテーブルバージョン         |
+| last_analyze_row_count | 最後のanalyze時のTable行数         |
+| last_analyze_version | 最後のanalyze時のTableバージョン         |
 
 ## アクセス制御要件
 
 このSQLを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes                                    |
+| Privilege | Object | 注釈                                    |
 |:--------------| :------------- |:------------------------------------------------|
-| SELECT_PRIV   | Table    | SHOWを実行する際、クエリ対象テーブルのSELECT_PRIV権限が必要です。 |
+| SELECT_PRIV   | Table    | SHOWを実行する際、クエリ対象TableのSELECT_PRIV権限が必要です。 |
 
 ## 例
 
-1. テーブルtest1のすべてのカラムの統計を表示します。
+1. Tabletest1のすべてのカラムの統計を表示します。
 
 ```sql
 SHOW COLUMN STATS test1;

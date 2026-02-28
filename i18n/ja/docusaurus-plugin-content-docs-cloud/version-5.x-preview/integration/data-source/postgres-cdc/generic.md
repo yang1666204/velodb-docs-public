@@ -109,9 +109,9 @@ GRANT pg_create_subscription TO cdc_user;
 
 | 権限 | 目的 |
 |-----------|---------|
-| `REPLICATION` | CDCのためのWAL（Write-Ahead Log）の読み取り |
+| `REPLICATION` | CDCのためのWAL（Write-Ahead ログ）の読み取り |
 | `LOGIN` | データベースへの接続 |
-| `SELECT` | 初期スナップショットのためのテーブルデータの読み取り |
+| `SELECT` | 初期スナップショットのためのTableデータの読み取り |
 | `pg_create_subscription` | PostgreSQL 15+で必要 |
 
 ### ユーザー権限の確認
@@ -160,12 +160,12 @@ CDCユーザーが以下を実行できることを確認してください：
 ```bash
 psql -h <host> -p 5432 -U cdc_user -d your_database
 ```
-2. **テーブルの表示:**
+2. **Tableの表示:**
 
 ```sql
 \dt
 ```
-3. **テーブルから選択:**
+3. **Tableから選択:**
 
 ```sql
 SELECT * FROM your_table LIMIT 5;

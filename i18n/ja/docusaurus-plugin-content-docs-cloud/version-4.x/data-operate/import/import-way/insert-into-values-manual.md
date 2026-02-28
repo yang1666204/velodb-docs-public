@@ -1,11 +1,11 @@
 ---
 {
   "title": "Insert Into Values",
-  "description": "INSERT INTO VALUES文は、SQLからDorisテーブルへの値のインポートをサポートします。INSERT INTO VALUESは同期インポート方式であり、",
+  "description": "INSERT INTO VALUES文は、SQLからDorisTableへの値のインポートをサポートします。INSERT INTO VALUESは同期インポート方式であり、",
   "language": "ja"
 }
 ---
-INSERT INTO VALUES文はSQLから値をDorisテーブルにインポートすることをサポートします。INSERT INTO VALUESは同期インポート方式で、インポートの実行後にインポート結果が返されます。インポートが成功したかどうかは、返された結果に基づいて判断できます。INSERT INTO VALUESはインポートタスクの原子性を保証します。つまり、すべてのデータが正常にインポートされるか、まったくインポートされないかのどちらかです。
+INSERT INTO VALUES文はSQLから値をDorisTableにインポートすることをサポートします。INSERT INTO VALUESは同期インポート方式で、インポートの実行後にインポート結果が返されます。インポートが成功したかどうかは、返された結果に基づいて判断できます。INSERT INTO VALUESはインポートタスクの原子性を保証します。つまり、すべてのデータが正常にインポートされるか、まったくインポートされないかのどちらかです。
 
 ## 適用シナリオ
 
@@ -14,7 +14,7 @@ INSERT INTO VALUES文はSQLから値をDorisテーブルにインポートする
 
 ## 実装
 
-INSERT INTO VALUESを使用する場合、インポートジョブはMySQLプロトコルを使用してFEノードに開始され、送信される必要があります。FEは実行プランを生成し、これにはクエリ関連のオペレーターが含まれ、最後のオペレーターはOlapTableSinkです。OlapTableSinkオペレーターは、クエリ結果をターゲットテーブルに書き込む役割を担います。実行プランはその後、実行のためにBEノードに送信されます。DorisはCoordinatorとして1つのBEノードを指定し、そのノードがデータを受信して他のBEノードに分散します。
+INSERT INTO VALUESを使用する場合、インポートジョブはMySQLプロトコルを使用してFEノードに開始され、送信される必要があります。FEは実行プランを生成し、これにはクエリ関連のオペレーターが含まれ、最後のオペレーターはOlapTableSinkです。OlapTableSinkオペレーターは、クエリ結果をターゲットTableに書き込む役割を担います。実行プランはその後、実行のためにBEノードに送信されます。DorisはCoordinatorとして1つのBEノードを指定し、そのノードがデータを受信して他のBEノードに分散します。
 
 ## 開始方法
 
@@ -22,13 +22,13 @@ INSERT INTO VALUESジョブはMySQLプロトコルを使用して送信および
 
 ### 準備
 
-INSERT INTO VALUESはターゲットテーブルに対するINSERT権限が必要です。GRANTコマンドを使用してユーザーアカウントに権限を付与できます。
+INSERT INTO VALUESはターゲットTableに対するINSERT権限が必要です。GRANTコマンドを使用してユーザーアカウントに権限を付与できます。
 
 ### INSERT INTO VALUESジョブの作成
 
 **INSERT INTO VALUES**
 
-1. ソーステーブルを作成する
+1. ソースTableを作成する
 
 ```SQL
 CREATE TABLE testdb.test_table(
@@ -39,7 +39,7 @@ CREATE TABLE testdb.test_table(
 DUPLICATE KEY(user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
-2. `INSERT INTO VALUES` を使用してソーステーブルにデータをインポートします（本番環境では推奨されません）。
+2. `INSERT INTO VALUES` を使用してソースTableにデータをインポートします（本番環境では推奨されません）。
 
 ```SQL
 INSERT INTO testdb.test_table (user_id, name, age)

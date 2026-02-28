@@ -36,7 +36,7 @@ sysctl -p
 
 Dorisのmetadataは時刻精度が5000ms未満である必要があります。クラスタ内のすべてのマシンは、時刻の問題によって引き起こされるmetadataの不整合によってサービスに異常が発生することを避けるために、クロックを同期する必要があります。
 
-#### Disable Swap Partition
+#### Disable Swap パーティション
 
 LinuxのswapパーティションはDorisに深刻なパフォーマンス問題を引き起こす可能性があります。swapパーティションを無効にする必要があります。
 
@@ -67,7 +67,7 @@ LinuxのswapパーティションはDorisに深刻なパフォーマンス問題
 
 Dorisインスタンスはネットワーク経由で通信を行います。以下の表は必要なポートをすべて示しています：
 
-| Instance Name | Port Name              | Default Port | Communication Direction      | Description                                                  |
+| Instance Name | Port Name              | Default Port | Communication Direction      | デスクリプション                                                  |
 | --------------- | ------------------------ | -------------- | ------------------------------ | -------------------------------------------------------------- |
 | BE            | be_port                | 9060         | FE --> BE                    | Port on BE for Thrift server to receive requests from FE     |
 | BE            | webserver_port         | 8040         | BE <--> BE                   | Port for HTTP server on BE                                   |
@@ -81,7 +81,7 @@ Dorisインスタンスはネットワーク経由で通信を行います。以
 
 > 注記: 複数のFEインスタンスをデプロイする際は、`http_port`の設定が同じであることを確認してください。
 
-#### Network Configuration
+#### Network 構成
 
 複数のネットワークインターフェースの存在やDockerなどのインストールによって引き起こされる仮想ネットワークインターフェースの存在により、単一のホストが複数の異なるIPアドレスを持つ場合があります。Dorisは現在、利用可能なIPを自動的に識別することができません。そのため、複数のIPを持つデプロイホストを扱う場合、priority_networks設定を通じて正しいIPを強制的に指定する必要があります。
 
@@ -129,7 +129,7 @@ VeloDB_doris_x.x.x.x-x86_64-avx2
 |-- be                    ## Doris be
 |-- fe                    ## Doris FE
 |-- java8                 ## Java Runtime Environment (JRE) required for Doris FE/BE/Broker 
-|-- jdbc_drivers          ##Database driver dependencies for running Doris FE/BE with JDBC, as well as for Multi Catalog operations.
+|-- jdbc_drivers          ##Database driver dependencies for running Doris FE/BE with JDBC, as well as for Multi カタログ 運用.
 `-- udf
 ```
 #### FE Deployment

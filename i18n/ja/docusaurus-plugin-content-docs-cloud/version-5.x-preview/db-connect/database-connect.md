@@ -5,9 +5,9 @@
   "language": "ja"
 }
 ---
-Apache Dorisは、MySQLネットワーク接続プロトコルを採用しています。MySQLエコシステム内のコマンドラインツール、JDBC/ODBCドライバー、および各種ビジュアライゼーションツールと互換性があります。さらに、Apache Dorisには組み込みの使いやすいWeb UIが付属しています。このガイドでは、MySQL Client、MySQL JDBC Connector、DBeaver、および組み込みのDoris Web UIを使用してDorisに接続する方法について説明します。
+Apache Dorisは、MySQLネットワーク接続プロトコルを採用しています。MySQLエコシステム内のコマンドラインツール、JDBC/ODBCドライバー、および各種ビジュアライゼーションツールと互換性があります。さらに、Apache Dorisには組み込みの使いやすいWeb UIが付属しています。このガイドでは、MySQL クライアント、MySQL JDBC Connector、DBeaver、および組み込みのDoris Web UIを使用してDorisに接続する方法について説明します。
 
-## MySQL Client
+## MySQL クライアント
 
 LinuxのMySQL Clientを[MySQL公式サイト](https://dev.mysql.com/downloads/mysql/)からダウンロードします。現在、DorisはMySQL 5.7以降のクライアントと主に互換性があります。
 
@@ -22,7 +22,7 @@ mysql -h FE_IP -P FE_QUERY_PORT -u USER_NAME
 ```shell
 Welcome to the MySQL monitor.  Commands end with ; or \g.                               
 Your MySQL connection id is 236                                                         
-Server version: 5.7.99 Doris version doris-2.0.3-rc06-37d31a5                           
+サーバー version: 5.7.99 Doris version doris-2.0.3-rc06-37d31a5                           
 Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.            
 Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.                                     Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.          mysql> 
 ```
@@ -84,7 +84,7 @@ ALTER SYSTEM ADD BACKEND "be_host_ip:heartbeat_service_port";
 ![Doris WebUI Playground](/images/Doris-Web-UI-Playground-en.png)
 
 :::tip 
-Playgroundで特定のデータベース/テーブルに関連しないステートメントを正常に実行するには、左側のデータベースパネルからデータベースをランダムに選択する必要があります。この制限は後で削除される予定です。
+Playgroundで特定のデータベース/Tableに関連しないステートメントを正常に実行するには、左側のデータベースパネルからデータベースをランダムに選択する必要があります。この制限は後で削除される予定です。
 
 現在の組み込みWebコンソールはSET型のSQLステートメントを実行できません。そのため、WebコンソールはSET PASSWORD FOR 'user' = PASSWORD('user_password')のようなステートメントをサポートしていません。
 :::

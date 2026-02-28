@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 2つの整数に対してビット単位のOR演算を実行するために使用されます。
 
 整数の範囲: TINYINT, SMALLINT, INT, BIGINT, LARGEINT
@@ -15,7 +15,7 @@
 ```sql
 BITOR( <lhs>, <rhs>)
 ```
-## Parameters
+## パラメータ
 | parameter | description                                                             |
 |-----------|-------------------------------------------------------------------------|
 | `<lhs>`   | 評価される最初のBOOLEAN値                                 |

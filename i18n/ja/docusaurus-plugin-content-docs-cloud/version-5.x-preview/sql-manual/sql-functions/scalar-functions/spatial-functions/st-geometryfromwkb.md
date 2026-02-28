@@ -18,9 +18,9 @@
 ```sql
 ST_GEOMETRYFROMWKB( <wkb>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Instructions |
+| パラメータ | Instructions |
 | -- |---------|
 | `<wkb>` | ジオメトリのバイナリ表現。通常はST_AsBinaryまたはその他のWKB生成関数によって生成される。サポートされるジオメトリタイプには、すべての標準タイプが含まれる：POINT、LINESTRING、LINE、POLYGON |
 

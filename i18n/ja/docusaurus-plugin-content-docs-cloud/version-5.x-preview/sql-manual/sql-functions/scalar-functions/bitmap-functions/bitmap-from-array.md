@@ -16,7 +16,7 @@ BITMAP_FROM_ARRAY(<arr>)
 ```
 ## パラメータ
 
-| Parameter | Description   |
+| Parameter | デスクリプション   |
 |-----------|---------------|
 | `<arr>`   | integer array |
 

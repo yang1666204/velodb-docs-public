@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 整数に対してビット単位の反転操作を実行するために使用されます。
 
 整数の範囲: TINYINT, SMALLINT, INT, BIGINT, LARGEINT
@@ -15,7 +15,7 @@
 ```sql
 BITNOT( <x>)
 ```
-## Parameters
+## パラメータ
 | parameter | description |
 |-----------|-------------|
 | `<x>`     | 整数演算      |

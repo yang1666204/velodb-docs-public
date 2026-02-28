@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 同期化されたマテリアライズドビューを削除します。
 
@@ -24,7 +24,7 @@ ON <table_name>
 
 **2. `<table_name>`**
 
-> マテリアライズドビューが属するテーブル。
+> マテリアライズドビューが属するTable。
 
 ## アクセス制御要件
 
@@ -32,11 +32,11 @@ ON <table_name>
 
 | 権限       | オブジェクト | 備考                                                         |
 | ---------- | ------------ | ------------------------------------------------------------ |
-| ALTER_PRIV | テーブル     | 削除対象のマテリアライズドビューが属するテーブルに対するALTER_PRIV権限が必要 |
+| ALTER_PRIV | Table     | 削除対象のマテリアライズドビューが属するTableに対するALTER_PRIV権限が必要 |
 
 ## 例
 
-`lineitem`テーブル上の同期マテリアライズドビュー`sync_agg_mv`を削除する
+`lineitem`Table上の同期マテリアライズドビュー`sync_agg_mv`を削除する
 
 ```sql
 DROP MATERIALIZED VIEW sync_agg_mv on lineitem;

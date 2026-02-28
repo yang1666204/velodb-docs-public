@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `explode_json_object`はJSONオブジェクトを複数の行に展開し、各行にキーと値のペアを含めます。通常、JSONデータを処理し、JSONオブジェクトをよりクエリ可能な形式に展開するために使用されます。この関数は空でないJSONオブジェクトのみをサポートします。
 
@@ -19,7 +19,7 @@ EXPLODE_JSON_OBJECT_OUTER(<json>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<json>` | json型 |
 

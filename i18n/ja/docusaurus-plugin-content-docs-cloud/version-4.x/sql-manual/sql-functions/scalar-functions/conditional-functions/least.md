@@ -16,7 +16,7 @@ LEAST(<expr> [, ...])
 ```
 ## パラメータ
 
-| Parameter  | Description |
+| Parameter  | デスクリプション |
 |------------|-------------|
 | `<expr>` | 比較する式。サポートされる型には `TINYINT`、`SMALLINT`、`INT`、`BIGINT`、`LARGEINT`、`FLOAT`、`DOUBLE`、`STRING`、`DATETIME`、`DECIMAL` があります。 |
 

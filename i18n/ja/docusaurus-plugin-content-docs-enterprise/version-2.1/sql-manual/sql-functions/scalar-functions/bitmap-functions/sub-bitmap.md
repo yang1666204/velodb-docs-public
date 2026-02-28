@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定された位置から開始し、指定されたカーディナリティ制限によって制限されたBitmap要素のサブセットを抽出し、サブセットを新しいBitmapとして返します。
 
@@ -14,9 +14,9 @@
 ```sql
 SUB_BITMAP(<bitmap>, <position>, <cardinality_limit>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter             | Description                   |
+| Parameter             | デスクリプション                   |
 |-----------------------|-------------------------------|
 | `<bitmap>`            | Bitmap値              |
 | `<position>`          | 開始位置（境界を含む） |

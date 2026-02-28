@@ -15,9 +15,9 @@
 ```sql
 ARRAY_MIN(<arr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --- | --- |
 | `<arr>` | ARRAY配列 |
 

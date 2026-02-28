@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-# Encryption and Masking Function 
+# Encryption and Masking ファンクション 
 
 Dorisは以下の組み込み暗号化およびマスキング関数を提供しています。詳細な使用方法については、SQLマニュアルを参照してください。
 

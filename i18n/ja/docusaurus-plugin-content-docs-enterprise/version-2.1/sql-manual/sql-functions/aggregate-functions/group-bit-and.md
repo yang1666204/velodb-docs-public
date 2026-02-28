@@ -16,7 +16,7 @@ GROUP_BIT_AND(<expr>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | すべてのINT型をサポート |
 

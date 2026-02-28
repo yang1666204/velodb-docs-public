@@ -8,7 +8,7 @@
 
 `GET fe_host:fe_http_port/api/get_wal_size?host_ports=host1:port1,host2:port2...`
 
-## Description
+## デスクリプション
 
 ユーザーはこのHTTPインターフェースを通じて指定されたBEのWALファイルの数を取得できます。BEが指定されていない場合、デフォルトですべてのBEのWALファイルの数が返されます。
 

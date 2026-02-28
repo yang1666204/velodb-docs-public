@@ -27,9 +27,9 @@ DAY_CEIL(<date_or_time_expr>, <origin>)
 DAY_CEIL(<date_or_time_expr>, <period>)
 DAY_CEIL(<date_or_time_expr>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<date_or_time_expr>` | date/datetimeタイプをサポートする有効な日付式。特定のdatetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<period>` | 各期間の日数を指定します。INTタイプです。指定されない場合、デフォルトの期間は1日です。 |

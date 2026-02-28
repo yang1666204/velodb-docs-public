@@ -11,7 +11,7 @@
 
 `SELECT INTO OUTFILE`は同期コマンドであり、コマンドの戻りはエクスポートが完了したことを意味します。エクスポートが成功した場合、エクスポートされたファイルの数、サイズ、パスなどの情報が返されます。エクスポートが失敗した場合、エラー情報が返されます。
 
-`SELECT INTO OUTFILE`と`EXPORT`の選択方法については、[Export Overview](./export-overview.md)を参照してください。
+`SELECT INTO OUTFILE`と`EXPORT`の選択方法については、[Export 概要](./export-overview.md)を参照してください。
 
 `SELECT INTO OUTFILE`コマンドの詳細な紹介については、以下を参照してください：[SELECT INTO OUTFILE](../../sql-manual/sql-statements/data-modification/load-and-export/OUTFILE)
 
@@ -28,7 +28,7 @@
 - バージョン2.1のパイプラインエンジンは同時エクスポートをサポートしていません
 
 ## クイックスタート
-### テーブルの作成とデータのインポート
+### Tableの作成とデータのインポート
 
 ```sql
 CREATE TABLE IF NOT EXISTS tbl (
@@ -248,7 +248,7 @@ PROPERTIES(
 
 この機能を有効にしたい場合は、`fe.conf`に`enable_outfile_to_local=true`を追加し、FEを再起動してください。
 
-例：tblテーブル内のすべてのデータをローカルファイルシステムにエクスポートし、エクスポートジョブのファイル形式をcsv（デフォルト形式）に設定し、列区切り文字を`,`に設定します。
+例：tblTable内のすべてのデータをローカルファイルシステムにエクスポートし、エクスポートジョブのファイル形式をcsv（デフォルト形式）に設定し、列区切り文字を`,`に設定します。
 
 ```sql
 SELECT c1, c2 FROM db.tbl

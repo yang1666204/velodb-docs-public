@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つのdatetime値の間の分単位の差を計算します。結果は`<end_date>`から`<start_date>`を引いた分数です。
 
@@ -14,9 +14,9 @@
 ```sql
 MINUTES_DIFF(<enddate>, <startdate>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description                                     |
+| Parameter  | デスクリプション                                     |
 |------------|-------------------------------------------------|
 | `<end_date>`  | 終了時刻。DATE、DATETIME、またはDATETIMEV2型を指定可能 |
 | `<start_date>`  | 開始時刻。DATE、DATETIME、またはDATETIMEV2型を指定可能 |

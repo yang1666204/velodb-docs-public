@@ -1,15 +1,15 @@
 ---
 {
-  "title": "Paimon Catalog",
-  "description": "Dorisは現在、様々なメタデータサービスを通じてPaimonテーブルメタデータへのアクセスと、Paimonデータのクエリをサポートしています。",
+  "title": "Paimon カタログ",
+  "description": "Dorisは現在、様々なメタデータサービスを通じてPaimonTableメタデータへのアクセスと、Paimonデータのクエリをサポートしています。",
   "language": "ja"
 }
 ---
-# Paimon Catalog
+# Paimon カタログ
 
-Dorisは現在、様々なメタデータサービスを通じてPaimonテーブルメタデータへのアクセスと、Paimonデータのクエリをサポートしています。
+Dorisは現在、様々なメタデータサービスを通じてPaimonTableメタデータへのアクセスと、Paimonデータのクエリをサポートしています。
 
-現在、Paimonテーブルでは読み取り操作のみがサポートされています。Paimonテーブルへの書き込み操作は今後サポートされる予定です。
+現在、PaimonTableでは読み取り操作のみがサポートされています。PaimonTableへの書き込み操作は今後サポートされる予定です。
 
 [Apache DorisとApache Paimonのクイックスタート](../best-practices/doris-paimon.md)
 
@@ -18,7 +18,7 @@ Dorisは現在、様々なメタデータサービスを通じてPaimonテーブ
 | シナリオ | 説明 |
 | ------------ | ------------------------------------------------------------ |
 | クエリ高速化 | Dorisの分散コンピューティングエンジンを使用してPaimonデータに直接アクセスし、クエリを高速化します。 |
-| データ統合 | Paimonデータを読み取ってDoris内部テーブルに書き込むか、Dorisコンピューティングエンジンを使用してZeroETL操作を実行します。 |
+| データ統合 | Paimonデータを読み取ってDoris内部Tableに書き込むか、Dorisコンピューティングエンジンを使用してZeroETL操作を実行します。 |
 | データ書き戻し | まだサポートされていません。 |
 
 ## Catalogの設定
@@ -49,7 +49,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
   Paimonのwarehouseパスです。`<paimon_catalog_type>`が`filesystem`の場合、このパラメータを指定する必要があります。
 
-  `warehouse`パスは`Database`パスの一つ上のレベルを指している必要があります。例えば、テーブルパスが`s3://bucket/path/to/db1/table1`の場合、`warehouse`は`s3://bucket/path/to/`にする必要があります。
+  `warehouse`パスは`Database`パスの一つ上のレベルを指している必要があります。例えば、Tableパスが`s3://bucket/path/to/db1/table1`の場合、`warehouse`は`s3://bucket/path/to/`にする必要があります。
 
 * `{MetaStoreProperties}`
 
@@ -57,11 +57,11 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 * `{StorageProperties}`
 
-  StoragePropertiesセクションは、ストレージシステムに関連する接続と認証情報を入力するために使用されます。詳細は[Supported Storage Systems]セクションを参照してください。
+  StoragePropertiesセクションは、ストレージシステムに関連する接続と認証情報を入力するために使用されます。詳細は[Supported Storage システム]セクションを参照してください。
 
 * `{CommonProperties}`
 
-  CommonPropertiesセクションは、共通のプロパティを入力するために使用されます。[Common Properties]については、[Catalog Overview](../catalog-overview.md)セクションを参照してください。
+  CommonPropertiesセクションは、共通のプロパティを入力するために使用されます。[Common Properties]については、[カタログ 概要](../catalog-overview.md)セクションを参照してください。
   
 ### サポートされるPaimonバージョン
 
@@ -103,7 +103,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 ## カラム型マッピング
 
-| Paimon Type                        | Doris Type    | Comment                                                                 |
+| Paimon タイプ                        | Doris タイプ    | Comment                                                                 |
 | ---------------------------------- | ------------- | ----------------------------------------------------------------------- |
 | boolean                            | boolean       |                                                                         |
 | tinyint                            | tinyint       |                                                                         |
@@ -197,11 +197,11 @@ CREATE CATALOG `paimon_gcs` PROPERTIES (
     "s3.endpoint" = "storage.googleapis.com"
 );
 ```
-## Query Operations
+## Query 運用
 
 ### Basic Query
 
-Catalogが設定されると、以下のようにCatalog内のテーブルデータをクエリできます：
+Catalogが設定されると、以下のようにCatalog内のTableデータをクエリできます：
 
 ```sql
 -- 1. Switch to catalog, use database, and query
@@ -242,7 +242,7 @@ SELECT * FROM paimon_table@incr('startTimestamp'='1750844949', 'endTimestamp'='1
 ```
 パラメータ:
 
-| Parameter | Description | Example |
+| Parameter | デスクリプション | Example |
 | --- | --- | -- |
 | `startSnapshotId` | 開始スナップショットID、0より大きい値である必要があります | `'startSnapshotId'='3'` |
 | `endSnapshotId` | 終了スナップショットID、`startSnapshotId`より大きい値である必要があります。オプション、指定されていない場合は`startSnapshotId`から最新のスナップショットまで読み取ります | `'endSnapshotId'='10'` |
@@ -261,22 +261,22 @@ SELECT * FROM paimon_table@incr('startTimestamp'='1750844949', 'endTimestamp'='1
 これらのパラメータの詳細については、[Paimonドキュメント](https://paimon.apache.org/docs/master/maintenance/configurations/)を参照してください。
 
 
-## システムテーブル
+## システムTable
 
 > この機能はバージョン3.1.0以降でサポートされています
 
-DorisはPaimonシステムテーブルのクエリをサポートし、テーブル関連のメタデータを取得できます。システムテーブルは、スナップショット履歴、マニフェストファイル、データファイル、パーティション、その他の情報を表示するために使用できます。
+DorisはPaimonシステムTableのクエリをサポートし、Table関連のメタデータを取得できます。システムTableは、スナップショット履歴、マニフェストファイル、データファイル、パーティション、その他の情報を表示するために使用できます。
 
-Paimonテーブルのメタデータにアクセスするには、テーブル名の後に`$`記号を追加し、その後にシステムテーブル名を続けます:
+PaimonTableのメタデータにアクセスするには、Table名の後に`$`記号を追加し、その後にシステムTable名を続けます:
 
 ```sql
 SELECT * FROM my_table$system_table_name;
 ```
-> 注意: DorisはPaimonのグローバルシステムテーブルの読み取りをサポートしておらず、これらはFlinkでのみサポートされています。
+> 注意: DorisはPaimonのグローバルシステムTableの読み取りをサポートしておらず、これらはFlinkでのみサポートされています。
 
 ### schemas
 
-テーブルの現在および履歴のスキーマ情報を表示します。`ALTER TABLE`、`CREATE TABLE AS`、または`CREATE DATABASE AS`文を使用してテーブルスキーマを変更する際、各変更によりschemasテーブルにレコードが生成されます：
+Tableの現在および履歴のスキーマ情報を表示します。`ALTER TABLE`、`CREATE TABLE AS`、または`CREATE DATABASE AS`文を使用してTableスキーマを変更する際、各変更によりschemasTableにレコードが生成されます：
 
 ```sql
 SELECT * FROM my_table$schemas;
@@ -292,7 +292,7 @@ SELECT * FROM my_table$schemas;
 ```
 ### snapshots
 
-テーブルの全ての有効なスナップショット情報を表示します。スナップショット作成時刻、コミットユーザー、操作タイプなどが含まれます：
+Tableの全ての有効なスナップショット情報を表示します。スナップショット作成時刻、コミットユーザー、操作タイプなどが含まれます：
 
 ```sql
 SELECT * FROM my_table$snapshots;
@@ -313,7 +313,7 @@ SELECT * FROM my_table$snapshots;
 ```
 ### options
 
-テーブルの現在の設定オプションを表示します。テーブルオプションがテーブルに含まれていない場合、そのオプションはデフォルト値に設定されています：
+Tableの現在の設定オプションを表示します。TableオプションがTableに含まれていない場合、そのオプションはデフォルト値に設定されています：
 
 ```sql
 SELECT * FROM my_table$options;
@@ -346,7 +346,7 @@ mysql> SELECT * FROM my_table$files;
 ```
 ### tags
 
-テーブルのすべてのタグ情報を表示します。タグ名と関連するスナップショットを含みます:
+Tableのすべてのタグ情報を表示します。タグ名と関連するスナップショットを含みます:
 
 ```sql
 SELECT * FROM my_table$tags;
@@ -363,7 +363,7 @@ SELECT * FROM my_table$tags;
 ```
 ### branches
 
-テーブルの既知のブランチ情報をすべて表示します：
+Tableの既知のブランチ情報をすべて表示します：
 
 ```sql
 SELECT * FROM my_table$branches;
@@ -380,7 +380,7 @@ SELECT * FROM my_table$branches;
 ```
 ### consumers
 
-テーブルのコンシューマー情報を表示します。データ消費を追跡するために使用されます：
+Tableのコンシューマー情報を表示します。データ消費を追跡するために使用されます：
 
 ```sql
 SELECT * FROM my_table$consumers;
@@ -397,7 +397,7 @@ SELECT * FROM my_table$consumers;
 ```
 ### manifests
 
-テーブルの現在のスナップショットのマニフェストファイル情報を表示します：
+Tableの現在のスナップショットのマニフェストファイル情報を表示します：
 
 ```sql
 SELECT * FROM my_table$manifests;
@@ -418,7 +418,7 @@ SELECT * FROM my_table$manifests;
 ```
 ### aggregation_fields
 
-テーブルの集約フィールド情報を表示します。集約テーブルのフィールド設定に使用されます：
+Tableの集約フィールド情報を表示します。集約Tableのフィールド設定に使用されます：
 
 ```sql
 SELECT * FROM my_table$aggregation_fields;
@@ -436,7 +436,7 @@ SELECT * FROM my_table$aggregation_fields;
 ```
 ### partitions
 
-テーブルのパーティション情報を表示します。各パーティションの総レコード数と総ファイルサイズを含みます：
+Tableのパーティション情報を表示します。各パーティションの総レコード数と総ファイルサイズを含みます：
 
 ```sql
 SELECT * FROM my_table$partitions;
@@ -452,7 +452,7 @@ SELECT * FROM my_table$partitions;
 ```
 ### buckets
 
-テーブルのバケット情報を表示します。各バケットの統計情報も含まれます：
+Tableのバケット情報を表示します。各バケットの統計情報も含まれます：
 
 ```sql
 SELECT * FROM my_table$buckets;
@@ -468,7 +468,7 @@ SELECT * FROM my_table$buckets;
 ```
 ### statistics
 
-行数、データサイズ、およびその他の統計情報を含む、テーブルの統計情報を表示します：
+行数、データサイズ、およびその他の統計情報を含む、Tableの統計情報を表示します：
 
 ```sql
 SELECT * FROM my_table$statistics;
@@ -484,7 +484,7 @@ SELECT * FROM my_table$statistics;
 ```
 ### table_indexes
 
-テーブルのインデックス情報を表示します：
+Tableのインデックス情報を表示します：
 
 ```sql
 SELECT * FROM my_table$table_indexes;
@@ -499,11 +499,11 @@ SELECT * FROM my_table$table_indexes;
 |                   {2025-04-01} |           0 |               DELETION_VECTORS | index-633857e7-cdce-47d2-87... |                   33 |                    1 | [(data-346cb9c8-4032-4d66-a... |
 +--------------------------------+-------------+--------------------------------+--------------------------------+----------------------+----------------------+--------------------------------+
 ```
-### System Table Use Cases
+### システム Table Use Cases
 
-システムテーブルを通じて、以下の操作および監視タスクを簡単に実行できます。
+システムTableを通じて、以下の操作および監視タスクを簡単に実行できます。
 
-#### テーブルの最新スナップショット情報を表示して現在の状態を把握する
+#### Tableの最新スナップショット情報を表示して現在の状態を把握する
 
 ```sql
 SELECT snapshot_id, commit_time, commit_kind, total_record_count FROM catalog_sales$snapshots ORDER BY snapshot_id DESC;
@@ -517,7 +517,7 @@ SELECT snapshot_id, commit_time, commit_kind, total_record_count FROM catalog_sa
 |           1 | 2025-07-01 21:21:54.179 | APPEND      |           14329288 |
 +-------------+-------------------------+-------------+--------------------+
 ```
-#### スナップショットのテーブル情報を表示する
+#### スナップショットのTable情報を表示する
 
 ```sql
 SELECT s.snapshot_id, t.schema_id, t.fields FROM store_sales$snapshots s JOIN store_sales$schemas t ON s.schema_id=t.schema_id;
@@ -537,7 +537,7 @@ SELECT s.snapshot_id, t.schema_id, t.fields FROM store_sales$snapshots s JOIN st
 ```sql
 SELECT `bucket` , COUNT(*) as file_count, SUM(file_size_in_bytes)/1024/1024 as total_size_mb from paimon_s3.tpcds.catalog_sales$files GROUP BY `bucket`  ORDER BY total_size_mb;
 ```
-> 注意：Paimonシステムテーブルの多くのフィールドはDorisのキーワードであるため、バッククォートで囲む必要があります。
+> 注意：PaimonシステムTableの多くのフィールドはDorisのキーワードであるため、バッククォートで囲む必要があります。
 
 ```text
 +--------+------------+--------------------+

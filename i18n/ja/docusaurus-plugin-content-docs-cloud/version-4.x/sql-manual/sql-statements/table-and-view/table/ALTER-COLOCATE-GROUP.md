@@ -25,7 +25,7 @@ SET (
 
 **2.`<property_list>`**
 
-`property_list`は`colocation group`のプロパティであり、現在は`replication_num`と`replication_allocation`の変更のみをサポートしています。`colocation group`のこれら2つのプロパティを変更した後、同時にグループのテーブルの既存パーティションの`default.replication_allocation`、`dynamic.replication_allocation`、およびreplication_allocationプロパティを同じ値に変更します。
+`property_list`は`colocation group`のプロパティであり、現在は`replication_num`と`replication_allocation`の変更のみをサポートしています。`colocation group`のこれら2つのプロパティを変更した後、同時にグループのTableの既存パーティションの`default.replication_allocation`、`dynamic.replication_allocation`、およびreplication_allocationプロパティを同じ値に変更します。
 
 ## オプションパラメータ
 
@@ -41,7 +41,7 @@ SET (
 
 ## 例
 
-1. グローバルグループのレプリカ数を変更し、テーブル作成時に`"colocate_with" = "__global__foo"`を設定します。
+1. グローバルグループのレプリカ数を変更し、Table作成時に`"colocate_with" = "__global__foo"`を設定します。
 
 ```sql
 ALTER COLOCATE GROUP __global__foo
@@ -49,7 +49,7 @@ SET (
     "replication_num"="1"
     );
 ```
-2. 非グローバルグループのレプリカ数を変更し、テーブル作成時に "colocate_with" = "bar" を設定します。このテーブルはDatabase example_dbに属します。
+2. 非グローバルグループのレプリカ数を変更し、Table作成時に "colocate_with" = "bar" を設定します。このTableはDatabase example_dbに属します。
 
  ```sql 
 ALTER COLOCATE GROUP example_db.bar

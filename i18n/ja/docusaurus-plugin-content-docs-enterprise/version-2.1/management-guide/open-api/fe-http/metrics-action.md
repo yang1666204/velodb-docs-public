@@ -10,7 +10,7 @@
 
 `GET /api/metrics`
 
-## Description
+## デスクリプション
 
 dorisのメトリクス情報を取得するために使用されます。
 

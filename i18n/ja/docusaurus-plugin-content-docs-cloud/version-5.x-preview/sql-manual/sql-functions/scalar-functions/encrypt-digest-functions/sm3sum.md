@@ -14,7 +14,7 @@
 ```sql
 SM3SUM( <str> [ , <str> ... ] )
 ```
-## Parameters
+## パラメータ
 
 | parameter | description |
 |-----------|-------------|

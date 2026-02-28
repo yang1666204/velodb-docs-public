@@ -13,8 +13,8 @@ IP（IPv4またはIPv6）アドレスがCIDR記法で表されるネットワー
 ```sql
 IS_IP_ADDRESS_IN_RANGE(ip_str, cidr_prefix)
 ```
-## Parameters
-| Parameter | Description                                      |
+## パラメータ
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ip_str>`      | String型のIPv4またはIPv6アドレス |
 | `<cidr_prefix>`      | CIDR プレフィックス |

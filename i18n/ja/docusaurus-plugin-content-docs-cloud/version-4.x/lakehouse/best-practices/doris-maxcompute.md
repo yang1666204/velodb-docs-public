@@ -1,15 +1,15 @@
 ---
 {
   "title": "DorisとMaxCompute データ統合",
-  "description": "Apache DorisとAlibaba Cloud MaxCompute間でMaxCompute Catalogを通じて双方向データ統合を実現し、データインポート、ライトバック、データベース/テーブル管理をサポートして、企業の効率的なlakehouseアーキテクチャの構築を支援します。",
+  "description": "Apache DorisとAlibaba Cloud MaxCompute間でMaxCompute Catalogを通じて双方向データ統合を実現し、データインポート、ライトバック、データベース/Table管理をサポートして、企業の効率的なlakehouseアーキテクチャの構築を支援します。",
   "language": "ja"
 }
 ---
-この文書では、[MaxCompute Catalog](../catalogs/maxcompute-catalog.md)を通じてApache DorisとAlibaba Cloud MaxCompute間でデータ統合を実現する方法について説明します：
+この文書では、[MaxCompute カタログ](../catalogs/maxcompute-catalog.md)を通じてApache DorisとAlibaba Cloud MaxCompute間でデータ統合を実現する方法について説明します：
 
 - **データインポート**: MaxComputeからDorisにデータを迅速にインポートして分析を行います。
 - **データライトバック** (4.1.0+): 分析結果やDoris内の他のソースからのデータをMaxComputeに書き戻します。
-- **データベース/テーブル管理** (4.1.0+): Doris内で直接MaxComputeデータベースとテーブルを作成・管理します。
+- **データベース/Table管理** (4.1.0+): Doris内で直接MaxComputeデータベースとTableを作成・管理します。
 
 この文書はApache Dorisバージョン2.1.9に基づいています。一部の機能にはバージョン4.1.0以降が必要です。
 
@@ -46,7 +46,7 @@ Doris クラスターと MaxCompute サービスが同一の VPC 内にあり、
 
 ## MaxCompute データのインポート
 
-### 01 Catalog の作成
+### 01 カタログ の作成
 
 ```sql
 CREATE CATALOG mc PROPERTIES (
@@ -69,13 +69,13 @@ CREATE CATALOG mc PROPERTIES (
     "mc.enable.namespace.schema" = "true"
 );
 ```
-詳細については、[MaxCompute Catalog](../catalogs/maxcompute-catalog.md)のドキュメントを参照してください。
+詳細については、[MaxCompute カタログ](../catalogs/maxcompute-catalog.md)のドキュメントを参照してください。
 
 ### 02 TPCHデータセットのインポート
 
 MaxComputeパブリックデータセットのTPCH 100データセットを例として使用し（データは既にMaxComputeにインポート済み）、`CREATE TABLE AS SELECT`文を使用してMaxComputeのデータをDorisにインポートします。
 
-このデータセットには7つのテーブルが含まれています。最大のテーブル`lineitem`は16列、600,037,902行で、約30GBのディスク容量を占有します。
+このデータセットには7つのTableが含まれています。最大のTable`lineitem`は16列、600,037,902行で、約30GBのディスク容量を占有します。
 
 ```sql
 -- switch catalog
@@ -97,7 +97,7 @@ CREATE TABLE tpch_100g.supplier AS SELECT * FROM mc.selectdb_test.supplier;
 
 MaxCompute公開データセットのGitHub Eventデータセットを例として使用し（データは既にMaxComputeにインポート済み）、`CREATE TABLE AS SELECT`文を使用してMaxComputeのデータをDorisにインポートします。
 
-ここでは`dwd_github_events_odps`テーブルの365パーティション（`2015-01-01`から`2016-01-01`まで）からデータを選択します。このデータには32カラム、212,786,803行が含まれており、約10GBのディスク容量を占有します。
+ここでは`dwd_github_events_odps`Tableの365パーティション（`2015-01-01`から`2016-01-01`まで）からデータを選択します。このデータには32カラム、212,786,803行が含まれており、約10GBのディスク容量を占有します。
 
 ```sql
 -- switch catalog
@@ -121,16 +121,16 @@ WHERE ds BETWEEN '2015-01-01' AND '2016-01-01';
 
 :::note
 - これは実験的機能で、バージョン4.1.0からサポートされています。
-- パーティション化されたテーブルとパーティション化されていないテーブルへの書き込みをサポートしています。
-- clusteredテーブル、transactionalテーブル、Delta Tables、external tablesへの書き込みはサポートしていません。
+- パーティション化されたTableとパーティション化されていないTableへの書き込みをサポートしています。
+- clusteredTable、transactionalTable、Delta Tables、external tablesへの書き込みはサポートしていません。
 :::
 
 ### 01 INSERT INTO追記書き込み
 
-INSERT操作はMaxCompute対象テーブルにデータを追記します。
+INSERT操作はMaxCompute対象Tableにデータを追記します。
 
 ```sql
--- Switch to MaxCompute Catalog
+-- Switch to MaxCompute カタログ
 SWITCH mc;
 
 -- Insert a single row of data
@@ -147,7 +147,7 @@ INSERT INTO mc_db.mc_tbl PARTITION(ds='20250201') SELECT id, name FROM internal.
 ```
 ### 02 INSERT OVERWRITE Overwrite Write
 
-INSERT OVERWRITEは、テーブル内の既存データを新しいデータで完全に置き換えます。
+INSERT OVERWRITEは、Table内の既存データを新しいデータで完全に置き換えます。
 
 ```sql
 -- Full table overwrite
@@ -161,7 +161,7 @@ INSERT OVERWRITE TABLE mc_db.mc_tbl PARTITION(ds='20250101') VALUES (10, 'new1')
 ```
 ### 03 CTAS Create Table and Write
 
-`CREATE TABLE AS SELECT`文を使用して、MaxComputeで新しいテーブルを作成し、データを書き込むことができます。
+`CREATE TABLE AS SELECT`文を使用して、MaxComputeで新しいTableを作成し、データを書き込むことができます。
 
 ```sql
 -- Create table in MaxCompute and import data
@@ -169,22 +169,22 @@ CREATE TABLE mc_db.mc_new_tbl AS SELECT * FROM internal.db1.source_tbl;
 ```
 ## Database/Table Management (4.1.0+)
 
-バージョン4.1.0以降、DorisはMaxComputeでのデータベースとテーブルの作成・削除を直接サポートします。この機能は以下のシナリオに適用されます：
+バージョン4.1.0以降、DorisはMaxComputeでのデータベースとTableの作成・削除を直接サポートします。この機能は以下のシナリオに適用されます：
 
 - **統合データ管理**: 複数のデータソースからのメタデータをDorisで一元管理し、MaxComputeコンソールへの切り替えが不要になります。
-- **自動化されたデータパイプライン**: ETLワークフローでターゲットテーブルを動的に作成し、エンドツーエンドの自動化を実現します。
+- **自動化されたデータパイプライン**: ETLワークフローでターゲットTableを動的に作成し、エンドツーエンドの自動化を実現します。
 
 :::note
 - これは実験的機能で、バージョン4.1.0以降でサポートされます。
 - この機能は`mc.enable.namespace.schema`プロパティが`true`に設定されている場合のみ利用可能です。
-- パーティション化テーブルと非パーティション化テーブルの作成・削除をサポートします。
-- クラスター化テーブル、トランザクショナルテーブル、Delta Tables、外部テーブルの作成はサポートしていません。
+- パーティション化Tableと非パーティション化Tableの作成・削除をサポートします。
+- クラスター化Table、トランザクショナルTable、Delta Tables、外部Tableの作成はサポートしていません。
 :::
 
 ### 01 Create and Drop Database
 
 ```sql
--- Switch to MaxCompute Catalog
+-- Switch to MaxCompute カタログ
 SWITCH mc;
 
 -- Create Schema
@@ -197,10 +197,10 @@ CREATE DATABASE IF NOT EXISTS mc.mc_schema;
 DROP DATABASE IF EXISTS mc.mc_schema;
 ```
 :::caution
-MaxCompute Databaseの場合、削除するとその中のすべてのテーブルも削除されます。注意して実行してください。
+MaxCompute Databaseの場合、削除するとその中のすべてのTableも削除されます。注意して実行してください。
 :::
 
-### 02 テーブルの作成と削除
+### 02 Tableの作成と削除
 
 ```sql
 -- Create non-partitioned table
@@ -223,4 +223,4 @@ PARTITION BY (ds, region)();
 -- Drop table (will also delete data, including partition data)
 DROP TABLE IF EXISTS mc_schema.mc_tbl1;
 ```
-詳細については、[MaxCompute Catalog](../catalogs/maxcompute-catalog.md) ドキュメントを参照してください。
+詳細については、[MaxCompute カタログ](../catalogs/maxcompute-catalog.md) ドキュメントを参照してください。

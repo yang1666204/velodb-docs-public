@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 Bitmap内の最小値を計算して返します。
 
@@ -14,9 +14,9 @@ Bitmap内の最小値を計算して返します。
 ```sql
 BITMAP_MIN(<bitmap>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description                     |
+| Parameter  | デスクリプション                     |
 |------------|---------------------------------|
 | `<bitmap>` | Bitmap型の列または式 |
 

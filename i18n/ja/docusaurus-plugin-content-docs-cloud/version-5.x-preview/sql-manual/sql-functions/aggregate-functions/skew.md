@@ -24,9 +24,9 @@ expr式の[歪度](https://en.wikipedia.org/wiki/Skewness)を返します。
 ```sql
 SKEWNESS(<col>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col>` | 歪度を計算する列で、Double型をサポートします。 |
 

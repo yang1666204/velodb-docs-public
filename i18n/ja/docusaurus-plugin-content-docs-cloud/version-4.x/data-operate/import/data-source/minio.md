@@ -15,7 +15,7 @@ DorisはMinIOからファイルを読み込むための2つの方法を提供し
 
 S3 Loadを使用してオブジェクトストレージ上のファイルをインポートします。詳細な手順については、[Broker Load Manual](../import-way/broker-load-manual)を参照してください。
 
-### Step 1: データの準備
+### ステップ 1: データの準備
 
 CSVファイルs3load_example.csvを作成します。このファイルはMinIO上に保存され、その内容は以下の通りです：
 
@@ -31,7 +31,7 @@ CSVファイルs3load_example.csvを作成します。このファイルはMinIO
 9,Emma,37
 10,Liam,64
 ```
-### Step 2: Dorisでテーブルを作成する
+### ステップ 2: DorisでTableを作成する
 
 ```sql
 CREATE TABLE test_s3load(
@@ -74,7 +74,7 @@ PROPERTIES
     "timeout" = "3600"
 );
 ```
-### Step 4: インポートしたデータを確認する
+### ステップ 4: インポートしたデータを確認する
 
 ```sql
 SELECT * FROM test_s3load;
@@ -117,7 +117,7 @@ CSV ファイル s3load_example.csv を作成します。このファイルは M
 9,Emma,37
 10,Liam,64
 ```
-### Step 2: Dorisでテーブルを作成する
+### ステップ 2: DorisでTableを作成する
 
 ```sql
 CREATE TABLE test_s3load(
@@ -128,7 +128,7 @@ CREATE TABLE test_s3load(
 DUPLICATE KEY(user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
-### Step 3: TVFを使用してデータを読み込む
+### ステップ 3: TVFを使用してデータを読み込む
 
 :::caution 注意
 TVFでMinIOからデータをインポートする際は、以下の点に注意してください：
@@ -153,7 +153,7 @@ SELECT * FROM S3
     "use_path_style" = "true"
 );
 ```
-### Step 4: インポートされたデータの確認
+### ステップ 4: インポートされたデータの確認
 
 ```sql
 SELECT * FROM test_s3load;

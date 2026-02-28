@@ -17,7 +17,7 @@
 ```sql
 BIT_SHIFT_RIGHT( <x>, <bits>)
 ```
-## Parameters
+## パラメータ
 | parameter | description                      |
 |-----------|----------------------------------|
 | `<x>`     | シフトされる数値                        |

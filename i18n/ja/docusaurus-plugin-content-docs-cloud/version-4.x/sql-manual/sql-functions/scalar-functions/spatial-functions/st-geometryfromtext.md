@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 WKT（Well Known Text）を対応するメモリジオメトリに変換します
 

@@ -15,24 +15,24 @@ Dorisによって設計されたオリジナルのbitmap集約関数はより汎
 
 ## ユーザーガイド
 
-1. テーブルを作成し、hidカラムを追加してbitmapカラム値のID範囲をハッシュバケットカラムとして表現する
+1. Tableを作成し、hidカラムを追加してbitmapカラム値のID範囲をハッシュバケットカラムとして表現する
 2. 使用シナリオ
 
-### テーブル作成
+### Table作成
 
-テーブル構築時には集約モデルを使用する必要があります。データ型はbitmapで、集約関数はbitmap_unionです
+Table構築時には集約モデルを使用する必要があります。データ型はbitmapで、集約関数はbitmap_unionです
 
 ```
 CREATE TABLE `user_tag_bitmap` (
   `tag` bigint(20) NULL COMMENT "user tag",
-  `hid` smallint(6) NULL COMMENT "Bucket ID",
+  `hid` smallint(6) NULL COMMENT "バケット ID",
   `user_id` bitmap BITMAP_UNION NULL COMMENT ""
 ) ENGINE=OLAP
 AGGREGATE KEY(`tag`, `hid`)
 COMMENT "OLAP"
 DISTRIBUTED BY HASH(`hid`) BUCKETS 3
 ```
-HID列がテーブルスキーマに追加され、ハッシュバケット列としてIDの範囲を示します。
+HID列がTableスキーマに追加され、ハッシュバケット列としてIDの範囲を示します。
 
 注意: HID番号とバケット数は適切に設定する必要があり、データのハッシュバケット分割をできるだけ均等にするために、HID番号はバケット数の少なくとも5倍に設定する必要があります。
 
@@ -67,7 +67,7 @@ user_id = to_bitmap(tmp_user_id)
 
 データをロードする際、ユーザーのbitmap値の範囲を垂直にカットします。例えば、1-5000000の範囲のユーザーIDのhid値は同じであり、同じHID値を持つ行は同じサブバケットに割り当てられるため、各サブバケット内のbitmap値は直交になります。bitmapのUDAF実装において、バケット内のbitmap値の直交特性を利用して積集合と和集合の計算を実行でき、計算結果は集約のために最上位ノードにshuffleされます。
 
-注意: 直交bitmap機能はパーティションテーブルでは使用できません。パーティションテーブルのパーティションは直交であるため、パーティション間のデータが直交であることを保証できないため、計算結果を推定することができません。
+注意: 直交bitmap機能はパーティションTableでは使用できません。パーティションTableのパーティションは直交であるため、パーティション間のデータが直交であることを保証できないため、計算結果を推定することができません。
 
 #### orthogonal_bitmap_intersect
 
@@ -83,7 +83,7 @@ orthogonal_bitmap_intersect(bitmap_column, column_to_filter, filter_values)
 
 説明:
 
-このテーブルスキーマに基づいて、この関数はクエリプランニングにおいて2レベルの集約を持ちます。最初のレイヤーでは、beノード（updateとserialize）がまずfilter_Valuesを使用してキーをハッシュ集約し、次にすべてのキーのbitmapの積集合を計算します。結果はシリアライズされて2番目のレベルのbeノード（mergeとfinalize）に送信されます。2番目のレベルのbeノードでは、最初のレベルノードからのすべてのbitmap値が循環的に結合されます
+このTableスキーマに基づいて、この関数はクエリプランニングにおいて2レベルの集約を持ちます。最初のレイヤーでは、beノード（updateとserialize）がまずfilter_Valuesを使用してキーをハッシュ集約し、次にすべてのキーのbitmapの積集合を計算します。結果はシリアライズされて2番目のレベルのbeノード（mergeとfinalize）に送信されます。2番目のレベルのbeノードでは、最初のレベルノードからのすべてのbitmap値が循環的に結合されます
 
 例:
 
@@ -105,7 +105,7 @@ orthogonal_bitmap_intersect_count(bitmap_column, column_to_filter, filter_values
 
 説明:
 
-このテーブルスキーマに基づいて、クエリプランニング集約は2つの層に分割されます。第1層では、beノード（updateとserialize）がまずfilter_Valuesを使用してキーをハッシュ集約し、その後すべてのキーのビットマップの交差を実行し、交差結果をカウントします。カウント値はシリアライズされ、第2層のbeノード（mergeとfinalize）に送信されます。第2層のbeノードでは、第1層ノードからのすべてのカウント値の合計が循環的に計算されます
+このTableスキーマに基づいて、クエリプランニング集約は2つの層に分割されます。第1層では、beノード（updateとserialize）がまずfilter_Valuesを使用してキーをハッシュ集約し、その後すべてのキーのビットマップの交差を実行し、交差結果をカウントします。カウント値はシリアライズされ、第2層のbeノード（mergeとfinalize）に送信されます。第2層のbeノードでは、第1層ノードからのすべてのカウント値の合計が循環的に計算されます
 
 例:
 
@@ -122,7 +122,7 @@ orthogonal_bitmap_union_count(bitmap_column)
 
 説明:
 
-このテーブルスキーマに基づき、この関数は2つの層に分かれています。第1層では、beノード（updateとserialize）がすべてのビットマップをマージし、その後結果のビットマップをカウントします。カウント値はシリアル化されて第2層のbeノード（mergeとfinalize）に送信されます。第2層では、beノードが第1層のノードからのすべてのカウント値の合計を計算するために使用されます
+このTableスキーマに基づき、この関数は2つの層に分かれています。第1層では、beノード（updateとserialize）がすべてのビットマップをマージし、その後結果のビットマップをカウントします。カウント値はシリアル化されて第2層のbeノード（mergeとfinalize）に送信されます。第2層では、beノードが第1層のノードからのすべてのカウント値の合計を計算するために使用されます
 
 例:
 

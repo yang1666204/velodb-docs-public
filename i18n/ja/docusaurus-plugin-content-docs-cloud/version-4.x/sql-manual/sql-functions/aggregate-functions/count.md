@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定されたカラム内のNULL以外のレコード数、または総レコード数を返します。
 
@@ -16,9 +16,9 @@ COUNT(DISTINCT <expr> [,<expr>,...])
 COUNT(*)
 COUNT(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 条件式（カラム名） |
 

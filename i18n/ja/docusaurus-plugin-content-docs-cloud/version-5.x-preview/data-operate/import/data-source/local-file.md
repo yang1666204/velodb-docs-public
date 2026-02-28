@@ -37,9 +37,9 @@ DorisはMySQLプロトコルと互換性があり、標準の[LOAD DATA](https:/
 9,Emma,37
 10,Liam,64
 ```
-### Step 2: テーブルの作成
+### ステップ 2: Tableの作成
 
-以下の構文を使用してDorisでテーブルを作成します：
+以下の構文を使用してDorisでTableを作成します：
 
 ```SQL
 CREATE TABLE testdb.test_streamload(
@@ -50,7 +50,7 @@ CREATE TABLE testdb.test_streamload(
 DUPLICATE KEY(user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 `curl`を使用してStream Loadジョブを送信します：
 
@@ -71,7 +71,7 @@ curl --location-trusted -u <doris_user>:<doris_password> \
     "NumberLoadedRows": 10
 }
 ```
-### Step 4: 読み込まれたデータの確認
+### ステップ 4: 読み込まれたデータの確認
 
 ```SQL
 mysql> SELECT COUNT(*) FROM testdb.test_streamload;
@@ -83,15 +83,15 @@ mysql> SELECT COUNT(*) FROM testdb.test_streamload;
 ```
 ## Streamloader Toolを使用したデータの読み込み
 
-### Step 1: データの準備
+### ステップ 1: データの準備
 
 上記と同じ内容で`streamloader_example.csv`という名前のCSVファイルを作成します。
 
-### Step 2: テーブルの作成
+### ステップ 2: Tableの作成
 
-上記と同じ構文を使用してDorisでテーブルを作成します。
+上記と同じ構文を使用してDorisでTableを作成します。
 
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 Streamloader toolを使用してデータを読み込みます：
 
@@ -107,7 +107,7 @@ Load Result: {
     "LoadedRows": 10
 }
 ```
-### Step 4: 読み込まれたデータの確認
+### ステップ 4: 読み込まれたデータの確認
 
 ```SQL
 mysql> SELECT COUNT(*) FROM testdb.test_streamload;
@@ -131,12 +131,12 @@ mysql> SELECT COUNT(*) FROM testdb.test_streamload;
 5,50
 6,60
 ```
-### Step 2: MySQL Clientに接続する
+### ステップ 2: MySQL Clientに接続する
 
 ```Shell
 mysql --local-infile -h <fe_ip> -P <fe_query_port> -u root -D testdb
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 MySQL Load コマンドを実行します：
 
@@ -147,7 +147,7 @@ INTO TABLE testdb.t1
 COLUMNS TERMINATED BY ','
 LINES TERMINATED BY '\n';
 ```
-### Step 4: 読み込まれたデータの確認
+### ステップ 4: 読み込まれたデータの確認
 
 読み込みが成功した場合、結果は以下のように表示されます：
 

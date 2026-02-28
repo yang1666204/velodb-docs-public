@@ -14,9 +14,9 @@
 ```sql
 RADIANS(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>`   | 変換される角度（度単位）。 |
 

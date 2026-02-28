@@ -1,6 +1,6 @@
 ---
 {
-  "title": "LOG",
+  "title": "ログ",
   "description": "xのbase bを底とする対数を返します。",
   "language": "ja"
 }
@@ -14,9 +14,9 @@
 ```sql
 LOG(<b>,<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<b>`     | ベースは0より大きく、かつ正確に1.0ではない値である必要があります |
 | `<x>`     | 真数は0より大きい値である必要があります |

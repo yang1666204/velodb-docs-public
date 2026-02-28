@@ -50,7 +50,7 @@ PROPERTIES(
     "cooldown_ttl" = "1d"
 );
 ```
-*Step 3:* テーブル作成時にSTORAGE POLICYを使用する。
+*ステップ 3:* Table作成時にSTORAGE POLICYを使用する。
 
 ```sql
 CREATE TABLE IF NOT EXISTS create_table_use_created_policy 
@@ -67,7 +67,7 @@ PROPERTIES(
 );
 ```
 :::warning Note
-UNIQUEテーブルに`"enable_unique_key_merge_on_write" = "true"`が設定されている場合、この機能は使用できません。
+UNIQUETableに`"enable_unique_key_merge_on_write" = "true"`が設定されている場合、この機能は使用できません。
 :::
 
 ### HDFSへのコールドデータの保存
@@ -88,7 +88,7 @@ CREATE RESOURCE "remote_hdfs" PROPERTIES (
         "dfs.client.failover.proxy.provider.my_ha" = "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider"
     );
 ```
-*Step 2:* STORAGE POLICYを作成する。
+*ステップ 2:* STORAGE POLICYを作成する。
 
 ```sql
 CREATE STORAGE POLICY test_policy PROPERTIES (
@@ -96,7 +96,7 @@ CREATE STORAGE POLICY test_policy PROPERTIES (
     "cooldown_ttl" = "300"
 )
 ```
-*ステップ3:* STORAGE POLICYを使用してテーブルを作成します。
+*ステップ3:* STORAGE POLICYを使用してTableを作成します。
 
 ```sql
 CREATE TABLE IF NOT EXISTS create_table_use_created_policy (
@@ -112,14 +112,14 @@ PROPERTIES(
 );
 ```
 :::warning Note
-UNIQUE テーブルに `"enable_unique_key_merge_on_write" = "true"` が設定されている場合、この機能は使用できません。
+UNIQUE Tableに `"enable_unique_key_merge_on_write" = "true"` が設定されている場合、この機能は使用できません。
 :::
 
-### 既存テーブルのリモートストレージへの移行
+### 既存Tableのリモートストレージへの移行
 
-新しいテーブルがリモートストレージの設定をサポートすることに加えて、Doris は既存のテーブルや PARTITION に対してもリモートストレージを設定することをサポートしています。
+新しいTableがリモートストレージの設定をサポートすることに加えて、Doris は既存のTableや PARTITION に対してもリモートストレージを設定することをサポートしています。
 
-既存のテーブルに対しては、作成した STORAGE POLICY をテーブルに関連付けることでリモートストレージを設定します：
+既存のTableに対しては、作成した STORAGE POLICY をTableに関連付けることでリモートストレージを設定します：
 
 ```sql
 ALTER TABLE create_table_not_have_policy set ("storage_policy" = "test_policy");
@@ -130,7 +130,7 @@ ALTER TABLE create_table_not_have_policy set ("storage_policy" = "test_policy");
 ALTER TABLE create_table_partition MODIFY PARTITION (*) SET("storage_policy"="test_policy");
 ```
 :::tip
-テーブル作成時にユーザーがテーブル全体と一部のPartitionに対して異なるStorage Policyを指定した場合、Partitionに設定されたStorage Policyは無視され、テーブルのすべてのPartitionがテーブルのPolicyを使用することに注意してください。PartitionのPolicyを他と異ならせる必要がある場合は、既存のPartitionにStorage Policyを関連付ける上記の方法を使用して変更できます。
+Table作成時にユーザーがTable全体と一部のPartitionに対して異なるStorage Policyを指定した場合、Partitionに設定されたStorage Policyは無視され、TableのすべてのPartitionがTableのPolicyを使用することに注意してください。PartitionのPolicyを他と異ならせる必要がある場合は、既存のPartitionにStorage Policyを関連付ける上記の方法を使用して変更できます。
 
 詳細については、RESOURCE、STORAGE POLICY、CREATE TABLE、ALTER TABLEなどのDocsディレクトリを参照してください。
 :::
@@ -143,13 +143,13 @@ ALTER TABLE create_table_partition MODIFY PARTITION (*) SET("storage_policy"="te
 
 ## 制限事項
 
--   リモートストレージを使用するテーブルはバックアップをサポートしていません。
+-   リモートストレージを使用するTableはバックアップをサポートしていません。
 
 -   endpoint、bucket、pathなど、リモートストレージの場所情報の変更はサポートされていません。
 
--   Merge-on-Writeが有効なUniqueモデルテーブルは、リモートストレージをサポートしていません。
+-   Merge-on-Writeが有効なUniqueモデルTableは、リモートストレージをサポートしていません。
 
--   Storage policyは作成、変更、削除をサポートしています。Storage policyを削除する前に、それを参照しているテーブルがないことを確認してください。
+-   Storage policyは作成、変更、削除をサポートしています。Storage policyを削除する前に、それを参照しているTableがないことを確認してください。
 
 -   Storage policyが設定されると、設定解除はできません。
 
@@ -159,7 +159,7 @@ ALTER TABLE create_table_partition MODIFY PARTITION (*) SET("storage_policy"="te
 
 方法1：`show proc '/backends'`を通じて各BEがオブジェクトにアップロードしたサイズをRemoteUsedCapacityアイテムで確認できます。この方法は若干の遅延があります。
 
-方法2：`show tablets from tableName`を通じてテーブルが占有する各tabletのサイズをRemoteDataSizeアイテムで確認できます。
+方法2：`show tablets from tableName`を通じてTableが占有する各tabletのサイズをRemoteDataSizeアイテムで確認できます。
 
 ### ガベージコレクション
 

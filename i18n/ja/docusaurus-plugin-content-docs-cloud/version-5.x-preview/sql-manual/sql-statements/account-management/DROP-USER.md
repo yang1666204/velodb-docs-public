@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `DROP USER`文は、ユーザーを削除するために使用されます。
 

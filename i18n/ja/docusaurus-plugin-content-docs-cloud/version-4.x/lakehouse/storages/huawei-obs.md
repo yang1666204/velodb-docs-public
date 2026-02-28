@@ -17,7 +17,7 @@
 
 ## パラメータ概要
 
-| Property Name                | Former Name              | Description                                                  | Default Value | Required |
+| Property Name                | 旧称              | デスクリプション                                                  | デフォルト値 | Required |
 | ---------------------------- | ------------------------ | ------------------------------------------------------------ | ------------- | -------- |
 | obs.endpoint                 | s3.endpoint              | OBSエンドポイント、Huawei Cloud OBSのアクセスエンドポイントを指定 |               | Yes      |
 | obs.access_key               | s3.access_key            | OBSアクセスキー、認証に使用                     |               | Yes      |

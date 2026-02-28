@@ -84,12 +84,12 @@ limit_clause
   ```sql
   SHOW BUILD INDEX FROM database1
   ```
-- テーブル table1 のインデックス構築タスクを表示する
+- Table table1 のインデックス構築タスクを表示する
 
   ```sql
   SHOW BUILD INDEX WHERE TableName = 'table1'
   ```
-- テーブルtable1のインデックス構築タスクを表示し、JobIdでソートして最初の10行を取得する
+- Tabletable1のインデックス構築タスクを表示し、JobIdでソートして最初の10行を取得する
 
   ```sql
   SHOW BUILD INDEX WHERE TableName = 'table1' ORDER BY JobId LIMIT 10

@@ -7,7 +7,7 @@
 ---
 Dorisは[Trino Connector](https://doris.apache.org/community/how-to-contribute/trino-connector-developer-guide)互換フレームワークを通じて、[TPCDS Connector](https://trino.io/docs/current/connector/tpcds.html)を使用してTPCDSテストセットを迅速に構築することをサポートしています。
 
-Hive/Icebergテーブルのデータ書き戻し機能と組み合わせることで、Doris経由でDoris、Hive、およびIcebergテーブル向けのTPCDSテストデータセットを迅速に構築できます。
+Hive/IcebergTableのデータ書き戻し機能と組み合わせることで、Doris経由でDoris、Hive、およびIcebergTable向けのTPCDSテストデータセットを迅速に構築できます。
 
 このドキュメントでは、主にTPCDS Connectorをデプロイしてテストデータセットを構築する方法について説明します。
 
@@ -110,10 +110,10 @@ mysql> SHOW TABLES;
 | web_site               |
 +------------------------+
 ```
-これらのテーブルはSELECT文を使用して直接クエリできます。
+これらのTableはSELECT文を使用して直接クエリできます。
 
 :::tip
-これらの事前構築されたデータセットのデータは実際には保存されておらず、クエリ時にリアルタイムで生成されます。そのため、これらの事前構築されたデータセットは直接的なBenchmarkテストには適していません。`INSERT INTO SELECT`を通じてこれらのデータセットを他のターゲットテーブル（Doris内部テーブル、Hive、Iceberg、およびDorisが書き込みをサポートするその他のデータソースなど）に書き込み、その後ターゲットテーブルでパフォーマンステストを実行するのに適しています。
+これらの事前構築されたデータセットのデータは実際には保存されておらず、クエリ時にリアルタイムで生成されます。そのため、これらの事前構築されたデータセットは直接的なBenchmarkテストには適していません。`INSERT INTO SELECT`を通じてこれらのデータセットを他のターゲットTable（Doris内部Table、Hive、Iceberg、およびDorisが書き込みをサポートするその他のデータソースなど）に書き込み、その後ターゲットTableでパフォーマンステストを実行するのに適しています。
 :::
 
 ## TPCDSテストデータセットの構築

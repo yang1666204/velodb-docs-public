@@ -45,7 +45,7 @@ TODO: Supports nested Struct or other complex types
 ```
 ### example
 
-テーブル作成の例:
+Table作成の例:
 
 ```
 mysql> CREATE TABLE `struct_test` (

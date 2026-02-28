@@ -16,7 +16,7 @@ BITMAP_AND_COUNT(<bitmap>, <bitmap>,[, <bitmap>...])
 ```
 ## パラメータ
 
-| Parameter  | Description                                                    |
+| Parameter  | デスクリプション                                                    |
 |------------|----------------------------------------------------------------|
 | `<bitmap>` | 積集合を求める対象となる元のBITMAPの1つ |
 

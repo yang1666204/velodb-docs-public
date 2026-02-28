@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この構文は既存のroutine load jobを変更するために使用されます。PAUSED状態のjobのみ変更することができます。
 
@@ -68,7 +68,7 @@ FROM [<data_source>]
 
 | 権限 | オブジェクト | 注記 |
 | :-------- | :----- | :---- |
-| LOAD_PRIV | Table | SHOW ROUTINE LOADには、テーブルに対するLOAD権限が必要です |
+| LOAD_PRIV | Table | SHOW ROUTINE LOADには、Tableに対するLOAD権限が必要です |
 
 ## 注意事項
 

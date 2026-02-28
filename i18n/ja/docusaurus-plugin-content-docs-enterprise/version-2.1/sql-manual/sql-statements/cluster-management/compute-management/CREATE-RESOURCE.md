@@ -19,13 +19,13 @@ PROPERTIES (
     [ , ... ]
 );
 ```
-## Parameters
+## パラメータ
 
 1.`<type>`
 
 `<property>`は`<key>` = `<value>`形式で指定し、`<key>`に使用可能な具体的な値は以下の通りです：
 
-| Parameter | Description | Required |
+| Parameter | デスクリプション | Required |
 | -- | -- | -- |
 | `<type>` | リソースのタイプを指定します。サポートされているタイプ：spark/odbc_catalog/s3/jdbc/hdfs/hms/es。 | Y |
 

@@ -18,7 +18,7 @@ GET /role
 GET /check
 GET /dump
 ```
-## Description
+## デスクリプション
 
 これは FE metadata に関連する API のセットです。`/dump` を除き、これらはすべて FE ノード間の内部通信に使用されます。
 

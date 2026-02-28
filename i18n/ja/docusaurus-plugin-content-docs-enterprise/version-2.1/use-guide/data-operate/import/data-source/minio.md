@@ -15,7 +15,7 @@ DorisはMinIOからファイルを読み込む2つの方法を提供します：
 
 S3 Loadを使用してオブジェクトストレージ上のファイルをインポートします。詳細な手順については、[Broker Load Manual](../import-way/broker-load-manual)を参照してください。
 
-### Step 1: データの準備
+### ステップ 1: データの準備
 
 CSVファイルs3load_example.csvを作成します。このファイルはMinIO上に保存されており、その内容は以下の通りです：
 
@@ -31,7 +31,7 @@ CSVファイルs3load_example.csvを作成します。このファイルはMinIO
 9,Emma,37
 10,Liam,64
 ```
-### ステップ2: Dorisでテーブルを作成する
+### ステップ2: DorisでTableを作成する
 
 ```sql
 CREATE TABLE test_s3load(
@@ -42,7 +42,7 @@ CREATE TABLE test_s3load(
 DUPLICATE KEY(user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
-### Step 3: S3 Loadを使用したデータの読み込み
+### ステップ 3: S3 Loadを使用したデータの読み込み
 
 :::caution 注意
 ローカルネットワークにMinIOをデプロイしてTLSを有効にしていない場合は、エンドポイント文字列に明示的に`http://`を追加する必要があります。
@@ -77,7 +77,7 @@ PROPERTIES
     "timeout" = "3600"
 );
 ```
-### Step 4: インポートしたデータを確認する
+### ステップ 4: インポートしたデータを確認する
 
 ```sql
 SELECT * FROM test_s3load;
@@ -120,7 +120,7 @@ CSVファイル s3load_example.csv を作成します。このファイルはMin
 9,Emma,37
 10,Liam,64
 ```
-### ステップ2: Dorisでテーブルを作成する
+### ステップ2: DorisでTableを作成する
 
 ```sql
 CREATE TABLE test_s3load(
@@ -131,7 +131,7 @@ CREATE TABLE test_s3load(
 DUPLICATE KEY(user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
-### Step 3: TVF を使用してデータを読み込む
+### ステップ 3: TVF を使用してデータを読み込む
 
 :::caution 注意
 ローカルネットワークに MinIO をデプロイし、TLS を有効にしていない場合は、エンドポイント文字列に明示的に `http://` を追加する必要があります。
@@ -160,7 +160,7 @@ SELECT * FROM S3
     "use_path_style" = "true"
 );
 ```
-### Step 4: インポートされたデータを確認する
+### ステップ 4: インポートされたデータを確認する
 
 ```sql
 SELECT * FROM test_s3load;

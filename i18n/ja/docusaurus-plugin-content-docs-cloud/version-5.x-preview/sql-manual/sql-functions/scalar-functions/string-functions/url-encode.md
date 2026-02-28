@@ -14,10 +14,10 @@
 ```sql
 URL_ENCODE(  <str>  ) 
 ```
-## Required Parameters
+## Required パラメータ
 
-## Required Parameters
-| Parameters | Description |
+## Required パラメータ
+| パラメータ | デスクリプション |
 |------|------|
 | `<str>` | エンコードする文字列 |
 

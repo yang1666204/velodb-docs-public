@@ -7,7 +7,7 @@
 ---
 ## 説明
 
-幾何オブジェクトを標準のWKB（Well-Known Binary）バイナリ表現に変換します。WKBは地理空間データを表現するためのバイナリ形式で、Geographic Information Systems (GIS) で広く使用されています。
+幾何オブジェクトを標準のWKB（Well-Known Binary）バイナリ表現に変換します。WKBは地理空間データを表現するためのバイナリ形式で、Geographic Information システム (GIS) で広く使用されています。
 
 現在サポートされている幾何タイプには、Point、LineString、Polygonがあります。
 
@@ -18,7 +18,7 @@ ST_ASBINARY( <geo>)
 ```
 ## パラメータ
 
-| Parameter | Description       |
+| Parameter | デスクリプション       |
 | -- |----------|
 | `<geo>` | 	WKB形式に変換される幾何オブジェクト。Point、LineString、Polygonを含む。） |
 

@@ -14,9 +14,9 @@
 ```sql
 ARRAY_POPBACK(<arr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --- | --- |
 | `<arr>` | ARRAY配列 |
 

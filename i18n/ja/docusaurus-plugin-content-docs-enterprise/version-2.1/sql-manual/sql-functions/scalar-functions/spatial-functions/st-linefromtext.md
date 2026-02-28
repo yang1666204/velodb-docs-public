@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 WKT（Well Known Text）をLine形式のメモリ表現に変換します
 
@@ -18,9 +18,9 @@ WKT（Well Known Text）をLine形式のメモリ表現に変換します
 ```sql
 ST_LINEFROMTEXT( <wkt>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters  | Instructions         |
+| パラメータ  | Instructions         |
 |-----|------------|
 | `<wkt>` | 2つの座標からなる線分 |
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `SET PASSWORD`文は、ユーザーのログインパスワードを変更するために使用されます。
 

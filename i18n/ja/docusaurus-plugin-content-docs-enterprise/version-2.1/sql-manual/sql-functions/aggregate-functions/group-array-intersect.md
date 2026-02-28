@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力配列のすべての行にわたって共通する要素を計算し、新しい配列を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 GROUP_ARRAY_INTERSECT(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 積集合を求める配列カラムまたは配列値 |
 

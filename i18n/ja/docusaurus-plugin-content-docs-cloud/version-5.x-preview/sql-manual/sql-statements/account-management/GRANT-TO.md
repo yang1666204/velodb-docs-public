@@ -49,11 +49,11 @@ GRANT <role_list> TO <user_identity>
 - NODE_PRIV: ノードのオンライン・オフライン操作を含むクラスターノード操作権限。
 - ADMIN_PRIV: NODE_PRIV を除くすべての権限。
 - GRANT_PRIV: ユーザー、ロールの作成と削除、認可と取り消し、パスワード設定などを含む操作権限のための権限。
-- SELECT_PRIV: 指定されたデータベースまたはテーブルの読み取り権限。
-- LOAD_PRIV: 指定されたデータベースまたはテーブルのインポート権限。
-- ALTER_PRIV: 指定されたデータベースまたはテーブルのスキーマ変更権限。
-- CREATE_PRIV: 指定されたデータベースまたはテーブルの作成権限。
-- DROP_PRIV: 指定されたデータベースまたはテーブルの削除権限。
+- SELECT_PRIV: 指定されたデータベースまたはTableの読み取り権限。
+- LOAD_PRIV: 指定されたデータベースまたはTableのインポート権限。
+- ALTER_PRIV: 指定されたデータベースまたはTableのスキーマ変更権限。
+- CREATE_PRIV: 指定されたデータベースまたはTableの作成権限。
+- DROP_PRIV: 指定されたデータベースまたはTableの削除権限。
 - USAGE_PRIV: 指定されたリソースと Workload Group 権限へのアクセス。
 - SHOW_VIEW_PRIV: ビュー作成文を表示する権限。
 
@@ -66,10 +66,10 @@ GRANT <role_list> TO <user_identity>
 
 以下の4つの形式をサポートします：
 
-- ..*: 権限はすべてのカタログとその中のすべてのデータベースとテーブルに適用できます。
-- catalog_name..: 権限は指定されたカタログ内のすべてのデータベースとテーブルに適用できます。
-- catalog_name.db.*: 権限は指定されたデータベース配下のすべてのテーブルに適用できます。
-- catalog_name.db.tbl: 権限は指定されたデータベース配下の指定されたテーブルに適用できます。
+- ..*: 権限はすべてのカタログとその中のすべてのデータベースとTableに適用できます。
+- catalog_name..: 権限は指定されたカタログ内のすべてのデータベースとTableに適用できます。
+- catalog_name.db.*: 権限は指定されたデータベース配下のすべてのTableに適用できます。
+- catalog_name.db.tbl: 権限は指定されたデータベース配下の指定されたTableに適用できます。
 
 **3. `<resource_name>`**
 
@@ -109,17 +109,17 @@ GRANT <role_list> TO <user_identity>
 
 ## 例
 
-- すべてのカタログとデータベースとテーブルへの権限をユーザーに付与：
+- すべてのカタログとデータベースとTableへの権限をユーザーに付与：
 
     ```sql
     GRANT SELECT_PRIV ON *.*.* TO 'jack'@'%';
     ```
-指定されたデータベーステーブルに対する権限をユーザーに付与する：
+指定されたデータベースTableに対する権限をユーザーに付与する：
 
     ```sql
     GRANT SELECT_PRIV,ALTER_PRIV,LOAD_PRIV ON ctl1.db1.tbl1  TO 'jack'@'192.8.%';
     ```
-- 指定されたデータベーステーブルに対する権限をロールに付与する：
+- 指定されたデータベースTableに対する権限をロールに付与する：
 
     ```sql
     GRANT LOAD_PRIV ON ctl1.db1.* TO ROLE 'my_role';

@@ -40,9 +40,9 @@ WHERE [LABEL = "<load_label>" | LABEL like "<label_pattern>" | STATE = { "PENDIN
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes |
+| Privilege | Object | 注釈 |
 | :---------------- | :------------- | :---------------------------- |
-| LOAD_PRIV | Database | データベーステーブルのインポート権限が必要です。 |
+| LOAD_PRIV | Database | データベースTableのインポート権限が必要です。 |
 
 ## 使用上の注意
 

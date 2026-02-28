@@ -18,7 +18,7 @@ NORMAL_CDF(<mean>, <sd>, <x>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<mean>` | 正規分布の平均 |
 | `<sd>` | 正規分布の標準偏差 |

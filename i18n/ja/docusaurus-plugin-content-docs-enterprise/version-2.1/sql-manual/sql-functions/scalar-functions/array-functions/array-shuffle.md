@@ -18,9 +18,9 @@
 ```sql
 ARRAY_SHUFFLE(<array>, <seed>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<array>` | ランダムに並び替えを行う配列 |
 | `<seed>` | 疑似乱数の生成に使用される疑似乱数生成器の初期値を設定するオプションのパラメータ |

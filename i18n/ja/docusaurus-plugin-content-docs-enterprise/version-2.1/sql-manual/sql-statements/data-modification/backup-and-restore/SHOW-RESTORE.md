@@ -35,7 +35,7 @@ SHOW [BRIEF] RESTORE [FROM <db_name>]
 | ReplicationNum | 復元するレプリカ数を指定 |
 | ReserveReplica | コピーを保持するか |
 | ReplicaAllocation | 動的パーティショニングを有効にしたままにするか |
-| RestoreJobs | 復元するテーブルとパーティション |
+| RestoreJobs | 復元するTableとパーティション |
 | CreateTime | タスク送信時刻 |
 | MetaPreparedTime | メタデータ準備完了時刻 |
 | SnapshotFinishedTime | スナップショット完了時刻 |

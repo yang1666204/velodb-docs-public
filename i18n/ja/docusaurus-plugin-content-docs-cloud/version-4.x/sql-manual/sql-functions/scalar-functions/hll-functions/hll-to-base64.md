@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 入力HLLをbase64エンコードされた文字列に変換します。入力が`<null>`の場合、この関数は`<null>`を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 HLL_TO_BASE64(<hll_input>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter    | Description                                          |
+| Parameter    | デスクリプション                                          |
 | ------------ | ---------------------------------------------------- |
 | `<hll_input>` | base64エンコードされた文字列に変換するHyperLogLog (HLL)データ。入力が`<null>`の場合、この関数は`<null>`を返します。 |
 

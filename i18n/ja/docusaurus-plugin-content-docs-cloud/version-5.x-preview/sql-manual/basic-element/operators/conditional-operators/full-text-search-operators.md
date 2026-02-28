@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 全文検索演算子は、列が指定された全文検索条件（キーワード、フレーズなど）を満たすかどうかを判定し、結果はTRUE、FALSE、またはUNKNOWNになります。
 
@@ -16,7 +16,7 @@
 
 ## Operator Introduction
 
-| Operator | Function | Example |
+| Operator | ファンクション | Example |
 | ------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
 | MATCH | MATCH_ANYと同等 | `SELECT * FROM t WHERE column1 MATCH 'word1 word2'` |
 | `<column_name>` MATCH_ANY `<string_literal>` | column_nameのインデックストークナイザーに従ってcolumn_nameとstring_literalをトークン化します。column_nameのいずれかのトークンがstring_literalのトークン化後の任意の単語を含む場合、結果はTRUE、そうでなければFALSEです。 | `SELECT * FROM t WHERE column1 MATCH_ANY 'word1 word2'` |

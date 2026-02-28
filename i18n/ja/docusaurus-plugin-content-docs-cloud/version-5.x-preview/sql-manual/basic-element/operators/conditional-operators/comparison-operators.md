@@ -5,13 +5,13 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 比較条件は、ある式を別の式と比較します。比較の結果は、TRUE、FALSE、またはUNKNOWNになります。
 
 ## Operator Introduction
 
-| Operator | Function | Example |
+| Operator | ファンクション | Example |
 | ------------------- | ----------------------------------------------------------- | ------------------- |
 | `=` | 等価比較。比較の一方がUNKNOWNの場合、結果はUNKNOWNになります。 | `SELECT 1 = 1` |
 | `<=>` | NULL安全等価比較。等価比較とは異なり、NULL安全等価はNULLを比較可能な値として扱います。両方がNULLの場合はTRUEを返します。一方のみがNULLの場合はFALSEを返します。この演算子はUNKNOWNを返すことはありません。 | `SELECT NULL <=> NULL` |

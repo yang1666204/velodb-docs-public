@@ -14,9 +14,9 @@
 ```sql
 GREATEST(<expr> [, ...])
 ```
-## Parameters
+## パラメータ
 
-| Parameter   | Description |
+| Parameter   | デスクリプション |
 |------------|-------------|
 | `<expr>`  | 比較する式のリスト。`TINYINT`、`SMALLINT`、`INT`、`BIGINT`、`LARGEINT`、`FLOAT`、`DOUBLE`、`STRING`、`DATETIME`、および`DECIMAL`タイプをサポートします。 |
 

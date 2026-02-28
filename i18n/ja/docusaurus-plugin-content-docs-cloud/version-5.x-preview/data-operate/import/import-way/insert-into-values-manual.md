@@ -1,11 +1,11 @@
 ---
 {
   "title": "Insert Into Values",
-  "description": "INSERT INTO VALUES文は、SQLからDorisテーブルへの値のインポートをサポートしています。INSERT INTO VALUESは同期インポート方式です。",
+  "description": "INSERT INTO VALUES文は、SQLからDorisTableへの値のインポートをサポートしています。INSERT INTO VALUESは同期インポート方式です。",
   "language": "ja"
 }
 ---
-INSERT INTO VALUES文は、SQLからDorisテーブルに値をインポートすることをサポートしています。INSERT INTO VALUESは同期インポート方式であり、インポートの実行後にインポート結果が返されます。返された結果に基づいて、インポートが成功したかどうかを判断できます。INSERT INTO VALUESはインポートタスクの原子性を保証し、すべてのデータが正常にインポートされるか、まったくインポートされないかのいずれかを意味します。
+INSERT INTO VALUES文は、SQLからDorisTableに値をインポートすることをサポートしています。INSERT INTO VALUESは同期インポート方式であり、インポートの実行後にインポート結果が返されます。返された結果に基づいて、インポートが成功したかどうかを判断できます。INSERT INTO VALUESはインポートタスクの原子性を保証し、すべてのデータが正常にインポートされるか、まったくインポートされないかのいずれかを意味します。
 
 ## 適用シナリオ
 
@@ -14,7 +14,7 @@ INSERT INTO VALUES文は、SQLからDorisテーブルに値をインポートす
 
 ## 実装
 
-INSERT INTO VALUESを使用する場合、インポートジョブをMySQLプロトコルを使用してFEノードに開始・送信する必要があります。FEは実行プランを生成し、これにはクエリ関連のオペレーターが含まれ、最後のオペレーターがOlapTableSinkとなります。OlapTableSinkオペレーターは、クエリ結果をターゲットテーブルに書き込む責任を負います。実行プランは実行のためにBEノードに送信されます。Dorisは1つのBEノードをCoordinatorとして指定し、データを受信して他のBEノードに配布します。
+INSERT INTO VALUESを使用する場合、インポートジョブをMySQLプロトコルを使用してFEノードに開始・送信する必要があります。FEは実行プランを生成し、これにはクエリ関連のオペレーターが含まれ、最後のオペレーターがOlapTableSinkとなります。OlapTableSinkオペレーターは、クエリ結果をターゲットTableに書き込む責任を負います。実行プランは実行のためにBEノードに送信されます。Dorisは1つのBEノードをCoordinatorとして指定し、データを受信して他のBEノードに配布します。
 
 ## 開始方法
 
@@ -22,13 +22,13 @@ INSERT INTO VALUESジョブは、MySQLプロトコルを使用して送信・転
 
 ### 準備
 
-INSERT INTO VALUESには、ターゲットテーブルに対するINSERT権限が必要です。GRANTコマンドを使用してユーザーアカウントに権限を付与できます。
+INSERT INTO VALUESには、ターゲットTableに対するINSERT権限が必要です。GRANTコマンドを使用してユーザーアカウントに権限を付与できます。
 
 ### INSERT INTO VALUESジョブの作成
 
 **INSERT INTO VALUES**
 
-1. ソーステーブルを作成する
+1. ソースTableを作成する
 
 ```SQL
 CREATE TABLE testdb.test_table(
@@ -39,7 +39,7 @@ CREATE TABLE testdb.test_table(
 DUPLICATE KEY(user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
-2. `INSERT INTO VALUES`を使用してソーステーブルにデータをインポートします（本番環境では推奨されません）。
+2. `INSERT INTO VALUES`を使用してソースTableにデータをインポートします（本番環境では推奨されません）。
 
 ```SQL
 INSERT INTO testdb.test_table (user_id, name, age)
@@ -112,13 +112,13 @@ VALUES (val1, val2, ...), (val3, val4, ...), ...;
 
 **FE Config**
 
-| Name | Default Value | Description |
+| Name | デフォルト値 | デスクリプション |
 | --- | --- | --- |
 | insert_load_default_timeout_second | 14400s (4 hours) | インポートタスクのタイムアウト時間（秒）。インポートタスクがこのタイムアウト期間内に完了しない場合、システムによってキャンセルされ、`CANCELLED`とマークされます。 |
 
 **Session Variable**
 
-| Name | Default Value | Description |
+| Name | デフォルト値 | デスクリプション |
 | --- | --- | --- |
 | insert_timeout | 14400s (4 hours) | SQLステートメントとしてのINSERT INTOのタイムアウト時間（秒）。 |
 | enable_insert_strict | true | これがtrueに設定されている場合、タスクに無効なデータが含まれるときINSERT INTOは失敗します。falseに設定されている場合、INSERT INTOは無効な行を無視し、少なくとも1行が正常にインポートされれば、インポートは成功とみなされます。バージョン2.1.4まで、INSERT INTOはエラー率を制御できないため、このパラメータはデータ品質を厳密にチェックするか、無効なデータを完全に無視するかを決定するために使用されます。データが無効になる一般的な理由には、ソースデータの列長が宛先列長を超える、列タイプの不一致、パーティションの不一致、列順序の不一致などがあります。 |
@@ -130,7 +130,7 @@ INSERT INTO VALUESはSQLステートメントであり、その結果としてJS
 
 JSON文字列内のパラメータ:
 
-| Parameter | Description                                                  |
+| Parameter | デスクリプション                                                  |
 | --------- | ------------------------------------------------------------ |
 | Label     | インポートジョブのLabel: "INSERT INTO tbl WITH LABEL label..."を使用して指定できます |
 | Status    | インポートされたデータの可視性: 可視の場合は"visible"と表示されます。そうでない場合は"committed"と表示されます。"committed"状態では、インポートは完了していますが、データの可視化が遅れる場合があります。この場合、再試行する必要はありません。`visible`: インポートは成功し、データが可視です。`committed`: インポートは完了していますが、データの可視化が遅れる場合があります。この場合、再試行する必要はありません。Label Already Exists: 指定されたlabelは既に存在するため、別のものに変更する必要があります。Fail: インポートに失敗しました。 |

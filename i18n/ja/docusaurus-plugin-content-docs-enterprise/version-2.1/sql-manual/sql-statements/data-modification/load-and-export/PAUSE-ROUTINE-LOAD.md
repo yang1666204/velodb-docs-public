@@ -32,7 +32,7 @@ PAUSE [ALL] ROUTINE LOAD FOR <job_name>
 
 | 権限 | オブジェクト | 注記 |
 | :-------- | :----- | :---- |
-| LOAD_PRIV | Table | SHOW ROUTINE LOADにはテーブルのLOAD権限が必要です |
+| LOAD_PRIV | Table | SHOW ROUTINE LOADにはTableのLOAD権限が必要です |
 
 ## 注意事項
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定された時間間隔を日付から減算します。
 
@@ -22,9 +22,9 @@
 ```sql
 DATE_SUB(<date>, <expr> <time_unit>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<date>` | 有効な日付値 |
 | `<expr>`| 減算したい時間間隔 |

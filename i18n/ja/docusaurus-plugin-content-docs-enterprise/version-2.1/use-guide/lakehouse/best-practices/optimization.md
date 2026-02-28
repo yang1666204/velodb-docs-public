@@ -7,7 +7,7 @@
 ---
 この文書では主に、レイクデータ（Hive、Iceberg、Paimon等）をクエリするための最適化手法と戦略について紹介します。
 
-## Partition Pruning
+## パーティション Pruning
 
 クエリでパーティション列の条件を指定することで、不要なパーティションを除外し、読み取りが必要なデータ量を削減できます。
 
@@ -30,11 +30,11 @@ Data Cacheは、リモートストレージシステム（HDFSまたはオブジ
 
 バージョン4.0.2以降、cache warmup機能がサポートされており、data cacheをより積極的に活用してクエリパフォーマンスを向上させることができます。
 
-## HDFS Read Optimization
+## HDFS Read 最適化
 
-[HDFS Documentation](../storages/hdfs.md)の**HDFS IO Optimization**セクションを参照してください。
+[HDFS Documentation](../storages/hdfs.md)の**HDFS IO 最適化**セクションを参照してください。
 
-## Merge IO Optimization
+## Merge IO 最適化
 
 HDFSやオブジェクトストレージなどのリモートストレージシステムに対して、DorisはMerge IO技術を通じてIOアクセスを最適化します。Merge IO技術は本質的に、隣接する複数の小さなIOリクエストを1つの大きなIOリクエストにマージすることで、IOPSを削減しIOスループットを向上させることができます。
 

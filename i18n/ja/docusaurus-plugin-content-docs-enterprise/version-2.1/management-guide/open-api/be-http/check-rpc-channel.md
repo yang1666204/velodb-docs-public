@@ -10,7 +10,7 @@
 
 `GET /api/check_rpc_channel/{host_to_check}/{remot_brpc_port}/{payload_size}`
 
-## Description
+## デスクリプション
 
 接続キャッシュが利用可能かどうかをチェックします
 

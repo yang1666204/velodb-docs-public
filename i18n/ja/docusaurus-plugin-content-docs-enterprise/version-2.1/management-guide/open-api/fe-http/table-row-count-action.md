@@ -1,6 +1,6 @@
 ---
 {
-  "title": "テーブル行数アクション",
+  "title": "Table行数アクション",
   "language": "ja"
 }
 ---
@@ -10,9 +10,9 @@
 
 `GET /api/<db>/<table>/_count`
 
-## Description
+## デスクリプション
 
-指定されたテーブルの行数に関する統計情報を取得するために使用されます。このインターフェースは現在Spark-Doris-Connectorで使用されています。SparkはDorisテーブルの統計情報を取得します。
+指定されたTableの行数に関する統計情報を取得するために使用されます。このインターフェースは現在Spark-Doris-Connectorで使用されています。SparkはDorisTableの統計情報を取得します。
 
 ## Path parameters
 
@@ -22,7 +22,7 @@
 
 * `<table>`
 
-    テーブルを指定
+    Tableを指定
 
 ## Query parameters
 
@@ -45,11 +45,11 @@
 	"count": 0
 }
 ```
-`data.size`フィールドは、指定されたテーブル内の行数を示します。
+`data.size`フィールドは、指定されたTable内の行数を示します。
 
 ## Examples
 
-1. 指定されたテーブル内の行数を取得します。
+1. 指定されたTable内の行数を取得します。
 
     ```
     GET /api/db1/tbl1/_count

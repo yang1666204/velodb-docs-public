@@ -23,9 +23,9 @@ DROP ROW POLICY <policy_name> on <table_name>
 
 **<table_name>**
 
-> テーブル名
+> Table名
 
-# オプションパラメータ（Optional Parameters）
+# オプションパラメータ（Optional パラメータ）
 
 **<user_name>**
 

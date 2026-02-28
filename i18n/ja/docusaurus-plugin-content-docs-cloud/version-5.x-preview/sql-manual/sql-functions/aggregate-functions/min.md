@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 MIN関数は、式の最小のnon-NULL値を返します。
 
@@ -14,9 +14,9 @@ MIN関数は、式の最小のnon-NULL値を返します。
 ```sql
 MIN(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Description |
+| パラメータ | デスクリプション |
 | -- | -- |
 | `<expr>` | 値を取得する式。サポートされる型は String、Time、Date、DateTime、IPv4、IPv6、TinyInt、SmallInt、Integer、BigInt、LargeInt、Float、Double、Decimal、Array です。 |
 

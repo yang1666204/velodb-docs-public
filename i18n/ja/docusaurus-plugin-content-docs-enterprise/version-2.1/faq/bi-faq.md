@@ -13,7 +13,7 @@
 
 ### Q2. 2.1.xバージョンでJDBCを使用してPower BIに接続する際に、「An error happened while reading data from the provider: the given key was not present in the dictionary」エラーが発生する。
 
-まずデータベースで「show collation」を実行してください。一般的に、utf8mb4_900_binのみが表示され、charsetはutf8mb4です。このエラーの主な原因は、Power BIに接続する際にID 33を見つける必要があることです。つまり、テーブル内の33idsを持つ行が必要で、バージョン2.1.5以降にアップグレードする必要があります。
+まずデータベースで「show collation」を実行してください。一般的に、utf8mb4_900_binのみが表示され、charsetはutf8mb4です。このエラーの主な原因は、Power BIに接続する際にID 33を見つける必要があることです。つまり、Table内の33idsを持つ行が必要で、バージョン2.1.5以降にアップグレードする必要があります。
 
 ### Q3. Doris接続時のエラー「Reading data from the provider times error index and count must refer to the location within the string」。
 

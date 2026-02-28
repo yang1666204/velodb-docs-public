@@ -14,9 +14,9 @@
 ```sql
 ISINF(<value>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<value>` | チェックする値。DOUBLEまたはFLOAT型である必要があります |
 

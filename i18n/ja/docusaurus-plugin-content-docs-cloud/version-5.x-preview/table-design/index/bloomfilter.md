@@ -45,9 +45,9 @@ BloomFilterには以下の制限があります：
 
 ## インデックスの管理
 
-### テーブル作成時のBloomFilterインデックスの作成
+### Table作成時のBloomFilterインデックスの作成
 
-歴史的な理由により、BloomFilterインデックスを定義する構文は、転置インデックスに使用される一般的なINDEX構文とは異なります。BloomFilterインデックスは、"bloom_filter_columns"を使用してテーブルのPROPERTIESで指定され、1つ以上のフィールドを指定できます。
+歴史的な理由により、BloomFilterインデックスを定義する構文は、転置インデックスに使用される一般的なINDEX構文とは異なります。BloomFilterインデックスは、"bloom_filter_columns"を使用してTableのPROPERTIESで指定され、1つ以上のフィールドを指定できます。
 
 ```sql
 PROPERTIES (
@@ -59,9 +59,9 @@ PROPERTIES (
 ```sql
 SHOW CREATE TABLE table_name;
 ```
-### 既存テーブルでのBloomFilterインデックスの追加または削除
+### 既存TableでのBloomFilterインデックスの追加または削除
 
-ALTER TABLEを使用してテーブルのbloom_filter_columnsプロパティを変更し、BloomFilterインデックスを追加または削除します。
+ALTER TABLEを使用してTableのbloom_filter_columnsプロパティを変更し、BloomFilterインデックスを追加または削除します。
 
 **column_name3のBloomFilterインデックスを追加**
 

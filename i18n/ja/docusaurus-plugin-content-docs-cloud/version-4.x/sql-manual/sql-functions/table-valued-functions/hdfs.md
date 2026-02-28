@@ -1,15 +1,15 @@
 ---
 {
   "title": "LOCAL | Table Valued Functions",
-  "description": "Local table-valued-function(tvf)は、ユーザーがbeノード上のローカルファイルの内容を読み取りアクセスすることを可能にし、リレーショナルテーブルにアクセスするのと同様に操作できます。",
+  "description": "Local table-valued-function(tvf)は、ユーザーがbeノード上のローカルファイルの内容を読み取りアクセスすることを可能にし、リレーショナルTableにアクセスするのと同様に操作できます。",
   "language": "ja"
 }
 ---
 # LOCAL
 
-## Description
+## デスクリプション
 
-Local table-valued-function(tvf)は、ユーザーがbeノード上のローカルファイルの内容を、リレーショナルテーブルにアクセスするのと同じように読み取りおよびアクセスできるようにします。現在、`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`ファイル形式をサポートしています。
+Local table-valued-function(tvf)は、ユーザーがbeノード上のローカルファイルの内容を、リレーショナルTableにアクセスするのと同じように読み取りおよびアクセスできるようにします。現在、`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`ファイル形式をサポートしています。
 
 ## syntax
 
@@ -22,14 +22,14 @@ LOCAL(
   );
 ```
 ## 必須パラメータ
-| Parameter         | Description                                                                                                                                                                          | Remarks                                           |
+| Parameter         | デスクリプション                                                                                                                                                                          | Remarks                                           |
 |-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
 | `file_path`       | 読み取り対象ファイルのパスで、`user_files_secure_path`ディレクトリからの相対パスです。`user_files_secure_path`パラメータはBE設定項目です。<br />パスには`..`を含めることはできません。パターンマッチングには`logs/*.log`のようなglob構文が使用できます。 |                                                   |
 | `backend_id`      | ファイルが配置されているBEノードのIDです。`show backends`コマンドで取得できます。                                                                                  | バージョン2.1.1以前では、Dorisはそのノード上のローカルデータファイルを読み取るためのBEノードの指定のみをサポートしています。 |
 | `format`          | ファイル形式で、必須です。サポートされている形式は`csv/csv_with_names/csv_with_names_and_types/json/parquet/orc`です。                                                                             |                                                   |
 
 ## オプションパラメータ
-| Parameter              | Description                                                                                                                                                                       | Remarks                                                                |
+| Parameter              | デスクリプション                                                                                                                                                                       | Remarks                                                                |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
 | `shared_storage`        | デフォルトはfalseです。trueの場合、指定されたファイルは共有ストレージ（NASなど）に配置されます。共有ストレージはPOSIXファイルインターフェースをサポートし、すべてのBEノードにマウントされている必要があります。<br />`shared_storage`がtrueの場合、`backend_id`は省略可能です。DorisはすべてのBEノードを利用してデータにアクセスする場合があります。`backend_id`が設定されている場合、指定されたBEノードでのみデータにアクセスします。 | バージョン2.1.2以降でサポート                                      |
 | `column_separator`      | 列区切り文字で、オプション、デフォルトは`\t`です。                                                                                                                                 |                                                                       |
@@ -47,7 +47,7 @@ LOCAL(
 | `enable_mapping_varbinary` | デフォルトはfalseです。PARQUET/ORCを読み取る際、BYTE_ARRAY型をSTRINGにマッピングします。有効にすると、VARBINARY型にマッピングします。 | 4.0.3以降でサポート |
 
 ## アクセス制御要件
-| Privilege  | Object | Notes |
+| Privilege  | Object | 注釈 |
 | :--------- |:-------|:------|
 | ADMIN_PRIV | global |       |
 
@@ -137,7 +137,7 @@ desc function local(
 ```
 ```text
 +-------+------+------+-------+---------+-------+
-| Field | Type | Null | Key   | Default | Extra |
+| Field | タイプ | Null | Key   | Default | Extra |
 +-------+------+------+-------+---------+-------+
 | c1    | TEXT | Yes  | false | NULL    | NONE  |
 | c2    | TEXT | Yes  | false | NULL    | NONE  |

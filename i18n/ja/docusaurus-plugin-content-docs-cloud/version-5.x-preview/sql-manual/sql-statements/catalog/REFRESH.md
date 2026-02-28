@@ -28,16 +28,16 @@ REFRESH TABLE [[<catalog_name>.]<database_name>.]<table_name>;
 
 **3. `[[<catalog_name>.]<database_name>.]<table_name>`**
 
-リフレッシュが必要なカタログ内のテーブルの名前。
+リフレッシュが必要なカタログ内のTableの名前。
 
 ## アクセス制御要件
 | 権限                                                                                    | オブジェクト  | 注記                                     |
 |:---------------------------------------------------------------------------------------------|:--------|:------------------------------------------|
-| ADMIN_PRIV / SELECT_PRIV / LOAD_PRIV / ALTER_PRIV / CREATE_PRIV / SHOW_VIEW_PRIV / DROP_PRIV | Catalog | 上記のいずれかの権限が必要です。 |
+| ADMIN_PRIV / SELECT_PRIV / LOAD_PRIV / ALTER_PRIV / CREATE_PRIV / SHOW_VIEW_PRIV / DROP_PRIV | カタログ | 上記のいずれかの権限が必要です。 |
 
 
 ## 使用上の注意
-Catalogがリフレッシュされると、オブジェクト関連のCacheが強制的に無効化されます。Partition Cache、Schema Cache、File Cacheなどが含まれます。
+Catalogがリフレッシュされると、オブジェクト関連のCacheが強制的に無効化されます。パーティション Cache、Schema Cache、File Cacheなどが含まれます。
 
 ## 例
 

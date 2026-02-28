@@ -19,7 +19,7 @@
 ```sql
 array_cum_sum(ARRAY<T> arr)
 ```
-### Parameters
+### パラメータ
 
 - `arr`：ARRAY\<T> 型、累積和を計算する配列。列名または定数値をサポートします。
 

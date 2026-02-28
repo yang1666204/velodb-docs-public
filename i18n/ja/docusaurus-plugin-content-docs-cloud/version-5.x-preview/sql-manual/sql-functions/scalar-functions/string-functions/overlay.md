@@ -22,7 +22,7 @@ OVERLAY(<str>, <pos>, <len>, <newstr>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | ---------- | ----------------------------------------- |
 | `<str>` | 変更される元の文字列。型: VARCHAR |
 | `<pos>` | 置換の開始位置（1ベース）。型: INT |

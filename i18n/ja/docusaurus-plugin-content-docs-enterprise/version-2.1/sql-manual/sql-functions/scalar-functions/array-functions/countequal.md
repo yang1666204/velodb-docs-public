@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 配列内の値要素の数を決定する
 
@@ -14,9 +14,9 @@
 ```sql
 COUNTEQUAL(<arr>, <value>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<arr>` | 入力配列 |
 | `<value>` | 判定要素 |

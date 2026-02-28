@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 選択されたフィールドのすべての値の合計を返すために使用されます。SUM関数とは異なり、すべての入力値がNULLの場合、SUM0はNULLではなく0を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 SUM0(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 合計を計算するフィールド |
 

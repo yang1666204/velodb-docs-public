@@ -14,9 +14,9 @@
 ```sql
 ARRAY_UNION(<array>, <array> [, ... ])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<array>` | マージされる配列 |
 

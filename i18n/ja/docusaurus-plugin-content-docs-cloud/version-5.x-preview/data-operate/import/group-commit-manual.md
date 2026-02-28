@@ -27,17 +27,17 @@ Group Commitには3つのモードがあります：
 
 * Synchronous Mode（`sync_mode`）
 
-    Dorisはロードとテーブルの`group_commit_interval`プロパティに基づいて複数のロードを1つのトランザクションでコミットし、トランザクションコミット後に戻ります。これは、ローディング後にデータの即座の可視性を必要とする高並行性書き込みシナリオに適しています。
+    DorisはロードとTableの`group_commit_interval`プロパティに基づいて複数のロードを1つのトランザクションでコミットし、トランザクションコミット後に戻ります。これは、ローディング後にデータの即座の可視性を必要とする高並行性書き込みシナリオに適しています。
 
 * Asynchronous Mode（`async_mode`）
 
-    Dorisは最初にデータをWAL（Write Ahead Log）に書き込み、その後すぐに戻ります。Dorisはロードとテーブルの`group_commit_interval`プロパティに基づいて非同期でデータをコミットし、コミット後にデータを可視化します。WALがディスク容量を過度に占有することを防ぐため、大きな単一ロードに対しては自動的に`sync_mode`に切り替わります。これは書き込みレイテンシーに敏感で高頻度の書き込みシナリオに適しています。
+    Dorisは最初にデータをWAL（Write Ahead ログ）に書き込み、その後すぐに戻ります。DorisはロードとTableの`group_commit_interval`プロパティに基づいて非同期でデータをコミットし、コミット後にデータを可視化します。WALがディスク容量を過度に占有することを防ぐため、大きな単一ロードに対しては自動的に`sync_mode`に切り替わります。これは書き込みレイテンシーに敏感で高頻度の書き込みシナリオに適しています。
 
     WAL数はFE httpインターフェース経由で確認するか、BEメトリクスで`wal`キーワードを検索することで確認できます。
 
 ## Group Commitの使用方法
 
-テーブル構造が以下のように仮定します：
+Table構造が以下のように仮定します：
 
 ```sql
 CREATE TABLE `dt` (
@@ -355,7 +355,7 @@ Stream Loadの使用方法については、[Stream Load](./import-way/stream-lo
 
 ### コミット間隔の変更
 
-デフォルトのコミット間隔は10秒です。ユーザーはテーブル設定を通じて調整できます：
+デフォルトのコミット間隔は10秒です。ユーザーはTable設定を通じて調整できます：
 
 ```sql
 # Modify commit interval to 2 seconds
@@ -374,7 +374,7 @@ ALTER TABLE dt SET ("group_commit_interval_ms" = "2000");
 
 ### Commitデータ量の変更
 
-Group Commitのデフォルトコミットデータ量は64 MBです。ユーザーはテーブル設定を通じて調整できます：
+Group Commitのデフォルトコミットデータ量は64 MBです。ユーザーはTable設定を通じて調整できます：
 
 ```sql
 # Modify commit data volume to 128MB
@@ -412,13 +412,13 @@ ALTER TABLE dt SET ("group_commit_data_bytes" = "134217728");
     - 指定されたLabel（`INSERT INTO dt WITH LABEL {label} VALUES`）
     - 式を含むVALUES（`INSERT INTO dt VALUES (1 + 100)`）
     - カラム更新書き込み
-    - テーブルがlightweight modeの変更をサポートしていない
+    - Tableがlightweight modeの変更をサポートしていない
 
   * `Stream Load`は以下の場合にnon-Group Commitモードに退化します：
     - 2フェーズコミットの使用
     - 指定されたLabel（`-H "label:my_label"`）
     - カラム更新書き込み
-    - テーブルがlightweight modeの変更をサポートしていない
+    - Tableがlightweight modeの変更をサポートしていない
 
 * **Unique Model**
   - Group Commitはコミット順序を保証しないため、データ整合性を確保するためにSequenceカラムの使用を推奨します。
@@ -498,7 +498,7 @@ ALTER TABLE dt SET ("group_commit_data_bytes" = "134217728");
 
 #### データセット
 
-* tpch sf10 `lineitem`テーブルのデータ、20ファイル、14 GB、1億2000万行
+* tpch sf10 `lineitem`Tableのデータ、20ファイル、14 GB、1億2000万行
 
 #### テスト方法
 
@@ -530,9 +530,9 @@ ALTER TABLE dt SET ("group_commit_data_bytes" = "134217728");
 
 **データセット**
 
-* tpch sf10 `lineitem`テーブルのデータ。
+* tpch sf10 `lineitem`Tableのデータ。
 
-* テーブル作成文は
+* Table作成文は
 
 ```sql
 CREATE TABLE IF NOT EXISTS lineitem (
@@ -581,7 +581,7 @@ PROPERTIES (
     ```
     jdbc:mysql://127.0.0.1:9030?useServerPrepStmts=true&useLocalSessionState=true&rewriteBatchedStatements=true&cachePrepStmts=true&prepStmtCacheSqlLimit=99999&prepStmtCacheSize=50&sessionVariables=group_commit=async_mode,enable_nereids_planner=false.
     ```
-3. Import TypeをPrepared Update Statementに設定します。
+3. Import TypeをPrepared アップデート Statementに設定します。
 
 4. Import Statementを設定します。
 

@@ -14,9 +14,9 @@
 ```sql
 FMOD(<col_a> , <col_b>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col_a>` | 被除数 |
 | `<col_b>` | 除数（0にはできません） |

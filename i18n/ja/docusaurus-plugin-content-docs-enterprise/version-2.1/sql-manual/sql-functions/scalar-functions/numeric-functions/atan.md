@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `x` のアークタンジェントを返します。ここで `x` はラジアン単位です。
 
@@ -14,9 +14,9 @@
 ```sql
 ATAN(<x>)
 ```
-## Parameters  
+## パラメータ  
 
-| Parameter | Description |  
+| Parameter | デスクリプション |  
 | -- | -- |  
 | `<x>` | atan値を計算する値 |  
 

@@ -47,21 +47,21 @@ SHOW GLOBAL [ FULL ] FUNCTIONS [ LIKE '<function_pattern>' ]
 
 ## 戻り値
 
-| Column | Description         |
+| Column | デスクリプション         |
 | -- |------------|
 | Signature | 関数名とパラメータ型   |
-| Return Type | 関数によって返される値のデータ型 |
-| Function Type | 関数のタイプ      |
-| Intermediate Type | 中間結果型     |
+| Return タイプ | 関数によって返される値のデータ型 |
+| ファンクション タイプ | 関数のタイプ      |
+| Intermediate タイプ | 中間結果型     |
 | Properties | 関数の詳細プロパティ    |
 
 ## アクセス制御要件
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege  | Object   | Notes       |
+| Privilege  | Object   | 注釈       |
 |:--------------|:---------|:--------------|
-| SHOW_PRIV    | Function | この関数に対するshow権限を持つ必要があります |
+| SHOW_PRIV    | ファンクション | この関数に対するshow権限を持つ必要があります |
 
 ## 例
 
@@ -71,21 +71,21 @@ show full functions in testDb
 ```text
 *************************** 1. row ***************************
 Signature: my_add(INT,INT)
-Return Type: INT
-Function Type: Scalar
-Intermediate Type: NULL
+Return タイプ: INT
+ファンクション タイプ: Scalar
+Intermediate タイプ: NULL
 Properties: {"symbol":"_ZN9doris_udf6AddUdfEPNS_15FunctionContextERKNS_6IntValES4_","object_file":"http://host:port/libudfsample.so","md5":"cfe7a362d10f3aaf6c49974ee0f1f878"}
 *************************** 2. row ***************************
 Signature: my_count(BIGINT)
-Return Type: BIGINT
-Function Type: Aggregate
-Intermediate Type: NULL
+Return タイプ: BIGINT
+ファンクション タイプ: Aggregate
+Intermediate タイプ: NULL
 Properties: {"object_file":"http://host:port/libudasample.so","finalize_fn":"_ZN9doris_udf13CountFinalizeEPNS_15FunctionContextERKNS_9BigIntValE","init_fn":"_ZN9doris_udf9CountInitEPNS_15FunctionContextEPNS_9BigIntValE","merge_fn":"_ZN9doris_udf10CountMergeEPNS_15FunctionContextERKNS_9BigIntValEPS2_","md5":"37d185f80f95569e2676da3d5b5b9d2f","update_fn":"_ZN9doris_udf11CountUpdateEPNS_15FunctionContextERKNS_6IntValEPNS_9BigIntValE"}
 *************************** 3. row ***************************
 Signature: id_masking(BIGINT)
-Return Type: VARCHAR
-Function Type: Alias
-Intermediate Type: NULL
+Return タイプ: VARCHAR
+ファンクション タイプ: Alias
+Intermediate タイプ: NULL
 Properties: {"parameter":"id","origin_function":"concat(left(`id`, 3), `****`, right(`id`, 4))"}
 ```
 ```sql
@@ -93,7 +93,7 @@ show builtin functions in testDb like 'year%';
 ```
 ```text
 +---------------+
-| Function Name |
+| ファンクション Name |
 +---------------+
 | year          |
 | years_add     |
@@ -107,15 +107,15 @@ show global full functions
 ```text
 *************************** 1. row ***************************
         Signature: decimal(ALL, INT, INT)
-      Return Type: VARCHAR
-    Function Type: Alias
-Intermediate Type: NULL
+      Return タイプ: VARCHAR
+    ファンクション タイプ: Alias
+Intermediate タイプ: NULL
        Properties: {"parameter":"col, precision, scale","origin_function":"CAST(`col` AS decimal(`precision`, `scale`))"}
 *************************** 2. row ***************************
         Signature: id_masking(BIGINT)
-      Return Type: VARCHAR
-    Function Type: Alias
-Intermediate Type: NULL
+      Return タイプ: VARCHAR
+    ファンクション タイプ: Alias
+Intermediate タイプ: NULL
        Properties: {"parameter":"id","origin_function":"concat(left(`id`, 3), `****`, right(`id`, 4))"}
 ```
 ```sql
@@ -123,7 +123,7 @@ show global functions
 ```
 ```text
 +---------------+
-| Function Name |
+| ファンクション Name |
 +---------------+
 | decimal       |
 | id_masking    |

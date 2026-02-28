@@ -1,7 +1,7 @@
 ---
 {
   "title": "statistics | Information Schema",
-  "description": "information_schemaの統計テーブルは、システム互換性のために、MySQL互換のメタデータを提供しますが、常に空です。",
+  "description": "information_schemaの統計Tableは、システム互換性のために、MySQL互換のメタデータを提供しますが、常に空です。",
   "language": "ja"
 }
 ---
@@ -9,15 +9,15 @@
 
 ## 概要
 
-このテーブルはMySQLの動作との互換性のためだけに存在します。常に空です。
+このTableはMySQLの動作との互換性のためだけに存在します。常に空です。
 
 ## データベース
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name   | Type          | Description |
+| Column Name   | タイプ          | デスクリプション |
 | ------------- | ------------- | ----------- |
 | TABLE_CATALOG | varchar(512)  |             |
 | TABLE_SCHEMA  | varchar(64)   |             |

@@ -19,7 +19,7 @@ SHOW QUEUED ANALYZE JOBS [ <table_name> ]
 
 **1. `<table_name>`**
 
-> テーブル名。指定した場合、そのテーブルに対応するジョブキュー情報を表示できます。指定しない場合、デフォルトですべてのテーブルのジョブキュー情報が返されます。
+> Table名。指定した場合、そのTableに対応するジョブキュー情報を表示できます。指定しない場合、デフォルトですべてのTableのジョブキュー情報が返されます。
 
 **2. `WHERE PRIORITY = {"HIGH" | "MID" | "LOW" | "VERY_LOW"}`**
 
@@ -31,7 +31,7 @@ SHOW QUEUED ANALYZE JOBS [ <table_name> ]
 | -- |--------------|
 | catalog_name |   Catalog名         |
 | db_name | データベース名           |
-| tbl_name | テーブル名         |
+| tbl_name | Table名         |
 | col_list | カラム名リスト           |
 | priority | ジョブ優先度           |
 
@@ -39,13 +39,13 @@ SHOW QUEUED ANALYZE JOBS [ <table_name> ]
 
 このSQLを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes                                    |
+| Privilege | Object | 注釈                                    |
 |:--------------| :------------- |:------------------------------------------------|
-| SELECT_PRIV   | Table    | SHOWを実行する際、クエリ対象のテーブルのSELECT_PRIV権限が必要です。 |
+| SELECT_PRIV   | Table    | SHOWを実行する際、クエリ対象のTableのSELECT_PRIV権限が必要です。 |
 
 ## 例
 
-1. テーブル名でジョブを表示する。
+1. Table名でジョブを表示する。
 
 ```sql
 SHOW QUEUED ANALYZE JOBS REGION;

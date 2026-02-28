@@ -28,7 +28,7 @@ PLAN REPLAYER DUMP <query>
 
 | 権限 | オブジェクト | 備考 |
 | :--: | :--: | :--: |
-| SELECT_PRIV | Table、View | <query_sql_statement>を実行する際、クエリ対象のテーブル、ビュー、またはマテリアライズドビューに対するSELECT_PRIV権限が必要です。 |
+| SELECT_PRIV | Table、View | <query_sql_statement>を実行する際、クエリ対象のTable、ビュー、またはマテリアライズドビューに対するSELECT_PRIV権限が必要です。 |
 
 ## 例
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 Explainは書き換えられた実行計画を表示することができます。
 
@@ -26,7 +26,7 @@ USING (<filter>);
 
 **<table_name>**
 
-> テーブル名
+> Table名
 
 **<filter_type>**
 

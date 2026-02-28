@@ -5,9 +5,9 @@
   "language": "ja"
 }
 ---
-# Certificate Configuration
+# Certificate 構成
 
-Certificate Configuration
+Certificate 構成
 
 Doris FEインターフェースでSSL機能を有効にするには、以下のようにキー証明書を設定する必要があります：
 

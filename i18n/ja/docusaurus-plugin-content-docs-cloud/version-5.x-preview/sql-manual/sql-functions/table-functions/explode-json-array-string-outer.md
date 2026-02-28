@@ -1,12 +1,12 @@
 ---
 {
   "title": "EXPLODE_JSON_ARRAY_STRING_OUTER",
-  "description": "explodejsonarraystringouter テーブル関数は JSON 配列を受け取ります。",
+  "description": "explodejsonarraystringouter Table関数は JSON 配列を受け取ります。",
   "language": "ja"
 }
 ---
 ## 説明
-`explode_json_array_string_outer`テーブル関数はJSON配列を受け取ります。その実装ロジックは、JSON配列をarray型に変換してから、処理のために`explode_outer`関数を呼び出すことです。この動作は`explode_outer(cast(<json_array> as Array<STRING>))`と等価です。
+`explode_json_array_string_outer`Table関数はJSON配列を受け取ります。その実装ロジックは、JSON配列をarray型に変換してから、処理のために`explode_outer`関数を呼び出すことです。この動作は`explode_outer(cast(<json_array> as Array<STRING>))`と等価です。
 これは[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
 
 ## 構文
@@ -20,7 +20,7 @@ EXPLODE_JSON_ARRAY_STRING_OUTER(<json>)
 ## 戻り値
 - `<json>`内のすべての要素で構成される単一列、複数行の結果を返します。列の型は`Nullable<STRING>`です。
 - `<json>`がNULLまたは空の配列（要素数が0）の場合、NULLを含む1行が返されます。
-- JSON配列内の要素がSTRING型でない場合、関数はそれらをSTRINGに変換しようとします。STRINGへの変換に失敗した場合、その要素はNULLに変換されます。型変換規則については、[JSON Type Conversion](../../basic-element/sql-data-types/conversion/json-conversion.md)を参照してください。
+- JSON配列内の要素がSTRING型でない場合、関数はそれらをSTRINGに変換しようとします。STRINGへの変換に失敗した場合、その要素はNULLに変換されます。型変換規則については、[JSON タイプ Conversion](../../basic-element/sql-data-types/conversion/json-conversion.md)を参照してください。
 
 ## 例
 0. データの準備

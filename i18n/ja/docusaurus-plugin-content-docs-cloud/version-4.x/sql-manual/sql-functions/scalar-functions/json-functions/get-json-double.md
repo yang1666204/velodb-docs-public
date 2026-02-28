@@ -1,11 +1,11 @@
 ---
 {
   "title": "GET_JSON_DOUBLE",
-  "description": "Function は JSON ドキュメントからフィールドの値を抽出し、DOUBLE 型に変換するために使用されます。",
+  "description": "ファンクション は JSON ドキュメントからフィールドの値を抽出し、DOUBLE 型に変換するために使用されます。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この関数は、JSONドキュメントからフィールドの値を抽出し、DOUBLE型に変換するために使用されます。この関数は、指定されたパス上のフィールドの値を返すか、値がDOUBLE型に変換できない場合やパスが指すフィールドが存在しない場合にNULLを返します。
 
@@ -14,7 +14,7 @@
 ```sql
 GET_JSON_DOUBLE( <json_str>, <json_path>)
 ```
-## Required Parameters
+## Required パラメータ
 
 | parameters| described|
 |------|------|
@@ -26,7 +26,7 @@ GET_JSON_DOUBLE( <json_str>, <json_path>)
 - パスが指すフィールドのDOUBLE値を返します。
 - 指定されたパスで対応するフィールドが見つからない場合、またはフィールド値がDOUBLE型に変換できない場合はNULLを返します。
 
-## Usage Notes
+## Usage 注釈
 
 jsonフィールド内の指定されたパスの浮動小数点コンテンツを解析して取得します。
 `<json_path>`は$シンボルで始まり、.をパス区切り文字として使用する必要があります。パスに.が含まれている場合は、二重引用符で囲むことができます。

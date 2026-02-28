@@ -17,7 +17,7 @@ EXPLODE_OUTER(<array>)
 ```
 ## 必須パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<arr>` | 	配列型 |
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Function
+## ファンクション
 
 指定された値と等しい全ての要素を配列から削除し、残りの要素の相対的な順序を保持します。
 
@@ -13,7 +13,7 @@
 
 - `ARRAY_REMOVE(arr, target)`
 
-## Parameters
+## パラメータ
 
 - `arr`: `ARRAY<T>`、数値、boolean、文字列、datetime、IPなどをサポート
 - `target`: 配列要素と同じ型の値、削除対象の要素とのマッチに使用

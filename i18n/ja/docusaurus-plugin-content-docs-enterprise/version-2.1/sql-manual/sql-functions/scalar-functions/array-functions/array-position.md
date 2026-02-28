@@ -14,9 +14,9 @@
 ```sql
 ARRAY_POSITION(<arr>, <value>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --- | --- |
 | `<arr>` | ARRAY配列 |
 | `<value>` | 検索する要素 |

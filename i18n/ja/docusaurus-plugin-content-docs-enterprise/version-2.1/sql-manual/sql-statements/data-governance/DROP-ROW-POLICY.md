@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 行セキュリティポリシーを削除します。行セキュリティポリシーの詳細については、「Security Policies」の章を参照してください。
 
@@ -23,9 +23,9 @@ DROP ROW POLICY <policy_name> on <table_name>
 
 **<table_name>**
 
-> テーブル名
+> Table名
 
-# オプションパラメータ (Optional Parameters)
+# オプションパラメータ (Optional パラメータ)
 
 **<user_name>**
 

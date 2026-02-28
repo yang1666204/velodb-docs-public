@@ -49,7 +49,7 @@ Memory Tracker統計の欠落現象は、Doris 2.1前後のバージョンで異
 
 > Doris 2.1.5より前のバージョンでは、Memory Tracker統計が欠落しているかBEプロセスメモリが減少しない場合は、[キャッシュメモリ分析](./../memory-analysis/doris-cache-memory-analysis.md)を参照してSegmentCacheメモリ使用量を分析し、テストを継続する前にSegment Cacheを閉じることを試してください。
 
-> Doris 2.1.5より前のバージョンでは、Segment Cache Memory Tackerは不正確です。これは、Primary Key Indexを含む一部のIndexメモリ統計が不正確であるため、Segment Cacheメモリが効果的に制限されず、特に数百または数千列の大きなワイドテーブルで過度にメモリを占有することが多いためです。[メタデータメモリ分析](./../memory-analysis/metadata-memory-analysis.md)を参照してください。Doris BE Metricsの`doris_be_cache_usage{name="SegmentCache"}`が大きくないが、Doris BE Bvarの`doris_column_reader_num`が大きい場合は、Segment Cacheのメモリ使用量を疑う必要があります。Heap Profileでメモリ使用量の大きいコールスタックに`Segment`と`ColumnReader`フィールドが表示される場合、Segment Cacheが大量のメモリを占有していることがほぼ確認できます。
+> Doris 2.1.5より前のバージョンでは、Segment Cache Memory Tackerは不正確です。これは、Primary Key Indexを含む一部のIndexメモリ統計が不正確であるため、Segment Cacheメモリが効果的に制限されず、特に数百または数千列の大きなワイドTableで過度にメモリを占有することが多いためです。[メタデータメモリ分析](./../memory-analysis/metadata-memory-analysis.md)を参照してください。Doris BE Metricsの`doris_be_cache_usage{name="SegmentCache"}`が大きくないが、Doris BE Bvarの`doris_column_reader_num`が大きい場合は、Segment Cacheのメモリ使用量を疑う必要があります。Heap Profileでメモリ使用量の大きいコールスタックに`Segment`と`ColumnReader`フィールドが表示される場合、Segment Cacheが大量のメモリを占有していることがほぼ確認できます。
 
 上記の現象が観察された場合、クラスターを簡単に再起動でき、現象を再現できる場合は、[Heap Profileメモリ分析](./../memory-analysis/heap-profile-memory-analysis.md)を参照してJemalloc Heap Profileを使用してプロセスメモリを分析してください。
 
@@ -72,7 +72,7 @@ Memory Tracker統計の欠落現象は、Doris 2.1前後のバージョンで異
 2. Orphan Memory Trackerの値が大きすぎる
 
 ```
-MemTrackerLimiter Label=Orphan, Type=global, Limit=-1.00 B(-1 B), Used=0(0 B), Peak=0(0 B)
+MemTrackerLimiter Label=Orphan, タイプ=global, Limit=-1.00 B(-1 B), Used=0(0 B), Peak=0(0 B)
 ```
 Orphan Memory TrackerはデフォルトのMemory Trackerです。正の値または負の値は、Doris Allocatorによって割り当てられたメモリが正確に追跡されていないことを意味します。値が大きいほど、Memory Trackerの全体的な統計結果の信頼性は低くなります。その統計値は2つのソースから取得されます：
 

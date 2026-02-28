@@ -27,7 +27,7 @@ JSON_TYPE( <json>, <json_path> )
 ## Alias
 - `JSONB_TYPE`
 
-## Parameters
+## パラメータ
 
 - `<json>` タイプをチェックするJSON文字列。
 - `<json_path>` String型。JSON内のフィールドの位置を指定します。パスは通常$で始まり、階層構造を表すために.を使用します。
@@ -36,7 +36,7 @@ JSON_TYPE( <json>, <json_path> )
 
 `Nullable<String>`: 対応するフィールドのタイプを返します。
 
-## Usage Notes
+## Usage 注釈
 - `<json_object>`または`<json_path>`がNULLの場合、NULLを返します。
 - `<json_path>`が有効なパスでない場合、関数はエラーを報告します。
 - `<json_path>`で指定されたフィールドが存在しない場合、NULLを返します。

@@ -34,7 +34,7 @@ kyuubi.engine.jdbc.connection.url=jdbc:mysql://xxx:xxx
 kyuubi.engine.jdbc.connection.user=***
 kyuubi.engine.jdbc.connection.password=***
 ```
-| Configuration                          | Description                                                   |
+| 構成                          | デスクリプション                                                   |
 |----------------------------------------|---------------------------------------------------------------|
 | kyuubi.engine.type                     | エンジンタイプ、`jdbc`を指定                                |
 | kyuubi.engine.jdbc.type                | JDBCサービスタイプ、`doris`を指定                         |
@@ -43,7 +43,7 @@ kyuubi.engine.jdbc.connection.password=***
 | kyuubi.engine.jdbc.connection.user     | JDBCユーザー名                                                 |
 | kyuubi.engine.jdbc.connection.password | JDBCパスワード                                                 |
 
-- Apache Kyuubiのその他の設定については、[Apache Kyuubi Configuration Docs](https://kyuubi.readthedocs.io/en/master/deployment/settings.html)を参照してください。
+- Apache Kyuubiのその他の設定については、[Apache Kyuubi 構成 Docs](https://kyuubi.readthedocs.io/en/master/deployment/settings.html)を参照してください。
 
 ### MySQL JDBCドライバの追加
 

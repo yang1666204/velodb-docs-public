@@ -1,6 +1,6 @@
 ---
 {
-  "title": "String Type Literal",
+  "title": "String タイプ Literal",
   "description": "文字列は、単一引用符（'）または二重引用符（\"）で囲まれたバイトまたは文字の列です。例：",
   "language": "ja"
 }

@@ -7,7 +7,7 @@
 ---
 DorisはTPCHテストセットを迅速に構築するために、[Trino Connector](https://doris.apache.org/community/how-to-contribute/trino-connector-developer-guide)互換フレームワークと[TPCH Connector](https://trino.io/docs/current/connector/tpch.html)の使用をサポートしています。
 
-Hive/IcebergテーブルのデータWrite-back機能と組み合わせることで、Dorisを通じてDoris、Hive、IcebergテーブルのTPCHテストデータセットを迅速に構築できます。
+Hive/IcebergTableのデータWrite-back機能と組み合わせることで、Dorisを通じてDoris、Hive、IcebergTableのTPCHテストデータセットを迅速に構築できます。
 
 このドキュメントでは主に、TPCH Connectorをデプロイし、テストデータセットを構築するために使用する方法について説明します。
 
@@ -54,7 +54,7 @@ CREATE CATALOG `tpch` PROPERTIES (
 ```
 `tpch.splits-per-node`は並行数であり、最適な並行性を実現するためにBEマシンあたりのコア数の2倍に設定することが推奨されています。これによりデータ生成効率が向上します。
 
-`"tpch.column-naming" = "STANDARD"`の場合、TPCHテーブルの列名はテーブル名の略称で始まります（例：`l_orderkey`）。そうでなければ`orderkey`となります。
+`"tpch.column-naming" = "STANDARD"`の場合、TPCHTableの列名はTable名の略称で始まります（例：`l_orderkey`）。そうでなければ`orderkey`となります。
 
 ## TPCH Catalogの使用
 
@@ -96,10 +96,10 @@ mysql> SHOW TABLES;
 | supplier      |
 +---------------+
 ```
-これらのテーブルはSELECT文を使って直接クエリできます。
+これらのTableはSELECT文を使って直接クエリできます。
 
 :::tip
-これらの事前設定されたデータセットのデータは実際には保存されておらず、クエリ実行時にリアルタイムで生成されます。そのため、これらの事前設定されたデータセットは直接的なBenchmarkテストには適していません。これらは`INSERT INTO SELECT`を通じて他のターゲットテーブル（Doris内部テーブル、Hive、Iceberg、およびDorisが書き込みをサポートするその他すべてのデータソース）にデータセットを書き込み、その後ターゲットテーブルでパフォーマンステストを実行するのに適しています。
+これらの事前設定されたデータセットのデータは実際には保存されておらず、クエリ実行時にリアルタイムで生成されます。そのため、これらの事前設定されたデータセットは直接的なBenchmarkテストには適していません。これらは`INSERT INTO SELECT`を通じて他のターゲットTable（Doris内部Table、Hive、Iceberg、およびDorisが書き込みをサポートするその他すべてのデータソース）にデータセットを書き込み、その後ターゲットTableでパフォーマンステストを実行するのに適しています。
 :::
 
 ## TPCHテストデータセットの構築

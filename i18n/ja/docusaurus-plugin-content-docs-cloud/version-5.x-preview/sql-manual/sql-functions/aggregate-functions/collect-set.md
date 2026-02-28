@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 Aggregation関数は、指定されたカラムのすべての一意な値を集約し、重複する要素を削除して、set型の結果を返します。
 
@@ -18,9 +18,9 @@ Aggregation関数は、指定されたカラムのすべての一意な値を集
 ```sql
 COLLECT_SET(<expr> [,<max_size>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 配列に配置される値を決定する式。サポートされる型: Bool, TinyInt, SmallInt, Integer, BigInt, LargeInt, Float, Double, Decimal, Date, Datetime, IPV4, IPV6, String, Array, Map, Struct。 |
 | `<max_size>` | 結果配列のサイズをmax_size要素に制限するオプションパラメータ。サポートされる型: Integer。 |

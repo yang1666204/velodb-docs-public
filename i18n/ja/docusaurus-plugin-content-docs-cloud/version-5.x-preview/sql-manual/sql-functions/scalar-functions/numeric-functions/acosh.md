@@ -14,9 +14,9 @@
 ```sql
 ACOSH(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |  
+| Parameter | デスクリプション |  
 | -- | -- |  
 | `<x>` | 双曲線逆余弦を計算する値 |  
 

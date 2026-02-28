@@ -30,7 +30,7 @@ CANCEL MATERIALIZED VIEW TASK <task_id> ON <mv_name>
 ## アクセス制御要件
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持っている必要があります：
 
-| Privilege  | Object | Notes                                        |
+| Privilege  | Object | 注釈                                        |
 | :--------- | :----- | :------------------------------------------- |
 | ALTER_PRIV | Materialized View  | CANCELはマテリアライズドビューに対するALTER操作です |
 

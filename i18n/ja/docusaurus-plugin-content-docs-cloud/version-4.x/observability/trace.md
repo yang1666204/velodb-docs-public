@@ -1,17 +1,17 @@
 ---
 {
   "title": "トレース",
-  "description": "この記事では、コア観測可能性データの一つであるTraceのストレージと分析プラクティスについて紹介します。",
+  "description": "この記事では、コア観測可能性データの一つであるトレースのストレージと分析プラクティスについて紹介します。",
   "language": "ja"
 }
 ---
-# Trace
+# トレース
 
-この記事では、コアなオブザーバビリティデータの1つであるTraceのストレージと分析の実践について紹介します。完全なオブザーバビリティソリューションの概要については、[Overview](./overview.mdx)を参照してください。リソース評価、クラスターデプロイメント、最適化については、[Log](./log.md)を参照してください。
+この記事では、コアなオブザーバビリティデータの1つであるトレースのストレージと分析の実践について紹介します。完全なオブザーバビリティソリューションの概要については、[概要](./overview.mdx)を参照してください。リソース評価、クラスターデプロイメント、最適化については、[ログ](./log.md)を参照してください。
 
-## 1. テーブル作成
+## 1. Table作成
 
-Traceデータは書き込みとクエリパターンにおいて独特の特性を持ちます。テーブル作成時に対象を絞った設定により、パフォーマンスを大幅に改善できます。以下の主要なガイドラインに基づいてテーブルを作成してください：
+トレースデータは書き込みとクエリパターンにおいて独特の特性を持ちます。Table作成時に対象を絞った設定により、パフォーマンスを大幅に改善できます。以下の主要なガイドラインに基づいてTableを作成してください：
 
 **パーティショニングとソート**
 - 時間フィールドでRANGEパーティショニングを使用し、dynamic partitioningを有効にして日単位でパーティションを自動管理します。
@@ -25,7 +25,7 @@ Traceデータは書き込みとクエリパターンにおいて独特の特性
 - time_seriesコンパクション戦略を使用してwrite amplificationを削減します。これは高スループット取り込み下でのリソース最適化に重要です。
 
 **VARIANTデータ型**
-- `span_attributes`や`resource_attributes`などの拡張Traceフィールドには、半構造化VARIANTデータ型を使用します。これによりJSONデータが自動的にサブカラムに分割されて格納され、圧縮率が向上し、ストレージ容量が削減されると同時に、フィルタリングとサブカラム分析のパフォーマンスも向上します。
+- `span_attributes`や`resource_attributes`などの拡張トレースフィールドには、半構造化VARIANTデータ型を使用します。これによりJSONデータが自動的にサブカラムに分割されて格納され、圧縮率が向上し、ストレージ容量が削減されると同時に、フィルタリングとサブカラム分析のパフォーマンスも向上します。
 
 **インデックス**
 - 頻繁にクエリされるフィールドにインデックスを構築します。
@@ -117,26 +117,26 @@ PROPERTIES (
 "storage_policy" = "log_policy_3day" -- Not required for compute-storage separation
 );
 ```
-## 2. Trace Collection
+## 2. トレース Collection
 
-DorisはOpenTelemetryなどのTrace収集システムと統合できるオープンで汎用的なStream HTTP APIを提供します。
+DorisはOpenTelemetryなどのトレース収集システムと統合できるオープンで汎用的なStream HTTP APIを提供します。
 
 ### OpenTelemetry統合
 
 1. **アプリケーション側でのOpenTelemetry SDK統合**
 
 ここではOpenTelemetry Java SDKと統合されたSpring Bootサンプルアプリケーションを使用します。このサンプルアプリケーションは公式の[demo](https://docs.spring.io/spring-boot/tutorial/first-application/index.html)から取得したもので、パス"/"へのリクエストに対してシンプルな"Hello World!"文字列を返します。  
-[OpenTelemetry Java Agent](https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases)をダウンロードしてください。Java Agentを使用する利点は、既存のアプリケーションに変更を加える必要がないことです。他の言語や統合方法については、OpenTelemetry公式ウェブサイトの[Language APIs & SDKs](https://opentelemetry.io/docs/languages/)または[Zero-code Instrumentation](https://opentelemetry.io/docs/zero-code/)を参照してください。
+[OpenTelemetry Java エージェント](https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases)をダウンロードしてください。Java Agentを使用する利点は、既存のアプリケーションに変更を加える必要がないことです。他の言語や統合方法については、OpenTelemetry公式ウェブサイトの[Language APIs & SDKs](https://opentelemetry.io/docs/languages/)または[Zero-code Instrumentation](https://opentelemetry.io/docs/zero-code/)を参照してください。
 
-1. **OpenTelemetry Collectorのデプロイと設定**
+2. **OpenTelemetry Collectorのデプロイと設定**
 
 [OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector-releases/releases)をダウンロードして展開してください。Doris Exporterが含まれている"otelcol-contrib"で始まるパッケージをダウンロードする必要があります。
 
-以下のように`otel_demo.yaml`設定ファイルを作成してください。詳細については、Doris Exporterの[documentation](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/dorisexporter)を参照してください。
+以下のように`otel_demo.yaml`設定ファイルを作成してください。詳細については、Doris Exporterの[ドキュメント](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/dorisexporter)を参照してください。
 
 ```yaml
 receivers:
-  otlp: # OTLP protocol, receiving data sent by the OpenTelemetry Java Agent
+  otlp: # OTLP protocol, receiving data sent by the OpenTelemetry Java エージェント
     protocols:
       grpc:
         endpoint: 0.0.0.0:4317
@@ -174,7 +174,7 @@ exporters:
     headers:
       load_to_single_tablet: "true"
 ```
-1. **OpenTelemetry Collectorを実行する**
+3. **OpenTelemetry Collectorを実行する**
 
 ```bash
 ./otelcol-contrib --config otel_demo.yaml
@@ -184,7 +184,7 @@ exporters:
 アプリケーションを開始する前に、コードを変更することなく、いくつかの環境変数を追加するだけです。
 
 ```bash
-export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS} -javaagent:/your/path/to/opentelemetry-javaagent.jar" # Path to OpenTelemetry Java Agent
+export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS} -javaagent:/your/path/to/opentelemetry-javaagent.jar" # Path to OpenTelemetry Java エージェント
 export OTEL_JAVAAGENT_LOGGING="none" # Disable Otel logs to prevent interference with application logs
 export OTEL_SERVICE_NAME="myproject"
 export OTEL_TRACES_EXPORTER="otlp" # Send trace data using OTLP protocol
@@ -194,16 +194,16 @@ java -jar myproject-0.0.1-SNAPSHOT.jar
 ```
 5. **Spring Boot Example Serviceにアクセスしてトレースデータを生成する**
 
-`curl localhost:8080`を実行すると、`hello`サービスへの呼び出しが発生します。OpenTelemetry Java Agentは自動的にTraceデータを生成し、OpenTelemetry Collectorに送信します。その後、設定されたDoris Exporterを通じてTraceデータがDorisテーブル（デフォルトは`otel.otel_traces`）に書き込まれます。
+`curl localhost:8080`を実行すると、`hello`サービスへの呼び出しが発生します。OpenTelemetry Java Agentは自動的にトレースデータを生成し、OpenTelemetry Collectorに送信します。その後、設定されたDoris Exporterを通じてトレースデータがDorisTable（デフォルトは`otel.otel_traces`）に書き込まれます。
 
-## 3. Traceクエリ
+## 3. トレースクエリ
 
-Traceクエリでは通常、Grafanaなどの視覚的クエリインターフェースを使用します。
+トレースクエリでは通常、Grafanaなどの視覚的クエリインターフェースを使用します。
 
-- 時間範囲とサービス名でフィルタリングしてTraceサマリーを表示します。これには遅延分布チャートや詳細な個別Traceが含まれます。
+- 時間範囲とサービス名でフィルタリングしてトレースサマリーを表示します。これには遅延分布チャートや詳細な個別トレースが含まれます。
 
-  ![Trace List](/images/observability/trace-list.png)
+  ![トレース List](/images/observability/trace-list.png)
 
-- リンクをクリックしてTraceの詳細を表示します。
+- リンクをクリックしてトレースの詳細を表示します。
 
-  ![Trace Detail](/images/observability/trace-detail.png)
+  ![トレース Detail](/images/observability/trace-detail.png)

@@ -6,7 +6,7 @@
 }
 ---
 ## multi_search_all_positions
-### Description
+### デスクリプション
 #### Syntax
 
 `ARRAY<INT> multi_search_all_positions(VARCHAR haystack, ARRAY<VARCHAR> needles)`

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、FEノード上の重要なディレクトリのディスク情報を表示するために使用されます。対象となるディレクトリには、metadata、logs、audit logs、temporary directoriesが含まれます。
 
@@ -33,13 +33,13 @@ SHOW FRONTENDS DISKS;
 
 このSQLを実行するユーザーは、最低限以下の権限を持つ必要があります：
 
-| Privilege               | Object | Notes |
+| Privilege               | Object | 注釈 |
 |-------------------------|----|----|
 | ADMIN_PRIV or NODE_PRIV |    |    |
 
 ## 使用上の注意
 
-クエリ結果のさらなるフィルタリングが必要な場合は、テーブル値関数frontends_disks()を使用できます。SHOW BACKENDSは以下の文と同等です：
+クエリ結果のさらなるフィルタリングが必要な場合は、Table値関数frontends_disks()を使用できます。SHOW BACKENDSは以下の文と同等です：
 
 ```sql
 SELECT * FROM FRONTENDS_DISKS();

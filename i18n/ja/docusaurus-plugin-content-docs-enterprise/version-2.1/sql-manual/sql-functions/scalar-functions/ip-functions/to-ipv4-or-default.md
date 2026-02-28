@@ -13,8 +13,8 @@
 ```sql
 TO_IPV4_OR_DEFAULT(<ipv4_str>)
 ```
-## Parameters
-| Parameter | Description                                      |
+## パラメータ
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ipv4_str>`      | String型のIPv4アドレス |
 

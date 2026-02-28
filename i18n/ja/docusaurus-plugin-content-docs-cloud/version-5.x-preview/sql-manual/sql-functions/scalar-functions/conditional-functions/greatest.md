@@ -25,7 +25,7 @@ GREATEST(<expr> [, ...])
 - いずれかの引数が`NULL`の場合、`NULL`を返します。
 
 ## 使用上の注意
-1. 同じタイプの引数を渡すことを推奨します。引数のタイプが異なる場合、関数は同じタイプに変換を試行します。変換ルールについては、以下を参照してください：[Type Conversion](../../../basic-element/sql-data-types/conversion/overview.md)
+1. 同じタイプの引数を渡すことを推奨します。引数のタイプが異なる場合、関数は同じタイプに変換を試行します。変換ルールについては、以下を参照してください：[タイプ Conversion](../../../basic-element/sql-data-types/conversion/overview.md)
 2. いずれかの引数がNULLの場合、結果はNULLになります。
 
 ## 例

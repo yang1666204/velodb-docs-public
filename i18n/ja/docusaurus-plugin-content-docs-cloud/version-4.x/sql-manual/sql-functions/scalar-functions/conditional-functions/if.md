@@ -14,9 +14,9 @@
 ```sql
 IF(<condition>, <value_true>, <value_false_or_null>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter               | Description                                                  |
+| Parameter               | デスクリプション                                                  |
 |-------------------------|--------------------------------------------------------------|
 | `<condition>`           | 評価するブール条件。                           |
 | `<value_true>`          | `<condition>`がtrueと評価された場合に返す値。      |

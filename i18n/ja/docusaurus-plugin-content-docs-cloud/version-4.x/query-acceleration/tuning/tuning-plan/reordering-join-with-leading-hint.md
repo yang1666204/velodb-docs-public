@@ -1,19 +1,19 @@
 ---
 {
   "title": "Join の先頭ヒントでの並び替え",
-  "description": "Leading Hint機能により、ユーザーはクエリ内のテーブルの結合順序を手動で指定することができます。",
+  "description": "Leading Hint機能により、ユーザーはクエリ内のTableの結合順序を手動で指定することができます。",
   "language": "ja"
 }
 ---
 ## 概要
 
-Leading Hint機能により、ユーザーはクエリ内のテーブルの結合順序を手動で指定することができ、特定のシナリオにおける複雑なクエリのパフォーマンスを最適化できます。この記事では、DorisでLeading Hintを使用して結合順序を制御する方法について詳しく説明します。詳細な使用方法については、[leading hint](../../../query-acceleration/hints/leading-hint.md)ドキュメントを参照してください。
+Leading Hint機能により、ユーザーはクエリ内のTableの結合順序を手動で指定することができ、特定のシナリオにおける複雑なクエリのパフォーマンスを最適化できます。この記事では、DorisでLeading Hintを使用して結合順序を制御する方法について詳しく説明します。詳細な使用方法については、[leading hint](../../../query-acceleration/hints/leading-hint.md)ドキュメントを参照してください。
 
 :::caution Note
 現在、Dorisは優れたout-of-the-box機能を備えています。これは、ほとんどのシナリオにおいて、Dorisがさまざまなシナリオでパフォーマンスを適応的に最適化するため、ユーザーがパフォーマンスチューニングのためにhintを手動で制御する必要がないことを意味します。この章で紹介する内容は主に専門的なチューナー向けであり、業務担当者は簡単な理解のみで十分です。
 :::
 
-## ケース1: 左と右のテーブル順序の調整
+## ケース1: 左と右のTable順序の調整
 
 以下のクエリについて：
 
@@ -204,7 +204,7 @@ explain shape plan
         nation,
         o_year desc;
 ```
-上記のヒント仕様`/*+ leading(orders shuffle {lineitem shuffle part} shuffle {supplier broadcast nation} shuffle partsupp) */`は、leadingとdistributeヒントの2つの形式を組み合わせています。Leadingは全体のテーブル間の相対的な結合順序を制御するために使用され、shuffleとbroadcastは特定の結合に対するshuffle方法を指定するために使用されます。この2つを組み合わせることで、接続順序と接続方法を柔軟に制御でき、ユーザーが期待するプランの動作を手動で制御するのに便利です。
+上記のヒント仕様`/*+ leading(orders shuffle {lineitem shuffle part} shuffle {supplier broadcast nation} shuffle partsupp) */`は、leadingとdistributeヒントの2つの形式を組み合わせています。Leadingは全体のTable間の相対的な結合順序を制御するために使用され、shuffleとbroadcastは特定の結合に対するshuffle方法を指定するために使用されます。この2つを組み合わせることで、接続順序と接続方法を柔軟に制御でき、ユーザーが期待するプランの動作を手動で制御するのに便利です。
 
 :::caution 使用上の提案
 - EXPLAINを使用して実行プランを注意深く分析し、Leading Hintが期待する効果を達成できることを確認することを推奨します。

@@ -16,9 +16,9 @@
 ```sql
 ELT ( <pos> , <str> [ , <str> ] )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<pos>`   | 指定されたインデックス値 |
 | `<str>`   | インデックス対象の文字列 |

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 ビット単位のAND演算を実行するために使用されます。ビット単位のAND演算は、2つの整数の各ビットを比較します。結果は、対応する両方のバイナリビットが1の場合のみ1となり、それ以外の場合は0となります。
 
 整数の範囲：TINYINT、SMALLINT、INT、BIGINT、LARGEINT
@@ -15,7 +15,7 @@
 ```sql
 BITAND( <lhs>, <rhs>)
 ```
-## Parameters
+## パラメータ
 | parameter | description  |
 |-----------|--------------|
 | `<lhs>`   | ビット単位AND演算に関与する最初の数値 |

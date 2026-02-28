@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-VARIANT型は半構造化JSONデータを格納でき、テーブル構造内で特定の列を事前定義することなく、異なるデータ型（整数、文字列、真偽値など）を含む複雑なデータ構造の格納を可能にします。この型は、いつでも変更される可能性のある複雑なネストした構造の処理に特に適しています。書き込みプロセス中に、VARIANT型は列の構造と型を自動的に推測し、書き込まれたスキーマを動的にマージし、JSONキーとそれに対応する値を列と動的サブ列として格納します。詳細なドキュメントについては、VARIANTを参照してください。
+VARIANT型は半構造化JSONデータを格納でき、Table構造内で特定の列を事前定義することなく、異なるデータ型（整数、文字列、真偽値など）を含む複雑なデータ構造の格納を可能にします。この型は、いつでも変更される可能性のある複雑なネストした構造の処理に特に適しています。書き込みプロセス中に、VARIANT型は列の構造と型を自動的に推測し、書き込まれたスキーマを動的にマージし、JSONキーとそれに対応する値を列と動的サブ列として格納します。詳細なドキュメントについては、VARIANTを参照してください。
 
 ## 使用制限
 
@@ -20,9 +20,9 @@ CSVおよびJSON形式をサポートします。
 ```SQL
 14186154924|PushEvent|{"avatar_url":"https://avatars.githubusercontent.com/u/282080?","display_login":"brianchandotcom","gravatar_id":"","id":282080,"login":"brianchandotcom","url":"https://api.github.com/users/brianchandotcom"}|{"id":1920851,"name":"brianchandotcom/liferay-portal","url":"https://api.github.com/repos/brianchandotcom/liferay-portal"}|{"before":"abb58cc0db673a0bd5190000d2ff9c53bb51d04d","commits":[""],"distinct_size":4,"head":"91edd3c8c98c214155191feb852831ec535580ba","push_id":6027092734,"ref":"refs/heads/master","size":4}|1|2020-11-14 02:00:00
 ```
-### Step 2: データベースでテーブルを作成
+### ステップ 2: データベースでTableを作成
 
-テーブルを作成するために以下のSQL文を実行してください：
+Tableを作成するために以下のSQL文を実行してください：
 
 ```SQL
 CREATE TABLE IF NOT EXISTS testdb.test_variant (
@@ -39,7 +39,7 @@ DUPLICATE KEY(`id`)
 DISTRIBUTED BY HASH(id) BUCKETS 10
 properties("replication_num" = "1");
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 stream loadを例として、以下のコマンドを使用してデータを読み込みます：
 
@@ -70,7 +70,7 @@ curl --location-trusted -u root:  -T test_variant.csv -H "column_separator:|" ht
     "CommitAndPublishTimeMs": 20
 }
 ```
-### Step 4: ロードされたデータの確認
+### ステップ 4: ロードされたデータの確認
 
 ロードされたデータを確認するために以下のSQLクエリを使用してください：
 
@@ -94,9 +94,9 @@ created_at: 2020-11-14 02:00:00
 ```SQL
 {"id": "14186154924","type": "PushEvent","actor": {"id": 282080,"login":"brianchandotcom","display_login": "brianchandotcom","gravatar_id": "","url": "https://api.github.com/users/brianchandotcom","avatar_url": "https://avatars.githubusercontent.com/u/282080?"},"repo": {"id": 1920851,"name": "brianchandotcom/liferay-portal","url": "https://api.github.com/repos/brianchandotcom/liferay-portal"},"payload": {"push_id": 6027092734,"size": 4,"distinct_size": 4,"ref": "refs/heads/master","head": "91edd3c8c98c214155191feb852831ec535580ba","before": "abb58cc0db673a0bd5190000d2ff9c53bb51d04d","commits": [""]},"public": true,"created_at": "2020-11-13T18:00:00Z"}
 ```
-### Step 2: データベースにテーブルを作成
+### ステップ 2: データベースにTableを作成
 
-以下のSQL文を実行してテーブルを作成します：
+以下のSQL文を実行してTableを作成します：
 
 ```SQL
 CREATE TABLE IF NOT EXISTS testdb.test_variant (
@@ -143,7 +143,7 @@ curl --location-trusted -u root:  -T test_variant.json -H "format:json"  http://
     "CommitAndPublishTimeMs": 20
 }
 ```
-### Step 4: ロードされたデータの確認
+### ステップ 4: ロードされたデータの確認
 
 ロードされたデータを確認するために、以下のSQLクエリを使用してください：
 
@@ -158,7 +158,7 @@ mysql> select * from testdb.test_variant\G
     public: 1
 created_at: 2020-11-14 02:00:00
 ```
-### Step 5: 型推論の確認
+### ステップ 5: 型推論の確認
 
 スキーマ情報を表示するためにdesc コマンドを実行すると、サブカラムはストレージレイヤーで自動的に展開され、型推論が行われます。
 

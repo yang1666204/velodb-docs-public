@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、Dorisシステム変数を表示するために使用され、条件によってクエリできます。
 
@@ -27,7 +27,7 @@ SHOW [<effective_scope>] VARIABLES [<like_pattern> | <where>]
 ## アクセス制御要件
 このSQLコマンドを実行するユーザーは、最低限以下の権限を持つ必要があります：
 
-| Privilege  | Object | Notes                                        |
+| Privilege  | Object | 注釈                                        |
 | :--------- | :----- | :------------------------------------------- |
 | Any_PRIV | Session  | 任意の権限でvariablesを表示可能 |
 

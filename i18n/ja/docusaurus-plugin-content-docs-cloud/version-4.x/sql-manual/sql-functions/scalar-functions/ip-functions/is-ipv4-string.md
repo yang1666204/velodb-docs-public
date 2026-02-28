@@ -13,8 +13,8 @@ IPv4形式のアドレスが有効なIPv4アドレスかどうかを判定しま
 ```sql
 IS_IPV4_STRING(<ipv4_str>)
 ```
-## Parameters
-| Parameter | Description                                      |
+## パラメータ
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ipv4_str>`      | String型のIPv4アドレス |
 

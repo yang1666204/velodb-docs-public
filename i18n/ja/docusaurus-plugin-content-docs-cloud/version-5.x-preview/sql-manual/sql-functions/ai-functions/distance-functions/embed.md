@@ -16,7 +16,7 @@ EMBED([<resource_name>], <text>)
 ```
 ## パラメータ
 
-| Parameter         | Description                |
+| Parameter         | デスクリプション                |
 | ----------------- | ------------------------- |
 | `<resource_name>` | 指定されたリソース名|
 | `<text>`          | 埋め込みベクトルを生成するテキスト |

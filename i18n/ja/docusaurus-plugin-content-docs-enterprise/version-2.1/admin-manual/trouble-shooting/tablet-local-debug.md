@@ -54,7 +54,7 @@ LstSuccessVersion: 3
           MetaUrl: http://192.168.10.1:8040/api/meta/header/10020
  CompactionStatus: http://192.168.10.1:8040/api/compaction/show?tablet_id=10020
 ```
-タブレットスナップショットを作成してテーブル作成ステートメントを取得する
+タブレットスナップショットを作成してTable作成ステートメントを取得する
 
 ```
 mysql> admin copy tablet 10020 properties("backend_id" = "10003", "version" = "2")\G
@@ -83,12 +83,12 @@ PROPERTIES (
 cd /path/to/be/storage/snapshot/20220830101353.2.3600
 tar czf 10020.tar.gz 10020/
 ```
-このコマンドは同時にtabletに対応するテーブル作成文も生成します。このテーブル作成文は元のテーブル作成文ではなく、bucket数とreplica数がともに1であり、`versionInfo`フィールドが指定されていることに注意してください。このテーブル構築文は、後でtabletをローカルで読み込む際に使用されます。
+このコマンドは同時にtabletに対応するTable作成文も生成します。このTable作成文は元のTable作成文ではなく、bucket数とreplica数がともに1であり、`versionInfo`フィールドが指定されていることに注意してください。このTable構築文は、後でtabletをローカルで読み込む際に使用されます。
 
 ここまでで、必要な情報をすべて取得しました。リストは以下の通りです：
 
 1. パッケージ化されたtabletデータ（例：10020.tar.gz）
-2. テーブル作成文
+2. Table作成文
 
 ## 2. Tabletをローカルで読み込む
 
@@ -96,13 +96,13 @@ tar czf 10020.tar.gz 10020/
 
      ローカルに単一ノードのDorisクラスター（1FE、1BE）をデプロイし、デプロイバージョンはオンラインクラスターと同じにします。オンラインデプロイバージョンがDORIS-1.1.1の場合、ローカル環境もDORIS-1.1.1バージョンをデプロイします。
 
-2. テーブルの作成
+2. Tableの作成
 
-     前のステップのcreate table文を使用して、ローカル環境でテーブルを作成します。
+     前のステップのcreate table文を使用して、ローカル環境でTableを作成します。
 
-3. 新しく作成されたテーブルのtablet情報を取得する
+3. 新しく作成されたTableのtablet情報を取得する
 
-     新しく作成されたテーブルのbucket数とreplica数は1であるため、1つのreplicaを持つtabletが1つだけ存在します：
+     新しく作成されたTableのbucket数とreplica数は1であるため、1つのreplicaを持つtabletが1つだけ存在します：
 
     ```
     mysql> show tablets from tbl1\G
@@ -191,4 +191,4 @@ tar czf 10020.tar.gz 10020/
 
 6. 検証
 
-デバッグ環境のBEプロセスを再起動します（./bin/start_be.sh）。テーブルをクエリし、正しければ、ロードされたタブレットのデータをクエリできるか、またはオンライン問題を再現できます。
+デバッグ環境のBEプロセスを再起動します（./bin/start_be.sh）。Tableをクエリし、正しければ、ロードされたタブレットのデータをクエリできるか、またはオンライン問題を再現できます。

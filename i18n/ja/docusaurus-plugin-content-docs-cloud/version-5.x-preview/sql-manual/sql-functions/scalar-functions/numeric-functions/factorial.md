@@ -14,9 +14,9 @@
 ```sql
 FACTORIAL(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | 階乗を計算する値 |
 

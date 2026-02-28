@@ -16,7 +16,7 @@ BITMAP_INTERSECT(BITMAP <value>)
 ```
 ## Arguments
 
-| Argument | Description |
+| Argument | デスクリプション |
 | -- | -- |
 | `<value>` | Bitmapをサポートするデータ型 |
 

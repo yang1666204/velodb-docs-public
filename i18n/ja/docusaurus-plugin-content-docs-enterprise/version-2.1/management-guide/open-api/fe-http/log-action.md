@@ -4,7 +4,7 @@
   "language": "ja"
 }
 ---
-# Log Action
+# ログ Action
 
 ## リクエスト
 

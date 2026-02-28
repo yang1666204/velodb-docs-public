@@ -13,8 +13,8 @@
 ```sql
 ARRAY_ENUMERATE(<arr>)
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 |---|---|
 | `<arr>` | 配列のサブアイテムのインデックスを返す配列 |
 

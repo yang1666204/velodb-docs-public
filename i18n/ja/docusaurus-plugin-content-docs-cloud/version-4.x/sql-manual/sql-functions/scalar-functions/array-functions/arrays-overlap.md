@@ -14,9 +14,9 @@
 ```sql
 ARRAYS_OVERLAP(<left>, <right>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<left>` | 判定対象の配列 |
 | `<right>` | 判定対象の配列 |

@@ -1,6 +1,6 @@
 ---
 {
-  "title": "共通テーブル式",
+  "title": "共通Table式",
   "description": "Common Table Expression (CTE) は、SQL文のスコープ内で複数回参照できる一時的な結果セットを定義します。",
   "language": "ja"
 }

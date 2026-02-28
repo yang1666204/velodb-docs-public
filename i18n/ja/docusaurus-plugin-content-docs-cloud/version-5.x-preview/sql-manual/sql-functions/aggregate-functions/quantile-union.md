@@ -14,9 +14,9 @@
 ```sql
 QUANTILE_UNION(<query_state>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<query_state>` | 集約対象のデータ。QuantileState型をサポート。 |
 

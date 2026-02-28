@@ -1,11 +1,11 @@
 ---
 {
   "title": "S3/HDFSでのファイル分析",
-  "description": "Apache Doris Table Value Function (TVF) を使用して、S3やHDFSなどのストレージシステム上のParquet、ORC、CSV、JSONファイルを直接クエリ・分析する方法を学びます。自動スキーマ推論、マルチファイルマッチング、データインポートをサポートしています。",
+  "description": "Apache Doris Table Value ファンクション (TVF) を使用して、S3やHDFSなどのストレージシステム上のParquet、ORC、CSV、JSONファイルを直接クエリ・分析する方法を学びます。自動スキーマ推論、マルチファイルマッチング、データインポートをサポートしています。",
   "language": "ja"
 }
 ---
-Table Value Function (TVF) 機能により、Dorisはデータを事前にインポートすることなく、オブジェクトストレージやHDFS上のファイルを直接テーブルとしてクエリおよび分析でき、自動カラム型推論をサポートします。
+Table Value ファンクション (TVF) 機能により、Dorisはデータを事前にインポートすることなく、オブジェクトストレージやHDFS上のファイルを直接Tableとしてクエリおよび分析でき、自動カラム型推論をサポートします。
 
 ## サポート対象のストレージシステム
 
@@ -48,7 +48,7 @@ ORDER BY p_partkey LIMIT 5;
 |         5 | forest brown coral puff cream            | Manufacturer#3 | Brand#32 | STANDARD POLISHED TIN   |     15 | SM PKG      |           905 |  wake carefully     |
 +-----------+------------------------------------------+----------------+----------+-------------------------+--------+-------------+---------------+---------------------+
 ```
-TVFは本質的にはテーブルであり、SQLステートメントで「テーブル」が使用できる箇所であればどこでも使用できます。例えば以下のような場所です：
+TVFは本質的にはTableであり、SQLステートメントで「Table」が使用できる箇所であればどこでも使用できます。例えば以下のような場所です：
 
 - `FROM`句内
 - CTEの`WITH`句内
@@ -81,7 +81,7 @@ GRANT SELECT_PRIV ON db.tvf_view TO other_user;
 ```
 ### シナリオ3: Dorisへのデータインポート
 
-`INSERT INTO SELECT`構文と組み合わせることで、ファイルデータをDorisテーブルにインポートできます：
+`INSERT INTO SELECT`構文と組み合わせることで、ファイルデータをDorisTableにインポートできます：
 
 ```sql
 -- 1. Create the target table
@@ -167,7 +167,7 @@ DESC FUNCTION s3 (
 ```
 ```
 +---------------+--------------+------+-------+---------+-------+
-| Field         | Type         | Null | Key   | Default | Extra |
+| Field         | タイプ         | Null | Key   | Default | Extra |
 +---------------+--------------+------+-------+---------+-------+
 | p_partkey     | INT          | Yes  | false | NULL    | NONE  |
 | p_name        | TEXT         | Yes  | false | NULL    | NONE  |

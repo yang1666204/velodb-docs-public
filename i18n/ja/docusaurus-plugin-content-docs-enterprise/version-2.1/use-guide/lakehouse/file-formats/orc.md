@@ -34,7 +34,7 @@
 
 * `hive_orc_use_column_names` (2.1.6+, 3.0.3+)
 
-    HiveテーブルからORCデータ型を読み取る際、Dorisはデフォルトで、Hiveテーブルのカラムと同じ名前を持つORCファイル内のカラムからデータを読み取ります。この変数を`false`に設定すると、Dorisはカラム名に関係なく、Hiveテーブルのカラム順序に基づいてORCファイルからデータを読み取ります。これはHiveの`orc.force.positional.evolution`変数と類似しています。このパラメータはトップレベルのカラム名にのみ適用され、Struct内のカラムに対しては無効です。
+    HiveTableからORCデータ型を読み取る際、Dorisはデフォルトで、HiveTableのカラムと同じ名前を持つORCファイル内のカラムからデータを読み取ります。この変数を`false`に設定すると、Dorisはカラム名に関係なく、HiveTableのカラム順序に基づいてORCファイルからデータを読み取ります。これはHiveの`orc.force.positional.evolution`変数と類似しています。このパラメータはトップレベルのカラム名にのみ適用され、Struct内のカラムに対しては無効です。
 
 * `orc_tiny_stripe_threshold_bytes` (2.1.8+, 3.0.3+)
 

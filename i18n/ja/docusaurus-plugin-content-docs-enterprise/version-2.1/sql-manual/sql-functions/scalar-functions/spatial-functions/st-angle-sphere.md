@@ -14,9 +14,9 @@
 ```sql
 ST_ANGLE_SPHERE( <x_lng>, <x_lat>, <y_lng>, <y_lat>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Instructions |
+| パラメータ | Instructions |
 | -- | -- |
 | `<x_lng>` | 経度データ、妥当な値の範囲は [-180, 180] |
 | `<y_lng>` | 経度データ、妥当な値の範囲は [-180, 180] |

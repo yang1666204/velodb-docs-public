@@ -14,9 +14,9 @@
 ```sql
 HOURS_DIFF(<end_date>, <start_date>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description                                     |
+| Parameter  | デスクリプション                                     |
 |------------|-------------------------------------------------|
 | `<end_date>`    | 終了時刻。DATETIME型またはDATE型を指定可能 |
 | `<start_date>`  | 開始時刻。DATETIME型またはDATE型を指定可能 |

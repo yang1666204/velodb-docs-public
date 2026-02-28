@@ -16,9 +16,9 @@ FROM_UNIXTIME関数は、Unixタイムスタンプ（秒単位）を指定され
 ```sql
 FROM_UNIXTIME(<unix_timestamp> [, <string_format>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<unix_timestamp>` | 入力するUnixタイムスタンプ。BIGINT型の整数で、1970-01-01 00:00:00 UTCからの秒数を表す |
 | `<string_format>` | フォーマット文字列。varcharおよびstring型をサポートし、デフォルトは%Y-%m-%d %H:%i:%s。具体的なフォーマットについては[date-format](./date-format)を参照 |

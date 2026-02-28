@@ -29,7 +29,7 @@ VeloDBウェアハウスで、左サイドバーから**Data**セクションを
 
 [Confluent Cloud Setup](./confluent-cloud/setup)からの接続詳細を入力します：
 
-![Connection Configuration](/images/cloud/integration/confluent-cloud/velo11.png)
+![Connection 構成](/images/cloud/integration/confluent-cloud/velo11.png)
 
 | フィールド | 説明 | 例 |
 |-------|-------------|---------|
@@ -46,7 +46,7 @@ VeloDBウェアハウスで、左サイドバーから**Data**セクションを
 
 Kafkaトピックとデータ形式を設定します：
 
-![Source Data Configuration](/images/cloud/integration/confluent-cloud/velo3.png)
+![Source Data 構成](/images/cloud/integration/confluent-cloud/velo3.png)
 
 | フィールド | 説明 |
 |-------|-------------|
@@ -60,7 +60,7 @@ VeloDBは**JSON**と**CSV**形式のみをサポートしています。Confluen
 
 **Next**をクリックして続行します。
 
-## ステップ 5: 宛先テーブルを設定
+## ステップ 5: 宛先Tableを設定
 
 VeloDBはKafkaメッセージからスキーマを自動的に検出します：
 
@@ -68,15 +68,15 @@ VeloDBはKafkaメッセージからスキーマを自動的に検出します：
 
 **Data Preview**セクションはトピックのサンプルレコードを表示します。
 
-### テーブル設定を構成
+### Table設定を構成
 
 ![Destination Table](/images/cloud/integration/confluent-cloud/velo6.png)
 
 | フィールド | 説明 |
 |-------|-------------|
-| **Load Data to** | 新しいテーブルを作成するには`New Table`を選択 |
+| **Load Data to** | 新しいTableを作成するには`New Table`を選択 |
 | **Database** | データベースを選択または作成 |
-| **Table** | テーブル名を入力 |
+| **Table** | Table名を入力 |
 
 ### カラム設定
 
@@ -87,8 +87,8 @@ VeloDBはKafkaメッセージからスキーマを自動的に検出します：
 | 設定 | 説明 |
 |---------|-------------|
 | **Source Field** | KafkaメッセージのJSONフィールド |
-| **Column Name** | VeloDBテーブルのカラム名 |
-| **Data Type** | VeloDBデータ型（自動検出） |
+| **Column Name** | VeloDBTableのカラム名 |
+| **Data タイプ** | VeloDBデータ型（自動検出） |
 
 ### 詳細設定
 
@@ -96,8 +96,8 @@ VeloDBはKafkaメッセージからスキーマを自動的に検出します：
 |---------|-------------|
 | **Table Models** | 追加専用の場合は`DUPLICATE`、アップサートの場合は`UNIQUE` |
 | **Sorting Key** | データ順序付け用のカラム |
-| **Bucket Key** | データ分散用のカラム |
-| **Bucket Number** | `AUTO`を推奨 |
+| **バケット Key** | データ分散用のカラム |
+| **バケット Number** | `AUTO`を推奨 |
 
 **Next**をクリックして続行します。
 
@@ -125,7 +125,7 @@ VeloDBが設定を検証します：
 チェックリストは以下を検証します：
 - **Kafka Validation** - Confluent Cloudへの接続
 - **Warehouse Connectivity Test** - VeloDBがKafkaに到達可能
-- **User Permission Check** - インポート作成権限
+- **User 許可 Check** - インポート作成権限
 
 すべてのチェックで**Succeeded**が表示されたら、**Start**をクリックしてデータストリーミングを開始します。
 
@@ -190,5 +190,5 @@ SHOW ROUTINE LOAD FOR database.job_name;
 ## 参考資料
 
 - [Confluent Cloud Setup Guide](./confluent-cloud/setup)
-- [Kafka Integration Guide](./kafka) - SQLベースのセットアップとその他のKafkaプロバイダーについて
+- [Kafka 統合 Guide](./kafka) - SQLベースのセットアップとその他のKafkaプロバイダーについて
 - [CREATE ROUTINE LOAD](../../sql-manual/sql-statements/data-modification/load-and-export/CREATE-ROUTINE-LOAD)

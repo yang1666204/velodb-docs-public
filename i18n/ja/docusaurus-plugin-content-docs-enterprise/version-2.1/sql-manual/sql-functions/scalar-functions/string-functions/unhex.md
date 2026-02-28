@@ -14,9 +14,9 @@
 ```sql
 UNHEX(<str>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<str>` | 16進数の文字列 |
 

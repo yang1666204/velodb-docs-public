@@ -1,13 +1,13 @@
 ---
 {
   "title": "EXPLODE_JSON_ARRAY_INT",
-  "description": "explodejsonarrayint テーブル関数は、各要素が整数型のJSON配列を受け取ります。",
+  "description": "explodejsonarrayint Table関数は、各要素が整数型のJSON配列を受け取ります。",
   "language": "ja"
 }
 ---
 ## 説明
 
-`explode_json_array_int`テーブル関数は、各要素が整数型であるJSON配列を受け取り、配列内の各整数を複数の行に展開し、各行に1つの整数を含めます。LATERAL VIEWと組み合わせて使用されます。
+`explode_json_array_int`Table関数は、各要素が整数型であるJSON配列を受け取り、配列内の各整数を複数の行に展開し、各行に1つの整数を含めます。LATERAL VIEWと組み合わせて使用されます。
 
 `explode_json_array_int_outer`は`explode_json_array_int`と似ていますが、NULL値の処理が異なります。
 
@@ -23,11 +23,11 @@ EXPLODE_JSON_ARRAY_INT_OUTER(<json>)
 ```
 ## 戻り値
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<json>` | json type |
 
-## Parameters
+## パラメータ
 
 JSON配列を展開し、各要素に対して行を作成して、integer列を返します。
 

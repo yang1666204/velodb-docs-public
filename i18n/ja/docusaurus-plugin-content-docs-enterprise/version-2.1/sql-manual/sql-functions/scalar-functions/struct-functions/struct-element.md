@@ -14,9 +14,9 @@
 ```sql
 STRUCT_ELEMENT( <struct>, '<filed_location>/<filed_name>')
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<struct>` | 入力のstruct列がnullの場合、nullを返す |
 | `<filed_location>` | フィールドの位置は1から始まり、定数のみがサポートされる |

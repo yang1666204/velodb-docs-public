@@ -7,7 +7,7 @@
 ---
 # views
 
-## Overview
+## 概要
 
 すべてのビュー情報を格納します。
 
@@ -17,7 +17,7 @@
 
 ## Table Information
 
-| Column Name          | Type          | Description                                       |
+| Column Name          | タイプ          | デスクリプション                                       |
 | -------------------- | ------------- | ------------------------------------------------- |
 | TABLE_CATALOG        | varchar(512)  | カタログ名                                      |
 | TABLE_SCHEMA         | varchar(64)   | データベース名                                     |

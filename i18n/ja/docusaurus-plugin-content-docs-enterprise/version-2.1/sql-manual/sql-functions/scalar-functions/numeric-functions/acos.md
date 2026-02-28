@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `x`の逆余弦を返します。`x`が`-1`から`1`の範囲内にない場合は`NULL`を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 ACOS(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | acos値を計算する値 |
 

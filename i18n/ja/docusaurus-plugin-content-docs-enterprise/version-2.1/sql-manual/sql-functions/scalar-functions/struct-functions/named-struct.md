@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 与えられた文字列と値に基づいてstructを構築して返します。注意事項：
 
@@ -16,9 +16,9 @@
 ```sql
 NAMED_STRUCT( <field_name> , <filed_value> [ , <field_name> , <filed_value> ... ] )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<field_name>` | 構造体を構築する際の奇数番目の要素はフィールド名であり、定数文字列である必要があります |
 | `<filed_value>` | 構造体を構築する際の偶数番目の要素はフィールド値を表し、複数の列または定数のいずれかを指定できます |

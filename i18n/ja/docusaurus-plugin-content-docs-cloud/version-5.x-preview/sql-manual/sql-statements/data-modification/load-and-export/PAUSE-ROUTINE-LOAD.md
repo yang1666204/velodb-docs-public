@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この構文は、1つまたはすべてのRoutine Loadジョブを一時停止するために使用されます。一時停止されたジョブは、RESUMEコマンドを使用して再開できます。
 
@@ -32,7 +32,7 @@ PAUSE [ALL] ROUTINE LOAD FOR <job_name>
 
 | 権限 | オブジェクト | 注記 |
 | :-------- | :----- | :---- |
-| LOAD_PRIV | Table | SHOW ROUTINE LOADにはテーブルのLOAD権限が必要です |
+| LOAD_PRIV | Table | SHOW ROUTINE LOADにはTableのLOAD権限が必要です |
 
 ## 注記
 

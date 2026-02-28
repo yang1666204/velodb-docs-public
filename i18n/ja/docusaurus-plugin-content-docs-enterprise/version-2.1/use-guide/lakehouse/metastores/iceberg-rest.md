@@ -1,7 +1,7 @@
 ---
 {
-  "title": "Iceberg Rest Catalog API",
-  "description": "この文書では、Iceberg Rest Catalog インターフェースをサポートするメタデータサービスへの接続およびアクセス時にサポートされるパラメータについて説明します。",
+  "title": "Iceberg Rest カタログ API",
+  "description": "この文書では、Iceberg Rest カタログ インターフェースをサポートするメタデータサービスへの接続およびアクセス時にサポートされるパラメータについて説明します。",
   "language": "ja"
 }
 ---
@@ -9,7 +9,7 @@
 
 ## パラメータ概要
 
-| Property Name | Legacy Name | Description | Default Value | Required |
+| Property Name | Legacy Name | デスクリプション | デフォルト値 | Required |
 | --- | --- | --- | --- | --- | 
 | iceberg.rest.uri | uri | Restサービスアドレスを指定 | - | Yes |
 | warehouse | warehouse | icebergウェアハウスを指定 | - | Yes |

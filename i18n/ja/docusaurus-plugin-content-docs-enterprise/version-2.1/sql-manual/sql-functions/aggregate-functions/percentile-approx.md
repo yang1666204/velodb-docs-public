@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `PERCENTILE_APPROX`関数は、主に大規模データセットに対して近似パーセンタイルを計算するために使用されます。`PERCENTILE`関数と比較して、以下の特徴があります：
 
@@ -19,9 +19,9 @@
 ```sql
 PERCENTILE_APPROX(<col>, <p> [, <compression>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col>` | パーセンタイルを計算する列 |
 | `<p>` | パーセンタイル値、範囲`[0.0, 1.0]`、例えば、`0.99`は`99th`パーセンタイルを表す |

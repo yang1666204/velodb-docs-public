@@ -1,12 +1,12 @@
 ---
 {
-  "title": "FE Configuration",
+  "title": "FE 構成",
   "language": "ja"
 }
 ---
 <!-- Please sort the configuration alphabetically -->
 
-# FE Configuration
+# FE 構成
 
 このドキュメントでは、主にFEの関連する設定項目について紹介します。
 
@@ -41,7 +41,7 @@ FEの設定項目を確認する方法は2つあります：
 
     * Key: 設定項目の名前。
     * Value: 現在の設定項目の値。
-    * Type: 設定項目値のタイプ（integerやstringなど）。
+    * タイプ: 設定項目値のタイプ（integerやstringなど）。
     * IsMutable: 動的に設定可能かどうか。trueの場合、設定項目は実行時に動的に設定できます。falseの場合、設定項目は`fe.conf`でのみ設定でき、FEを再起動した後に有効になります。
     * MasterOnly: Master FEノード固有の設定項目かどうか。trueの場合、設定項目はMaster FEノードでのみ意味があり、他のタイプのFEノードでは意味がありません。falseの場合、設定項目はすべてのタイプのFEノードで意味があります。
     * Comment: 設定項目の説明。

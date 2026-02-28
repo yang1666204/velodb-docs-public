@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 UnixタイムスタンプをTIME形式に変換します。特殊なケース：
 
@@ -16,9 +16,9 @@ UnixタイムスタンプをTIME形式に変換します。特殊なケース：
 ```sql
 FROM_UNIXTIME(<unix_timestamp>[, <string_format>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<unix_timestamp>` | unix timestamp |
 | `<string_format>` | フォーマット形式。デフォルトは %Y-%m-%d %H:%i:%s です。|

@@ -1,13 +1,13 @@
 ---
 {
   "title": "EXPLODE_SPLIT",
-  "description": "explodesplit テーブル関数は、指定された区切り文字に従って文字列を複数の部分文字列に分割するために使用されます。",
+  "description": "explodesplit Table関数は、指定された区切り文字に従って文字列を複数の部分文字列に分割するために使用されます。",
   "language": "ja"
 }
 ---
 ## 説明
-`explode_split`テーブル関数は、指定された区切り文字に従って文字列を複数の部分文字列に分割し、各部分文字列を別々の行に展開するために使用されます。
-ネストされたデータ構造を標準的なフラットテーブル形式に平坦化するために、[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
+`explode_split`Table関数は、指定された区切り文字に従って文字列を複数の部分文字列に分割し、各部分文字列を別々の行に展開するために使用されます。
+ネストされたデータ構造を標準的なフラットTable形式に平坦化するために、[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
 `explode_split`と[`explode_split_outer`](./explode-split-outer.md)の主な違いは、null値の処理方法です。
 
 ## 構文

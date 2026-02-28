@@ -14,9 +14,9 @@
 ```sql
 ISNAN(<value>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<value>` | チェックする値。DOUBLE型またはFLOAT型である必要があります |
 

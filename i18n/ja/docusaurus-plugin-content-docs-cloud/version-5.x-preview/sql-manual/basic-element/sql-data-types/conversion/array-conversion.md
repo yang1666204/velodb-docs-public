@@ -109,7 +109,7 @@ ARRAYタイプは配列データの保存と処理に使用され、整数や文
 | '[ null ,123]' | Array\<int\>へキャスト: [null, 123] | nullを含む有効な配列 |
 | '[ "null" ,123]' | Array\<int\>へキャスト: [null, 123] | 文字列 "null" はint型に変換できない、nullに変換 |
 
-### Array\<Other Type\>から
+### Array\<Other タイプ\>から
 
 #### Strictモード
 

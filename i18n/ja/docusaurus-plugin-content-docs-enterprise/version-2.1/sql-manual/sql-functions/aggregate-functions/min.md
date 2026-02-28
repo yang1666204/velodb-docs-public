@@ -14,9 +14,9 @@ MIN関数は式の最小値を返します。
 ```sql
 MIN(expr)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Description |
+| パラメータ | デスクリプション |
 | -- | -- |
 | `<expr>` | 取得する必要がある式 |
 

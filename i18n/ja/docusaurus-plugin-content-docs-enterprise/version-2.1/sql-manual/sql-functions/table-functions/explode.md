@@ -5,9 +5,9 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-`explode`関数は配列を入力として受け取り、配列の各要素を個別の行にマップします。この関数は通常、LATERAL VIEWと組み合わせて使用され、ネストされたデータ構造を標準的なテーブル形式に平坦化します。explodeと`explode_outer`の主な違いは、空の値の処理方法にあります。
+`explode`関数は配列を入力として受け取り、配列の各要素を個別の行にマップします。この関数は通常、LATERAL VIEWと組み合わせて使用され、ネストされたデータ構造を標準的なTable形式に平坦化します。explodeと`explode_outer`の主な違いは、空の値の処理方法にあります。
 
 ## Syntax
 
@@ -17,7 +17,7 @@ EXPLODE_OUTER(<array>)
 ```
 ## 必須パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<arr>` | 	配列型 |
 

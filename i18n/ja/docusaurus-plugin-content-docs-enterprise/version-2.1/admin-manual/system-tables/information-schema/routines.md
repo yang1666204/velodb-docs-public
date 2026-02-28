@@ -1,21 +1,21 @@
 ---
 {
   "title": "ルーチン",
-  "description": "このテーブルはMySQL動作との互換性を維持する目的でのみ存在します。常に空の状態です。",
+  "description": "このTableはMySQL動作との互換性を維持する目的でのみ存在します。常に空の状態です。",
   "language": "ja"
 }
 ---
 ## 概要
 
-このテーブルはMySQLの動作との互換性を維持する目的でのみ存在します。常に空です。
+このTableはMySQLの動作との互換性を維持する目的でのみ存在します。常に空です。
 
 ## データベース
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name          | Type        | Description |
+| Column Name          | タイプ        | デスクリプション |
 | -------------------- | ----------- | ----------- |
 | SPECIFIC_NAME        | varchar(64) |             |
 | ROUTINE_CATALOG      | varchar(64) |             |

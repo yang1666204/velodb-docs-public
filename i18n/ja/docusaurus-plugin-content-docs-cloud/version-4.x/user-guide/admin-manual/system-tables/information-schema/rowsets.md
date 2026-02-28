@@ -17,7 +17,7 @@ Rowsetに関する基本情報を返します。
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
 | カラム名                | 型           | 説明                                                          |
 | ---------------------- | ----------- | ------------------------------------------------------------ |
@@ -33,4 +33,4 @@ Rowsetに関する基本情報を返します。
 | DATA_DISK_SIZE         | bigint      | Rowset内のデータの格納領域。                                   |
 | CREATION_TIME          | datetime    | Rowsetの作成時刻。                                            |
 | NEWEST_WRITE_TIMESTAMP | datetime    | Rowsetの最新の書き込み時刻。                                   |
-| SCHEMA_VERSION         | int         | Rowsetデータに対応するテーブルのSchemaバージョン番号。           |
+| SCHEMA_VERSION         | int         | Rowsetデータに対応するTableのSchemaバージョン番号。           |

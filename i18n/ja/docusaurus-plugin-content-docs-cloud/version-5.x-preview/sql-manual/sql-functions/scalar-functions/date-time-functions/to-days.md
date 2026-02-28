@@ -15,8 +15,8 @@
 ```sql
 TO_DAYS(`<date_or_date_expr>`)
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<date_or_time_expr>` | 入力datetime値、date/datetimeタイプをサポートします。datetimeおよびdateフォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 

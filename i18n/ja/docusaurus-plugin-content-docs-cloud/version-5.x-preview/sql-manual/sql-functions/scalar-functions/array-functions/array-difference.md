@@ -19,7 +19,7 @@
 ```sql
 array_difference(ARRAY<T> arr)
 ```
-### Parameters
+### パラメータ
 
 - `arr`：ARRAY\<T> 型、差分を計算する配列。カラム名または定数値をサポートします。
 

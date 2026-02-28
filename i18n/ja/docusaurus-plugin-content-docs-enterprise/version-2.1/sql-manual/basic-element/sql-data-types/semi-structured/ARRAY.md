@@ -15,9 +15,9 @@ ARRAY
 
 `ARRAY<T>`
 
-T型アイテムの配列で、キー列として使用することはできません。現在、ARRAYはDuplicate Modelテーブルでのみ使用できます。
+T型アイテムの配列で、キー列として使用することはできません。現在、ARRAYはDuplicate ModelTableでのみ使用できます。
 
-バージョン2.0以降、Uniqueモデルテーブルの非キー列での使用をサポートします。
+バージョン2.0以降、UniqueモデルTableの非キー列での使用をサポートします。
 
 T型は以下のいずれでも構いません：
 
@@ -27,7 +27,7 @@ DATEV2, DATETIME, DATETIMEV2, CHAR, VARCHAR, STRING
 ```
 ### example
 
-テーブル作成の例：
+Table作成の例：
 
 ```
 mysql> CREATE TABLE `array_test` (

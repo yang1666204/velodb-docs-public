@@ -14,9 +14,9 @@ xの正接を返します。xはラジアン単位の値です。
 ```sql
 TAN(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | タンジェントを計算する値 |
 

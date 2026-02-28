@@ -14,9 +14,9 @@
 ```sql
 DAYOFWEEK(<dt>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<dt>` | 計算される日付式 |
 

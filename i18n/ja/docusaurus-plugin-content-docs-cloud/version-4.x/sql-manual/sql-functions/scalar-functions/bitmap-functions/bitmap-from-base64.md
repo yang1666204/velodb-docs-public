@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 base64文字列（`bitmap_to_base64`関数で変換可能）をBITMAPに変換します。入力文字列が無効な場合はNULLを返します。
 

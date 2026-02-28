@@ -12,7 +12,7 @@
 
 | **名前**|**説明**|**デフォルト値**| **バージョン** |
 |---|---|---|---|
-|`restore_reset_index_id`|同期テーブルでinverted indexまたはbitmap indexが使用されている場合、`false`に設定する必要があります。| false| 2.1.8および3.0.4以降 |
+|`restore_reset_index_id`|同期Tableでinverted indexまたはbitmap indexが使用されている場合、`false`に設定する必要があります。| false| 2.1.8および3.0.4以降 |
 |`ignore_backup_tmp_partitions`|上流での一時パーティション作成による同期中断を回避するため、`true`に設定する必要があります。|false| 2.1.8および3.0.4以降 |
 |`max_backup_restore_job_num_per_db`|メモリ内でのDB毎のバックアップ/リストアジョブ数の制限。2に設定することを推奨します。|10 | 全バージョン |
 |`label_num_threshold`|TXN Labelの数を制御してトランザクション復旧が速すぎることを防ぎます。大きすぎるとより多くのメモリを占有し、小さすぎると例外的状況でデータ重複が発生する場合があります。ほとんどの場合はデフォルト値で十分です。| 2000 | 2.1以降 |
@@ -34,7 +34,7 @@
 |`download_worker_count`|ダウンロードジョブのスレッド数。ネットワークカード、ディスク、および負荷に応じて設定。| 1 | 全バージョン |
 
 
-## テーブル属性
+## Table属性
 
 `Create Table`または`Alter Table`で設定します。
 

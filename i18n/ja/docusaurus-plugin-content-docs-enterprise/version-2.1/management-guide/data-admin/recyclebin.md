@@ -6,7 +6,7 @@
 ---
 ## Recycle Binからの復旧
 
-誤った操作による災害を避けるため、Dorisは誤って削除されたデータベース、テーブル、パーティションの復旧をサポートしています。テーブルやデータベースを削除した後、Dorisは即座にデータを物理的に削除しません。ユーザーが`FORCE`を使用せずに`DROP DATABASE/TABLE/PARTITION`コマンドを実行すると、Dorisは削除されたデータベース、テーブル、またはパーティションをrecycle binに移動します。`RECOVER`コマンドを使用してrecycle binから削除されたデータベース、テーブル、またはパーティションのすべてのデータを復元し、再び表示可能にすることができます。
+誤った操作による災害を避けるため、Dorisは誤って削除されたデータベース、Table、パーティションの復旧をサポートしています。Tableやデータベースを削除した後、Dorisは即座にデータを物理的に削除しません。ユーザーが`FORCE`を使用せずに`DROP DATABASE/TABLE/PARTITION`コマンドを実行すると、Dorisは削除されたデータベース、Table、またはパーティションをrecycle binに移動します。`RECOVER`コマンドを使用してrecycle binから削除されたデータベース、Table、またはパーティションのすべてのデータを復元し、再び表示可能にすることができます。
 
 **注意：** 削除が`DROP FORCE`を使用して実行された場合、データは即座に削除され、復旧することはできません。
 
@@ -29,12 +29,12 @@ SHOW CATALOG RECYCLE BIN [WHERE NAME [= "name" | LIKE "name_matcher"]];
 ```sql
 RECOVER DATABASE example_db;
 ```
-2. `example_tbl`という名前の*テーブルを復旧*する：
+2. `example_tbl`という名前の*Tableを復旧*する：
 
 ```sql
 RECOVER TABLE example_db.example_tbl;
 ```
-3. テーブル example_tbl 内の p1 という名前の*パーティションを復旧*する：
+3. Table example_tbl 内の p1 という名前の*パーティションを復旧*する：
 
 ```sql
 RECOVER PARTITION p1 FROM example_tbl;

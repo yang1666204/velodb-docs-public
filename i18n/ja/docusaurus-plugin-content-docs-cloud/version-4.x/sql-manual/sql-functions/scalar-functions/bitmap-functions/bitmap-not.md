@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 最初のBitmapと2番目のBitmapの差分を計算し、結果を新しいBitmapとして返します。
 
@@ -14,9 +14,9 @@
 ```sql
 BITMAP_NOT(<bitmap1>, <bitmap2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter   | Description          |
+| Parameter   | デスクリプション          |
 |-------------|----------------------|
 | `<bitmap1>` | 最初のBitmap     |
 | `<bitmap2>` | 2番目のBitmap    |

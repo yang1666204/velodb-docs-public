@@ -15,9 +15,9 @@ NULLはNULLを返すことに注意する必要があります
 ```sql
 ARRAY_DIFFERENCE(<arr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |---|---|
 | `<arr>`   | 差分を計算する配列 |
 

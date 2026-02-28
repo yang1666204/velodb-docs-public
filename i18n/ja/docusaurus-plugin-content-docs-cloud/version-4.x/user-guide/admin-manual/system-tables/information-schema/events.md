@@ -1,7 +1,7 @@
 ---
 {
   "title": "events",
-  "description": "MySQL互換性のための常に空のeventsテーブル。DorisのイベントスケジューリングReflectしません。",
+  "description": "MySQL互換性のための常に空のeventsTable。DorisのイベントスケジューリングReflectしません。",
   "language": "ja"
 }
 ---
@@ -9,15 +9,15 @@
 
 ## 概要
 
-このテーブルはMySQLの動作との互換性のためにのみ使用され、常に空です。
+このTableはMySQLの動作との互換性のためにのみ使用され、常に空です。
 
 ## データベース
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name          | Type          | Description |
+| Column Name          | タイプ          | デスクリプション |
 | -------------------- | ------------- | ----------- |
 | EVENT_CATALOG        | varchar(64)   |             |
 | EVENT_SCHEMA         | varchar(64)   |             |

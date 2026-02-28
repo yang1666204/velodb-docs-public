@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Function
+## ファンクション
 
 与えられたboolean flagsに従って、入力配列を複数のサブ配列に分割します。
 
@@ -18,7 +18,7 @@
 - `ARRAY_REVERSE_SPLIT(lamda, arr0, ...)`
 - `ARRAY_REVERSE_SPLIT(lambda, arr0, ...)` は `ARRAY_REVERSE_SPLIT(arr0, ARRAY_MAP(lambda, arr0, ...))` と等価です
 
-## Parameters
+## パラメータ
 
 - `arr`: `ARRAY<T>`。
 - `flags`: `ARRAY<BOOLEAN>`。長さは `arr` と行ごとに一致する必要があります。`true` は現在位置と次の要素の間で分割することを意味します。

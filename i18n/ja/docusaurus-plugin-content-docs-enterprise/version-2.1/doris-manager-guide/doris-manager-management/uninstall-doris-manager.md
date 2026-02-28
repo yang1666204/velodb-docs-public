@@ -9,13 +9,13 @@
 
 Managerをアンインストールすると、Managerの制御メタデータと監視情報が失われるため、慎重に進めてください。Managerをアンインストールしても、Dorisクラスターの正常な動作には影響しません。コマンドラインやその他の方法でDorisクラスターを管理することができます。
 
-## Step 1: Non-WebServerサービスを停止する
+## ステップ 1: Non-WebServerサービスを停止する
 
-左下のユーザー設定ページで「Service Configuration」をクリックし、「Services」メニューを選択して、すべてのサービスを停止します。
+左下のユーザー設定ページで「Service 構成」をクリックし、「Services」メニューを選択して、すべてのサービスを停止します。
 
 ![component-config](/images/enterprise/doris-manager-guide/doris-manager-management/uninstall-doris-manager/stop-service.png)
 
-## Step 2: WebServerサービスを停止する
+## ステップ 2: WebServerサービスを停止する
 
 1.  **WebServerサービスを停止する**
 

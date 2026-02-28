@@ -45,9 +45,9 @@ LoongCollector Doris Flusher Pluginの設定は以下の通りです：
 --- | ---
 `Addresses` | Stream Load HTTPアドレス、1つ以上の要素を持つ文字列配列形式で、各要素はhost:portです。例：["http://fe1:8030", "http://fe2:8030"]
 `Database` | 書き込み先のDorisデータベース名
-`Table` | 書き込み先のDorisテーブル名
-`Authentication.PlainText.Username` | Dorisユーザー名、このユーザーは対応するDorisデータベースとテーブルへのインポート権限を持つ必要があります
-`Authentication.PlainText.Password` | Dorisユーザーのパスワード
+`Table` | 書き込み先のDorisTable名
+`認証.PlainText.Username` | Dorisユーザー名、このユーザーは対応するDorisデータベースとTableへのインポート権限を持つ必要があります
+`認証.PlainText.Password` | Dorisユーザーのパスワード
 `LoadProperties` | Doris Stream Loadヘッダーパラメータ、マップ形式です。例：`LoadProperties: {"format": "json", "read_json_by_line": "true"}`
 `LogProgressInterval` | ログでの速度出力時間間隔、単位は秒、デフォルトは10、0に設定するとこの種類のログを無効にできます
 `GroupCommit` | Group commitモード、選択可能な値は"sync"、"async"、または"off"、デフォルトは"off"
@@ -78,7 +78,7 @@ org.apache.doris.common.UserException: errCode = 2, detailMessage = tablet 10031
 ```
 **2. Table Creation**
 
-テーブル構造には、ログの作成時刻、収集時刻、hostname、ログファイルパス、ログタイプ、ログレベル、スレッド名、コードの場所、ログ内容などのフィールドが含まれます。
+Table構造には、ログの作成時刻、収集時刻、hostname、ログファイルパス、ログタイプ、ログレベル、スレッド名、コードの場所、ログ内容などのフィールドが含まれます。
 
 ```
 CREATE TABLE `doris_log` (
@@ -167,7 +167,7 @@ flushers:
       - "http://fe_ip:http_port"
     Database: log_db
     Table: doris_log
-    Authentication:
+    認証:
       PlainText:
         Username: root
         Password: ""
@@ -194,7 +194,7 @@ nohup ./loongcollector > stdout.log 2> stderr.log &
 # By default, speed information is logged every 10 seconds, including data volume since startup (MB and ROWS), total speed (MB/s and R/s), and speed for the last 10 seconds
 total 11 MB 18978 ROWS, total speed 0 MB/s 632 R/s, last 10 seconds speed 1 MB/s 1897 R/s
 ```
-### JSON Log Collection Example
+### JSON ログ Collection Example
 
 この例では、GitHub events archiveからのデータを使用したJSONログ収集を実演します。
 
@@ -238,7 +238,7 @@ wget https://data.gharchive.org/2024-01-01-15.json.gz
   "created_at": "2024-04-01T23:00:00Z"
 }
 ```
-**2. テーブル作成**
+**2. Table作成**
 
 ```
 CREATE DATABASE log_db;
@@ -312,7 +312,7 @@ flushers:
       - "http://fe_ip:http_port"
     Database: log_db
     Table: github_events
-    Authentication:
+    認証:
       PlainText:
         Username: root
         Password: ""

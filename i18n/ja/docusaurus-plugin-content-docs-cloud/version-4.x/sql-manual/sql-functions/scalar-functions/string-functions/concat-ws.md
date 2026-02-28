@@ -21,9 +21,9 @@
 CONCAT_WS ( <sep> , <str> [ , <str> ] )
 CONCAT_WS ( <sep> , <array> [ , <array> ])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-------|-----------------|
 | `<sep>` | 文字列を連結するためのコネクタ、`string`型または`varchar`型です |
 | `<str>` | 連結される文字列、`string`型または`varchar`型です |

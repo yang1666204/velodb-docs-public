@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 STRLEFT関数は、文字列の左側から指定された文字数を返します。長さはUTF8文字で測定されます。
 
@@ -19,7 +19,7 @@ LEFT
 STRLEFT(<str>, <len>)
 ```
 ## パラメータ
-| Parameter | Description                                   |
+| Parameter | デスクリプション                                   |
 | --------- | --------------------------------------------- |
 | `<str>` | 抽出元の文字列。型: VARCHAR     |
 | `<len>` | 返す文字数。型: INT |

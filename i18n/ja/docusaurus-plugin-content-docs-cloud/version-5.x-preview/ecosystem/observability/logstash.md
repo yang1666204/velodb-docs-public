@@ -4,15 +4,15 @@
   "language": "ja"
 }
 ---
-# Logstash Doris output plugin
+# Logstash Doris 出力プラグイン
 
 ## 概要
 
-Logstashはログ ETL フレームワーク（収集、前処理、ストレージシステムへの送信）であり、データをストレージシステムに書き込むためのカスタム出力プラグインをサポートしています。Logstash Doris output pluginは、Dorisにデータを出力するためのプラグインです。
+Logstashはログ ETL フレームワーク（収集、前処理、ストレージシステムへの送信）であり、データをストレージシステムに書き込むためのカスタム出力プラグインをサポートしています。Logstash Doris 出力プラグインは、Dorisにデータを出力するためのプラグインです。
 
-Logstash Doris output pluginは[Doris Stream Load](../../user-guide/data-operate/import/import-way/stream-load-manual) HTTP インターフェースを呼び出してDorisにリアルタイムでデータを書き込み、マルチスレッド並行処理、障害リトライ、カスタムStream Loadフォーマットとパラメータ、出力書き込み速度などの機能を提供します。
+Logstash Doris 出力プラグインは[Doris Stream Load](../../user-guide/data-operate/import/import-way/stream-load-manual) HTTP インターフェースを呼び出してDorisにリアルタイムでデータを書き込み、マルチスレッド並行処理、障害リトライ、カスタムStream Loadフォーマットとパラメータ、出力書き込み速度などの機能を提供します。
 
-Logstash Doris output pluginの使用には主に3つのステップが含まれます：
+Logstash Doris 出力プラグインの使用には主に3つのステップが含まれます：
 1. プラグインをLogstashにインストールする
 2. Doris出力アドレスとその他のパラメータを設定する
 3. Logstashを開始してDorisにリアルタイムでデータを書き込む
@@ -66,13 +66,13 @@ Logstash Doris出力プラグインの設定は以下の通りです：
 設定項目 | 説明
 --- | ---
 `http_hosts` | Stream Load HTTPアドレス、文字列配列として記述され、1つ以上の要素を持つことができます。各要素はhost:port形式です。例：["http://fe1:8030", "http://fe2:8030"]
-`user` | Dorisユーザー名、このユーザーは対応するDorisデータベースとテーブルに対するインポート権限が必要です
+`user` | Dorisユーザー名、このユーザーは対応するDorisデータベースとTableに対するインポート権限が必要です
 `password` | Dorisユーザーのパスワード
 `db` | 書き込み先のDorisデータベース名
-`table` | 書き込み先のDorisテーブル名
+`table` | 書き込み先のDorisTable名
 `label_prefix` | Doris Stream Load Labelプレフィックス、最終的に生成されるLabelは*{label_prefix}_{db}_{table}_{yyyymmdd_hhmmss}_{uuid}*、デフォルト値はlogstash
 `headers` | Doris Stream Loadヘッダーパラメータ、構文形式はruby mapです。例：headers => { "format" => "json", "read_json_by_line" => "true" }
-`mapping` | Logstashフィールドから Dorisテーブルフィールドへのマッピング、後続セクションの使用例を参照してください
+`mapping` | Logstashフィールドから DorisTableフィールドへのマッピング、後続セクションの使用例を参照してください
 `message_only` | マッピングの特殊形式、Logstash @messageフィールドのみをDorisに出力します。デフォルトはfalse
 `max_retries` | 失敗時のDoris Stream Load リクエストのリトライ回数、デフォルトは-1で無限リトライを行い、データの信頼性を保証します
 `log_request` | トラブルシューティングのためにログ内にDoris Stream Loadリクエストとレスポンスメタデータを出力するかどうか、デフォルトはfalse
@@ -98,7 +98,7 @@ org.apache.doris.common.UserException: errCode = 2, detailMessage = tablet 10031
 ```
 **2. Table Creation**
 
-テーブル構造には、ログの作成時刻、収集時刻、ホスト名、ログファイルパス、ログタイプ、ログレベル、スレッド名、コード位置、ログ内容などのフィールドが含まれます。
+Table構造には、ログの作成時刻、収集時刻、ホスト名、ログファイルパス、ログタイプ、ログレベル、スレッド名、コード位置、ログ内容などのフィールドが含まれます。
 
 ```
 CREATE TABLE `doris_log` (
@@ -283,7 +283,7 @@ wget https://data.gharchive.org/2024-01-01-15.json.gz
   "created_at": "2024-04-01T23:00:00Z"
 }
 ```
-**2. テーブル作成**
+**2. Table作成**
 
 ```
 CREATE DATABASE log_db;

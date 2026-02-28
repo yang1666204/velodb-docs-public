@@ -20,9 +20,9 @@
 ```sql
 QUARTER(`<date_or_time_expr>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<date_or_time_expr>` | 入力する日付またはdatetime値。日付/datetimeタイプをサポートします。特定のdatetimeおよび日付フォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |
 

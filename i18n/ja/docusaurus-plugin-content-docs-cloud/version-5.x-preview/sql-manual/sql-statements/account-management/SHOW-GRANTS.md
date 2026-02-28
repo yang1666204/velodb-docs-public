@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントはユーザー権限を表示するために使用されます。
 
@@ -26,7 +26,7 @@ SHOW [ALL] GRANTS [FOR <user_identity>];
 
 ## 戻り値
 
-  | Column | Description |
+  | Column | デスクリプション |
   | -- | -- |
   | UserIdentity | ユーザーアイデンティティ |
   | Comment | コメント |
@@ -44,7 +44,7 @@ SHOW [ALL] GRANTS [FOR <user_identity>];
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes                |
+| Privilege | Object | 注釈                |
 | :---------------- | :------------- | :---------------------------- |
 | GRANT_PRIV        | User or Role    | UserまたはRoleが`GRANT_PRIV`権限を持つ場合、すべてのユーザー権限を表示できます。そうでなければ、現在のユーザーの権限のみ表示できます |
 

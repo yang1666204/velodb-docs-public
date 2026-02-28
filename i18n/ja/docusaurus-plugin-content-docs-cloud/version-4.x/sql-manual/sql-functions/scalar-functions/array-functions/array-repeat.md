@@ -14,9 +14,9 @@ n個の繰り返し要素を含む配列を生成します
 ```sql
 ARRAY_REPEAT(<element>, <n>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<n>` | 桁数 |
 | `<element>` | 要素の指定 |

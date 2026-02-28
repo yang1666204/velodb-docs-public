@@ -22,9 +22,9 @@
 ```sql
 ROUND(<x> [ , <d> ])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | 丸める数値 |
 | `<d>` | オプション、丸める小数点以下の桁数 |

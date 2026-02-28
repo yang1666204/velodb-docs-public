@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 PAUSEDジョブをRUNNING状態に復元します。RUNNINGジョブはスケジュールされた期間に従って実行されます。
 

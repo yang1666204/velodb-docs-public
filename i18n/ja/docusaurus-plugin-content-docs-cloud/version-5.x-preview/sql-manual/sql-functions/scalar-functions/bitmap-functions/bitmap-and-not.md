@@ -20,7 +20,7 @@ BITMAP_AND_NOT(<bitmap1>, <bitmap2>)
 ```
 ## パラメータ
 
-| Parameter   | Description                      |
+| Parameter   | デスクリプション                      |
 |-------------|----------------------------------|
 | `<bitmap1>` | 否定されるベース BITMAP      |
 | `<bitmap2>` | 否定される除外 BITMAP |

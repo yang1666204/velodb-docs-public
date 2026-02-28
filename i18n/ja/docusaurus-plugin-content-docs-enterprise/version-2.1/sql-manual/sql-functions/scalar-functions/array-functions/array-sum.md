@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 配列内のすべての要素の合計を計算します
 
@@ -14,9 +14,9 @@
 ```sql
 ARRAY_SUM(<src>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<src>` | 対応する配列 |
 

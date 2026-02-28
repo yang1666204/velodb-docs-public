@@ -91,6 +91,6 @@ set runtime_filter_wait_time_ms = 3000;
 ```
 調整後、クエリ時間は5秒から2秒に短縮されました。
 
-## Summary
+## 要約
 
 RuntimeFilterの待機時間は、シナリオに応じて定義する必要があります。Dorisは適応的な最適化と変換を行っています。EXPLAINおよびPROFILEツールを使用して実行ボトルネックを観察し、対応する問題を特定し、SQL Hintを通じてRuntimeFilterの待機時間を変更することで、対応する問題のパフォーマンスへの影響を回避してください。

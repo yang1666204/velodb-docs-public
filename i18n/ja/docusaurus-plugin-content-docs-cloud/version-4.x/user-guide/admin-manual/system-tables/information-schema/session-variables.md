@@ -17,9 +17,9 @@
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
-| Column Name    | Type          | Description                                              |
+| Column Name    | タイプ          | デスクリプション                                              |
 | -------------- | ------------- | -------------------------------------------------------- |
 | VARIABLE_NAME  | varchar(64)   | 変数の名前                                               |
 | VARIABLE_VALUE | varchar(1024) | 現在の値                                                 |

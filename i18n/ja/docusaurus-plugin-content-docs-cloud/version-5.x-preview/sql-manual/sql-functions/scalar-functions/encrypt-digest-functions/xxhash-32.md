@@ -16,7 +16,7 @@
 ```sql
 XXHASH_32( <input> [ , <input> ... ] )
 ```
-## Parameters
+## パラメータ
 
 | parameter | description      |
 |-----------|------------------|

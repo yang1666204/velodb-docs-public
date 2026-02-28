@@ -5,9 +5,9 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-Doris Streaming Jobは、Job + TVFアプローチに基づく継続的なインポートタスクです。Jobが送信された後、Dorisはインポートジョブを継続的に実行し、TVF内のデータをクエリして、リアルタイムでDorisテーブルに書き込みます。
+Doris Streaming Jobは、Job + TVFアプローチに基づく継続的なインポートタスクです。Jobが送信された後、Dorisはインポートジョブを継続的に実行し、TVF内のデータをクエリして、リアルタイムでDorisTableに書き込みます。
 
 ## Syntax
 
@@ -72,7 +72,7 @@ DO <Insert_Command>
 
 **fe.conf**
 
-| Parameters | Default Values ​​| |
+| パラメータ | Default Values ​​| |
 | ------------------------------------ | ------ | ------------------------------------------- |
 | max_streaming_job_num | 1024 | Streamingジョブの最大数 |
 | job_streaming_task_exec_thread_num | 10 | StreamingTaskの実行に使用されるスレッド数 |

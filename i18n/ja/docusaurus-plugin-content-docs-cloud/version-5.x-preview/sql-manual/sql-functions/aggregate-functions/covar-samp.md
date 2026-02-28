@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つの変数間の標本共分散を計算します。入力変数のいずれかがNULLの場合、その行は計算に含まれません。
 
@@ -14,9 +14,9 @@
 ```sql
 COVAR_SAMP(<expr1>, <expr2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr1>` | 計算対象の式の一つです。サポートされている型はDoubleです。 |
 | `<expr2>` | 計算対象の式の一つです。サポートされている型はDoubleです。 |

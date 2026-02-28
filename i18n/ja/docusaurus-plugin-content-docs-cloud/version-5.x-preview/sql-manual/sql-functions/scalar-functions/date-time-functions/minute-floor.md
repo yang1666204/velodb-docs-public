@@ -27,9 +27,9 @@ MINUTE_FLOOR(`<datetime>`, `<origin>`)
 MINUTE_FLOOR(`<datetime>`, `<period>`)
 MINUTE_FLOOR(`<datetime>`, `<period>`, `<origin>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<datetime>` | 切り捨て対象となる日時値。DATETIME型。具体的な日時フォーマットについては、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion) |
 | `<period>` | 分単位の間隔値。INT型。各間隔に含まれる分数を表す。 |

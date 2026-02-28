@@ -20,7 +20,7 @@
 
 ## パラメータ概要
 
-| Property Name                  | Former Name   | Description                     | Default Value | Required |
+| Property Name                  | 旧称   | デスクリプション                     | デフォルト値 | Required |
 |--------------------------------|---------------|---------------------------------|---------------|----------|
 | azure.account_name             |               | Azureストレージアカウント名（Account Name）で、Azureポータルで作成されたストレージアカウント名です。 |               | Yes      |
 | azure.account_key              |               | Azure Blob storage用のAccount Key |               | Yes      |
@@ -35,7 +35,7 @@
 
   1. [Azure Portal](https://portal.azure.com)にログインします
   2. **Storage Accounts**を開き、対象のアカウントを選択します
-  3. **Overview**ページで**Storage Account Name**を確認できます
+  3. **概要**ページで**Storage Account Name**を確認できます
 
   ```properties
   "azure.account_name" = "myblobstorage"

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 左の配列と右の配列に共通する要素が含まれているかどうかを判定します
 
@@ -14,9 +14,9 @@
 ```sql
 ARRAYS_OVERLAP(<left>, <right>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<left>` | 判定対象の配列 |
 | `<right>` | 判定対象の配列 |

@@ -1,13 +1,13 @@
 ---
 {
   "title": "POSEXPLODE",
-  "description": "posexplode テーブル関数は、配列カラムを複数行に展開し、各要素の位置を示すカラムを追加します。",
+  "description": "posexplode Table関数は、配列カラムを複数行に展開し、各要素の位置を示すカラムを追加します。",
   "language": "ja"
 }
 ---
 ## 説明
 
-`posexplode`テーブル関数は、配列カラムを複数の行に展開し、各要素の位置を示すカラムを追加して、struct型を返します。LATERAL VIEWと組み合わせて使用する必要があり、複数のLATERAL VIEWをサポートします。新しいオプティマイザーでのみサポートされています。
+`posexplode`Table関数は、配列カラムを複数の行に展開し、各要素の位置を示すカラムを追加して、struct型を返します。LATERAL VIEWと組み合わせて使用する必要があり、複数のLATERAL VIEWをサポートします。新しいオプティマイザーでのみサポートされています。
 
 `posexplode_outer`は`posexplode`と似ていますが、NULL値の処理が異なります。
 
@@ -17,9 +17,9 @@
 POSEXPLODE(<arr>)
 POSEXPLODE_OUTER(<arr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<arr>` | 展開される配列 |
 

@@ -16,9 +16,9 @@
 ARRAY_SPLIT(<arr>, <cond>)
 ARRAY_SPLIT(<lambda>, arr [, ...])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description | 
+| Parameter | デスクリプション | 
 | --- | --- |
 | `<lambda>` | 入力パラメータが指定された配列の列数と一致する必要があるlambda式。この式は有効なスカラ関数を実行できますが、集約関数はサポートしていません。 |
 | `<arr>` | ARRAY配列 |

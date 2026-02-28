@@ -1,11 +1,11 @@
 ---
 {
-  "title": "BigQuery Catalog",
-  "description": "BigQuery CatalogはTrino Connector互換性フレームワークを使用して、BigQuery Connectorを通じてBigQueryテーブルにアクセスします。",
+  "title": "BigQuery カタログ",
+  "description": "BigQuery CatalogはTrino Connector互換性フレームワークを使用して、BigQuery Connectorを通じてBigQueryTableにアクセスします。",
   "language": "ja"
 }
 ---
-BigQuery Catalogは[Trino Connector](https://doris.apache.org/zh-CN/community/how-to-contribute/trino-connector-developer-guide/)互換性フレームワークを使用して、BigQuery Connectorを通じてBigQueryテーブルにアクセスします。
+BigQuery Catalogは[Trino Connector](https://doris.apache.org/zh-CN/community/how-to-contribute/trino-connector-developer-guide/)互換性フレームワークを使用して、BigQuery Connectorを通じてBigQueryTableにアクセスします。
 
 :::note
 この機能は実験的なものであり、バージョン3.0.1以降でサポートされています。
@@ -15,7 +15,7 @@ BigQuery Catalogは[Trino Connector](https://doris.apache.org/zh-CN/community/ho
 
 | シナリオ       | 説明                          |
 | -------------- | ------------------------------------ |
-| データ統合 | BigQueryデータを読み取り、Doris内部テーブルに書き込みます。 |
+| データ統合 | BigQueryデータを読み取り、Doris内部Tableに書き込みます。 |
 | データライトバック  | サポートされていません。                     |
 
 ## 環境準備
@@ -63,19 +63,19 @@ PROPERTIES (
 ```
 * `{TrinoProperties}`
 
-  TrinoPropertiesセクションは、Trino Connectorに渡されるプロパティを指定するために使用されます。これらのプロパティは`trino.`プレフィックスを使用します。理論的には、Trinoでサポートされているすべてのプロパティがここでもサポートされています。BigQueryの詳細については、[Trino documentation](https://trino.io/docs/435/connector/bigquery.html)を参照してください。
+  TrinoPropertiesセクションは、Trino Connectorに渡されるプロパティを指定するために使用されます。これらのプロパティは`trino.`プレフィックスを使用します。理論的には、Trinoでサポートされているすべてのプロパティがここでもサポートされています。BigQueryの詳細については、[Trino ドキュメント](https://trino.io/docs/435/connector/bigquery.html)を参照してください。
 
 * `[CommonProperties]`
 
-  CommonPropertiesセクションは、一般的なプロパティを指定するために使用されます。"Common Properties"セクションの下にある[Catalog Overview](../catalog-overview.md)を参照してください。
+  CommonPropertiesセクションは、一般的なプロパティを指定するために使用されます。"Common Properties"セクションの下にある[カタログ 概要](../catalog-overview.md)を参照してください。
   
 ### サポートされているBigQueryバージョン
 
-BigQueryプロパティの詳細については、[Trino documentation](https://trino.io/docs/current/connector/bigquery.html)を参照してください。
+BigQueryプロパティの詳細については、[Trino ドキュメント](https://trino.io/docs/current/connector/bigquery.html)を参照してください。
 
 ## カラム型マッピング
 
-| BigQuery Type | Trino Type                  | Doris Type    |
+| BigQuery タイプ | Trino タイプ                  | Doris タイプ    |
 | ------------- | --------------------------- | ------------- |
 | boolean       | boolean                     | boolean       |
 | int64         | bigint                      | bigint        |
@@ -103,9 +103,9 @@ CREATE CATALOG bigquery_catalog PROPERTIES (
     'trino.bigquery.credentials-file' = '/path/to/application_default_credentials.json',
 );
 ```
-## Query Operations
+## Query 運用
 
-Catalogを設定した後、以下の方法を使用してCatalog内のテーブルデータをクエリできます：
+Catalogを設定した後、以下の方法を使用してCatalog内のTableデータをクエリできます：
 
 ```sql
 -- 1. switch to catalog, use database and query

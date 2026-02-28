@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 TOPN_ARRAYは、指定されたカラム内で最も頻出するN個の値の配列を返します。これは近似計算関数で、カウント順に降順でソートされた結果を返します。
 
@@ -14,9 +14,9 @@ TOPN_ARRAYは、指定されたカラム内で最も頻出するN個の値の配
 ```sql
 TOPN_ARRAY(<expr>, <top_num> [, <space_expand_rate>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | カウントする列または式。サポートされる型: TinyInt, SmallInt, Integer, BigInt, LargeInt, Float, Double, Decimal, Date, Datetime, IPV4, IPV6, String。 |
 | `<top_num>` | 返される最も頻度の高い値の数。正の整数である必要があります。サポートされる型: Integer。 |

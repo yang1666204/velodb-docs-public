@@ -19,8 +19,8 @@ VARIANCE関数は、指定された式の統計的分散を計算します。こ
 ```sql
 VARIANCE(<expr>)
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 分散を計算する列または式。Double型をサポートします。 |
 

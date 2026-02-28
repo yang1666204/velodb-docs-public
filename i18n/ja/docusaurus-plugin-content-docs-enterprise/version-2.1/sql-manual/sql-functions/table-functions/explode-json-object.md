@@ -19,7 +19,7 @@ EXPLODE_JSON_OBJECT_OUTER(<json>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<json>` | json型 |
 

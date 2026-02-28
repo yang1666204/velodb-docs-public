@@ -5,6 +5,6 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 関数[`JSON_EXTRACT_BIGINT`](./json-extract-bigint.md)のエイリアスです。

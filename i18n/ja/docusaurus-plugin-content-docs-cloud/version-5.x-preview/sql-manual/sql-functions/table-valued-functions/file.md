@@ -1,13 +1,13 @@
 ---
 {
   "title": "FILE",
-  "description": "Fileテーブル値関数（tvf）は、S3、HDFS、LOCALなどのテーブル関数のラッパーです。",
+  "description": "FileTable値関数（tvf）は、S3、HDFS、LOCALなどのTable関数のラッパーです。",
   "language": "ja"
 }
 ---
 ## 説明
 
-Fileテーブルバリューファンクション（tvf）は、[S3](./s3.md)、[HDFS](./hdfs.md)、[LOCAL](local.md)などのテーブル関数のラッパーであり、異なるストレージシステム上のファイル内容にアクセスするための統一されたインターフェースを提供します。
+FileTableバリューファンクション（tvf）は、[S3](./s3.md)、[HDFS](./hdfs.md)、[LOCAL](local.md)などのTable関数のラッパーであり、異なるストレージシステム上のファイル内容にアクセスするための統一されたインターフェースを提供します。
 
 この関数はバージョン3.1.0以降でサポートされています。
 
@@ -21,13 +21,13 @@ FILE(
 ```
 - `{StorageProperties}`
 
-    StoragePropertiesセクションは、ストレージシステムに関連する接続と認証情報を入力するために使用されます。詳細については、[Supported Storage Systems]セクションを参照してください。
+    StoragePropertiesセクションは、ストレージシステムに関連する接続と認証情報を入力するために使用されます。詳細については、[Supported Storage システム]セクションを参照してください。
 
 - `{FileFormatProperties}`
 
     FileFormatPropertiesセクションは、CSV区切り文字などのファイル形式に関連するプロパティを入力するために使用されます。詳細については、[Supported File Formats]セクションを参照してください。
 
-## Supported Storage Systems
+## Supported Storage システム
 
 * [ hdfs](../../../lakehouse/storages/hdfs.md)
 
@@ -87,7 +87,7 @@ select * from file(
     "format" = "csv"
 );
 ```
-### desc関数を使用したテーブル構造の表示
+### desc関数を使用したTable構造の表示
 
 ```sql
 desc function file(

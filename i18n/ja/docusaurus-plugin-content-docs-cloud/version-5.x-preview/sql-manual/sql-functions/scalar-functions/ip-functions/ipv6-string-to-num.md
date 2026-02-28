@@ -7,7 +7,7 @@
 ---
 ## ipv6_string_to_num
 
-## Description
+## デスクリプション
 IPv6NumToStringの逆関数で、IPアドレス文字列を受け取り、IPv6アドレスをバイナリ形式で返します。
 
 ## Syntax

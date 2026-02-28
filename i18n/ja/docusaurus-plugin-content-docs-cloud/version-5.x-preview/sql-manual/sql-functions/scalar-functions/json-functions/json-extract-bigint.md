@@ -13,14 +13,14 @@
 ```sql
 JSON_EXTRACT_BIGINT(<json_object>, <json_path>)
 ```
-## Parameters
+## パラメータ
 - `<json_object>`: JSON型、抽出対象のパラメータ
 - `<json_path>`: String型、対象JSONから目的の要素を抽出するためのJSONパス
 
 ## Return Value
 `Nullable(BIGINT)` 抽出されたBIGINT値を返します。場合によってはNULLを返します
 
-## Usage Notes
+## Usage 注釈
 1. `<json_object>`または`<json_path>`がNULLの場合、NULLを返します。
 2. `<json_path>`で指定された要素が存在しない場合、NULLを返します。
 3. `<json_path>`で指定された要素がBIGINTに変換できない場合、NULLを返します。

@@ -14,9 +14,9 @@ Bitmap列から指定された値を削除します。
 ```sql
 BITMAP_REMOVE(<bitmap>, <value>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter   | Description    |
+| Parameter   | デスクリプション    |
 |-------------|----------------|
 | `<bitmap>`  | Bitmap値 |
 | `<value>`   | 削除する値 |

@@ -27,13 +27,13 @@ SHOW BACKUP [FROM <db_name>]
 
 ## 戻り値
 
-| Column | Description |
+| Column | デスクリプション |
 | -- | -- |
 | JobId | 一意のジョブid |
 | SnapshotName | バックアップの名前 |
 | DbName | 属するデータベース |
 | State | 現在のステージ：<ul><li>PENDING: ジョブ送信後の初期状態。</li><li>SNAPSHOTING: スナップショット実行中。</li><li>UPLOAD_SNAPSHOT: スナップショット完了、アップロード準備完了。</li><li>UPLOADING: スナップショットアップロード中。</li><li>SAVE_META: ジョブメタ情報をローカルファイルに保存。</li><li>UPLOAD_INFO: ジョブメタ情報をアップロード。</li><li>FINISHED: ジョブが成功。</li><li>CANCELLED: ジョブが失敗。</li></ul> |
-| BackupObjs | バックアップされたテーブルとパーティション |
+| BackupObjs | バックアップされたTableとパーティション |
 | CreateTime | タスク送信時刻 |
 | SnapshotFinishedTime | スナップショット完了時刻 |
 | UploadFinishedTime | スナップショットアップロード完了時刻 |

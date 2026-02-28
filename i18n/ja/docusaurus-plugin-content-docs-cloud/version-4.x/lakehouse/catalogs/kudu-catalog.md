@@ -1,13 +1,13 @@
 ---
 {
-  "title": "Kudu Catalog",
-  "description": "Apache Doris Kudu Catalogガイド：Trino Connectorフレームワークを通じてKuduデータベースに接続し、Kuduテーブルデータのクエリと統合を行います。Kerberos認証、複数のデータ型マッピングをサポートし、KuduとDoris間での迅速なデータ統合を可能にします。",
+  "title": "Kudu カタログ",
+  "description": "Apache Doris Kudu Catalogガイド：Trino Connectorフレームワークを通じてKuduデータベースに接続し、KuduTableデータのクエリと統合を行います。Kerberos認証、複数のデータ型マッピングをサポートし、KuduとDoris間での迅速なデータ統合を可能にします。",
   "language": "ja"
 }
 ---
 ## 概要
 
-Kudu CatalogはTrino Kudu Connectorを使用して[Trino Connector](https://doris.apache.org/community/how-to-contribute/trino-connector-developer-guide/)互換性フレームワーク経由でKuduテーブルにアクセスします。
+Kudu CatalogはTrino Kudu Connectorを使用して[Trino Connector](https://doris.apache.org/community/how-to-contribute/trino-connector-developer-guide/)互換性フレームワーク経由でKuduTableにアクセスします。
 
 :::note
 - これは実験的機能で、バージョン3.0.1以降でサポートされています。
@@ -18,7 +18,7 @@ Kudu CatalogはTrino Kudu Connectorを使用して[Trino Connector](https://dori
 
 | シナリオ        | サポート状況                                      |
 | -------------- | ------------------------------------------------ |
-| データ統合      | Kuduデータを読み取りDoris内部テーブルに書き込み      |
+| データ統合      | Kuduデータを読み取りDoris内部Tableに書き込み      |
 | データ書き戻し   | サポートされていません                             |
 
 ### バージョン互換性
@@ -50,7 +50,7 @@ mvn clean package -Dmaven.test.skip=true
 ```
 コンパイル後、`trino/plugin/trino-kudu/target/`に`trino-kudu-435/`ディレクトリが作成されます。
 
-### Step 2: Deploy Plugin
+### ステップ 2: Deploy Plugin
 
 1. すべてのFEおよびBEデプロイメントパスの`connectors/`ディレクトリ下に`trino-kudu-435/`ディレクトリを配置します（ディレクトリが存在しない場合は手動で作成してください）：
 
@@ -66,7 +66,7 @@ mvn clean package -Dmaven.test.skip=true
 
 2. Connectorが適切にロードされるように、すべてのFEおよびBEノードを再起動します。
 
-### Step 3: Catalogの作成
+### ステップ 3: Catalogの作成
 
 **基本設定（認証なし）**
 
@@ -92,12 +92,12 @@ CREATE CATALOG kudu_catalog PROPERTIES (
     'trino.kudu.authentication.server.principal.primary' = 'kudu'
 );
 ```
-### Step 4: データのクエリ
+### ステップ 4: データのクエリ
 
-Catalogを作成した後、以下の3つの方法のいずれかを使用してKuduテーブルデータをクエリできます：
+Catalogを作成した後、以下の3つの方法のいずれかを使用してKuduTableデータをクエリできます：
 
 ```sql
--- Method 1: Query after switching to Catalog
+-- Method 1: Query after switching to カタログ
 SWITCH kudu_catalog;
 USE kudu_db;
 SELECT * FROM kudu_tbl LIMIT 10;
@@ -109,9 +109,9 @@ SELECT * FROM kudu_tbl LIMIT 10;
 -- Method 3: Use fully qualified name
 SELECT * FROM kudu_catalog.kudu_db.kudu_tbl LIMIT 10;
 ```
-## Configuration
+## 構成
 
-### Catalog Configuration Parameters
+### カタログ 構成 パラメータ
 
 Kudu Catalogを作成するための基本構文は以下の通りです：
 

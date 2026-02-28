@@ -1,12 +1,12 @@
 ---
 {
   "title": "EXPLODE_JSON_ARRAY_JSON",
-  "description": "explodejsonarrayjson テーブル関数は JSON 配列を受け取ります。",
+  "description": "explodejsonarrayjson Table関数は JSON 配列を受け取ります。",
   "language": "ja"
 }
 ---
 ## 説明
-`explode_json_array_json` テーブル関数はJSON配列を受け取ります。実装ロジックは、JSON配列をarray型に変換してから処理のために`explode`関数を呼び出すことです。動作は次と同等です：`explode(cast(<json_array> as Array<JSON>))`。
+`explode_json_array_json` Table関数はJSON配列を受け取ります。実装ロジックは、JSON配列をarray型に変換してから処理のために`explode`関数を呼び出すことです。動作は次と同等です：`explode(cast(<json_array> as Array<JSON>))`。
 これは[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
 
 ## 構文

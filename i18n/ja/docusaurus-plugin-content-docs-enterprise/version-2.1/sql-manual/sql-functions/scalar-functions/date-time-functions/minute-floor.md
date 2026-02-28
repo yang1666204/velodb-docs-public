@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 datetime値を指定された分間隔の最も近い値に切り下げます。開始時刻（origin）が提供された場合、その時刻を間隔計算の基準として使用します。
 
@@ -17,9 +17,9 @@ MINUTE_FLOOR(<datetime>, <origin>)
 MINUTE_FLOOR(<datetime>, <period>)
 MINUTE_FLOOR(<datetime>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<datetime>`  | 切り捨てを行うdatetime値。DATETIME型またはDATETIMEV2型 |
 | `<period>`    | 分間隔の値。INT型で、各間隔の分数を表す |

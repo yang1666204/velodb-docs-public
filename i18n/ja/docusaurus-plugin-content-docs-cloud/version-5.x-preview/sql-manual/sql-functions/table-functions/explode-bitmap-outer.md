@@ -1,12 +1,12 @@
 ---
 {
   "title": "EXPLODE_BITMAP_OUTER",
-  "description": "explodebitmapouter テーブル関数は bitmap 型のデータを受け取り、bitmap 内の各ビットを個別の行にマッピングします。",
+  "description": "explodebitmapouter Table関数は bitmap 型のデータを受け取り、bitmap 内の各ビットを個別の行にマッピングします。",
   "language": "ja"
 }
 ---
 ## 説明
-`explode_bitmap_outer`テーブル関数は、bitmap型のデータを受け取り、bitmapの各ビットを個別の行にマッピングします。
+`explode_bitmap_outer`Table関数は、bitmap型のデータを受け取り、bitmapの各ビットを個別の行にマッピングします。
 この関数は、bitmapデータを処理し、bitmap内の各要素を個別のレコードに展開するためによく使用されます。[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
 `explode_bitmap_outer`は`explode_bitmap`と似ていますが、空またはNULL値を処理する際の動作が異なります。この関数は、空またはNULLのbitmapを持つレコードの存在を許可し、それらを結果のNULL行として展開します。
 

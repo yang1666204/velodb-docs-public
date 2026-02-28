@@ -1,13 +1,13 @@
 ---
 {
   "title": "EXPLODE_SPLIT_OUTER",
-  "description": "explodesplitouter テーブル関数は、指定された区切り文字に従って文字列を複数の部分文字列に分割するために使用されます。",
+  "description": "explodesplitouter Table関数は、指定された区切り文字に従って文字列を複数の部分文字列に分割するために使用されます。",
   "language": "ja"
 }
 ---
 ## 概要
-`explode_split_outer`テーブル関数は、指定された区切り文字に従って文字列を複数の部分文字列に分割し、各部分文字列を別々の行に展開するために使用されます。
-ネストされたデータ構造を標準的なフラットテーブル形式に平坦化するために、[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
+`explode_split_outer`Table関数は、指定された区切り文字に従って文字列を複数の部分文字列に分割し、各部分文字列を別々の行に展開するために使用されます。
+ネストされたデータ構造を標準的なフラットTable形式に平坦化するために、[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用する必要があります。
 `explode_split_outer`と[`explode_split`](./explode-split.md)の主な違いは、null値の処理方法です。
 
 ## 構文

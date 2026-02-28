@@ -14,9 +14,9 @@
 ```sql
 COS(<a>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<a>` | 浮動小数点数、計算するパラメータのラジアン値 |
 

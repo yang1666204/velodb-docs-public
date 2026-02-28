@@ -20,11 +20,11 @@ ADMIN SET TABLE <table_name> PARTITION VERSION PROPERTIES ("<partition_id>" = "v
 
 <table_name>
 
-> 設定するテーブルの名前。
+> 設定するTableの名前。
 
 <partition_id>
 
-> Partition Idを指定します。
+> パーティション Idを指定します。
 
 <visible_version>
 

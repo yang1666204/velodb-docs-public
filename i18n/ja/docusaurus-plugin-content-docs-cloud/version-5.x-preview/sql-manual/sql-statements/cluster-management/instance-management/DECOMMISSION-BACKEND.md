@@ -43,7 +43,7 @@ be_identifier
 
 このSQLを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes |
+| Privilege | Object | 注釈 |
 |-----------|----|-------|
 | NODE_PRIV |    |       |
 
@@ -53,11 +53,11 @@ be_identifier
 2. 通常の状況では、`TabletNum`列の値が0まで減少した後、このBEノードは削除されます。DorisにBEを自動的に削除させたくない場合は、FE Masterのコンフィギュレーション`drop_backend_after_decommission`をfalseに変更できます。
 3. 現在のBEが比較的大量のデータを格納している場合、DECOMMISSION操作は数時間または数日続く可能性があります。
 4. DECOMMISSION操作の進行状況が停滞した場合、具体的には[SHOW BACKENDS](./SHOW-BACKENDS.md)文の`TabletNum`列が特定の値で固定される場合、以下の状況が原因である可能性があります：
-   - 現在のBE上のタブレットを移行するための適切な他のBEが存在しない。例えば、3レプリカのテーブルを持つ3ノードクラスターで、そのうちの1つのノードを廃止する場合、このノードはデータを移行する他のBEを見つけることができません（他の2つのBEはすでにそれぞれ1つのレプリカを持っています）。
+   - 現在のBE上のタブレットを移行するための適切な他のBEが存在しない。例えば、3レプリカのTableを持つ3ノードクラスターで、そのうちの1つのノードを廃止する場合、このノードはデータを移行する他のBEを見つけることができません（他の2つのBEはすでにそれぞれ1つのレプリカを持っています）。
    - 現在のBE上のタブレットがまだ[ごみ箱](../../recycle/SHOW-CATALOG-RECYCLE-BIN.md)に存在している。[ごみ箱を空にして](../../recycle/DROP-CATALOG-RECYCLE-BIN.md)から廃止を待つことができます。
    - 現在のBE上のタブレットが大きすぎて、単一タブレットの移行が常にタイムアウトし、このタブレットを移行できない。FE Masterのコンフィギュレーション`max_clone_task_timeout_sec`をより大きな値に調整できます（デフォルトは7200秒）。
    - 現在のBEのタブレット上に未完了のトランザクションが存在している。トランザクションの完了を待つか、手動でトランザクションを中止できます。
-   - その他の場合、FE Masterのログで`replicas to decommission`キーワードをフィルタリングして異常なタブレットを見つけ、[SHOW TABLET](../../table-and-view/data-and-status-management/SHOW-TABLET.md)文を使用してこのタブレットが属するテーブルを見つけ、新しいテーブルを作成し、古いテーブルから新しいテーブルにデータを移行し、最後に[DROP TABLE FORCE](../../table-and-view/table/DROP-TABLE.md)を使用して古いテーブルを削除します。
+   - その他の場合、FE Masterのログで`replicas to decommission`キーワードをフィルタリングして異常なタブレットを見つけ、[SHOW TABLET](../../table-and-view/data-and-status-management/SHOW-TABLET.md)文を使用してこのタブレットが属するTableを見つけ、新しいTableを作成し、古いTableから新しいTableにデータを移行し、最後に[DROP TABLE FORCE](../../table-and-view/table/DROP-TABLE.md)を使用して古いTableを削除します。
 
 ## 例
 

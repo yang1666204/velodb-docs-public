@@ -14,9 +14,9 @@
 ```sql
 NEGATIVE(<x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<x>` | 独立変数は `BIGINT, DOUBLE, and DECIMAL` の型をサポートします |
 

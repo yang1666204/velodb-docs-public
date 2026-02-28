@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 集約関数で、列のすべての値を配列に集約するために使用されます。
 
@@ -20,7 +20,7 @@ COLLECT_LIST(<expr> [,<max_size>])
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 配列に配置される値を決定する式。サポートされる型: Bool、TinyInt、SmallInt、Integer、BigInt、LargeInt、Float、Double、Decimal、Date、Datetime、IPV4、IPV6、String、Array、Map、Struct。 |
 | `<max_size>` | 結果の配列サイズをmax_size個の要素に制限するオプションのパラメータ。サポートされる型: Integer。 |

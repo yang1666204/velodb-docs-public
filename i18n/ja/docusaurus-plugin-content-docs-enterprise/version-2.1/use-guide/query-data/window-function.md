@@ -75,7 +75,7 @@ FROM
 
 :::caution Note
 
-解析関数で使用される「パーティション」という用語は、テーブルパーティション機能とは無関係です。この章では、「パーティション」という用語は解析関数に関連する意味のみを指します。
+解析関数で使用される「パーティション」という用語は、Tableパーティション機能とは無関係です。この章では、「パーティション」という用語は解析関数に関連する意味のみを指します。
 
 :::
 
@@ -116,9 +116,9 @@ NTILE(num_buckets) OVER ([PARTITION BY partition_expression] ORDER BY order_expr
 
 **2. NTILE関数の使用**
 
-学生の試験スコアを含む`class_student_scores`テーブルがあり、スコアに基づいて学生を4つのグループに分割し、各グループの学生数をできるだけ均等にしたいとします。
+学生の試験スコアを含む`class_student_scores`Tableがあり、スコアに基づいて学生を4つのグループに分割し、各グループの学生数をできるだけ均等にしたいとします。
 
-まず、`class_student_scores`テーブルを作成してデータを挿入します：
+まず、`class_student_scores`Tableを作成してデータを挿入します：
 
 ```sql
 CREATE TABLE class_student_scores (
@@ -209,7 +209,7 @@ FROM
 
 ## Analytic Functions
 
-### Analytic Function SUMを使用して累積値を計算する
+### Analytic ファンクション SUMを使用して累積値を計算する
 
 以下は例です：
 
@@ -350,9 +350,9 @@ GROUP BY
 
 :::
 
-## Reporting Function
+## Reporting ファンクション
 
-Reporting Functionとは、各行のウィンドウ範囲が Partition 全体をカバーするシナリオを指します。Reporting Functionの主な利点は、単一のクエリブロック内でデータを複数回渡すことができるため、クエリパフォーマンスが向上することです。例えば、「各年において、売上が最も高い商品カテゴリを見つける」といったクエリでは、Reporting Functionを使用することで JOIN 操作が不要になります。以下に例を示します：
+Reporting Functionとは、各行のウィンドウ範囲が パーティション 全体をカバーするシナリオを指します。Reporting Functionの主な利点は、単一のクエリブロック内でデータを複数回渡すことができるため、クエリパフォーマンスが向上することです。例えば、「各年において、売上が最も高い商品カテゴリを見つける」といったクエリでは、Reporting Functionを使用することで JOIN 操作が不要になります。以下に例を示します：
 
 ```sql
 SELECT year, category, total_sum FROM (  
@@ -429,7 +429,7 @@ WHERE sub_cat_sales > 0.2 * cat_sales AND rank_in_line <= 5;
 ```
 ## LAG / LEAD
 
-LAG関数とLEAD関数は値間の比較に適しています。両方の関数は、自己結合を必要とせずにテーブル内の複数の行に同時にアクセスできるため、クエリ処理の速度を向上させます。具体的には、LAG関数は現在の行より指定されたオフセット分前の行へのアクセスを提供し、LEAD関数は現在の行より指定されたオフセット分後の行へのアクセスを提供します。
+LAG関数とLEAD関数は値間の比較に適しています。両方の関数は、自己結合を必要とせずにTable内の複数の行に同時にアクセスできるため、クエリ処理の速度を向上させます。具体的には、LAG関数は現在の行より指定されたオフセット分前の行へのアクセスを提供し、LEAD関数は現在の行より指定されたオフセット分後の行へのアクセスを提供します。
 
 以下はLAG関数を使用したSQLクエリの例です。このクエリは、特定の年（1999、2000、2001、2002）における各製品カテゴリの総売上、前年の総売上、およびそれらの差を選択することを目的としています：
 
@@ -541,7 +541,7 @@ FROM
 
 ## リファレンス
 
-例で使用されるテーブル作成文は以下の通りです：
+例で使用されるTable作成文は以下の通りです：
 
 ```sql
 CREATE DATABASE IF NOT EXISTS doc_tpcds;
@@ -665,7 +665,7 @@ PROPERTIES (
   "replication_num" = "1"
 );
 ```
-ターミナルで以下のコマンドを実行して、データをローカルコンピュータにダウンロードし、Stream Load方式を使用してテーブルにデータを読み込みます：
+ターミナルで以下のコマンドを実行して、データをローカルコンピュータにダウンロードし、Stream Load方式を使用してTableにデータを読み込みます：
 
 ```shell
 curl -L https://cdn.selectdb.com/static/doc_ddl_dir_d27a752a7b.tar -o - | tar -Jxf -

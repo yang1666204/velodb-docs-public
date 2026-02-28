@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 空のBITMAPを構築します。主にinsertやstream load時のデフォルト値の設定に使用されます。例：
 

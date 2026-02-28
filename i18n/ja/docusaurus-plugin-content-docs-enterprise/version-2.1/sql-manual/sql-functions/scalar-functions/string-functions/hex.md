@@ -16,9 +16,9 @@
 ```sql
 HEX ( <str> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-------|--------------|
 | `<str>` | 入力パラメータは数値または文字列 |
 

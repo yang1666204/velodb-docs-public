@@ -1,11 +1,11 @@
 ---
 {
   "title": "PARQUET_META",
-  "description": "parquet_meta テーブル値関数（tvf）は、データページをスキャンすることなく Parquet ファイルの Footer メタデータを読み取るために使用できます。これにより、Row Group 統計、Schema、ファイルレベルメタデータ、KV メタデータ、および Bloom Filter プローブ結果を迅速に確認することができます。",
+  "description": "parquet_meta Table値関数（tvf）は、データページをスキャンすることなく Parquet ファイルの Footer メタデータを読み取るために使用できます。これにより、Row Group 統計、Schema、ファイルレベルメタデータ、KV メタデータ、および Bloom Filter プローブ結果を迅速に確認することができます。",
   "language": "ja"
 }
 ---
-`parquet_meta`テーブル値関数（tvf）は、データページをスキャンすることなくParquetファイルのFooterメタデータを読み取るために使用できます。Row Group統計、Schema、ファイルレベルメタデータ、KVメタデータ、およびBloom Filterプローブ結果を素早く表示することができます。
+`parquet_meta`Table値関数（tvf）は、データページをスキャンすることなくParquetファイルのFooterメタデータを読み取るために使用できます。Row Group統計、Schema、ファイルレベルメタデータ、KVメタデータ、およびBloom Filterプローブ結果を素早く表示することができます。
 
 > これは実験的機能であり、バージョン4.1.0以降でサポートされています。
 

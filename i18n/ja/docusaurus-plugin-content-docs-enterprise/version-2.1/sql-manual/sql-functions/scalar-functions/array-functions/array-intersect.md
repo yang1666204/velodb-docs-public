@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 array1とarray2の積集合の要素を重複なしで配列として返します。入力パラメータがnullの場合、nullが返されます。
 
 ## Syntax

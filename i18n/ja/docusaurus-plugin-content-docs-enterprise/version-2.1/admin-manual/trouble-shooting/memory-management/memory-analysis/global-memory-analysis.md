@@ -50,9 +50,9 @@ Memory Trackerタグの一部にはサフィックスが付いており、その
 ## Globalメモリが大量に占有している
 
 ```
-MemTrackerLimiter Label=global, Type=overview, Limit=-1.00 B(-1 B), Used=199.37 MB(209053204 B), Peak=199.37 MB(209053204 B)
+MemTrackerLimiter Label=global, タイプ=overview, Limit=-1.00 B(-1 B), Used=199.37 MB(209053204 B), Peak=199.37 MB(209053204 B)
 ```
-Global Memory Tracker `Label=global, Type=overview` の値は、`Type=global` かつ `Parent Label != DetailsTrackerSet` を持つすべてのMemory Trackerの合計と等しく、主にCacheとmetadataを含んでおり、これらは異なるタスク間で共有されています。
+Global Memory Tracker `Label=global, タイプ=overview` の値は、`タイプ=global` かつ `Parent Label != DetailsTrackerSet` を持つすべてのMemory Trackerの合計と等しく、主にCacheとmetadataを含んでおり、これらは異なるタスク間で共有されています。
 
 ### Cache分析方法
 

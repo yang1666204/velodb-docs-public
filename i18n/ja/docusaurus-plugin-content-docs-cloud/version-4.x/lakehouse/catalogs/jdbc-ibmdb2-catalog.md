@@ -7,7 +7,7 @@
 ---
 Doris JDBC Catalogは、標準のJDBCインターフェースを通じてIBM Db2データベースへの接続をサポートします。このドキュメントでは、IBM Db2データベース接続の設定方法について説明します。
 
-JDBC Catalogの概要については、以下を参照してください：[JDBC Catalog Overview](./jdbc-catalog-overview.md)
+JDBC Catalogの概要については、以下を参照してください：[JDBC カタログ 概要](./jdbc-catalog-overview.md)
 
 ## 使用上の注意
 
@@ -39,13 +39,13 @@ IBM Db2をマッピングする際、DorisのDatabaseは、DB2の指定された
 
 | Doris    | IBM Db2  |
 | -------- | -------- |
-| Catalog  | DataBase |
+| カタログ  | DataBase |
 | Database | Schema   |
 | Table    | Table    |
 
 ## カラム型マッピング
 
-| IBM Db2 Type     | Doris Type    | Comment |
+| IBM Db2 タイプ     | Doris タイプ    | Comment |
 | ---------------- | ------------- | ------- |
 | smallint         | smallint      |         |
 | int              | int           |         |

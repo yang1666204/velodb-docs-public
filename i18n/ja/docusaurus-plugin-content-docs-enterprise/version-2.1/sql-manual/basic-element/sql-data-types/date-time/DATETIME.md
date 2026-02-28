@@ -9,7 +9,7 @@
 
 DATETIME
 
-### Description
+### デスクリプション
 
 DATETIME([P])
 日付と時刻の型。

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Function
+## ファンクション
 
 与えられたブール値フラグに従って、入力配列を複数のサブ配列に分割します。
 
@@ -18,7 +18,7 @@
 - `ARRAY_SPLIT(lambda, arr0, ...)`
 - `ARRAY_SPLIT(lambda, arr0, ...)`は`ARRAY_SPLIT(arr0, ARRAY_MAP(lambda, arr0, ...))`と同等です
 
-## Parameters
+## パラメータ
 
 - `arr`: `ARRAY<T>`。
 - `flags`: `ARRAY<BOOLEAN>`、その長さは`arr`と行ごとに一致する必要があります。`true`は現在の位置と次の要素の間で分割することを意味します。

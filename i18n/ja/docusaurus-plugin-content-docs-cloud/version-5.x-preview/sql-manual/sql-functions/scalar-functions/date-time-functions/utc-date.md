@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 UTC_DATE関数は、UTCタイムゾーンでの現在の日付を返します。この関数はローカルタイムゾーンの影響を受けず、常にUTCタイムゾーンに基づいた現在の日付を返すため、異なるタイムゾーンシナリオ間での日付の一貫性を保証します。
 
 この関数は、MySQLの[utc_date function](https://dev.mysql.com/doc/refman/8.4/en/date-and-time-functions.html#function_utc-date)と一貫した動作をします。

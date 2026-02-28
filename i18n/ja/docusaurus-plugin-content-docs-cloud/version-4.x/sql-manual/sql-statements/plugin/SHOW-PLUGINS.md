@@ -16,9 +16,9 @@ SHOW PLUGINS
 ```
 ## 戻り値
 
-| Column | Description |
+| Column | デスクリプション |
 | ------ | ----------- |
-| Description | 対応するプラグインの説明 |
+| デスクリプション | 対応するプラグインの説明 |
 | Version | プラグインの対応するバージョン番号 |
 | JavaVersion | 対応するJavaバージョン番号 |
 | ClassName | プログラムクラス名 |
@@ -31,7 +31,7 @@ SHOW PLUGINS
 
 このSQLコマンドを実行するユーザーは、最低限以下の権限を持つ必要があります：
 
-| Permissions         | Object   | Notes            |
+| Permissions         | Object   | 注釈            |
 |:-----------|:-----|:--------------|
 | ADMIN_PRIV | クラスタ全体 | クラスタ全体に対する管理者権限が必要 |
 
@@ -44,7 +44,7 @@ SHOW PLUGINS
     ```
     ```text
     +-------------------------------+---------+-----------------------------------------------------------+---------+-------------+------------------------------------------------------------+--------+---------+-----------+------------+
-   | Name                          | Type    | Description                                               | Version | JavaVersion | ClassName                                                  | SoName | Sources | Status    | Properties |
+   | Name                          | タイプ    | デスクリプション                                               | Version | JavaVersion | ClassName                                                  | SoName | Sources | Status    | Properties |
    +-------------------------------+---------+-----------------------------------------------------------+---------+-------------+------------------------------------------------------------+--------+---------+-----------+------------+
    | __builtin_AuditLoader         | AUDIT   | builtin audit loader, to load audit log to internal table | 2.1.0   | 1.8.31      | org.apache.doris.plugin.audit.AuditLoader                  | NULL   | Builtin | INSTALLED | {}         |
    | __builtin_AuditLogBuilder     | AUDIT   | builtin audit logger                                      | 0.12.0  | 1.8.31      | org.apache.doris.plugin.audit.AuditLogBuilder              | NULL   | Builtin | INSTALLED | {}         |

@@ -23,7 +23,7 @@ REGEXP_COUNT(<str>, <pattern>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<str>` | パラメータは'string'型で、正規表現によってマッチした宛先値です。 |
 | `<pattern>` | パラメータは'string'型で、正規表現であり、パターンの規則に合致する文字列をマッチさせるために使用されます。 |

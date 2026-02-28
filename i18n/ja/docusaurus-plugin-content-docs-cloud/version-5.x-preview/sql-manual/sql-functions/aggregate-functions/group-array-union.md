@@ -14,11 +14,11 @@
 ```sql
 GROUP_ARRAY_UNION(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
-| `<expr>` | unionを計算する式。サポートされる型：Array<Type>。Array内での複雑な型のネストはサポートされていません。 |
+| `<expr>` | unionを計算する式。サポートされる型：Array<タイプ>。Array内での複雑な型のネストはサポートされていません。 |
 
 ## Return Value
 

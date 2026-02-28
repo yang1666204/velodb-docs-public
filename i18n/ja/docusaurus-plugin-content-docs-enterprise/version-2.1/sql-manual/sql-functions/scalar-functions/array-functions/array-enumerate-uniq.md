@@ -14,8 +14,8 @@ array_enumerate_uniq関数は、同じサイズの複数の配列を引数とし
 ```sql
 ARRAY_ENUMERATE_UNIQ(<arr1> [,<arr2> , ... ])
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 |---|---|
 | `<arr1>` | 計算が必要な配列arr1 |
 | `<arr2>` | 計算が必要な配列arr2 |

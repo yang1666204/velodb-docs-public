@@ -9,7 +9,7 @@
 
 ## FineBI 概要
 
-ビジネスインテリジェンス製品として、FineBI は、データ処理、リアルタイム分析、多次元分析 Dashboard およびその他の機能のシステムアーキテクチャを備えています。FineBI は豊富なデータソース接続と複数のビューを持つテーブルの分析および管理をサポートします。FineBI は Apache Doris の内部および外部データのモデリングと可視化を正常にサポートできます。
+ビジネスインテリジェンス製品として、FineBI は、データ処理、リアルタイム分析、多次元分析 Dashboard およびその他の機能のシステムアーキテクチャを備えています。FineBI は豊富なデータソース接続と複数のビューを持つTableの分析および管理をサポートします。FineBI は Apache Doris の内部および外部データのモデリングと可視化を正常にサポートできます。
 
 ## 前提条件
 
@@ -29,7 +29,7 @@ FineBI 5.0 以降をインストールしてください。ダウンロードリ
 
    ![select database](/images/cloud/integration/bi/bi-finebi-en-2.png)
 
-3. Management System ボタンをクリックし、Data Connections でデータベース接続管理を選択して、新しいデータベース接続を作成します。
+3. Management システム ボタンをクリックし、Data Connections でデータベース接続管理を選択して、新しいデータベース接続を作成します。
 
    ![data connection](/images/cloud/integration/bi/bi-finebi-en-3.png)
 
@@ -61,15 +61,15 @@ FineBI 5.0 以降をインストールしてください。ダウンロードリ
 
 ## モデルの作成
 
-1. 「Public Data」セクションで、新しいデータセットを作成するためにクリックします。次に、データベーステーブルをクリックします
+1. 「Public Data」セクションで、新しいデータセットを作成するためにクリックします。次に、データベースTableをクリックします
 
    ![new dataset](/images/cloud/integration/bi/bi-finebi-en-7.png)
 
-2. 既存のデータベース接続でテーブルをインポートする必要があります
+2. 既存のデータベース接続でTableをインポートする必要があります
 
    ![select table](/images/cloud/integration/bi/bi-finebi-en-8-2.png)
 
-3. テーブルをインポートした後、インポートされた各テーブルを更新する必要があります。テーブルを更新した後でのみ、トピック内でテーブルを分析できます
+3. Tableをインポートした後、インポートされた各Tableを更新する必要があります。Tableを更新した後でのみ、トピック内でTableを分析できます
 
    ![refresh table](/images/cloud/integration/bi/bi-finebi-en-9.png)
 

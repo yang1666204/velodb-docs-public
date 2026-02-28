@@ -16,9 +16,9 @@
 ```sql
 FROM_DAYS(<dt>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<dt>`| 日数 |
 

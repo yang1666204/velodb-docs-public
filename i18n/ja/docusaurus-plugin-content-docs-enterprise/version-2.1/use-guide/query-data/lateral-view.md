@@ -1,20 +1,20 @@
 ---
 {
   "title": "列から行への変換（Lateral View）",
-  "description": "generator関数（EXPLODEなど）と組み合わせて使用され、1つ以上の行を含む仮想テーブルを生成します。",
+  "description": "generator関数（EXPLODEなど）と組み合わせて使用され、1つ以上の行を含む仮想Tableを生成します。",
   "language": "ja"
 }
 ---
 # Column to Row (Lateral View)
 
-`EXPLODE`などのジェネレータ関数と組み合わせて使用し、1つ以上の行を含む仮想テーブルを生成します。`LATERAL VIEW`は各生の入力行に対して行を適用します。
+`EXPLODE`などのジェネレータ関数と組み合わせて使用し、1つ以上の行を含む仮想Tableを生成します。`LATERAL VIEW`は各生の入力行に対して行を適用します。
 
 ## Grammar
 
 ```sql
 LATERAL VIEW  generator_function ( expression [, ...] ) table_identifier AS column_identifier [, ...]
 ```
-## Parameters
+## パラメータ
 
 - generator_function
 

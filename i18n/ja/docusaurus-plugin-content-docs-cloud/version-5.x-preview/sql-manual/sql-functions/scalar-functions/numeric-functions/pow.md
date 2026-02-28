@@ -20,9 +20,9 @@
 ```sql
 POW(<a>, <b>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<a>`   | ベース   |
 | `<b>`   | べき指数  |

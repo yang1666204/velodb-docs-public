@@ -16,7 +16,7 @@ TO_QUANTILE_STATE(<raw_data> <compression>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<raw_data>` | 対象カラム。|
 | `<compression>` | 圧縮しきい値。|

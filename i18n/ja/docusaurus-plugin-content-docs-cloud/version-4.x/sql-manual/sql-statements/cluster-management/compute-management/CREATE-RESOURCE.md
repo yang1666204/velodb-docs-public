@@ -25,7 +25,7 @@ PROPERTIES (
 
 `<property>`は`<key>` = `<value>`形式で指定し、`<key>`の利用可能な具体的な値は以下のとおりです：
 
-| Parameter | Description | Required |
+| Parameter | デスクリプション | Required |
 | -- | -- | -- |
 | `<type>` | リソースのタイプを指定します。サポートされているタイプ：spark/odbc_catalog/s3/jdbc/hdfs/hms/es。 | Y |
 

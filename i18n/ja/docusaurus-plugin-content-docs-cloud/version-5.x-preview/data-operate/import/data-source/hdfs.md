@@ -31,7 +31,7 @@ CSVファイルhdfsload_example.csvを作成します。このファイルはHDF
 9,Emma,37
 10,Liam,64
 ```
-### Step 2: Dorisでテーブルを作成する
+### ステップ 2: DorisでTableを作成する
 
 ```sql
 CREATE TABLE test_hdfsload(
@@ -63,7 +63,7 @@ PROPERTIES
     "timeout" = "3600"
 );
 ```
-### Step 4: インポートしたデータを確認する
+### ステップ 4: インポートしたデータを確認する
 
 ```sql
 SELECT * FROM test_hdfsload;
@@ -106,7 +106,7 @@ CSV ファイル hdfsload_example.csv を作成します。このファイルは
 9,Emma,37
 10,Liam,64
 ```
-### Step 2: Dorisでテーブルを作成する
+### ステップ 2: DorisでTableを作成する
 
 ```sql
 CREATE TABLE test_hdfsload(
@@ -117,7 +117,7 @@ CREATE TABLE test_hdfsload(
 DUPLICATE KEY(user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
-### Step 3: TVFを使用してデータを読み込む
+### ステップ 3: TVFを使用してデータを読み込む
 
 ```sql
 INSERT INTO test_hdfsload
@@ -129,7 +129,7 @@ SELECT * FROM hdfs (
     "csv_schema" = "user_id:int;name:string;age:int"
 );
 ```
-### Step 4: インポートしたデータの確認
+### ステップ 4: インポートしたデータの確認
 
 ```sql
 SELECT * FROM test_hdfsload;

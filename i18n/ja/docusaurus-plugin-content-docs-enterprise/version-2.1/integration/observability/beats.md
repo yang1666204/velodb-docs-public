@@ -45,10 +45,10 @@ Beats Doris出力プラグインの設定は以下の通りです:
 設定 | 説明
 --- | ---
 `http_hosts` | Stream Load HTTPアドレス。文字列配列として記述され、1つ以上の要素を持つことができ、各要素はhost:port形式です。例: ["http://fe1:8030", "http://fe2:8030"]
-`user` | Dorisユーザー名。このユーザーは対応するDorisデータベースとテーブルに対するインポート権限が必要です
+`user` | Dorisユーザー名。このユーザーは対応するDorisデータベースとTableに対するインポート権限が必要です
 `password` | Dorisユーザーのパスワード
 `database` | 書き込み先のDorisデータベース名
-`table` | 書き込み先のDorisテーブル名
+`table` | 書き込み先のDorisTable名
 `label_prefix` | Doris Stream Loadラベルプレフィックス。最終的に生成されるラベルは*{label_prefix}_{db}_{table}_{yyyymmdd_hhmmss}_{uuid}*で、デフォルト値はbeatsです
 `headers` | Doris Stream Loadヘッダーパラメータ。構文形式はYAML mapです
 `codec_format_string` | Doris Stream Loadへの出力フォーマット文字列。%{[a][b]}は入力のa.bフィールドを表します。使用例については後続のセクションを参照してください
@@ -75,9 +75,9 @@ org.apache.doris.common.UserException: errCode = 2, detailMessage = tablet 10031
         at org.apache.doris.planner.OlapScanNode.addScanRangeLocations(OlapScanNode.java:931) ~[doris-fe.jar:1.2-SNAPSHOT]
         at org.apache.doris.planner.OlapScanNode.computeTabletInfo(OlapScanNode.java:1197) ~[doris-fe.jar:1.2-SNAPSHOT]
 ```
-**2. テーブル作成**
+**2. Table作成**
 
-テーブル構造には、ログの作成時刻、収集時刻、hostname、ログファイルパス、ログタイプ、ログレベル、スレッド名、コード位置、およびログ内容などのフィールドが含まれます。
+Table構造には、ログの作成時刻、収集時刻、hostname、ログファイルパス、ログタイプ、ログレベル、スレッド名、コード位置、およびログ内容などのフィールドが含まれます。
 
 ```
 CREATE TABLE `doris_log` (
@@ -114,7 +114,7 @@ PROPERTIES (
 "compaction_policy" = "time_series"
 );
 ```
-**3. Configuration**
+**3. 構成**
 
 filebeat_doris_log.yml などの filebeat ログ収集設定ファイルは YAML 形式で、主に ETL の各段階に対応する4つの部分で構成されています：
 1. Input は生データの読み取りを担当します。
@@ -217,7 +217,7 @@ doris stream load response:
 
 total 11 MB 18978 ROWS, total speed 0 MB/s 632 R/s, last 10 seconds speed 1 MB/s 1897 R/s
 ```
-### JSON Log Collection Example
+### JSON ログ Collection Example
 
 この例では、GitHub events archiveのデータを使用したJSONログ収集について説明します。
 
@@ -260,7 +260,7 @@ wget https://data.gharchive.org/2024-01-01-15.json.gz
   "created_at": "2024-04-01T23:00:00Z"
 }
 ```
-**2. テーブル作成**
+**2. Table作成**
 
 ```
 CREATE DATABASE log_db;
@@ -300,7 +300,7 @@ PROPERTIES (
 "dynamic_partition.replication_num" = "1"
 );
 ```
-**3. Filebeat Configuration**
+**3. Filebeat 構成**
 
 この設定ファイルは、以前のTEXTログ収集と以下の点で異なります：
 

@@ -14,9 +14,9 @@ Mapの要素数をカウントします
 ```sql
 MAP_SIZE(<map>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<map>` | 入力するマップの内容 |
 

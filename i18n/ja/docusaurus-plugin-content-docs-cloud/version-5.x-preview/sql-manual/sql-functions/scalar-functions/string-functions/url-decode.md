@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 urlをデコード文字列に変換します。
 
@@ -14,8 +14,8 @@ urlをデコード文字列に変換します。
 ```sql
 URL_DECODE( <str> )
 ```
-## Required Parameters
-| Parameters | Description |
+## Required パラメータ
+| パラメータ | デスクリプション |
 |------|------|
 | `<str>` | デコードする文字列。urlが文字列型でない場合。 |
 

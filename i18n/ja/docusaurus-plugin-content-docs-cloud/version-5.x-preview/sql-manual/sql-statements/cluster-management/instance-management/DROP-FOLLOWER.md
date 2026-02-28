@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、FRONTENDのFOLLOWERロールを持つノードを削除します。（管理者専用！）
 

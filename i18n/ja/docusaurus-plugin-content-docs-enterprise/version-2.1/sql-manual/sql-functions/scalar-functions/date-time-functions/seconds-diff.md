@@ -16,7 +16,7 @@ SECONDS_DIFF(<end_datetime>, <start_datetime>)
 ```
 ## パラメータ
 
-| Parameter          | Description                                                                 |
+| Parameter          | デスクリプション                                                                 |
 |--------------------|-----------------------------------------------------------------------------|
 | `<end_datetime>`   | 必須。終了日時の値。DATETIMEとDATEタイプをサポートします。   |
 | `<start_datetime>` | 必須。開始日時の値。DATETIMEとDATEタイプをサポートします。 |

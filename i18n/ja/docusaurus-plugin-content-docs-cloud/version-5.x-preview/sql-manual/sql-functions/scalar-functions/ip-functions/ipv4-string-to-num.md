@@ -7,7 +7,7 @@
 ---
 ## ipv4_string_to_num
 
-## Description
+## デスクリプション
 A.B.C.D形式（ドット区切りの10進数）のIPv4アドレスを含む文字列を受け取ります。ネットワークバイト順（ビッグエンディアン）でのアドレスの数値を、対応するIPv4アドレスの整数として返します。
 
 ## Syntax
@@ -69,7 +69,7 @@ ERROR 1105 (HY000): errCode = 2, detailMessage = (...)[INVALID_ARGUMENT]Null Inp
 `inet_ntoa`/`ipv4_num_to_string`と`to_ipv4`を使った相互変換の例：IPv4テキスト → 整数 → IPv4テキスト → IPv4型。
 
 ```sql
--- Step 1: IPv4 text to integer
+-- ステップ 1: IPv4 text to integer
 SELECT ipv4_string_to_num('192.168.1.1') as ipv4_int;
 +------------+
 | ipv4_int   |
@@ -77,7 +77,7 @@ SELECT ipv4_string_to_num('192.168.1.1') as ipv4_int;
 | 3232235777 |
 +------------+
 
--- Step 2: Integer back to IPv4 text
+-- ステップ 2: Integer back to IPv4 text
 SELECT ipv4_num_to_string(ipv4_string_to_num('192.168.1.1')) as back_to_text;
 +----------------+
 | back_to_text   |
@@ -85,7 +85,7 @@ SELECT ipv4_num_to_string(ipv4_string_to_num('192.168.1.1')) as back_to_text;
 | 192.168.1.1    |
 +----------------+
 
--- Step 3: IPv4 text to IPv4 type
+-- ステップ 3: IPv4 text to IPv4 type
 SELECT to_ipv4(ipv4_num_to_string(ipv4_string_to_num('192.168.1.1'))) as ipv4_type;
 +-------------+
 | ipv4_type   |

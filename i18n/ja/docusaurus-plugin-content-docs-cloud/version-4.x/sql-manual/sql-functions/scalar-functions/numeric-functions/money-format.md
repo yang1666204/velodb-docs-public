@@ -14,9 +14,9 @@
 ```sql
 MONEY_FORMAT(<number>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<number>`   | フォーマットする数値 |
 

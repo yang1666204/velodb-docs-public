@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 地球上の2つの点間の球面距離をメートル単位で計算します。入力パラメータは、それぞれ点Xの経度、点Xの緯度、点Yの経度、点Yの緯度です。
 
@@ -14,9 +14,9 @@
 ```sql
 ST_DISTANCE_SPHERE( <x_lng>, <x_lat>, <y_lng>, <y_lat>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x_lng>` | 点Xの経度、DOUBLE型、有効範囲は[-180, 180]（範囲外の場合はNULLを返す）|
 | `<y_lng>` | 点Xの緯度、DOUBLE型、有効範囲は[-90, 90]（範囲外の場合はNULLを返す） |

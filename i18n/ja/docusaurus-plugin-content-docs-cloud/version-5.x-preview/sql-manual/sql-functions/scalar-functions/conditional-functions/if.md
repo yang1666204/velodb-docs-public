@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 式 `<condition>` が true の場合、`<value_true>` を返します。そうでない場合は、`<value_false_or_null>` を返します。
 戻り値の型：`<value_true>` 式の結果型。

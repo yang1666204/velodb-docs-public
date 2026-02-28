@@ -16,7 +16,7 @@ SHOW PRIVILEGES
 ```
 ## 戻り値
 
-  | Column | Description |
+  | Column | デスクリプション |
   | -- | -- |
   | Privilege | 権限名 |
   | Context | 適用範囲 |
@@ -37,7 +37,7 @@ SHOW PRIVILEGES
 +-------------+-------------------------------------------------------+-----------------------------------------------+
 | Privilege   | Context                                               | Comment                                       |
 +-------------+-------------------------------------------------------+-----------------------------------------------+
-| Node_priv   | GLOBAL                                                | Privilege for cluster node operations         |
+| Node_priv   | GLOBAL                                                | Privilege for cluster node 運用         |
 | Admin_priv  | GLOBAL                                                | Privilege for admin user                      |
 | Grant_priv  | GLOBAL,CATALOG,DATABASE,TABLE,RESOURCE,WORKLOAD GROUP | Privilege for granting privilege              |
 | Select_priv | GLOBAL,CATALOG,DATABASE,TABLE                         | Privilege for select data in tables           |

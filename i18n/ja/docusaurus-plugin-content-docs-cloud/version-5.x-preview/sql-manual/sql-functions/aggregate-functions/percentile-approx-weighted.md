@@ -19,9 +19,9 @@
 ```sql
 PERCENTILE_APPROX_WEIGHTED(<col>, <weight>, <p> [, <compression>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<col>` | パーセンタイルを計算する列。サポートされている型: Double |
 | `<weight>` | 重み列。正の数である必要があります。サポートされている型: Double |

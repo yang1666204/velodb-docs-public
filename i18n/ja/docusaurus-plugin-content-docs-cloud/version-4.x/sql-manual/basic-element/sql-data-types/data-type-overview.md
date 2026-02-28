@@ -45,7 +45,7 @@ Dorisは以下の数値データ型をサポートしています：
 
 ## 日付型
 
-日付型にはDATE、TIMEおよびDATETIMEがあります。DATE型は日まで正確な日付のみを格納し、DATETIME型は日付と時刻を格納し、マイクロ秒まで正確にできます。TIME型は時刻のみを格納し、**現在のところテーブルストレージの構築をサポートしておらず、クエリプロセスでのみ使用できます**。
+日付型にはDATE、TIMEおよびDATETIMEがあります。DATE型は日まで正確な日付のみを格納し、DATETIME型は日付と時刻を格納し、マイクロ秒まで正確にできます。TIME型は時刻のみを格納し、**現在のところTableストレージの構築をサポートしておらず、クエリプロセスでのみ使用できます**。
 
 datetime型の計算や数値型への変換には、[TIME_TO_SEC](../../sql-functions/scalar-functions/date-time-functions/time-to-sec)、[DATE_DIFF](../../sql-functions/scalar-functions/date-time-functions/datediff)、[UNIX_TIMESTAMP](../../sql-functions/scalar-functions/date-time-functions/unix-timestamp)などの関数を使用してください。数値型として直接変換した結果は保証されません。
 

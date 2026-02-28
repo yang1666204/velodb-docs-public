@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 JSON_REPLACE関数は、JSON内のデータを更新し、結果を返すために使用されます。
 
 ## Syntax

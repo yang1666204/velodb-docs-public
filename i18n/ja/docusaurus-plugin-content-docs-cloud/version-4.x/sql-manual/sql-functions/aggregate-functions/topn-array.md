@@ -14,9 +14,9 @@ TOPN_ARRAYは、指定された列のN個の最頻値の配列を返します。
 ```sql
 TOPN_ARRAY(<expr>, <top_num> [, <space_expand_rate>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | カウントする列または式。 |
 | `<top_num>` | 返却する最も頻度の高い値の数。正の整数である必要があります。 |

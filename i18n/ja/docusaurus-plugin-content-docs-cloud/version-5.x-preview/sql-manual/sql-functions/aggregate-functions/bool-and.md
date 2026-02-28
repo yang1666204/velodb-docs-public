@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 式のすべての非NULL値に対して論理AND集約を実行します。
 
@@ -18,9 +18,9 @@
 ```text
 BOOL_AND(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 論理ANDで集約される式。BOOLEAN型および0/非0ルール（0はFALSE、非0はTRUE）によってbooleanに変換できる数値型をサポートします。 |
 

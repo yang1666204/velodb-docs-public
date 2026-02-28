@@ -9,7 +9,7 @@
 
 Duplicate Key モデルの使用を優先することを推奨します。このモデルは、他のモデルと比較してデータロードとクエリパフォーマンスの両方で利点を提供します。詳細については、以下を参照してください: [Data Model](../../table-design/data-model/overview)
 
-## Partition and Bucket Configuration
+## パーティション and バケット 構成
 
 タブレットのサイズを1-10GBの範囲に保つことを推奨します。タブレットが小さすぎると集約パフォーマンスの低下やメタデータ管理のオーバーヘッド増加を引き起こす可能性があり、タブレットが大きすぎるとレプリカの移行と修復を妨げる可能性があります。詳細については、以下を参照してください: [Data Distribution](../../table-design/data-partitioning/data-distribution)。
 
@@ -22,7 +22,7 @@ Random bucketingを使用する場合、load_to_single_tabletをtrueに設定す
 クライアント側でのバッチ処理: ロード前にクライアント側でデータをバッチ処理（数MBからGBのサイズ）することを推奨します。高頻度の小規模ロードは頻繁なcompactionを引き起こし、深刻な書き込み増幅の問題を引き起こします。
 サーバー側でのバッチ処理: 高並行性の小容量データロードについては、[Group Commit](group-commit-manual.md)を有効にしてサーバー側でバッチ処理を実装することを推奨します。
 
-## Partition Loading
+## パーティション Loading
 
 一度に少数のパーティションからのみデータをロードすることを推奨します。あまりに多くのパーティションから同時にロードするとメモリ使用量が増加し、パフォーマンスの問題を引き起こす可能性があります。Dorisの各タブレットはメモリ内にアクティブなMemtableを持っており、これは一定のサイズに達するとディスクにフラッシュされます。プロセスのOOMを防ぐため、アクティブなMemtableのメモリ使用量が高すぎる場合、早期フラッシュがトリガーされ、多数の小さなファイルが作成されてロードパフォーマンスに影響します。
 
@@ -36,7 +36,7 @@ Random bucketingを使用する場合、load_to_single_tabletをtrueに設定す
 
 非圧縮CSVおよびJSONファイル: Dorisは自動的にファイルを分割し、並行してロードします。
 
-並行性戦略については、以下を参照してください: Broker Load Configuration Parameters
+並行性戦略については、以下を参照してください: Broker Load 構成 パラメータ
 
 ## Stream Load Concurrency
 

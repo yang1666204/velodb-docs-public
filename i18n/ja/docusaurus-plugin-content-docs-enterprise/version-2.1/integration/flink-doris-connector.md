@@ -13,9 +13,9 @@ Flink Connectorを使用すると、以下の操作を実行できます：
 
 - **Dorisへのデータ書き込み**: Flinkでバッチ処理した後、Stream Loadを使用してデータを一括でDorisにインポートします。
 
-- **Lookup Joinによるディメンションテーブル結合**: バッチ処理と非同期クエリがディメンションテーブル結合を高速化します。
+- **Lookup JoinによるディメンションTable結合**: バッチ処理と非同期クエリがディメンションTable結合を高速化します。
 
-- **全データベース同期**: Flink CDCを使用して、MySQL、Oracle、PostgreSQLなどのデータベース全体を同期でき、自動テーブル作成とDDL操作も含まれます。
+- **全データベース同期**: Flink CDCを使用して、MySQL、Oracle、PostgreSQLなどのデータベース全体を同期でき、自動Table作成とDDL操作も含まれます。
 
 ## バージョン説明
 
@@ -106,9 +106,9 @@ Standaloneクラスターを例に：
 3. `<FLINK_HOME>`ディレクトリに移動し、`bin/start-cluster.sh`を実行してFlinkクラスターを開始します；
 4. `jps`コマンドを使用してFlinkクラスターが正常に開始されたかを確認できます。
 
-#### Dorisテーブルの初期化
+#### DorisTableの初期化
 
-以下の文を実行してDorisテーブルを作成します：
+以下の文を実行してDorisTableを作成します：
 
 ```sql
 CREATE DATABASE test;
@@ -315,7 +315,7 @@ INSERT INTO student_sink SELECT * FROM student_source;
 ```
 #### DataStream APIを使用したデータの書き込み
 
-DataStream APIを使用してデータを書き込む際、Dorisテーブルに書き込む前に上流データをシリアル化するために、異なるシリアル化メソッドを使用できます。
+DataStream APIを使用してデータを書き込む際、DorisTableに書き込む前に上流データをシリアル化するために、異なるシリアル化メソッドを使用できます。
 
 :::info
 
@@ -472,7 +472,7 @@ env.fromSource(mySqlSource, WatermarkStrategy.noWatermarks(), "MySQL Source")
 
 ##### Multi-table Write Format
 
-現在、DorisSinkは単一のSinkで複数テーブルの同期をサポートしています。データとデータベース/テーブル情報の両方をSinkに渡し、`RecordWithMetaSerializer`を使用してシリアライズする必要があります。
+現在、DorisSinkは単一のSinkで複数Tableの同期をサポートしています。データとデータベース/Table情報の両方をSinkに渡し、`RecordWithMetaSerializer`を使用してシリアライズする必要があります。
 
 ```Java
 StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -510,13 +510,13 @@ env.fromCollection(Arrays.asList(record, record1)).sinkTo(builder.build());
 
 ### Lookup Join
 
-Lookup Joinを使用することで、FlinkにおけるディメンションテーブルのJoinを最適化できます。ディメンションテーブルのJoinにFlink JDBC Connectorを使用する場合、以下の問題が発生する可能性があります：
+Lookup Joinを使用することで、FlinkにおけるディメンションTableのJoinを最適化できます。ディメンションTableのJoinにFlink JDBC Connectorを使用する場合、以下の問題が発生する可能性があります：
 
-- Flink JDBC Connectorは同期クエリモードを使用しており、上流データ（例：Kafkaから）がレコードを送信した後、即座にDorisディメンションテーブルにクエリを実行します。これにより、高同時実行シナリオでクエリレイテンシが高くなります。
+- Flink JDBC Connectorは同期クエリモードを使用しており、上流データ（例：Kafkaから）がレコードを送信した後、即座にDorisディメンションTableにクエリを実行します。これにより、高同時実行シナリオでクエリレイテンシが高くなります。
 
 - JDBCを介して実行されるクエリは、通常レコードごとのポイントルックアップですが、Dorisはより良い効率のためにバッチクエリを推奨しています。
 
-Flink Doris ConnectorでディメンションテーブルのJoinに[Lookup Join](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/sql/queries/joins/#lookup-join)を使用することで、以下の利点が得られます：
+Flink Doris ConnectorでディメンションTableのJoinに[Lookup Join](https://nightlies.apache.org/flink/flink-docs-release-1.20/docs/dev/table/sql/queries/joins/#lookup-join)を使用することで、以下の利点が得られます：
 
 - **上流データのバッチキャッシング**により、レコードごとのクエリによって引き起こされる高レイテンシとデータベース負荷を回避します。
 
@@ -554,7 +554,7 @@ ON a.city = c.city
 ```
 ### 全データベース同期
 
-Flink Doris Connectorは**Flink CDC** ([Flink CDC Documentation](https://nightlies.apache.org/flink/flink-cdc-docs-release-3.2/docs/connectors/flink-sources/overview/))を統合し、MySQLなどのリレーショナルデータベースをDorisに同期することを容易にします。この統合には、自動テーブル作成、スキーマ変更なども含まれます。同期をサポートするデータベースには、MySQL、Oracle、PostgreSQL、SQLServer、MongoDB、DB2があります。
+Flink Doris Connectorは**Flink CDC** ([Flink CDC Documentation](https://nightlies.apache.org/flink/flink-cdc-docs-release-3.2/docs/connectors/flink-sources/overview/))を統合し、MySQLなどのリレーショナルデータベースをDorisに同期することを容易にします。この統合には、自動Table作成、スキーマ変更なども含まれます。同期をサポートするデータベースには、MySQL、Oracle、PostgreSQL、SQLServer、MongoDB、DB2があります。
 
 :::info Note
 
@@ -766,12 +766,12 @@ Flinkクラスターを開始した後、以下のコマンドを直接実行で
 
 #### 一般設定項目
 
-| Key                           | Default Value | Required | Comment                                                      |
+| Key                           | デフォルト値 | Required | Comment                                                      |
 | ----------------------------- | ------------- | -------- | ------------------------------------------------------------ |
 | fenodes                       | --            | Y        | Doris FE httpアドレス。複数のアドレスがサポートされており、カンマで区切る必要があります。 |
 | benodes                       | --            | N        | Doris BE httpアドレス。複数のアドレスがサポートされており、カンマで区切る必要があります。 |
 | jdbc-url                      | --            | N        | JDBC接続情報、例：jdbc:mysql://127.0.0.1:9030。              |
-| table.identifier              | --            | Y        | Dorisテーブル名、例：db.tbl。                                 |
+| table.identifier              | --            | Y        | DorisTable名、例：db.tbl。                                 |
 | username                      | --            | Y        | Dorisアクセス用のユーザー名。                                 |
 | password                      | --            | Y        | Dorisアクセス用のパスワード。                                 |
 | auto-redirect                 | TRUE          | N        | StreamLoadリクエストをリダイレクトするかどうか。有効にすると、StreamLoadはFE経由で書き込みを行い、明示的にBE情報を取得しなくなります。 |
@@ -781,7 +781,7 @@ Flinkクラスターを開始した後、以下のコマンドを直接実行で
 
 #### Source設定
 
-| Key                           | Default Value | Required | Comment                                                      |
+| Key                           | デフォルト値 | Required | Comment                                                      |
 | ----------------------------- | ------------- | -------- | ------------------------------------------------------------ |
 | doris.request.query.timeout   | 21600s        | N        | Dorisクエリのタイムアウト。デフォルト値は6時間です。           |
 | doris.request.tablet.size     | 1             | N        | 1つのPartitionに対応するDoris Tabletsの数。この値を小さく設定するほど、より多くのPartitionが生成され、Flink側の並列性を向上させることができます。ただし、Dorisにより多くの負荷をかけることにもなります。 |
@@ -792,18 +792,18 @@ Flinkクラスターを開始した後、以下のコマンドを直接実行で
 
 **DataStream固有の設定**
 
-| Key                | Default Value | Required | Comment                                                      |
+| Key                | デフォルト値 | Required | Comment                                                      |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
-| doris.read.field   | --            | N        | Dorisテーブルを読み取るカラム名のリスト。複数のカラムはカンマで区切る必要があります。 |
+| doris.read.field   | --            | N        | DorisTableを読み取るカラム名のリスト。複数のカラムはカンマで区切る必要があります。 |
 | doris.filter.query | --            | N        | 読み取りデータをフィルタリングする式。この式はDorisに渡されます。Dorisはこの式を使用してソースデータのフィルタリングを完了します。例：age=18。 |
 
 #### Sink設定
 
-| Key                         | Default Value | Required | Comment                                                      |
+| Key                         | デフォルト値 | Required | Comment                                                      |
 | --------------------------- | ------------- | -------- | ------------------------------------------------------------ |
 | sink.label-prefix           | --            | Y        | Stream loadインポートに使用されるラベルプレフィックス。2pcシナリオでは、FlinkのEOSセマンティクスを保証するためにグローバルに一意である必要があります。 |
 | sink.properties.*           | --            | N        | Stream Loadのインポートパラメータ。例：'sink.properties.column_separator' = ', 'はカラム区切り文字を定義し、'sink.properties.escape_delimiters' = 'true'は\x01のような区切り文字としての特殊文字がバイナリ0x01に変換されることを意味します。JSON形式のインポートの場合、'sink.properties.format' = 'json'、'sink.properties.read_json_by_line' = 'true'。詳細なパラメータについては、こちらを参照してください。Group Commitモードの場合、例：'sink.properties.group_commit' = 'sync_mode'はgroup commitを同期モードに設定します。Flinkコネクタはバージョン1.6.2からインポート設定group commitをサポートしています。詳細な使用方法と制限については、group commitを参照してください。 |
-| sink.enable-delete          | TRUE          | N        | 削除を有効にするかどうか。このオプションにはDorisテーブルでバッチ削除機能が有効である必要があり（Doris 0.15+バージョンではデフォルトで有効）、Uniqueモデルのみをサポートします。 |
+| sink.enable-delete          | TRUE          | N        | 削除を有効にするかどうか。このオプションにはDorisTableでバッチ削除機能が有効である必要があり（Doris 0.15+バージョンではデフォルトで有効）、Uniqueモデルのみをサポートします。 |
 | sink.enable-2pc             | TRUE          | N        | 2フェーズコミット（2pc）を有効にするかどうか。デフォルトはtrueで、Exactly-Onceセマンティクスを保証します。2フェーズコミットの詳細については、こちらを参照してください。 |
 | sink.buffer-size            | 1MB           | N        | 書き込みデータキャッシュバッファのサイズ、バイト単位。変更は推奨されず、デフォルト設定を使用できます。 |
 | sink.buffer-count           | 3             | N        | 書き込みデータキャッシュバッファの数。変更は推奨されず、デフォルト設定を使用できます。 |
@@ -817,7 +817,7 @@ Flinkクラスターを開始した後、以下のコマンドを直接実行で
 
 #### Lookup Join設定
 
-| Key                               | Default Value | Required | Comment                                                      |
+| Key                               | デフォルト値 | Required | Comment                                                      |
 | --------------------------------- | ------------- | -------- | ------------------------------------------------------------ |
 | lookup.cache.max-rows             | -1            | N        | lookupキャッシュの最大行数。デフォルト値は-1で、キャッシュが有効でないことを意味します。 |
 | lookup.cache.ttl                  | 10s           | N        | lookupキャッシュの最大時間。デフォルトは10秒です。             |
@@ -855,27 +855,27 @@ Flinkクラスターを開始した後、以下のコマンドを直接実行で
 | ----------------------- | ------------------------------------------------------------ |
 | --job-name              | Flinkタスクの名前で、オプションです。               |
 | --database              | Dorisに同期されるデータベースの名前。              |
-| --table-prefix          | Dorisテーブルのプレフィックス名、例：--table-prefix ods_。 |
-| --table-suffix          | Dorisテーブルのサフィックス名、プレフィックスと同様です。   |
-| --including-tables      | 同期が必要なMySQLテーブル。複数のテーブルは\|で区切ることができ、正規表現がサポートされています。例：--including-tables table1。 |
-| --excluding-tables      | 同期が不要なテーブル。使用方法は--including-tablesと同じです。 |
-| --mysql-conf            | MySQL CDCSourceの設定、例：--mysql-conf hostname=127.0.0.1。MySQL-CDCのすべての設定は[こちら](https://nightlies.apache.org/flink/flink-cdc-docs-release-3.2/docs/connectors/flink-sources/mysql-cdc/)で確認できます。その中でhostname、username、password、database-nameは必須です。同期されるデータベースとテーブルに主キーのないテーブルが含まれる場合、scan.incremental.snapshot.chunk.key-columnを設定する必要があり、非NULL型のフィールドを1つだけ選択できます。例：scan.incremental.snapshot.chunk.key-column=database.table:column,database.table1:column...、異なるデータベースとテーブルの列はカンマで区切られます。 |
+| --table-prefix          | DorisTableのプレフィックス名、例：--table-prefix ods_。 |
+| --table-suffix          | DorisTableのサフィックス名、プレフィックスと同様です。   |
+| --including-tables      | 同期が必要なMySQLTable。複数のTableは\|で区切ることができ、正規表現がサポートされています。例：--including-tables table1。 |
+| --excluding-tables      | 同期が不要なTable。使用方法は--including-tablesと同じです。 |
+| --mysql-conf            | MySQL CDCSourceの設定、例：--mysql-conf hostname=127.0.0.1。MySQL-CDCのすべての設定は[こちら](https://nightlies.apache.org/flink/flink-cdc-docs-release-3.2/docs/connectors/flink-sources/mysql-cdc/)で確認できます。その中でhostname、username、password、database-nameは必須です。同期されるデータベースとTableに主キーのないTableが含まれる場合、scan.incremental.snapshot.chunk.key-columnを設定する必要があり、非NULL型のフィールドを1つだけ選択できます。例：scan.incremental.snapshot.chunk.key-column=database.table:column,database.table1:column...、異なるデータベースとTableの列はカンマで区切られます。 |
 | --oracle-conf           | Oracle CDCSourceの設定、例：--oracle-conf hostname=127.0.0.1。Oracle-CDCのすべての設定は[こちら](https://nightlies.apache.org/flink/flink-cdc-docs-release-3.2/docs/connectors/flink-sources/oracle-cdc/)で確認できます。その中でhostname、username、password、database-name、schema-nameは必須です。 |
 | --postgres-conf         | Postgres CDCSourceの設定、例：--postgres-conf hostname=127.0.0.1。Postgres-CDCのすべての設定は[こちら](https://nightlies.apache.org/flink/flink-cdc-docs-release-3.2/docs/connectors/flink-sources/postgres-cdc/)で確認できます。その中でhostname、username、password、database-name、schema-name、slot.nameは必須です。 |
 | --sqlserver-conf        | SQLServer CDCSourceの設定、例：--sqlserver-conf hostname=127.0.0.1。SQLServer-CDCのすべての設定は[こちら](https://nightlies.apache.org/flink/flink-cdc-docs-release-3.2/docs/connectors/flink-sources/sqlserver-cdc/)で確認できます。その中でhostname、username、password、database-name、schema-nameは必須です。 |
 | --db2-conf              | SQLServer CDCSourceの設定、例：--db2-conf hostname=127.0.0.1。DB2-CDCのすべての設定は[こちら](https://nightlies.apache.org/flink/flink-cdc-docs-release-3.2/docs/connectors/flink-sources/db2-cdc/)で確認できます。その中でhostname、username、password、database-name、schema-nameは必須です。 |
-| --mongodb-conf          | MongoDB CDCSourceの設定、例：--mongodb-conf hosts=127.0.0.1:27017。Mongo-CDCのすべての設定は[こちら](https://nightlies.apache.org/flink/flink-cdc-docs-release-3.2/docs/connectors/flink-sources/mongodb-cdc/)で確認できます。その中でhosts、username、password、databaseは必須です。--mongodb-conf schema.sample-percentはMongoDBデータを自動サンプリングしてDorisにテーブルを作成するための設定で、デフォルト値は0.2です。 |
+| --mongodb-conf          | MongoDB CDCSourceの設定、例：--mongodb-conf hosts=127.0.0.1:27017。Mongo-CDCのすべての設定は[こちら](https://nightlies.apache.org/flink/flink-cdc-docs-release-3.2/docs/connectors/flink-sources/mongodb-cdc/)で確認できます。その中でhosts、username、password、databaseは必須です。--mongodb-conf schema.sample-percentはMongoDBデータを自動サンプリングしてDorisにTableを作成するための設定で、デフォルト値は0.2です。 |
 | --sink-conf             | Doris Sinkのすべての設定はこちらで確認できます。 |
-| --table-conf            | Dorisテーブルの設定項目、つまりproperties（table-bucketsを除く、これはpropertiesの属性ではありません）に含まれるコンテンツです。例：--table-conf replication_num=1、--table-conf table-buckets="tbl1:10,tbl2:20,a.*:30,b.*:40,.*:50"は正規表現の順序で異なるテーブルのバケット数を指定することを意味します。マッチしない場合は、BUCKETS AUTOメソッドでテーブルが作成されます。 |
+| --table-conf            | DorisTableの設定項目、つまりproperties（table-bucketsを除く、これはpropertiesの属性ではありません）に含まれるコンテンツです。例：--table-conf replication_num=1、--table-conf table-buckets="tbl1:10,tbl2:20,a.*:30,b.*:40,.*:50"は正規表現の順序で異なるTableのバケット数を指定することを意味します。マッチしない場合は、BUCKETS AUTOメソッドでTableが作成されます。 |
 | --schema-change-mode    | スキーマ変更を解析するモード、debezium_structureとsql_parserが含まれます。デフォルトでdebezium_structureモードが使用されます。debezium_structureモードはアップストリームCDCがデータを同期する際に使用されるデータ構造を解析し、この構造を解析してDDL変更操作を判定します。sql_parserモードはアップストリームCDCがデータを同期する際のDDL文を解析してDDL変更操作を判定するため、この解析モードはより正確です。使用例：--schema-change-mode debezium_structure。この機能は24.0.0以降のバージョンで利用可能になります。 |
-| --single-sink           | 単一のSinkを使用してすべてのテーブルを同期するかどうか。有効にすると、新しく作成されたアップストリームテーブルを自動的に識別し、テーブルを自動作成することもできます。 |
-| --multi-to-one-origin   | 複数のアップストリームテーブルが同じテーブルに書き込まれる場合のソーステーブルの設定、例：--multi-to-one-origin "a\_.\*\|b_.\*"、[#208](https://github.com/apache/doris-flink-connector/pull/208)を参照 |
-| --multi-to-one-target   | multi-to-one-originと組み合わせて使用される、ターゲットテーブルの設定、例：--multi-to-one-target "a\|b" |
-| --create-table-only     | テーブルの構造のみを同期するかどうか。      |
+| --single-sink           | 単一のSinkを使用してすべてのTableを同期するかどうか。有効にすると、新しく作成されたアップストリームTableを自動的に識別し、Tableを自動作成することもできます。 |
+| --multi-to-one-origin   | 複数のアップストリームTableが同じTableに書き込まれる場合のソースTableの設定、例：--multi-to-one-origin "a\_.\*\|b_.\*"、[#208](https://github.com/apache/doris-flink-connector/pull/208)を参照 |
+| --multi-to-one-target   | multi-to-one-originと組み合わせて使用される、ターゲットTableの設定、例：--multi-to-one-target "a\|b" |
+| --create-table-only     | Tableの構造のみを同期するかどうか。      |
 
 ### DorisからFlinkのデータ型マッピング
 
-| Doris Type | Flink Type |
+| Doris タイプ | Flink タイプ |
 | ---------- | ---------- |
 | NULL_TYPE  | NULL       |
 | BOOLEAN    | BOOLEAN    |
@@ -901,7 +901,7 @@ Flinkクラスターを開始した後、以下のコマンドを直接実行で
 | IPV6       | STRING     |
 
 ### FlinkからDorisのデータ型マッピング
-| Flink Type    | Doris Type     |
+| Flink タイプ    | Doris タイプ     |
 | ------------- | -------------- |
 | BOOLEAN       | BOOLEAN        |
 | TINYINT       | TINYINT        |
@@ -925,7 +925,7 @@ Flinkクラスターを開始した後、以下のコマンドを直接実行で
 
 Flinkは、Flinkクラスターのインジケーターを監視するための複数の[Metrics](https://nightlies.apache.org/flink/flink-docs-master/docs/ops/metrics/#metrics)を提供します。以下は、Flink Doris Connectorのために新しく追加された監視メトリクスです。
 
-| Name                      | Metric Type | Description                                                  |
+| Name                      | Metric タイプ | デスクリプション                                                  |
 | ------------------------- | ----------- | ------------------------------------------------------------ |
 | totalFlushLoadBytes       | Counter     | フラッシュされインポートされた総バイト数。 |
 | flushTotalNumberRows      | Counter     | インポートされ処理された総行数。 |
@@ -1026,7 +1026,7 @@ WITH (
 ```
 ### FlinkCDC主キーカラムの更新
 
-一般的に、ビジネスデータベースでは、テーブルの主キーとして番号がよく使用されます。例えば、Studentテーブルでは、番号（id）が主キーとして使用されます。しかし、ビジネスの発展に伴い、データに対応する番号が変更される場合があります。このシナリオで、Flink CDC + Doris Connectorを使用してデータを同期する際、Doris内の主キーカラムのデータを自動的に更新することができます。
+一般的に、ビジネスデータベースでは、Tableの主キーとして番号がよく使用されます。例えば、StudentTableでは、番号（id）が主キーとして使用されます。しかし、ビジネスの発展に伴い、データに対応する番号が変更される場合があります。このシナリオで、Flink CDC + Doris Connectorを使用してデータを同期する際、Doris内の主キーカラムのデータを自動的に更新することができます。
 
 **原理**
 

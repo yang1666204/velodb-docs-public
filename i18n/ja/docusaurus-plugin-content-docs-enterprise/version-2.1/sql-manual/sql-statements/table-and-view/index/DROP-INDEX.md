@@ -1,13 +1,13 @@
 ---
 {
   "title": "DROP INDEX",
-  "description": "このステートメントは、テーブルから指定された名前のインデックスを削除するために使用されます。現在、bitmap indexesのみがサポートされています。",
+  "description": "このステートメントは、Tableから指定された名前のインデックスを削除するために使用されます。現在、bitmap indexesのみがサポートされています。",
   "language": "ja"
 }
 ---
 ## 説明
 
-このステートメントは、テーブルから指定された名前のインデックスを削除するために使用されます。現在、bitmapインデックスのみがサポートされています。
+このステートメントは、Tableから指定された名前のインデックスを削除するために使用されます。現在、bitmapインデックスのみがサポートされています。
 
 ## 構文
 
@@ -18,7 +18,7 @@ DROP INDEX [ IF EXISTS ] <index_name> ON [ <db_name> . ] <table_name>;
 
 **1. `<index_name>`**: インデックスの名前。
 
-**2. `<table_name>`**: インデックスが属するテーブルの名前。
+**2. `<table_name>`**: インデックスが属するTableの名前。
 
 ## オプションパラメータ
 
@@ -30,7 +30,7 @@ DROP INDEX [ IF EXISTS ] <index_name> ON [ <db_name> . ] <table_name>;
 
 | 権限                | オブジェクト        | 備考                                          |
 |:-------------------|:-------------------|:----------------------------------------------|
-| ALTER_PRIV         | Table              | DROP INDEXはテーブルに対するALTER操作です      |
+| ALTER_PRIV         | Table              | DROP INDEXはTableに対するALTER操作です      |
 
 ## 例
 

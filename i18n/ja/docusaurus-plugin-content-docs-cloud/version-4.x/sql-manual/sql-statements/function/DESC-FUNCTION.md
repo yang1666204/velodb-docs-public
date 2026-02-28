@@ -1,11 +1,11 @@
 ---
 {
   "title": "DESC FUNCTION",
-  "description": "desc関数tablevaluedfunctionを使用して、対応するテーブル値関数のスキーマ情報を取得します。",
+  "description": "desc関数tablevaluedfunctionを使用して、対応するTable値関数のスキーマ情報を取得します。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 対応するtable-valued functionのスキーマ情報を取得するには、desc function table_valued_functionを使用します。
 
@@ -18,11 +18,11 @@ DESC FUNCTION <table_valued_function>
 
 **<table_valued_function>**
 
-> table_valued_function、CATALOGSなどのテーブル値関数の名前。サポートされているテーブル値関数の一覧については、"[Table-Valued Functions](https://doris.apache.org/docs/dev/lakehouse/file-analysis)"セクションを参照してください
+> table_valued_function、CATALOGSなどのTable値関数の名前。サポートされているTable値関数の一覧については、"[Table-Valued Functions](https://doris.apache.org/docs/dev/lakehouse/file-analysis)"セクションを参照してください
 
 ## 例
 
-テーブル値関数CATALOGSの情報をクエリする：
+Table値関数CATALOGSの情報をクエリする：
 
 ```sql
 DESC FUNCTION catalogs();
@@ -31,7 +31,7 @@ DESC FUNCTION catalogs();
 
 ```sql
 +-------------+--------+------+-------+---------+-------+
-| Field       | Type   | Null | Key   | Default | Extra |
+| Field       | タイプ   | Null | Key   | Default | Extra |
 +-------------+--------+------+-------+---------+-------+
 | CatalogId   | bigint | No   | false | NULL    | NONE  |
 | CatalogName | text   | No   | false | NULL    | NONE  |

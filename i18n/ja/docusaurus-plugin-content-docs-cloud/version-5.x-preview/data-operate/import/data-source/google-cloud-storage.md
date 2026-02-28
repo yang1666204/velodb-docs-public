@@ -15,7 +15,7 @@ DorisはGoogle Cloud Storageからファイルを読み込む2つの方法を提
 
 S3 Loadを使用してオブジェクトストレージ上のファイルをインポートします。詳細な手順については、[Broker Load Manual](../import-way/broker-load-manual)を参照してください。
 
-### Step 1: データの準備
+### ステップ 1: データの準備
 
 CSVファイルs3load_example.csvを作成します。このファイルはGoogle Cloud Storage上に保存され、内容は以下の通りです：
 
@@ -31,7 +31,7 @@ CSVファイルs3load_example.csvを作成します。このファイルはGoogl
 9,Emma,37
 10,Liam,64
 ```
-### Step 2: Dorisでテーブルを作成する
+### ステップ 2: DorisでTableを作成する
 
 ```sql
 CREATE TABLE test_s3load(
@@ -42,7 +42,7 @@ CREATE TABLE test_s3load(
 DUPLICATE KEY(user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
-### Step 3: S3 Loadを使用したデータの読み込み
+### ステップ 3: S3 Loadを使用したデータの読み込み
 
 ```sql
 LOAD LABEL s3_load_2022_04_01
@@ -66,7 +66,7 @@ PROPERTIES
     "timeout" = "3600"
 );
 ```
-### Step 4: インポートされたデータを確認する
+### ステップ 4: インポートされたデータを確認する
 
 ```sql
 SELECT * FROM test_s3load;
@@ -109,7 +109,7 @@ CSVファイル s3load_example.csv を作成します。このファイルはGoo
 9,Emma,37
 10,Liam,64
 ```
-### Step 2: Dorisでテーブルを作成する
+### ステップ 2: DorisでTableを作成する
 
 ```sql
 CREATE TABLE test_s3load(
@@ -120,7 +120,7 @@ CREATE TABLE test_s3load(
 DUPLICATE KEY(user_id)
 DISTRIBUTED BY HASH(user_id) BUCKETS 10;
 ```
-### Step 3: TVFを使用してデータを読み込む
+### ステップ 3: TVFを使用してデータを読み込む
 
 ```sql
 INSERT INTO test_s3load
@@ -137,7 +137,7 @@ SELECT * FROM S3
     "csv_schema" = "user_id:int;name:string;age:int"
 );
 ```
-### Step 4: インポートされたデータを確認する
+### ステップ 4: インポートされたデータを確認する
 
 ```sql
 SELECT * FROM test_s3load;

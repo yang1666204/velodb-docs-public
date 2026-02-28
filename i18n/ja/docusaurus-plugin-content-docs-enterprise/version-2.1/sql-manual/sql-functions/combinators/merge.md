@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 集約された中間結果が集約され、計算されて実際の結果を取得します。
 結果の型は`AGGREGATE_FUNCTION`と一致します。

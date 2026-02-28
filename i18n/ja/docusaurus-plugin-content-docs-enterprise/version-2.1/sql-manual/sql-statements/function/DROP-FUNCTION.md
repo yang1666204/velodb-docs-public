@@ -42,7 +42,7 @@ DROP [ GLOBAL ] <function_name> ( <arg_type> )
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持っている必要があります：
 
-| Privilege  | Object         | Notes       |
+| Privilege  | Object         | 注釈       |
 |:-----------|:---------------|:------------|
 | ADMIN_PRIV | Custom function| DROPは管理操作です |
 

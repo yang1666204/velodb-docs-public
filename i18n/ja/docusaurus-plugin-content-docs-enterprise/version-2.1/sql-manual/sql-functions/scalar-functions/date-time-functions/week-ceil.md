@@ -7,7 +7,7 @@
 ---
 # WEEK_CEIL
 
-## Description
+## デスクリプション
 
 datetime値を指定された週間隔の最も近い値に切り上げます。開始時刻（origin）が提供された場合、その時刻を間隔計算の基準として使用します。
 
@@ -19,9 +19,9 @@ WEEK_CEIL(<datetime>, <origin>)
 WEEK_CEIL(<datetime>, <period>)
 WEEK_CEIL(<datetime>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<datetime>`  | 切り上げを行う日時値。型は DATETIME または DATETIMEV2 |
 | `<period>`    | 週間隔値。型は INT で、各間隔の週数を表す |

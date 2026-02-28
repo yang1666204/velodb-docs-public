@@ -18,9 +18,9 @@
 ```sql
 ST_CONTAINS( <shape1>, <shape2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters       | Description                     |
+| パラメータ       | デスクリプション                     |
 |----------|------------------------|
 | `<shape1>` | 他の図形が含まれているかを確認するために使用される幾何図形で、Polygon型をサポートしています。 |
 | `<shape2>` | 含まれているかを確認するために使用される幾何図形で、Point、Line、Polygonなどの型をサポートしています。 |

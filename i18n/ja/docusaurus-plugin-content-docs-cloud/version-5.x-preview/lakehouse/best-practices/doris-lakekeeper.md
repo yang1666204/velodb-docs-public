@@ -22,7 +22,7 @@
 
 ### 1.1 S3ストレージバケットの作成
 
-まず、後で作成するIcebergテーブルデータを保存するために、`lakekeeper-doris-demo`という名前のS3 Bucketを作成します。
+まず、後で作成するIcebergTableデータを保存するために、`lakekeeper-doris-demo`という名前のS3 Bucketを作成します。
 
 ```bash
 # Create S3 storage bucket
@@ -210,7 +210,7 @@ docker compose up -d
 
     ```bash
     curl -i -X POST "http://localhost:8181/management/v1/project" \
-      -H "Content-Type: application/json" \
+      -H "Content-タイプ: application/json" \
       --data '{"project-name":"default"}'
     ```
 検証:
@@ -254,7 +254,7 @@ docker compose up -d
 
     ```bash
     curl -i -X POST "http://localhost:8181/management/v1/warehouse" \
-      -H "Content-Type: application/json" \
+      -H "Content-タイプ: application/json" \
       -H "x-project-id: $PROJECT_ID" \
       --data @create-warehouse-vc.json
     ```
@@ -288,7 +288,7 @@ warehouseを作成する:
 
     ```bash
     curl -i -X POST "http://localhost:8181/management/v1/warehouse" \
-      -H "Content-Type: application/json" \
+      -H "Content-タイプ: application/json" \
       -H "x-project-id: $PROJECT_ID" \
       --data @create-warehouse-static.json
     ```
@@ -304,7 +304,7 @@ warehouseを作成する:
 
     ```bash
     curl -sS -X POST \
-      -H "Content-Type: application/json" \
+      -H "Content-タイプ: application/json" \
       -H "Accept: application/json" \
       "http://localhost:8181/catalog/v1/$WAREHOUSE_ID/namespaces" \
       -d '{
@@ -356,7 +356,7 @@ CREATE CATALOG lakekeeper_static PROPERTIES (
 Catalogの作成にどの方法を使用したかに関係なく、以下のSQLを使用してエンドツーエンドの接続性を確認できます。
 
 ```sql
--- Switch to the Catalog and Namespace configured in Lakekeeper
+-- Switch to the カタログ and Namespace configured in Lakekeeper
 USE lakekeeper_static.demo;
 
 -- Create an Iceberg table
@@ -383,6 +383,6 @@ SELECT * FROM my_iceberg_table;
 ```
 上記のすべての操作が正常に完了した場合、おめでとうございます！完全なデータレイクパイプラインの構築に成功しました：Doris -> Lakekeeper -> S3。
 
-Doris を使用して Iceberg テーブルを管理する詳細については、以下をご覧ください：
+Doris を使用して Iceberg Tableを管理する詳細については、以下をご覧ください：
 
 https://doris.apache.org/docs/lakehouse/catalogs/iceberg-catalog

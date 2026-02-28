@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `<expr1>`が`NULL`でない場合は`<expr1>`を返し、そうでなければ`<expr2>`を返します。
 
@@ -18,9 +18,9 @@
 ```sql
 IFNULL(<expr1>, <expr2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description |
+| Parameter  | デスクリプション |
 |-----------|-------------|
 | `<expr1>` | `NULL`かどうかをチェックする最初の式。 |
 | `<expr2>` | `<expr1>`が`NULL`の場合に返される値。 |

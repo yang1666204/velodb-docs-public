@@ -20,7 +20,7 @@ ANY_VALUE(<expr>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 集計対象の列または式。 |
 

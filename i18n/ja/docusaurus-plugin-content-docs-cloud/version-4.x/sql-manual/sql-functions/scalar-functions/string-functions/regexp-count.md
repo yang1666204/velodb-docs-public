@@ -21,9 +21,9 @@
 ```sql
 REGEXP_COUNT(<str>, <pattern>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<str>` | このパラメータは'string'型で、正規表現によってマッチしたdest値です。 |
 | `<pattern>` | このパラメータは'string'型で、正規表現であり、パターンの規則に合致する文字列をマッチするために使用されます。 |

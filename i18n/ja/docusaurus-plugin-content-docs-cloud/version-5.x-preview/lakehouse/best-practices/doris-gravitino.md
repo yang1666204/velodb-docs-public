@@ -217,16 +217,16 @@ REST API を通じて必要なメタデータ構造を作成します：
 ```bash
 # Create MetaLake
 curl -X POST -H "Accept: application/vnd.gravitino.v1+json" \
-  -H "Content-Type: application/json" \
+  -H "Content-タイプ: application/json" \
   -d '{
     "name": "lakehouse",
     "comment": "Gravitino lakehouse for Doris integration",
     "properties": {}
   }' http://localhost:8090/api/metalakes
 
-# Create Iceberg Catalog
+# Create Iceberg カタログ
 curl -X POST -H "Accept: application/vnd.gravitino.v1+json" \
-  -H "Content-Type: application/json" \
+  -H "Content-タイプ: application/json" \
   -d '{
     "name": "iceberg_catalog",
     "type": "RELATIONAL",
@@ -252,7 +252,7 @@ curl -X POST -H "Accept: application/vnd.gravitino.v1+json" \
 Gravitinoは動的に一時的な認証情報を生成し、Dorisに配布します：
 
 ```sql
--- Create dynamic credential mode Catalog
+-- Create dynamic credential mode カタログ
 CREATE CATALOG gravitino_vending PROPERTIES (
     'type' = 'iceberg',
     'warehouse' = 'warehouse',
@@ -288,6 +288,6 @@ INSERT INTO gravitino_table VALUES (1, 'Doris'), (2, 'Gravitino');
 -- Query verification
 SELECT * FROM gravitino_table;
 ```
-## Summary
+## 要約
 
 本ガイドを通じて、GravitinoとDorisベースのモダンなlakehouseアーキテクチャを正常に構築できるはずです。このアーキテクチャは、高いパフォーマンスと高可用性を提供するだけでなく、高度なセキュリティメカニズムを通じてデータアクセスのセキュリティとコンプライアンスも確保します。データ規模の拡大やビジネス要件の変化に応じて、このアーキテクチャは柔軟にスケールし、さまざまなエンタープライズレベルのニーズに対応できます。

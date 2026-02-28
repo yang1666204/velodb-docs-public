@@ -10,7 +10,7 @@
 
 `GET /api/_set_config`
 
-## Description
+## デスクリプション
 
 FEの設定を動的に設定するために使用されます。このコマンドは`ADMIN SET FRONTEND CONFIG`コマンドを通じて渡されます。ただし、このコマンドは対応するFEノードの設定のみを設定します。また、`MasterOnly`設定項目をMaster FEノードに自動的に転送することはありません。
     

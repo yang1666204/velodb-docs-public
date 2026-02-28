@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 datetime値から指定されたマイクロ秒数を減算し、新しいdatetime値を返します。
 
@@ -14,9 +14,9 @@ datetime値から指定されたマイクロ秒数を減算し、新しいdateti
 ```sql
 MICROSECONDS_SUB(<basetime>, <delta>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<basetime>`  | 入力される日時値、型はDATETIMEV2    |
 | `<delta>`     | 減算するマイクロ秒数、型はINT；1秒 = 1,000,000マイクロ秒 |

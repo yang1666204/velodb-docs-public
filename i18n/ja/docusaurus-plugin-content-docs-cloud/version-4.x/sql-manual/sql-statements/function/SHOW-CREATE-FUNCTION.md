@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、ユーザー定義関数の作成ステートメントを表示するために使用されます
 
@@ -42,7 +42,7 @@ SHOW CREATE [ GLOBAL ] FUNCTION <function_name>( <arg_type> ) [ FROM <db_name> ]
 
 ## 戻り値
 
-| Column          | Description          |
+| Column          | デスクリプション          |
 |-----------------|-------------|
 | SYMBOL          | 関数パッケージ名        |
 | FILE            | jarパッケージパス     |
@@ -53,9 +53,9 @@ SHOW CREATE [ GLOBAL ] FUNCTION <function_name>( <arg_type> ) [ FROM <db_name> ]
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object   | Notes       |
+| Privilege | Object   | 注釈       |
 |:----------|:---------|:--------------|
-| SHOW_PRIV | Function | この関数に対するshow権限を持つ必要があります |
+| SHOW_PRIV | ファンクション | この関数に対するshow権限を持つ必要があります |
 
 ## 例
 
@@ -63,7 +63,7 @@ SHOW CREATE [ GLOBAL ] FUNCTION <function_name>( <arg_type> ) [ FROM <db_name> ]
 SHOW CREATE FUNCTION add_one(INT)
 ```
 ```text
-| Function Signature | Create Function
+| ファンクション Signature | Create ファンクション
 +--------------------+-------------------------------------------------------
 | add_one(INT)       | CREATE FUNCTION add_one(INT) RETURNS INT PROPERTIES (
   "SYMBOL"="org.apache.doris.udf.AddOne",

@@ -1,13 +1,13 @@
 ---
 {
   "title": "FRONTENDS_DISKS",
-  "description": "frontendsdisks テーブル関数は、現在の Doris クラスター内の FE ノードのディスク情報を表示できる一時テーブルを生成します。",
+  "description": "frontendsdisks Table関数は、現在の Doris クラスター内の FE ノードのディスク情報を表示できる一時Tableを生成します。",
   "language": "ja"
 }
 ---
 ## 説明
 
-`frontends_disks`テーブル関数は、現在のDorisクラスター内のFEノードのディスク情報を表示できる一時テーブルを生成します。その結果は本質的に`show frontends disks`ステートメントによって表示される情報と同じですが、`frontends_disks()`のフィールドタイプはより明示的であり、TVFによって生成されたテーブルをフィルタリング、結合、その他の操作に使用できます。
+`frontends_disks`Table関数は、現在のDorisクラスター内のFEノードのディスク情報を表示できる一時Tableを生成します。その結果は本質的に`show frontends disks`ステートメントによって表示される情報と同じですが、`frontends_disks()`のフィールドタイプはより明示的であり、TVFによって生成されたTableをフィルタリング、結合、その他の操作に使用できます。
 
 この関数は`FROM`句で使用できます。
 
@@ -19,7 +19,7 @@ FRONTENDS_DISKS()
 ```
 ## アクセス制御要件
 
-| Privilege  | Object | Notes |
+| Privilege  | Object | 注釈 |
 | :--------- |:-------|:------|
 | ADMIN_PRIV | global |       |
 
@@ -33,7 +33,7 @@ desc function frontends_disks();
 ```
 ```text
 +------------+------+------+-------+---------+-------+
-| Field      | Type | Null | Key   | Default | Extra |
+| Field      | タイプ | Null | Key   | Default | Extra |
 +------------+------+------+-------+---------+-------+
 | Name       | text | No   | false | NULL    | NONE  |
 | Host       | text | No   | false | NULL    | NONE  |
@@ -49,7 +49,7 @@ desc function frontends_disks();
 ```
 フィールドの意味は以下の通りです：
 
-| Field        | Type    | Explanation                                                                                 |
+| Field        | タイプ    | Explanation                                                                                 |
 |--------------|---------|---------------------------------------------------------------------------------------------|
 | `Name`       | TEXT    | フロントエンドノード（FE）の一意の識別子。                                            |
 | `Host`       | TEXT    | フロントエンドノードのIPアドレスまたはホスト名。                                            |

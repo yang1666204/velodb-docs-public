@@ -15,9 +15,9 @@
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name   | Type         | Description          |
+| Column Name   | タイプ         | デスクリプション          |
 | ------------- | ------------ | -------------------- |
 | CATALOG_ID    | bigint       | CatalogのID          |
 | CATALOG_NAME  | varchar(512) | Catalogの名前        |

@@ -12,7 +12,7 @@
 
 ALTER SYSTEM RENAME COMPUTE-GROUP
 
-### Description
+### デスクリプション
 
 compute groupの名前変更に使用されます（管理者専用！）
 
@@ -23,8 +23,8 @@ compute groupの名前変更に使用されます（管理者専用！）
 ```sql
 ALTER SYSTEM RENAME COMPUTE GROUP <old_name> <new_name>
 ```
-Notes:
-1. コンピュートグループの命名規則は、DORISのデータベース名およびテーブル名の命名規則と一致しています。
+注釈:
+1. コンピュートグループの命名規則は、DORISのデータベース名およびTable名の命名規則と一致しています。
 2. 現在のストレージとコンピューティングの分離クラスター内のすべてのコンピュートグループは、[SHOW COMPUTE GROUPS](../compute-management/SHOW-COMPUTE-GROUPS)を使用して確認できます。
 3. 名前変更操作が完了した後、[SHOW COMPUTE GROUPS](../compute-management/SHOW-COMPUTE-GROUPS)を使用して確認することもできます。
 4. 名前変更操作が失敗した場合、元のコンピュートグループが存在しない、または元のコンピュートグループ名とターゲットのコンピュートグループ名が同じであるなどの理由について、返されたメッセージで確認できます。

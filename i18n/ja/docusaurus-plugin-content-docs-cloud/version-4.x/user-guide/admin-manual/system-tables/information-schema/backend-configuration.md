@@ -17,9 +17,9 @@ Backendsの設定を表示します。
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
-| Column Name  | Type         | Description           |
+| Column Name  | タイプ         | デスクリプション           |
 | ------------ | ------------ | --------------------- |
 | BE_ID        | bigint       | BackendのID |
 | CONFIG_NAME  | varchar(256) | 設定名       |

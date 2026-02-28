@@ -21,21 +21,21 @@
 | `dlf.uid` | - | Alibaba CloudアカウントID。コンソールの右上の個人情報で確認できます。 | None | Yes |
 | `dlf.access_key` | - | DLFサービスにアクセスするためのAlibaba Cloud AccessKey。 | None | Yes |
 | `dlf.secret_key` | - | DLFサービスにアクセスするためのAlibaba Cloud SecretKey。 | None | Yes |
-| `dlf.catalog_id` | `dlf.catalog.id` | Catalog ID。メタデータカタログを指定するために使用されます。設定されていない場合、デフォルトカタログが使用されます。 | None | No |
+| `dlf.catalog_id` | `dlf.catalog.id` | カタログ ID。メタデータカタログを指定するために使用されます。設定されていない場合、デフォルトカタログが使用されます。 | None | No |
 | `warehouse` | - | Warehouseのストレージパス、Paimon Catalogでのみ必要です。オブジェクトストレージパスは`/`で終わる必要があることに注意してください。 | None | No |
 
 > 注意:
 >
 > バージョン3.1.0以前については、旧名称を使用してください。
 
-### DLF 2.5+ (Rest Catalog)
+### DLF 2.5+ (Rest カタログ)
 
 > バージョン3.1.0以降でサポート
 
 | パラメータ名 | 旧名称 | 説明 | デフォルト値 | 必須 |
 |----------------|-------------|-------------|---------------|----------|
 | `uri` | - | DLF REST URI。例: http://cn-beijing-vpc.dlf.aliyuncs.com | None | Yes |
-| `warehouse` | - | Warehouse名。注意: 接続するCatalogの名前を直接入力し、Paimonテーブルのストレージパスではありません | None | Yes |
+| `warehouse` | - | Warehouse名。注意: 接続するCatalogの名前を直接入力し、PaimonTableのストレージパスではありません | None | Yes |
 | `paimon.rest.token.provider` | - | トークンプロバイダー、固定値`dlf` | None | Yes |
 | `paimon.rest.dlf.access-key-id` | - | DLFサービスにアクセスするためのAlibaba Cloud AccessKey。 | None | Yes |
 | `paimon.rest.dlf.access-key-secret` | - | DLFサービスにアクセスするためのAlibaba Cloud SecretKey。 | None | Yes |
@@ -74,7 +74,7 @@ CREATE CATALOG paimon_dlf PROPERTIES (
     'dlf.secret_key' = '<YOUR_SECRET_KEY>'
 );
 ```
-### DLF 2.5+ (Rest Catalog)
+### DLF 2.5+ (Rest カタログ)
 
 ```sql
 CREATE CATALOG paimon_dlf_test PROPERTIES (

@@ -7,6 +7,6 @@
 ---
 この文書では、`CREATE CATALOG`文を通じてGoogle Dataproc Metastoreに接続およびアクセスする際にサポートされるパラメータについて説明します。
 
-| Property Name        | Description                                                                                                     | Default Value | Required |
+| Property Name        | デスクリプション                                                                                                     | デフォルト値 | Required |
 | -------------------- | --------------------------------------------------------------------------------------------------------------- | ------------- | -------- |
 | `hive.metastore.uri` | MetastoreのURIアドレス。[Dataproc Metastore Services](https://console.cloud.google.com/dataproc/metastore)ページから取得できます | None          | Yes |

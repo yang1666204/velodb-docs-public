@@ -1,7 +1,7 @@
 ---
 {
-  "title": "Doris Catalog",
-  "description": "Doris Catalogは、Arrow Flightまたはバーチャルクラスターモードを介して複数のDorisクラスター間でのクロスクラスター連携分析を可能にし、設定、型マッピング、およびクエリ最適化ガイドを提供します。",
+  "title": "Doris カタログ",
+  "description": "Doris カタログは、Arrow Flightまたはバーチャルクラスターモードを介して複数のDorisクラスター間でのクロスクラスター連携分析を可能にし、設定、型マッピング、およびクエリ最適化ガイドを提供します。",
   "language": "ja"
 }
 ---
@@ -18,9 +18,9 @@ import TabItem from '@theme/TabItem';
 
 複数のDorisクラスター間でクロスクラスター連携分析を実行します。
 
-JDBC Catalogを通じて他のDorisクラスターに接続する方法とは異なり、このソリューションはArrow Flightまたはバーチャルクラスターモードを通じて効率的な複数Dorisクラスター連携分析を可能にします。
+JDBC カタログを通じて他のDorisクラスターに接続する方法とは異なり、このソリューションはArrow Flightまたはバーチャルクラスターモードを通じて効率的な複数Dorisクラスター連携分析を可能にします。
 
-## Catalogの設定
+## カタログの設定
 
 ### 構文
 
@@ -54,7 +54,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 * `use_arrow_flight`
 
-  Arrow Flightを使用してリモートDorisクラスタにアクセスするか、リモートテーブルを内部テーブルとして扱い実行プランをリモートDorisクラスタに送信して実行するかを指定します。
+  Arrow Flightを使用してリモートDorisクラスタにアクセスするか、リモートTableを内部Tableとして扱い実行プランをリモートDorisクラスタに送信して実行するかを指定します。
 
 * `{QueryProperties}`
 
@@ -84,7 +84,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 * `{CommonProperties}`
 
-  CommonPropertiesセクションは、共通プロパティの入力に使用されます。Data Catalog Overviewの[Common Properties]セクションを参照してください。
+  CommonPropertiesセクションは、共通プロパティの入力に使用されます。データカタログ Overviewの[Common Properties]セクションを参照してください。
 
 ## アクセスモード
 
@@ -100,7 +100,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 **利点**: FEへのオーバーヘッドが最小限、実行プランはクエリSQLのみを生成してリモートクラスタに送信
 
-**欠点**: 集約プッシュダウン、限定的な述語プッシュダウンなど、Doris内部テーブルの様々な最適化機能を利用できない場合があります。
+**欠点**: 集約プッシュダウン、限定的な述語プッシュダウンなど、Doris内部Tableの様々な最適化機能を利用できない場合があります。
 
 ### 仮想クラスタモード
 
@@ -116,28 +116,28 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 FEはHTTPプロトコルを通じてスキーマやその他のメタデータを同期します。BEは内部通信プロトコルを通じて直接データを転送します。
 
-**利点**: Doris内部テーブルクエリのほぼすべての最適化機能を利用可能。クエリ実行プロセスは単一クラスタ内部プロセスと一致。
+**利点**: Doris内部Tableクエリのほぼすべての最適化機能を利用可能。クエリ実行プロセスは単一クラスタ内部プロセスと一致。
 
-**欠点**: 大きなリモートテーブルの場合、リモートテーブルのすべての情報（パーティション情報、レプリカ情報）を取得します。FEメモリオーバーヘッドが増加し、FEメモリ拡張が必要。高バージョンが低バージョンをクエリするなど、クラスタバージョンが一致しない場合、クエリ失敗が発生する可能性があります。
+**欠点**: 大きなリモートTableの場合、リモートTableのすべての情報（パーティション情報、レプリカ情報）を取得します。FEメモリオーバーヘッドが増加し、FEメモリ拡張が必要。高バージョンが低バージョンをクエリするなど、クラスタバージョンが一致しない場合、クエリ失敗が発生する可能性があります。
 
 ## カラム型マッピング
 
 ### Arrow Flightモード
 
-このモードでサポートされるカラム型とテーブル型は、Arrow Flight SQLの機能に依存します。現在、以下の機能と制限があります：
+このモードでサポートされるカラム型とTable型は、Arrow Flight SQLの機能に依存します。現在、以下の機能と制限があります：
 
 - すべてのプリミティブ型をサポート
 - すべてのネスト型（Array、Map、Struct）をサポート
 - hll、bitmap、variant型はサポートしません
-- すべてのテーブルモデル（詳細テーブル、集約テーブル、主キーテーブル）をサポート
+- すべてのTableモデル（詳細Table、集約Table、主キーTable）をサポート
 
 ### 仮想クラスタモード
 
-仮想クラスタモードでは、すべてのカラム型とすべてのテーブルモデル（詳細テーブル、集約テーブル、主キーテーブル）がサポートされます。
+仮想クラスタモードでは、すべてのカラム型とすべてのTableモデル（詳細Table、集約Table、主キーTable）がサポートされます。
 
 ## クエリ操作
 
-Catalogを設定後、以下の方法でCatalog内のテーブルデータをクエリできます：
+カタログを設定後、以下の方法でカタログ内のTableデータをクエリできます：
 
 ```sql
 -- 1. switch to catalog, use database and query
@@ -172,7 +172,7 @@ SELECT * FROM doris_ctl.doris_db.doris_tbl LIMIT 10;
 
 このモードでは、実行プランは引き続き`VOlapScanNode`を表示します。
 
-Join Runtime Filterなど、Doris内部テーブルクエリに対する様々な最適化を引き続き利用することができます。
+Join Runtime Filterなど、Doris内部Tableクエリに対する様々な最適化を引き続き利用することができます。
 
 ```sql
 MySQL [(none)]> explain select * from demo.inner_table a join edoris.external.example_tbl_duplicate b on (a.log_type = b.log_type) where error_code=2;

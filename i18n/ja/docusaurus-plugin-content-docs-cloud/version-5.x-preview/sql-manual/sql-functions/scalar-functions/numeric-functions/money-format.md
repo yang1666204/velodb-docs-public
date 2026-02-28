@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 数値は通貨形式で出力され、整数部分は3桁ごとにカンマで区切られ、小数部分は2桁で保持されます。
 
@@ -14,9 +14,9 @@
 ```sql
 MONEY_FORMAT(<number>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<number>`   | フォーマットされる数値 |
 

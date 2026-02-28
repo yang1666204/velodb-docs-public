@@ -16,7 +16,7 @@
 ```sql
 STRUCT( <expr1> [ , <expr2> ... ] )
 ```
-## Parameters
+## パラメータ
 
 - `<expr1>, <expr2>, ...`: struct構築のための入力コンテンツ、1つ以上のパラメータをサポート
 

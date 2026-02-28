@@ -17,9 +17,9 @@ MONTH_CEIL(<datetime>, <origin>)
 MONTH_CEIL(<datetime>, <period>)
 MONTH_CEIL(<datetime>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<datetime>`  | 切り上げ対象のdatetime値。型はDATETIMEまたはDATETIMEV2 |
 | `<period>`    | 月間隔値。型はINT。各間隔の月数を表す |

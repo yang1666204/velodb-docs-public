@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 指定された日付を、指定された年間隔の開始点まで切り下げるために使用されます。複数のバリアントをサポートしており、丸め処理において開始時刻（origin）と期間（period）を異なる方法で指定できます。
 
 ## Syntax
@@ -14,8 +14,8 @@
 YEAR_FLOOR(<date_value>, [<period> | <origin_date_value>])
 YEAR_FLOOR(<date_value>, <period>, <origin_date_value>)
 ```
-## Parameters
-| **Parameter**            | **Type**             | **Description**                                                                                                          |
+## パラメータ
+| **Parameter**            | **タイプ**             | **デスクリプション**                                                                                                          |
 |--------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------|
 | `<date_value>`           | `DATE`, `DATETIME`   | 丸める対象となる`DATE`または`DATETIME`の入力値。                                                                      |
 | `<origin_date_value>`    | `DATE`, `DATETIME`   | 基準点として使用される`DATE`または`DATETIME`の入力値。指定されない場合、デフォルトは`0001-01-01T00:00:00`です。 |

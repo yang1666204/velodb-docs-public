@@ -18,9 +18,9 @@ ASCII文字のみがサポートされています。
 ```sql
 NGRAM_SEARCH(<text>, <pattern>, <gram_num>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | ------------ | ----------------------------------------- |
 | `<text>` | 比較するテキスト文字列。型：VARCHAR |
 | `<pattern>` | パターン文字列（定数である必要があります）。型：VARCHAR |

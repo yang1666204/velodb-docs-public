@@ -14,9 +14,9 @@
 ```sql
 BITMAP_UNION(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | BITMAPでサポートされているデータ型 |
 
@@ -51,7 +51,7 @@ select bitmap_count(bitmap_union(user_id)) from pv_bitmap;
 ```
 ### Create table
 
-テーブルを作成する際には集約モデルを使用する必要があります。データ型はbitmapで、集約関数はbitmap_unionです。
+Tableを作成する際には集約モデルを使用する必要があります。データ型はbitmapで、集約関数はbitmap_unionです。
 
 ```
 CREATE TABLE `pv_bitmap` (
@@ -63,7 +63,7 @@ AGGREGATE KEY (`dt`,` page`)
 COMMENT "OLAP"
 DISTRIBUTED BY HASH (`dt`) BUCKETS 2;
 ```
-注意：データ量が大きい場合、高頻度のbitmap_union クエリに対して対応するrollup テーブルを作成することが最適です
+注意：データ量が大きい場合、高頻度のbitmap_union クエリに対して対応するrollup Tableを作成することが最適です
 
 ```
 ALTER TABLE pv_bitmap ADD ROLLUP pv (page, user_id);

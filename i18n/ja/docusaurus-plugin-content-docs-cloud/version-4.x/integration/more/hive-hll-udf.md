@@ -1,13 +1,13 @@
 ---
 {
   "title": "Hive HLL UDF",
-  "description": "Hive HLL UDFは、Hive テーブルでHLL操作を生成するためのUDFセットを提供します。これらはDoris HLLと同一です。",
+  "description": "Hive HLL UDFは、Hive TableでHLL操作を生成するためのUDFセットを提供します。これらはDoris HLLと同一です。",
   "language": "ja"
 }
 ---
 # Hive HLL UDF
 
-Hive HLL UDFは、Hiveテーブル内でHLL操作を生成するためのUDFセットを提供します。これらはDoris HLLと同一です。Hive HLLはSpark HLL Loadを通じてDorisにインポートできます。HLLに関する詳細については、近似重複排除でのHLLの使用を参照してください：[Approximate Deduplication Using HLL](../../user-guide/data-operate/import/complex-types/hll)
+Hive HLL UDFは、HiveTable内でHLL操作を生成するためのUDFセットを提供します。これらはDoris HLLと同一です。Hive HLLはSpark HLL Loadを通じてDorisにインポートできます。HLLに関する詳細については、近似重複排除でのHLLの使用を参照してください：[Approximate Deduplication Using HLL](../../user-guide/data-operate/import/complex-types/hll)
 
 機能紹介：
   1. UDAF
@@ -31,7 +31,7 @@ HLL統計は約1%から2%の誤差率を持つ近似計算です。
 
 ## 使用方法
 
-### Hiveテーブルを作成してテストデータを挿入
+### HiveTableを作成してテストデータを挿入
 
 ```sql
 -- Create a test database, e.g., hive_test
@@ -140,13 +140,13 @@ select k3, hll_cardinality(hll_union(uuid)) from hive_hll_table group by k3;
 
 ## Hive HLL を Doris にインポートする
 
-### 方法1: Catalog (推奨)
+### 方法1: カタログ (推奨)
 
-TEXT形式として指定されたHiveテーブルを作成します。Binary型の場合、Hiveはbase64エンコードされた文字列として保存します。この時、Hive Catalogを使用して[hll_from_base64](../../sql-manual/sql-functions/scalar-functions/hll-functions/hll-from-base64)関数を使ってHLLデータを直接Dorisにインポートできます。
+TEXT形式として指定されたHiveTableを作成します。Binary型の場合、Hiveはbase64エンコードされた文字列として保存します。この時、Hive Catalogを使用して[hll_from_base64](../../sql-manual/sql-functions/scalar-functions/hll-functions/hll-from-base64)関数を使ってHLLデータを直接Dorisにインポートできます。
 
 完全な例は以下の通りです：
 
-1. Hiveテーブルを作成する
+1. HiveTableを作成する
 
 ```sql
 CREATE TABLE IF NOT EXISTS `hive_hll_table`(
@@ -166,7 +166,7 @@ CREATE CATALOG hive PROPERTIES (
     'hive.metastore.uris' = 'thrift://127.0.0.1:9083'
 );
 ```
-3. Doris内部テーブルを作成する
+3. Doris内部Tableを作成する
 
 ```sql
 CREATE TABLE IF NOT EXISTS `doris_test`.`doris_hll_table`(

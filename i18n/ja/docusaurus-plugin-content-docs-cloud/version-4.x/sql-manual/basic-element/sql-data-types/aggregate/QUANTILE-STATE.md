@@ -12,7 +12,7 @@ QUANTILE_STATE
 
 **2.0では、[agg_state](AGG-STATE.md)関数をサポートしており、このタイプの代わりにagg_state quantile_union(quantile_state not null)の使用を推奨します。**
 
-QUANTILE_STATEはキーカラムとして使用できません。HLLタイプのカラムは、Aggregateテーブル、Duplicateテーブル、Uniqueテーブルで使用できます。Aggregateテーブルで使用する場合、テーブル構築時の集約タイプはHLL_UNIONです。
+QUANTILE_STATEはキーカラムとして使用できません。HLLタイプのカラムは、AggregateTable、DuplicateTable、UniqueTableで使用できます。AggregateTableで使用する場合、Table構築時の集約タイプはHLL_UNIONです。
 
 ユーザーは長さやデフォルト値を指定する必要はありません。長さはデータ集約の度合いに応じてシステム内で制御されます。
 また、QUANTILE_STATEカラムは、サポートされているQUANTILE_PERCENT、QUANTILE_UNION、TO_QUANTILE_STATE関数を通してのみクエリまたは使用できます。
@@ -38,7 +38,7 @@ QUANTILE_STATEは分位数の近似値を計算するためのタイプです。
     
 ### 注意
 
-現在、QUANTILE_STATEはAggregate Modelテーブルでのみ使用できます。使用前に以下のコマンドでQUANTILE_STATEタイプ機能のスイッチを有効にする必要があります：
+現在、QUANTILE_STATEはAggregate ModelTableでのみ使用できます。使用前に以下のコマンドでQUANTILE_STATEタイプ機能のスイッチを有効にする必要があります：
 
 ```
 $ mysql-client > admin set frontend config("enable_quantile_state_type"="true");

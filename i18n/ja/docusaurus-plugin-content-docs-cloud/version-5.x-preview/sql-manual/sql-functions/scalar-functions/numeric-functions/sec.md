@@ -16,7 +16,7 @@ SEC(<x>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<x>` | secantを計算する値 |
 

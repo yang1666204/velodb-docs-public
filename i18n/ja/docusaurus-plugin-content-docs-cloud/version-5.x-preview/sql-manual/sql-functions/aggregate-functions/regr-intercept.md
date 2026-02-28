@@ -18,9 +18,9 @@
 ```sql
 REGR_INTERCEPT(<y>, <x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<y>` | 従属変数。サポートされる型：Double。 |
 | `<x>` | 独立変数。サポートされる型：Double。 |

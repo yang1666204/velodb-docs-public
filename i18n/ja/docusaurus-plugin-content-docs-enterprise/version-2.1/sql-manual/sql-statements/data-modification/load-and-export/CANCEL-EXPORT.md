@@ -38,7 +38,7 @@ WHERE [ LABEL = "<export_label>" | LABEL like "<label_pattern>" | STATE = "<stat
 
 このSQLコマンドを実行するユーザーは、最低でも以下の権限を持つ必要があります：
 
-| Privilege     | Object    | Notes                                         |
+| Privilege     | Object    | 注釈                                         |
 |:--------------|:----------|:----------------------------------------------|
 | ALTER_PRIV    | Database  | データベースへの変更アクセスが必要です。 |
 

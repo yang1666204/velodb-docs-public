@@ -14,7 +14,7 @@
 TO_DAYS(<datetime_or_date_value>)
 ```
 ## 必須パラメータ
-| Parameter                  | Description                       |
+| Parameter                  | デスクリプション                       |
 |----------------------------|-----------------------------------|
 | `<datetime_or_date_value>` | `datetime`または`date`型の日時 |
 

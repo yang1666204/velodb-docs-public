@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、指定されたエクスポートジョブの実行状況を表示するために使用されます。
 
@@ -44,7 +44,7 @@ SHOW EXPORT
 | Label       | string      | エクスポートジョブのラベル。指定されていない場合、システムがデフォルトで生成します。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | State       | string      | ジョブステータス: <br> - `PENDING`: スケジューリング待機中のジョブ <br> - `EXPORTING`: データエクスポート中 <br> - `FINISHED`: ジョブ成功 <br> - `CANCELLED`: ジョブ失敗                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Progress    | string      | ジョブの進行状況。この進行状況はクエリプラン単位で測定されます。例えば、10個のスレッドがあり3個が完了した場合、進行状況は30%です。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| TaskInfo    | json        | JSON形式で表示されるジョブ情報: <br> - db: データベース名 <br> - tbl: テーブル名 <br> - partitions: エクスポート用に指定されたパーティション、`empty`リストはすべてのパーティションを意味 <br> - column_separator: エクスポートされたファイルのカラム区切り文字 <br> - line_delimiter: エクスポートされたファイルの行区切り文字 <br> - tablet num: 関与するタブレットの総数 <br> - broker: 使用されるbrokerの名前 <br> - coord num: クエリプランの数 <br> - max_file_size: エクスポートされるファイルの最大サイズ <br> - delete_existing_files: エクスポートディレクトリ内の既存ファイルとディレクトリを削除するかどうか <br> - columns: エクスポートするカラム、空の値はすべてのカラムをエクスポートすることを意味 <br> - format: エクスポートのファイル形式 |
+| TaskInfo    | json        | JSON形式で表示されるジョブ情報: <br> - db: データベース名 <br> - tbl: Table名 <br> - partitions: エクスポート用に指定されたパーティション、`empty`リストはすべてのパーティションを意味 <br> - column_separator: エクスポートされたファイルのカラム区切り文字 <br> - line_delimiter: エクスポートされたファイルの行区切り文字 <br> - tablet num: 関与するタブレットの総数 <br> - broker: 使用されるbrokerの名前 <br> - coord num: クエリプランの数 <br> - max_file_size: エクスポートされるファイルの最大サイズ <br> - delete_existing_files: エクスポートディレクトリ内の既存ファイルとディレクトリを削除するかどうか <br> - columns: エクスポートするカラム、空の値はすべてのカラムをエクスポートすることを意味 <br> - format: エクスポートのファイル形式 |
 | Path        | string      | リモートストレージでのエクスポートパス                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | CreateTime  | string      | ジョブ作成時間                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | StartTime   | string      | ジョブ開始時間                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -57,9 +57,9 @@ SHOW EXPORT
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege    | Object              | Notes                                           |
+| Privilege    | Object              | 注釈                                           |
 |:-------------|:--------------------|:------------------------------------------------|
-| SELECT_PRIV  | Database (Database) | データベースとテーブルへの読み取りアクセスが必要です。 |
+| SELECT_PRIV  | Database (Database) | データベースとTableへの読み取りアクセスが必要です。 |
 
 
 ## 例

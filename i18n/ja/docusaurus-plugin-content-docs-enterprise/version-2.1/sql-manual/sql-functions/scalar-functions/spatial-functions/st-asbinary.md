@@ -16,9 +16,9 @@
 ```sql
 ST_ASBINARY( <geo>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | 説明 |
+| パラメータ | 説明 |
 | -- |----------|
 | `<geo>` | 変換が必要なグラフ |
 

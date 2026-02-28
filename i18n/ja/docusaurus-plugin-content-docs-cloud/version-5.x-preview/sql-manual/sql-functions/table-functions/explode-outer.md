@@ -6,7 +6,7 @@
 }
 ---
 ## 説明
-`explode`関数は配列を受け取り、配列の各要素を個別の行にマップします。この関数は[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用し、ネストされたデータ構造を標準的なフラットなテーブル形式に展開します。`explode_outer`と[`explode`](./explode.md)の主な違いは、null値の処理方法です。
+`explode`関数は配列を受け取り、配列の各要素を個別の行にマップします。この関数は[`LATERAL VIEW`](../../../query-data/lateral-view.md)と組み合わせて使用し、ネストされたデータ構造を標準的なフラットなTable形式に展開します。`explode_outer`と[`explode`](./explode.md)の主な違いは、null値の処理方法です。
 
 ## 構文
 

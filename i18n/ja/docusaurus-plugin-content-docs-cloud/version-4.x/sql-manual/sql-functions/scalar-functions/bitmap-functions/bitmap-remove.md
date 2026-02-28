@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 Bitmap列から指定された値を削除します。
 
@@ -16,7 +16,7 @@ BITMAP_REMOVE(<bitmap>, <value>)
 ```
 ## パラメータ
 
-| Parameter   | Description    |
+| Parameter   | デスクリプション    |
 |-------------|----------------|
 | `<bitmap>`  | Bitmap値 |
 | `<value>`   | 削除する値 |

@@ -8,7 +8,7 @@
 
 `POST /api/glog/adjust?module=<module_name>&level=<level_number>`
 
-## Description
+## デスクリプション
 
 この機能はBE側のVLOGログを動的に調整するために使用されます。
 

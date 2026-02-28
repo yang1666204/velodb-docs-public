@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、FRONTENDノードにFOLLOWERロールを持つノードを追加します（管理者のみが使用！）
 

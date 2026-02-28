@@ -1,11 +1,11 @@
 ---
 {
-  "title": "Hudi Catalog",
+  "title": "Hudi カタログ",
   "description": "Hudi CatalogはHive Catalogを再利用します。Hive MetastoreまたはHive Metastoreと互換性のあるメタデータサービスに接続することで、",
   "language": "ja"
 }
 ---
-Hudi CatalogはHive Catalogを再利用します。Hive Metastoreまたは hive Metastore と互換性のあるメタデータサービスに接続することで、DorisはHudiのデータベースとテーブル情報を自動的に取得し、データクエリを実行できます。
+Hudi CatalogはHive Catalogを再利用します。Hive Metastoreまたは hive Metastore と互換性のあるメタデータサービスに接続することで、DorisはHudiのデータベースとTable情報を自動的に取得し、データクエリを実行できます。
 
 [Apache DorisとApache Hudiのクイックスタート](../best-practices/doris-hudi.md)。
 
@@ -14,7 +14,7 @@ Hudi CatalogはHive Catalogを再利用します。Hive Metastoreまたは hive 
 | シナリオ | 説明 |
 | -------- | ----------- |
 | クエリアクセラレーション | Dorisの分散コンピューティングエンジンを使用してHudiデータに直接アクセスし、クエリを高速化します。 |
-| データ統合 | Hudiデータを読み取ってDoris内部テーブルに書き込む、またはDorisコンピューティングエンジンを使用してZeroETL操作を実行します。 |
+| データ統合 | Hudiデータを読み取ってDoris内部Tableに書き込む、またはDorisコンピューティングエンジンを使用してZeroETL操作を実行します。 |
 | データ書き戻し | サポートされていません。 |
 
 ## Catalogの設定
@@ -37,15 +37,15 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 * `[StorageProperties]`
 
-  StoragePropertiesセクションは、ストレージシステムに関連する接続と認証情報を記入するために使用されます。詳細については、[Supported Storage Systems]セクションを参照してください。
+  StoragePropertiesセクションは、ストレージシステムに関連する接続と認証情報を記入するために使用されます。詳細については、[Supported Storage システム]セクションを参照してください。
 
 * `[CommonProperties]`
 
-  CommonPropertiesセクションは、共通プロパティを記入するために使用されます。[Common Properties]については、[Data Catalog Overview](../catalog-overview.md)セクションを参照してください。
+  CommonPropertiesセクションは、共通プロパティを記入するために使用されます。[Common Properties]については、[データカタログ 概要](../catalog-overview.md)セクションを参照してください。
 
 * `{HudiProperties}`
 
-  | Parameter Name                  | Former Name                | Description                                                                                                                                               | Default Value |
+  | パラメータ名                  | 旧称                | デスクリプション                                                                                                                                               | デフォルト値 |
   | ------------------------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
   | `hudi.use_hive_sync_partition`  | `use_hive_sync_partition`  | Hive Metastoreによって既に同期されたパーティション情報を使用するかどうか。trueの場合、パーティション情報はHive Metastoreから直接取得されます。そうでなければ、ファイルシステムのメタデータファイルから取得されます。Hive Metastoreから情報を取得する方が効率的ですが、ユーザーは最新のメタデータがHive Metastoreに同期されていることを確認する必要があります。 | false |
 
@@ -55,7 +55,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 ### Supported Query Types
 
-| Table Type    | Supported Query Types                                                    |
+| Table タイプ    | Supported Query Types                                                    |
 | ------------- | ------------------------------------------------------------------------ |
 | Copy On Write | Snapshot Query、Time Travel、Incremental Read                            |
 | Merge On Read | Snapshot Queries、Read Optimized Queries、Time Travel、Incremental Read  |
@@ -64,7 +64,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 * [Hive Metastore](../metastores/hive-metastore.md)
 
-### Supported Storage Systems
+### Supported Storage システム
 
 * [HDFS](../storages/hdfs.md)
 * [AWS S3](../storages/s3.md)
@@ -79,9 +79,9 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 * [Parquet](../file-formats/parquet.md)
 * [ORC](../file-formats/orc.md)
 
-## Column Type Mapping
+## Column タイプ Mapping
 
-| Hudi Type     | Doris Type    | Comment                                                   |
+| Hudi タイプ     | Doris タイプ    | Comment                                                   |
 | ------------- | ------------- | --------------------------------------------------------- |
 | boolean       | boolean       |                                                           |
 | int           | int           |                                                           |
@@ -100,7 +100,7 @@ CREATE CATALOG [IF NOT EXISTS] catalog_name PROPERTIES (
 
 ## Examples
 
-Hudi Catalogの作成は、Hive Catalogと似ています。より多くの例については、[Hive Catalog](./hive-catalog.mdx)を参照してください。
+Hudi Catalogの作成は、Hive Catalogと似ています。より多くの例については、[Hive カタログ](./hive-catalog.mdx)を参照してください。
 
 ```sql
 CREATE CATALOG hudi_hms PROPERTIES (
@@ -114,11 +114,11 @@ CREATE CATALOG hudi_hms PROPERTIES (
     'dfs.client.failover.proxy.provider.your-nameservice'='org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider'
 );
 ```
-## Query Operations
+## Query 運用
 
 ### Basic Query
 
-Catalogが設定されると、以下の方法を使用してCatalog内のテーブルをクエリできます：
+Catalogが設定されると、以下の方法を使用してCatalog内のTableをクエリできます：
 
 ```sql
 -- 1. switch to catalog, use database and query
@@ -135,11 +135,11 @@ SELECT * FROM hudi_ctl.hudi_db.hudi_tbl LIMIT 10;
 ```
 ### Time Travel
 
-Hudi テーブルへのすべての書き込み操作は新しいスナップショットを作成します。Doris は Hudi テーブルの指定されたスナップショットの読み取りをサポートしています。デフォルトでは、クエリリクエストは最新のスナップショットのみを読み取ります。
+Hudi Tableへのすべての書き込み操作は新しいスナップショットを作成します。Doris は Hudi Tableの指定されたスナップショットの読み取りをサポートしています。デフォルトでは、クエリリクエストは最新のスナップショットのみを読み取ります。
 
-指定された Hudi テーブルのタイムラインは `hudi_meta()` テーブル関数を使用してクエリできます：
+指定された Hudi Tableのタイムラインは `hudi_meta()` Table関数を使用してクエリできます：
 
-このテーブル関数は 3.1.0 以降でサポートされています。
+このTable関数は 3.1.0 以降でサポートされています。
 
 ```sql
 SELECT * FROM hudi_meta(
@@ -169,7 +169,7 @@ SELECT * FROM hudi_tbl FOR TIME AS OF "2022-10-07 17:20:37";
 SELECT * FROM hudi_tbl FOR TIME AS OF "20221007172037";
 SELECT * FROM hudi_tbl FOR TIME AS OF "2022-10-07";
 ```
-Hudiテーブルは`FOR VERSION AS OF`文をサポートしていないことに注意してください。Hudiテーブルでこの構文を使用しようとするとエラーが発生します。
+HudiTableは`FOR VERSION AS OF`文をサポートしていないことに注意してください。HudiTableでこの構文を使用しようとするとエラーが発生します。
 
 ### Incremental Query
 
@@ -204,9 +204,9 @@ SELECT * from hudi_table@incr('beginTime'='xxx', ['endTime'='xxx'], ['hoodie.rea
 
     `be.conf`内の`JAVA_OPTS_FOR_JDK_17`または`JAVA_OPTS`に`-Djol.skipHotspotSAAttach=true`を追加してください。
 
-## Appendix
+## 付録
 
-### Change Log
+### Change ログ
 
 | Doris Version | Feature Support                               |
 | ------------- | ---------------------------------------------- |

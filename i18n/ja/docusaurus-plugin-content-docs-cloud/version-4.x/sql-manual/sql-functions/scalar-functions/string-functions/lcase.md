@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 パラメータ内のすべての文字列を小文字に変換します。
 
@@ -19,9 +19,9 @@
 LCASE ( <str> )
 LOWER ( <str> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|--------------|
 | `<str>`   | 小文字に変換される文字列 |
 

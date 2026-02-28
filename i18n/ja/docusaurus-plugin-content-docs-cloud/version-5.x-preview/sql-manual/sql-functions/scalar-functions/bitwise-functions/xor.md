@@ -7,7 +7,7 @@
 ---
 # XOR
 
-## Description
+## デスクリプション
 2つのBOOLEAN値に対してビット単位のXOR演算を実行します。
 
 ## Syntax
@@ -15,7 +15,7 @@
 ```sql
 <lhs> XOR <rhs>
 ```
-## Parameters
+## パラメータ
 - `<lhs>`: ビット単位XOR演算の最初のBOOLEAN値。
 - `<rhs>`: ビット単位XOR演算の2番目のBOOLEAN値。
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 幾何オブジェクトをWKT（Well-Known Text）テキスト表現に変換します。WKTは地理空間データを表現するためのテキストベースの形式で、地理情報システム（GIS）で広く使用されています。
 
@@ -20,9 +20,9 @@
 ```sql
 ST_ASTEXT( <geo>)
 ```
-# Parameters
+# パラメータ
 
-| Parameter | Description     |
+| Parameter | デスクリプション     |
 | -- |----------|
 | `<geo>` | WKT形式に変換される幾何オブジェクト。 |
 

@@ -7,7 +7,7 @@
 ---
 ## description
 
-集約関数の中間結果を返します。これは後続の集約に使用したり、merge combinerを通じて実際の計算結果を取得したり、またはagg_state型のテーブルに直接書き込んで保存することができます。
+集約関数の中間結果を返します。これは後続の集約に使用したり、merge combinerを通じて実際の計算結果を取得したり、またはagg_state型のTableに直接書き込んで保存することができます。
 結果の型はagg_stateで、agg_stateでの関数シグネチャは`AGGREGATE_FUNCTION(arg...)`です。
 
 ## Syntax

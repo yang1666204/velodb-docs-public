@@ -7,7 +7,7 @@
 ---
 # STRUCT
 
-## Description
+## デスクリプション
 
 可変長の要素でstructを構築して返します。Tnは列またはリテラルを指定できます。
 
@@ -18,7 +18,7 @@ STRUCT( <expr1> [ , <expr2> ... ] )
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 構造体の入力コンテンツを構築する |
 

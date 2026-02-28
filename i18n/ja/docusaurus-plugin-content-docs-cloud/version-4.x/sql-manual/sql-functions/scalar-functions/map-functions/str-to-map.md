@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 文字列から`Map<String, String>`を構築します。
 
@@ -18,9 +18,9 @@
 ```sql
 STR_TO_MAP(<str> [, <pair_delimiter> [, <key_value_delimiter>]])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<str>` | マップに変換される文字列 |
 | `<pair_delimiter>` | 文字列内のペアの区切り文字、デフォルトは `,` |

@@ -11,7 +11,7 @@
 
 DBeaverは、開発者、データベース管理者、アナリスト、そしてデータを扱うすべての人のためのクロスプラットフォームデータベースツールです。
 
-Apache DorisはMySQLプロトコルとの高い互換性を持ちます。DBeaverのMySQLドライバーを使用してApache Dorisに接続し、internal catalogおよびexternal catalogのデータをクエリできます。
+Apache DorisはMySQLプロトコルとの高い互換性を持ちます。DBeaverのMySQLドライバーを使用してApache Dorisに接続し、内部カタログおよび外部カタログのデータをクエリできます。
 
 ## 前提条件
 
@@ -42,24 +42,24 @@ https://dbeaver.io にアクセスしてDBeaverをダウンロード・インス
 
     **Connection Settings**ウィンドウの**main**タブで、以下の接続情報を設定します：
 
-  - Server Host: DorisクラスターのFE host IPアドレス。
+  - サーバー Host: DorisクラスターのFE host IPアドレス。
   - Port: Dorisクラスターのfeクエリポート（例：9030）。
   - Database: Dorisクラスター内のターゲットデータベース。
   - Username: Dorisクラスターへのログインに使用するユーザー名（例：admin）。
   - Password: Dorisクラスターへのログインに使用するユーザーパスワード。
 
    :::tip
-   Databaseはinternal catalogとexternal catalogを区別するために使用できます。Database名のみ入力した場合、現在のデータソースはデフォルトでinternal catalogに接続されます。catalog.db形式の場合、現在のデータソースはデフォルトでDatabaseに入力されたcatalogに接続され、DBeaverで表示されるデータベーステーブルも接続されたcatalog内のデータベーステーブルになります。そのため、DBeaverのMySQLドライバーを使用して複数のDorisデータソースを作成し、Doris内の異なるCatalogを管理できます。
+   Databaseは内部カタログと外部カタログを区別するために使用できます。Database名のみ入力した場合、現在のデータソースはデフォルトで内部カタログに接続されます。catalog.db形式の場合、現在のデータソースはデフォルトでDatabaseに入力されたcatalogに接続され、DBeaverで表示されるデータベースTableも接続されたcatalog内のデータベースTableになります。そのため、DBeaverのMySQLドライバーを使用して複数のDorisデータソースを作成し、Doris内の異なるCatalogを管理できます。
    :::
 
    :::info Note
-   catalog.dbのDatabse形式を通じてDorisに接続されたexternal catalogを管理するには、Doris version 2.1.0以上が必要です。
+   catalog.dbのDatabse形式を通じてDorisに接続された外部カタログを管理するには、Doris version 2.1.0以上が必要です。
    :::
 
-  - internal catalog
-    ![connect internal catalog](/images/cloud/integration/sql-client/dbeaver4.png)
-  - external catalog
-    ![connect external catalog](/images/cloud/integration/sql-client/dbeaver5.png)
+  - 内部カタログ
+    ![connect 内部カタログ](/images/cloud/integration/sql-client/dbeaver4.png)
+  - 外部カタログ
+    ![connect 外部カタログ](/images/cloud/integration/sql-client/dbeaver5.png)
 
 5. データソース接続のテスト
 
@@ -80,7 +80,7 @@ https://dbeaver.io にアクセスしてDBeaverをダウンロード・インス
     - Users
       - Administer
     - Session Manager
-    - System Info
+    - システム Info
       - Session Variables
       - Global Variables
       - Engines
@@ -102,4 +102,4 @@ https://dbeaver.io にアクセスしてDBeaverをダウンロード・インス
 - サポートなし
 
   サポートされていない部分は、DBeaverを使用してDorisを管理する際に、特定のビジュアル操作を実行するとエラーが報告される可能性があること、または一部のビジュアル操作が検証されていないことを意味します。
-  例：データベーステーブルのビジュアル作成、schema change、データの追加・削除・変更など。
+  例：データベースTableのビジュアル作成、schema change、データの追加・削除・変更など。

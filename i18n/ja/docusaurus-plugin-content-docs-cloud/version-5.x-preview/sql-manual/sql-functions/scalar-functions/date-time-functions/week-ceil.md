@@ -29,9 +29,9 @@ WEEK_CEIL(`<date_or_time_expr>`, `<origin>`)
 WEEK_CEIL(`<date_or_time_expr>`, `<period>`)
 WEEK_CEIL(`<date_or_time_expr>`, `<period>`, `<origin>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|-------------|
 | `<date_or_time_expr>` | 切り上げる日時値。date/datetime型をサポートします。datetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)および[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<period>` | 週間隔値。INT型で、各間隔の週数を表します |

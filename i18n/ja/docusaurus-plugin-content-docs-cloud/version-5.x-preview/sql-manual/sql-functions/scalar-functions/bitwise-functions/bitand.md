@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 ビット単位のAND演算を実行します。ビット単位のAND演算は、2つの整数の各ビットを比較し、対応する両方のビットが1の場合のみ結果が1になり、それ以外の場合は0になります。
 
 サポートされている整数型：TINYINT、SMALLINT、INT、BIGINT、LARGEINT

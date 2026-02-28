@@ -18,9 +18,9 @@
 ```sql
 BITMAP_AND_NOT_COUNT(<bitmap1>, <bitmap2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter   | Description                      |
+| Parameter   | デスクリプション                      |
 |-------------|----------------------------------|
 | `<bitmap1>` | 否定対象となる`ベースBITMAP`      |
 | `<bitmap2>` | 否定対象となる`除外BITMAP`       |

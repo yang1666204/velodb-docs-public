@@ -14,9 +14,9 @@
 ```sql
 BITMAP_INTERSECT(BITMAP <value>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<value>` | サポートされているビットマップデータ型 |
 
@@ -26,7 +26,7 @@ BITMAP_INTERSECT(BITMAP <value>)
 
 ## Example
 
-テーブルスキーマ
+Tableスキーマ
 
 ```
 KeysType: AGG_KEY

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、サポートされているすべてのデータ型を表示するために使用されます。
 
@@ -16,7 +16,7 @@ SHOW DATA TYPES;
 ```
 ## 戻り値
 
-| Column Name | Description      |
+| Column Name | デスクリプション      |
 |-------------|------------------|
 | TypeName    | 型の名前 |
 | Size        | サイズ（バイト単位） |

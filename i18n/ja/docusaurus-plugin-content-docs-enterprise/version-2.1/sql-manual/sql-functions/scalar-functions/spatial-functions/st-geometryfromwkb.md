@@ -18,9 +18,9 @@
 ```sql
 ST_GEOMETRYFROMWKB( <wkb>)
 ```
-## Parameters
+## パラメータ
 
-| Parameters | Instructions |
+| パラメータ | Instructions |
 |------------|---------|
 | `<wkb>`    | グラフのメモリ形式 |
 

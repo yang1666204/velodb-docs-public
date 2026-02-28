@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つ以上のビットマップの積集合を計算します
 使用方法: intersect_count(bitmap_column_to_count, filter_column, filter_values ...)

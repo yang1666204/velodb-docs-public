@@ -1,17 +1,17 @@
 ---
 {
-  "title": "View Compaction Statusの確認",
+  "title": "View コンパクション Statusの確認",
   "language": "ja"
 }
 ---
-# View Compaction Status
+# View コンパクション Status
 
 ## Request
 
 `GET /api/compaction/run_status`
 `GET /api/compaction/show?tablet_id={int}`
 
-## Description
+## デスクリプション
 
 BEノードの全体的なcompaction状況と、指定されたtabletのcompaction状況を確認するために使用されます。
 

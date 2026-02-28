@@ -24,7 +24,7 @@ SHOW ROLES
 | GlobalPrivs           | string      | グローバル権限                  |
 | CatalogPrivs          | string      | カタログ権限                    |
 | DatabasePrivs         | string      | データベース権限                |
-| TablePrivs            | string      | テーブル権限                    |
+| TablePrivs            | string      | Table権限                    |
 | ResourcePrivs         | string      | リソース権限                    |
 | WorkloadGroupPrivs    | string      | ワークロードグループ権限        |
 
@@ -32,7 +32,7 @@ SHOW ROLES
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege     | Object    | Notes |
+| Privilege     | Object    | 注釈 |
 |:--------------|:----------|:------|
 | GRANT_PRIV    | USER or ROLE    | この操作はGRANT_PRIV権限を持つユーザーまたはロールのみが実行できます  |
 

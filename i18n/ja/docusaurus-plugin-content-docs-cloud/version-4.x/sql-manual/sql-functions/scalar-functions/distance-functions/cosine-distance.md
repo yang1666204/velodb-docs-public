@@ -14,9 +14,9 @@
 ```sql
 COSINE_DISTANCE(<array1>, <array2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<array1>` | 最初のベクトル（ベクトル値は座標）。入力配列のサブタイプは：TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE。要素数はarray2と一致している必要があります |
 | `<array2>` | 2番目のベクトル（ベクトル値は座標）。入力配列のサブタイプは：TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLEをサポート。要素数はarray1と一致している必要があります |

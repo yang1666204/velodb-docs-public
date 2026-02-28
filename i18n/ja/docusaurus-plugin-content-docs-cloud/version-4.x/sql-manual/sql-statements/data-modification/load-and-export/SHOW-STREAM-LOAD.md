@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この文は、指定されたStream Loadタスクの実行を表示するために使用されます
 

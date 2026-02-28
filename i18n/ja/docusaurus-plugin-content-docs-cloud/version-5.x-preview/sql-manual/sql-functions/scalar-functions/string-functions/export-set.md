@@ -18,9 +18,9 @@
 ```sql
 EXPORT_SET(bits, on, off[, separator[, number_of_bits]])
 ```
-## Parameters
+## パラメータ
 
-| Parameter         | Description |
+| Parameter         | デスクリプション |
 |-------------------|-------------|
 | `bits`            | 変換に使用される整数型（LARGEINT）。値が-2^63未満の場合、-2^63として扱われます。2^64 - 1より大きい場合、2^63 - 1として扱われます。 |
 | `on`              | ビットが1の時に表示される文字列 |

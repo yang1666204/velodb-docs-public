@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 特定の条件を満たすクエリに対して対応するアクションを実行するWorkload Policyを作成します。
 

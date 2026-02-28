@@ -12,7 +12,7 @@ QUANTILE_STATE
 
 **2.0では、[agg_state](AGG-STATE.md)機能をサポートしており、この型の代わりにagg_state quantile_union(quantile_state not null)の使用を推奨しています。**
 
-QUANTILE_STATEはキー列として使用できません。HLL型の列は、Aggregateテーブル、Duplicateテーブル、Uniqueテーブルで使用できます。Aggregateテーブルで使用する場合、テーブル構築時の集約タイプはHLL_UNIONです。
+QUANTILE_STATEはキー列として使用できません。HLL型の列は、AggregateTable、DuplicateTable、UniqueTableで使用できます。AggregateTableで使用する場合、Table構築時の集約タイプはHLL_UNIONです。
 
 ユーザーは長さとデフォルト値を指定する必要はありません。長さは、データ集約の度合いに応じてシステム内で制御されます。
 また、QUANTILE_STATE列は、サポートされているQUANTILE_PERCENT、QUANTILE_UNION、TO_QUANTILE_STATE関数を通してのみクエリまたは使用できます。
@@ -38,7 +38,7 @@ QUANTILE_STATEは分位数の近似値を計算するための型です。同じ
     
 ### notice
 
-現在QUANTILE_STATEはAggregate Modelテーブルでのみ使用できます。使用前に以下のコマンドでQUANTILE_STATE型機能のスイッチをオンにする必要があります：
+現在QUANTILE_STATEはAggregate ModelTableでのみ使用できます。使用前に以下のコマンドでQUANTILE_STATE型機能のスイッチをオンにする必要があります：
 
 ```
 $ mysql-client > admin set frontend config("enable_quantile_state_type"="true");

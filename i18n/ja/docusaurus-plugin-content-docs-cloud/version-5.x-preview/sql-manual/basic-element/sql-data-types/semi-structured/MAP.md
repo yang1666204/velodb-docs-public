@@ -20,7 +20,7 @@
 - `MAP<key_type, value_type>`型間の変換は、`key_type`と`value_type`が変換可能かどうかに依存します。`MAP<key_type, value_type>`は他の型に変換することはできません。
   - 例：`MAP<INT, INT>`は`MAP<BIGINT, BIGINT>`に変換できます。これは`INT`と`BIGINT`が変換可能であるためです。
   - 文字列型は`MAP<key_type, value_type>`に変換できます（パースを通じて、パースに失敗した場合はNULLを返します）。
-- `AGGREGATE`テーブルモデルでは、`MAP<key_type, value_type>`は`REPLACE`と`REPLACE_IF_NOT_NULL`のみをサポートします。**すべてのテーブルモデルにおいて、KEYカラムとして使用することも、パーティションやバケットカラムとして使用することもできません**。
+- `AGGREGATE`Tableモデルでは、`MAP<key_type, value_type>`は`REPLACE`と`REPLACE_IF_NOT_NULL`のみをサポートします。**すべてのTableモデルにおいて、KEYカラムとして使用することも、パーティションやバケットカラムとして使用することもできません**。
 - `MAP<key_type, value_type>`型のカラムは比較や算術演算をサポートせず、**`ORDER BY`と`GROUP BY`操作をサポートせず、`JOIN KEY`として使用することもできず、`DELETE`ステートメントで使用することもできません**。
 - `MAP<key_type, value_type>`型のカラムは、いかなるインデックスの作成もサポートしません。
 
@@ -175,7 +175,7 @@
   |                                     1 | John                                       |
   +---------------------------------------+--------------------------------------------+
   ```
-- Type の変更
+- タイプ の変更
 
   ```SQL
   -- Create table
@@ -203,7 +203,7 @@
   -- Check column types
   DESC map_table;
   +---------------------+------------------------------+------+-------+---------+-------+
-  | Field               | Type                         | Null | Key   | Default | Extra |
+  | Field               | タイプ                         | Null | Key   | Default | Extra |
   +---------------------+------------------------------+------+-------+---------+-------+
   | k                   | int                          | No   | true  | NULL    |       |
   | map_varchar_int     | map<varchar(20),int>         | Yes  | false | NULL    | NONE  |

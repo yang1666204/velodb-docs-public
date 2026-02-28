@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは、FRONTENDノードにOBSERVERロールを持つノードを追加します（管理者のみが使用）
 
@@ -28,7 +28,7 @@ ALTER SYSTEM ADD OBSERVER "<observer_host>:<edit_log_port>"
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes |
+| Privilege | Object | 注釈 |
 |-----------|----|-------|
 | NODE_PRIV |    |       |
 

@@ -16,7 +16,7 @@
 ### Apache Dorisとテストデータの準備
 
 動作するApache Dorisクラスターがすでに設定されていることを確認してください。デモンストレーションの目的で、[Quick Started](../../getting-started/quick-start)のドキュメントに従って、Linux上にテスト用のApache Doris環境をデプロイしました。
-データベースとテストテーブルを作成します：
+データベースとテストTableを作成します：
 
 ```
 create database automq_db;
@@ -44,7 +44,7 @@ AutoMQのApache Kafka®コマンドラインツールを使用してトピック
 ```
 $AUTOMQ_HOME/bin/kafka-topics.sh --create --topic exampleto_topic --bootstrap-server 127.0.0.1:9092  --partitions 1 --replication-factor 1
 ```
-> Tips: コマンドを実行する際は、`topic` と `bootstarp-server` を実際の AutoMQ Bootstrap Server アドレスに置き換えてください。
+> Tips: コマンドを実行する際は、`topic` と `bootstarp-server` を実際の AutoMQ Bootstrap サーバー アドレスに置き換えてください。
 
 トピック作成後、以下のコマンドを使用してトピックが正常に作成されたことを確認できます。
 
@@ -53,7 +53,7 @@ $AUTOMQ_HOME/bin/kafka-topics.sh --describe example_topic --bootstrap-server 127
 ```
 **テストデータの生成**
 
-先ほど言及したテーブルに対応する、JSON形式のテストデータエントリを作成します。
+先ほど言及したTableに対応する、JSON形式のテストデータエントリを作成します。
 
 ```
 {
@@ -105,7 +105,7 @@ FROM KAFKA
 ```
 show routine load\G;
 ```
-Apache Doris データベースの関連するテーブルをクエリすると、データが正常にインポートされていることが確認できます。
+Apache Doris データベースの関連するTableをクエリすると、データが正常にインポートされていることが確認できます。
 
 ```
 select * from users;

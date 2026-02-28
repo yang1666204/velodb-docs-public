@@ -41,9 +41,9 @@ Dorisでサポートされているデータ型のリストは以下の通りで
 
 | 型名      | ストレージ (バイト)| 説明                                                  |
 | -------------- | --------------- | ------------------------------------------------------------ |
-| [ARRAY](../sql-manual/basic-element/sql-data-types/semi-structured/ARRAY)          | 可変長 | 型Tの要素で構成される配列で、キーカラムとして使用することはできません。現在、DuplicateとUniqueモデルのテーブルでの使用をサポートしています。 |
-| [MAP](../sql-manual/basic-element/sql-data-types/semi-structured/MAP)            | 可変長 | 型KとVの要素で構成されるマップで、Keyカラムとして使用することはできません。これらのマップは現在、DuplicateとUniqueモデルを使用するテーブルでサポートされています。 |
-| [STRUCT](../sql-manual/basic-element/sql-data-types/semi-structured/STRUCT)         | 可変長 | 複数のフィールドで構成される構造体で、複数のカラムのコレクションとしても理解できます。Keyとして使用することはできません。現在、STRUCTはDuplicateモデルのテーブルでのみ使用できます。構造体内のフィールドの名前と数は固定されており、常にNullableです。|
+| [ARRAY](../sql-manual/basic-element/sql-data-types/semi-structured/ARRAY)          | 可変長 | 型Tの要素で構成される配列で、キーカラムとして使用することはできません。現在、DuplicateとUniqueモデルのTableでの使用をサポートしています。 |
+| [MAP](../sql-manual/basic-element/sql-data-types/semi-structured/MAP)            | 可変長 | 型KとVの要素で構成されるマップで、Keyカラムとして使用することはできません。これらのマップは現在、DuplicateとUniqueモデルを使用するTableでサポートされています。 |
+| [STRUCT](../sql-manual/basic-element/sql-data-types/semi-structured/STRUCT)         | 可変長 | 複数のフィールドで構成される構造体で、複数のカラムのコレクションとしても理解できます。Keyとして使用することはできません。現在、STRUCTはDuplicateモデルのTableでのみ使用できます。構造体内のフィールドの名前と数は固定されており、常にNullableです。|
 | [JSON](../sql-manual/basic-element/sql-data-types/semi-structured/JSON)           | 可変長 | バイナリJSON型で、バイナリJSON形式で格納され、JSON関数を通じて内部JSONフィールドにアクセスします。デフォルトで最大1048576バイト（1MB）をサポートし、最大2147483643バイト（2GB）まで調整できます。この制限はBE設定パラメータ'jsonb_type_length_soft_limit_bytes'を通じて変更できます。 |
 | [VARIANT](../sql-manual/basic-element/sql-data-types/semi-structured/VARIANT)        | 可変長 | VARIANTデータ型は動的に適応可能で、JSONなどの半構造化データ用に特別に設計されています。任意のJSONオブジェクトを格納でき、自動的にJSONフィールドをサブカラムに分割して、ストレージ効率とクエリパフォーマンスを向上させます。長さ制限と設定方法はSTRING型と同じです。ただし、VARIANT型は値カラムでのみ使用でき、キーカラムやパーティション/バケットカラムでは使用できません。 |
 
@@ -51,10 +51,10 @@ Dorisでサポートされているデータ型のリストは以下の通りで
 
 | 型名      | ストレージ (バイト)| 説明                                                  |
 | -------------- | --------------- | ------------------------------------------------------------ |
-| [HLL](../sql-manual/basic-element/sql-data-types/aggregate/HLL)            | 可変長 | HLLはHyperLogLogの略で、あいまい重複除去です。大規模なデータセットを扱う際にCount Distinctよりも優れたパフォーマンスを発揮します。HLLのエラー率は通常約1%で、時には2%に達することもあります。HLLはキーカラムとして使用できず、テーブル作成時の集約タイプはHLL_UNIONです。ユーザーは長さやデフォルト値を指定する必要がありません。これはデータの集約レベルに基づいて内部的に制御されます。HLLカラムは、hll_union_agg、hll_raw_agg、hll_cardinality、hll_hashなどの関連関数を通じてのみクエリまたは使用できます。 |
-| [BITMAP](../sql-manual/basic-element/sql-data-types/aggregate/BITMAP)         | 可変長 | BITMAP型はAggregateテーブル、Uniqueテーブル、またはDuplicateテーブルで使用できます。- UniqueテーブルまたはDuplicateテーブルで使用する場合、BITMAPは非キーカラムとして使用する必要があります。- Aggregateテーブルで使用する場合、BITMAPも非キーカラムとして機能し、テーブル作成時に集約タイプをBITMAP_UNIONに設定する必要があります。ユーザーは長さやデフォルト値を指定する必要がありません。これはデータの集約レベルに基づいて内部的に制御されます。BITMAPカラムは、bitmap_union_count、bitmap_union、bitmap_hash、bitmap_hash64などの関連関数を通じてのみクエリまたは使用できます。 |
-| [QUANTILE_STATE](../sql-manual/basic-element/sql-data-types/aggregate/QUANTILE-STATE.md) | 可変長 | 近似分位値を計算するために使用される型です。読み込み時、同じキーで異なる値に対して事前集約を実行します。値の数が2048を超えない場合、すべてのデータを詳細に記録します。値の数が2048より大きい場合、TDigestアルゴリズムを使用してデータを集約（クラスタ化）し、クラスタ化後の重心点を格納します。QUANTILE_STATEはキーカラムとして使用できず、テーブル作成時は集約タイプQUANTILE_UNIONと組み合わせる必要があります。ユーザーは長さやデフォルト値を指定する必要がありません。これはデータの集約レベルに基づいて内部的に制御されます。QUANTILE_STATEカラムは、QUANTILE_PERCENT、QUANTILE_UNION、TO_QUANTILE_STATEなどの関連関数を通じてのみクエリまたは使用できます。 |
-| [AGG_STATE](../sql-manual/basic-element/sql-data-types/aggregate/AGG-STATE)       | 可変長 | 集約関数はstate/merge/union関数の結合子でのみ使用できます。AGG_STATEはキーカラムとして使用できません。テーブル作成時には、集約関数のシグネチャを併せて宣言する必要があります。ユーザーは長さやデフォルト値を指定する必要がありません。実際のデータストレージサイズは関数の実装に依存します。 |
+| [HLL](../sql-manual/basic-element/sql-data-types/aggregate/HLL)            | 可変長 | HLLはHyperLogLogの略で、あいまい重複除去です。大規模なデータセットを扱う際にCount Distinctよりも優れたパフォーマンスを発揮します。HLLのエラー率は通常約1%で、時には2%に達することもあります。HLLはキーカラムとして使用できず、Table作成時の集約タイプはHLL_UNIONです。ユーザーは長さやデフォルト値を指定する必要がありません。これはデータの集約レベルに基づいて内部的に制御されます。HLLカラムは、hll_union_agg、hll_raw_agg、hll_cardinality、hll_hashなどの関連関数を通じてのみクエリまたは使用できます。 |
+| [BITMAP](../sql-manual/basic-element/sql-data-types/aggregate/BITMAP)         | 可変長 | BITMAP型はAggregateTable、UniqueTable、またはDuplicateTableで使用できます。- UniqueTableまたはDuplicateTableで使用する場合、BITMAPは非キーカラムとして使用する必要があります。- AggregateTableで使用する場合、BITMAPも非キーカラムとして機能し、Table作成時に集約タイプをBITMAP_UNIONに設定する必要があります。ユーザーは長さやデフォルト値を指定する必要がありません。これはデータの集約レベルに基づいて内部的に制御されます。BITMAPカラムは、bitmap_union_count、bitmap_union、bitmap_hash、bitmap_hash64などの関連関数を通じてのみクエリまたは使用できます。 |
+| [QUANTILE_STATE](../sql-manual/basic-element/sql-data-types/aggregate/QUANTILE-STATE.md) | 可変長 | 近似分位値を計算するために使用される型です。読み込み時、同じキーで異なる値に対して事前集約を実行します。値の数が2048を超えない場合、すべてのデータを詳細に記録します。値の数が2048より大きい場合、TDigestアルゴリズムを使用してデータを集約（クラスタ化）し、クラスタ化後の重心点を格納します。QUANTILE_STATEはキーカラムとして使用できず、Table作成時は集約タイプQUANTILE_UNIONと組み合わせる必要があります。ユーザーは長さやデフォルト値を指定する必要がありません。これはデータの集約レベルに基づいて内部的に制御されます。QUANTILE_STATEカラムは、QUANTILE_PERCENT、QUANTILE_UNION、TO_QUANTILE_STATEなどの関連関数を通じてのみクエリまたは使用できます。 |
+| [AGG_STATE](../sql-manual/basic-element/sql-data-types/aggregate/AGG-STATE)       | 可変長 | 集約関数はstate/merge/union関数の結合子でのみ使用できます。AGG_STATEはキーカラムとして使用できません。Table作成時には、集約関数のシグネチャを併せて宣言する必要があります。ユーザーは長さやデフォルト値を指定する必要がありません。実際のデータストレージサイズは関数の実装に依存します。 |
 
 ## [IP型](../sql-manual/basic-element/sql-data-types/data-type-overview#ip-types)
 

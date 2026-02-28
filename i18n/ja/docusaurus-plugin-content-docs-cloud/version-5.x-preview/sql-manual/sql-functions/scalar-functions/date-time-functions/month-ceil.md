@@ -27,9 +27,9 @@ MONTH_CEIL(`<date_or_time_expr>`, `<origin>`)
 MONTH_CEIL(`<date_or_time_expr>`, `<period>`)
 MONTH_CEIL(`<date_or_time_expr>`, `<period>`, `<origin>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<date_or_time_expr>` | 切り上げる日時の値。date/datetimeタイプをサポートする有効な日付式です。具体的な日時と日付の形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |
 | `<period>` | 月間隔の値で、INTタイプです。各間隔に含まれる月数を表します。 |

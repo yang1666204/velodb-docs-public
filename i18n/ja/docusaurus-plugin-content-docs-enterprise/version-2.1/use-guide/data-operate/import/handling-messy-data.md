@@ -40,7 +40,7 @@ strict modeは主に2つの目的を果たします：
 | Non-NULL          | 1                   | 1                             | ON/OFF      | Loaded Successfully |
 
 :::tip
-1. テーブルの列はNULL値を許可します
+1. Tableの列はNULL値を許可します
 
 2. `abc`と`2000`は両方とも型や精度の問題によりTinyIntへの変換後にNULLになります。strict modeがONの場合、このようなデータはフィルタリングされます。OFFの場合、NULLが読み込まれます。
 :::
@@ -55,7 +55,7 @@ strict modeは主に2つの目的を果たします：
 | Non-NULL          | 1 or 10             | 1 or 10                      | ON/OFF      | Loaded Successfully |
 
 :::tip
-1. テーブルの列はNULL値を許可します
+1. Tableの列はNULL値を許可します
 
 2. `abc`は型の問題によりDecimalへの変換後にNULLになります。strict modeがONの場合、このようなデータはフィルタリングされます。OFFの場合、NULLが読み込まれます。
 
@@ -64,9 +64,9 @@ strict modeは主に2つの目的を果たします：
 
 ### 部分列更新を既存列のみに制限
 
-strict modeでは、部分列更新の各行はそのKeyがテーブルにすでに存在している必要があります。非strict modeでは、部分列更新は既存行の更新（Keyが存在する場合）と新規行の挿入（Keyが存在しない場合）の両方を行うことができます。
+strict modeでは、部分列更新の各行はそのKeyがTableにすでに存在している必要があります。非strict modeでは、部分列更新は既存行の更新（Keyが存在する場合）と新規行の挿入（Keyが存在しない場合）の両方を行うことができます。
 
-例えば、以下のようなテーブル構造があるとします：
+例えば、以下のようなTable構造があるとします：
 
 ```sql
 CREATE TABLE user_profile
@@ -84,7 +84,7 @@ PROPERTIES (
     "enable_unique_key_merge_on_write" = "true"
 );
 ```
-テーブルには以下のレコードが1つ含まれています：
+Tableには以下のレコードが1つ含まれています：
 
 ```sql
 mysql> select * from user_profile;
@@ -94,7 +94,7 @@ mysql> select * from user_profile;
 |    1 | kevin |   18 | shenzhen |     400 | 2023-07-01 12:00:00|
 +------+-------+------+----------+---------+---------------------+
 ```
-Insert Into を strict モードで使用して部分的なカラム更新を実行する場合、キー `(3)` および `(18)` を持つ2番目と3番目の行が元のテーブルに存在しないため、挿入は失敗します：
+Insert Into を strict モードで使用して部分的なカラム更新を実行する場合、キー `(3)` および `(18)` を持つ2番目と3番目の行が元のTableに存在しないため、挿入は失敗します：
 
 ```sql
 SET enable_unique_key_partial_update=true;

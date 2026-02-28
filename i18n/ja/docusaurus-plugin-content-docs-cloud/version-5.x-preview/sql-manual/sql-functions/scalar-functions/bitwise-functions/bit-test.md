@@ -22,7 +22,7 @@
 ```sql
 BIT_TEST(<x>, <bits>[, <bits> ... ])
 ```
-## Parameters
+## パラメータ
 - `<x>`
 - `<bits>`
 

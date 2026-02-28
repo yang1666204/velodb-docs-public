@@ -1,21 +1,21 @@
 ---
 {
   "title": "catalog_meta_cache_statistics",
-  "description": "現在接続されているFEのExternal Catalogのメタデータキャッシュ情報を表示します。",
+  "description": "現在接続されているFEの外部カタログのメタデータキャッシュ情報を表示します。",
   "language": "ja"
 }
 ---
 ## 概要
 
-現在接続されているFEのExternal Catalogのメタデータキャッシュ情報を表示します。
+現在接続されているFEの外部カタログのメタデータキャッシュ情報を表示します。
 
 ## Database
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name  | Type | Description             |
+| Column Name  | タイプ | デスクリプション             |
 | ------------ | ---- | ----------------------- |
 | CATALOG_NAME | text | Catalogの名前 |
 | CACHE_NAME   | text | キャッシュの名前   |

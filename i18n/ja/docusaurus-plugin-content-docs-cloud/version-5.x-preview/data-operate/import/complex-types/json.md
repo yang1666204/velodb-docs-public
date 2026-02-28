@@ -16,7 +16,7 @@ JSONデータ型は、JSONデータを効率的にバイナリ形式で格納し
 データ挿入時のJSON形式検証。
 より効率的なバイナリストレージ形式により、get_json_xx関数と比較してjson_extractなどの関数を使用したJSON内部フィールドへの高速アクセスが可能。
 
-注意：バージョン1.2.xでは、JSON型はJSONBという名前でした。MySQLとの互換性を保つため、バージョン2.0.0からJSONに名前が変更されました。古いテーブルでは引き続き以前の名前を使用できます。
+注意：バージョン1.2.xでは、JSON型はJSONBという名前でした。MySQLとの互換性を保つため、バージョン2.0.0からJSONに名前が変更されました。古いTableでは引き続き以前の名前を使用できます。
 
 ## CSV形式インポート
 
@@ -32,7 +32,7 @@ JSONデータ型は、JSONデータを効率的にバイナリ形式で格納し
 4|{"name": null, "age": null}
 5|null
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE json_test (
@@ -45,7 +45,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データの読み込み
+### ステップ 3: データの読み込み
 
 ```bash
 curl --location-trusted \
@@ -55,7 +55,7 @@ curl --location-trusted \
         -T "test_json.csv" \
         http://localhost:8040/api/testdb/json_test/_stream_load
 ```
-### Step 4: インポートされたデータを確認する
+### ステップ 4: インポートされたデータを確認する
 
 ```sql
 SELECT * FROM json_test;
@@ -72,7 +72,7 @@ SELECT * FROM json_test;
 ```
 ## JSON format import
 
-### Step 1: データの準備
+### ステップ 1: データの準備
 
 以下のJSONファイル `test_json.json` を作成します
 
@@ -85,7 +85,7 @@ SELECT * FROM json_test;
     {"id": 5, "c_json": null}
 ]
 ```
-### Step 2: データベースにテーブルを作成する
+### ステップ 2: データベースにTableを作成する
 
 ```sql
 CREATE TABLE json_test (
@@ -98,7 +98,7 @@ PROPERTIES (
     "replication_allocation" = "tag.location.default: 1"
 );
 ```
-### Step 3: データを読み込む
+### ステップ 3: データを読み込む
 
 ```bash
 curl --location-trusted \
@@ -109,7 +109,7 @@ curl --location-trusted \
         -T "test_json.json" \
         http://localhost:8040/api/testdb/json_test/_stream_load
 ```
-### Step 4: インポートしたデータを確認する
+### ステップ 4: インポートしたデータを確認する
 
 ```sql
 mysql> SELECT * FROM json_test;

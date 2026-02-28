@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-### Description
+### デスクリプション
 
 CRC32を使用して結果を計算します。
 
@@ -14,7 +14,7 @@ CRC32を使用して結果を計算します。
 ```sql
 CRC32( <str> )
 ```
-## Parameters
+## パラメータ
 
 | parameter | description |
 | -- | -- |

@@ -14,9 +14,9 @@
 ```sql
 AI_SIMILARITY([<resource_name>], <text_1>, <text_2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter         | Description                |
+| Parameter         | デスクリプション                |
 |-------------------|---------------------------|
 | `<resource_name>` | 指定されたリソース名 |
 | `<text_1>`        | テキスト                      |
@@ -32,7 +32,7 @@ AI_SIMILARITY([<resource_name>], <text_1>, <text_2>)
 
 ## Example
 
-配送会社が受け取ったコメントを表す以下のテーブルがあるとします：
+配送会社が受け取ったコメントを表す以下のTableがあるとします：
 
 ```sql
 CREATE TABLE user_comments (

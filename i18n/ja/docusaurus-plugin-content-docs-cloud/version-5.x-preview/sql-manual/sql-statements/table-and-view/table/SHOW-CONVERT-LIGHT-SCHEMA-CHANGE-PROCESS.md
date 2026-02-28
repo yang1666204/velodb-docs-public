@@ -1,13 +1,13 @@
 ---
 {
   "title": "SHOW CONVERT LIGHT SCHEMA CHANGE PROCESS",
-  "description": "非軽量スキーマ変更OLAPテーブルから軽量スキーマ変更テーブルへの変換プロセスを表示するために使用されます。",
+  "description": "非軽量スキーマ変更OLAPTableから軽量スキーマ変更Tableへの変換プロセスを表示するために使用されます。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-軽量スキーマ変更ではないOLAPテーブルから軽量スキーマ変更テーブルへの変換プロセスを確認するために使用されます。
+軽量スキーマ変更ではないOLAPTableから軽量スキーマ変更Tableへの変換プロセスを確認するために使用されます。
 
 ## Syntax
 
@@ -23,7 +23,7 @@ SHOW CONVERT_LIGHT_SCHEMA_CHANGE_PROCESS [ FROM <db_name> ]
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持っている必要があります：
 
-| Privilege | Object | Notes |
+| Privilege | Object | 注釈 |
 |:--------------|:-----------|:------------------------|
 | ADMIN_PRIV | Database | 現在この操作を実行するには**ADMIN**権限のみサポートしています |
 

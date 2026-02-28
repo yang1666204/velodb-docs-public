@@ -20,7 +20,7 @@ ST_DISJOINT( <shape1>, <shape2> )
 ```
 ## パラメータ
 
-| Parameter       | Description                     |
+| Parameter       | デスクリプション                     |
 |----------|------------------------|
 | `<shape1>` | 他の図形と離散しているかどうかを判定するための最初の幾何図形。Point、Line、Polygon、Circleなどの型をサポートします。|
 | `<shape2>` | 	他の図形と離散しているかどうかを判定するための2番目の幾何図形。Point、Line、Polygon、Circleなどの型をサポートします。 |

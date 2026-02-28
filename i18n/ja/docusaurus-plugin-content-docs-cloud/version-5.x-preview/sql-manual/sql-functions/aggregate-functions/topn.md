@@ -14,8 +14,8 @@ TOPN関数は、指定された列でN個の最も頻度の高い値を返しま
 ```sql
 TOPN(<expr>, <top_num> [, <space_expand_rate>])
 ```
-## Parameters
-| Parameter | Description |
+## パラメータ
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | カウント対象の列または式。サポートされる型：TinyInt、SmallInt、Integer、BigInt、LargeInt、Float、Double、Decimal、Date、Datetime、IPV4、IPV6、String。 |
 | `<top_num>` | 返す最頻値の数。正の整数である必要があります。サポートされる型：Integer。 |

@@ -27,11 +27,11 @@ SHOW TABLET <tablet_id>;
 | Column        | DataType | Note                                                                   |
 |---------------|----------|------------------------------------------------------------------------|
 | DbName        | String   | タブレットを含むデータベースの名前。                     |
-| TableName     | String   | タブレットを含むテーブルの名前。                        |
+| TableName     | String   | タブレットを含むTableの名前。                        |
 | PartitionName | String   | タブレットを含むパーティションの名前。                    |
 | IndexName     | String   | タブレットを含むインデックスの名前。                        |
 | DbId          | Int      | データベースのID。                                                |
-| TableId       | Int      | テーブルのID。                                                   |
+| TableId       | Int      | TableのID。                                                   |
 | PartitionId   | Int      | パーティションのID。                                               |
 | IndexId       | Int      | インデックスのID。                                                   |
 | IsSync        | Boolean  | タブレットがそのレプリカと同期しているかどうか。                       |
@@ -43,9 +43,9 @@ SHOW TABLET <tablet_id>;
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持っている必要があります：
 
-| Privilege  | Object   | Notes                                                                                                                            |
+| Privilege  | Object   | 注釈                                                                                                                            |
 |:-----------|:---------|:---------------------------------------------------------------------------------------------------------------------------------|
-| Admin_priv | Database | テーブル、パーティション、システムレベルのコマンドの管理を含む、データベースでの管理操作を実行するために必要。 |
+| Admin_priv | Database | Table、パーティション、システムレベルのコマンドの管理を含む、データベースでの管理操作を実行するために必要。 |
 
 ## 例
 

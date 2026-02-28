@@ -14,9 +14,9 @@
 ```sql
 HOURS_SUB(<date>, <hours>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<date>`      | 入力する日時の値。DATETIME型またはDATE型を指定可能 |
 | `<hours>`     | 減算する時間数。INT型 |

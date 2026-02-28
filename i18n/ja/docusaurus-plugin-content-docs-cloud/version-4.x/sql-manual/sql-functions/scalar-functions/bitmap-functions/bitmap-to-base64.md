@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 BitmapをBase64エンコードされた文字列に変換します。
 
@@ -14,9 +14,9 @@ BitmapをBase64エンコードされた文字列に変換します。
 ```sql
 BITMAP_TO_BASE64(<bitmap>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description                     |
+| Parameter  | デスクリプション                     |
 |------------|---------------------------------|
 | `<bitmap>` | Bitmap型のカラムまたは式 |
 

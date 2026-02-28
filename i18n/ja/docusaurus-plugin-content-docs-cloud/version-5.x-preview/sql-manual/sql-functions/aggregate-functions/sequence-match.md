@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 シーケンスがパターンにマッチするイベントチェーンを含んでいるかどうかをチェックします。
 
@@ -19,9 +19,9 @@
 ```sql
 SEQUENCE_MATCH(<pattern>, <timestamp>, <cond_1> [, <cond_2>, ..., <cond_n>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<pattern>` | パターン文字列。以下の**パターン構文**を参照してください。String型をサポートします。 |
 | `<timestamp>` | 時間データを含むと見なされる列。Date、DateTime型をサポートします。 |

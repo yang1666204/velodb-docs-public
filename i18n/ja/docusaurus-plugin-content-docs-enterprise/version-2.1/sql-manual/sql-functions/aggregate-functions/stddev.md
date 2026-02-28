@@ -18,9 +18,9 @@ expr式の標準偏差を返します
 ```sql
 STDDEV(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 標準偏差を計算する値 |
 

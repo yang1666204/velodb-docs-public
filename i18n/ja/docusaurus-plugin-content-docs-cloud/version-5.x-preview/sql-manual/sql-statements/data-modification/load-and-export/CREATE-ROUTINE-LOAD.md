@@ -52,20 +52,20 @@ FROM <data_source> [<data_source_properties>]
 
 **1. `<tbl_name>`**
 
-> インポート先のテーブル名を指定します。これはオプションパラメータです。指定しない場合、動的テーブル方式が使用され、Kafka内のデータにテーブル名情報が含まれている必要があります。
+> インポート先のTable名を指定します。これはオプションパラメータです。指定しない場合、動的Table方式が使用され、Kafka内のデータにTable名情報が含まれている必要があります。
 >
-> 現在、KafkaのValueからテーブル名を取得することのみをサポートしており、次の形式に従う必要があります：json例：`table_name|{"col1": "val1", "col2": "val2"}`
-> ここで、`tbl_name`はテーブル名で、`|`がテーブル名とテーブルデータの区切り文字です。
+> 現在、KafkaのValueからTable名を取得することのみをサポートしており、次の形式に従う必要があります：json例：`table_name|{"col1": "val1", "col2": "val2"}`
+> ここで、`tbl_name`はTable名で、`|`がTable名とTableデータの区切り文字です。
 >
-> csv形式のデータについても同様です：`table_name|val1,val2,val3`。ここでの`table_name`はDoris内のテーブル名と一致する必要があり、そうでなければインポートは失敗します。
+> csv形式のデータについても同様です：`table_name|val1,val2,val3`。ここでの`table_name`はDoris内のTable名と一致する必要があり、そうでなければインポートは失敗します。
 >
-> Tips：動的テーブルは`columns_mapping`パラメータをサポートしていません。テーブル構造がDorisのテーブル構造と一致し、インポートするテーブル情報が大量にある場合、この方式が最適な選択となります。
+> Tips：動的Tableは`columns_mapping`パラメータをサポートしていません。Table構造がDorisのTable構造と一致し、インポートするTable情報が大量にある場合、この方式が最適な選択となります。
 
 **2. `<merge_type>`**
 
-> データマージタイプ。デフォルトはAPPENDで、インポートされたデータが通常の追記書き込み操作であることを意味します。MERGEとDELETEタイプはUnique Keyモデルテーブルでのみ利用可能です。MERGEタイプは[DELETE ON]文と組み合わせて使用し、Delete Flagカラムをマークする必要があります。DELETEタイプは、インポートされたデータがすべて削除データであることを意味します。
+> データマージタイプ。デフォルトはAPPENDで、インポートされたデータが通常の追記書き込み操作であることを意味します。MERGEとDELETEタイプはUnique KeyモデルTableでのみ利用可能です。MERGEタイプは[DELETE ON]文と組み合わせて使用し、Delete Flagカラムをマークする必要があります。DELETEタイプは、インポートされたデータがすべて削除データであることを意味します。
 >
-> Tips：動的複数テーブルを使用する際は、このパラメータが各動的テーブルのタイプと一致している必要があり、そうでなければインポートが失敗します。
+> Tips：動的複数Tableを使用する際は、このパラメータが各動的Tableのタイプと一致している必要があり、そうでなければインポートが失敗します。
 
 **3. `<load_properties>`**
 
@@ -89,11 +89,11 @@ FROM <data_source> [<data_source_properties>]
 >
 > 2. `<columns_mapping>`
 >
->    ファイルカラムとテーブルカラム間のマッピング関係、および各種カラム変換を指定するために使用されます。この部分の詳細な説明については、[Column Mapping, Transformation and Filtering]ドキュメントを参照してください。
+>    ファイルカラムとTableカラム間のマッピング関係、および各種カラム変換を指定するために使用されます。この部分の詳細な説明については、[Column Mapping, Transformation and Filtering]ドキュメントを参照してください。
 >
 >    `(k1, k2, tmpk1, k3 = tmpk1 + 1)`
 >
->    Tips：動的テーブルはこのパラメータをサポートしていません。
+>    Tips：動的Tableはこのパラメータをサポートしていません。
 >
 > 3. `<preceding_filter>`
 >
@@ -101,7 +101,7 @@ FROM <data_source> [<data_source_properties>]
 >
 >    `WHERE k1 > 100 and k2 = 1000`
 >
->    Tips：動的テーブルはこのパラメータをサポートしていません。
+>    Tips：動的Tableはこのパラメータをサポートしていません。
 >
 > 4. `<where_predicates>`
 >
@@ -109,29 +109,29 @@ FROM <data_source> [<data_source_properties>]
 >
 >    `WHERE k1 > 100 and k2 = 1000`
 >
->    Tips：動的複数テーブルを使用する際は、このパラメータが各動的テーブルのカラムと一致している必要があり、そうでなければインポートが失敗します。動的複数テーブルを使用する際は、このパラメータは共通の公開カラムにのみ使用することを推奨します。
+>    Tips：動的複数Tableを使用する際は、このパラメータが各動的Tableのカラムと一致している必要があり、そうでなければインポートが失敗します。動的複数Tableを使用する際は、このパラメータは共通の公開カラムにのみ使用することを推奨します。
 >
 > 5. `<partitions>`
 >
->    インポート先テーブルのどのパーティションにインポートするかを指定します。指定しない場合、データは自動的に対応するパーティションにインポートされます。
+>    インポート先Tableのどのパーティションにインポートするかを指定します。指定しない場合、データは自動的に対応するパーティションにインポートされます。
 >
 >    `PARTITION(p1, p2, p3)`
 >
->    Tips：動的複数テーブルを使用する際は、このパラメータが各動的テーブルと一致している必要があり、そうでなければインポートが失敗します。
+>    Tips：動的複数Tableを使用する際は、このパラメータが各動的Tableと一致している必要があり、そうでなければインポートが失敗します。
 >
 > 6. `<DELETE ON>`
 >
->    MERGEインポートモードと組み合わせて使用する必要があり、Unique Keyモデルテーブルにのみ適用可能です。インポートデータ内のDelete Flagカラムと計算関係を指定するために使用されます。
+>    MERGEインポートモードと組み合わせて使用する必要があり、Unique KeyモデルTableにのみ適用可能です。インポートデータ内のDelete Flagカラムと計算関係を指定するために使用されます。
 >
 >    `DELETE ON v3 >100`
 >
->    Tips：動的複数テーブルを使用する際は、このパラメータが各動的テーブルと一致している必要があり、そうでなければインポートが失敗します。
+>    Tips：動的複数Tableを使用する際は、このパラメータが各動的Tableと一致している必要があり、そうでなければインポートが失敗します。
 >
 > 7. `<ORDER BY>`
 >
->    Unique Keyモデルテーブルにのみ適用可能です。インポートデータ内のSequence Colカラムを指定するために使用されます。主にインポート時のデータ順序を保証するために使用されます。
+>    Unique KeyモデルTableにのみ適用可能です。インポートデータ内のSequence Colカラムを指定するために使用されます。主にインポート時のデータ順序を保証するために使用されます。
 >
->    Tips：動的複数テーブルを使用する際は、このパラメータが各動的テーブルと一致している必要があり、そうでなければインポートが失敗します。
+>    Tips：動的複数Tableを使用する際は、このパラメータが各動的Tableと一致している必要があり、そうでなければインポートが失敗します。
 
 **4. `<job_properties>`**
 
@@ -194,7 +194,7 @@ FROM <data_source> [<data_source_properties>]
 >
 >     以下はTinyIntカラムタイプを使用した例です
 >
->     注意：テーブル内のカラムがnull値を許可する場合
+>     注意：Table内のカラムがnull値を許可する場合
 >
 >     | source data | source data example | string to int | strict_mode   | result                 |
 >     | ----------- | ------------------- | ------------- | ------------- | ---------------------- |
@@ -205,7 +205,7 @@ FROM <data_source> [<data_source_properties>]
 >
 >     以下はDecimal(1,0)カラムタイプを使用した例です
 >
->     注意：テーブル内のカラムがnull値を許可する場合
+>     注意：Table内のカラムがnull値を許可する場合
 >
 >     | source data | source data example | string to int | strict_mode   | result                 |
 >     | ----------- | ------------------- | ------------- | ------------- | ---------------------- |
@@ -254,13 +254,13 @@ FROM <data_source> [<data_source_properties>]
 >
 > 11. `<load_to_single_tablet>`
 >
->     boolean型、trueは1つのタスクが対応するパーティションの1つのtabletのみにデータをインポートすることをサポートすることを示し、デフォルト値はfalseです。このパラメータは、random bucketingを持つolapテーブルにデータをインポートする際にのみ設定できます。
+>     boolean型、trueは1つのタスクが対応するパーティションの1つのtabletのみにデータをインポートすることをサポートすることを示し、デフォルト値はfalseです。このパラメータは、random bucketingを持つolapTableにデータをインポートする際にのみ設定できます。
 >
 >     `"load_to_single_tablet" = "true"`
 >
 > 12. `<partial_columns>`
 >
->     boolean型、trueは部分カラム更新の使用を示し、デフォルト値はfalseです。このパラメータは、テーブルモデルがUniqueでMerge on Writeを使用する場合にのみ設定できます。動的複数テーブルはこのパラメータをサポートしていません。
+>     boolean型、trueは部分カラム更新の使用を示し、デフォルト値はfalseです。このパラメータは、TableモデルがUniqueでMerge on Writeを使用する場合にのみ設定できます。動的複数Tableはこのパラメータをサポートしていません。
 >
 >     `"partial_columns" = "true"`
 >
@@ -367,14 +367,14 @@ FROM <data_source> [<data_source_properties>]
 
 このSQLコマンドを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes |
+| Privilege | Object | 注釈 |
 | :-------- | :----- | :---- |
-| LOAD_PRIV | Table | CREATE ROUTINE LOADはテーブルLOAD操作に属します |
+| LOAD_PRIV | Table | CREATE ROUTINE LOADはTableLOAD操作に属します |
 
 ## 使用上の注意
 
-- 動的テーブルは`columns_mapping`パラメータをサポートしていません
-- 動的複数テーブルを使用する際、merge_type、where_predicatesなどのパラメータは各動的テーブルの要件に準拠する必要があります
+- 動的Tableは`columns_mapping`パラメータをサポートしていません
+- 動的複数Tableを使用する際、merge_type、where_predicatesなどのパラメータは各動的Tableの要件に準拠する必要があります
 - 時間形式はOFFSET形式と混在できません
 - `kafka_partitions`と`kafka_offsets`は一対一で対応している必要があります
 - `enclose`が`"`に設定される場合、`trim_double_quotes`をtrueに設定する必要があります。
@@ -404,9 +404,9 @@ FROM <data_source> [<data_source_properties>]
        "property.kafka_default_offsets" = "OFFSET_BEGINNING"
    );
    ```
-- 例として、example_db用のtest1という名前のKafkaルーチン動的マルチテーブルロードタスクを作成します。列区切り文字、group.idとclient.idを指定し、デフォルトですべてのパーティションを自動的に消費し、データが存在する場所（OFFSET_BEGINNING）からサブスクリプションを開始します。
+- 例として、example_db用のtest1という名前のKafkaルーチン動的マルチTableロードタスクを作成します。列区切り文字、group.idとclient.idを指定し、デフォルトですべてのパーティションを自動的に消費し、データが存在する場所（OFFSET_BEGINNING）からサブスクリプションを開始します。
 
-  Kafkaからexample_dbのtest1およびtest2テーブルにデータをインポートする必要があると仮定して、test1という名前のルーチンロードタスクを作成し、test1とtest2からのデータを`my_topic`という名前のKafkaトピックに書き込みます。このようにして、1つのルーチンロードタスクを通じてKafkaから2つのテーブルにデータをインポートできます。
+  Kafkaからexample_dbのtest1およびtest2Tableにデータをインポートする必要があると仮定して、test1という名前のルーチンロードタスクを作成し、test1とtest2からのデータを`my_topic`という名前のKafkaトピックに書き込みます。このようにして、1つのルーチンロードタスクを通じてKafkaから2つのTableにデータをインポートできます。
 
    ```sql
    CREATE ROUTINE LOAD example_db.test1
@@ -548,7 +548,7 @@ FROM <data_source> [<data_source_properties>]
        "kafka_offsets" = "101,0,0,200"
    );
    ```
-- sequence列を含むUnique Keyモデルテーブルにデータをインポートする
+- sequence列を含むUnique KeyモデルTableにデータをインポートする
 
    ```sql
    CREATE ROUTINE LOAD example_db.test_job ON example_tbl

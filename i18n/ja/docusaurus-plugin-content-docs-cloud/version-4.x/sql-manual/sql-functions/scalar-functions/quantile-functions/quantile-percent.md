@@ -14,9 +14,9 @@
 ```sql
 QUANTILE_PERCENT(<quantile_state>, <percent>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<quantile_state>` | 対象の列。|
 | `<percent>` | 対象のパーセント。|

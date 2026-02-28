@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 日付から指定された時間間隔を減算します。
 
@@ -24,7 +24,7 @@ DATE_SUB(<date>, <expr> <time_unit>)
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<date>` | 有効な日付値 |
 | `<expr>`| 減算したい時間間隔 |

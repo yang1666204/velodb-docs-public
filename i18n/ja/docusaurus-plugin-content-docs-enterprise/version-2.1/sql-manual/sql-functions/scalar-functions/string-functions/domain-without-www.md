@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 文字列URLからプレフィックスwwwを除いたドメイン名を抽出する
 
@@ -14,9 +14,9 @@
 ```sql
 DOMAIN_WITHOUT_WWW ( <url> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|----------------------|
 | `<url>`   | wwwドメイン名を除いた`URL`を抽出する必要があります |
 

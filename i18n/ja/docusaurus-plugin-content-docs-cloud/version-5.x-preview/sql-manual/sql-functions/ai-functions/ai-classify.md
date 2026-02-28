@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定されたラベルセットにテキストを分類するために使用されます。
 
@@ -14,9 +14,9 @@
 ```sql
 AI_CLASSIFY([<resource_name>], <text>, <labels>)
 ```
-## Parameters
+## パラメータ
 
-|    Parameter      | Description                                 |
+|    Parameter      | デスクリプション                                 |
 | ----------------- | ------------------------------------------- |
 | `<resource_name>` | 指定されたリソース名、省略可能                     |
 | `<text>`          | 分類対象のテキスト                             |

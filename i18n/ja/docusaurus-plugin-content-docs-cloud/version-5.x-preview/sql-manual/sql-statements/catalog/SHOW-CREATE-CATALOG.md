@@ -23,7 +23,7 @@ SHOW CREATE CATALOG <catalog_name>;
 ## アクセス制御要件
 | 権限                                                                                    | オブジェクト  | 備考                                     |
 |:---------------------------------------------------------------------------------------------|:--------|:------------------------------------------|
-| ADMIN_PRIV / SELECT_PRIV / LOAD_PRIV / ALTER_PRIV / CREATE_PRIV / SHOW_VIEW_PRIV / DROP_PRIV | Catalog | 上記の権限のいずれか一つが必要です。 |
+| ADMIN_PRIV / SELECT_PRIV / LOAD_PRIV / ALTER_PRIV / CREATE_PRIV / SHOW_VIEW_PRIV / DROP_PRIV | カタログ | 上記の権限のいずれか一つが必要です。 |
 
 
 ## 例
@@ -35,7 +35,7 @@ SHOW CREATE CATALOG <catalog_name>;
    ```
    ```sql
    +---------+----------------------------------------------------------------------------------------------------------------------+
-    | Catalog | CreateCatalog                                                                                                        |
+    | カタログ | CreateCatalog                                                                                                        |
     +---------+----------------------------------------------------------------------------------------------------------------------+
     | oracle  |
     CREATE CATALOG `oracle` PROPERTIES (

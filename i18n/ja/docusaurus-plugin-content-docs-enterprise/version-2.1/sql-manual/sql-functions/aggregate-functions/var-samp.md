@@ -18,9 +18,9 @@ VAR_SAMP関数は、指定された式の標本分散を計算します。VARIAN
 ```sql
 VAR_SAMP(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 標本分散を計算する列または式。数値型である必要があります |
 

@@ -1,13 +1,13 @@
 ---
 {
   "title": "INSERT OVERWRITE",
-  "description": "この文の機能は、テーブルまたはテーブルの一部のパーティションを上書きすることです。",
+  "description": "この文の機能は、TableまたはTableの一部のパーティションを上書きすることです。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
-このステートメントの機能は、テーブルまたはテーブルの一部のパーティションを上書きすることです
+このステートメントの機能は、TableまたはTableの一部のパーティションを上書きすることです
 
 ```sql
 INSERT OVERWRITE table table_name
@@ -19,9 +19,9 @@ INSERT OVERWRITE table table_name
 ```
 パラメータ
 
-> table_name: 上書きする宛先テーブル。このテーブルは存在する必要があります。`db_name.table_name`の形式で指定できます
+> table_name: 上書きする宛先Table。このTableは存在する必要があります。`db_name.table_name`の形式で指定できます
 >
-> partitions: 上書きが必要なテーブルパーティション。以下の2つの形式がサポートされています
+> partitions: 上書きが必要なTableパーティション。以下の2つの形式がサポートされています
 >
 > > 1. パーティション名。カンマで区切られた`table_name`の既存パーティションの1つである必要があります
 > > 2. アスタリスク(*)。[auto-detect-partition](#overwrite-auto-detect-partition)を有効にします。書き込み操作は、データに関わるパーティションを自動的に検出し、それらのパーティションを上書きします。この形式はApache Doris 2.1.3バージョン以降でサポートされています。
@@ -39,39 +39,39 @@ INSERT OVERWRITE table table_name
 > hint: `INSERT`の実行動作を示すために使用される指標。次の値のいずれかを選択できます：`/*+ STREAMING */`、`/*+ SHUFFLE */`、または`/*+ NOSHUFFLE */`
 >
 > 1. STREAMING: 現在、実用的な効果はなく、以前のバージョンとの互換性のためにのみ保持されています。（以前のバージョンでは、このhintを追加するとラベルが返されていましたが、現在はデフォルトでラベルが返されます）
-> 2. SHUFFLE: ターゲットテーブルがパーティションテーブルの場合、このhintを有効にするとrepartiitonが実行されます。
-> 3. NOSHUFFLE: ターゲットテーブルがパーティションテーブルであってもrepartiitonは実行されませんが、データが各パーティションに正しく格納されることを保証するために他の操作が実行されます。
+> 2. SHUFFLE: ターゲットTableがパーティションTableの場合、このhintを有効にするとrepartiitonが実行されます。
+> 3. NOSHUFFLE: ターゲットTableがパーティションTableであってもrepartiitonは実行されませんが、データが各パーティションに正しく格納されることを保証するために他の操作が実行されます。
 
 注意事項:
 
-1. 現在のバージョンでは、セッション変数`enable_insert_strict`はデフォルトで`true`に設定されています。`INSERT OVERWRITE`文の実行中にターゲットテーブルの形式に適合しないデータがフィルタリングされた場合、例えばパーティションを上書きする際にすべてのパーティション条件が満たされない場合、ターゲットテーブルの上書きは失敗します。
-2. `INSERT OVERWRITE`文は最初に新しいテーブルを作成し、上書きするデータを新しいテーブルに挿入し、その後古いテーブルを新しいテーブルでアトミックに置き換えて名前を変更します。そのため、テーブルの上書き処理中、古いテーブルのデータは上書きが完了するまで通常通りアクセスできます。
+1. 現在のバージョンでは、セッション変数`enable_insert_strict`はデフォルトで`true`に設定されています。`INSERT OVERWRITE`文の実行中にターゲットTableの形式に適合しないデータがフィルタリングされた場合、例えばパーティションを上書きする際にすべてのパーティション条件が満たされない場合、ターゲットTableの上書きは失敗します。
+2. `INSERT OVERWRITE`文は最初に新しいTableを作成し、上書きするデータを新しいTableに挿入し、その後古いTableを新しいTableでアトミックに置き換えて名前を変更します。そのため、Tableの上書き処理中、古いTableのデータは上書きが完了するまで通常通りアクセスできます。
 
-### Auto Partition Tableの場合
+### Auto パーティション Tableの場合
 
-INSERT OVERWRITEのターゲットテーブルがautopartitionedテーブルの場合、動作は[Session Variable](../../session/variable/SET-VARIABLE.md) `enable_auto_create_when_overwrite`によって以下のように制御されます：
+INSERT OVERWRITEのターゲットTableがautopartitionedTableの場合、動作は[Session Variable](../../session/variable/SET-VARIABLE.md) `enable_auto_create_when_overwrite`によって以下のように制御されます：
 
-1. PARTITIONが指定されていない場合（テーブル全体を上書き）、`enable_auto_create_when_overwrite`が`true`の場合、テーブルが上書きされ、対応するパーティションがないデータについてはテーブルの自動パーティション規則に従ってパーティションが作成され、そのデータが受け入れられます。`enable_auto_create_when_overwrite`が`false`の場合、パーティションが見つからないデータはエラー行として蓄積され、最終的に失敗します。
-2. 上書きPARTITIONが指定された場合、AUTO PARTITIONテーブルはこの処理中に通常のパーティションテーブルとして動作し、既存パーティションの条件を満たさないデータは新しいパーティションを作成する代わりにフィルタリングされます。
-3. PARTITIONを`partition(*)`として指定した場合（パーティションの自動検出と上書き）、`enable_auto_create_when_overwrite`が`true`の場合、テーブル内に対応するパーティションがあるデータについては対応するパーティションを上書きし、他の既存パーティションは変更されません。同時に、対応するパーティションがないデータについては、テーブルの自動パーティション規則に従ってパーティションを作成し、対応するパーティションがないデータを収容します。`enable_auto_create_when_overwrite`が`false`の場合、パーティションが見つからないデータはエラー行として蓄積され、最終的に失敗します。
+1. PARTITIONが指定されていない場合（Table全体を上書き）、`enable_auto_create_when_overwrite`が`true`の場合、Tableが上書きされ、対応するパーティションがないデータについてはTableの自動パーティション規則に従ってパーティションが作成され、そのデータが受け入れられます。`enable_auto_create_when_overwrite`が`false`の場合、パーティションが見つからないデータはエラー行として蓄積され、最終的に失敗します。
+2. 上書きPARTITIONが指定された場合、AUTO PARTITIONTableはこの処理中に通常のパーティションTableとして動作し、既存パーティションの条件を満たさないデータは新しいパーティションを作成する代わりにフィルタリングされます。
+3. PARTITIONを`partition(*)`として指定した場合（パーティションの自動検出と上書き）、`enable_auto_create_when_overwrite`が`true`の場合、Table内に対応するパーティションがあるデータについては対応するパーティションを上書きし、他の既存パーティションは変更されません。同時に、対応するパーティションがないデータについては、Tableの自動パーティション規則に従ってパーティションを作成し、対応するパーティションがないデータを収容します。`enable_auto_create_when_overwrite`が`false`の場合、パーティションが見つからないデータはエラー行として蓄積され、最終的に失敗します。
 
 `enable_auto_create_when_overwrite`は3.0.3以降で導入されました。`enable_auto_create_when_overwrite`がないバージョンでは、この変数の値が`false`である場合と同じように動作します。
 
 簡易チェック結論は以下の通りです：
 
-1. `enable_auto_create_when_overwrite`が有効なauto-partitionテーブルの場合：
+1. `enable_auto_create_when_overwrite`が有効なauto-partitionTableの場合：
 
 |    | 上書きするパーティション | 他のパーティションをクリア | パーティション化されていないデータの自動作成 |
 |-|-|-|-|
-| 無指定（テーブル全体） | すべて | √ | √ |
+| 無指定（Table全体） | すべて | √ | √ |
 | 指定パーティション | 明示的パーティション | × | × |
 | `partition(*)` | データが属するパーティション | × | √ |
 
-2. 通常のテーブル、`enable_auto_create_when_overwrite`が無効なauto-partitionテーブルの場合：
+2. 通常のTable、`enable_auto_create_when_overwrite`が無効なauto-partitionTableの場合：
 
 |    | 上書きするパーティション | 他のパーティションをクリア | パーティション化されていないデータの自動作成 |
 |-|-|-|-|
-| 無指定（テーブル全体） | すべて | √ | × |
+| 無指定（Table全体） | すべて | √ | × |
 | 指定パーティション | 明示的パーティション | × | × |
 | `partition(*)` | データが属するパーティション | × | × |
 
@@ -126,7 +126,7 @@ mysql> select * from auto_list;
 ```
 ## 例
 
-`test`という名前のテーブルがあると仮定します。このテーブルには`c1`と`c2`の2つのカラムと、`p1`と`p2`の2つのパーティションが含まれています。
+`test`という名前のTableがあると仮定します。このTableには`c1`と`c2`の2つのカラムと、`p1`と`p2`の2つのパーティションが含まれています。
 
 ```sql
 CREATE TABLE IF NOT EXISTS test (
@@ -148,7 +148,7 @@ PROPERTIES (
 ```
 ### Overwrite Table
 
-1. `VALUES`の形式を使用して`test`テーブルを上書きします。
+1. `VALUES`の形式を使用して`test`Tableを上書きします。
 
    ```sql
    // Single-row overwrite.
@@ -162,20 +162,20 @@ PROPERTIES (
    INSERT OVERWRITE table test (c1, c2) VALUES (1, DEFAULT), (3, DEFAULT);
    INSERT OVERWRITE table test (c1) VALUES (1), (3);
    ```
-- 最初と2番目のステートメントは同じ効果を持ちます。上書き時にターゲット列が指定されていない場合、テーブル内の列順序がデフォルトのターゲット列として使用されます。上書きが成功した後、`test`テーブルには1行のデータのみが存在します。
-- 3番目と4番目のステートメントは同じ効果を持ちます。指定されていない列`c2`はデフォルト値4で上書きされます。上書きが成功した後、`test`テーブルには1行のデータのみが存在します。
-- 5番目と6番目のステートメントは同じ効果を持ちます。ステートメント内で式（`2+2`、`2*2`など）を使用できます。式の結果はステートメントの実行時に計算され、その後`test`テーブルに上書きされます。上書きが成功した後、`test`テーブルには2行のデータが存在します。
-- 7番目と8番目のステートメントは同じ効果を持ちます。指定されていない列`c2`はデフォルト値4で上書きされます。上書きが成功した後、`test`テーブルには2行のデータが存在します。
+- 最初と2番目のステートメントは同じ効果を持ちます。上書き時にターゲット列が指定されていない場合、Table内の列順序がデフォルトのターゲット列として使用されます。上書きが成功した後、`test`Tableには1行のデータのみが存在します。
+- 3番目と4番目のステートメントは同じ効果を持ちます。指定されていない列`c2`はデフォルト値4で上書きされます。上書きが成功した後、`test`Tableには1行のデータのみが存在します。
+- 5番目と6番目のステートメントは同じ効果を持ちます。ステートメント内で式（`2+2`、`2*2`など）を使用できます。式の結果はステートメントの実行時に計算され、その後`test`Tableに上書きされます。上書きが成功した後、`test`Tableには2行のデータが存在します。
+- 7番目と8番目のステートメントは同じ効果を持ちます。指定されていない列`c2`はデフォルト値4で上書きされます。上書きが成功した後、`test`Tableには2行のデータが存在します。
 
-2. クエリステートメントの形式で`test`テーブルを上書きします。`test2`テーブルと`test`テーブルのデータ形式は一致している必要があります。一致していない場合、暗黙的なデータ型変換が実行されます。
+2. クエリステートメントの形式で`test`Tableを上書きします。`test2`Tableと`test`Tableのデータ形式は一致している必要があります。一致していない場合、暗黙的なデータ型変換が実行されます。
 
    ```sql
    INSERT OVERWRITE table test SELECT * FROM test2;
    INSERT OVERWRITE table test (c1, c2) SELECT * from test2;
    ```
-- 最初と2番目のステートメントは同じ効果を持ちます。これらのステートメントの目的は、`test2`テーブルからデータを取得し、取得したデータで`test`テーブルを上書きすることです。上書きが成功した後、`test`テーブルのデータは`test2`テーブルのデータと一致します。
+- 最初と2番目のステートメントは同じ効果を持ちます。これらのステートメントの目的は、`test2`Tableからデータを取得し、取得したデータで`test`Tableを上書きすることです。上書きが成功した後、`test`Tableのデータは`test2`Tableのデータと一致します。
 
-3. `test`テーブルを上書きし、ラベルを指定します。
+3. `test`Tableを上書きし、ラベルを指定します。
 
    ```sql
    INSERT OVERWRITE table test WITH LABEL `label1` SELECT * FROM test2;
@@ -183,7 +183,7 @@ PROPERTIES (
    ```
 - ユーザーは `SHOW LOAD;` コマンドを使用して、この `label` によってインポートされたジョブのステータスを確認できます。label は一意であることに注意してください。
 
-### テーブルパーティションの上書き
+### Tableパーティションの上書き
 
 INSERT OVERWRITE を使用してパーティションを書き換える場合、実際には以下の3つのステップを単一のトランザクションにカプセル化して実行します。途中で失敗した場合、実行済みの操作はロールバックされます：
 
@@ -193,7 +193,7 @@ INSERT OVERWRITE を使用してパーティションを書き換える場合、
 
 以下は例です：
 
-1. `VALUES` の形式を使用して `test` テーブルのパーティション `P1` と `P2` を上書きします。
+1. `VALUES` の形式を使用して `test` Tableのパーティション `P1` と `P2` を上書きします。
 
    ```sql
    // Single-row overwrite.
@@ -207,26 +207,26 @@ INSERT OVERWRITE を使用してパーティションを書き換える場合、
    INSERT OVERWRITE table test PARTITION(p1,p2) (c1, c2) VALUES (1, DEFAULT), (4, DEFAULT);
    INSERT OVERWRITE table test PARTITION(p1,p2) (c1) VALUES (1), (4);
    ```
-テーブル全体を上書きするのとは異なり、上記のステートメントはテーブル内のパーティションを上書きしています。パーティションは一度に1つずつ上書きすることも、複数のパーティションを一度に上書きすることもできます。対応するパーティションフィルタリング条件を満たすデータのみが正常に上書きできることに注意してください。上書きされるデータの中にいずれのパーティションも満たさないデータがある場合、上書きは失敗します。失敗の例を以下に示します。
+Table全体を上書きするのとは異なり、上記のステートメントはTable内のパーティションを上書きしています。パーティションは一度に1つずつ上書きすることも、複数のパーティションを一度に上書きすることもできます。対応するパーティションフィルタリング条件を満たすデータのみが正常に上書きできることに注意してください。上書きされるデータの中にいずれのパーティションも満たさないデータがある場合、上書きは失敗します。失敗の例を以下に示します。
 
    ```sql
    INSERT OVERWRITE table test PARTITION(p1,p2) VALUES (7, 2);
    ```
 上記のステートメントによって上書きされるデータ（`c1=7`）はパーティション`P1`と`P2`の条件を満たさないため、上書きは失敗します。
 
-2. クエリステートメントの形式で`test`テーブルのパーティション`P1`と`P2`を上書きします。`test2`テーブルと`test`テーブルのデータ形式は一致している必要があります。一致していない場合は、暗黙的なデータ型変換が実行されます。
+2. クエリステートメントの形式で`test`Tableのパーティション`P1`と`P2`を上書きします。`test2`Tableと`test`Tableのデータ形式は一致している必要があります。一致していない場合は、暗黙的なデータ型変換が実行されます。
 
    ```sql
    INSERT OVERWRITE table test PARTITION(p1,p2) SELECT * FROM test2;
    INSERT OVERWRITE table test PARTITION(p1,p2) (c1, c2) SELECT * from test2;
    ```
-3. `test`テーブルのパーティション`P1`と`P2`を上書きし、ラベルを指定します。
+3. `test`Tableのパーティション`P1`と`P2`を上書きし、ラベルを指定します。
 
    ```sql
    INSERT OVERWRITE table test PARTITION(p1,p2) WITH LABEL `label3` SELECT * FROM test2;
    INSERT OVERWRITE table test PARTITION(p1,p2) WITH LABEL `label4` (c1, c2) SELECT * from test2;
    ```
-### Overwrite Auto Detect Partition
+### Overwrite Auto Detect パーティション
 
 > この機能はバージョン2.1.3以降で利用可能です。
 

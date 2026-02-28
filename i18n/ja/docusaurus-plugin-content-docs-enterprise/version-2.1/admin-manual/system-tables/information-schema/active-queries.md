@@ -15,9 +15,9 @@
 `information_schema`
 
 
-## テーブル情報
+## Table情報
 
-| Column Name       | Type         | Description                                                  |
+| Column Name       | タイプ         | デスクリプション                                                  |
 | ----------------- | ------------ | ------------------------------------------------------------ |
 | QUERY_ID          | varchar(256) | クエリのID                                          |
 | QUERY_START_TIME  | varchar(256) | クエリの開始時間                                  |

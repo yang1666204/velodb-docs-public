@@ -27,9 +27,9 @@ HOUR_CEIL(`<date_or_time_expr>`, `<origin>`)
 HOUR_CEIL(`<date_or_time_expr>`, `<period>`)
 HOUR_CEIL(`<date_or_time_expr>`, `<period>`, `<origin>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<date_or_time_expr>` | datetime型とdate型をサポートする有効な日付式。date型は00:00:00の一日の開始時刻に変換されます。具体的なdatetime/date形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください |
 | `<period>` | 期間の長さを指定するオプションパラメータ（単位：時間）。正の整数である必要があります（1、3、5など）。デフォルト値は1で、1時間ごとに1つの期間を表します |

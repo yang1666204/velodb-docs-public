@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 `QUANTILE_UNION`関数は、複数の分位数計算からの中間結果をマージするために使用されます。この関数は通常`QUANTILE_STATE`と組み合わせて動作し、多段階の分位数計算が必要なシナリオで特に有用です。
 
@@ -14,9 +14,9 @@
 ```sql
 QUANTILE_UNION(<query_state>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<query_state>` | `TO_QUANTILE_STATE`関数によって生成される中間状態。 |
 

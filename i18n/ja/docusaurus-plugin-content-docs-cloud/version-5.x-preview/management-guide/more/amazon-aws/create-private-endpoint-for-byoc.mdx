@@ -14,14 +14,14 @@ BYOC warehouseのネットワーク設定時にセキュリティを強化する
 3. **create endpoint**ボタンをクリックします。
    1. 名前を入力します（例：vpce-for-s3-gateway）。
    2. Service category：PrivateLink Ready partner servicesを選択します。
-   3. Service name：サービス名を入力し（Service nameはリージョンによって異なります。[appendix](#appendix)を参照してください）、**Verify service**をクリックします。サービスが検証に合格すると、Service nameフィールドの下に「Service name verified」というメッセージが表示されます。
+   3. Service name：サービス名を入力し（Service nameはリージョンによって異なります。[付録](#付録)を参照してください）、**Verify service**をクリックします。サービスが検証に合格すると、Service nameフィールドの下に「Service name verified」というメッセージが表示されます。
    4. VPC：エンドポイントを作成したいVPCを選択します。
    5. Subnets：エンドポイントネットワークインターフェースを配置するプライベートサブネットを選択します。
    6. Security group：VPCエンドポイント用に以前作成したセキュリティグループを選択します（例：vpce-for-velodb-sg）。
    7. Policy：通常はFull accessを選択します。
    8. **create endpoint**をクリックします。
 
-## Appendix
+## 付録
 
 以下のリストは、現在VeloDBでサポートされているリージョンと対応するプライベートエンドポイントサービス名を示しています。
 

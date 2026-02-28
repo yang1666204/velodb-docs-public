@@ -17,9 +17,9 @@ MONTH_FLOOR(<datetime>, <origin>)
 MONTH_FLOOR(<datetime>, <period>)
 MONTH_FLOOR(<datetime>, <period>, <origin>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<datetime>`  | 切り捨てを行うdatetime値。型はDATETIMEまたはDATETIMEV2 |
 | `<period>`    | 月間隔値。型はINT。各間隔の月数を表す |

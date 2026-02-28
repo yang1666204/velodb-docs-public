@@ -20,7 +20,7 @@ ST_INTERSECTS( <shape1>, <shape2>)
 ```
 ## パラメータ
 
-| Parameter       | Description                     |
+| Parameter       | デスクリプション                     |
 |----------|------------------------|
 | `<shape1>` | 別の図形との交差判定に使用される最初の幾何学図形。Point、Line、Polygon、Circleなどの型をサポートします。 |
 | `<shape2>` | 	別の図形との交差判定に使用される2番目の幾何学図形。Point、Line、Polygon、Circleなどの型をサポートします。 |

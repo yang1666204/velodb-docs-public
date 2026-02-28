@@ -18,9 +18,9 @@
 ```sql
 COLLECT_LIST(<expr> [,<max_size>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | 集約する列または式 |
 | `<max_size>` | 結果の配列のサイズをmax_size要素に制限するために設定できるオプションパラメータ |

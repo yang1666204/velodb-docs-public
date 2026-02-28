@@ -7,7 +7,7 @@
 ---
 ## 説明
 
-このステートメントは列の統計情報を収集するために使用されます。列の統計情報は、テーブル（特定の列を指定可能）またはデータベース全体に対して収集できます。
+このステートメントは列の統計情報を収集するために使用されます。列の統計情報は、Table（特定の列を指定可能）またはデータベース全体に対して収集できます。
 
 ## 構文
 
@@ -19,7 +19,7 @@ ANALYZE {TABLE <table_name> [ (<column_name> [, ...]) ] | DATABASE <database_nam
 
 **1. `<table_name>`**
 
-> 指定されたターゲットテーブル。このパラメータと<database_name>パラメータは、どちらか一方のみを指定する必要があり、かつ指定できます。
+> 指定されたターゲットTable。このパラメータと<database_name>パラメータは、どちらか一方のみを指定する必要があり、かつ指定できます。
 
 **2. `<database_name>`**
 
@@ -52,18 +52,18 @@ ANALYZE {TABLE <table_name> [ (<column_name> [, ...]) ] | DATABASE <database_nam
 
 このSQLを実行するユーザーは、少なくとも以下の権限を持つ必要があります：
 
-| Privilege | Object | Notes                                    |
+| Privilege | Object | 注釈                                    |
 |:--------------| :------------- |:------------------------------------------------|
-| SELECT_PRIV   | Table    | ANALYZEを実行する際、クエリ対象テーブルのSELECT_PRIV権限が必要です。 |
+| SELECT_PRIV   | Table    | ANALYZEを実行する際、クエリ対象TableのSELECT_PRIV権限が必要です。 |
 
 ## 例
 
-1. テーブルlineitemの10%をサンプリングして統計情報を収集します。
+1. Tablelineitemの10%をサンプリングして統計情報を収集します。
 
 ```sql
 ANALYZE TABLE lineitem WITH SAMPLE PERCENT 10;
 ```
-2. テーブルlineitemから100,000行をサンプリングして統計情報を収集する。
+2. Tablelineitemから100,000行をサンプリングして統計情報を収集する。
 
 ```sql
 ANALYZE TABLE lineitem WITH SAMPLE ROWS 100000;

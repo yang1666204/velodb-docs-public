@@ -9,7 +9,7 @@
 
 最新のバージョンにおいて、Apache Dorisはデータレイクとの統合を深化させ、成熟したData Lakehouseソリューションへと進化しました。
 
-- バージョン0.15以降、Apache DorisはHiveとIceberg外部テーブルを導入し、データレイク向けのApache Icebergとの組み合わせ機能を探求しました。
+- バージョン0.15以降、Apache DorisはHiveとIceberg外部Tableを導入し、データレイク向けのApache Icebergとの組み合わせ機能を探求しました。
 - バージョン1.2以降、Apache DorisはMulti-Catalog機能を正式に導入し、様々なデータソースに対する自動メタデータマッピングとデータアクセスを可能にし、外部データ読み取りとクエリ実行に対する多数のパフォーマンス最適化を提供しました。現在では、高速でユーザーフレンドリーなLakehouseアーキテクチャを構築する能力を完全に備えています。
 - バージョン2.1において、Apache DorisのData Lakehouseアーキテクチャは大幅に強化され、主要なデータレイク形式（Hudi、Iceberg、Paimonなど）の読み書き機能が改善され、複数のSQL方言との互換性が導入され、既存システムからApache Dorisへのシームレスな移行が実現されました。データサイエンスと大規模データ読み取りシナリオのために、DorisはArrow Flight高速読み取りインターフェースを統合し、データ転送効率を100倍向上させました。
 
@@ -19,7 +19,7 @@
 
 [Apache Hudi](https://hudi.apache.org/)は現在最も人気のあるオープンデータレイク形式の一つであり、Apache Dorisを含む様々な主要なクエリエンジンをサポートするトランザクショナルデータレイク管理プラットフォームです。
 
-Apache DorisもApache Hudiデータテーブルを読み取る能力を強化しています：
+Apache DorisもApache HudiデータTableを読み取る能力を強化しています：
 
 - Copy on Write Tableをサポート：Snapshot Query
 - Merge on Read Tableをサポート：Snapshot Queries、Read Optimized Queries
@@ -35,7 +35,7 @@ Apache Dorisの高性能クエリ実行とApache Hudiのリアルタイムデー
 
 この記事では、Docker環境でApache Doris + Apache Hudiのテストとデモンストレーション環境を迅速に構築する方法を読者に紹介し、様々な操作を実演して読者の迅速な開始を支援します。
 
-詳細については、[Hudi Catalog](../catalogs/hudi-catalog.md)を参照してください。
+詳細については、[Hudi カタログ](../catalogs/hudi-catalog.md)を参照してください。
 
 ## ユーザーガイド
 
@@ -76,7 +76,7 @@ Apache Dorisの高性能クエリ実行とApache Hudiのリアルタイムデー
 	```
 ### 03 データ準備
 
-次に、Sparkを通じてHudiデータを生成します。以下のコードに示すように、クラスター内にすでに`customer`という名前のHiveテーブルが存在します。このHiveテーブルを使用してHudiテーブルを作成することができます：
+次に、Sparkを通じてHudiデータを生成します。以下のコードに示すように、クラスター内にすでに`customer`という名前のHiveTableが存在します。このHiveTableを使用してHudiTableを作成することができます：
 
 ```
 -- ./login-spark.sh
@@ -120,13 +120,13 @@ CREATE CATALOG `hudi` PROPERTIES (
     "use_path_style" = "true"
 );
 ```
-1. 作成されたHudiテーブルを同期するために、このCatalogを手動で更新してください：
+1. 作成されたHudiTableを同期するために、このCatalogを手動で更新してください：
 
 	```
 	-- ./login-doris.sh
 	doris> REFRESH CATALOG hudi;
 	```
-2. Sparkを使用したHudiのデータに対する操作は、Catalogを更新する必要なく、すぐにDorisで表示されます。Sparkを使用してCOWテーブルとMORテーブルの両方に1行のデータを挿入します：
+2. Sparkを使用したHudiのデータに対する操作は、Catalogを更新する必要なく、すぐにDorisで表示されます。Sparkを使用してCOWTableとMORTableの両方に1行のデータを挿入します：
 
 	```
 	spark-sql> insert into customer_cow values (100, "Customer#000000100", "jD2xZzi", "25-430-914-2194", 3471.59, "BUILDING", "cial ideas. final, furious requests", 25);
@@ -184,7 +184,7 @@ spark-sql> select * from hudi_table_changes('customer_mor', 'latest_state', '202
 ```
 ### 06 TimeTravel
 
-DorisはHudiデータの特定のスナップショットバージョンをクエリすることをサポートしており、これによりデータのTime Travel機能を実現します。まず、Sparkを使用して2つのHudiテーブルのコミット履歴をクエリできます：
+DorisはHudiデータの特定のスナップショットバージョンをクエリすることをサポートしており、これによりデータのTime Travel機能を実現します。まず、Sparkを使用して2つのHudiTableのコミット履歴をクエリできます：
 
 ```
 spark-sql> call show_commits(table => 'customer_cow', limit => 10);
@@ -227,9 +227,9 @@ spark-sql> select * from customer_mor timestamp as of '20240603015058442' where 
 
 Apache Hudiのデータは大きく2つのカテゴリに分けることができます - ベースラインデータとインクリメンタルデータです。ベースラインデータは通常マージされたParquetファイルであり、インクリメンタルデータはINSERT、UPDATE、またはDELETE操作によって生成されるデータの増分を指します。ベースラインデータは直接読み取ることができますが、インクリメンタルデータはMerge on Readを通して読み取る必要があります。
 
-Hudi COWテーブルのクエリや、MORテーブルでのRead Optimizedクエリでは、データはベースラインデータに属し、DorisのネイティブParquet Readerを使用して直接読み取ることができ、高速なクエリレスポンスを提供します。インクリメンタルデータの場合、DorisはJNI呼び出しを通してHudiのJava SDKにアクセスする必要があります。最適なクエリパフォーマンスを実現するために、Apache Dorisはクエリ内のデータをベースラインデータ部分とインクリメンタルデータ部分に分割し、前述の方法を使用してそれらを読み取ります。
+Hudi COWTableのクエリや、MORTableでのRead Optimizedクエリでは、データはベースラインデータに属し、DorisのネイティブParquet Readerを使用して直接読み取ることができ、高速なクエリレスポンスを提供します。インクリメンタルデータの場合、DorisはJNI呼び出しを通してHudiのJava SDKにアクセスする必要があります。最適なクエリパフォーマンスを実現するために、Apache Dorisはクエリ内のデータをベースラインデータ部分とインクリメンタルデータ部分に分割し、前述の方法を使用してそれらを読み取ります。
 
-この最適化アプローチを検証するために、EXPLAIN文を使用して以下のクエリ例でベースラインデータとインクリメンタルデータがどの程度存在するかを確認できます。COWテーブルの場合、101個のデータシャードすべてがベースラインデータ（`hudiNativeReadSplits=101/101`）であるため、COWテーブルは完全にDorisのParquet Readerを使用して直接読み取ることができ、最高のクエリパフォーマンスをもたらします。ROWテーブルの場合、ほとんどのデータシャードはベースラインデータ（`hudiNativeReadSplits=100/101`）であり、1つのシャードがインクリメンタルデータであるため、これも良好なクエリパフォーマンスを提供します。
+この最適化アプローチを検証するために、EXPLAIN文を使用して以下のクエリ例でベースラインデータとインクリメンタルデータがどの程度存在するかを確認できます。COWTableの場合、101個のデータシャードすべてがベースラインデータ（`hudiNativeReadSplits=101/101`）であるため、COWTableは完全にDorisのParquet Readerを使用して直接読み取ることができ、最高のクエリパフォーマンスをもたらします。ROWTableの場合、ほとんどのデータシャードはベースラインデータ（`hudiNativeReadSplits=100/101`）であり、1つのシャードがインクリメンタルデータであるため、これも良好なクエリパフォーマンスを提供します。
 
 ```
 -- COW table is read natively

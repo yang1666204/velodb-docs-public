@@ -7,7 +7,7 @@
 ---
 Doris JDBC Catalogは標準のJDBCインターフェースを通じてSAP HANAデータベースへの接続をサポートしています。このドキュメントでは、SAP HANAデータベース接続の設定方法について説明します。
 
-JDBC Catalogの概要については、以下を参照してください：[JDBC Catalog Overview](./jdbc-catalog-overview.md)
+JDBC Catalogの概要については、以下を参照してください：[JDBC カタログ 概要](./jdbc-catalog-overview.md)
 
 ## 使用上の注意
 
@@ -39,13 +39,13 @@ SAP HANAをマッピングする際、DorisのDatabaseは、SAP HANAの指定さ
 
 | Doris    | SAP HANA |
 | -------- | -------- |
-| Catalog  | Database |
+| カタログ  | Database |
 | Database | Schema   |
 | Table    | Table    |
 
 ## カラム型マッピング
 
-| SAP HANA Type      | Doris Type                        | Comment                                                      |
+| SAP HANA タイプ      | Doris タイプ                        | Comment                                                      |
 | ------------------ | --------------------------------- | ------------------------------------------------------------ |
 | boolean            | boolean                           |                                                              |
 | tinyint            | tinyint                           |                                                              |

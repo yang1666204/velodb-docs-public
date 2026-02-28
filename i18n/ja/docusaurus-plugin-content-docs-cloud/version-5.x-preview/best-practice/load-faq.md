@@ -28,7 +28,7 @@
 **問題の説明**: 単一rowset下のセグメント数が制限を超えた場合にエラー-238が発生します。
 
 **一般的な原因**:
-- テーブル作成時に設定されたバケット数が小さすぎる。
+- Table作成時に設定されたバケット数が小さすぎる。
 - データスキューが発生している。よりバランスの取れたバケットキーの使用を検討してください。
 
 ### エラー "Transaction commit successfully, BUT data will be visible later"
@@ -41,7 +41,7 @@
 
 **解決方法**:
 - パーティション別にバッチでデータをロードし、単一ロードに関与するパーティション数を減らしてください。
-- テーブル構造を最適化してパーティションとタブレットの数を減らしてください。
+- Table構造を最適化してパーティションとタブレットの数を減らしてください。
 
 ### CSVファイルの最後の列に余分な"\r"がある
 **問題の説明**: 通常、Windowsの行末文字が原因です。
@@ -95,11 +95,11 @@ curl --location-trusted -u root:"" \
 | `max_batch_interval`の制限を削除。 | 2.1.5 3.0.0 | [#29071](https://github.com/apache/doris/pull/29071) |
 | `max_batch_rows`と`max_batch_size`のデフォルト値を調整。 | 2.1.5 3.0.0 | [#36632](https://github.com/apache/doris/pull/36632) |
 
-### 可観測性の最適化
+### オブザーバビリティの最適化
 
 | 最適化内容 | 適用バージョン | 対応PR |
 |-----------|---------------|--------|
-| 可観測性関連のメトリクスを追加。 | 3.0.5 | [#48209](https://github.com/apache/doris/pull/48209), [#48171](https://github.com/apache/doris/pull/48171), [#48963](https://github.com/apache/doris/pull/48963) |
+| オブザーバビリティ関連のメトリクスを追加。 | 3.0.5 | [#48209](https://github.com/apache/doris/pull/48209), [#48171](https://github.com/apache/doris/pull/48171), [#48963](https://github.com/apache/doris/pull/48963) |
 
 ### エラー "failed to get latest offset"
 **問題の説明**: Routine LoadがKafkaの最新offsetを取得できない。
@@ -109,7 +109,7 @@ curl --location-trusted -u root:"" \
 - サードパーティライブラリのバグによるタイムアウト、エラー: java.util.concurrent.TimeoutException: Waited X seconds
 
 ### エラー "failed to get partition meta: Local:'Broker transport failure"
-**問題の説明**: Routine LoadがKafka Topic Partition Metaを取得できない。
+**問題の説明**: Routine LoadがKafka Topic パーティション Metaを取得できない。
 
 **一般的な原因**:
 - 通常はKafkaとのネットワーク接続の問題による。pingやtelnetを使用してKafkaドメイン名をテストして確認する。

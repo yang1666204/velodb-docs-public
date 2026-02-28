@@ -16,9 +16,9 @@ QUARTERS_ADD関数は、指定されたdatetime値に対して指定された四
 ```sql
 QUARTERS_ADD(`<date_or_time_expr>`, `<quarters>`)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | --------- | ----------- |
 | `<date_or_time_expr>` | 入力される日付または日時の値。date/datetime型をサポートします。具体的なdatetimeおよびdate形式については、[datetime conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/datetime-conversion)と[date conversion](../../../../sql-manual/basic-element/sql-data-types/conversion/date-conversion)を参照してください。 |
 | `<quarters>` | 加算または減算する四半期の数。正の整数は加算を、負の整数は減算を示します。 |

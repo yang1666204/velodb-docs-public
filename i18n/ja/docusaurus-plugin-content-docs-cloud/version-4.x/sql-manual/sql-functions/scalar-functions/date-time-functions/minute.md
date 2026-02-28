@@ -14,9 +14,9 @@ datetime値から分の部分を抽出します。返される値は0から59の
 ```sql
 MINUTE(<datetime>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description                                      |
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<datetime>`  | 入力する日時値。DATE、DATETIME、DATETIMEV2、またはTIME型を指定できます |
 

@@ -14,7 +14,7 @@
 ```sql
 MD5( <input> )
 ```
-## Parameters
+## パラメータ
 
 | parameter | description |
 | -- | -- |

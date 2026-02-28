@@ -1,11 +1,11 @@
 ---
 {
-  "title": "LOG",
+  "title": "ログ",
   "description": "bを底とするxの対数を返します。",
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 ベース`b`を底とした`x`の対数を返します。
 
@@ -14,9 +14,9 @@
 ```sql
 LOG(<b>[, <x>])
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|------------|
 | `<b>`     | Baseは0より大きく、かつ正確に1.0であってはならない |
 | `<x>`     | オプション、Antilogarithmは0より大きくなければならない、デフォルト値はe |

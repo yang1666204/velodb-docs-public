@@ -14,7 +14,7 @@
 ### Apache Dorisとテストデータの準備
 
 動作するApache Dorisクラスターがすでに設定されていることを確認してください。デモンストレーションの目的で、Quick Startedドキュメントに従ってLinux上にテスト用のApache Doris環境をデプロイしました。
-データベースとテストテーブルを作成します：
+データベースとテストTableを作成します：
 
 ```
 create database automq_db;
@@ -51,7 +51,7 @@ $AUTOMQ_HOME/bin/kafka-topics.sh --describe example_topic --bootstrap-server 127
 ```
 **テストデータの生成**
 
-先ほど言及したテーブルに対応するJSON形式のテストデータエントリを作成します。
+先ほど言及したTableに対応するJSON形式のテストデータエントリを作成します。
 
 ```
 {
@@ -103,7 +103,7 @@ FROM KAFKA
 ```
 show routine load\G;
 ```
-その後、Apache Dorisデータベースの関連テーブルをクエリすると、データが正常にインポートされていることが確認できます。
+その後、Apache Dorisデータベースの関連Tableをクエリすると、データが正常にインポートされていることが確認できます。
 
 ```
 select * from users;

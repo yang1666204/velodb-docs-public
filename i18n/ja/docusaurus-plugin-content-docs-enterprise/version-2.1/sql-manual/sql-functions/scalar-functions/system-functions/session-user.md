@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 Doris接続の現在のユーザー名とIPを取得します。MySQLプロトコルと互換性があります。
 

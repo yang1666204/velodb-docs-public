@@ -18,7 +18,7 @@ INSTR ( <str> , <substr> )
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--------|-----------|
 | `<str>` | 検索対象の文字列 |
 | `<substr>` | 検索する文字列 |

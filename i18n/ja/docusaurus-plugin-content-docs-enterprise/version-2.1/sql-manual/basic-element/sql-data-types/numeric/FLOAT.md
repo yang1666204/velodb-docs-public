@@ -6,7 +6,7 @@
 }
 ---
 ## FLOAT
-### Description
+### デスクリプション
 FLOAT
 4バイト浮動小数点数
 

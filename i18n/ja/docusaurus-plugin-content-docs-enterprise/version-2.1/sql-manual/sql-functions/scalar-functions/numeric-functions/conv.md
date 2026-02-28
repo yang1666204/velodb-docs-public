@@ -14,9 +14,9 @@
 ```sql
 CONV(<input>, <from_base>, <to_base>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<input>` | 変換対象のパラメータ。文字列または整数 |
 | `<from_base>` | 数値。変換元の基数で、`[2,36]`の範囲内 |

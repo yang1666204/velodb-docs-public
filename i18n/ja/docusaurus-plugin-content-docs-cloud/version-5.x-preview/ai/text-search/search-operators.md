@@ -62,7 +62,7 @@ SELECT * FROM table_name WHERE content MATCH_REGEXP '^key_word.*';
 ```sql
 SELECT * FROM table_name WHERE content MATCH_PHRASE_EDGE 'search engine optim';
 ```
-## Inverted Index Query Acceleration
+## Inverted Index クエリ加速
 
 ### サポートされる演算子と関数
 

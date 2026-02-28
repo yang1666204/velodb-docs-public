@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 GROUP_CONCAT関数は、結果セット内の複数行の結果を文字列に連結します。
 

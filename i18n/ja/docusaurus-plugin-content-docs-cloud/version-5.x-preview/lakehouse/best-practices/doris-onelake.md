@@ -7,11 +7,11 @@
 ---
 **Microsoft OneLake**は、Fabricエコシステムの一部であり、組織に統合された論理的なデータストレージ層を提供する統合されたオープンなSaaSデータレイクです。OneLakeのデータは**Parquet**形式で保存され、**Delta Lake**と**Apache Iceberg**のメタデータを同時に維持できます。この設計により、複数の分析エンジンが**データの重複や移行なしに**共有データセットに直接アクセスでき、データ管理とガバナンスを大幅に簡素化します。
 
-**Apache DorisのIceberg REST Catalog**を活用することで、ユーザーはOneLakeに保存されたデータを直接クエリし分析できます—ここでも、コピーや移動は不要です。
+**Apache DorisのIceberg REST カタログ**を活用することで、ユーザーはOneLakeに保存されたデータを直接クエリし分析できます—ここでも、コピーや移動は不要です。
 
 この統合により、単一のデータレイク上で**エンドツーエンドの分析パイプライン**を構築でき、OneLakeの統合されたストレージとガバナンス機能をDorisの高性能分析コンピュートと組み合わせることができます。
 
-技術レベルでは、Dorisはオープンなテーブル形式と標準化されたインターフェースを通じてOneLakeと相互作用し、メタデータとParquetファイルの両方にアクセスします。このアーキテクチャは、集中化されたガバナンス、アクセス制御、セキュリティポリシーを保持し、プラットフォームの信頼性、スケーラビリティ、保守性を確保します。
+技術レベルでは、DorisはオープンなTable形式と標準化されたインターフェースを通じてOneLakeと相互作用し、メタデータとParquetファイルの両方にアクセスします。このアーキテクチャは、集中化されたガバナンス、アクセス制御、セキュリティポリシーを保持し、プラットフォームの信頼性、スケーラビリティ、保守性を確保します。
 
 この記事では、環境セットアップ、認証、クエリワークフローの例を含めて、DorisをOneLakeに接続する方法を説明します。
 
@@ -19,7 +19,7 @@
 
 ## Onelakeセットアップ
 
-まず**Fabric (OneLake)**側でのデータと認証セットアップの準備から始め、その後そのデータにアクセスするためのDorisでの**Iceberg REST Catalog**の作成方法を示します。
+まず**Fabric (OneLake)**側でのデータと認証セットアップの準備から始め、その後そのデータにアクセスするためのDorisでの**Iceberg REST カタログ**の作成方法を示します。
 
 ### OneLakeにデータをロードする
 
@@ -27,7 +27,7 @@
 
    ![onelake1](/images/integrations/lakehouse/onelake/onelake-1.png)
 
-2. ワークスペース内で、**New Item → Lakehouse**を選択してLakehouseインスタンスを作成します。
+2. ワークスペース内で、**New Item → レイクハウス**を選択してLakehouseインスタンスを作成します。
 
    ![onelake2](/images/integrations/lakehouse/onelake/onelake-2.png)
 
@@ -45,9 +45,9 @@
 
    ![onelake5](/images/integrations/lakehouse/onelake/onelake-5.png)
 
-2. アップロード後、**Load Tables → New table**を選択します（既存のテーブルがある場合は、そちらにロードすることも可能です）。
+2. アップロード後、**Load Tables → New table**を選択します（既存のTableがある場合は、そちらにロードすることも可能です）。
 
-3. インポートが完了したら、**Tables**ビューに移動してテーブルとデータを確認します。
+3. インポートが完了したら、**Tables**ビューに移動してTableとデータを確認します。
 
    ![onelake6](/images/integrations/lakehouse/onelake/onelake-6.png)
 
@@ -79,7 +79,7 @@ DorisがIceberg REST Catalog経由でOneLakeにアクセスできるようにす
 
 ## Apache DorisからOneLakeに接続する
 
-次に、Dorisで**Iceberg REST Catalog**を作成し、OneLakeデータに接続しましょう。
+次に、Dorisで**Iceberg REST カタログ**を作成し、OneLakeデータに接続しましょう。
 
 ### Catalogを作成する
 
@@ -104,7 +104,7 @@ Doris> CREATE CATALOG onelake_doris PROPERTIES (
 ```
 カタログを作成する際、以下のパラメータが必要です:
 
-* `WORKSPACE_ID` と `DATA_ITEM_ID` — Lakehouse URL から取得できます:
+* `WORKSPACE_ID` と `DATA_ITEM_ID` — レイクハウス URL から取得できます:
 
   `https://app.fabric.microsoft.com/groups/<WORKSPACE_ID>/lakehouses/<DATA_ITEM_ID>`
 
@@ -112,7 +112,7 @@ Doris> CREATE CATALOG onelake_doris PROPERTIES (
 
 * OneLake の場合、`iceberg.rest.oauth2.scope`、`uri`、`azure.oauth2_account_host`、`azure.endpoint` などの設定キーは通常固定値を持ちます — 詳細については公式ドキュメントまたはサンプル設定を参照してください。
 
-設定後、標準 SQL を使用して Doris から OneLake の Iceberg テーブルを直接クエリできます。
+設定後、標準 SQL を使用して Doris から OneLake の Iceberg Tableを直接クエリできます。
 
 ### 基本的な分析
 
@@ -201,7 +201,7 @@ Doris> SHOW TABLES;
    レガシー（例：Hive）とOneLakeシステムの両方がアクティブな場合、ユーザーの重複と移行後の行動変化を分析して、ビジネスへの影響を評価できます。
 
    ```sql
-   -- "hive_catalog" is a Hive Catalog created in Doris 
+   -- "hive_catalog" is a Hive カタログ created in Doris 
    Doris> SELECT
        ->     a.customer_id,
        ->     COUNT(DISTINCT b.order_id) AS new_order_count,
@@ -266,7 +266,7 @@ payment_method: Credit Card
 
 * **統一されたガバナンス** – データレイク全体で一元化された管理、アクセス制御、セキュリティポリシーを維持します。
 
-* **オープンフォーマット互換性** – **Iceberg**オープンテーブル標準に基づいて構築されており、クロスプラットフォームの相互運用性を保証します。
+* **オープンフォーマット互換性** – **Iceberg**オープンTable標準に基づいて構築されており、クロスプラットフォームの相互運用性を保証します。
 
 * **柔軟な分析** – DorisのパワフルなOLAPエンジンとOneLakeのスケーラブルなストレージ層を組み合わせます。
 

@@ -13,8 +13,8 @@ IPv6アドレスの文字列形式をIPv6型に変換します。これはipv6_s
 ```sql
 TO_IPV6(<ipv6_str>)
 ```
-## Parameters
-| Parameter | Description                                      |
+## パラメータ
+| Parameter | デスクリプション                                      |
 |-----------|--------------------------------------------------|
 | `<ipv6_str>`      | String型のIPv6アドレス |
 

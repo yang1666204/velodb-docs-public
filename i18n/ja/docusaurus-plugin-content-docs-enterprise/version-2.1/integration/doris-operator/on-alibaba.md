@@ -31,7 +31,7 @@ BE起動パラメータ要件に注目してください：
   ```  
 ### 新しいクラスターの作成
 
-クラスターが購入・作成されていない場合は、Alibaba Cloud Container Service ACKコンソールで「Create Cluster」をクリックして購入できます。必要に応じて設定を調整できます。上記のパラメータは、クラスター作成の「Node Pool Configuration」ステップの「Instance Pre-customized Data」でシステム調整スクリプトに追加できます。
+クラスターが購入・作成されていない場合は、Alibaba Cloud Container Service ACKコンソールで「Create Cluster」をクリックして購入できます。必要に応じて設定を調整できます。上記のパラメータは、クラスター作成の「Node Pool 構成」ステップの「Instance Pre-customized Data」でシステム調整スクリプトに追加できます。
 クラスターが開始された後、ノードを再起動して設定を完了します。参考スクリプトは以下の通りです：
 
 ```shell

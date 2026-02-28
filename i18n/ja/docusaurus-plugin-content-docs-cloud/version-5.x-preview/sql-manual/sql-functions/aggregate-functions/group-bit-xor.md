@@ -14,9 +14,9 @@
 ```sql
 GROUP_BIT_XOR(<expr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<expr>` | サポートする型: TinyInt, SmallInt, Integer, BigInt, LargeInt。 |
 

@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 開始時刻と終了時刻の間の時間差を時間単位で計算します。
 
@@ -14,9 +14,9 @@
 ```sql
 HOURS_DIFF(<end_date>, <start_date>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description                                     |
+| Parameter  | デスクリプション                                     |
 |------------|-------------------------------------------------|
 | `<end_date>`    | 終了時刻。DATETIME型またはDATE型を指定できます |
 | `<start_date>`  | 開始時刻。DATETIME型またはDATE型を指定できます |

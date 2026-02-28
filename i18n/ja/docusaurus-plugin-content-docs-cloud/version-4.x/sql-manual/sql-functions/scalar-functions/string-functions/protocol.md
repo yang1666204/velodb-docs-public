@@ -14,9 +14,9 @@ PROTOCOL関数は、主にURL文字列からプロトコル部分を抽出する
 ```sql
 PROTOCOL( <url> )
 ```
-## Parameters
+## パラメータ
 
-| Parameter      | Description         |
+| Parameter      | デスクリプション         |
 |---------|------------|
 | `<url>` | 解析対象のURL |
 

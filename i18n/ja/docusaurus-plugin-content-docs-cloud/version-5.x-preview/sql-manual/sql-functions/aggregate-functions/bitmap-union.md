@@ -16,7 +16,7 @@ BITMAP_UNION(<expr>)
 ```
 ## Arguments
 
-| Argument | Description |
+| Argument | デスクリプション |
 | -- | -- |
 | `<expr>` | Bitmapをサポートするデータ型 |
 

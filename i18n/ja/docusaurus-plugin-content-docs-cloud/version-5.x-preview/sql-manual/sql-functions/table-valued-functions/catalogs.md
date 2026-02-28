@@ -1,13 +1,13 @@
 ---
 {
   "title": "カタログ",
-  "description": "CATALOGS()関数は、一時的なカタログテーブルを生成します。",
+  "description": "CATALOGS()関数は、一時的なカタログTableを生成します。",
   "language": "ja"
 }
 ---
 ## 説明
 
-`CATALOGS()`関数は一時的な`catalogs`テーブルを生成し、現在のDorisインスタンスで作成されたすべてのカタログに関する情報を表示できます。結果は`show catalogs`と`show catalog xxx`の情報を組み合わせたものです。
+`CATALOGS()`関数は一時的な`catalogs`Tableを生成し、現在のDorisインスタンスで作成されたすべてのカタログに関する情報を表示できます。結果は`show catalogs`と`show catalog xxx`の情報を組み合わせたものです。
 
 この関数は`FROM`句で使用され、Dorisでのカタログデータのクエリと分析を簡単にします。
 
@@ -24,7 +24,7 @@ desc function catalogs();
 ```
 ```text
 +-------------+--------+------+-------+---------+-------+
-| Field       | Type   | Null | Key   | Default | Extra |
+| Field       | タイプ   | Null | Key   | Default | Extra |
 +-------------+--------+------+-------+---------+-------+
 | CatalogId   | BIGINT | No   | false | NULL    | NONE  |
 | CatalogName | TEXT   | No   | false | NULL    | NONE  |
@@ -35,7 +35,7 @@ desc function catalogs();
 ```
 フィールドの意味は以下の通りです：
 
-| Field        | Type    | Description                                                                                                              |
+| Field        | タイプ    | デスクリプション                                                                                                              |
 |--------------|---------|--------------------------------------------------------------------------------------------------------------------------|
 | `CatalogId`  | BIGINT  | 各カタログの一意識別子。異なるカタログを区別するために使用されます。                                      |
 | `CatalogName`| TEXT    | カタログの名前。Doris内でのカタログの識別子です。                                            |

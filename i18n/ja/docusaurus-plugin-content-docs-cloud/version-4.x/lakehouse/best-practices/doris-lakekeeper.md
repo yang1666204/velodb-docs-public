@@ -22,7 +22,7 @@
 
 ### 1.1 S3ストレージバケットの作成
 
-まず、後で作成するIcebergテーブルデータを保存するために、`lakekeeper-doris-demo`という名前のS3 Bucketを作成します。
+まず、後で作成するIcebergTableデータを保存するために、`lakekeeper-doris-demo`という名前のS3 Bucketを作成します。
 
 ```bash
 # Create S3 storage bucket
@@ -356,7 +356,7 @@ CREATE CATALOG lakekeeper_static PROPERTIES (
 Catalogの作成にどの方法を使用したかに関係なく、以下のSQLを通じてエンドツーエンドの接続性を確認できます。
 
 ```sql
--- Switch to the Catalog and Namespace configured in Lakekeeper
+-- Switch to the カタログ and Namespace configured in Lakekeeper
 USE lakekeeper_static.demo;
 
 -- Create an Iceberg table
@@ -383,6 +383,6 @@ SELECT * FROM my_iceberg_table;
 ```
 上記のすべての操作が正常に完了した場合、おめでとうございます！完全なデータレイクパイプラインの構築に成功しました：Doris -> Lakekeeper -> S3。
 
-DorisでIcebergテーブルを管理する詳細については、以下をご覧ください：
+DorisでIcebergTableを管理する詳細については、以下をご覧ください：
 
 https://doris.apache.org/docs/lakehouse/catalogs/iceberg-catalog

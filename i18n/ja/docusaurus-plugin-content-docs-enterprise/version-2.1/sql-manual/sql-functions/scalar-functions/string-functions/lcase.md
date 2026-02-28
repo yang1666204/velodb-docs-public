@@ -21,7 +21,7 @@ LOWER ( <str> )
 ```
 ## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |-----------|--------------|
 | `<str>`   | 小文字に変換される文字列 |
 

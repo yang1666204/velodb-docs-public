@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 2つのベクトル間のコサイン距離を計算します（ベクトル値は座標です）
 
@@ -14,9 +14,9 @@
 ```sql
 COSINE_DISTANCE(<array1>, <array2>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |---|--|
 | `<array1>` | 最初のベクトル（ベクトル値は座標）。入力配列のサブタイプは：TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE。要素数はarray2と一致する必要があります |
 | `<array2>` | 2番目のベクトル（ベクトル値は座標）。入力配列のサブタイプは：TINYINT、SMALLINT、INT、BIGINT、LARGEINT、FLOAT、DOUBLE。要素数はarray1と一致する必要があります |

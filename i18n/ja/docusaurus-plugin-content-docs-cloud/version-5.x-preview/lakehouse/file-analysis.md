@@ -7,13 +7,13 @@
 ---
 Table Value Function機能を通じて、DorisはオブジェクトストレージやHDFS上のファイルをTableとして直接クエリおよび分析できます。また、自動的な列型推論もサポートしています。
 
-より詳細な使用方法については、Table Value Function ドキュメントを参照してください：
+より詳細な使用方法については、Table Value ファンクション ドキュメントを参照してください：
 
 * [S3](../sql-manual/sql-functions/table-valued-functions/s3.md): S3互換オブジェクトストレージ上のファイル分析をサポートします。
 
 * [HDFS](../sql-manual/sql-functions/table-valued-functions/hdfs.md): HDFS上のファイル分析をサポートします。
 
-* [FILE](../sql-manual/sql-functions/table-valued-functions/file.md): 統合テーブル関数で、S3/HDFS/Localファイルの読み取りを同時にサポートできます。（バージョン3.1.0以降でサポート。）
+* [FILE](../sql-manual/sql-functions/table-valued-functions/file.md): 統合Table関数で、S3/HDFS/Localファイルの読み取りを同時にサポートできます。（バージョン3.1.0以降でサポート。）
 
 ## 基本的な使用方法
 
@@ -31,7 +31,7 @@ SELECT * FROM S3 (
     's3.secret_key'='sk'
 )
 ```
-`S3(...)`は、TVF（Table Value Function）です。Table Value Functionは本質的にテーブルなので、「テーブル」が使用できるあらゆるSQL文で使用できます。
+`S3(...)`は、TVF（Table Value ファンクション）です。Table Value Functionは本質的にTableなので、「Table」が使用できるあらゆるSQL文で使用できます。
 
 TVFの属性には、分析対象のファイルパス、ファイル形式、オブジェクトストレージの接続情報などが含まれます。
 
@@ -66,7 +66,7 @@ DESC FUNCTION s3 (
     "use_path_style"="true"
 );
 +---------------+--------------+------+-------+---------+-------+
-| Field         | Type         | Null | Key   | Default | Extra |
+| Field         | タイプ         | Null | Key   | Default | Extra |
 +---------------+--------------+------+-------+---------+-------+
 | p_partkey     | INT          | Yes  | false | NULL    | NONE  |
 | p_name        | TEXT         | Yes  | false | NULL    | NONE  |
@@ -103,7 +103,7 @@ Dorisは以下のルールに基づいてSchemaを推測します:
   ```
 現在サポートされているカラム型名は以下の通りです：
 
-  | Column Type Name |
+  | Column タイプ Name |
   | ------------ |
   | tinyint      |
   | smallint     |
@@ -150,7 +150,7 @@ ORDER BY p_partkey LIMIT 5;
 |         5 | forest brown coral puff cream            | Manufacturer#3 | Brand#32 | STANDARD POLISHED TIN   |     15 | SM PKG      |           905 |  wake carefully     |
 +-----------+------------------------------------------+----------------+----------+-------------------------+--------+-------------+---------------+---------------------+
 ```
-TVFはTableが現れることができるSQLの任意の位置に現れることができます。例えば、`CTE`の`WITH`句や`FROM`句などです。この方法により、任意の分析においてファイルを通常のテーブルとして扱うことができます。
+TVFはTableが現れることができるSQLの任意の位置に現れることができます。例えば、`CTE`の`WITH`句や`FROM`句などです。この方法により、任意の分析においてファイルを通常のTableとして扱うことができます。
 
 また、`CREATE VIEW`文を使用してTVFの論理ビューを作成することもできます。その後、他のビューと同様にこのTVFにアクセスし、権限を管理することなどができ、接続情報やその他の属性を繰り返し記述する必要なく、他のユーザーがこのViewにアクセスできるようになります。
 
@@ -202,7 +202,7 @@ FROM s3(
     's3.secret_key'='sk'
 );
 ```
-## Notes
+## 注釈
 
 1. 指定された`uri`がいずれのファイルにもマッチしない場合、または マッチしたすべてのファイルが空の場合、TVFは空の結果セットを返します。この場合、`DESC FUNCTION`を使用してこのTVFのSchemaを表示すると、仮想的なカラム`__dummy_col`が表示されますが、これは意味を持たずプレースホルダーとしての役割のみを果たします。
 

@@ -14,9 +14,9 @@
 ```sql
 ARRAY_PRODUCT(<arr>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<arr>` | 対応する配列 |
 

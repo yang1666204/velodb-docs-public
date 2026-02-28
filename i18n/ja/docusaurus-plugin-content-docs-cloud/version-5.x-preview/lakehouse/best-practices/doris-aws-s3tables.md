@@ -1,14 +1,14 @@
 ---
 {
   "title": "Glue + AWS S3 Tables との統合",
-  "description": "AWS S3 Tablesは、Apache Icebergテーブルフォーマット標準と互換性のある読み書きインターフェースを提供する特別なタイプのS3 Bucketです。",
+  "description": "AWS S3 Tablesは、Apache IcebergTableフォーマット標準と互換性のある読み書きインターフェースを提供する特別なタイプのS3 Bucketです。",
   "language": "ja"
 }
 ---
-[AWS S3 Tables](https://aws.amazon.com/s3/features/tables/)は、Apache Icebergテーブルフォーマット標準と互換性のある読み書きインターフェースを提供するS3 Bucketの特別なタイプで、Amazon S3上に構築されており、S3自体と同じ耐久性、可用性、スケーラビリティ、およびパフォーマンス特性を提供します。さらに、S3 Tablesは以下の機能を提供します：
+[AWS S3 Tables](https://aws.amazon.com/s3/features/tables/)は、Apache IcebergTableフォーマット標準と互換性のある読み書きインターフェースを提供するS3 Bucketの特別なタイプで、Amazon S3上に構築されており、S3自体と同じ耐久性、可用性、スケーラビリティ、およびパフォーマンス特性を提供します。さらに、S3 Tablesは以下の機能を提供します：
 
-- 通常のS3 Bucketsに格納されたIcebergテーブルと比較して、S3 Tablesは最大3倍高いクエリパフォーマンスと最大10倍高い1秒あたりのトランザクション数を提供できます。
-- 自動テーブル管理。S3 Tablesは、小さなファイルのコンパクション、スナップショット管理、およびガベージファイルクリーンアップを含む、Icebergテーブルデータを自動的に最適化します。
+- 通常のS3 Bucketsに格納されたIcebergTableと比較して、S3 Tablesは最大3倍高いクエリパフォーマンスと最大10倍高い1秒あたりのトランザクション数を提供できます。
+- 自動Table管理。S3 Tablesは、小さなファイルのコンパクション、スナップショット管理、およびガベージファイルクリーンアップを含む、IcebergTableデータを自動的に最適化します。
 
 S3 Tablesのリリースにより、Lakehouseアーキテクチャがさらに簡素化され、クラウドネイティブなlake-warehouseシステムにより多くの可能性がもたらされます。これには、コールド-ホット分離、データアーカイブ、データバックアップ、およびコンピュート-ストレージ分離アーキテクチャが含まれ、これらすべてがS3 Tablesをベースとした全く新しいアーキテクチャに進化する可能性があります。
 
@@ -24,11 +24,11 @@ Amazon S3 TablesのIceberg APIとの高い互換性により、Apache DorisはS3
 
 S3 Table Bucketは、S3が開始した3番目のBucketタイプで、以前のGeneral purpose bucketおよびDirectory bucketと同等です。
 
-![AWS S3 Table Bucket](/images/Lakehouse/s3-table-bucket.png)
+![AWS S3 Table バケット](/images/Lakehouse/s3-table-bucket.png)
 
 ここでは、doris-s3-table-bucketという名前のTable Bucketを作成します。作成後、ARNで表されるTable Bucketが取得されます。
 
-![AWS S3 Table Bucket Create](/images/Lakehouse/s3-table-bucket-create.png)
+![AWS S3 Table バケット Create](/images/Lakehouse/s3-table-bucket-create.png)
 
 ### 02 Iceberg Catalogの作成
 
@@ -93,7 +93,7 @@ Doris > SELECT * FROM my_table;
 |    2 | XYZ  |   200 |
 +------+------+-------+
 ```
-### 04 S3Tables テーブルの作成とデータの書き込み
+### 04 S3Tables Tableの作成とデータの書き込み
 
 ```sql
 Doris > CREATE TABLE partition_table (
@@ -120,7 +120,7 @@ Doris > SELECT * FROM partition_table;
 ```
 ### 05 Time Travel
 
-別のデータバッチを挿入し、`$snapshots`システムテーブルを使用してIcebergスナップショットを表示できます：
+別のデータバッチを挿入し、`$snapshots`システムTableを使用してIcebergスナップショットを表示できます：
 
 ```sql
 Doris > INSERT INTO partition_table VALUES
@@ -167,7 +167,7 @@ Doris > SELECT * FROM partition_table FOR VERSION AS OF 6834769222601914216;
 | 2024-01-01 08:00:00.000000 | 1000 | us-east | PART1 |
 +----------------------------+------+---------+-------+
 ```
-### 06 EMR Sparkを使用したS3テーブルへのアクセス
+### 06 EMR Sparkを使用したS3Tableへのアクセス
 
 Dorisを使用して書き込まれたデータは、Sparkを使用してアクセスすることも可能です：
 

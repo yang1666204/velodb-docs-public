@@ -17,9 +17,9 @@
 ```sql
 MAP_ENTRIES(<map>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<map>` | 入力するマップのコンテンツ |
 

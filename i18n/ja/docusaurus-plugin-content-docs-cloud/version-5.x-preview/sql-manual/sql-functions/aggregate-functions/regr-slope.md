@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 グループ内の非null値のペアに対する線形回帰直線の傾きを返します。
 
@@ -15,9 +15,9 @@
 ```sql
 REGR_SLOPE(<y>, <x>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<y>` | 従属変数。サポートされる型：Double。 |
 | `<x>` | 独立変数。サポートされる型：Double。 |

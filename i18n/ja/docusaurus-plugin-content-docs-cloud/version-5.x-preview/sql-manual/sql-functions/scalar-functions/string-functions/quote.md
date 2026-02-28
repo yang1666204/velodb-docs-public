@@ -14,9 +14,9 @@ QUOTE関数は、文字列を単一引用符で囲み、その中の特殊文字
 ```sql
 QUOTE(<str>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | ------- | ----------------------------------------- |
 | `<str>` | クォートする入力文字列。型: VARCHAR |
 

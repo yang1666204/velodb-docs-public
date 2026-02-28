@@ -16,7 +16,7 @@ BITMAP_UNION_INT(<expr>)
 ```
 ## Arguments
 
-| Argument | Description |
+| Argument | デスクリプション |
 | -- | -- |
 | `<expr>` | 入力式。サポートされる型：TinyInt、SmallInt、Integer。 |
 

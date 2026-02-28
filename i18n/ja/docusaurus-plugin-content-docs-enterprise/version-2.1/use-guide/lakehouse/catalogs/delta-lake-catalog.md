@@ -1,11 +1,11 @@
 ---
 {
-  "title": "Delta Lake Catalog",
-  "description": "Delta Lake Catalog は Trino Connector 互換性フレームワークを使用して、Delta Lake Connector を通じて Delta Lake テーブルにアクセスします。",
+  "title": "Delta Lake カタログ",
+  "description": "Delta Lake カタログ は Trino Connector 互換性フレームワークを使用して、Delta Lake Connector を通じて Delta Lake Tableにアクセスします。",
   "language": "ja"
 }
 ---
-Delta Lake Catalogは[Trino Connector](https://doris.apache.org/zh-CN/community/how-to-contribute/trino-connector-developer-guide/)互換性フレームワークを使用して、Delta Lake Connectorを通じてDelta Lakeテーブルにアクセスします。
+Delta Lake Catalogは[Trino Connector](https://doris.apache.org/zh-CN/community/how-to-contribute/trino-connector-developer-guide/)互換性フレームワークを使用して、Delta Lake Connectorを通じてDelta LakeTableにアクセスします。
 
 :::note
 この機能は実験的であり、バージョン3.0.1以降でサポートされています。
@@ -15,7 +15,7 @@ Delta Lake Catalogは[Trino Connector](https://doris.apache.org/zh-CN/community/
 
 | シナリオ       | 説明                          |
 | -------------- | ------------------------------------ |
-| データ統合 | Delta Lakeデータを読み取り、Doris内部テーブルに書き込みます。 |
+| データ統合 | Delta Lakeデータを読み取り、Doris内部Tableに書き込みます。 |
 | データライトバック  | サポートされていません。                     |
 
 ## 環境準備
@@ -66,27 +66,27 @@ PROPERTIES (
 ```
 * `{TrinoProperties}`
 
-  TrinoPropertiesセクションは、Trino Connectorに渡されるプロパティを指定するために使用されます。これらのプロパティは`trino.`プレフィックスを使用します。理論的には、Trinoでサポートされているすべてのプロパティがここでもサポートされています。Delta Lakeの詳細については、[Trino documentation](https://trino.io/docs/435/connector/delta-lake.html)を参照してください。
+  TrinoPropertiesセクションは、Trino Connectorに渡されるプロパティを指定するために使用されます。これらのプロパティは`trino.`プレフィックスを使用します。理論的には、Trinoでサポートされているすべてのプロパティがここでもサポートされています。Delta Lakeの詳細については、[Trino ドキュメント](https://trino.io/docs/435/connector/delta-lake.html)を参照してください。
 
 * `[CommonProperties]`
 
-  CommonPropertiesセクションは、一般的なプロパティを指定するために使用されます。"Common Properties"セクションの[Catalog Overview](../catalog-overview.md)を参照してください。
+  CommonPropertiesセクションは、一般的なプロパティを指定するために使用されます。"Common Properties"セクションの[カタログ 概要](../catalog-overview.md)を参照してください。
   
 ### サポートされているDelta Lakeバージョン
 
-Delta Lakeの詳細については、[Trino documentation](https://trino.io/docs/435/connector/delta-lake.html)を参照してください。
+Delta Lakeの詳細については、[Trino ドキュメント](https://trino.io/docs/435/connector/delta-lake.html)を参照してください。
 
 ### サポートされているMetadata Services
 
-Delta Lakeの詳細については、[Trino documentation](https://trino.io/docs/435/connector/delta-lake.html)を参照してください。
+Delta Lakeの詳細については、[Trino ドキュメント](https://trino.io/docs/435/connector/delta-lake.html)を参照してください。
 
-### サポートされているStorage Systems
+### サポートされているStorage システム
 
-Delta Lakeの詳細については、[Trino documentation](https://trino.io/docs/435/connector/delta-lake.html)を参照してください。
+Delta Lakeの詳細については、[Trino ドキュメント](https://trino.io/docs/435/connector/delta-lake.html)を参照してください。
 
 ## カラム型マッピング
 
-| Delta Lake Type | Trino Type                  | Doris Type    | Comment |
+| Delta Lake タイプ | Trino タイプ                  | Doris タイプ    | Comment |
 | --------------- | --------------------------- | ------------- | ------- |
 | boolean         | boolean                     | boolean       |         |
 | int             | int                         | int           |         |
@@ -116,9 +116,9 @@ CREATE CATALOG delta_lake_hms properties (
     'trino.hive.config.resources'='/path/to/core-site.xml,/path/to/hdfs-site.xml'
 );
 ```
-## Query Operations
+## Query 運用
 
-Catalogを設定した後、以下の方法でCatalog内のテーブルデータをクエリできます：
+Catalogを設定した後、以下の方法でCatalog内のTableデータをクエリできます：
 
 ```sql
 -- 1. Switch to the catalog, use the database, and query

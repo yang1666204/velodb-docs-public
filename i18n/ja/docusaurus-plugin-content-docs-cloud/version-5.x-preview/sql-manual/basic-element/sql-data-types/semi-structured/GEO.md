@@ -102,7 +102,7 @@ WKBは以下の部分で構成されます：
     │   │         │               │
     Little Endian Point type     x=1.0           y=2.0
 ```
-## GeoPoint Type
+## GeoPoint タイプ
 1. StringまたはVarcharを使用したWKT形式の保存
 
 ```sql

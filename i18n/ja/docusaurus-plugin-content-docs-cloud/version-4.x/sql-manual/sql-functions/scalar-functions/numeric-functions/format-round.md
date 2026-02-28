@@ -18,9 +18,9 @@
 ```sql
 FORMAT_ROUND(<number>, <D>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<number>` | フォーマットする数値 |
 | `<D>` | 小数点以下の桁数、範囲 [0, 1024] |

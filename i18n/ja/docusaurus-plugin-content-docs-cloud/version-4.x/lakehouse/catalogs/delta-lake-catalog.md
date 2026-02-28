@@ -1,13 +1,13 @@
 ---
 {
   "title": "Delta Lake カタログ",
-  "description": "Apache Doris Delta Lake Catalog ユーザーガイド：Trino Connector フレームワークを通じて Delta Lake データレイクに接続し、Delta Lake テーブルデータのクエリと統合を行います。Hive Metastore、複数のデータ型マッピング、および Delta Lake と Doris 間の迅速な統合をサポートしています。",
+  "description": "Apache Doris Delta Lake カタログ ユーザーガイド：Trino Connector フレームワークを通じて Delta Lake データレイクに接続し、Delta Lake Tableデータのクエリと統合を行います。Hive Metastore、複数のデータ型マッピング、および Delta Lake と Doris 間の迅速な統合をサポートしています。",
   "language": "ja"
 }
 ---
 ## 概要
 
-Delta Lake Catalogは、Delta Lakeテーブルにアクセスするために、Trino Delta Lake Connectorと[Trino Connector](https://doris.apache.org/community/how-to-contribute/trino-connector-developer-guide/)互換性フレームワークを使用します。
+Delta Lake Catalogは、Delta LakeTableにアクセスするために、Trino Delta Lake Connectorと[Trino Connector](https://doris.apache.org/community/how-to-contribute/trino-connector-developer-guide/)互換性フレームワークを使用します。
 
 :::note
 - これは実験的機能で、バージョン3.0.1以降でサポートされています。
@@ -18,7 +18,7 @@ Delta Lake Catalogは、Delta Lakeテーブルにアクセスするために、T
 
 | シナリオ | サポート状況 |
 | -------- | -------------- |
-| データ統合 | Delta Lakeデータを読み取り、Doris内部テーブルに書き込み |
+| データ統合 | Delta Lakeデータを読み取り、Doris内部Tableに書き込み |
 | データ書き戻し | サポートされていません |
 
 ### バージョン互換性
@@ -69,7 +69,7 @@ mvn clean install -DskipTests
 
 2. コネクタが正しく読み込まれることを確実にするため、すべてのFEおよびBEノードを再起動してください。
 
-### Step 3: カタログの作成
+### ステップ 3: カタログの作成
 
 **基本設定**
 
@@ -92,10 +92,10 @@ CREATE CATALOG delta_lake_catalog PROPERTIES (
 
 ### ステップ 4: データクエリ
 
-Catalogを作成した後、以下の3つの方法のいずれかを使用してDelta Lakeテーブルデータをクエリできます：
+Catalogを作成した後、以下の3つの方法のいずれかを使用してDelta LakeTableデータをクエリできます：
 
 ```sql
--- Method 1: Switch to Catalog then query
+-- Method 1: Switch to カタログ then query
 SWITCH delta_lake_catalog;
 USE delta_lake_db;
 SELECT * FROM delta_lake_tbl LIMIT 10;
@@ -130,19 +130,19 @@ TrinoPropertiesは、Trino Delta Lake Connector固有のプロパティを設定
 | `trino.hive.metastore` | はい | - | メタデータサービスタイプ、例：`thrift` |
 | `trino.hive.metastore.uri` | はい | - | Hive Metastoreサービスアドレス |
 | `trino.hive.config.resources` | いいえ | - | Hadoop設定ファイルパス、複数ファイルはカンマ区切り |
-| `trino.delta.hide-non-delta-tables` | いいえ | false | Delta Lake以外のテーブルを非表示にするかどうか |
+| `trino.delta.hide-non-delta-tables` | いいえ | false | Delta Lake以外のTableを非表示にするかどうか |
 
 Delta Lake Connectorの設定パラメータの詳細については、[Trino Official Documentation](https://trino.io/docs/435/connector/delta-lake.html)を参照してください。
 
 #### CommonProperties パラメータ
 
-CommonPropertiesは、メタデータの更新ポリシーや権限制御などの一般的なCatalogプロパティを設定するために使用されます。詳細については、[Catalog Overview](../catalog-overview.md)の「Common Properties」セクションを参照してください。
+CommonPropertiesは、メタデータの更新ポリシーや権限制御などの一般的なCatalogプロパティを設定するために使用されます。詳細については、[カタログ 概要](../catalog-overview.md)の「Common Properties」セクションを参照してください。
 
 ## データ型マッピング
 
 Delta Lake Catalogを使用する場合、データ型は以下のルールに従ってマッピングされます：
 
-| Delta Lake Type | Trino Type | Doris Type | 備考 |
+| Delta Lake タイプ | Trino タイプ | Doris タイプ | 備考 |
 | --------------- | ---------- | ---------- | ----- |
 | boolean | boolean | boolean | |
 | int | int | int | |

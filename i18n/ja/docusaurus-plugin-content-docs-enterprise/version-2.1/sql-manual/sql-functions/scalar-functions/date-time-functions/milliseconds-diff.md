@@ -14,9 +14,9 @@
 ```sql
 MILLISECONDS_DIFF(<enddate>, <startdate>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter  | Description                                     |
+| Parameter  | デスクリプション                                     |
 |------------|-------------------------------------------------|
 | `<end_date>`    | 終了時刻、DATETIMEV2型               |
 | `<start_date>`  | 開始時刻、DATETIMEV2型             |

@@ -15,9 +15,9 @@
 
 `__internal_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name        | Type           | Description                                      |
+| Column Name        | タイプ           | デスクリプション                                      |
 | ------------------ | -------------- | ------------------------------------------------ |
 | id                 | varchar(4096)  | 一意のID                                         |
 | catalog_id         | varchar(64)    | CatalogのID                                      |

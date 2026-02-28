@@ -22,13 +22,13 @@ SHOW CREATE MATERIALIZED VIEW <materialized_view_name> ON <table_name>
 
 **2. `<table_name>`**
 
-> マテリアライズドビューが属するテーブル。
+> マテリアライズドビューが属するTable。
 
 ## 戻り値
 
 |カラム名 | 説明   |
 | -- |------|
-| TableName | テーブルの名前   |
+| TableName | Tableの名前   |
 | ViewName | マテリアライズドビューの名前 |
 | CreateStmt | マテリアライズドビューを作成するために使用されるステートメント |
 
@@ -38,7 +38,7 @@ SHOW CREATE MATERIALIZED VIEW <materialized_view_name> ON <table_name>
 
 | 権限 | オブジェクト | 備考                                                        |
 | --------- | ------ | ------------------------------------------------------------ |
-| SELECT_PRIV/LOAD_PRIV/ALTER_PRIV/CREATE_PRIV/DROP_PRIV | Table  | 現在のマテリアライズドビューが属するテーブルに対する権限が必要です |
+| SELECT_PRIV/LOAD_PRIV/ALTER_PRIV/CREATE_PRIV/DROP_PRIV | Table  | 現在のマテリアライズドビューが属するTableに対する権限が必要です |
 
 ## 例
 

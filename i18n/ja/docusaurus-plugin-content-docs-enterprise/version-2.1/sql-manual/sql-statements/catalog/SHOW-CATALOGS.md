@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 このステートメントは作成されたビューカタログに使用されます
 
@@ -30,7 +30,7 @@ illustrate:
 |---|---|
 | CatalogId      | データカタログの一意ID |
 | CatalogName    | データカタログの名前。デフォルトの組み込みカタログは"internal"という名前で、変更できません。 |
-| Type           | データカタログのタイプ |
+| タイプ           | データカタログのタイプ |
 | IsCurrent      | 現在アクティブなデータカタログかどうかを示します |
 | CreateTime     | 作成時間  |
 | LastUpdateTime | 最終更新時間 |
@@ -39,7 +39,7 @@ illustrate:
 ## アクセス制御要件
 | 権限                                                                                          | オブジェクト  | 注記                        |
 |:---------------------------------------------------------------------------------------------|:-----------|:---------------------------|
-| ADMIN_PRIV / SELECT_PRIV / LOAD_PRIV / ALTER_PRIV / CREATE_PRIV / SHOW_VIEW_PRIV / DROP_PRIV | Catalog    | 上記の権限のいずれかが必要です。 |
+| ADMIN_PRIV / SELECT_PRIV / LOAD_PRIV / ALTER_PRIV / CREATE_PRIV / SHOW_VIEW_PRIV / DROP_PRIV | カタログ    | 上記の権限のいずれかが必要です。 |
 
 
 ## 例
@@ -51,10 +51,10 @@ illustrate:
    ```
    ```sql
     +-----------+-------------+----------+-----------+-------------------------+---------------------+------------------------+
-    | CatalogId | CatalogName | Type     | IsCurrent | CreateTime              | LastUpdateTime      | Comment                |
+    | CatalogId | CatalogName | タイプ     | IsCurrent | CreateTime              | LastUpdateTime      | Comment                |
     +-----------+-------------+----------+-----------+-------------------------+---------------------+------------------------+
     |    130100 | hive        | hms      |           | 2023-12-25 16:11:41.687 | 2023-12-25 20:43:18 | NULL                   |
-    |         0 | internal    | internal | yes       | UNRECORDED              | NULL                | Doris internal catalog |
+    |         0 | internal    | internal | yes       | UNRECORDED              | NULL                | Doris 内部カタログ |
     +-----------+-------------+----------+-----------+-------------------------+---------------------+------------------------+
     ```
 2. カタログ名によるファジー検索
@@ -64,7 +64,7 @@ illustrate:
    ```
     ```sql
     +-----------+-------------+----------+-----------+-------------------------+---------------------+------------------------+
-    | CatalogId | CatalogName | Type     | IsCurrent | CreateTime              | LastUpdateTime      | Comment                |
+    | CatalogId | CatalogName | タイプ     | IsCurrent | CreateTime              | LastUpdateTime      | Comment                |
     +-----------+-------------+----------+-----------+-------------------------+---------------------+------------------------+
     |    130100 | hive        | hms      |           | 2023-12-25 16:11:41.687 | 2023-12-25 20:43:18 | NULL                   |
     +-----------+-------------+----------+-----------+-------------------------+---------------------+------------------------+

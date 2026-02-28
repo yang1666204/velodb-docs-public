@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 この文は外部カタログを作成するために使用されます
 
@@ -31,7 +31,7 @@ CREATE CATALOG [IF NOT EXISTS] <catalog_name> [ COMMENT "<comment>"]
 ## アクセス制御要件
 | 権限        | オブジェクト | 備考                                        |
 |:------------|:-------------|:--------------------------------------------|
-| CREATE_PRIV | Catalog      | 対応するカタログのCREATE_PRIV権限が必要です。 |
+| CREATE_PRIV | カタログ      | 対応するカタログのCREATE_PRIV権限が必要です。 |
 
 ## 例
 

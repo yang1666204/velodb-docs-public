@@ -18,13 +18,13 @@
 
 ウィザードによるウェアハウスデプロイメントは4つのステップに分かれており、詳細な操作手順は以下の通りです。
 
-## Step 1: ウェアハウスの設定
+## ステップ 1: ウェアハウスの設定
 
 1. 基本設定を行う
    1. ウェアハウス名を入力します。サポートされる文字は：中国語文字、英字（大文字小文字区別なし）、数字、アンダースコア（_）、ハイフン（-）です。
    2. Cloud Platform: **AWS**を選択
    3. ウェアハウスがデプロイされるAWSリージョンを選択します。
-2. Initial Cluster Resource Configuration
+2. Initial Cluster Resource 構成
    - Compute（vCPU）
      - デフォルト：8 vCPU
      - 調整可能範囲：クラスターあたり8–1024 vCPU
@@ -32,7 +32,7 @@
    - Cache
      - Dynamic Sizing：キャッシュ容量制限は選択されたコンピュートサイズに基づいて自動的にスケールされます。
      - Upper/Lower Bounds：最小および最大キャッシュしきい値はvCPU割り当てに比例して変動します。
-3. Initial User Configuration
+3. Initial User 構成
    デフォルトのadminユーザーのパスワードを設定できます。パスワードは以下の要件を満たす必要があります：
      - 長さ：8–20文字
      - 使用可能な文字：大文字と小文字、数字、特殊文字（例：`~!@#$%^&*()_+|<>,.?/:;'[]{}"`)
@@ -43,7 +43,7 @@
 
 すべての必須フィールドを入力後、**Next**ボタンをクリックして続行します。
 
-## Step 2: 認証情報の設定
+## ステップ 2: 認証情報の設定
 
 このステップでは、**Create New Credentials**または以前のデプロイメント時に作成された**Reuse Credentials**を選択できます。
 
@@ -57,9 +57,9 @@
    1. Cross-Account IAM Role ARNを入力します。Cross-Account IAM Roleをまだ作成していない場合は、[Create a Deployment Credential](../../../more/amazon-aws/create-deployment-credential.mdx)に記載された手順に従って作成してください。
 3. **Next**ボタンをクリックして続行します。
 
-## Step 3: ネットワークの設定
+## ステップ 3: ネットワークの設定
 
-このステップでは、**Create New Network**または以前のデプロイメント時に作成された**Reuse Network Configuration**を選択できます。
+このステップでは、**Create New Network**または以前のデプロイメント時に作成された**Reuse Network 構成**を選択できます。
 
 >**NOTE**
 >VeloDBでは複数のウェアハウス間でネットワーク設定を再利用できます。つまり、複数のウェアハウスが同じVPC、サブネット、セキュリティグループを共有できます。
@@ -71,6 +71,6 @@
 
 End-to-End Private Linkを有効にしたい場合は、**Advanced Network Settings**をクリックし、接続用のVPCエンドポイントIDを**VPC Endpoint ID**フィールドに貼り付けることができます。プライベートエンドポイントを作成するには、[Configure Private Connectivity to VeloDB](../../../more/amazon-aws/create-private-endpoint-for-byoc.mdx)を参照してください。
 
-## Step 4: クラウドでのデプロイ
+## ステップ 4: クラウドでのデプロイ
 
 前の3つのステップを完了すると、VeloDBは自動的にクラウドリソースをプロビジョニングし、VPC内にウェアハウスをデプロイします。このプロセスは通常約5分かかります。この間お待ちいただき、ありがとうございます。

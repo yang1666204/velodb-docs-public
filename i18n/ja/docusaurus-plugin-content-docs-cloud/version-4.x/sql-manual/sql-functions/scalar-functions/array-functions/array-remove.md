@@ -14,9 +14,9 @@
 ```sql
 ARRAY_REMOVE(<arr>, <val>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 |--|--|
 | `<arr>` | 対応する配列 |
 | `<val>` | 指定する要素 |

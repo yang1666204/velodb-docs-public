@@ -13,7 +13,7 @@ REGR_INTERCEPTは、数値ペアのセットに対する最小二乗法による
 ```
 REGR_INTERCEPT(y, x)
 ```
-## Parameters
+## パラメータ
 - `y` (Numeric): 従属変数。
 - `x` (Numeric): 独立変数。
 

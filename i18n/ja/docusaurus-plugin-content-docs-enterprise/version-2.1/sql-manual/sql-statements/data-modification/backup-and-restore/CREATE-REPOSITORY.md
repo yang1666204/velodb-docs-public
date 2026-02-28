@@ -46,7 +46,7 @@ CREATE [READ ONLY] REPOSITORY <repo_name>
 
 ## アクセス制御要件
 
-| Privilege               | Object                         | Notes                                               |
+| Privilege               | Object                         | 注釈                                               |
 |:-------------------|:-----------------------------|:----------------------------------------------------|
 | ADMIN_PRIV         | Entire cluster management permissions | Only the root or superuser can create repositories  |
 
@@ -54,7 +54,7 @@ CREATE [READ ONLY] REPOSITORY <repo_name>
 ## 使用上の注意
 - 読み取り専用リポジトリの場合、リポジトリに対してリストア操作のみ実行できます。そうでない場合は、バックアップとリストアの両方の操作を実行できます。
 - プロパティ（PROPERTIES）は、S3かHDFSかによって異なります。例を参照してください。
-- ON LOCATIONについて、S3の場合は、以下にS3 Bucket Nameを指定する必要があります。
+- ON LOCATIONについて、S3の場合は、以下にS3 バケット Nameを指定する必要があります。
 - データ移行を実行する際は、移行先クラスタが移行元クラスタのバックアップからデータスナップショットを表示できるように、移行元と移行先の両方のクラスタで同じリポジトリを作成する必要があります。
 - 任意のユーザーは、[SHOW REPOSITORIES](./SHOW-REPOSITORIES)コマンドを使用して、作成されたリポジトリを表示できます。
 

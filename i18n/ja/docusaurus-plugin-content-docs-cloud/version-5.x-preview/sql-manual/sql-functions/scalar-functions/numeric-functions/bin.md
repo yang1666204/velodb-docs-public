@@ -14,9 +14,9 @@
 ```sql
 BIN(<a>)
 ```
-## Parameters
+## パラメータ
 
-| Parameter | Description |
+| Parameter | デスクリプション |
 | -- | -- |
 | `<a>` | 変換される10進数値（型：BigInt） |
 

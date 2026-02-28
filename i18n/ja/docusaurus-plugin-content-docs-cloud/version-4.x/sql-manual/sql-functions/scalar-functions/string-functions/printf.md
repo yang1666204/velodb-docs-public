@@ -5,7 +5,7 @@
   "language": "ja"
 }
 ---
-## Description
+## デスクリプション
 
 指定された [printf](https://pubs.opengroup.org/onlinepubs/009695399/functions/fprintf.html) 文字列と引数を使用して、フォーマットされた文字列を返します。
 

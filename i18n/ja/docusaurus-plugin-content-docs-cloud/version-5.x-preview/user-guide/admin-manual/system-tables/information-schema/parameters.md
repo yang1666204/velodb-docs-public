@@ -1,7 +1,7 @@
 ---
 {
   "title": "パラメータ",
-  "description": "このテーブルはMySQLの動作との互換性のためのみに存在し、常に空です。",
+  "description": "このTableはMySQLの動作との互換性のためのみに存在し、常に空です。",
   "language": "ja"
 }
 ---
@@ -9,15 +9,15 @@
 
 ## 概要
 
-このテーブルはMySQLの動作との互換性のためだけに存在し、常に空です。
+このTableはMySQLの動作との互換性のためだけに存在し、常に空です。
 
 ## データベース
 
 `information_schema`
 
-## テーブル情報
+## Table情報
 
-| Column Name            | Type         | Description |
+| Column Name            | タイプ         | デスクリプション |
 | ---------------------- | ------------ | ----------- |
 | SPECIFIC_CATALOG       | varchar(64)  |             |
 | SPECIFIC_SCHEMA        | varchar(64)  |             |

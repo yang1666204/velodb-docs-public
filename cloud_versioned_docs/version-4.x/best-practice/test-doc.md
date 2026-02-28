@@ -122,82 +122,16 @@ Doris > SELECT * FROM partition_table;
 | 2024-01-01 08:00:00.000000 | 1000 | us-east | PART1 |
 +----------------------------+------+---------+-------+
 ```
+## Tableau
 
-### 05 Time Travel
+### Q1. Version 2.0.x reports that Tableau cannot connect to the data source with error code 37CE01A3.
 
-We can insert another batch of data, then use the `$snapshots` system table to view Iceberg Snapshots:
+Turn off the new optimizer in the current version or upgrade to 2.0.7 or later
 
-```sql
-Doris > INSERT INTO partition_table VALUES
-    -> ("2024-01-03 08:00:00", 1000, "us-east", "PART1"),
-    -> ("2024-01-04 10:00:00", 1002, "us-sout", "PART2");
-Query OK, 2 rows affected (9.76 sec)
-{'status':'COMMITTED', 'txnId':'1736935786474'}
-```
+### Q2. SSL connection error:protocol version mismatch Failed to connect to the MySQL server
 
-```
-Doris > SELECT * FROM partition_table$snapshots\G
-*************************** 1. row ***************************
- committed_at: 2025-01-15 23:27:01
-  snapshot_id: 6834769222601914216
-    parent_id: -1
-    operation: append
-manifest_list: s3://80afcb3f-6edf-46f2-7fhehwj6cengfwc7n6iz7ipzakd7quse1b--table-s3/metadata/snap-6834769222601914216-1-a6b2230d-fc0d-4c1d-8f20-94bb798f27b1.avro
-      summary: {"added-data-files":"2","added-records":"2","added-files-size":"5152","changed-partition-count":"2","total-records":"2","total-files-size":"5152","total-data-files":"2","total-delete-files":"0","total-position-deletes":"0","total-equality-deletes":"0","iceberg-version":"Apache Iceberg 1.6.1 (commit 8e9d59d299be42b0bca9461457cd1e95dbaad086)"}
-*************************** 2. row ***************************
- committed_at: 2025-01-15 23:30:00
-  snapshot_id: 5670090782912867298
-    parent_id: 6834769222601914216
-    operation: append
-manifest_list: s3://80afcb3f-6edf-46f2-7fhehwj6cengfwc7n6iz7ipzakd7quse1b--table-s3/metadata/snap-5670090782912867298-1-beeed339-be96-4710-858b-f39bb01cc3ff.avro
-      summary: {"added-data-files":"2","added-records":"2","added-files-size":"5152","changed-partition-count":"2","total-records":"4","total-files-size":"10304","total-data-files":"4","total-delete-files":"0","total-position-deletes":"0","total-equality-deletes":"0","iceberg-version":"Apache Iceberg 1.6.1 (commit 8e9d59d299be42b0bca9461457cd1e95dbaad086)"}
-```
+The cause of this error is that SSL authentication is enabled on Doris, but SSL connections are not used during the connection. You need to disable the enable_ssl variable in fe.conf.
 
-Use the `VERSION AS OF` syntax to query different snapshots:
+### Q3. Connection error Unsupported command(COM_STMT_PREPARED) 
 
-```sql
-Doris > SELECT * FROM partition_table FOR VERSION AS OF 5670090782912867298;
-+----------------------------+------+---------+-------+
-| ts                         | id   | pt1     | pt2   |
-+----------------------------+------+---------+-------+
-| 2024-01-04 10:00:00.000000 | 1002 | us-sout | PART2 |
-| 2024-01-03 08:00:00.000000 | 1000 | us-east | PART1 |
-| 2024-01-01 08:00:00.000000 | 1000 | us-east | PART1 |
-| 2024-01-02 10:00:00.000000 | 1002 | us-sout | PART2 |
-+----------------------------+------+---------+-------+
-
-Doris > SELECT * FROM partition_table FOR VERSION AS OF 6834769222601914216;
-+----------------------------+------+---------+-------+
-| ts                         | id   | pt1     | pt2   |
-+----------------------------+------+---------+-------+
-| 2024-01-02 10:00:00.000000 | 1002 | us-sout | PART2 |
-| 2024-01-01 08:00:00.000000 | 1000 | us-east | PART1 |
-+----------------------------+------+---------+-------+
-```
-
-### 06 Access S3 Tables Using EMR Spark
-
-Data written using Doris can also be accessed using Spark:
-
-```shell
-spark-shell --jars /usr/share/aws/iceberg/lib//iceberg-spark-runtime-3.5_2.12-1.6.1-amzn-1.jar \
---packages software.amazon.s3tables:s3-tables-catalog-for-iceberg-runtime:0.1.3 \
---conf spark.sql.catalog.s3tablesbucket=org.apache.iceberg.spark.SparkCatalog \
---conf spark.sql.catalog.s3tablesbucket.catalog-impl=software.amazon.s3tables.iceberg.S3TablesCatalog \
---conf spark.sql.catalog.s3tablesbucket.warehouse=arn:aws:s3tables:us-east-1:169698000000:bucket/doris-s3-table-bucket \
---conf spark.sql.defaultCatalog=s3tablesbucket \
---conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
-```
-
-```sql
-scala> spark.sql("SELECT * FROM s3tablesbucket.my_namespace.`partition_table` ").show()
-+-------------------+----+-------+-----+
-|                 ts|  id|    pt1|  pt2|
-+-------------------+----+-------+-----+
-|2024-01-02 10:00:00|1002|us-sout|PART2|
-|2024-01-01 08:00:00|1000|us-east|PART1|
-|2024-01-04 10:00:00|1002|us-sout|PART2|
-|2024-01-03 08:00:00|1000|us-east|PART1|
-+-------------------+----+-------+-----+
-```
-
+The MySQL driver version is improperly installed. Install the MySQL 5.1.x connection driver instead.

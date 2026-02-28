@@ -2189,7 +2189,8 @@
         "best-practice/lakehouse-faq",
         "best-practice/bi-faq",
         "best-practice/correctness-faq",
-        "best-practice/load-faq"
+        "best-practice/load-faq",
+        "best-practice/test-doc3"
       ]
     },
     {

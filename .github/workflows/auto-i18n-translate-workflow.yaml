@@ -2,44 +2,131 @@ name: Auto Translate Docs (EN -> JA)
 
 on:
   push:
+    branches:
+      - main
+    paths:
+      - "cloud_versioned_docs/**/*.md"
+      - "cloud_versioned_docs/**/*.mdx"
+      - "enterprise_versioned_docs/**/*.md"
+      - "enterprise_versioned_docs/**/*.mdx"
+
+concurrency:
+  group: auto-i18n-main
+  cancel-in-progress: true
 
 jobs:
   detect_changes:
     runs-on: ubuntu-latest
     outputs:
-      files: ${{ steps.diff.outputs.files }}
+      changed_files: ${{ steps.diff.outputs.changed_files }}
+      deleted_files: ${{ steps.diff.outputs.deleted_files }}
+      has_changed: ${{ steps.diff.outputs.has_changed }}
+      has_deleted: ${{ steps.diff.outputs.has_deleted }}
+      has_work: ${{ steps.diff.outputs.has_work }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - id: diff
-        name: Detect changed English docs
+        name: Detect changed/deleted English docs
         run: |
-          BASE=${{ github.event.before }}
-          HEAD=${{ github.sha }}
-          git diff --name-only "$BASE" "$HEAD" \
-            | grep -E '^(enterprise_versioned_docs|cloud_versioned_docs)/.*\.mdx?$' > changed.txt || true
-          echo "files=$(jq -R -s -c 'split("\n")[:-1]' changed.txt)" >> $GITHUB_OUTPUT
+          set -euo pipefail
+
+          BASE="${{ github.event.before }}"
+          HEAD="${{ github.sha }}"
+          EMPTY_TREE="$(git hash-object -t tree /dev/null)"
+
+          if [ -z "${BASE}" ] || [ "${BASE}" = "0000000000000000000000000000000000000000" ]; then
+            if git rev-parse "${HEAD}^" >/dev/null 2>&1; then
+              BASE="$(git rev-parse "${HEAD}^")"
+            else
+              BASE="${EMPTY_TREE}"
+            fi
+          fi
+
+          echo "Diff range: ${BASE}..${HEAD}"
+
+          git diff --name-status "${BASE}" "${HEAD}" > raw-diff.txt || true
+
+          : > changed.txt
+          : > deleted.txt
+
+          while IFS=$'\t' read -r status path1 path2; do
+            [ -z "${status}" ] && continue
+
+            case "${status}" in
+              D)
+                candidate="${path1}"
+                if [[ "${candidate}" =~ ^(enterprise_versioned_docs|cloud_versioned_docs)/.*\.mdx?$ ]]; then
+                  echo "${candidate}" >> deleted.txt
+                fi
+                ;;
+              R*)
+                old_path="${path1}"
+                new_path="${path2}"
+                if [[ "${old_path}" =~ ^(enterprise_versioned_docs|cloud_versioned_docs)/.*\.mdx?$ ]]; then
+                  echo "${old_path}" >> deleted.txt
+                fi
+                if [[ "${new_path}" =~ ^(enterprise_versioned_docs|cloud_versioned_docs)/.*\.mdx?$ ]]; then
+                  echo "${new_path}" >> changed.txt
+                fi
+                ;;
+              A|C|M|T)
+                candidate="${path1}"
+                if [[ "${candidate}" =~ ^(enterprise_versioned_docs|cloud_versioned_docs)/.*\.mdx?$ ]]; then
+                  echo "${candidate}" >> changed.txt
+                fi
+                ;;
+            esac
+          done < raw-diff.txt
+
+          sort -u changed.txt -o changed.txt
+          sort -u deleted.txt -o deleted.txt
+
+          changed_json="$(jq -R -s -c 'split("\n")[:-1]' changed.txt)"
+          deleted_json="$(jq -R -s -c 'split("\n")[:-1]' deleted.txt)"
+
+          echo "changed_files=${changed_json}" >> "$GITHUB_OUTPUT"
+          echo "deleted_files=${deleted_json}" >> "$GITHUB_OUTPUT"
+
+          if [ "${changed_json}" = "[]" ]; then
+            echo "has_changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [ "${deleted_json}" = "[]" ]; then
+            echo "has_deleted=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_deleted=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [ "${changed_json}" != "[]" ] || [ "${deleted_json}" != "[]" ]; then
+            echo "has_work=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_work=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Debug outputs
         run: |
-          echo "files output is:"
-          echo '${{ steps.diff.outputs.files }}'
+          echo "changed_files: ${{ steps.diff.outputs.changed_files }}"
+          echo "deleted_files: ${{ steps.diff.outputs.deleted_files }}"
+          echo "has_changed: ${{ steps.diff.outputs.has_changed }}"
+          echo "has_deleted: ${{ steps.diff.outputs.has_deleted }}"
+          echo "has_work: ${{ steps.diff.outputs.has_work }}"
 
   prepare_translation_input:
     runs-on: ubuntu-latest
     needs: detect_changes
-    if: needs.detect_changes.outputs.files != '[]'
-    outputs:
-      manifest: ${{ steps.prepare.outputs.manifest }}
+    if: needs.detect_changes.outputs.has_changed == 'true'
     steps:
       - uses: actions/checkout@v4
 
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-            node-version: 20     
+          node-version: 20
 
       - name: Test AWS API Access
         env:
@@ -49,29 +136,21 @@ jobs:
           node scripts/i18n/test-aws-access.js
 
       - name: Install dependencies
-        run: | 
-          npm install -g yarn 
+        run: |
+          npm install -g yarn
           yarn install --frozen-lockfile
 
-      - id: prepare
-        name: Prepare translation input
+      - name: Prepare translation input
         run: |
           mkdir -p .i18n/input
-          echo '${{ needs.detect_changes.outputs.files }}' > files.json
+          echo '${{ needs.detect_changes.outputs.changed_files }}' > files.json
           node scripts/i18n/prepare.js files.json .i18n/input manifest.json
-          echo "manifest=$(cat manifest.json | jq -c '.')" >> $GITHUB_OUTPUT
-      
-      - name: Debug:list .i18n/input
-        run: |
-          echo "Contents of .i18n/input:"
-          ls -la .i18n/input || true
-          echo "File count: $(find .i18n/input -type f | wc -l)"
 
       - name: Verify intermediate files exist
         run: |
           COUNT=$(find .i18n/input -type f | wc -l)
           if [ "$COUNT" -eq 0 ]; then
-            echo "❌ No intermediate files generated in .i18n/input"
+            echo "No intermediate files generated in .i18n/input"
             exit 1
           fi
 
@@ -83,9 +162,10 @@ jobs:
   translate_docs:
     runs-on: ubuntu-latest
     needs: prepare_translation_input
+    if: always() && needs.prepare_translation_input.result == 'success'
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/download-artifact@v4
         with:
           name: i18n-input
@@ -105,88 +185,68 @@ jobs:
           name: i18n-output
           path: .i18n/output
 
-# post_process 写入了 markdown
-  post_process:
-    runs-on: ubuntu-latest
-    needs: translate_docs
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-            node-version: 20     
-
-      - name: Install dependencies
-        run: | 
-          npm install -g yarn 
-          yarn install --frozen-lockfile
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: i18n-output
-          path: .i18n/output
-
-      - name: Restore markdown and write ja docs
-        run: |
-          node scripts/i18n/post-process.js \
-            .i18n/output \
-            i18n/ja
-
-
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git add i18n/ja
-          git commit -m "chore(i18n): auto translate docs to ja" || echo "No changes"
-
   create_pr:
     runs-on: ubuntu-latest
-    needs: post_process
+    needs:
+      - detect_changes
+      - translate_docs
+    if: |
+      always() &&
+      needs.detect_changes.outputs.has_work == 'true' &&
+      (
+        (needs.detect_changes.outputs.has_changed == 'true' && needs.translate_docs.result == 'success') ||
+        (needs.detect_changes.outputs.has_changed != 'true')
+      )
     permissions:
       contents: write
       pull-requests: write
     steps:
-      # 1. checkout 仓库
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2. 下载翻译产物
-      - uses: actions/download-artifact@v4
+      - name: Download translated artifacts
+        if: needs.detect_changes.outputs.has_changed == 'true'
+        uses: actions/download-artifact@v4
         with:
           name: i18n-output
           path: .i18n/output
           include-hidden-files: true
 
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        if: needs.detect_changes.outputs.has_changed == 'true'
+        uses: actions/setup-node@v4
         with:
-            node-version: 20     
+          node-version: 20
 
       - name: Install dependencies
-        run: | 
-          npm install -g yarn 
+        if: needs.detect_changes.outputs.has_changed == 'true'
+        run: |
+          npm install -g yarn
           yarn install --frozen-lockfile
 
       - name: Restore markdown and write ja docs
+        if: needs.detect_changes.outputs.has_changed == 'true'
         run: |
           node scripts/i18n/post-process.js \
             .i18n/output \
             i18n/ja
 
-      # 4. 创建 PR
+      - name: Sync deleted docs to ja and sidebars
+        if: needs.detect_changes.outputs.has_deleted == 'true'
+        run: |
+          echo '${{ needs.detect_changes.outputs.deleted_files }}' > deleted-files.json
+          node scripts/i18n/sync-deletions.js deleted-files.json
+
       - uses: peter-evans/create-pull-request@v6
         with:
           base: main
           branch: auto/i18n-ja-${{ github.run_id }}
-          commit-message: chore(i18n):auto translate docs to ja
+          commit-message: "chore(i18n): auto translate docs to ja"
           title: "[auto-i18n] Translate docs to Japanese"
           body: |
             This PR contains automatically translated Japanese docs.
           add-paths: |
-            cloud_versioned_docs/**
-            enterprise_versioned_docs/**
             i18n/ja/**
-            docs/**
+            cloud_versioned_sidebars/**
+            enterprise_versioned_sidebars/**

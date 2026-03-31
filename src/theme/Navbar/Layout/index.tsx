@@ -30,7 +30,6 @@ export default function NavbarLayout({ children }: Props): ReactNode {
   const mobileSidebar = useNavbarMobileSidebar();
   const { navbarRef, isNavbarVisible } = useHideableNavbar(hideOnScroll);
   return (
-    <>
       <nav
         ref={navbarRef}
         aria-label={translate({
@@ -56,8 +55,6 @@ export default function NavbarLayout({ children }: Props): ReactNode {
         {children}
         <NavbarBackdrop onClick={mobileSidebar.toggle} />
         <NavbarMobileSidebar />
-      </nav>
       <NavbarTab />
-    </>
   );
 }
